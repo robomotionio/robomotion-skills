@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Robomotion Official Skills",
+  "description": "Curated skills for Robomotion LLM Agents",
+  "skills": [
+    {
+      "name": "pdf",
+      "path": "skills/pdf",
+      "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": ["document", "pdf", "extraction"],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "security-best-practices",
+      "path": "skills/security-best-practices",
+      "description": "Perform language and framework specific security best-practice reviews and suggest improvements.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": ["security", "code-review", "appsec"],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "security-threat-model",
+      "path": "skills/security-threat-model",
+      "description": "Repository-grounded threat modeling that enumerates trust boundaries, assets, attacker capabilities, abuse paths, and mitigations.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": ["security", "threat-model", "appsec"],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "yeet",
+      "path": "skills/yeet",
+      "description": "Stage, commit, push, and open a GitHub pull request in one flow using the GitHub CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": ["git", "github", "workflow"],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "figma-implement-design",
+      "path": "skills/figma-implement-design",
+      "description": "Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": ["design", "figma", "frontend"],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "linear",
+      "path": "skills/linear",
+      "description": "Manage issues, projects & team workflows in Linear.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": ["project-management", "linear", "issues"],
+      "license": "Apache-2.0"
+    }
+  ]
+}
