@@ -1,0 +1,57 @@
+{
+  "skill_name": "ocr-extraction",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion googlevision to OCR this scanned receipt",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion googledocumentai to extract fields from this invoice",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion googlevision detect_text on this screenshot",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "extract text from a digital PDF with selectable text",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "set up a CI/CD pipeline for this repository",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "translate this text to Spanish",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "generate a random password with 16 characters",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "extract all text from the scanned document scan.png using OCR",
+      "criteria": [
+        "Uses robomotion googlevision or googledocumentai command",
+        "Specifies the input image path",
+        "Returns extracted text content"
+      ]
+    }
+  ]
+}

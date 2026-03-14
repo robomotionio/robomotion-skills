@@ -1,0 +1,57 @@
+{
+  "skill_name": "apollo",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion apollo to search for CTOs at SaaS companies",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion apollo enrich_contact on this email address",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion apollo search_people with these filters",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "create a contact in HubSpot",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "write a unit test for this function",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "add a lead to Salesforce",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "help me organize my project files into folders",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "search Apollo for VP of Engineering contacts at companies with 50-200 employees in the US",
+      "criteria": [
+        "Uses robomotion apollo search_people or similar command",
+        "Specifies title, company size, and location filters",
+        "Returns contact results"
+      ]
+    }
+  ]
+}

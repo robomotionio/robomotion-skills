@@ -1,0 +1,57 @@
+{
+  "skill_name": "google-docs",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion googledocs to create a new document with this agenda",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion googledocs read_document to get the content",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion googledocs to append a section to the doc",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "create a local Word document",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "update a Google Sheets spreadsheet",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "read a PDF file",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "create a document with this content",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "create a new Google Doc titled 'Weekly Report' with the heading 'Status Update'",
+      "criteria": [
+        "Uses robomotion googledocs create or similar command",
+        "Specifies the document title",
+        "Includes content insertion step"
+      ]
+    }
+  ]
+}

@@ -1,67 +1,45 @@
 ---
 name: "pdf"
-description: "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction."
+description: "Use when the user wants to call the Robomotion PDF package to create, merge, split, or extract text from PDF files via the `robomotion pdfprocessor` CLI. Do NOT use for viewing PDFs, non-PDF formats, or when the user wants to use Python PDF libraries directly."
 ---
 
-
-# PDF Skill
+# Pdf Skill
 
 ## When to use
-- Read or review PDF content where layout and visuals matter.
-- Create PDFs programmatically with reliable formatting.
-- Validate final rendering before delivery.
+- Extract text or metadata from PDF files
+- Merge or split PDF documents
+- Create PDF files programmatically
+- Convert PDF pages to images
+
+## Prerequisites
+- `robomotion` CLI installed
+- Package installed: `robomotion install pdfprocessor`
 
 ## Workflow
-1. Prefer visual review: render PDF pages to PNGs and inspect them.
-   - Use `pdftoppm` if available.
-   - If unavailable, install Poppler or ask the user to review the output locally.
-2. Use `reportlab` to generate PDFs when creating new documents.
-3. Use `pdfplumber` (or `pypdf`) for text extraction and quick checks; do not rely on it for layout fidelity.
-4. After each meaningful update, re-render pages and verify alignment, spacing, and legibility.
+1. Install the package: `robomotion install pdfprocessor`
+2. Run commands: `robomotion pdfprocessor <command> [flags]`
 
-## Temp and output conventions
-- Use `tmp/pdfs/` for intermediate files; delete when done.
-- Write final artifacts under `output/pdf/` when working in this repo.
-- Keep filenames stable and descriptive.
-
-## Dependencies (install if missing)
-Prefer `uv` for dependency management.
-
-Python packages:
-```
-uv pip install reportlab pdfplumber pypdf
-```
-If `uv` is unavailable:
-```
-python3 -m pip install reportlab pdfplumber pypdf
-```
-System tools (for rendering):
-```
-# macOS (Homebrew)
-brew install poppler
-
-# Ubuntu/Debian
-sudo apt-get install -y poppler-utils
-```
-
-If installation isn't possible in this environment, tell the user which dependency is missing and how to install it locally.
+## Commands Reference
+- `robomotion pdfprocessor pdf_export_form_to_json --pdf-path --json-path-to-save`
+  Export PDF form fields and data to a JSON file
+- `robomotion pdfprocessor pdf_fill_form_from_json --json-path --source-pdf-path --pdf-path-to-save`
+  Fill PDF form fields with data from a JSON file
+- `robomotion pdfprocessor pdf_create_from_json --json-path [--in-pdf-path] [--out-pdf-path]`
+  Create a PDF document from a JSON definition file
+- `robomotion pdfprocessor pdf_extract_images --pdf-path --directory-to-extract-images [--from-selected-pages]`
+  Extract images from a PDF file to a specified directory
+- `robomotion pdfprocessor pdf_split --pdf-path --directory-to-save-pages --page-number(s)-to-split [--custom-pages]`
+  Split a PDF file into multiple files by page numbers
+- `robomotion pdfprocessor pdf_merge --pdf-paths --custom-paths --pdf-path-to-save`
+  Merge multiple PDF files into a single PDF document
+- `robomotion pdfprocessor pdf_optimize --pdf-path [--pdf-path-to-save]`
+  Optimize a PDF file to reduce its file size
+- `robomotion pdfprocessor pdf_encrypt --pdf-path [--pdf-path-to-save] [--mode] [--key-length]`
+  Encrypt a PDF file with password protection
+- `robomotion pdfprocessor pdf_decrypt --pdf-path [--pdf-path-to-save] [--mode] [--key-length]`
+  Decrypt a password-protected PDF file
+- `robomotion pdfprocessor pdf_change_password --pdf-path [--pdf-path-to-save] [--mode] [--key-length] [--change-owner-or-user]`
+  Change the owner or user password of an encrypted PDF file
 
 ## Environment
-No required environment variables.
-
-## Rendering command
-```
-pdftoppm -png $INPUT_PDF $OUTPUT_PREFIX
-```
-
-## Quality expectations
-- Maintain polished visual design: consistent typography, spacing, margins, and section hierarchy.
-- Avoid rendering issues: clipped text, overlapping elements, broken tables, black squares, or unreadable glyphs.
-- Charts, tables, and images must be sharp, aligned, and clearly labeled.
-- Use ASCII hyphens only. Avoid U+2011 (non-breaking hyphen) and other Unicode dashes.
-- Citations and references must be human-readable; never leave tool tokens or placeholder strings.
-
-## Final checks
-- Do not deliver until the latest PNG inspection shows zero visual or formatting defects.
-- Confirm headers/footers, page numbering, and section transitions look polished.
-- Keep intermediate files organized or remove them after final approval.
+- ROBOMOTION_API_TOKEN (if vault credentials are needed)

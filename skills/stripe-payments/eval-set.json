@@ -1,0 +1,57 @@
+{
+  "skill_name": "stripe-payments",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion stripe to create a customer for john@example.com",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion stripe list_subscriptions that are past due",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion stripe create_invoice for $500",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "process a PayPal payment",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "create a Square invoice",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "optimize this SQL query for better performance",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "set up logging for this application",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "create a new Stripe customer with email 'bob@example.com' and name 'Bob Wilson'",
+      "criteria": [
+        "Uses robomotion stripe create_customer or similar command",
+        "Specifies email and name fields",
+        "Uses proper Stripe API parameters"
+      ]
+    }
+  ]
+}

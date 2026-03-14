@@ -4,57 +4,367 @@
   "description": "Curated skills for Robomotion LLM Agents",
   "skills": [
     {
+      "name": "claude-ai",
+      "path": "skills/claude-ai",
+      "description": "Generate text, summarize, translate, or analyze content via the `robomotion claude` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "ai",
+        "llm",
+        "claude",
+        "anthropic",
+        "text-generation"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "openai",
+      "path": "skills/openai",
+      "description": "Generate text, images, embeddings, or audio via the `robomotion openai` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "ai",
+        "llm",
+        "openai",
+        "gpt",
+        "text-generation"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "gemini-ai",
+      "path": "skills/gemini-ai",
+      "description": "Generate text or analyze images via the `robomotion googlegemini` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "ai",
+        "llm",
+        "gemini",
+        "google",
+        "text-generation"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
       "name": "pdf",
       "path": "skills/pdf",
-      "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter.",
+      "description": "Create, merge, split, or extract text from PDF files via the `robomotion pdfprocessor` CLI.",
       "version": "1.0.0",
       "author": "robomotion",
-      "tags": ["document", "pdf", "extraction"],
+      "tags": [
+        "document",
+        "pdf",
+        "extraction",
+        "generation"
+      ],
       "license": "Apache-2.0"
     },
     {
-      "name": "security-best-practices",
-      "path": "skills/security-best-practices",
-      "description": "Perform language and framework specific security best-practice reviews and suggest improvements.",
+      "name": "google-docs",
+      "path": "skills/google-docs",
+      "description": "Create, read, or update Google Docs via the `robomotion googledocs` CLI.",
       "version": "1.0.0",
       "author": "robomotion",
-      "tags": ["security", "code-review", "appsec"],
+      "tags": [
+        "google",
+        "docs",
+        "document",
+        "writing"
+      ],
       "license": "Apache-2.0"
     },
     {
-      "name": "security-threat-model",
-      "path": "skills/security-threat-model",
-      "description": "Repository-grounded threat modeling that enumerates trust boundaries, assets, attacker capabilities, abuse paths, and mitigations.",
+      "name": "ocr-extraction",
+      "path": "skills/ocr-extraction",
+      "description": "Extract text from images or scanned documents via the `robomotion googlevision` or `robomotion googledocumentai` CLI.",
       "version": "1.0.0",
       "author": "robomotion",
-      "tags": ["security", "threat-model", "appsec"],
+      "tags": [
+        "ocr",
+        "extraction",
+        "vision",
+        "document-ai",
+        "google"
+      ],
       "license": "Apache-2.0"
     },
     {
-      "name": "yeet",
-      "path": "skills/yeet",
-      "description": "Stage, commit, push, and open a GitHub pull request in one flow using the GitHub CLI.",
+      "name": "s3-storage",
+      "path": "skills/s3-storage",
+      "description": "Upload, download, list, or manage files in S3 buckets via the `robomotion amazons3` CLI.",
       "version": "1.0.0",
       "author": "robomotion",
-      "tags": ["git", "github", "workflow"],
+      "tags": [
+        "aws",
+        "s3",
+        "storage",
+        "cloud",
+        "files"
+      ],
       "license": "Apache-2.0"
     },
     {
-      "name": "figma-implement-design",
-      "path": "skills/figma-implement-design",
-      "description": "Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow.",
+      "name": "google-drive",
+      "path": "skills/google-drive",
+      "description": "Upload, download, list, or manage files in Google Drive via the `robomotion googledrive` CLI.",
       "version": "1.0.0",
       "author": "robomotion",
-      "tags": ["design", "figma", "frontend"],
+      "tags": [
+        "google",
+        "drive",
+        "storage",
+        "cloud",
+        "files"
+      ],
       "license": "Apache-2.0"
     },
     {
-      "name": "linear",
-      "path": "skills/linear",
-      "description": "Manage issues, projects & team workflows in Linear.",
+      "name": "postgresql",
+      "path": "skills/postgresql",
+      "description": "Query or manage a PostgreSQL database via the `robomotion postgresql` CLI.",
       "version": "1.0.0",
       "author": "robomotion",
-      "tags": ["project-management", "linear", "issues"],
+      "tags": [
+        "database",
+        "postgresql",
+        "sql",
+        "query"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "mongodb",
+      "path": "skills/mongodb",
+      "description": "Query, insert, or manage documents in MongoDB via the `robomotion mongodb` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "database",
+        "mongodb",
+        "nosql",
+        "document-db"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "clickhouse",
+      "path": "skills/clickhouse",
+      "description": "Query or insert data into ClickHouse via the `robomotion clickhouse` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "database",
+        "clickhouse",
+        "analytics",
+        "columnar",
+        "sql"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "gmail",
+      "path": "skills/gmail",
+      "description": "Send, read, or search emails via the `robomotion gmail` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "email",
+        "gmail",
+        "google",
+        "communication"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "slack",
+      "path": "skills/slack",
+      "description": "Send messages or manage channels via the `robomotion slack` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "messaging",
+        "slack",
+        "chat",
+        "communication"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "discord-bot",
+      "path": "skills/discord-bot",
+      "description": "Send messages or manage a Discord server via the `robomotion discordbot` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "messaging",
+        "discord",
+        "bot",
+        "chat"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "telegram",
+      "path": "skills/telegram",
+      "description": "Send messages or interact with Telegram chats via the `robomotion telegrambot` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "messaging",
+        "telegram",
+        "bot",
+        "chat"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "hubspot-crm",
+      "path": "skills/hubspot-crm",
+      "description": "Manage contacts, deals, or companies via the `robomotion hubspot` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "crm",
+        "hubspot",
+        "contacts",
+        "deals",
+        "sales"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "apollo",
+      "path": "skills/apollo",
+      "description": "Search for leads or enrich contacts via the `robomotion apollo` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "crm",
+        "apollo",
+        "leads",
+        "prospecting",
+        "sales"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "jira",
+      "path": "skills/jira",
+      "description": "Create, update, or search issues via the `robomotion jira` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "project-management",
+        "jira",
+        "issues",
+        "agile"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "notion",
+      "path": "skills/notion",
+      "description": "Create, read, or search Notion pages and databases via the `robomotion notion` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "productivity",
+        "notion",
+        "notes",
+        "wiki",
+        "database"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "web-scraper",
+      "path": "skills/web-scraper",
+      "description": "Scrape or extract data from web pages via the `robomotion domparser` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "web",
+        "scraping",
+        "html",
+        "dom",
+        "parsing",
+        "extraction"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "apify",
+      "path": "skills/apify",
+      "description": "Run Apify actors for web scraping or data extraction via the `robomotion apify` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "automation",
+        "apify",
+        "scraping",
+        "crawling",
+        "actors"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "google-sheets",
+      "path": "skills/google-sheets",
+      "description": "Read, write, or manage data in Google Sheets via the `robomotion googlesheets` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "google",
+        "sheets",
+        "spreadsheet",
+        "data"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "stripe-payments",
+      "path": "skills/stripe-payments",
+      "description": "Manage payments, customers, or subscriptions via the `robomotion stripe` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "payments",
+        "stripe",
+        "billing",
+        "subscriptions"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "cloudflare",
+      "path": "skills/cloudflare",
+      "description": "Manage DNS records, zones, or Workers via the `robomotion cloudflare` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "devops",
+        "cloudflare",
+        "dns",
+        "cdn",
+        "workers"
+      ],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "whatsapp",
+      "path": "skills/whatsapp",
+      "description": "Send messages or media via the WhatsApp Business API using the `robomotion whatsapp` CLI.",
+      "version": "1.0.0",
+      "author": "robomotion",
+      "tags": [
+        "messaging",
+        "whatsapp",
+        "communication",
+        "business"
+      ],
       "license": "Apache-2.0"
     }
   ]

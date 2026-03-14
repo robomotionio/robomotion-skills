@@ -1,0 +1,57 @@
+{
+  "skill_name": "pdf",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion pdfprocessor to extract text from invoice.pdf",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion pdfprocessor merge to combine these PDF files",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion pdfprocessor split on this document",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "create a Word document with these notes",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "convert this CSV to an Excel spreadsheet",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "read this JSON file and parse it",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "convert this TypeScript file to use strict mode",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "extract text from the file report.pdf and return it as plain text",
+      "criteria": [
+        "Uses robomotion pdfprocessor extract_text or similar command",
+        "Specifies the input PDF file path",
+        "Returns extracted text content"
+      ]
+    }
+  ]
+}

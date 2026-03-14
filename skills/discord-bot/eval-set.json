@@ -1,0 +1,57 @@
+{
+  "skill_name": "discord-bot",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion discordbot to send a message to the announcements channel",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion discordbot list_channels to see all server channels",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion discordbot create_channel to add a new channel",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "send a message on Slack",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "post a message on Telegram",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "send an email via Gmail",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "create a unit test for the authentication module",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "send a message to the Discord channel 'general' saying 'Hello team, the build is passing!'",
+      "criteria": [
+        "Uses robomotion discordbot send_message command",
+        "Specifies the channel",
+        "Includes the message content"
+      ]
+    }
+  ]
+}

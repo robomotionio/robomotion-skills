@@ -1,0 +1,57 @@
+{
+  "skill_name": "openai",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion openai to generate a marketing email with GPT-4",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion openai create_image to generate a logo",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion openai create_embeddings on these documents",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "use Claude to summarize this text",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "use Gemini to analyze this image",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "create a PDF report",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "use AI to generate a response to this question",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "use OpenAI GPT-4 to write a short thank-you email to a client",
+      "criteria": [
+        "Uses robomotion openai chat_completion or generate command",
+        "Specifies GPT-4 or similar model",
+        "Produces a coherent email output"
+      ]
+    }
+  ]
+}

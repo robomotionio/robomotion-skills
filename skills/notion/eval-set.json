@@ -1,0 +1,57 @@
+{
+  "skill_name": "notion",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion notion to create a page with meeting notes",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion notion query_database for tasks due this week",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion notion search to find pages about the roadmap",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "create a Google Doc",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "update a Confluence page",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "run the linter on this codebase",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "benchmark this algorithm's performance",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "create a new Notion page titled 'Sprint 42 Retro' in the 'Team' database with status 'Draft'",
+      "criteria": [
+        "Uses robomotion notion create_page or similar command",
+        "Specifies the page title and parent database",
+        "Includes property values"
+      ]
+    }
+  ]
+}

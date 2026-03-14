@@ -1,0 +1,57 @@
+{
+  "skill_name": "gmail",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion gmail to send an email to john@example.com",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion gmail search_messages for emails from finance",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion gmail list_messages to see unread emails",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "send an email via Outlook",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "post a message on Slack",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "send a text message via SMS",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "add input validation to this form handler",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "send an email via Gmail to alice@example.com with subject 'Meeting Tomorrow' and body 'Hi Alice, just confirming our 2pm meeting.'",
+      "criteria": [
+        "Uses robomotion gmail send or send_email command",
+        "Specifies recipient, subject, and body",
+        "Uses proper Gmail API parameters"
+      ]
+    }
+  ]
+}

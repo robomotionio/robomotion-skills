@@ -1,0 +1,57 @@
+{
+  "skill_name": "s3-storage",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion amazons3 to upload report.pdf to the bucket",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion amazons3 list_objects to see files in the bucket",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion amazons3 download to get the backup file",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "upload a file to Google Drive",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "save this file to my local disk",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "store this in a database",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "lint and format all Go files in this project",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "upload the file data.csv to the S3 bucket 'analytics' with the key 'imports/data.csv'",
+      "criteria": [
+        "Uses robomotion amazons3 upload or put_object command",
+        "Specifies bucket name and object key",
+        "Specifies the local file path"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "skill_name": "claude-ai",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion claude to summarize this article",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run the robomotion claude generate_text command to write a product description",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion claude analyze_document on report.pdf",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "use GPT-4 to write a blog post",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "generate an image with DALL-E",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "use Gemini to analyze this document",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "summarize this document for me please",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "use Claude to summarize the following text: 'Artificial intelligence is transforming industries worldwide by automating repetitive tasks and enabling new forms of creativity.'",
+      "criteria": [
+        "Uses robomotion claude generate or chat command",
+        "Passes the input text as a parameter",
+        "Returns a concise summary"
+      ]
+    }
+  ]
+}
