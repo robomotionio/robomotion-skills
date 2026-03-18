@@ -17,18 +17,34 @@ The `robomotion dropcontact` CLI connects to Dropcontact for contact data enrich
 - Package installed: `robomotion install dropcontact`
 - Dropcontact API key configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install dropcontact`
-2. Connect: `robomotion dropcontact dropcontact_connect` → returns a `client-id`
-3. Enrich: `robomotion dropcontact dropcontact_enrich --client-id <id> --email <email>`
-4. Disconnect: `robomotion dropcontact dropcontact_disconnect --client-id <id>`
+1. Install (once): `robomotion install dropcontact`
+2. Connect with session:
+   ```
+   robomotion dropcontact dropcontact_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion dropcontact dropcontact_enrich --client-id "<client-id>" --email <email> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion dropcontact dropcontact_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion dropcontact batch_post --data`
+- `robomotion dropcontact batch_post --data --output json`
   Submit a batch of contact data to Dropcontact for enrichment and return a request ID
-- `robomotion dropcontact batch_result --request-id`
+- `robomotion dropcontact batch_result --request-id --output json`
   Retrieve the results of a previously submitted batch request from Dropcontact
-- `robomotion dropcontact credits_left`
+- `robomotion dropcontact credits_left --output json`
   Check how many API credits are remaining in your Dropcontact account
 
 ## Environment

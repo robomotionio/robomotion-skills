@@ -18,39 +18,54 @@ The `robomotion nextcloud` CLI connects to NextCloud (self-hosted cloud storage)
 - Package installed: `robomotion install nextcloud`
 - NextCloud instance URL and credentials configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install nextcloud`
-2. Connect: `robomotion nextcloud nextcloud_connect` → returns a `client-id`
-3. Upload: `robomotion nextcloud nextcloud_upload --client-id <id> --local-path <file> --remote-path <dest>`
-4. List: `robomotion nextcloud nextcloud_list_files --client-id <id> --path <folder>`
-5. Disconnect: `robomotion nextcloud nextcloud_disconnect --client-id <id>`
+1. Install (once): `robomotion install nextcloud`
+2. Connect with session:
+   ```
+   robomotion nextcloud nextcloud_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion nextcloud nextcloud_upload --client-id "<client-id>" --local-path <file> --remote-path <dest> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion nextcloud nextcloud_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion nextcloud upload_file --client-id --local-file-path --remote-path [--120]`
+- `robomotion nextcloud upload_file --client-id --local-file-path --remote-path [--120] --session-id "<session-id>" --output json`
   Uploads a local file to NextCloud
-- `robomotion nextcloud download_file --client-id --remote-path --save-to-path [--120]`
+- `robomotion nextcloud download_file --client-id --remote-path --save-to-path [--120] --session-id "<session-id>" --output json`
   Downloads a file from NextCloud to local disk
-- `robomotion nextcloud delete_file --client-id --remote-path`
+- `robomotion nextcloud delete_file --client-id --remote-path --session-id "<session-id>" --output json`
   Deletes a file or folder from NextCloud
-- `robomotion nextcloud copy_file --client-id --from-path --to-path [--overwrite]`
+- `robomotion nextcloud copy_file --client-id --from-path --to-path [--overwrite] --session-id "<session-id>" --output json`
   Copies a file or folder to a new location on NextCloud
-- `robomotion nextcloud move_file --client-id --from-path --to-path [--overwrite]`
+- `robomotion nextcloud move_file --client-id --from-path --to-path [--overwrite] --session-id "<session-id>" --output json`
   Moves or renames a file or folder on NextCloud
-- `robomotion nextcloud list_files --client-id --folder-path`
+- `robomotion nextcloud list_files --client-id --folder-path --session-id "<session-id>" --output json`
   Lists files and folders in a NextCloud directory
-- `robomotion nextcloud create_folder --client-id --folder-path`
+- `robomotion nextcloud create_folder --client-id --folder-path --session-id "<session-id>" --output json`
   Creates a new folder on NextCloud
-- `robomotion nextcloud create_share --client-id --path --share-with [--share-type] [--permissions] [--password]`
+- `robomotion nextcloud create_share --client-id --path --share-with [--share-type] [--permissions] [--password] --session-id "<session-id>" --output json`
   Creates a share link for a file or folder on NextCloud
-- `robomotion nextcloud list_shares --client-id --path`
+- `robomotion nextcloud list_shares --client-id --path --session-id "<session-id>" --output json`
   Lists shares for a path or all shares on NextCloud
-- `robomotion nextcloud delete_share --client-id --share-id`
+- `robomotion nextcloud delete_share --client-id --share-id --session-id "<session-id>" --output json`
   Deletes a share by its ID on NextCloud
-- `robomotion nextcloud create_user --client-id --user-id --password --email [--display-name]`
+- `robomotion nextcloud create_user --client-id --user-id --password --email [--display-name] --session-id "<session-id>" --output json`
   Creates a new user on NextCloud
-- `robomotion nextcloud get_user --client-id --user-id`
+- `robomotion nextcloud get_user --client-id --user-id --session-id "<session-id>" --output json`
   Gets user details from NextCloud
-- `robomotion nextcloud list_users --client-id [--search] [--50] [--0]`
+- `robomotion nextcloud list_users --client-id [--search] [--50] [--0] --session-id "<session-id>" --output json`
   Lists users on NextCloud
 
 ## Environment

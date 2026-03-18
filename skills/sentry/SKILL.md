@@ -17,14 +17,30 @@ The `robomotion sentry` CLI connects to Sentry for application error tracking. I
 - Package installed: `robomotion install sentry`
 - Sentry DSN or API token configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install sentry`
-2. Connect: `robomotion sentry sentry_connect` → returns a `client-id`
-3. Capture event: `robomotion sentry sentry_capture_event --client-id <id> --message <text>`
-4. Disconnect: `robomotion sentry sentry_disconnect --client-id <id>`
+1. Install (once): `robomotion install sentry`
+2. Connect with session:
+   ```
+   robomotion sentry sentry_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion sentry sentry_capture_event --client-id "<client-id>" --message <text> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion sentry sentry_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion sentry sentry_capture --message [--type]`
+- `robomotion sentry sentry_capture --message [--type] --output json`
   Captures and sends a message or exception to Sentry for error monitoring
 
 ## Environment

@@ -18,35 +18,50 @@ The `robomotion powerpoint365` CLI connects to Microsoft PowerPoint 365 via the 
 - Package installed: `robomotion install powerpoint365`
 - Microsoft 365 OAuth2 credentials configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install powerpoint365`
-2. Connect: `robomotion powerpoint365 pptx_connect` → returns a `client-id`
-3. Create from template: `robomotion powerpoint365 pptx_create_from_template --client-id <id> --template-path <tmpl>`
-4. Replace text: `robomotion powerpoint365 pptx_replace_text --client-id <id> --presentation-id <id> --find <old> --replace <new>`
-5. Disconnect: `robomotion powerpoint365 pptx_disconnect --client-id <id>`
+1. Install (once): `robomotion install powerpoint365`
+2. Connect with session:
+   ```
+   robomotion powerpoint365 pptx_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion powerpoint365 pptx_create_from_template --client-id "<client-id>" --template-path <tmpl> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion powerpoint365 pptx_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion powerpoint365 open_presentation --file-path`
+- `robomotion powerpoint365 open_presentation --file-path --output json`
   Opens a PowerPoint 365 presentation and returns a presentation ID for use in other nodes
-- `robomotion powerpoint365 close_presentation --presentation-id`
+- `robomotion powerpoint365 close_presentation --presentation-id --output json`
   Closes an open PowerPoint presentation and releases resources
-- `robomotion powerpoint365 save_presentation --presentation-id`
+- `robomotion powerpoint365 save_presentation --presentation-id --output json`
   Saves all changes made to the presentation back to OneDrive/SharePoint
-- `robomotion powerpoint365 list_presentations --folder-path`
+- `robomotion powerpoint365 list_presentations --folder-path --output json`
   Lists PowerPoint presentations in a specified folder
-- `robomotion powerpoint365 create_presentation --file-path`
+- `robomotion powerpoint365 create_presentation --file-path --output json`
   Creates a new PowerPoint presentation at the specified path
-- `robomotion powerpoint365 delete_presentation --file-path`
+- `robomotion powerpoint365 delete_presentation --file-path --output json`
   Deletes a PowerPoint presentation (moves to recycle bin)
-- `robomotion powerpoint365 copy_presentation --source-path --destination-path`
+- `robomotion powerpoint365 copy_presentation --source-path --destination-path --output json`
   Copies a PowerPoint presentation from source path to destination path
-- `robomotion powerpoint365 download_presentation --remote-file-path --local-file-path [--format]`
+- `robomotion powerpoint365 download_presentation --remote-file-path --local-file-path [--format] --output json`
   Downloads a PowerPoint presentation to local disk in PPTX or PDF format
-- `robomotion powerpoint365 upload_presentation --local-file-path --remote-file-path`
+- `robomotion powerpoint365 upload_presentation --local-file-path --remote-file-path --output json`
   Uploads a local presentation file to OneDrive
-- `robomotion powerpoint365 replace_text --presentation-id --replacements`
+- `robomotion powerpoint365 replace_text --presentation-id --replacements --output json`
   Replaces text placeholders across all slides from a key-value map
-- `robomotion powerpoint365 replace_image --presentation-id --placeholder-name --new-image`
+- `robomotion powerpoint365 replace_image --presentation-id --placeholder-name --new-image --output json`
   Replaces an image in the presentation by its placeholder name or alt text. The new image inherits the original's size and position
 
 ## Environment

@@ -17,20 +17,36 @@ The `robomotion perplexity` CLI connects to Perplexity AI for search-augmented A
 - Package installed: `robomotion install perplexity`
 - Perplexity API key configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install perplexity`
-2. Connect: `robomotion perplexity perplexity_connect` → returns a `client-id`
-3. Search: `robomotion perplexity perplexity_chat --client-id <id> --messages <json>`
-4. Disconnect: `robomotion perplexity perplexity_disconnect --client-id <id>`
+1. Install (once): `robomotion install perplexity`
+2. Connect with session:
+   ```
+   robomotion perplexity perplexity_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion perplexity perplexity_chat --client-id "<client-id>" --messages <json> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion perplexity perplexity_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion perplexity perplexity_connect`
+- `robomotion perplexity perplexity_connect --session --output json`
   Connects to Perplexity AI and returns a client ID for subsequent operations
-- `robomotion perplexity perplexity_disconnect --client-id`
+- `robomotion perplexity perplexity_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the Perplexity connection and releases resources
-- `robomotion perplexity perplexity_chat_completion --client-id --user-message --system-message --messages [--model] [--search-context-size] [--search-recency-filter] [--search-mode] [--search-domain-filter] [--max-tokens] [--temperature] [--120]`
+- `robomotion perplexity perplexity_chat_completion --client-id --user-message --system-message --messages [--model] [--search-context-size] [--search-recency-filter] [--search-mode] [--search-domain-filter] [--max-tokens] [--temperature] [--120] --session-id "<session-id>" --output json`
   Generates an AI response with real-time web search using Perplexity Sonar models
-- `robomotion perplexity perplexity_search --client-id --query [--10] [--search-recency-filter] [--search-domain-filter] [--language-filter] [--country] [--60]`
+- `robomotion perplexity perplexity_search --client-id --query [--10] [--search-recency-filter] [--search-domain-filter] [--language-filter] [--country] [--60] --session-id "<session-id>" --output json`
   Searches the web using Perplexity and returns ranked results with snippets
 
 ## Environment
