@@ -1,0 +1,57 @@
+{
+  "skill_name": "google-storage",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion googlestorage to upload or download files from gcs buckets",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion googlestorage command to list objects in a google cloud storage bucket",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion googlestorage to create or delete gcs buckets",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "upload a file to Amazon S3",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "store files in Google Drive",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "manage Dropbox files",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "upload data.csv to the gs://my-bucket/data/ folder in Google Cloud Storage",
+      "criteria": [
+        "Uses robomotion googlestorage upload command",
+        "Specifies the local file path",
+        "Specifies the GCS bucket and destination path"
+      ]
+    }
+  ]
+}

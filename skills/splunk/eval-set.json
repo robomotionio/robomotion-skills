@@ -1,0 +1,57 @@
+{
+  "skill_name": "splunk",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion splunk to search and query splunk logs",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion splunk command to submit events to splunk indexes",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion splunk to manage splunk indexes and saved searches",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "submit metrics to Datadog",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "track errors in Sentry",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "query a database",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "search Splunk for all error events in the 'web-app' index from the last 24 hours",
+      "criteria": [
+        "Uses robomotion splunk search command",
+        "Specifies the index and query",
+        "Includes a time range filter"
+      ]
+    }
+  ]
+}

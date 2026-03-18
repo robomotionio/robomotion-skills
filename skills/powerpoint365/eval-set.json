@@ -1,0 +1,57 @@
+{
+  "skill_name": "powerpoint365",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion powerpoint365 to create presentations from templates",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion powerpoint365 command to add slides or replace text/images in presentations",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion powerpoint365 to export presentations to pdf",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "create a Google Slides presentation",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "edit a local .pptx file",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "create a Word document",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "create a PowerPoint 365 presentation from template and replace title text with 'Annual Report'",
+      "criteria": [
+        "Uses robomotion powerpoint365 create or template command",
+        "Specifies template-based creation",
+        "Includes text replacement parameters"
+      ]
+    }
+  ]
+}

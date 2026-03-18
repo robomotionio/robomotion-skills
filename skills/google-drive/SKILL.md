@@ -1,24 +1,28 @@
 ---
 name: "google-drive"
-description: "Use when the user wants to call the Robomotion Google Drive package to upload, download, list, or manage files in Google Drive via the `robomotion googledrive` CLI. Do NOT use for S3, Dropbox, or local file operations."
+description: "Google Drive — upload, download, list, copy, move, delete, and share files and folders. Supports file search, permission management, and shared drive operations via `robomotion googledrive`. Do NOT use for Dropbox, S3, OneDrive, or local filesystem."
 ---
 
-# Google Drive Skill
+# Google Drive
+
+The `robomotion googledrive` CLI connects to Google Drive API for file and folder management. It uploads, downloads, copies, moves, and deletes files; creates folders; searches by name/query; and manages sharing permissions.
 
 ## When to use
-- Upload or download files from Google Drive
-- List files and folders in Google Drive
-- Share files or manage permissions
-- Create folders in Google Drive
+- Upload or download files between local filesystem and Google Drive
+- List, search, copy, move, or delete files and folders
+- Create folders and manage file sharing permissions
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install googledrive`
-- Credentials configured via Robomotion vault or environment variables
+- Google Drive OAuth2 or Service Account credentials configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install googledrive`
-2. Run commands: `robomotion googledrive <command> [flags]`
+1. Install: `robomotion install googledrive`
+2. Connect: `robomotion googledrive connect` → returns a `client-id`
+3. Upload: `robomotion googledrive upload_file --client-id <id> --file-path <local> --parent-id <folder>`
+4. List: `robomotion googledrive list_files --client-id <id>`
+5. Disconnect: `robomotion googledrive disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion googledrive connect`

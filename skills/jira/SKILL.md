@@ -1,24 +1,29 @@
 ---
 name: "jira"
-description: "Use when the user wants to call the Robomotion Jira package to create, update, or search issues via the `robomotion jira` CLI. Do NOT use for Linear, Trello, or other project management tools."
+description: "Jira project management — create, update, search, transition, and comment on issues. Supports JQL search, issue lifecycle, and project management via `robomotion jira`. Do NOT use for Trello, ClickUp, Asana, or other PM tools."
 ---
 
-# Jira Skill
+# Jira
+
+The `robomotion jira` CLI connects to Jira for issue and project management. It creates, reads, updates, and transitions issues; searches with JQL; adds comments; manages projects and issue types — covering the full issue lifecycle.
 
 ## When to use
-- Create or update Jira issues
-- Search for Jira issues using JQL
-- Manage Jira projects and boards
-- Transition Jira issue statuses
+- Create, update, or transition Jira issues through workflow states
+- Search issues using JQL queries
+- Add comments and manage issue details
+- List projects and issue types
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install jira`
-- Credentials configured via Robomotion vault or environment variables
+- Jira URL and API token (or OAuth) configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install jira`
-2. Run commands: `robomotion jira <command> [flags]`
+1. Install: `robomotion install jira`
+2. Connect: `robomotion jira connect` → returns a `client-id`
+3. Create issue: `robomotion jira create_issue --client-id <id> --project <proj> --summary <text> --issue-type <type>`
+4. Search: `robomotion jira search_issues --client-id <id> --jql <query>`
+5. Disconnect: `robomotion jira disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion jira jira_connect`

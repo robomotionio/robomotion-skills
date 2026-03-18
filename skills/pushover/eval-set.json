@@ -1,0 +1,57 @@
+{
+  "skill_name": "pushover",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion pushover to send push notifications to devices",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion pushover command to send alerts with priority levels",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion pushover to attach images or urls to notifications",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "send a Slack message",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "send an SMS via Twilio",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "send an email notification",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "send a high-priority Pushover notification with title 'Server Alert' and message 'CPU usage above 90%'",
+      "criteria": [
+        "Uses robomotion pushover send notification command",
+        "Specifies the title and message",
+        "Includes priority parameter"
+      ]
+    }
+  ]
+}

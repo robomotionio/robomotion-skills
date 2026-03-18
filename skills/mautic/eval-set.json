@@ -1,0 +1,57 @@
+{
+  "skill_name": "mautic",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion mautic to manage marketing contacts and companies",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion mautic command to create or manage marketing campaigns",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion mautic to manage segments and lead scoring",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "manage HubSpot contacts",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "send an email via Resend",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "create a WordPress post",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "list all contacts in the 'Active Leads' segment in Mautic",
+      "criteria": [
+        "Uses robomotion mautic list contacts command",
+        "Specifies the segment filter",
+        "References Mautic API parameters"
+      ]
+    }
+  ]
+}

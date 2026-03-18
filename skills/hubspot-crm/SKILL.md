@@ -1,23 +1,28 @@
 ---
 name: "hubspot-crm"
-description: "Use when the user wants to call the Robomotion HubSpot package to manage contacts, deals, or companies via the `robomotion hubspot` CLI. Do NOT use for Salesforce, Apollo, or other CRM systems."
+description: "HubSpot CRM — manage contacts, companies, deals, tickets, and products. Supports CRUD, search, associations, and pipeline management via `robomotion hubspot`. Do NOT use for Salesforce, Apollo, Pipedrive, or other CRM systems."
 ---
 
-# Hubspot Crm Skill
+# HubSpot CRM
+
+The `robomotion hubspot` CLI connects to HubSpot CRM for contact, company, deal, and ticket management. It supports creating, reading, updating, and searching CRM objects with property filtering and association management.
 
 ## When to use
-- Create, update, or search HubSpot contacts
-- Manage HubSpot deals and pipelines
-- List or filter HubSpot companies
+- Create, update, or search contacts, companies, and deals
+- Manage deal pipelines and ticket workflows
+- Search CRM records with property filters
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install hubspot`
-- Credentials configured via Robomotion vault or environment variables
+- HubSpot API key or OAuth2 token configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install hubspot`
-2. Run commands: `robomotion hubspot <command> [flags]`
+1. Install: `robomotion install hubspot`
+2. Connect: `robomotion hubspot connect` → returns a `client-id`
+3. Search contacts: `robomotion hubspot search_contacts --client-id <id> --query <query>`
+4. Create deal: `robomotion hubspot create_deal --client-id <id> --properties <json>`
+5. Disconnect: `robomotion hubspot disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion hubspot hubspot_connect`

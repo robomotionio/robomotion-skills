@@ -1,23 +1,28 @@
 ---
 name: "telegram"
-description: "Use when the user wants to call the Robomotion Telegram Bot package to send messages or interact with Telegram chats via the `robomotion telegrambot` CLI. Do NOT use for WhatsApp, Slack, or other messaging platforms."
+description: "Telegram Bot — send messages, photos, documents, manage chats, and handle updates. Supports inline keyboards, chat management, and file operations via `robomotion telegrambot`. Do NOT use for WhatsApp, Slack, Discord, or other messaging platforms."
 ---
 
-# Telegram Skill
+# Telegram Bot
+
+The `robomotion telegrambot` CLI operates a Telegram bot for messaging and chat interaction. It sends text messages, photos, and documents; manages chats and members; handles inline keyboards; and processes incoming updates.
 
 ## When to use
-- Send messages via a Telegram bot
-- Send photos or files via Telegram
-- Read messages from Telegram chats
+- Send text messages, photos, or documents to Telegram chats
+- Manage chats, members, and chat settings
+- Create inline keyboards for interactive bot responses
+- Listen for and process incoming messages/updates
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install telegrambot`
-- Credentials configured via Robomotion vault or environment variables
+- Telegram bot token configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install telegrambot`
-2. Run commands: `robomotion telegrambot <command> [flags]`
+1. Install: `robomotion install telegrambot`
+2. Connect: `robomotion telegrambot connect` → returns a `client-id`
+3. Send message: `robomotion telegrambot send_message --client-id <id> --chat-id <chat> --text <text>`
+4. Disconnect: `robomotion telegrambot disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion telegrambot connect`

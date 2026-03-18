@@ -1,0 +1,57 @@
+{
+  "skill_name": "nocodb",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion nocodb to list, create, or update records in nocodb",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion nocodb command to manage nocodb tables and databases",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion nocodb to filter and search nocodb data",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "manage Airtable records",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "update Baserow tables",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "insert into PostgreSQL",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "create a new record in the NocoDB 'Customers' table with name 'Acme Corp'",
+      "criteria": [
+        "Uses robomotion nocodb create record command",
+        "Specifies the table name",
+        "Includes field values"
+      ]
+    }
+  ]
+}

@@ -1,23 +1,29 @@
 ---
 name: "claude-ai"
-description: "Use when the user wants to call the Robomotion Claude package to generate text, summarize, translate, or analyze content via the `robomotion claude` CLI. Use only when the task involves running robomotion commands for Claude/Anthropic API calls. Do NOT use for direct conversation with Claude or for OpenAI/Gemini tasks."
+description: "Anthropic Claude AI — generate text, analyze documents, chat with history, and call tools via Claude models. Supports vision, thinking mode, MCP integration, and function calling via `robomotion claude`. Do NOT use for OpenAI, Gemini, or direct conversation — this runs Claude API calls through the Robomotion CLI."
 ---
 
-# Claude Ai Skill
+# Claude AI (Anthropic)
+
+The `robomotion claude` CLI calls the Anthropic Claude API for text generation, document analysis, chat completions with history, and tool/function calling. It supports vision (image inputs), extended thinking mode, MCP server integration, and model listing.
 
 ## When to use
-- Generate text, summaries, or translations using Claude
-- Analyze or classify content with Claude AI
-- Chat completions or conversational AI via Anthropic
+- Generate text or chat responses with Claude models (Opus, Sonnet, Haiku)
+- Analyze documents (PDF, images) using Claude's vision and Files API
+- Use function calling / tool use with Claude for structured workflows
+- Integrate with MCP servers for extended capabilities
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install claude`
-- Credentials configured via Robomotion vault or environment variables
+- Anthropic API key configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install claude`
-2. Run commands: `robomotion claude <command> [flags]`
+1. Install: `robomotion install claude`
+2. Connect: `robomotion claude connect_claude` → returns a `connection-id`
+3. Generate text: `robomotion claude generate_text --connection-id <id> --system-prompt <prompt> --user-prompt <prompt>`
+4. Analyze doc: `robomotion claude analyze_document --connection-id <id> --file-paths <paths> --user-prompt <prompt>`
+5. Disconnect: `robomotion claude disconnect_claude --connection-id <id>`
 
 ## Commands Reference
 - `robomotion claude connect_claude`

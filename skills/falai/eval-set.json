@@ -1,0 +1,57 @@
+{
+  "skill_name": "falai",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion falai to generate images using ai models on fal.ai",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion falai command to run video generation models",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion falai to generate text-to-speech audio",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "generate an image with Stability AI",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "run a model on Replicate",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "use OpenAI for text generation",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "use Fal AI to generate an image using the flux model with prompt 'mountain landscape'",
+      "criteria": [
+        "Uses robomotion falai run or generate command",
+        "Specifies the model name",
+        "Includes the input prompt"
+      ]
+    }
+  ]
+}

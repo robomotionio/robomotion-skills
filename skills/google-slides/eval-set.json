@@ -1,0 +1,57 @@
+{
+  "skill_name": "google-slides",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion googleslides to create new presentations in google slides",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion googleslides command to add or update slides in a presentation",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion googleslides to read slide content or metadata",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "create a PowerPoint presentation",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "edit a Google Docs document",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "upload a file to Google Drive",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "create a new Google Slides presentation titled 'Q1 Review'",
+      "criteria": [
+        "Uses robomotion googleslides create or new presentation command",
+        "Specifies the presentation title",
+        "References proper Google Slides API parameters"
+      ]
+    }
+  ]
+}

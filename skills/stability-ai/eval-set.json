@@ -1,0 +1,57 @@
+{
+  "skill_name": "stability-ai",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion stabilityai to generate images from text prompts",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion stabilityai command to create visual art using stable diffusion",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion stabilityai to generate image variations or edits",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "generate an image with DALL-E",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "use Leonardo AI for image creation",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "edit a photo with image processing",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "use Stability AI to generate an image of 'a futuristic city at sunset' in 1024x1024",
+      "criteria": [
+        "Uses robomotion stabilityai generate image command",
+        "Specifies the text prompt",
+        "Includes size or quality parameters"
+      ]
+    }
+  ]
+}

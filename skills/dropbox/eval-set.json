@@ -1,0 +1,57 @@
+{
+  "skill_name": "dropbox",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion dropbox to upload or download files from dropbox",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion dropbox command to list files and folders in dropbox",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion dropbox to share files or manage dropbox links",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "upload a file to Google Drive",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "store data in an S3 bucket",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "copy files on the local filesystem",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "upload report.pdf to the /reports folder in Dropbox",
+      "criteria": [
+        "Uses robomotion dropbox upload or file upload command",
+        "Specifies the source file path",
+        "Specifies the destination folder in Dropbox"
+      ]
+    }
+  ]
+}

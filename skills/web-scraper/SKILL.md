@@ -1,22 +1,26 @@
 ---
 name: "web-scraper"
-description: "Use when the user wants to call the Robomotion DOM Parser package to scrape or extract data from web pages via the `robomotion domparser` CLI. Do NOT use for API-based data retrieval or local file parsing."
+description: "DOM Parser web scraper — extract data from HTML pages using CSS selectors and XPath queries. Supports structured data extraction, attribute reading, and HTML parsing via `robomotion domparser`. Do NOT use for Apify, Puppeteer, or browser automation."
 ---
 
-# Web Scraper Skill
+# Web Scraper (DOM Parser)
+
+The `robomotion domparser` CLI parses and extracts data from HTML web pages. It loads HTML content, queries elements using CSS selectors or XPath, extracts text and attributes, and outputs structured data from web pages.
 
 ## When to use
-- Scrape data from web pages
-- Parse HTML to extract specific elements
-- Extract tables, links, or text from web pages
+- Extract data from HTML pages using CSS selectors
+- Query DOM elements with XPath expressions
+- Parse HTML content and extract text or attributes
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install domparser`
+- No external credentials needed — works with HTML content/URLs
 
 ## Workflow
-1. Install the package: `robomotion install domparser`
-2. Run commands: `robomotion domparser <command> [flags]`
+1. Install: `robomotion install domparser`
+2. Load HTML: `robomotion domparser load --url <url>` or `--html <content>`
+3. Extract: `robomotion domparser query --selector <css>` or `--xpath <xpath>`
 
 ## Commands Reference
 - `robomotion domparser dom_find_element --html --css-selector [--contains-filter] [--exclude-filter] [--index]`

@@ -1,0 +1,57 @@
+{
+  "skill_name": "airtable",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion airtable to list or search records in airtable tables",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion airtable command to create, update, or delete airtable records",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion airtable to manage airtable bases and tables",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "update a Google Sheets spreadsheet",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "insert data into a PostgreSQL table",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "create a Notion database entry",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "list all records from the 'Contacts' table in Airtable filtered by Status = 'Active'",
+      "criteria": [
+        "Uses robomotion airtable list or get records command",
+        "Specifies the table name",
+        "Includes a filter parameter"
+      ]
+    }
+  ]
+}

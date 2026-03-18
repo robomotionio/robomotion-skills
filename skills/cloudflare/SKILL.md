@@ -1,24 +1,29 @@
 ---
 name: "cloudflare"
-description: "Use when the user wants to call the Robomotion Cloudflare package to manage DNS records, zones, or Workers via the `robomotion cloudflare` CLI. Do NOT use for AWS Route53, Google Cloud DNS, or other providers."
+description: "Cloudflare platform — manage DNS records, zones, Workers, KV storage, and R2 buckets. Supports DNS CRUD, Worker deployment, and edge storage operations via `robomotion cloudflare`. Do NOT use for AWS Route53, Azure DNS, or other DNS/CDN providers."
 ---
 
-# Cloudflare Skill
+# Cloudflare
+
+The `robomotion cloudflare` CLI manages Cloudflare services including DNS records, zones, Workers (deploy/delete), KV namespaces, and R2 object storage. It covers the full lifecycle of DNS management, serverless deployment, and edge storage.
 
 ## When to use
-- Manage Cloudflare DNS records
-- Configure Cloudflare zones and settings
-- Deploy or manage Cloudflare Workers
-- Manage Cloudflare security rules
+- Create, update, list, or delete DNS records in Cloudflare zones
+- Deploy, list, or delete Cloudflare Workers
+- Manage KV namespaces and key-value pairs
+- Upload, download, list, or delete objects in R2 buckets
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install cloudflare`
-- Credentials configured via Robomotion vault or environment variables
+- Cloudflare API token configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install cloudflare`
-2. Run commands: `robomotion cloudflare <command> [flags]`
+1. Install: `robomotion install cloudflare`
+2. Connect: `robomotion cloudflare cloudflare_connect` → returns a `client-id`
+3. List DNS: `robomotion cloudflare cloudflare_list_dns_records --client-id <id> --zone-id <zone>`
+4. Create record: `robomotion cloudflare cloudflare_create_dns_record --client-id <id> --zone-id <zone> --type A --name <host> --content <ip>`
+5. Disconnect: `robomotion cloudflare cloudflare_disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion cloudflare cloudflare_connect`

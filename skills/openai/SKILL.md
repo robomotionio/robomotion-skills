@@ -1,24 +1,29 @@
 ---
 name: "openai"
-description: "Use when the user wants to call the Robomotion OpenAI package to generate text, images, embeddings, or audio via the `robomotion openai` CLI. Use only when the task involves running robomotion commands for OpenAI API calls. Do NOT use for Claude, Gemini, or direct LLM conversation."
+description: "OpenAI API — generate text, images, speech, transcriptions, and embeddings using GPT, DALL-E, Whisper, and TTS models. Supports chat completions, vision, function calling, and file management via `robomotion openai`. Do NOT use for Claude, Gemini, or direct LLM conversation."
 ---
 
-# Openai Skill
+# OpenAI
+
+The `robomotion openai` CLI calls the OpenAI API for AI operations. It generates text with GPT models (including vision and function calling), creates images with DALL-E/GPT-Image, synthesizes and transcribes audio, generates embeddings, moderates content, and manages files.
 
 ## When to use
-- Generate text or chat completions using GPT models
-- Create images with DALL-E
-- Transcribe audio with Whisper
-- Generate embeddings for semantic search
+- Generate text or chat completions with GPT models (including tool use)
+- Create or edit images with DALL-E and GPT-Image models
+- Convert text to speech or transcribe/translate audio with Whisper
+- Generate embeddings, moderate content, and manage uploaded files
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install openai`
-- Credentials configured via Robomotion vault or environment variables
+- OpenAI API key configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install openai`
-2. Run commands: `robomotion openai <command> [flags]`
+1. Install: `robomotion install openai`
+2. Connect: `robomotion openai connect_openai` → returns a `connection-id`
+3. Generate text: `robomotion openai generate_text --connection-id <id> --user-prompt <prompt>`
+4. Generate image: `robomotion openai generate_image --connection-id <id> --prompt <text>`
+5. Disconnect: `robomotion openai disconnect_openai --connection-id <id>`
 
 ## Commands Reference
 - `robomotion openai connect_openai`

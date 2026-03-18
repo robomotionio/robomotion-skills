@@ -1,23 +1,28 @@
 ---
 name: "clickhouse"
-description: "Use when the user wants to call the Robomotion ClickHouse package to query or insert data into ClickHouse via the `robomotion clickhouse` CLI. Do NOT use for PostgreSQL, MySQL, or MongoDB."
+description: "ClickHouse columnar database — execute analytical SQL queries and batch inserts on ClickHouse. Supports query execution, batch transactions, and non-query operations via `robomotion clickhouse`. Do NOT use for PostgreSQL, MySQL, MongoDB, or other databases."
 ---
 
-# Clickhouse Skill
+# ClickHouse
+
+The `robomotion clickhouse` CLI connects to ClickHouse for analytical SQL workloads. It supports executing SELECT queries, running INSERT/UPDATE/DELETE statements, and batch transactions for atomically executing multiple SQL commands.
 
 ## When to use
-- Run analytical queries on ClickHouse
-- Insert data into ClickHouse tables
-- Query time-series or event data in ClickHouse
+- Run analytical SQL queries on ClickHouse columnar tables
+- Insert data using batch transactions for atomicity
+- Execute DDL or non-query SQL statements
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install clickhouse`
-- Credentials configured via Robomotion vault or environment variables
+- ClickHouse connection credentials configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install clickhouse`
-2. Run commands: `robomotion clickhouse <command> [flags]`
+1. Install: `robomotion install clickhouse`
+2. Connect: `robomotion clickhouse connect` → returns a `conn-id`
+3. Query: `robomotion clickhouse execute_query --conn-id <id>`
+4. Batch insert: `robomotion clickhouse create_batch --conn-id <id>` → add statements → `robomotion clickhouse send_batch --batch-id <id>`
+5. Disconnect: `robomotion clickhouse disconnect --conn-id <id>`
 
 ## Commands Reference
 - `robomotion clickhouse connect`
