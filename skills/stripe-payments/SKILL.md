@@ -1,24 +1,29 @@
 ---
 name: "stripe-payments"
-description: "Use when the user wants to call the Robomotion Stripe package to manage payments, customers, or subscriptions via the `robomotion stripe` CLI. Do NOT use for PayPal, Square, or other payment processors."
+description: "Stripe — manage payments, customers, subscriptions, invoices, and products. Supports charge creation, refunds, and billing lifecycle via `robomotion stripe`. Do NOT use for PayPal, Square, or other payment processors."
 ---
 
-# Stripe Payments Skill
+# Stripe Payments
+
+The `robomotion stripe` CLI connects to Stripe for payment processing and billing management. It creates charges, manages customers and subscriptions, handles invoices and refunds, and manages products and pricing.
 
 ## When to use
-- Create or manage Stripe customers
-- Process payments or charges via Stripe
-- Manage Stripe subscriptions and invoices
-- List or search Stripe transactions
+- Create charges and process payments
+- Manage customers, subscriptions, and billing
+- Handle invoices and refunds
+- Manage products and pricing plans
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install stripe`
-- Credentials configured via Robomotion vault or environment variables
+- Stripe API key configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install stripe`
-2. Run commands: `robomotion stripe <command> [flags]`
+1. Install: `robomotion install stripe`
+2. Connect: `robomotion stripe connect` → returns a `client-id`
+3. Create charge: `robomotion stripe create_charge --client-id <id> --amount <amount> --currency <cur>`
+4. List customers: `robomotion stripe list_customers --client-id <id>`
+5. Disconnect: `robomotion stripe disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion stripe stripe_connect`

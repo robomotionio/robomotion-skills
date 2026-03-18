@@ -1,0 +1,57 @@
+{
+  "skill_name": "outlook365",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion outlook365 to send emails via outlook 365",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion outlook365 command to read or search emails in outlook mailbox",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion outlook365 to manage outlook calendar events",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "send an email via Gmail",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "post a message on Slack",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "manage Google Calendar events",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "send an email via Outlook 365 to bob@company.com with subject 'Project Update'",
+      "criteria": [
+        "Uses robomotion outlook365 send email command",
+        "Specifies recipient and subject",
+        "Uses proper Outlook 365 API parameters"
+      ]
+    }
+  ]
+}

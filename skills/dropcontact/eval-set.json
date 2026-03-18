@@ -1,0 +1,57 @@
+{
+  "skill_name": "dropcontact",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion dropcontact to enrich contact data with company information",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion dropcontact command to verify and clean email addresses",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion dropcontact to find professional email addresses",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "search leads with Apollo",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "verify emails with MillionVerifier",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "manage HubSpot contacts",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "enrich the contact john.doe@company.com using Dropcontact to get company details",
+      "criteria": [
+        "Uses robomotion dropcontact enrich command",
+        "Specifies the email or contact data",
+        "References enrichment output fields"
+      ]
+    }
+  ]
+}

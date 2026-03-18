@@ -1,0 +1,57 @@
+{
+  "skill_name": "sqlite",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion sqlite to execute sql queries against sqlite databases",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion sqlite command to insert, update, or delete records in sqlite",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion sqlite to create or manage sqlite database files",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "query a PostgreSQL database",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "insert data into MySQL",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "store data in MongoDB",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "connect to SQLite database app.db and run SELECT * FROM users WHERE active = 1",
+      "criteria": [
+        "Uses robomotion sqlite execute query or similar command",
+        "Specifies the database file path",
+        "Includes the SQL query"
+      ]
+    }
+  ]
+}

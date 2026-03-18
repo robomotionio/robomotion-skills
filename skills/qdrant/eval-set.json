@@ -1,0 +1,57 @@
+{
+  "skill_name": "qdrant",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion qdrant to upsert points into qdrant collections",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion qdrant command to search for similar vectors in qdrant",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion qdrant to manage qdrant collections and indexes",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "store vectors in Pinecone",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "query a MongoDB database",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "generate embeddings with OpenAI",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "search Qdrant collection 'articles' for vectors similar to the query embedding with limit 10",
+      "criteria": [
+        "Uses robomotion qdrant search or query command",
+        "Specifies the collection name",
+        "Includes limit or filter parameters"
+      ]
+    }
+  ]
+}

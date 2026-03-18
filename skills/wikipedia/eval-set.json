@@ -1,0 +1,57 @@
+{
+  "skill_name": "wikipedia",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion wikipedia to search wikipedia for articles",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion wikipedia command to retrieve wikipedia article content",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion wikipedia to get summaries of wikipedia pages",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "search Google for information",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "scrape a website for content",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "use Perplexity for research",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "search Wikipedia for 'Artificial Intelligence' and get the article summary",
+      "criteria": [
+        "Uses robomotion wikipedia search or get article command",
+        "Specifies the search term",
+        "References summary or content output"
+      ]
+    }
+  ]
+}

@@ -1,23 +1,28 @@
 ---
 name: "google-docs"
-description: "Use when the user wants to call the Robomotion Google Docs package to create, read, or update Google Docs via the `robomotion googledocs` CLI. Do NOT use for local documents, Google Sheets, or Google Slides."
+description: "Google Docs — create, read, and update documents in Google Docs. Supports document creation, content reading, and text operations via `robomotion googledocs`. Do NOT use for Microsoft Word, local files, or PDF processing."
 ---
 
-# Google Docs Skill
+# Google Docs
+
+The `robomotion googledocs` CLI connects to Google Docs API for document management. It creates new documents, reads document content, and updates existing documents in Google Drive.
 
 ## When to use
-- Create or update Google Docs documents
-- Read content from Google Docs
-- Insert text, tables, or images into Google Docs
+- Create new Google Docs documents
+- Read content from existing Google Docs
+- Update and modify document content
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install googledocs`
-- Credentials configured via Robomotion vault or environment variables
+- Google Docs OAuth2 or Service Account credentials configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install googledocs`
-2. Run commands: `robomotion googledocs <command> [flags]`
+1. Install: `robomotion install googledocs`
+2. Connect: `robomotion googledocs connect` → returns a `client-id`
+3. Create doc: `robomotion googledocs create_document --client-id <id> --title <title>`
+4. Read doc: `robomotion googledocs get_document --client-id <id> --document-id <doc>`
+5. Disconnect: `robomotion googledocs disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion googledocs create_document --title [--sharewith]`

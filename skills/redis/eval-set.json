@@ -1,0 +1,57 @@
+{
+  "skill_name": "redis",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion redis to get, set, or delete keys in redis",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion redis command to work with redis hashes, lists, and sets",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion redis to publish or subscribe to redis channels",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "query a PostgreSQL database",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "insert a document into MongoDB",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "store data in a local file",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "connect to Redis and set the key 'session:123' to value 'active' with TTL of 3600",
+      "criteria": [
+        "Uses robomotion redis set command",
+        "Specifies the key and value",
+        "Includes TTL or expiration parameter"
+      ]
+    }
+  ]
+}

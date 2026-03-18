@@ -1,23 +1,27 @@
 ---
 name: "whatsapp"
-description: "Use when the user wants to call the Robomotion WhatsApp package to send messages or media via the WhatsApp Business API using the `robomotion whatsapp` CLI. Do NOT use for Telegram, SMS, or other messaging platforms."
+description: "WhatsApp Business API — send text messages, media, templates, and interactive messages. Supports message sending, contact management, and template messaging via `robomotion whatsapp`. Do NOT use for Telegram, Twilio SMS, or other messaging services."
 ---
 
-# Whatsapp Skill
+# WhatsApp Business
+
+The `robomotion whatsapp` CLI connects to the WhatsApp Business API for messaging operations. It sends text messages, images, documents, and template messages; manages contacts; and handles interactive message types.
 
 ## When to use
-- Send WhatsApp messages via the Business API
-- Send media (images, documents) via WhatsApp
-- Manage WhatsApp message templates
+- Send text, image, document, or video messages via WhatsApp
+- Send template messages for notifications and alerts
+- Manage contacts and conversation threads
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install whatsapp`
-- Credentials configured via Robomotion vault or environment variables
+- WhatsApp Business API credentials configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install whatsapp`
-2. Run commands: `robomotion whatsapp <command> [flags]`
+1. Install: `robomotion install whatsapp`
+2. Connect: `robomotion whatsapp connect` → returns a `client-id`
+3. Send message: `robomotion whatsapp send_message --client-id <id> --to <phone> --text <text>`
+4. Disconnect: `robomotion whatsapp disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion whatsapp receive_events --127-0-0-1 --3000 [--/webhook] [--verify-token]`

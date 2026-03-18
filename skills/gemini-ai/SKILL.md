@@ -1,23 +1,28 @@
 ---
 name: "gemini-ai"
-description: "Use when the user wants to call the Robomotion Google Gemini package to generate text or analyze images via the `robomotion googlegemini` CLI. Use only when the task involves running robomotion commands for Gemini API calls. Do NOT use for Claude, OpenAI, or direct LLM conversation."
+description: "Google Gemini AI — generate text, analyze images, and create embeddings using Gemini models. Supports chat with history, vision, and content generation via `robomotion googlegemini`. Do NOT use for OpenAI, Claude, or other AI models."
 ---
 
-# Gemini Ai Skill
+# Google Gemini AI
+
+The `robomotion googlegemini` CLI calls Google's Gemini API for text generation, image analysis, and embeddings. It supports single-turn generation, multi-turn chat with history, vision (image + text), and embedding generation.
 
 ## When to use
-- Generate text using Google Gemini models
-- Analyze images with Gemini's multimodal capabilities
-- Chat completions via Google's Gemini API
+- Generate text responses using Gemini models
+- Analyze images with text prompts (vision)
+- Run multi-turn chat conversations with history
+- Generate text embeddings for semantic search
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install googlegemini`
-- Credentials configured via Robomotion vault or environment variables
+- Google Gemini API key configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install googlegemini`
-2. Run commands: `robomotion googlegemini <command> [flags]`
+1. Install: `robomotion install googlegemini`
+2. Connect: `robomotion googlegemini connect_gemini` → returns a `connection-id`
+3. Generate text: `robomotion googlegemini generate_text --connection-id <id> --prompt <text>`
+4. Disconnect: `robomotion googlegemini disconnect_gemini --connection-id <id>`
 
 ## Commands Reference
 - `robomotion googlegemini connect`

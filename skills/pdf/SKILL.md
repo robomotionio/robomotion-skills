@@ -1,23 +1,27 @@
 ---
 name: "pdf"
-description: "Use when the user wants to call the Robomotion PDF package to create, merge, split, or extract text from PDF files via the `robomotion pdfprocessor` CLI. Do NOT use for viewing PDFs, non-PDF formats, or when the user wants to use Python PDF libraries directly."
+description: "PDF processor — create, merge, split, extract text, convert, and manipulate PDF files. Supports page operations, text extraction, and format conversions via `robomotion pdfprocessor`. Do NOT use for Google Docs, Word documents, or image OCR."
 ---
 
-# Pdf Skill
+# PDF Processor
+
+The `robomotion pdfprocessor` CLI handles PDF file operations. It creates, merges, splits, extracts text from, and converts PDF files. It supports page-level operations, metadata handling, and various format conversions.
 
 ## When to use
-- Extract text or metadata from PDF files
-- Merge or split PDF documents
-- Create PDF files programmatically
-- Convert PDF pages to images
+- Extract text content from PDF files
+- Merge multiple PDFs into one or split PDFs by pages
+- Create new PDF files from content
+- Convert between PDF and other formats
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install pdfprocessor`
+- No external credentials needed — works with local PDF files
 
 ## Workflow
-1. Install the package: `robomotion install pdfprocessor`
-2. Run commands: `robomotion pdfprocessor <command> [flags]`
+1. Install: `robomotion install pdfprocessor`
+2. Extract text: `robomotion pdfprocessor extract_text --file-path <pdf>`
+3. Merge: `robomotion pdfprocessor merge --files <pdf1,pdf2> --output <out.pdf>`
 
 ## Commands Reference
 - `robomotion pdfprocessor pdf_export_form_to_json --pdf-path --json-path-to-save`

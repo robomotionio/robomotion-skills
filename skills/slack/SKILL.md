@@ -1,24 +1,29 @@
 ---
 name: "slack"
-description: "Use when the user wants to call the Robomotion Slack package to send messages or manage channels via the `robomotion slack` CLI. Do NOT use for Discord, Teams, or other messaging platforms."
+description: "Slack — send messages, manage channels, list users, upload files, and receive messages via Socket Mode. Supports channel management and file operations via `robomotion slack`. Do NOT use for Discord, Teams, Telegram, or other messaging platforms."
 ---
 
-# Slack Skill
+# Slack
+
+The `robomotion slack` CLI connects to Slack workspaces for messaging and channel management. It sends messages to channels, lists channels and users, uploads and deletes files, and receives messages via Socket Mode for real-time interaction.
 
 ## When to use
-- Send messages to Slack channels or users
-- Read messages from Slack channels
-- List Slack channels or users
-- Upload files to Slack
+- Send messages to Slack channels by name
+- List channels, users, and workspace information
+- Upload or delete files in channels
+- Receive messages via Socket Mode
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install slack`
-- Credentials configured via Robomotion vault or environment variables
+- Slack bot token configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install slack`
-2. Run commands: `robomotion slack <command> [flags]`
+1. Install: `robomotion install slack`
+2. Connect: `robomotion slack connect` → returns a `client-id`
+3. Send: `robomotion slack send_message --client-id <id> --channel-name <channel> --message <text>`
+4. List channels: `robomotion slack list_channels --client-id <id>`
+5. Disconnect: `robomotion slack disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion slack connect`

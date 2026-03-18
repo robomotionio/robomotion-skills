@@ -1,0 +1,57 @@
+{
+  "skill_name": "teams365",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion teams365 to send messages to teams channels",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion teams365 command to list teams, channels, or members",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion teams365 to create or manage teams channels",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "send a message on Slack",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "post in a Discord channel",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "send an email via Outlook",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "send a message to the 'Engineering' channel in Microsoft Teams saying 'Deployment complete'",
+      "criteria": [
+        "Uses robomotion teams365 send message command",
+        "Specifies the channel name",
+        "Includes the message text"
+      ]
+    }
+  ]
+}

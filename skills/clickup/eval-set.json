@@ -1,0 +1,57 @@
+{
+  "skill_name": "clickup",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion clickup to create or update tasks in clickup",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion clickup command to list spaces, folders, lists, or tasks",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion clickup to manage task comments and assignments",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "create a Jira issue",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "add a card in Trello",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "update a Google Sheets spreadsheet",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "create a new task in ClickUp titled 'Update documentation' in the 'Engineering' list",
+      "criteria": [
+        "Uses robomotion clickup create task command",
+        "Specifies the task name",
+        "Specifies the list or space"
+      ]
+    }
+  ]
+}

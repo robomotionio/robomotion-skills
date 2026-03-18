@@ -1,24 +1,28 @@
 ---
 name: "google-sheets"
-description: "Use when the user wants to call the Robomotion Google Sheets package to read, write, or manage data in Google Sheets via the `robomotion googlesheets` CLI. Do NOT use for Excel files, CSV files, or local spreadsheets."
+description: "Google Sheets — read, write, append, and manage spreadsheet data, sheets, and formatting. Supports cell operations, range reads/writes, and sheet management via `robomotion googlesheets`. Do NOT use for Excel 365, Airtable, or CSV files."
 ---
 
-# Google Sheets Skill
+# Google Sheets
+
+The `robomotion googlesheets` CLI connects to Google Sheets API for spreadsheet operations. It reads and writes cell ranges, appends rows, manages worksheets, and handles spreadsheet creation and formatting.
 
 ## When to use
-- Read data from Google Sheets
-- Write or append rows to Google Sheets
-- Create or manage Google Sheets spreadsheets
-- Update cells or ranges in Google Sheets
+- Read or write cell ranges and individual cells in Google Sheets
+- Append rows to spreadsheets
+- Create spreadsheets and manage worksheets
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install googlesheets`
-- Credentials configured via Robomotion vault or environment variables
+- Google Sheets OAuth2 or Service Account credentials configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install googlesheets`
-2. Run commands: `robomotion googlesheets <command> [flags]`
+1. Install: `robomotion install googlesheets`
+2. Connect: `robomotion googlesheets connect` → returns a `client-id`
+3. Read range: `robomotion googlesheets get_range --client-id <id> --spreadsheet-id <id> --range <A1:D10>`
+4. Write: `robomotion googlesheets set_range --client-id <id> --spreadsheet-id <id> --range <A1> --values <data>`
+5. Disconnect: `robomotion googlesheets disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion googlesheets open_spreadsheet --spreadsheet-url`

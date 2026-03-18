@@ -1,23 +1,28 @@
 ---
 name: "apify"
-description: "Use when the user wants to call the Robomotion Apify package to run Apify actors for web scraping or data extraction via the `robomotion apify` CLI. Do NOT use for simple HTML parsing or non-Apify tools."
+description: "Apify web scraping platform — run Apify actors for large-scale crawling and data extraction. Supports actor execution, run monitoring, and dataset retrieval via `robomotion apify`. Do NOT use for simple HTML parsing or non-Apify scraping tools."
 ---
 
-# Apify Skill
+# Apify
+
+The `robomotion apify` CLI runs actors on the Apify platform for web scraping, crawling, and data extraction at scale. It handles actor execution with configurable timeouts, run status monitoring, and paginated dataset retrieval.
 
 ## When to use
-- Run Apify actors for large-scale scraping
-- Crawl websites using Apify crawlers
-- Extract data using pre-built Apify actors
+- Run pre-built or custom Apify actors for web scraping
+- Monitor actor run status and retrieve results
+- Extract paginated datasets from completed actor runs
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install apify`
-- Credentials configured via Robomotion vault or environment variables
+- Apify API token configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install apify`
-2. Run commands: `robomotion apify <command> [flags]`
+1. Install: `robomotion install apify`
+2. Connect: `robomotion apify apify_connect` → returns a `client-id`
+3. Run actor: `robomotion apify run_actor --client-id <id> --actor-id <actor> --input <json>`
+4. Get results: `robomotion apify get_dataset_items --client-id <id> --dataset-id <ds>`
+5. Disconnect: `robomotion apify apify_disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion apify apify_connect`

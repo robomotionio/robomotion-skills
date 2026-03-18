@@ -1,23 +1,29 @@
 ---
 name: "mongodb"
-description: "Use when the user wants to call the Robomotion MongoDB package to query, insert, or manage documents in MongoDB via the `robomotion mongodb` CLI. Do NOT use for SQL databases like PostgreSQL or MySQL."
+description: "MongoDB — query, insert, update, delete, and aggregate documents in MongoDB collections. Supports CRUD operations, aggregation pipelines, and collection management via `robomotion mongodb`. Do NOT use for PostgreSQL, MySQL, Redis, or other databases."
 ---
 
-# Mongodb Skill
+# MongoDB
+
+The `robomotion mongodb` CLI connects to MongoDB for document database operations. It supports finding, inserting, updating, and deleting documents; running aggregation pipelines; and managing collections.
 
 ## When to use
-- Query documents in MongoDB collections
-- Insert or update MongoDB documents
-- Aggregate data in MongoDB
+- Query documents with filters and projections
+- Insert, update, or delete documents in collections
+- Run aggregation pipelines for data analysis
+- Manage MongoDB connections and collections
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install mongodb`
-- Credentials configured via Robomotion vault or environment variables
+- MongoDB connection URI configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install mongodb`
-2. Run commands: `robomotion mongodb <command> [flags]`
+1. Install: `robomotion install mongodb`
+2. Connect: `robomotion mongodb connect` → returns a `conn-id`
+3. Find: `robomotion mongodb find --conn-id <id> --collection <col> --filter <json>`
+4. Insert: `robomotion mongodb insert_one --conn-id <id> --collection <col> --document <json>`
+5. Disconnect: `robomotion mongodb disconnect --conn-id <id>`
 
 ## Commands Reference
 - `robomotion mongodb drop_database --client-id --database-name`

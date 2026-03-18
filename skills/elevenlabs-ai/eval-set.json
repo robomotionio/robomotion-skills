@@ -1,0 +1,57 @@
+{
+  "skill_name": "elevenlabs-ai",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion elevenlabsai to convert text to natural-sounding speech",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion elevenlabsai command to clone or manage voices in elevenlabs",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion elevenlabsai to generate audio from text with custom voices",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "use OpenAI to generate speech",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "transcribe audio with Whisper",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "translate text with Google Translate",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "use ElevenLabs to convert 'Welcome to our product demo' to speech with a professional voice",
+      "criteria": [
+        "Uses robomotion elevenlabsai text to speech or generate command",
+        "Specifies the text content",
+        "References voice selection or settings"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "skill_name": "travisci",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion travisci to list or trigger travis ci builds",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion travisci command to manage repositories in travis ci",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion travisci to monitor build and job status",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "run a GitHub Actions workflow",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "trigger a Jenkins build",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "deploy to Cloudflare",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "list all recent builds for the 'my-app' repository on Travis CI",
+      "criteria": [
+        "Uses robomotion travisci list builds command",
+        "Specifies the repository name",
+        "References build status or results"
+      ]
+    }
+  ]
+}

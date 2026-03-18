@@ -1,24 +1,30 @@
 ---
 name: "gmail"
-description: "Use when the user wants to call the Robomotion Gmail package to send, read, or search emails via the `robomotion gmail` CLI. Do NOT use for Outlook, generic SMTP, or non-email messaging."
+description: "Gmail — send, read, search, label, archive, draft, and manage emails and threads. Supports attachments, labels, drafts, and thread operations via `robomotion gmail`. Do NOT use for Outlook, generic SMTP, or non-email messaging."
 ---
 
-# Gmail Skill
+# Gmail
+
+The `robomotion gmail` CLI connects to Gmail via the Google API for full email management. It sends, reads, replies to, and searches emails; manages labels and drafts; handles archiving, trash, and read/unread status; downloads attachments; and operates on email threads.
 
 ## When to use
-- Send emails via Gmail
-- Read or search Gmail inbox
-- Manage Gmail labels and filters
-- List or download email attachments from Gmail
+- Send emails with To/CC/BCC recipients, or reply to existing messages
+- Search and list emails with query filters and label filtering
+- Manage labels — create, list, add/remove from messages
+- Create, list, send, or delete email drafts
+- Download attachments and manage email threads
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install gmail`
-- Credentials configured via Robomotion vault or environment variables
+- Gmail OAuth2 or Service Account credentials configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install gmail`
-2. Run commands: `robomotion gmail <command> [flags]`
+1. Install: `robomotion install gmail`
+2. Connect: `robomotion gmail gmail_connect` → returns a `client-id`
+3. Send email: `robomotion gmail gmail_send_email --client-id <id> --to <email> --subject <subj> --body <body>`
+4. List emails: `robomotion gmail gmail_list_emails --client-id <id> --search-query <query>`
+5. Disconnect: `robomotion gmail gmail_disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion gmail gmail_connect`

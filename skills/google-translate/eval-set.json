@@ -1,0 +1,57 @@
+{
+  "skill_name": "google-translate",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion googletranslate to translate text from one language to another",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion googletranslate command to detect the language of input text",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion googletranslate to batch translate multiple texts",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "use OpenAI to translate this text",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "generate text with Claude",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "search Google for translations",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "translate 'Hello, how are you?' from English to Spanish using Google Translate",
+      "criteria": [
+        "Uses robomotion googletranslate translate command",
+        "Specifies source and target languages",
+        "Includes the text to translate"
+      ]
+    }
+  ]
+}

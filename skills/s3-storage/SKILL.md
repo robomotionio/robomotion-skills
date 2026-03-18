@@ -1,24 +1,29 @@
 ---
 name: "s3-storage"
-description: "Use when the user wants to call the Robomotion Amazon S3 package to upload, download, list, or manage files in S3 buckets via the `robomotion amazons3` CLI. Do NOT use for Google Drive, Dropbox, or local file operations."
+description: "Amazon S3 — upload, download, list, delete, and manage objects in S3 buckets. Supports bucket management, presigned URLs, and multi-part uploads via `robomotion amazons3`. Do NOT use for Google Cloud Storage, Dropbox, OneDrive, or other storage services."
 ---
 
-# S3 Storage Skill
+# Amazon S3
+
+The `robomotion amazons3` CLI connects to Amazon S3 for object storage operations. It uploads, downloads, lists, copies, and deletes objects; manages buckets; generates presigned URLs; and handles file operations across S3 buckets.
 
 ## When to use
-- Upload files to S3 buckets
-- Download files from S3
-- List objects in an S3 bucket
-- Delete or manage S3 objects
+- Upload or download files between local filesystem and S3
+- List, copy, or delete objects in S3 buckets
+- Create or manage S3 buckets
+- Generate presigned URLs for temporary access
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install amazons3`
-- Credentials configured via Robomotion vault or environment variables
+- AWS access key and secret key configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install amazons3`
-2. Run commands: `robomotion amazons3 <command> [flags]`
+1. Install: `robomotion install amazons3`
+2. Connect: `robomotion amazons3 connect` → returns a `client-id`
+3. Upload: `robomotion amazons3 upload_file --client-id <id> --bucket <bucket> --key <key> --file-path <file>`
+4. List: `robomotion amazons3 list_objects --client-id <id> --bucket <bucket>`
+5. Disconnect: `robomotion amazons3 disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion amazons3 connect --end-point`

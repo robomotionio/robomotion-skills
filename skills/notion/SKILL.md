@@ -1,24 +1,28 @@
 ---
 name: "notion"
-description: "Use when the user wants to call the Robomotion Notion package to create, read, or search Notion pages and databases via the `robomotion notion` CLI. Do NOT use for Google Docs, Confluence, or local files."
+description: "Notion — create, read, update, and search pages and databases. Supports rich content blocks, database queries, and page management via `robomotion notion`. Do NOT use for Fibery, Confluence, Google Docs, or other wiki/productivity tools."
 ---
 
-# Notion Skill
+# Notion
+
+The `robomotion notion` CLI connects to Notion for page and database management. It creates and updates pages with rich content blocks, queries databases with filters and sorts, and searches across the workspace.
 
 ## When to use
-- Create or update Notion pages
-- Query Notion databases
-- Search Notion workspace content
-- Add blocks or content to Notion pages
+- Create, read, or update Notion pages with content blocks
+- Query and filter Notion databases
+- Search pages and databases across the workspace
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install notion`
-- Credentials configured via Robomotion vault or environment variables
+- Notion integration token configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install notion`
-2. Run commands: `robomotion notion <command> [flags]`
+1. Install: `robomotion install notion`
+2. Connect: `robomotion notion connect` → returns a `client-id`
+3. Search: `robomotion notion search --client-id <id> --query <text>`
+4. Create page: `robomotion notion create_page --client-id <id> --parent-id <id> --title <title>`
+5. Disconnect: `robomotion notion disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion notion notion_connect`

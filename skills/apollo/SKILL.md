@@ -1,23 +1,28 @@
 ---
 name: "apollo"
-description: "Use when the user wants to call the Robomotion Apollo package to search for leads or enrich contacts via the `robomotion apollo` CLI. Do NOT use for HubSpot, Salesforce, or other CRM systems."
+description: "Apollo.io sales intelligence — search 265M+ contacts, enrich leads, manage contacts/accounts/deals. Supports people search, organization enrichment, and CRM operations via `robomotion apollo`. Do NOT use for HubSpot, Salesforce, or other CRM systems."
 ---
 
-# Apollo Skill
+# Apollo.io
+
+The `robomotion apollo` CLI connects to Apollo.io's sales intelligence platform. It searches a 265M+ person database by job title, company, and location; enriches contacts and organizations; and manages contacts, accounts, and deals in your Apollo workspace.
 
 ## When to use
-- Search for leads or contacts in Apollo
-- Enrich contact data using Apollo
-- Manage Apollo outreach sequences
+- Search Apollo's database for leads by job title, company, or location
+- Enrich person or organization data by email, LinkedIn URL, or domain
+- Create and manage contacts, accounts, and deals in Apollo CRM
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install apollo`
-- Credentials configured via Robomotion vault or environment variables
+- Apollo.io API key configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install apollo`
-2. Run commands: `robomotion apollo <command> [flags]`
+1. Install: `robomotion install apollo`
+2. Connect: `robomotion apollo apollo_connect` → returns a `client-id`
+3. Search people: `robomotion apollo apollo_search_people --client-id <id> --job-titles <titles> --company-name <company>`
+4. Enrich: `robomotion apollo apollo_enrich_person --client-id <id> --email <email>`
+5. Disconnect: `robomotion apollo apollo_disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion apollo apollo_connect`

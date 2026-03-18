@@ -1,0 +1,57 @@
+{
+  "skill_name": "ssh",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion ssh to execute remote commands via ssh",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion ssh command to transfer files using scp/sftp",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion ssh to manage ssh connections to remote servers",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "run a local bash command",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "deploy using Cloudflare Workers",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "manage DNS records",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "connect via SSH to server 192.168.1.100 and run 'df -h' to check disk space",
+      "criteria": [
+        "Uses robomotion ssh execute or run command",
+        "Specifies the server host",
+        "Includes the command to execute"
+      ]
+    }
+  ]
+}

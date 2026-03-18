@@ -1,0 +1,57 @@
+{
+  "skill_name": "odoo",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion odoo to manage contacts and leads in odoo",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion odoo command to create or update sales orders and invoices",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion odoo to manage products and inventory",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "manage HubSpot contacts",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "create a Jira ticket",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "process a Stripe payment",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "list all open sales orders in Odoo for customer 'Acme Corp'",
+      "criteria": [
+        "Uses robomotion odoo search or list command",
+        "Specifies the model (sale.order)",
+        "Includes a customer filter"
+      ]
+    }
+  ]
+}

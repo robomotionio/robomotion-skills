@@ -1,24 +1,28 @@
 ---
 name: "discord-bot"
-description: "Use when the user wants to call the Robomotion Discord Bot package to send messages or manage a Discord server via the `robomotion discordbot` CLI. Do NOT use for Slack, Telegram, or other messaging platforms."
+description: "Discord bot — send messages, manage channels, handle roles, and interact with Discord servers. Supports message sending, channel management, and server administration via `robomotion discordbot`. Do NOT use for Slack, Teams, Telegram, or other messaging platforms."
 ---
 
-# Discord Bot Skill
+# Discord Bot
+
+The `robomotion discordbot` CLI operates a Discord bot to send messages, manage channels and roles, and interact with Discord servers. It supports posting messages, listing channels/members, and performing server administration tasks.
 
 ## When to use
-- Send messages to Discord channels
-- Manage Discord server channels or roles
-- Read messages from Discord channels
-- Create or manage Discord webhooks
+- Send messages to Discord channels or users
+- List channels, members, and roles in a Discord server
+- Manage Discord channels and server settings
 
 ## Prerequisites
 - `robomotion` CLI installed
 - Package installed: `robomotion install discordbot`
-- Credentials configured via Robomotion vault or environment variables
+- Discord bot token configured via Robomotion vault
 
 ## Workflow
-1. Install the package: `robomotion install discordbot`
-2. Run commands: `robomotion discordbot <command> [flags]`
+1. Install: `robomotion install discordbot`
+2. Connect: `robomotion discordbot connect` → returns a `client-id`
+3. Send message: `robomotion discordbot send_message --client-id <id> --channel-id <channel> --message <text>`
+4. List channels: `robomotion discordbot list_channels --client-id <id>`
+5. Disconnect: `robomotion discordbot disconnect --client-id <id>`
 
 ## Commands Reference
 - `robomotion discordbot connect`

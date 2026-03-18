@@ -1,0 +1,57 @@
+{
+  "skill_name": "sharepoint365",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "use robomotion sharepoint365 to list or search sharepoint sites",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "run robomotion sharepoint365 command to manage sharepoint lists and list items",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "call robomotion sharepoint365 to upload or download files from sharepoint document libraries",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "manage files in OneDrive personal",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "create a Notion page",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-3",
+      "type": "trigger",
+      "query": "upload to Google Drive",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-boundary-1",
+      "type": "trigger",
+      "query": "write a Python function to sort a list of numbers",
+      "expect_triggered": false
+    },
+    {
+      "id": "quality-1",
+      "type": "quality",
+      "query": "list all items in the 'Tasks' list on the SharePoint site 'Engineering'",
+      "criteria": [
+        "Uses robomotion sharepoint365 list items command",
+        "Specifies the site name",
+        "Specifies the list name"
+      ]
+    }
+  ]
+}
