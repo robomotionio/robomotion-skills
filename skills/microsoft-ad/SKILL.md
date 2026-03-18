@@ -18,41 +18,56 @@ The `robomotion activedirectory` CLI connects to on-premises Active Directory vi
 - Package installed: `robomotion install activedirectory`
 - Active Directory LDAP connection credentials configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install activedirectory`
-2. Connect: `robomotion activedirectory ad_connect` → returns a `client-id`
-3. List users: `robomotion activedirectory ad_list_users --client-id <id> --ou <ou-dn>`
-4. Create user: `robomotion activedirectory ad_create_user --client-id <id> --username <user> --password <pass>`
-5. Disconnect: `robomotion activedirectory ad_disconnect --client-id <id>`
+1. Install (once): `robomotion install activedirectory`
+2. Connect with session:
+   ```
+   robomotion activedirectory ad_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion activedirectory ad_list_users --client-id "<client-id>" --ou <ou-dn> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion activedirectory ad_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion activedirectory add_user_to_group --access-id --group-object-id --user-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory add_user_to_group --access-id --group-object-id --user-id [--opt-tenant-id] [--opt-client-id] --output json`
   Adds a user as a member to a group in Azure Active Directory
-- `robomotion activedirectory connect --tenant-id --client-id`
+- `robomotion activedirectory connect --tenant-id --client-id --session --output json`
   Connects to Azure Active Directory using client credentials and returns an access ID
-- `robomotion activedirectory create_group --func --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory create_group --func --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Creates a new group in Azure Active Directory
-- `robomotion activedirectory create_user --func --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory create_user --func --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Creates a new user in Azure Active Directory with the specified properties
-- `robomotion activedirectory delete_group --access-id --group-object-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory delete_group --access-id --group-object-id [--opt-tenant-id] [--opt-client-id] --output json`
   Deletes a group from Azure Active Directory
-- `robomotion activedirectory delete_user --user-id --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory delete_user --user-id --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Deletes a user from Azure Active Directory
-- `robomotion activedirectory delete_user_from_group --access-id --group-object-id --user-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory delete_user_from_group --access-id --group-object-id --user-id [--opt-tenant-id] [--opt-client-id] --output json`
   Removes a user from a group in Azure Active Directory
-- `robomotion activedirectory get_group --access-id --group-object-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory get_group --access-id --group-object-id [--opt-tenant-id] [--opt-client-id] --output json`
   Retrieves detailed information about a specific group from Azure Active Directory
-- `robomotion activedirectory get_user --user-id --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory get_user --user-id --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Retrieves detailed information about a specific user from Azure Active Directory
-- `robomotion activedirectory list_all_groups --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory list_all_groups --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Retrieves a list of all groups from Azure Active Directory
-- `robomotion activedirectory list_all_users --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory list_all_users --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Retrieves a list of all users from Azure Active Directory
-- `robomotion activedirectory list_group_members --access-id --group-object-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory list_group_members --access-id --group-object-id [--opt-tenant-id] [--opt-client-id] --output json`
   Retrieves a list of all members of a group from Azure Active Directory
-- `robomotion activedirectory update_group --func --group-object-id --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory update_group --func --group-object-id --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Updates properties of an existing group in Azure Active Directory
-- `robomotion activedirectory update_user --func --user-id --access-id [--opt-tenant-id] [--opt-client-id]`
+- `robomotion activedirectory update_user --func --user-id --access-id [--opt-tenant-id] [--opt-client-id] --output json`
   Updates properties of an existing user in Azure Active Directory
 
 ## Environment

@@ -17,23 +17,38 @@ The `robomotion apify` CLI runs actors on the Apify platform for web scraping, c
 - Package installed: `robomotion install apify`
 - Apify API token configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install apify`
-2. Connect: `robomotion apify apify_connect` → returns a `client-id`
-3. Run actor: `robomotion apify run_actor --client-id <id> --actor-id <actor> --input <json>`
-4. Get results: `robomotion apify get_dataset_items --client-id <id> --dataset-id <ds>`
-5. Disconnect: `robomotion apify apify_disconnect --client-id <id>`
+1. Install (once): `robomotion install apify`
+2. Connect with session:
+   ```
+   robomotion apify apify_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion apify run_actor --client-id "<client-id>" --actor-id <actor> --input <json> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion apify apify_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion apify apify_connect`
+- `robomotion apify apify_connect --session --output json`
   Connects to Apify and returns a client ID for subsequent operations
-- `robomotion apify apify_disconnect --client-id`
+- `robomotion apify apify_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the Apify connection and releases resources
-- `robomotion apify run_actor --client-id --actor-id --input [--300]`
+- `robomotion apify run_actor --client-id --actor-id --input [--300] --session-id "<session-id>" --output json`
   Runs an Apify Actor and optionally waits for completion
-- `robomotion apify get_run --client-id --run-id`
+- `robomotion apify get_run --client-id --run-id --session-id "<session-id>" --output json`
   Gets details of an Actor run including status，dataset ID，and usage statistics
-- `robomotion apify get_dataset_items --client-id --dataset-id [--100] [--0] [--format]`
+- `robomotion apify get_dataset_items --client-id --dataset-id [--100] [--0] [--format] --session-id "<session-id>" --output json`
   Retrieves items from an Apify dataset with optional pagination
 
 ## Environment

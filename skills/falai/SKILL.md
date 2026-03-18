@@ -18,27 +18,42 @@ The `robomotion falai` CLI runs AI models hosted on Fal.ai for image generation,
 - Package installed: `robomotion install falai`
 - Fal.ai API key configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install falai`
-2. Connect: `robomotion falai falai_connect` → returns a `client-id`
-3. Run a model: `robomotion falai falai_run_model --client-id <id> --model-id <model> --input <json>`
-4. Or submit async: `robomotion falai falai_submit_request --client-id <id> --model-id <model> --input <json>`
-5. Disconnect: `robomotion falai falai_disconnect --client-id <id>`
+1. Install (once): `robomotion install falai`
+2. Connect with session:
+   ```
+   robomotion falai falai_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion falai falai_run_model --client-id "<client-id>" --model-id <model> --input <json> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion falai falai_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion falai falai_connect`
+- `robomotion falai falai_connect --session --output json`
   Connects to Fal.ai API and returns a client ID for subsequent nodes
-- `robomotion falai falai_disconnect --client-id`
+- `robomotion falai falai_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the Fal.ai connection and releases resources
-- `robomotion falai falai_run_model --client-id --model-id --input [--300] [--mode]`
+- `robomotion falai falai_run_model --client-id --model-id --input [--300] [--mode] --session-id "<session-id>" --output json`
   Runs an AI model on Fal.ai and waits for the result. Supports any model (image generation，video generation，TTS，etc.)
-- `robomotion falai falai_submit_request --client-id --model-id --input [--webhook-url]`
+- `robomotion falai falai_submit_request --client-id --model-id --input [--webhook-url] --session-id "<session-id>" --output json`
   Submits a request to the Fal.ai queue and returns immediately with a request ID for async tracking
-- `robomotion falai falai_get_status --client-id --model-id --request-id`
+- `robomotion falai falai_get_status --client-id --model-id --request-id --session-id "<session-id>" --output json`
   Checks the status of a queued Fal.ai request
-- `robomotion falai falai_get_result --client-id --model-id --request-id`
+- `robomotion falai falai_get_result --client-id --model-id --request-id --session-id "<session-id>" --output json`
   Retrieves the result of a completed Fal.ai request
-- `robomotion falai falai_cancel_request --client-id --model-id --request-id`
+- `robomotion falai falai_cancel_request --client-id --model-id --request-id --session-id "<session-id>" --output json`
   Cancels a queued Fal.ai request
 
 ## Environment

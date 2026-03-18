@@ -18,39 +18,54 @@ The `robomotion gateio` CLI connects to the Gate.io exchange for cryptocurrency 
 - Package installed: `robomotion install gateio`
 - Gate.io API key and secret configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install gateio`
-2. Connect: `robomotion gateio gateio_connect` → returns a `client-id`
-3. Get price: `robomotion gateio gateio_get_spot_price --client-id <id> --btc_usdt`
-4. Place order: `robomotion gateio gateio_buy_limit_order --client-id <id> --btc_usdt --amount <amt> --price <price>`
-5. Disconnect: `robomotion gateio gateio_disconnect --client-id <id>`
+1. Install (once): `robomotion install gateio`
+2. Connect with session:
+   ```
+   robomotion gateio gateio_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion gateio gateio_get_spot_price --client-id "<client-id>" --btc_usdt --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion gateio gateio_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion gateio gateio_buy_order --client-id --currency-pair --order-amount --order-price --base-url`
+- `robomotion gateio gateio_buy_order --client-id --currency-pair --order-amount --order-price --base-url --session-id "<session-id>" --output json`
   Place a buy order on Gate.io exchange
-- `robomotion gateio gateio_cancel_order --client-id --order-id --currency-pair --base-url`
+- `robomotion gateio gateio_cancel_order --client-id --order-id --currency-pair --base-url --session-id "<session-id>" --output json`
   Cancel an existing order on Gate.io
-- `robomotion gateio gateio_connect --base-url`
+- `robomotion gateio gateio_connect --base-url --session --output json`
   Connect to Gate.io exchange using API credentials
-- `robomotion gateio gateio_disconnect --client-id`
+- `robomotion gateio gateio_disconnect --client-id --session-id "<session-id>" --output json`
   Disconnect from Gate.io and release resources
-- `robomotion gateio gateio_get_balance --client-id --currency --base-url`
+- `robomotion gateio gateio_get_balance --client-id --currency --base-url --session-id "<session-id>" --output json`
   Get account balance for a specific currency on Gate.io
-- `robomotion gateio gateio_get_price --client-id --btc-usdt --base-url`
+- `robomotion gateio gateio_get_price --client-id --btc-usdt --base-url --session-id "<session-id>" --output json`
   Get current price for a currency pair on Gate.io
-- `robomotion gateio gateio_list_my_orders --client-id --base-url`
+- `robomotion gateio gateio_list_my_orders --client-id --base-url --session-id "<session-id>" --output json`
   List all open orders on Gate.io
-- `robomotion gateio gateio_list_orders --btc-usdt --10 [--order-type]`
+- `robomotion gateio gateio_list_orders --btc-usdt --10 [--order-type] --output json`
   List order book (buy/sell orders) for a currency pair
-- `robomotion gateio gateio_list_pairs`
+- `robomotion gateio gateio_list_pairs --output json`
   List all available currency pairs on Gate.io
-- `robomotion gateio gateio_sell_order --client-id --currency-pair --order-amount --order-price --base-url`
+- `robomotion gateio gateio_sell_order --client-id --currency-pair --order-amount --order-price --base-url --session-id "<session-id>" --output json`
   Place a sell order on Gate.io exchange
-- `robomotion gateio gateio_get_fee --client-id --btc-usdt --base-url`
+- `robomotion gateio gateio_get_fee --client-id --btc-usdt --base-url --session-id "<session-id>" --output json`
   Get trading fee for a currency pair on Gate.io
-- `robomotion gateio gateio_get_order --client-id --order-id --currency-pair --base-url`
+- `robomotion gateio gateio_get_order --client-id --order-id --currency-pair --base-url --session-id "<session-id>" --output json`
   Get details of a specific order on Gate.io
-- `robomotion gateio gateio_get_deposit_address --client-id --usdt --base-url`
+- `robomotion gateio gateio_get_deposit_address --client-id --usdt --base-url --session-id "<session-id>" --output json`
   Get deposit address for a specific currency on Gate.io
 
 ## Environment

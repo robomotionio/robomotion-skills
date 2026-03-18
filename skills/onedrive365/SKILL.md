@@ -18,41 +18,56 @@ The `robomotion onedrive365` CLI connects to Microsoft OneDrive via the Graph AP
 - Package installed: `robomotion install onedrive365`
 - Microsoft 365 OAuth2 credentials configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install onedrive365`
-2. Connect: `robomotion onedrive365 onedrive_connect` → returns a `client-id`
-3. Upload: `robomotion onedrive365 onedrive_upload_file --client-id <id> --local-path <file> --remote-path <dest>`
-4. List: `robomotion onedrive365 onedrive_list_files --client-id <id> --path <folder>`
-5. Disconnect: `robomotion onedrive365 onedrive_disconnect --client-id <id>`
+1. Install (once): `robomotion install onedrive365`
+2. Connect with session:
+   ```
+   robomotion onedrive365 onedrive_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion onedrive365 onedrive_upload_file --client-id "<client-id>" --local-path <file> --remote-path <dest> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion onedrive365 onedrive_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion onedrive365 list_onedrive_files --folder-path`
+- `robomotion onedrive365 list_onedrive_files --folder-path --output json`
   Lists files in a OneDrive folder
-- `robomotion onedrive365 get_onedrive_stats --file-path`
+- `robomotion onedrive365 get_onedrive_stats --file-path --output json`
   Gets metadata for a file or folder in OneDrive
-- `robomotion onedrive365 download_onedrive_file --remote-path --local-path`
+- `robomotion onedrive365 download_onedrive_file --remote-path --local-path --output json`
   Downloads a file from OneDrive to a local path
-- `robomotion onedrive365 upload_onedrive_file --local-path --remote-path`
+- `robomotion onedrive365 upload_onedrive_file --local-path --remote-path --output json`
   Uploads a local file to OneDrive
-- `robomotion onedrive365 delete_onedrive_file --file-path`
+- `robomotion onedrive365 delete_onedrive_file --file-path --output json`
   Deletes a file from OneDrive
-- `robomotion onedrive365 copy_onedrive_file --source-path --destination-path`
+- `robomotion onedrive365 copy_onedrive_file --source-path --destination-path --output json`
   Copies a file to a new location in OneDrive
-- `robomotion onedrive365 move_onedrive_file --source-path --destination-path`
+- `robomotion onedrive365 move_onedrive_file --source-path --destination-path --output json`
   Moves a file to a new location in OneDrive
-- `robomotion onedrive365 search_onedrive_files --search-query`
+- `robomotion onedrive365 search_onedrive_files --search-query --output json`
   Searches for files and folders in OneDrive
-- `robomotion onedrive365 list_onedrive_folders --folder-path`
+- `robomotion onedrive365 list_onedrive_folders --folder-path --output json`
   Lists folders in a OneDrive folder
-- `robomotion onedrive365 create_onedrive_folder --folder-path`
+- `robomotion onedrive365 create_onedrive_folder --folder-path --output json`
   Creates a new folder in OneDrive
-- `robomotion onedrive365 delete_onedrive_folder --folder-path`
+- `robomotion onedrive365 delete_onedrive_folder --folder-path --output json`
   Deletes a folder from OneDrive
-- `robomotion onedrive365 create_onedrive_share_link --file-path [--link-type] [--scope] [--expiration]`
+- `robomotion onedrive365 create_onedrive_share_link --file-path [--link-type] [--scope] [--expiration] --output json`
   Creates a shareable link for a file or folder in OneDrive
-- `robomotion onedrive365 get_onedrive_share_links --file-path`
+- `robomotion onedrive365 get_onedrive_share_links --file-path --output json`
   Gets existing share links for a file or folder in OneDrive
-- `robomotion onedrive365 delete_onedrive_share_link --file-path --permission-id`
+- `robomotion onedrive365 delete_onedrive_share_link --file-path --permission-id --output json`
   Deletes a share link from a file or folder in OneDrive
 
 ## Environment

@@ -18,43 +18,58 @@ The `robomotion openrouter` CLI connects to OpenRouter's unified API gateway pro
 - Package installed: `robomotion install openrouter`
 - OpenRouter API key configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install openrouter`
-2. Connect: `robomotion openrouter openrouter_connect` → returns a `client-id`
-3. Generate: `robomotion openrouter openrouter_generate_text --client-id <id> --model <model> --prompt <text>`
-4. Chat: `robomotion openrouter openrouter_generate_chat --client-id <id> --model <model> --messages <json>`
-5. Disconnect: `robomotion openrouter openrouter_disconnect --client-id <id>`
+1. Install (once): `robomotion install openrouter`
+2. Connect with session:
+   ```
+   robomotion openrouter openrouter_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion openrouter openrouter_generate_text --client-id "<client-id>" --model <model> --prompt <text> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion openrouter openrouter_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion openrouter connect_openrouter`
+- `robomotion openrouter connect_openrouter --session --output json`
   Connect to OpenRouter API and create a client session for accessing 480+ AI models
-- `robomotion openrouter generate_text --connection-id --you-are-a-helpful-assistant- --user-prompt [--model] [--custom-model] [--number-of-generations] [--temperature] [--top-p] [--max-tokens] [--stop-sequences] [--reasoning-mode] [--response-schema] [--seed] [--120]`
+- `robomotion openrouter generate_text --connection-id --you-are-a-helpful-assistant- --user-prompt [--model] [--custom-model] [--number-of-generations] [--temperature] [--top-p] [--max-tokens] [--stop-sequences] [--reasoning-mode] [--response-schema] [--seed] [--120] --session-id "<session-id>" --output json`
   Generate text using AI models through OpenRouter with support for reasoning mode and structured outputs
-- `robomotion openrouter chat_completion --connection-id --you-are-a-helpful-assistant- --user-prompt --history [--model] [--custom-model] [--number-of-generations] [--temperature] [--top-p] [--max-tokens] [--stop-sequences] [--reasoning-mode] [--response-schema] [--seed] [--120]`
+- `robomotion openrouter chat_completion --connection-id --you-are-a-helpful-assistant- --user-prompt --history [--model] [--custom-model] [--number-of-generations] [--temperature] [--top-p] [--max-tokens] [--stop-sequences] [--reasoning-mode] [--response-schema] [--seed] [--120] --session-id "<session-id>" --output json`
   Generate chat responses with conversation history support using AI models through OpenRouter
-- `robomotion openrouter generate_image --connection-id --prompt --reference-images [--model] [--custom-model] [--number-of-images] [--aspect-ratio] [--120]`
+- `robomotion openrouter generate_image --connection-id --prompt --reference-images [--model] [--custom-model] [--number-of-images] [--aspect-ratio] [--120] --session-id "<session-id>" --output json`
   Generate images using AI models like Gemini or Flux through OpenRouter
-- `robomotion openrouter get_generation --connection-id --generation-id`
+- `robomotion openrouter get_generation --connection-id --generation-id --session-id "<session-id>" --output json`
   Retrieve generation metadata including cost and token usage from OpenRouter
-- `robomotion openrouter get_credits --connection-id`
+- `robomotion openrouter get_credits --connection-id --session-id "<session-id>" --output json`
   Get OpenRouter account credits balance and usage information
-- `robomotion openrouter get_current_api_key --connection-id`
+- `robomotion openrouter get_current_api_key --connection-id --session-id "<session-id>" --output json`
   Get information about the currently authenticated API key
-- `robomotion openrouter create_api_key --connection-id --name [--limit] [--include-byok-in-limit]`
+- `robomotion openrouter create_api_key --connection-id --name [--limit] [--include-byok-in-limit] --session-id "<session-id>" --output json`
   Create a new API key in OpenRouter (requires Provisioning API key)
-- `robomotion openrouter get_api_key --connection-id --hash`
+- `robomotion openrouter get_api_key --connection-id --hash --session-id "<session-id>" --output json`
   Get API key information by hash from OpenRouter (requires Provisioning API key)
-- `robomotion openrouter list_api_keys --connection-id [--offset] [--include-disabled]`
+- `robomotion openrouter list_api_keys --connection-id [--offset] [--include-disabled] --session-id "<session-id>" --output json`
   List all API keys in OpenRouter account (requires Provisioning API key)
-- `robomotion openrouter update_api_key --connection-id --hash [--name] [--disabled] [--limit] [--include-byok-in-limit]`
+- `robomotion openrouter update_api_key --connection-id --hash [--name] [--disabled] [--limit] [--include-byok-in-limit] --session-id "<session-id>" --output json`
   Update an existing API key in OpenRouter (requires Provisioning API key)
-- `robomotion openrouter delete_api_key --connection-id --hash`
+- `robomotion openrouter delete_api_key --connection-id --hash --session-id "<session-id>" --output json`
   Delete an API key from OpenRouter (requires Provisioning API key)
-- `robomotion openrouter list_models --connection-id [--category-filter] [--rss-format] [--rss-chat-links]`
+- `robomotion openrouter list_models --connection-id [--category-filter] [--rss-format] [--rss-chat-links] --session-id "<session-id>" --output json`
   List available AI models from OpenRouter with optional category filtering
-- `robomotion openrouter list_model_endpoints --connection-id --author --slug`
+- `robomotion openrouter list_model_endpoints --connection-id --author --slug --session-id "<session-id>" --output json`
   List available provider endpoints for a specific AI model on OpenRouter
-- `robomotion openrouter disconnect_openrouter --connection-id`
+- `robomotion openrouter disconnect_openrouter --connection-id --session-id "<session-id>" --output json`
   Disconnect from OpenRouter API and release the client session
 
 ## Environment

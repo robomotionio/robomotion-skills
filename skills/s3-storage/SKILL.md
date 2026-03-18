@@ -18,35 +18,50 @@ The `robomotion amazons3` CLI connects to Amazon S3 for object storage operation
 - Package installed: `robomotion install amazons3`
 - AWS access key and secret key configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install amazons3`
-2. Connect: `robomotion amazons3 connect` → returns a `client-id`
-3. Upload: `robomotion amazons3 upload_file --client-id <id> --bucket <bucket> --key <key> --file-path <file>`
-4. List: `robomotion amazons3 list_objects --client-id <id> --bucket <bucket>`
-5. Disconnect: `robomotion amazons3 disconnect --client-id <id>`
+1. Install (once): `robomotion install amazons3`
+2. Connect with session:
+   ```
+   robomotion amazons3 connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion amazons3 upload_file --client-id "<client-id>" --bucket <bucket> --key <key> --file-path <file> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion amazons3 disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion amazons3 connect --end-point`
+- `robomotion amazons3 connect --end-point --session --output json`
   Connect to Amazon S3 or S3-compatible storage using access credentials
-- `robomotion amazons3 disconnect --client-id`
+- `robomotion amazons3 disconnect --client-id --session-id "<session-id>" --output json`
   Closes the S3 client connection and releases resources
-- `robomotion amazons3 upload_object --client-id --file-path --bucket-name --object-name [--content-type] [--user-metadata] [--end-point]`
+- `robomotion amazons3 upload_object --client-id --file-path --bucket-name --object-name [--content-type] [--user-metadata] [--end-point] --session-id "<session-id>" --output json`
   Upload a local file to an S3 bucket
-- `robomotion amazons3 download_object --client-id --bucket-name --object-name --file-path [--end-point]`
+- `robomotion amazons3 download_object --client-id --bucket-name --object-name --file-path [--end-point] --session-id "<session-id>" --output json`
   Download an object from S3 to a local file
-- `robomotion amazons3 get_object --client-id --bucket-name --object-name [--end-point]`
+- `robomotion amazons3 get_object --client-id --bucket-name --object-name [--end-point] --session-id "<session-id>" --output json`
   Get metadata information about an S3 object
-- `robomotion amazons3 delete_object --client-id --bucket-name --object-name [--version-id] [--end-point]`
+- `robomotion amazons3 delete_object --client-id --bucket-name --object-name [--version-id] [--end-point] --session-id "<session-id>" --output json`
   Delete an object from an S3 bucket
-- `robomotion amazons3 list_objects --client-id --bucket-name [--end-point]`
+- `robomotion amazons3 list_objects --client-id --bucket-name [--end-point] --session-id "<session-id>" --output json`
   List all objects in an S3 bucket
-- `robomotion amazons3 list_buckets --client-id [--end-point]`
+- `robomotion amazons3 list_buckets --client-id [--end-point] --session-id "<session-id>" --output json`
   List all S3 buckets accessible with the current credentials
-- `robomotion amazons3 delete_bucket --client-id --bucket-name [--end-point]`
+- `robomotion amazons3 delete_bucket --client-id --bucket-name [--end-point] --session-id "<session-id>" --output json`
   Delete an empty S3 bucket
-- `robomotion amazons3 create_bucket --client-id --bucket-name [--region] [--end-point]`
+- `robomotion amazons3 create_bucket --client-id --bucket-name [--region] [--end-point] --session-id "<session-id>" --output json`
   Create a new S3 bucket in the specified region
-- `robomotion amazons3 download_presigned_url --client-id --bucket-name --object-name --expiration-second [--file-name] [--end-point]`
+- `robomotion amazons3 download_presigned_url --client-id --bucket-name --object-name --expiration-second [--file-name] [--end-point] --session-id "<session-id>" --output json`
   Generate a presigned URL for downloading an S3 object
 
 ## Environment

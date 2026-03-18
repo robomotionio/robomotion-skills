@@ -17,22 +17,38 @@ The `robomotion questdb` CLI connects to QuestDB for time-series database operat
 - Package installed: `robomotion install questdb`
 - QuestDB connection credentials configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install questdb`
-2. Connect: `robomotion questdb questdb_connect` → returns a `conn-id`
-3. Query: `robomotion questdb questdb_execute_query --conn-id <id>` (with SQL in context)
-4. Disconnect: `robomotion questdb questdb_disconnect --conn-id <id>`
+1. Install (once): `robomotion install questdb`
+2. Connect with session:
+   ```
+   robomotion questdb questdb_connect --session --output json
+   # → {"outConnectionId":"<conn-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `conn-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion questdb questdb_execute_query --conn-id "<conn-id>" --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion questdb questdb_disconnect --conn-id "<conn-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion questdb questdb_connect`
+- `robomotion questdb questdb_connect --session --output json`
   Connects to QuestDB database and returns a client ID for subsequent operations
-- `robomotion questdb questdb_disconnect --client-id`
+- `robomotion questdb questdb_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the QuestDB connection and releases resources
-- `robomotion questdb questdb_execute_query --client-id --query --parameters [--60]`
+- `robomotion questdb questdb_execute_query --client-id --query --parameters [--60] --session-id "<session-id>" --output json`
   Executes a custom SQL query on QuestDB
-- `robomotion questdb questdb_select --client-id --table --columns --where-clause --order-by --limit [--60]`
+- `robomotion questdb questdb_select --client-id --table --columns --where-clause --order-by --limit [--60] --session-id "<session-id>" --output json`
   Selects rows from a QuestDB table with optional filtering
-- `robomotion questdb questdb_insert --client-id --table --columns --values [--60]`
+- `robomotion questdb questdb_insert --client-id --table --columns --values [--60] --session-id "<session-id>" --output json`
   Inserts rows into a QuestDB table
 
 ## Environment

@@ -17,11 +17,27 @@ The `robomotion postgresql` CLI connects to PostgreSQL databases for SQL operati
 - Package installed: `robomotion install postgresql`
 - PostgreSQL connection credentials configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install postgresql`
-2. Connect: `robomotion postgresql connect` → returns a `conn-id`
-3. Query: `robomotion postgresql execute_query --conn-id <id>` (with SQL in context)
-4. Disconnect: `robomotion postgresql disconnect --conn-id <id>`
+1. Install (once): `robomotion install postgresql`
+2. Connect with session:
+   ```
+   robomotion postgresql connect --session --output json
+   # → {"outConnectionId":"<conn-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `conn-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion postgresql execute_query --conn-id "<conn-id>" --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion postgresql disconnect --conn-id "<conn-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Environment
 - ROBOMOTION_API_TOKEN (if vault credentials are needed)

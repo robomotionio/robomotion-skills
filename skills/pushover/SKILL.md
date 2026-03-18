@@ -18,22 +18,38 @@ The `robomotion pushover` CLI sends push notifications via Pushover to mobile an
 - Package installed: `robomotion install pushover`
 - Pushover API token and user key configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install pushover`
-2. Connect: `robomotion pushover pushover_connect` → returns a `client-id`
-3. Send: `robomotion pushover pushover_send --client-id <id> --message <text> --title <title>`
-4. Disconnect: `robomotion pushover pushover_disconnect --client-id <id>`
+1. Install (once): `robomotion install pushover`
+2. Connect with session:
+   ```
+   robomotion pushover pushover_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion pushover pushover_send --client-id "<client-id>" --message <text> --title <title> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion pushover pushover_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion pushover pushover_connect`
+- `robomotion pushover pushover_connect --session --output json`
   Connects to Pushover API and returns a client ID for reuse
-- `robomotion pushover pushover_disconnect --client-id`
+- `robomotion pushover pushover_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the Pushover connection and releases resources
-- `robomotion pushover pushover_send_message --client-id --user-key --message --title --url --url-title --device [--priority] [--sound] [--60] [--3600] [--0] [--0]`
+- `robomotion pushover pushover_send_message --client-id --user-key --message --title --url --url-title --device [--priority] [--sound] [--60] [--3600] [--0] [--0] --session-id "<session-id>" --output json`
   Sends a push notification to a user or group via Pushover
-- `robomotion pushover pushover_cancel_emergency --client-id --receipt`
+- `robomotion pushover pushover_cancel_emergency --client-id --receipt --session-id "<session-id>" --output json`
   Cancels an active emergency priority notification by receipt ID
-- `robomotion pushover pushover_get_limits --client-id`
+- `robomotion pushover pushover_get_limits --client-id --session-id "<session-id>" --output json`
   Gets the current monthly message limits and remaining quota for your Pushover application
 
 ## Environment

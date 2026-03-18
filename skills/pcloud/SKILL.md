@@ -17,31 +17,46 @@ The `robomotion pcloud` CLI connects to pCloud for cloud file storage management
 - Package installed: `robomotion install pcloud`
 - pCloud access token configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install pcloud`
-2. Connect: `robomotion pcloud pcloud_connect` → returns a `client-id`
-3. Upload: `robomotion pcloud pcloud_upload_file --client-id <id> --file-path <local> --folder-id <folder>`
-4. List: `robomotion pcloud pcloud_list_folder --client-id <id> --folder-id <folder>`
-5. Disconnect: `robomotion pcloud pcloud_disconnect --client-id <id>`
+1. Install (once): `robomotion install pcloud`
+2. Connect with session:
+   ```
+   robomotion pcloud pcloud_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion pcloud pcloud_upload_file --client-id "<client-id>" --file-path <local> --folder-id <folder> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion pcloud pcloud_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion pcloud copy_file --client-id --source-path --target-path`
+- `robomotion pcloud copy_file --client-id --source-path --target-path --session-id "<session-id>" --output json`
   Copy a file from one location to another in pCloud
-- `robomotion pcloud create_folder --client-id --path`
+- `robomotion pcloud create_folder --client-id --path --session-id "<session-id>" --output json`
   Create a new folder at the specified path in pCloud
-- `robomotion pcloud delete_file --client-id --path`
+- `robomotion pcloud delete_file --client-id --path --session-id "<session-id>" --output json`
   Delete a file at the specified path in pCloud
-- `robomotion pcloud delete_folder --client-id --path`
+- `robomotion pcloud delete_folder --client-id --path --session-id "<session-id>" --output json`
   Delete a folder and all its contents recursively in pCloud
-- `robomotion pcloud login [--region]`
+- `robomotion pcloud login [--region] --output json`
   Login to pCloud using username and password credentials
-- `robomotion pcloud rename_file --client-id --source-path --target-path`
+- `robomotion pcloud rename_file --client-id --source-path --target-path --session-id "<session-id>" --output json`
   Rename or move a file to a new path in pCloud
-- `robomotion pcloud rename_folder --client-id --source-path --target-path`
+- `robomotion pcloud rename_folder --client-id --source-path --target-path --session-id "<session-id>" --output json`
   Rename or move a folder to a new path in pCloud
-- `robomotion pcloud upload_file --client-id --file-path --folder-id --remote-file-name`
+- `robomotion pcloud upload_file --client-id --file-path --folder-id --remote-file-name --session-id "<session-id>" --output json`
   Upload a file from local filesystem to pCloud
-- `robomotion pcloud get_public_link --client-id --path [--type]`
+- `robomotion pcloud get_public_link --client-id --path [--type] --session-id "<session-id>" --output json`
   Generate a public sharing link for a file or folder in pCloud
 
 ## Environment

@@ -17,29 +17,44 @@ The `robomotion odoo` CLI connects to Odoo ERP via XML-RPC for business manageme
 - Package installed: `robomotion install odoo`
 - Odoo instance URL, database, and API credentials configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install odoo`
-2. Connect: `robomotion odoo odoo_connect` → returns a `client-id`
-3. Search: `robomotion odoo odoo_search_read --client-id <id> --model <model> --domain <filter>`
-4. Create: `robomotion odoo odoo_create --client-id <id> --model <model> --values <json>`
-5. Disconnect: `robomotion odoo odoo_disconnect --client-id <id>`
+1. Install (once): `robomotion install odoo`
+2. Connect with session:
+   ```
+   robomotion odoo odoo_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion odoo odoo_search_read --client-id "<client-id>" --model <model> --domain <filter> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion odoo odoo_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion odoo odoo_connect`
+- `robomotion odoo odoo_connect --session --output json`
   Connects to an Odoo instance via XML-RPC and returns a client ID
-- `robomotion odoo odoo_disconnect --client-id`
+- `robomotion odoo odoo_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the Odoo connection and releases resources
-- `robomotion odoo odoo_search_read --client-id --model --domain-filter --fields [--100] [--0]`
+- `robomotion odoo odoo_search_read --client-id --model --domain-filter --fields [--100] [--0] --session-id "<session-id>" --output json`
   Searches and reads records from any Odoo model using domain filters
-- `robomotion odoo odoo_create_record --client-id --model --values`
+- `robomotion odoo odoo_create_record --client-id --model --values --session-id "<session-id>" --output json`
   Creates a new record in any Odoo model
-- `robomotion odoo odoo_update_record --client-id --model --record-i-ds --values`
+- `robomotion odoo odoo_update_record --client-id --model --record-i-ds --values --session-id "<session-id>" --output json`
   Updates one or more existing records in any Odoo model
-- `robomotion odoo odoo_delete_record --client-id --model --record-i-ds`
+- `robomotion odoo odoo_delete_record --client-id --model --record-i-ds --session-id "<session-id>" --output json`
   Deletes one or more records from any Odoo model
-- `robomotion odoo odoo_get_fields --client-id --model --attributes`
+- `robomotion odoo odoo_get_fields --client-id --model --attributes --session-id "<session-id>" --output json`
   Retrieves field metadata for any Odoo model
-- `robomotion odoo odoo_execute --client-id --model --method --arguments --keyword-arguments`
+- `robomotion odoo odoo_execute --client-id --model --method --arguments --keyword-arguments --session-id "<session-id>" --output json`
   Executes any method on any Odoo model via execute_kw
 
 ## Environment

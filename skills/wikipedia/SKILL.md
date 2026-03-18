@@ -17,25 +17,40 @@ The `robomotion wikipedia` CLI connects to Wikipedia for article search and cont
 - Package installed: `robomotion install wikipedia`
 - No external credentials needed — Wikipedia API is public
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install wikipedia`
-2. Connect: `robomotion wikipedia wikipedia_connect` → returns a `client-id`
-3. Search: `robomotion wikipedia wikipedia_search --client-id <id> --query <text>`
-4. Get page: `robomotion wikipedia wikipedia_get_page --client-id <id> --title <title>`
-5. Disconnect: `robomotion wikipedia wikipedia_disconnect --client-id <id>`
+1. Install (once): `robomotion install wikipedia`
+2. Connect with session:
+   ```
+   robomotion wikipedia wikipedia_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion wikipedia wikipedia_search --client-id "<client-id>" --query <text> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion wikipedia wikipedia_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion wikipedia wikipedia_connect [--en] [--base-url]`
+- `robomotion wikipedia wikipedia_connect [--en] [--base-url] --session --output json`
   Connects to Wikipedia API and returns a client ID
-- `robomotion wikipedia wikipedia_disconnect --client-id`
+- `robomotion wikipedia wikipedia_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the Wikipedia connection and releases resources
-- `robomotion wikipedia wikipedia_search --client-id --query [--10] [--en]`
+- `robomotion wikipedia wikipedia_search --client-id --query [--10] [--en] --session-id "<session-id>" --output json`
   Searches Wikipedia pages by keyword
-- `robomotion wikipedia wikipedia_summary --client-id --page-title [--en]`
+- `robomotion wikipedia wikipedia_summary --client-id --page-title [--en] --session-id "<session-id>" --output json`
   Gets a summary and metadata for a Wikipedia page
-- `robomotion wikipedia wikipedia_content --client-id --page-title [--en]`
+- `robomotion wikipedia wikipedia_content --client-id --page-title [--en] --session-id "<session-id>" --output json`
   Gets the full HTML content of a Wikipedia page
-- `robomotion wikipedia wikipedia_random --client-id [--en]`
+- `robomotion wikipedia wikipedia_random --client-id [--en] --session-id "<session-id>" --output json`
   Gets a random Wikipedia page with its summary
 
 ## Environment

@@ -17,35 +17,50 @@ The `robomotion xano` CLI connects to Xano (no-code backend platform) for databa
 - Package installed: `robomotion install xano`
 - Xano instance URL and API key configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install xano`
-2. Connect: `robomotion xano xano_connect` → returns a `client-id`
-3. List records: `robomotion xano xano_list --client-id <id> --table <table>`
-4. Create record: `robomotion xano xano_create --client-id <id> --table <table> --data <json>`
-5. Disconnect: `robomotion xano xano_disconnect --client-id <id>`
+1. Install (once): `robomotion install xano`
+2. Connect with session:
+   ```
+   robomotion xano xano_connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion xano xano_list --client-id "<client-id>" --table <table> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion xano xano_disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion xano xano_connect --instance-domain`
+- `robomotion xano xano_connect --instance-domain --session --output json`
   Connects to the Xano Metadata API and returns a client ID
-- `robomotion xano xano_disconnect --client-id`
+- `robomotion xano xano_disconnect --client-id --session-id "<session-id>" --output json`
   Closes the Xano connection and releases resources
-- `robomotion xano xano_create_row --client-id --workspace-id --table-id --record-data [--instance-domain] [--60]`
+- `robomotion xano xano_create_row --client-id --workspace-id --table-id --record-data [--instance-domain] [--60] --session-id "<session-id>" --output json`
   Creates a new record in a Xano database table
-- `robomotion xano xano_get_row --client-id --workspace-id --table-id --record-id [--instance-domain] [--60]`
+- `robomotion xano xano_get_row --client-id --workspace-id --table-id --record-id [--instance-domain] [--60] --session-id "<session-id>" --output json`
   Retrieves a single record from a Xano database table by ID
-- `robomotion xano xano_get_many_rows --client-id --workspace-id --table-id [--instance-domain] [--1] [--50] [--60]`
+- `robomotion xano xano_get_many_rows --client-id --workspace-id --table-id [--instance-domain] [--1] [--50] [--60] --session-id "<session-id>" --output json`
   Retrieves multiple records from a Xano table with pagination
-- `robomotion xano xano_update_row --client-id --workspace-id --table-id --record-id --update-data [--instance-domain] [--60]`
+- `robomotion xano xano_update_row --client-id --workspace-id --table-id --record-id --update-data [--instance-domain] [--60] --session-id "<session-id>" --output json`
   Updates an existing record in a Xano database table
-- `robomotion xano xano_delete_row --client-id --workspace-id --table-id --record-id [--instance-domain] [--60]`
+- `robomotion xano xano_delete_row --client-id --workspace-id --table-id --record-id [--instance-domain] [--60] --session-id "<session-id>" --output json`
   Deletes a record from a Xano database table by ID
-- `robomotion xano xano_search_rows --client-id --workspace-id --table-id --search [--instance-domain] [--sort-by] [--sort-order] [--1] [--50] [--60]`
+- `robomotion xano xano_search_rows --client-id --workspace-id --table-id --search [--instance-domain] [--sort-by] [--sort-order] [--1] [--50] [--60] --session-id "<session-id>" --output json`
   Searches records in a Xano table using Metadata API search filters
-- `robomotion xano xano_bulk_create --client-id --workspace-id --table-id --items [--instance-domain] [--120]`
+- `robomotion xano xano_bulk_create --client-id --workspace-id --table-id --items [--instance-domain] [--120] --session-id "<session-id>" --output json`
   Creates multiple records in a Xano table at once
-- `robomotion xano xano_bulk_update --client-id --workspace-id --table-id --items [--instance-domain] [--120]`
+- `robomotion xano xano_bulk_update --client-id --workspace-id --table-id --items [--instance-domain] [--120] --session-id "<session-id>" --output json`
   Updates multiple records in a Xano table at once
-- `robomotion xano xano_call_api --client-id --api-path --request-body --query-params --custom-headers [--instance-domain] [--http-method] [--60]`
+- `robomotion xano xano_call_api --client-id --api-path --request-body --query-params --custom-headers [--instance-domain] [--http-method] [--60] --session-id "<session-id>" --output json`
   Calls a custom Xano API endpoint with configurable method，path，headers，and body
 
 ## Environment

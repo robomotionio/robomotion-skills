@@ -18,37 +18,52 @@ The `robomotion dropbox` CLI manages files and folders in Dropbox. It supports u
 - Package installed: `robomotion install dropbox`
 - Dropbox access token configured via Robomotion vault
 
+## IMPORTANT: Session Mode Required for Multi-Step Operations
+Each CLI command runs as a **separate process** — connection IDs from `connect` do NOT persist across calls.
+You MUST use `--session` on `connect` and pass `--session-id` to all subsequent commands.
+
 ## Workflow
-1. Install: `robomotion install dropbox`
-2. Connect: `robomotion dropbox connect` → returns a `client-id`
-3. Upload: `robomotion dropbox upload_file --client-id <id> --file-path <local> --dropbox-path <remote>`
-4. List: `robomotion dropbox list_files --client-id <id> --dropbox-path <folder>`
-5. Disconnect: `robomotion dropbox disconnect --client-id <id>`
+1. Install (once): `robomotion install dropbox`
+2. Connect with session:
+   ```
+   robomotion dropbox connect --session --output json
+   # → {"outClientId":"<client-id>","session_id":"<session-id>"}
+   ```
+3. Use the returned `client-id` and `session-id` in all subsequent commands:
+   ```
+   robomotion dropbox upload_file --client-id "<client-id>" --file-path <local> --dropbox-path <remote> --session-id "<session-id>" --output json
+   ```
+4. Disconnect when done:
+   ```
+   robomotion dropbox disconnect --client-id "<client-id>" --session-id "<session-id>" --output json
+   ```
+
+**Always** append `--output json` to get structured JSON results.
 
 ## Commands Reference
-- `robomotion dropbox connect`
+- `robomotion dropbox connect --session --output json`
   Connect to Dropbox using an access token and return a client ID for subsequent operations
-- `robomotion dropbox copy_file --client-id --source-path --destination-path`
+- `robomotion dropbox copy_file --client-id --source-path --destination-path --session-id "<session-id>" --output json`
   Copy a file or folder from one location to another in Dropbox
-- `robomotion dropbox create_folder --client-id --dropbox-path`
+- `robomotion dropbox create_folder --client-id --dropbox-path --session-id "<session-id>" --output json`
   Create a new folder at the specified path in Dropbox
-- `robomotion dropbox delete_file --client-id --dropbox-path`
+- `robomotion dropbox delete_file --client-id --dropbox-path --session-id "<session-id>" --output json`
   Delete a file or folder at the specified path in Dropbox
-- `robomotion dropbox disconnect --client-id`
+- `robomotion dropbox disconnect --client-id --session-id "<session-id>" --output json`
   Disconnect from Dropbox and release the client connection
-- `robomotion dropbox download_file --client-id --dropbox-path --local-path`
+- `robomotion dropbox download_file --client-id --dropbox-path --local-path --session-id "<session-id>" --output json`
   Download a file from Dropbox to the local filesystem
-- `robomotion dropbox get_shareable_link --client-id --dropbox-path`
+- `robomotion dropbox get_shareable_link --client-id --dropbox-path --session-id "<session-id>" --output json`
   Create a shareable link for a file or folder in Dropbox
-- `robomotion dropbox move_file --client-id --source-path --destination-path`
+- `robomotion dropbox move_file --client-id --source-path --destination-path --session-id "<session-id>" --output json`
   Move a file or folder from one location to another in Dropbox
-- `robomotion dropbox file_stat --client-id --dropbox-path`
+- `robomotion dropbox file_stat --client-id --dropbox-path --session-id "<session-id>" --output json`
   Get metadata and statistics for a file or folder in Dropbox
-- `robomotion dropbox list_files --client-id --dropbox-path`
+- `robomotion dropbox list_files --client-id --dropbox-path --session-id "<session-id>" --output json`
   List all files and folders in a Dropbox directory
-- `robomotion dropbox search --client-id --query --path`
+- `robomotion dropbox search --client-id --query --path --session-id "<session-id>" --output json`
   Search for files and folders in Dropbox by name or content
-- `robomotion dropbox upload_file --client-id --dropbox-path --file-path`
+- `robomotion dropbox upload_file --client-id --dropbox-path --file-path --session-id "<session-id>" --output json`
   Upload a file from the local filesystem to Dropbox
 
 ## Environment
