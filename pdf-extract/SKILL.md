@@ -20,19 +20,17 @@ For OCR on scanned/image-only PDFs, this skill is NOT enough — those need a he
 ## Usage
 
 ```sh
-SKILL=$(dirname "$(find /opt/robomotion/skills -name SKILL.md -path '*/pdf-extract/*' | head -1)")
-
 # Save a PDF to /workspace first (e.g. via curl)
 curl -L -o /workspace/paper.pdf https://arxiv.org/pdf/2401.12345
 
 # Extract all text
-python3 "$SKILL/scripts/extract.py" /workspace/paper.pdf
+python3 ${SKILL_DIR}/scripts/extract.py /workspace/paper.pdf
 
 # Extract specific pages
-python3 "$SKILL/scripts/extract.py" /workspace/paper.pdf --pages 1-3
+python3 ${SKILL_DIR}/scripts/extract.py /workspace/paper.pdf --pages 1-3
 
 # Output JSON (page-keyed) for further processing
-python3 "$SKILL/scripts/extract.py" /workspace/paper.pdf --json > /workspace/paper.json
+python3 ${SKILL_DIR}/scripts/extract.py /workspace/paper.pdf --json > /workspace/paper.json
 ```
 
 ## When to use

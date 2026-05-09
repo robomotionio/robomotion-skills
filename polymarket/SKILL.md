@@ -21,16 +21,14 @@ The skill ships `scripts/polymarket.py`, a stdlib-only CLI that wraps the three 
 ## Usage
 
 ```sh
-SKILL=$(dirname "$(find /opt/robomotion/skills -name SKILL.md -path '*/polymarket/*' | head -1)")
-
-python3 "$SKILL/scripts/polymarket.py" search "bitcoin"
-python3 "$SKILL/scripts/polymarket.py" trending --limit 10
-python3 "$SKILL/scripts/polymarket.py" market "<market-slug>"
-python3 "$SKILL/scripts/polymarket.py" event "<event-slug>"
-python3 "$SKILL/scripts/polymarket.py" price "<token-id>"
-python3 "$SKILL/scripts/polymarket.py" book "<token-id>"
-python3 "$SKILL/scripts/polymarket.py" history "<condition-id>" --interval all --fidelity 50
-python3 "$SKILL/scripts/polymarket.py" trades --limit 10 --market "<condition-id>"
+python3 ${SKILL_DIR}/scripts/polymarket.py search "bitcoin"
+python3 ${SKILL_DIR}/scripts/polymarket.py trending --limit 10
+python3 ${SKILL_DIR}/scripts/polymarket.py market "<market-slug>"
+python3 ${SKILL_DIR}/scripts/polymarket.py event "<event-slug>"
+python3 ${SKILL_DIR}/scripts/polymarket.py price "<token-id>"
+python3 ${SKILL_DIR}/scripts/polymarket.py book "<token-id>"
+python3 ${SKILL_DIR}/scripts/polymarket.py history "<condition-id>" --interval all --fidelity 50
+python3 ${SKILL_DIR}/scripts/polymarket.py trades --limit 10 --market "<condition-id>"
 ```
 
 Full endpoint reference (curl examples for fields the CLI doesn't surface) lives in `references/api-endpoints.md` — `cat` it when you need a query the CLI doesn't wrap.
