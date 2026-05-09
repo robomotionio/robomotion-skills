@@ -41,9 +41,7 @@ Save to `/workspace/diagrams/<name>.excalidraw`. The user can open it directly a
 ### 2. (Optional) Upload for a shareable URL
 
 ```sh
-SKILL=$(dirname "$(find /opt/robomotion/skills -name SKILL.md -path '*/excalidraw/*' | head -1)")
-
-python3 "$SKILL/scripts/upload.py" /workspace/diagrams/architecture.excalidraw
+python3 ${SKILL_DIR}/scripts/upload.py /workspace/diagrams/architecture.excalidraw
 # → https://excalidraw.com/#json=abc123,encryptionKeyHere
 ```
 

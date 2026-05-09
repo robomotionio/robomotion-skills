@@ -20,12 +20,10 @@ The skill ships `scripts/search_arxiv.py`, a stdlib-only CLI that wraps the arXi
 ## Usage
 
 ```sh
-SKILL=$(dirname "$(find /opt/robomotion/skills -name SKILL.md -path '*/arxiv/*' | head -1)")
-
-python3 "$SKILL/scripts/search_arxiv.py" "GRPO reinforcement learning" --max 5
-python3 "$SKILL/scripts/search_arxiv.py" --author "Yann LeCun" --max 5
-python3 "$SKILL/scripts/search_arxiv.py" --category cs.AI --sort date --max 10
-python3 "$SKILL/scripts/search_arxiv.py" --id 2402.03300
+python3 ${SKILL_DIR}/scripts/search_arxiv.py "GRPO reinforcement learning" --max 5
+python3 ${SKILL_DIR}/scripts/search_arxiv.py --author "Yann LeCun" --max 5
+python3 ${SKILL_DIR}/scripts/search_arxiv.py --category cs.AI --sort date --max 10
+python3 ${SKILL_DIR}/scripts/search_arxiv.py --id 2402.03300
 ```
 
 For PDF download, the URL pattern is `https://arxiv.org/pdf/<id>.pdf` — `curl -L -o /workspace/arxiv/<id>.pdf https://arxiv.org/pdf/<id>.pdf` so the agent persists files across iterations.

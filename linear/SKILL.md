@@ -19,15 +19,13 @@ Manage Linear issues, projects, teams, and documents through Linear's GraphQL AP
 ## Usage
 
 ```sh
-SKILL=$(dirname "$(find /opt/robomotion/skills -name SKILL.md -path '*/linear/*' | head -1)")
-
-python3 "$SKILL/scripts/linear_api.py" whoami
-python3 "$SKILL/scripts/linear_api.py" list-teams
-python3 "$SKILL/scripts/linear_api.py" get-issue ENG-42
-python3 "$SKILL/scripts/linear_api.py" search-issues --assignee me --state started
-python3 "$SKILL/scripts/linear_api.py" create-issue --team ENG --title "Deploy failed" --description "$(cat /workspace/log.txt)"
-python3 "$SKILL/scripts/linear_api.py" add-comment ENG-42 --body "Reproduced; PR #1234 has the fix."
-python3 "$SKILL/scripts/linear_api.py" raw 'query { viewer { name } }'
+python3 ${SKILL_DIR}/scripts/linear_api.py whoami
+python3 ${SKILL_DIR}/scripts/linear_api.py list-teams
+python3 ${SKILL_DIR}/scripts/linear_api.py get-issue ENG-42
+python3 ${SKILL_DIR}/scripts/linear_api.py search-issues --assignee me --state started
+python3 ${SKILL_DIR}/scripts/linear_api.py create-issue --team ENG --title "Deploy failed" --description "$(cat /workspace/log.txt)"
+python3 ${SKILL_DIR}/scripts/linear_api.py add-comment ENG-42 --body "Reproduced; PR #1234 has the fix."
+python3 ${SKILL_DIR}/scripts/linear_api.py raw 'query { viewer { name } }'
 ```
 
 Run any subcommand with `--help` to see flags. For raw GraphQL not covered by the wrapper:
