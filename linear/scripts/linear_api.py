@@ -9,10 +9,17 @@ Commands:
   list-teams                              List all teams
   list-projects [--team KEY]              List projects (optionally filter by team)
   list-states [--team KEY]                List workflow states
-  list-issues [filters]                   List issues
+  list-issues [filters]                   List issues, ordered by updatedAt desc
     --team KEY                            Filter by team key (e.g. ENG)
-    --status NAME                         Filter by workflow state name
-    --assignee NAME                       Filter by assignee name (exact)
+    --status NAME|TYPE                    Filter by workflow state. Canonical
+                                          type names (triage/backlog/unstarted/
+                                          started/completed/cancelled) match
+                                          state.type — portable across teams.
+                                          Anything else matches state.name —
+                                          team-customizable.
+    --assignee NAME|me|UUID               Filter by assignee. "me" resolves to
+                                          the current user via the viewer query
+                                          (no need to call whoami first).
     --label NAME                          Filter by label name
     --limit N                             Max results (default: 25)
   get-issue <IDENTIFIER>                  Full issue details (e.g. ENG-42)
@@ -48,6 +55,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -162,14 +170,50 @@ def cmd_list_states(args: argparse.Namespace) -> None:
         emit(gql(q).get("workflowStates", {}).get("nodes", []))
 
 
+_STATE_TYPES = {"triage", "backlog", "unstarted", "started", "completed", "cancelled"}
+_UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
+
+
+def _resolve_state_filter(value: str) -> dict:
+    """Map --status into a Linear state filter.
+
+    Canonical type names route to state.type (portable across teams since
+    type values are standardized). Anything else routes to state.name —
+    which works but is team-customizable, so prefer types when semantics
+    matter ("started" vs "In Progress").
+    """
+    if value.lower() in _STATE_TYPES:
+        return {"type": {"eq": value.lower()}}
+    return {"name": {"eq": value}}
+
+
+def _resolve_assignee_filter(value: str) -> dict:
+    """Map --assignee into a Linear assignee filter.
+
+    "me" is resolved to the calling user's UUID via the viewer query, so
+    callers don't need to chain whoami → list-issues. UUIDs filter by id
+    directly. Anything else falls back to exact name match (Linear allows
+    duplicate display names, so prefer "me" or a UUID for precision).
+    """
+    if value == "me":
+        viewer = gql("query { viewer { id } }").get("viewer") or {}
+        if viewer.get("id"):
+            return {"id": {"eq": viewer["id"]}}
+        # If the viewer query somehow returns nothing, fall through to the
+        # name-match path so the call doesn't silently match all assignees.
+    if _UUID_RE.match(value):
+        return {"id": {"eq": value}}
+    return {"name": {"eq": value}}
+
+
 def cmd_list_issues(args: argparse.Namespace) -> None:
     filt: dict[str, Any] = {}
     if args.team:
         filt["team"] = {"key": {"eq": args.team}}
     if args.status:
-        filt["state"] = {"name": {"eq": args.status}}
+        filt["state"] = _resolve_state_filter(args.status)
     if args.assignee:
-        filt["assignee"] = {"name": {"eq": args.assignee}}
+        filt["assignee"] = _resolve_assignee_filter(args.assignee)
     if args.label:
         filt["labels"] = {"name": {"eq": args.label}}
 
