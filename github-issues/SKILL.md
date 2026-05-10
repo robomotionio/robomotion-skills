@@ -1,5 +1,6 @@
 ---
 name: github-issues
+version: 1.0.0
 summary: Read, file, comment, label, and close GitHub issues via the gh CLI.
 tags: ["github", "issues", "project-management"]
 ---

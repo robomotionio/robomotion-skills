@@ -1,5 +1,6 @@
 ---
 name: arxiv
+version: 1.0.0
 summary: Search and download academic papers from arXiv. Ships a stdlib Python CLI.
 tags: ["research", "papers", "academic", "search"]
 ---
