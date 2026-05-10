@@ -1,6 +1,7 @@
 ---
 name: polymarket
 summary: Query Polymarket prediction markets — events, prices, orderbooks, history. Read-only, no auth.
+tags: ["polymarket", "prediction-markets", "finance"]
 ---
 
 # Polymarket

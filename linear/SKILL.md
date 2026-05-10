@@ -1,6 +1,7 @@
 ---
 name: linear
 summary: Read and modify Linear issues, projects, and cycles via GraphQL. Ships a stdlib Python CLI.
+tags: ["linear", "issues", "project-management"]
 ---
 
 # Linear

@@ -1,6 +1,7 @@
 ---
 name: pdf-extract
 summary: Extract text, tables, and metadata from PDFs (text-based and digital-native). Uses PyMuPDF.
+tags: ["pdf", "extraction", "documents", "text"]
 ---
 
 # PDF Extract

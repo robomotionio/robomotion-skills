@@ -1,6 +1,7 @@
 ---
 name: arxiv
 summary: Search and download academic papers from arXiv. Ships a stdlib Python CLI.
+tags: ["research", "papers", "academic", "search"]
 ---
 
 # arXiv

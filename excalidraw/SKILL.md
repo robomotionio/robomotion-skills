@@ -1,6 +1,7 @@
 ---
 name: excalidraw
 summary: Generate hand-drawn diagrams as Excalidraw JSON. Optional upload to excalidraw.com for shareable links.
+tags: ["diagrams", "visualization", "drawing"]
 ---
 
 # Excalidraw
