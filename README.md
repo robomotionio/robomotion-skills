@@ -61,16 +61,25 @@ Skills shipping scripts force container mode (the `scripts/` dir is non-empty, c
 
 ## Shared library (`_shared/`)
 
-A repo may ship a top-level **`_shared/`** directory of **code and docs** reused across its skills — common CLIs (`_shared/scripts/`), integration guides (`_shared/references/`), and optionally a `_shared/post-install.sh` for shared deps. The launcher extracts it once per repo and the agent exposes it to every skill from that repo via the **`${SHARED_DIR}`** token:
+A repo may ship **`_shared/`** directories of **code and docs** reused across skills — common CLIs (`_shared/scripts/`), integration guides (`_shared/references/`), and optionally a `_shared/post-install.sh` for shared deps. A skill's **`${SHARED_DIR}`** token resolves to the **nearest `_shared/` walking up its path**, so you can scope a shared library to a group, with the repo root as the fallback:
+
+```
+acme-skills/
+  _shared/                 # fallback: shared by everything
+  marketing-skills/
+    _shared/               # shared by marketing-skills/* only (ga4, ahrefs, …)
+    cold-email/SKILL.md    # ${SHARED_DIR} → marketing-skills/_shared
+    cro/SKILL.md           # ${SHARED_DIR} → marketing-skills/_shared
+```
 
 ```sh
-# In any SKILL.md from this repo:
+# In any SKILL.md, regardless of how deep it sits:
 node ${SHARED_DIR}/scripts/ga4.js report --property 123
 ```
 
-- `${SHARED_DIR}` resolves to the repo's shared dir (`<owner>__<repo>___shared`); it's left literal if the repo ships no `_shared/`.
+- `${SHARED_DIR}` → the nearest `_shared/` up the skill's path (key `<owner>__<repo>__<group>___shared`, or `…___shared` at root); left literal if there's none above it.
 - A `_shared/` containing `scripts/` (or a `_shared/post-install.sh`) forces **container mode**, so shared tooling always runs sandboxed.
-- Its content is hashed into the image cache key, so editing a shared CLI forces a rebuild even on a moving branch.
+- Each `_shared/`'s content is hashed into the image cache key, so editing a shared CLI forces a rebuild even on a moving branch.
 
 **Credentials stay per-skill — `_shared/` carries no env.** A skill that calls `${SHARED_DIR}/scripts/ga4.js` declares `GA4_ACCESS_TOKEN` in **its own** `env.required`/`env.optional`. This is deliberate: a shared CLI library can need dozens of credentials, but each skill uses only a few — declaring them per skill means the launcher only requires (and the Designer only shows) the vars the *active* skills actually use, instead of every credential in the library. Across skills the names dedup, so one binding covers all skills that share a CLI.
 

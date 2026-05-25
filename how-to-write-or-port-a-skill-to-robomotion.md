@@ -371,18 +371,24 @@ Ship a helper CLI the model invokes via the `terminal` tool. Conventions:
 
 ### Shared library (`_shared/`)
 
-When several skills in one repo share **code/docs**, ship a top-level
-**`_shared/`** dir (CLIs in `_shared/scripts/`, guides in `_shared/references/`,
-optionally a `_shared/post-install.sh` for shared deps). The launcher extracts it
-once per repo; reference it from any `SKILL.md` via the **`${SHARED_DIR}`** token:
+When skills share **code/docs**, ship a **`_shared/`** dir (CLIs in
+`_shared/scripts/`, guides in `_shared/references/`, optionally a
+`_shared/post-install.sh` for shared deps). A skill's **`${SHARED_DIR}`** token
+resolves to the **nearest `_shared/` walking up its path** — group-scoped, with
+the repo root as fallback:
 
+```
+marketing-skills/_shared/     → marketing-skills/* skills
+_shared/  (repo root)         → fallback for everything else
+```
 ```sh
 node ${SHARED_DIR}/scripts/ga4.js report --property 123
 ```
 
-- `${SHARED_DIR}` → `<owner>__<repo>___shared`; left literal if the repo has no `_shared/`.
+- `${SHARED_DIR}` → nearest `_shared/` up the skill's path (key
+  `<owner>__<repo>__<group>___shared`, or `…___shared` at root); left literal if none.
 - A `_shared/scripts/` (or `_shared/post-install.sh`) forces **container mode**.
-- `_shared/` content is hashed into the image key, so editing a shared CLI rebuilds.
+- Each `_shared/`'s content is hashed into the image key, so editing a shared CLI rebuilds.
 
 **Env stays per-skill — `_shared/` carries no env.** A shared CLI library can need
 dozens of credentials, but each skill uses only a few. So a skill that calls
