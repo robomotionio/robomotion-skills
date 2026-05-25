@@ -56,89 +56,6 @@
       ]
     },
     {
-      "name": "cold-email",
-      "path": "cold-email",
-      "group": "",
-      "summary": "Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions \"cold outreach,\" \"prospecting email,\" \"outbound email,\" \"email to leads,\" \"reach out to prospects,\" \"sales email,\" \"follow-up email sequence,\" \"nobody's replying to my emails,\" or \"how do I write a cold email.\" Covers subject lines, opening lines, body copy, CTAs, personalization, and multi-touch follow-up sequences. For warm/lifecycle email sequences, see emails. For sales collateral beyond emails, see sales-enablement.",
-      "tags": [
-        "cold-email",
-        "outbound",
-        "sales",
-        "copywriting"
-      ],
-      "version": "2.0.0",
-      "mode": "host",
-      "env": {
-        "required": [],
-        "optional": []
-      },
-      "shared": null,
-      "contentHash": "683fd02fbcc2",
-      "files": [
-        "CHANGELOG.md",
-        "LICENSE",
-        "SKILL.md",
-        "references/benchmarks.md",
-        "references/follow-up-sequences.md",
-        "references/frameworks.md",
-        "references/personalization.md",
-        "references/subject-lines.md"
-      ]
-    },
-    {
-      "name": "copywriting",
-      "path": "copywriting",
-      "group": "",
-      "summary": "When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy,\" \"value proposition,\" \"tagline,\" \"subheadline,\" \"hero section copy,\" \"above the fold,\" \"this copy is weak,\" \"make this more compelling,\" or \"help me describe my product.\" Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing.",
-      "tags": [
-        "copywriting",
-        "messaging",
-        "landing-pages"
-      ],
-      "version": "2.0.0",
-      "mode": "host",
-      "env": {
-        "required": [],
-        "optional": []
-      },
-      "shared": null,
-      "contentHash": "146469b899ae",
-      "files": [
-        "CHANGELOG.md",
-        "LICENSE",
-        "SKILL.md",
-        "references/copy-frameworks.md",
-        "references/natural-transitions.md"
-      ]
-    },
-    {
-      "name": "cro",
-      "path": "cro",
-      "group": "",
-      "summary": "When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms. Also use when the user says 'CRO,' 'conversion rate optimization,' 'this page isn't converting,' 'improve conversions,' 'why isn't this page working,' 'my landing page sucks,' 'form abandonment,' 'nobody's converting,' 'low conversion rate,' or 'this page needs work.' Use this even if the user just shares a URL and asks for feedback. For signup/registration flows, see signup. For post-signup activation, see onboarding. For popups/modals, see popups.",
-      "tags": [
-        "cro",
-        "conversion",
-        "landing-pages",
-        "optimization"
-      ],
-      "version": "2.0.0",
-      "mode": "host",
-      "env": {
-        "required": [],
-        "optional": []
-      },
-      "shared": null,
-      "contentHash": "155f8a48281b",
-      "files": [
-        "CHANGELOG.md",
-        "LICENSE",
-        "SKILL.md",
-        "references/experiments.md",
-        "references/form.md"
-      ]
-    },
-    {
       "name": "excalidraw",
       "path": "excalidraw",
       "group": "",
@@ -221,14 +138,197 @@
       ]
     },
     {
-      "name": "marketing-psychology",
-      "path": "marketing-psychology",
-      "group": "",
-      "summary": "When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why people buy,' 'decision-making,' 'consumer behavior,' 'anchoring,' 'social proof,' 'scarcity,' 'loss aversion,' 'framing,' or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing context. For applying psychology to specific pages, see cro; for pricing tactics, see pricing; for copy framing, see copywriting.",
+      "name": "cold-email",
+      "path": "marketing-skills/content/cold-email",
+      "group": "marketing-skills/content",
+      "summary": "Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions \"cold outreach,\" \"prospecting email,\" \"outbound email,\" \"email to leads,\" \"reach out to prospects,\" \"sales email,\" \"follow-up email sequence,\" \"nobody's replying to my emails,\" or \"how do I write a cold email.\" Covers subject lines, opening lines, body copy, CTAs, personalization, and multi-touch follow-up sequences. For warm/lifecycle email sequences, see emails. For sales collateral beyond emails, see sales-enablement.",
       "tags": [
-        "marketing-psychology",
-        "persuasion",
-        "behavioral-science"
+        "cold-email",
+        "cold",
+        "email",
+        "content"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/content/_shared",
+      "contentHash": "0df5a5b68f3e",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/benchmarks.md",
+        "references/follow-up-sequences.md",
+        "references/frameworks.md",
+        "references/personalization.md",
+        "references/subject-lines.md"
+      ]
+    },
+    {
+      "name": "content-strategy",
+      "path": "marketing-skills/content/content-strategy",
+      "group": "marketing-skills/content",
+      "summary": "When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions \"content strategy,\" \"what should I write about,\" \"content ideas,\" \"blog strategy,\" \"topic clusters,\" \"content planning,\" \"editorial calendar,\" \"content marketing,\" \"content roadmap,\" \"what content should I create,\" \"blog topics,\" \"content pillars,\" or \"I don't know what to write.\" Use this whenever someone needs help deciding what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. For social media content specifically, see social.",
+      "tags": [
+        "content-strategy",
+        "content",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/content/_shared",
+      "contentHash": "9ddf1c379890",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/headless-cms.md"
+      ]
+    },
+    {
+      "name": "copy-editing",
+      "path": "marketing-skills/content/copy-editing",
+      "group": "marketing-skills/content",
+      "summary": "When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' 'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,' 'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit.' Use this when the user already has copy and wants it improved or refreshed rather than rewritten from scratch. For writing new copy, see copywriting.",
+      "tags": [
+        "copy-editing",
+        "copy",
+        "editing",
+        "content"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/content/_shared",
+      "contentHash": "4bdaf1428f23",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/checklist.md",
+        "references/content-refresh.md",
+        "references/plain-english-alternatives.md"
+      ]
+    },
+    {
+      "name": "copywriting",
+      "path": "marketing-skills/content/copywriting",
+      "group": "marketing-skills/content",
+      "summary": "When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy,\" \"value proposition,\" \"tagline,\" \"subheadline,\" \"hero section copy,\" \"above the fold,\" \"this copy is weak,\" \"make this more compelling,\" or \"help me describe my product.\" Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing.",
+      "tags": [
+        "copywriting",
+        "content"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/content/_shared",
+      "contentHash": "d373bd23de36",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/copy-frameworks.md",
+        "references/natural-transitions.md"
+      ]
+    },
+    {
+      "name": "image",
+      "path": "marketing-skills/content/image",
+      "group": "marketing-skills/content",
+      "summary": "When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals, or brand assets. Also use when the user mentions 'AI image generation,' 'generate an image,' 'create a graphic,' 'product mockup,' 'hero image,' 'social media graphic,' 'banner image,' 'cover photo,' 'profile banner,' 'listing screenshot,' 'Flux,' 'Flux Kontext,' 'Midjourney,' 'DALL-E,' 'GPT Image,' 'ChatGPT Images,' 'Ideogram,' 'Gemini image,' 'Nano Banana,' 'Recraft,' 'Stable Diffusion,' 'Canva,' 'Figma,' 'image optimization,' 'compress images,' 'WebP,' or 'OG image.' Use this for general-purpose marketing image creation and optimization. For paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video.",
+      "tags": [
+        "image",
+        "content"
+      ],
+      "version": "2.0.1",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/content/_shared",
+      "contentHash": "ced1121506c4",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/ai-image-prompting.md"
+      ]
+    },
+    {
+      "name": "social",
+      "path": "marketing-skills/content/social",
+      "group": "marketing-skills/content",
+      "summary": "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' or 'create a reel.' Use this for social media content creation, repurposing, scheduling, and short-form video scripting. For broader content strategy, see content-strategy. For paid video ads, see ad-creative.",
+      "tags": [
+        "social",
+        "content"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/content/_shared",
+      "contentHash": "8fed6586c366",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/platform-limits.md",
+        "references/platforms.md",
+        "references/post-templates.md",
+        "references/reverse-engineering.md",
+        "references/short-form-video.md"
+      ]
+    },
+    {
+      "name": "video",
+      "path": "marketing-skills/content/video",
+      "group": "marketing-skills/content",
+      "summary": "When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use when the user mentions 'video production,' 'AI video,' 'Remotion,' 'Hyperframes,' 'HeyGen,' 'Synthesia,' 'Veo,' 'Sora,' 'Runway,' 'Kling,' 'Seedance,' 'Hailuo,' 'MiniMax,' 'Pika,' 'Hunyuan,' 'Wan,' 'video generation,' 'AI avatar,' 'talking head video,' 'programmatic video,' 'video template,' 'explainer video,' 'product demo video,' 'video pipeline,' or 'make me a video.' Use this for video creation, generation, and production workflows. For video content strategy and what to post, see social. For paid video ad creative, see ad-creative.",
+      "tags": [
+        "video",
+        "content"
+      ],
+      "version": "2.0.1",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/content/_shared",
+      "contentHash": "64f5f599d3d0",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/ai-video-prompting.md"
+      ]
+    },
+    {
+      "name": "cro",
+      "path": "marketing-skills/conversion/cro",
+      "group": "marketing-skills/conversion",
+      "summary": "When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms. Also use when the user says 'CRO,' 'conversion rate optimization,' 'this page isn't converting,' 'improve conversions,' 'why isn't this page working,' 'my landing page sucks,' 'form abandonment,' 'nobody's converting,' 'low conversion rate,' or 'this page needs work.' Use this even if the user just shares a URL and asks for feedback. For signup/registration flows, see signup. For post-signup activation, see onboarding. For popups/modals, see popups.",
+      "tags": [
+        "cro",
+        "conversion"
       ],
       "version": "2.0.0",
       "mode": "host",
@@ -237,7 +337,949 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "685822e2a418",
+      "contentHash": "66ef7cb998de",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/experiments.md",
+        "references/form.md"
+      ]
+    },
+    {
+      "name": "onboarding",
+      "path": "marketing-skills/conversion/onboarding",
+      "group": "marketing-skills/conversion",
+      "summary": "When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also use when the user mentions \"onboarding flow,\" \"activation rate,\" \"user activation,\" \"first-run experience,\" \"empty states,\" \"onboarding checklist,\" \"aha moment,\" \"new user experience,\" \"users aren't activating,\" \"nobody completes setup,\" \"low activation rate,\" \"users sign up but don't use the product,\" \"time to value,\" or \"first session experience.\" Use this whenever users are signing up but not sticking around. For signup/registration optimization, see signup. For ongoing email sequences, see emails.",
+      "tags": [
+        "onboarding",
+        "conversion"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "ea50f781e950",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/experiments.md"
+      ]
+    },
+    {
+      "name": "paywalls",
+      "path": "marketing-skills/conversion/paywalls",
+      "group": "marketing-skills/conversion",
+      "summary": "When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions \"paywall,\" \"upgrade screen,\" \"upgrade modal,\" \"upsell,\" \"feature gate,\" \"convert free to paid,\" \"freemium conversion,\" \"trial expiration screen,\" \"limit reached screen,\" \"plan upgrade prompt,\" \"in-app pricing,\" \"free users won't upgrade,\" \"trial to paid conversion,\" or \"how do I get users to pay.\" Use this for any in-product moment where you're asking users to upgrade. Distinct from public pricing pages (see cro) — this focuses on in-product upgrade moments where the user has already experienced value. For pricing decisions, see pricing.",
+      "tags": [
+        "paywalls",
+        "conversion"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "67951dab551e",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/experiments.md"
+      ]
+    },
+    {
+      "name": "popups",
+      "path": "marketing-skills/conversion/popups",
+      "group": "marketing-skills/conversion",
+      "summary": "When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also use when the user mentions \"exit intent,\" \"popup conversions,\" \"modal optimization,\" \"lead capture popup,\" \"email popup,\" \"announcement banner,\" \"overlay,\" \"collect emails with a popup,\" \"exit popup,\" \"scroll trigger,\" \"sticky bar,\" or \"notification bar.\" Use this for any overlay or interrupt-style conversion element. For forms outside of popups, see cro. For general page conversion optimization, see cro.",
+      "tags": [
+        "popups",
+        "conversion"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "0b0ce6c92463",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "signup",
+      "path": "marketing-skills/conversion/signup",
+      "group": "marketing-skills/conversion",
+      "summary": "When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions \"signup conversions,\" \"registration friction,\" \"signup form optimization,\" \"free trial signup,\" \"reduce signup dropoff,\" \"account creation flow,\" \"people aren't signing up,\" \"signup abandonment,\" \"trial conversion rate,\" \"nobody completes registration,\" \"too many steps to sign up,\" or \"simplify our signup.\" Use this whenever the user has a signup or registration flow that isn't performing. For post-signup onboarding, see onboarding. For lead capture forms (not account creation), see cro.",
+      "tags": [
+        "signup",
+        "conversion"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "afec9abbe839",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "emails",
+      "path": "marketing-skills/email/emails",
+      "group": "marketing-skills/email",
+      "summary": "When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions \"email sequence,\" \"drip campaign,\" \"nurture sequence,\" \"onboarding emails,\" \"welcome sequence,\" \"re-engagement emails,\" \"email automation,\" \"lifecycle emails,\" \"trigger-based emails,\" \"email funnel,\" \"email workflow,\" \"what emails should I send,\" \"welcome series,\" or \"email cadence.\" Use this for any multi-email automated flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.",
+      "tags": [
+        "emails",
+        "email"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "CUSTOMERIO_API_KEY",
+          "CUSTOMERIO_APP_KEY",
+          "CUSTOMERIO_SITE_ID",
+          "KIT_API_KEY",
+          "KIT_API_SECRET",
+          "MAILCHIMP_API_KEY",
+          "RESEND_API_KEY",
+          "SENDGRID_API_KEY"
+        ]
+      },
+      "shared": "marketing-skills/email/_shared",
+      "contentHash": "6705319aa919",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/copy-guidelines.md",
+        "references/email-types.md",
+        "references/sequence-templates.md"
+      ]
+    },
+    {
+      "name": "sms",
+      "path": "marketing-skills/email/sms",
+      "group": "marketing-skills/email",
+      "summary": "When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts, post-purchase, win-back, promotional sends, or transactional/auth SMS. Also use when the user mentions \"SMS marketing,\" \"text message campaigns,\" \"SMS sequence,\" \"SMS automation,\" \"abandoned cart text,\" \"post-purchase SMS,\" \"Klaviyo SMS,\" \"Postscript,\" \"Attentive,\" \"Twilio,\" \"A2P 10DLC,\" \"TCPA,\" \"SMS compliance,\" \"short code,\" \"toll-free SMS,\" \"MMS campaign,\" \"should I do SMS,\" or \"SMS vs email.\" For email sequences, see emails. For SMS copy framing, see copywriting. For opt-in popups that capture phone numbers, see popups.",
+      "tags": [
+        "sms",
+        "email"
+      ],
+      "version": "1.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "BREVO_API_KEY",
+          "CUSTOMERIO_API_KEY",
+          "CUSTOMERIO_APP_KEY",
+          "CUSTOMERIO_SITE_ID",
+          "KLAVIYO_API_KEY"
+        ]
+      },
+      "shared": "marketing-skills/email/_shared",
+      "contentHash": "984f7cc10096",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/compliance.md",
+        "references/platforms.md",
+        "references/sequence-templates.md"
+      ]
+    },
+    {
+      "name": "churn-prevention",
+      "path": "marketing-skills/growth/churn-prevention",
+      "group": "marketing-skills/growth",
+      "summary": "When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or implement retention strategies. Also use when the user mentions 'churn,' 'cancel flow,' 'offboarding,' 'save offer,' 'dunning,' 'failed payment recovery,' 'win-back,' 'retention,' 'exit survey,' 'pause subscription,' 'involuntary churn,' 'people keep canceling,' 'churn rate is too high,' 'how do I keep users,' or 'customers are leaving.' Use this whenever someone is losing subscribers or wants to build systems to prevent it. For post-cancel win-back email sequences, see emails. For in-app upgrade paywalls, see paywalls.",
+      "tags": [
+        "churn-prevention",
+        "churn",
+        "prevention",
+        "growth"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/growth/_shared",
+      "contentHash": "c87eacbcb90c",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/cancel-flow-patterns.md",
+        "references/dunning-playbook.md"
+      ]
+    },
+    {
+      "name": "co-marketing",
+      "path": "marketing-skills/growth/co-marketing",
+      "group": "marketing-skills/growth",
+      "summary": "When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities. Use when the user says 'co-marketing,' 'partner marketing,' 'joint campaign,' 'who should we partner with,' 'integration marketing,' 'cross-promotion,' 'collaborate with another company,' 'partnership ideas,' or 'co-brand.' For customer referral programs, see referrals. For launch-specific partnerships, see launch.",
+      "tags": [
+        "co-marketing",
+        "marketing",
+        "growth"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "CROSSBEAM_API_KEY",
+          "PARTNERSTACK_PUBLIC_KEY",
+          "PARTNERSTACK_SECRET_KEY"
+        ]
+      },
+      "shared": "marketing-skills/growth/_shared",
+      "contentHash": "ac2863afb1c8",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional"
+      ]
+    },
+    {
+      "name": "community-marketing",
+      "path": "marketing-skills/growth/community-marketing",
+      "group": "marketing-skills/growth",
+      "summary": "Build and leverage online communities to drive product growth and brand loyalty. Use when the user wants to create a community strategy, grow a Discord or Slack community, manage a forum or subreddit, build brand advocates, increase word-of-mouth, drive community-led growth, engage users post-signup, or turn customers into evangelists. Trigger phrases: \\\"build a community,\\\" \\\"community strategy,\\\" \\\"Discord community,\\\" \\\"Slack community,\\\" \\\"community-led growth,\\\" \\\"brand advocates,\\\" \\\"user community,\\\" \\\"forum strategy,\\\" \\\"community engagement,\\\" \\\"grow our community,\\\" \\\"ambassador program,\\\" \\\"community flywheel.\\\"",
+      "tags": [
+        "community-marketing",
+        "community",
+        "marketing",
+        "growth"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/growth/_shared",
+      "contentHash": "7a9ebde1ecd4",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "directory-submissions",
+      "path": "marketing-skills/growth/directory-submissions",
+      "group": "marketing-skills/growth",
+      "summary": "When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also use when the user mentions \"directory submissions,\" \"submit to directories,\" \"backlinks from directories,\" \"list my product,\" \"submit to Product Hunt,\" \"BetaList,\" \"TAAFT,\" \"Futurepedia,\" \"G2 listing,\" \"Capterra listing,\" \"AlternativeTo,\" \"SaaSHub,\" \"AI directories,\" \"MCP registry,\" \"agent directory,\" \"dofollow backlinks,\" \"launch directories,\" or \"directory tracker.\" Use this whenever someone is planning the directory layer of a product launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.",
+      "tags": [
+        "directory-submissions",
+        "directory",
+        "submissions",
+        "growth"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/growth/_shared",
+      "contentHash": "7d2ba71f923a",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/directory-list.md",
+        "references/positioning-variations.md",
+        "references/submission-tracker-template.csv"
+      ]
+    },
+    {
+      "name": "free-tools",
+      "path": "marketing-skills/growth/free-tools",
+      "group": "marketing-skills/growth",
+      "summary": "When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\" \"build a tool for leads,\" \"free resource,\" \"ROI calculator,\" \"grader tool,\" \"audit tool,\" \"should I build a free tool,\" or \"tools for lead gen.\" Use this whenever someone wants to build something useful and give it away to attract leads or earn links. For downloadable content lead magnets (ebooks, checklists, templates), see lead-magnets.",
+      "tags": [
+        "free-tools",
+        "free",
+        "tools",
+        "growth"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/growth/_shared",
+      "contentHash": "35f92868c82b",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/tool-types.md"
+      ]
+    },
+    {
+      "name": "lead-magnets",
+      "path": "marketing-skills/growth/lead-magnets",
+      "group": "marketing-skills/growth",
+      "summary": "When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the user mentions \"lead magnet,\" \"gated content,\" \"content upgrade,\" \"downloadable,\" \"ebook,\" \"cheat sheet,\" \"checklist,\" \"template download,\" \"opt-in,\" \"freebie,\" \"PDF download,\" \"resource library,\" \"content offer,\" \"email capture content,\" \"Notion template,\" \"spreadsheet template,\" or \"what should I give away for emails.\" Use this for planning what to create and how to distribute it. For interactive tools as lead magnets, see free-tools. For writing the actual content, see copywriting. For the email sequence after capture, see emails.",
+      "tags": [
+        "lead-magnets",
+        "lead",
+        "magnets",
+        "growth"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/growth/_shared",
+      "contentHash": "117e09e82025",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/benchmarks.md",
+        "references/format-guide.md"
+      ]
+    },
+    {
+      "name": "referrals",
+      "path": "marketing-skills/growth/referrals",
+      "group": "marketing-skills/growth",
+      "summary": "When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy. Also use when the user mentions 'referral,' 'affiliate,' 'ambassador,' 'word of mouth,' 'viral loop,' 'refer a friend,' 'partner program,' 'referral incentive,' 'how to get referrals,' 'customers referring customers,' or 'affiliate payout.' Use this whenever someone wants existing users or partners to bring in new customers. For launch-specific virality, see launch.",
+      "tags": [
+        "referrals",
+        "growth"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "DUB_API_KEY",
+          "MENTIONME_API_KEY",
+          "PARTNERSTACK_PUBLIC_KEY",
+          "PARTNERSTACK_SECRET_KEY",
+          "REWARDFUL_API_KEY",
+          "TOLT_API_KEY"
+        ]
+      },
+      "shared": "marketing-skills/growth/_shared",
+      "contentHash": "0d4616dbee3a",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/affiliate-programs.md",
+        "references/program-examples.md"
+      ]
+    },
+    {
+      "name": "ab-testing",
+      "path": "marketing-skills/measurement/ab-testing",
+      "group": "marketing-skills/measurement",
+      "summary": "When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program. Also use when the user mentions \"A/B test,\" \"split test,\" \"experiment,\" \"test this change,\" \"variant copy,\" \"multivariate test,\" \"hypothesis,\" \"should I test this,\" \"which version is better,\" \"test two versions,\" \"statistical significance,\" \"how long should I run this test,\" \"growth experiments,\" \"experiment velocity,\" \"experiment backlog,\" \"ICE score,\" \"experimentation program,\" or \"experiment playbook.\" Use this whenever someone is comparing two approaches and wants to measure which performs better, or when they want to build a systematic experimentation practice. For tracking implementation, see analytics. For page-level conversion optimization, see cro.",
+      "tags": [
+        "ab-testing",
+        "testing",
+        "measurement"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/measurement/_shared",
+      "contentHash": "239e8c1b49bd",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/sample-size-guide.md",
+        "references/test-templates.md"
+      ]
+    },
+    {
+      "name": "analytics",
+      "path": "marketing-skills/measurement/analytics",
+      "group": "marketing-skills/measurement",
+      "summary": "When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions \"set up tracking,\" \"GA4,\" \"Google Analytics,\" \"conversion tracking,\" \"event tracking,\" \"UTM parameters,\" \"tag manager,\" \"GTM,\" \"analytics implementation,\" \"tracking plan,\" \"how do I measure this,\" \"track conversions,\" \"attribution,\" \"Mixpanel,\" \"Segment,\" \"are my events firing,\" or \"analytics isn't working.\" Use this whenever someone asks how to know if something is working or wants to measure marketing results. For A/B test measurement, see ab-testing.",
+      "tags": [
+        "analytics",
+        "measurement"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "AMPLITUDE_API_KEY",
+          "AMPLITUDE_SECRET_KEY",
+          "GA4_ACCESS_TOKEN",
+          "MIXPANEL_API_KEY",
+          "MIXPANEL_SECRET",
+          "MIXPANEL_TOKEN",
+          "SEGMENT_ACCESS_TOKEN",
+          "SEGMENT_WRITE_KEY"
+        ]
+      },
+      "shared": "marketing-skills/measurement/_shared",
+      "contentHash": "41b5b56d6c4a",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/event-library.md",
+        "references/ga4-implementation.md",
+        "references/gtm-implementation.md"
+      ]
+    },
+    {
+      "name": "ad-creative",
+      "path": "marketing-skills/paid/ad-creative",
+      "group": "marketing-skills/paid",
+      "summary": "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'ad performance optimization,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' or 'I need more ad variations.' Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting, see ads. For landing page copy, see copywriting.",
+      "tags": [
+        "ad-creative",
+        "creative",
+        "paid"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "GOOGLE_ADS_CUSTOMER_ID",
+          "GOOGLE_ADS_DEVELOPER_TOKEN",
+          "GOOGLE_ADS_TOKEN",
+          "LINKEDIN_ACCESS_TOKEN",
+          "META_ACCESS_TOKEN",
+          "META_AD_ACCOUNT_ID",
+          "TIKTOK_ACCESS_TOKEN",
+          "TIKTOK_ADVERTISER_ID"
+        ]
+      },
+      "shared": "marketing-skills/paid/_shared",
+      "contentHash": "5e7c6a9c89a5",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/generative-tools.md",
+        "references/platform-specs.md"
+      ]
+    },
+    {
+      "name": "ads",
+      "path": "marketing-skills/paid/ads",
+      "group": "marketing-skills/paid",
+      "summary": "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' or 'should I run ads.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro.",
+      "tags": [
+        "ads",
+        "paid"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "GA4_ACCESS_TOKEN",
+          "GOOGLE_ADS_CUSTOMER_ID",
+          "GOOGLE_ADS_DEVELOPER_TOKEN",
+          "GOOGLE_ADS_TOKEN",
+          "LINKEDIN_ACCESS_TOKEN",
+          "META_ACCESS_TOKEN",
+          "META_AD_ACCOUNT_ID",
+          "SEGMENT_ACCESS_TOKEN",
+          "SEGMENT_WRITE_KEY",
+          "TIKTOK_ACCESS_TOKEN",
+          "TIKTOK_ADVERTISER_ID"
+        ]
+      },
+      "shared": "marketing-skills/paid/_shared",
+      "contentHash": "c39e78bb9842",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/ad-copy-templates.md",
+        "references/audience-targeting.md",
+        "references/conversion-tracking.md",
+        "references/platform-setup-checklists.md"
+      ]
+    },
+    {
+      "name": "revops",
+      "path": "marketing-skills/sales/revops",
+      "group": "marketing-skills/sales",
+      "summary": "When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes. Also use when the user mentions 'RevOps,' 'revenue operations,' 'lead scoring,' 'lead routing,' 'MQL,' 'SQL,' 'pipeline stages,' 'deal desk,' 'CRM automation,' 'marketing-to-sales handoff,' 'data hygiene,' 'leads aren't getting to sales,' 'pipeline management,' 'lead qualification,' or 'when should marketing hand off to sales.' Use this for anything involving the systems and processes that connect marketing to revenue. For cold outreach emails, see cold-email. For email drip campaigns, see emails. For pricing decisions, see pricing.",
+      "tags": [
+        "revops",
+        "sales"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "ACTIVECAMPAIGN_API_KEY",
+          "ACTIVECAMPAIGN_API_URL",
+          "APOLLO_API_KEY",
+          "CALENDLY_API_KEY",
+          "CLEARBIT_API_KEY",
+          "CROSSBEAM_API_KEY",
+          "SAVVYCAL_API_KEY",
+          "ZAPIER_API_KEY"
+        ]
+      },
+      "shared": "marketing-skills/sales/_shared",
+      "contentHash": "af01ade45558",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/automation-playbooks.md",
+        "references/lifecycle-definitions.md",
+        "references/routing-rules.md",
+        "references/scoring-models.md"
+      ]
+    },
+    {
+      "name": "sales-enablement",
+      "path": "marketing-skills/sales/sales-enablement",
+      "group": "marketing-skills/sales",
+      "summary": "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For competitor comparison pages and battle cards, see competitors. For marketing website copy, see copywriting. For cold outreach emails, see cold-email.",
+      "tags": [
+        "sales-enablement",
+        "sales",
+        "enablement"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/sales/_shared",
+      "contentHash": "e35e12cbf550",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/deck-frameworks.md",
+        "references/demo-scripts.md",
+        "references/objection-library.md",
+        "references/one-pager-templates.md"
+      ]
+    },
+    {
+      "name": "ai-seo",
+      "path": "marketing-skills/seo/ai-seo",
+      "group": "marketing-skills/seo",
+      "summary": "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' or 'optimize for Claude/Gemini.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema.",
+      "tags": [
+        "ai-seo",
+        "seo"
+      ],
+      "version": "2.0.1",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "AHREFS_API_KEY",
+          "DATAFORSEO_LOGIN",
+          "DATAFORSEO_PASSWORD",
+          "GSC_ACCESS_TOKEN",
+          "KEYWORDS_EVERYWHERE_API_KEY",
+          "RANKPARSE_API_KEY",
+          "SEMRUSH_API_KEY",
+          "SIMILARWEB_API_KEY"
+        ]
+      },
+      "shared": "marketing-skills/seo/_shared",
+      "contentHash": "264709ae0328",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/content-patterns.md",
+        "references/content-types.md",
+        "references/platform-ranking-factors.md"
+      ]
+    },
+    {
+      "name": "aso",
+      "path": "marketing-skills/seo/aso",
+      "group": "marketing-skills/seo",
+      "summary": "When the user wants to audit or optimize an App Store or Google Play listing. Also use when the user mentions 'ASO audit,' 'app store optimization,' 'optimize my app listing,' 'improve app visibility,' 'app store ranking,' 'audit my listing,' 'why aren't people downloading my app,' 'improve my app conversion,' 'keyword optimization for app,' or 'compare my app to competitors.' Use when the user shares an App Store or Google Play URL and wants to improve it.",
+      "tags": [
+        "aso",
+        "seo"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/seo/_shared",
+      "contentHash": "8355f6bd4c9f",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/apple-specs.md",
+        "references/benchmarks.md",
+        "references/google-play-specs.md",
+        "references/report-template.md",
+        "references/scoring-criteria.md"
+      ]
+    },
+    {
+      "name": "competitors",
+      "path": "marketing-skills/seo/competitors",
+      "group": "marketing-skills/seo",
+      "summary": "When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[Product] vs [Product],' '[Product] alternative,' 'competitive landing pages,' 'how do we compare to X,' 'battle card,' or 'competitor teardown.' Use this for any content that positions your product against competitors. Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For sales-specific competitor docs, see sales-enablement.",
+      "tags": [
+        "competitors",
+        "seo"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/seo/_shared",
+      "contentHash": "d6f52a1968cc",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/content-architecture.md",
+        "references/templates.md"
+      ]
+    },
+    {
+      "name": "programmatic-seo",
+      "path": "marketing-skills/seo/programmatic-seo",
+      "group": "marketing-skills/seo",
+      "summary": "When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions \"programmatic SEO,\" \"template pages,\" \"pages at scale,\" \"directory pages,\" \"location pages,\" \"[keyword] + [city] pages,\" \"comparison pages,\" \"integration pages,\" \"building many pages for SEO,\" \"pSEO,\" \"generate 100 pages,\" \"data-driven pages,\" or \"templated landing pages.\" Use this whenever someone wants to create many similar pages targeting different keywords or locations. For auditing existing SEO issues, see seo-audit. For content strategy planning, see content-strategy.",
+      "tags": [
+        "programmatic-seo",
+        "programmatic",
+        "seo"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/seo/_shared",
+      "contentHash": "0f968efe2e97",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/playbooks.md"
+      ]
+    },
+    {
+      "name": "schema",
+      "path": "marketing-skills/seo/schema",
+      "group": "marketing-skills/seo",
+      "summary": "When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions \"schema markup,\" \"structured data,\" \"JSON-LD,\" \"rich snippets,\" \"schema.org,\" \"FAQ schema,\" \"product schema,\" \"review schema,\" \"breadcrumb schema,\" \"Google rich results,\" \"knowledge panel,\" \"star ratings in search,\" or \"add structured data.\" Use this whenever someone wants their pages to show enhanced results in Google. For broader SEO issues, see seo-audit. For AI search optimization, see ai-seo.",
+      "tags": [
+        "schema",
+        "seo"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/seo/_shared",
+      "contentHash": "c85852a33f70",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/schema-examples.md"
+      ]
+    },
+    {
+      "name": "seo-audit",
+      "path": "marketing-skills/seo/seo-audit",
+      "group": "marketing-skills/seo",
+      "summary": "When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-page SEO,\" \"meta tags review,\" \"SEO health check,\" \"my traffic dropped,\" \"lost rankings,\" \"not showing up in Google,\" \"site isn't ranking,\" \"Google update hit me,\" \"page speed,\" \"core web vitals,\" \"crawl errors,\" or \"indexing issues.\" Use this even if the user just says something vague like \"my SEO is bad\" or \"help with SEO\" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema. For AI search optimization, see ai-seo.",
+      "tags": [
+        "seo-audit",
+        "seo",
+        "audit"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "AHREFS_API_KEY",
+          "DATAFORSEO_LOGIN",
+          "DATAFORSEO_PASSWORD",
+          "GSC_ACCESS_TOKEN",
+          "KEYWORDS_EVERYWHERE_API_KEY",
+          "RANKPARSE_API_KEY",
+          "SEMRUSH_API_KEY",
+          "SIMILARWEB_API_KEY"
+        ]
+      },
+      "shared": "marketing-skills/seo/_shared",
+      "contentHash": "d2615dd33cc9",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional",
+        "references/ai-writing-detection.md",
+        "references/international-seo.md"
+      ]
+    },
+    {
+      "name": "site-architecture",
+      "path": "marketing-skills/seo/site-architecture",
+      "group": "marketing-skills/seo",
+      "summary": "When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal linking. Also use when the user mentions \"sitemap,\" \"site map,\" \"visual sitemap,\" \"site structure,\" \"page hierarchy,\" \"information architecture,\" \"IA,\" \"navigation design,\" \"URL structure,\" \"breadcrumbs,\" \"internal linking strategy,\" \"website planning,\" \"what pages do I need,\" \"how should I organize my site,\" or \"site navigation.\" Use this whenever someone is planning what pages a website should have and how they connect. NOT for XML sitemaps (that's technical SEO — see seo-audit). For SEO audits, see seo-audit. For structured data, see schema.",
+      "tags": [
+        "site-architecture",
+        "site",
+        "architecture",
+        "seo"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/seo/_shared",
+      "contentHash": "91604a9e3ad0",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/mermaid-templates.md",
+        "references/navigation-patterns.md",
+        "references/site-type-templates.md"
+      ]
+    },
+    {
+      "name": "competitor-profiling",
+      "path": "marketing-skills/strategy/competitor-profiling",
+      "group": "marketing-skills/strategy",
+      "summary": "When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,' 'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,' 'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific battle cards, see sales-enablement.",
+      "tags": [
+        "competitor-profiling",
+        "competitor",
+        "profiling",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/strategy/_shared",
+      "contentHash": "cd1a38591d30",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/templates.md",
+        "references/tool-reference.md"
+      ]
+    },
+    {
+      "name": "customer-research",
+      "path": "marketing-skills/strategy/customer-research",
+      "group": "marketing-skills/strategy",
+      "summary": "When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions \"customer research,\" \"ICP research,\" \"talk to customers,\" \"analyze transcripts,\" \"customer interviews,\" \"survey analysis,\" \"support ticket analysis,\" \"voice of customer,\" \"VOC,\" \"build personas,\" \"customer personas,\" \"jobs to be done,\" \"JTBD,\" \"what do customers say,\" \"what are customers struggling with,\" \"Reddit mining,\" \"G2 reviews,\" \"review mining,\" \"digital watering holes,\" \"community research,\" \"forum research,\" \"competitor reviews,\" \"customer sentiment,\" or \"find out why customers churn/convert/buy.\" Use for both analyzing existing research assets AND gathering new research from online sources. For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.",
+      "tags": [
+        "customer-research",
+        "customer",
+        "research",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/strategy/_shared",
+      "contentHash": "110e175fa0a4",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/source-guides.md"
+      ]
+    },
+    {
+      "name": "launch",
+      "path": "marketing-skills/strategy/launch",
+      "group": "marketing-skills/strategy",
+      "summary": "When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user mentions 'launch,' 'Product Hunt,' 'feature release,' 'announcement,' 'go-to-market,' 'beta launch,' 'early access,' 'waitlist,' 'product update,' 'how do I launch this,' 'launch checklist,' 'GTM plan,' or 'we're about to ship.' Use this whenever someone is preparing to release something publicly. For ongoing marketing after launch, see marketing-ideas.",
+      "tags": [
+        "launch",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/strategy/_shared",
+      "contentHash": "4330e8f49bf8",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "marketing-ideas",
+      "path": "marketing-skills/strategy/marketing-ideas",
+      "group": "marketing-skills/strategy",
+      "summary": "When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' 'ideas to grow,' 'what else can I try,' 'I don't know how to market this,' 'brainstorm marketing,' or 'what marketing should I do.' Use this as a starting point whenever someone is stuck or looking for inspiration on how to grow. For specific channel execution, see the relevant skill (ads, social, emails, etc.).",
+      "tags": [
+        "marketing-ideas",
+        "marketing",
+        "ideas",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/strategy/_shared",
+      "contentHash": "6ba934409bfb",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/ideas-by-category.md"
+      ]
+    },
+    {
+      "name": "marketing-psychology",
+      "path": "marketing-skills/strategy/marketing-psychology",
+      "group": "marketing-skills/strategy",
+      "summary": "When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why people buy,' 'decision-making,' 'consumer behavior,' 'anchoring,' 'social proof,' 'scarcity,' 'loss aversion,' 'framing,' or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing context. For applying psychology to specific pages, see cro; for pricing tactics, see pricing; for copy framing, see copywriting.",
+      "tags": [
+        "marketing-psychology",
+        "marketing",
+        "psychology",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/strategy/_shared",
+      "contentHash": "4a6668ad01fb",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "pricing",
+      "path": "marketing-skills/strategy/pricing",
+      "group": "marketing-skills/strategy",
+      "summary": "When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packaging,' 'price increase,' 'value metric,' 'Van Westendorp,' 'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs monthly,' 'per seat pricing,' or 'should I offer a free plan.' Use this whenever someone is figuring out what to charge or how to structure their plans. For in-app upgrade screens, see paywalls.",
+      "tags": [
+        "pricing",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/strategy/_shared",
+      "contentHash": "db3a3bace66f",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/research-methods.md",
+        "references/tier-structure.md"
+      ]
+    },
+    {
+      "name": "product-marketing",
+      "path": "marketing-skills/strategy/product-marketing",
+      "group": "marketing-skills/strategy",
+      "summary": "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills — it creates `.agents/product-marketing.md` that all other skills reference for product, audience, and positioning context.",
+      "tags": [
+        "product-marketing",
+        "product",
+        "marketing",
+        "strategy"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": "marketing-skills/strategy/_shared",
+      "contentHash": "3aa06eca9fd8",
       "files": [
         "CHANGELOG.md",
         "LICENSE",
@@ -355,32 +1397,6 @@
       ]
     },
     {
-      "name": "pricing",
-      "path": "pricing",
-      "group": "",
-      "summary": "When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packaging,' 'price increase,' 'value metric,' 'Van Westendorp,' 'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs monthly,' 'per seat pricing,' or 'should I offer a free plan.' Use this whenever someone is figuring out what to charge or how to structure their plans. For in-app upgrade screens, see paywalls.",
-      "tags": [
-        "pricing",
-        "packaging",
-        "monetization"
-      ],
-      "version": "2.0.0",
-      "mode": "host",
-      "env": {
-        "required": [],
-        "optional": []
-      },
-      "shared": null,
-      "contentHash": "046e4fc9acc1",
-      "files": [
-        "CHANGELOG.md",
-        "LICENSE",
-        "SKILL.md",
-        "references/research-methods.md",
-        "references/tier-structure.md"
-      ]
-    },
-    {
       "name": "spotify",
       "path": "spotify",
       "group": "",
@@ -412,5 +1428,156 @@
       ]
     }
   ],
-  "shared": []
+  "shared": [
+    {
+      "path": "marketing-skills/content/_shared",
+      "contentHash": "7861dd1bbff0",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/contentful.md",
+        "references/heygen.md",
+        "references/hyperframes.md",
+        "references/sanity.md",
+        "references/strapi.md"
+      ]
+    },
+    {
+      "path": "marketing-skills/email/_shared",
+      "contentHash": "d912f4cdb176",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/attentive.md",
+        "references/audiencetap.md",
+        "references/brevo.md",
+        "references/customer-io.md",
+        "references/kit.md",
+        "references/klaviyo.md",
+        "references/mailchimp.md",
+        "references/nitrosend.md",
+        "references/plivo.md",
+        "references/postscript.md",
+        "references/resend.md",
+        "references/sendgrid.md",
+        "references/twilio.md",
+        "scripts/brevo.js",
+        "scripts/customer-io.js",
+        "scripts/kit.js",
+        "scripts/klaviyo.js",
+        "scripts/mailchimp.js",
+        "scripts/resend.js",
+        "scripts/sendgrid.js"
+      ]
+    },
+    {
+      "path": "marketing-skills/growth/_shared",
+      "contentHash": "26bb73e95a80",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/crossbeam.md",
+        "references/dub-co.md",
+        "references/introw.md",
+        "references/mention-me.md",
+        "references/partnerstack.md",
+        "references/posthog.md",
+        "references/rewardful.md",
+        "references/stripe.md",
+        "references/tolt.md",
+        "scripts/crossbeam.js",
+        "scripts/dub.js",
+        "scripts/mention-me.js",
+        "scripts/partnerstack.js",
+        "scripts/rewardful.js",
+        "scripts/tolt.js"
+      ]
+    },
+    {
+      "path": "marketing-skills/measurement/_shared",
+      "contentHash": "575f0fc32176",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/amplitude.md",
+        "references/ga4.md",
+        "references/mixpanel.md",
+        "references/posthog.md",
+        "references/segment.md",
+        "scripts/amplitude.js",
+        "scripts/ga4.js",
+        "scripts/mixpanel.js",
+        "scripts/segment.js"
+      ]
+    },
+    {
+      "path": "marketing-skills/paid/_shared",
+      "contentHash": "1a4f769521b7",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/ga4.md",
+        "references/google-ads.md",
+        "references/linkedin-ads.md",
+        "references/meta-ads.md",
+        "references/segment.md",
+        "references/tiktok-ads.md",
+        "scripts/ga4.js",
+        "scripts/google-ads.js",
+        "scripts/linkedin-ads.js",
+        "scripts/meta-ads.js",
+        "scripts/segment.js",
+        "scripts/tiktok-ads.js"
+      ]
+    },
+    {
+      "path": "marketing-skills/sales/_shared",
+      "contentHash": "41a7e3588241",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/activecampaign.md",
+        "references/apollo.md",
+        "references/calendly.md",
+        "references/clearbit.md",
+        "references/crossbeam.md",
+        "references/hubspot.md",
+        "references/introw.md",
+        "references/salesforce.md",
+        "references/savvycal.md",
+        "references/zapier.md",
+        "scripts/activecampaign.js",
+        "scripts/apollo.js",
+        "scripts/calendly.js",
+        "scripts/clearbit.js",
+        "scripts/crossbeam.js",
+        "scripts/savvycal.js",
+        "scripts/zapier.js"
+      ]
+    },
+    {
+      "path": "marketing-skills/seo/_shared",
+      "contentHash": "9fd225ad7681",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/ahrefs.md",
+        "references/dataforseo.md",
+        "references/google-search-console.md",
+        "references/keywords-everywhere.md",
+        "references/rankparse.md",
+        "references/semrush.md",
+        "references/similarweb.md",
+        "scripts/ahrefs.js",
+        "scripts/dataforseo.js",
+        "scripts/google-search-console.js",
+        "scripts/keywords-everywhere.js",
+        "scripts/rankparse.js",
+        "scripts/semrush.js",
+        "scripts/similarweb.js"
+      ]
+    },
+    {
+      "path": "marketing-skills/strategy/_shared",
+      "contentHash": "cd9d31274509",
+      "files": [
+        "references/USING-CLIS.md",
+        "references/introw.md",
+        "references/sparktoro.md"
+      ]
+    }
+  ]
 }

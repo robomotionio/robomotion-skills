@@ -67,20 +67,36 @@ def env_names(path: str) -> list:
     return out
 
 
+def _prune(dirs: list) -> None:
+    """Drop transient dirs in place so they never enter the index walk."""
+    dirs[:] = [x for x in dirs if x != "__pycache__"]
+
+
+def _is_artifact(f: str) -> bool:
+    return f.endswith((".pyc", ".pyo"))
+
+
 def file_list(d: str) -> list:
     """Sorted relative (posix) paths of every regular file under d — the
-    manifest the launcher uses to fetch a skill/_shared file-by-file."""
+    manifest the launcher uses to fetch a skill/_shared file-by-file.
+    Skips transient build artifacts (__pycache__, *.pyc)."""
     out = []
-    for root, _, files in os.walk(d):
+    for root, dirs, files in os.walk(d):
+        _prune(dirs)
         for f in files:
+            if _is_artifact(f):
+                continue
             out.append(os.path.relpath(os.path.join(root, f), d).replace(os.sep, "/"))
     return sorted(out)
 
 
 def dir_content_hash(d: str) -> str:
     h = hashlib.sha256()
-    for root, _, files in os.walk(d):
+    for root, dirs, files in os.walk(d):
+        _prune(dirs)
         for f in sorted(files):
+            if _is_artifact(f):
+                continue
             p = os.path.join(root, f)
             rel = os.path.relpath(p, d).replace(os.sep, "/")
             h.update(rel.encode())

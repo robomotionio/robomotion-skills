@@ -1,10 +1,10 @@
 # Robomotion Skills
 
-Curated skill library for the Robomotion **Hermes Agent**. Each skill is a folder at the repo root containing `SKILL.md` plus optional install/runtime scripts. The agent's launcher fetches the active skill set, builds a per-set Podman image, and exposes the skills to the LLM as system-prompt context inside that container.
+Curated skill library for the Robomotion **Hermes Agent**. Each skill is a folder containing `SKILL.md` plus optional install/runtime scripts — at the repo root, or nested under a group (e.g. `marketing-skills/<category>/<skill>/`). The agent's launcher fetches the active skill set, builds a per-set Podman image, and exposes the skills to the LLM as system-prompt context inside that container.
 
 ## Folder contract
 
-The launcher's `verifySkillRepo` enumerates top-level directories and treats any folder containing `SKILL.md` as a candidate skill.
+Any folder containing `SKILL.md` is a skill, whether at the repo root or nested under a group directory. Discovery is index-driven (`index.json`); the launcher's `verifySkillRepo` enumeration is the fallback.
 
 ```
 <skill-name>/
@@ -98,19 +98,41 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 |---|---|---|---|
 | `airtable` | host (knowledge) | `AIRTABLE_API_KEY` | Airtable REST API: records CRUD, filters, upsert via curl |
 | `arxiv` | container (script) | — | Search / fetch academic papers from arXiv |
-| `cold-email` | host (knowledge) | — | Write B2B cold emails + follow-up sequences (knowledge) |
-| `copywriting` | host (knowledge) | — | Write/improve marketing page copy (knowledge) |
-| `cro` | host (knowledge) | — | Conversion-rate optimization for pages & forms (knowledge) |
 | `excalidraw` | container (script) | — | Generate hand-drawn diagrams; upload to excalidraw.com |
 | `github-issues` | container | `GITHUB_TOKEN` | Read, file, comment, close GitHub issues via `gh` |
 | `linear` | container (script) | `LINEAR_API_KEY` | Read/write Linear issues via GraphQL |
-| `marketing-psychology` | host (knowledge) | — | Apply behavioral science / mental models to marketing (knowledge) |
 | `notion` | host (knowledge) | `NOTION_API_KEY` | Notion pages, databases (data sources) & blocks via HTTP API + curl |
 | `obsidian` | host (knowledge) | — | Filesystem Obsidian vault: read/search/create/append/link notes |
 | `pdf-extract` | container (script) | — | Extract text + tables from PDFs (pymupdf) |
 | `polymarket` | container (script) | — | Query Polymarket prediction markets (public, no auth) |
-| `pricing` | host (knowledge) | — | Pricing, packaging & monetization strategy (knowledge) |
 | `spotify` | container (script) | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` | Play/search/queue + manage playlists, devices, library via the Web API |
+
+### Marketing skills (`marketing-skills/`)
+
+41 marketing skills ported from [marketingskills](https://github.com/coreyhaines31/marketingskills)
+(agentskills.io spec; MIT), sub-grouped by category. Each category that uses live
+tools carries a self-contained **`_shared/`** library (zero-dep Node CLIs in
+`_shared/scripts/` + per-tool API guides in `_shared/references/`); `${SHARED_DIR}`
+resolves to a skill's nearest category `_shared`. All skills are host-mode
+knowledge; a category run goes **container** when its `_shared` ships CLIs. Tool
+credentials are declared per skill in `env.optional` (advisory — a skill works as
+pure knowledge with none bound). See `docs/marketingskills-full-port-plan.md`.
+
+| Category | Skills | `_shared` CLIs |
+|---|---|---|
+| `conversion` | cro, signup, onboarding, popups, paywalls | — |
+| `content` | copywriting, copy-editing, cold-email, social, image, video, content-strategy | — (guides only) |
+| `email` | emails, sms | resend, mailchimp, customer-io, kit, sendgrid, klaviyo, brevo |
+| `seo` | seo-audit, ai-seo, programmatic-seo, site-architecture, competitors, schema, aso | ahrefs, semrush, dataforseo, google-search-console, keywords-everywhere, rankparse, similarweb |
+| `paid` | ads, ad-creative | ga4, google-ads, meta-ads, linkedin-ads, tiktok-ads, segment |
+| `measurement` | analytics, ab-testing | ga4, mixpanel, amplitude, segment (+posthog guide) |
+| `growth` | referrals, co-marketing, community-marketing, free-tools, lead-magnets, directory-submissions, churn-prevention | dub, rewardful, tolt, mention-me, partnerstack, crossbeam |
+| `sales` | revops, sales-enablement | activecampaign, apollo, clearbit, calendly, savvycal, crossbeam, zapier |
+| `strategy` | product-marketing, marketing-ideas, marketing-psychology, launch, pricing, customer-research, competitor-profiling | — (guides only) |
+
+Cross-domain CLIs (`ga4`, `segment`, `customer-io`, `crossbeam`, …) are intentionally
+duplicated across the categories that use them — `${SHARED_DIR}` resolves to a single
+nearest `_shared` (no cascade), so each category's library is self-contained.
 
 ## Discovery index (`index.json`)
 
