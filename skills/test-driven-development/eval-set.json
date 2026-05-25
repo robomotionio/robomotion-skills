@@ -1,0 +1,35 @@
+{
+  "skill_name": "test-driven-development",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "Use the test-driven-development skill to handle this request.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "I need help with implementing.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "Use when implementing any feature or bugfix, before writing implementation code.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "Schedule a meeting next Tuesday in the productivity app.",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "What's the weather forecast for tomorrow?",
+      "expect_triggered": false
+    }
+  ]
+}

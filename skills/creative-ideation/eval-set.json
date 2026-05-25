@@ -1,0 +1,35 @@
+{
+  "skill_name": "creative-ideation",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "Use the creative-ideation skill to handle this request.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "I need help with generate.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "Generate project ideas through creative constraints.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "Schedule a meeting next Tuesday in the productivity app.",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "What's the weather forecast for tomorrow?",
+      "expect_triggered": false
+    }
+  ]
+}

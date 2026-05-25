@@ -1,0 +1,112 @@
+# Robomotion skill deprecation and rejection ledger.
+#
+# Three categories:
+#
+# - revoked:    skills that were once published but have since been pulled
+#               (security issue, policy violation found after publish, etc.).
+#               install_skill.py refuses to install. List Skills flags any
+#               already-installed copies as `revoked`.
+#
+# - deprecated: skills replaced by a successor; install still works but
+#               warns and recommends the replacement.
+#
+# - rejected:   upstream skills the import pipeline considered and rejected.
+#               Recorded for traceability so we don't re-evaluate them
+#               every cron run. Never published.
+
+revoked: []
+
+deprecated: []
+
+rejected:
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/red-teaming/godmode
+    reason: adversarial-by-design — defeats safety guardrails
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/creative/manim-video
+    reason: ships scripts/ — runtime code execution incompatible with markdown-only profile
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/creative/p5js
+    reason: ships scripts/ — runtime code execution incompatible with markdown-only profile
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/creative/ascii-video
+    reason: ships scripts/ — runtime code execution incompatible with markdown-only profile
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/creative/pixel-art
+    reason: ships scripts/ — runtime code execution incompatible with markdown-only profile
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: optional-skills/migration/openclaw-migration
+    reason: out-of-scope — migration tooling specific to Hermes' own ecosystem
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: optional-skills/security/oss-forensics
+    reason: dual-use — defer to security-review profile when defined
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: optional-skills/research/gitnexus-explorer
+    reason: depends on a non-Robomotion external service
+    decided_at: "2026-05-02"
+
+  # Phase 1 imports rejected by the content scanner.
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/software-development/requesting-code-review
+    reason: SKILL.md body contains eval()/exec()/subprocess. examples — markdown-only profile rejects these patterns regardless of context
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/mcp/native-mcp
+    reason: SKILL.md instructs `pip install` and `uv pip install` — host-side package install incompatible with markdown-only profile
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/research/research-paper-writing
+    reason: SKILL.md instructs `pip install` for SciencePlots/scipy — host-side package install incompatible with markdown-only profile (revisit when we ship a Robomotion python-runner package)
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/autonomous-ai-agents/claude-code
+    reason: SKILL.md instructs `npm install -g @anthropic-ai/claude-code` — global package install incompatible with markdown-only profile
+    decided_at: "2026-05-02"
+
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    path: skills/autonomous-ai-agents/codex
+    reason: SKILL.md instructs `npm install -g @openai/codex` — global package install incompatible with markdown-only profile
+    decided_at: "2026-05-02"
+
+# Package candidates: useful upstream capabilities blocked on a missing
+# Robomotion package. Filed here for visibility; tracked as roadmap items
+# and not published as skills.
+package_candidates:
+  - source: github.com/NousResearch/hermes-agent
+    ref: v2026.4.23
+    paths:
+      - skills/productivity/linear      # already-tracked as Linear package roadmap
+      - skills/research/arxiv           # arXiv package roadmap
+      - skills/social-media/base        # Base/Solana package roadmap
+      - skills/email/imap               # IMAP package roadmap
+    decided_at: "2026-05-02"

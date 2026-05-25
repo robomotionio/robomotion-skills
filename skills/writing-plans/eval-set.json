@@ -1,0 +1,35 @@
+{
+  "skill_name": "writing-plans",
+  "cases": [
+    {
+      "id": "trigger-pos-1",
+      "type": "trigger",
+      "query": "Use the writing-plans skill to handle this request.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-2",
+      "type": "trigger",
+      "query": "I need help with spec.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-pos-3",
+      "type": "trigger",
+      "query": "Use when you have a spec or requirements for a multi-step task.",
+      "expect_triggered": true
+    },
+    {
+      "id": "trigger-neg-1",
+      "type": "trigger",
+      "query": "Schedule a meeting next Tuesday in the productivity app.",
+      "expect_triggered": false
+    },
+    {
+      "id": "trigger-neg-2",
+      "type": "trigger",
+      "query": "What's the weather forecast for tomorrow?",
+      "expect_triggered": false
+    }
+  ]
+}

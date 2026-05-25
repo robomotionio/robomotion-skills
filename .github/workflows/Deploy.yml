@@ -1,0 +1,220 @@
+name: Skills Deploy
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  RCLONE_DL_VERSION: "1.72.1"
+
+jobs:
+  # ============================================================================
+  # PHASE 1: Validate — runs on every PR and main push
+  # File allowlist + content scanner + license whitelist + frontmatter schema +
+  # role/scripts consistency + trigger evals (diff-aware on PRs).
+  # ============================================================================
+  Validate:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # need full history for --changed-since on PRs
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyyaml cryptography
+
+      - name: Determine diff base
+        id: diff
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "ref=${{ github.event.pull_request.base.sha }}" >> $GITHUB_OUTPUT
+          else
+            echo "ref=HEAD~1" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Content scanner (rules 1 + 2)
+        run: |
+          python3 scripts/scan_content.py --changed-since ${{ steps.diff.outputs.ref }}
+
+      - name: Regenerate index (drift check)
+        run: |
+          python3 scripts/generate_index.py --check
+
+      - name: Validate index (rules 3 + 4)
+        run: |
+          # Index must already be generated; regenerate to validate latest
+          python3 scripts/generate_index.py
+          python3 scripts/validate_index.py --changed-since ${{ steps.diff.outputs.ref }}
+
+      - name: Trigger evals (rule 5) — diff-aware
+        if: github.event_name == 'pull_request'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY unset — skipping trigger evals"
+            exit 0
+          fi
+          python3 scripts/run_eval.py --changed-since ${{ steps.diff.outputs.ref }} --type trigger || true
+        # `|| true` keeps trigger eval as a soft signal in Phase 1.
+        # Promote to hard-gate once trigger sets are stabilized.
+
+  # ============================================================================
+  # PHASE 2: Pack — produce per-skill tarballs (main pushes only)
+  # ============================================================================
+  Pack:
+    needs: Validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    outputs:
+      corpus_version: ${{ steps.pack.outputs.corpus_version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyyaml cryptography
+
+      - name: Build tarballs and regenerate index
+        id: pack
+        run: |
+          mkdir -p dist/skills
+          python3 scripts/generate_index.py --build-tarballs dist/skills
+          cp skills-index.json dist/
+          corpus=$(python3 -c "import json; print(json.load(open('skills-index.json'))['corpus_version'])")
+          echo "corpus_version=$corpus" >> $GITHUB_OUTPUT
+          ls -la dist/ dist/skills/ | head -40
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: skills-dist-${{ github.run_id }}
+          path: dist/
+          if-no-files-found: error
+
+  # ============================================================================
+  # PHASE 3: Publish — sign + rclone to DO (main pushes only)
+  # ============================================================================
+  Publish:
+    needs: Pack
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: skills-dist-${{ github.run_id }}
+          path: dist/
+
+      - name: Install minisign
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y minisign
+
+      - name: Restore minisign private key
+        env:
+          MINISIGN_KEY: ${{ secrets.SKILLS_MINISIGN_PRIVATE_KEY }}
+        run: |
+          if [ -z "$MINISIGN_KEY" ]; then
+            echo "::error::SKILLS_MINISIGN_PRIVATE_KEY not configured"
+            exit 1
+          fi
+          mkdir -p ~/.minisign
+          echo "$MINISIGN_KEY" > ~/.minisign/skills-publisher.key
+          chmod 600 ~/.minisign/skills-publisher.key
+
+      - name: Sign skills-index.json
+        env:
+          MINISIGN_PASSWORD: ${{ secrets.SKILLS_MINISIGN_PASSWORD }}
+        run: |
+          # Run from dist/ so signature lands next to the index
+          cd dist
+          echo "$MINISIGN_PASSWORD" | minisign \
+            -S -s ~/.minisign/skills-publisher.key \
+            -m skills-index.json \
+            -x skills-index.json.minisig \
+            -t "robomotion-skills index ${{ needs.Pack.outputs.corpus_version }}"
+          sha256sum skills-index.json | awk '{print $1}' > skills-index.json.sha256
+          ls -la
+
+      - name: Apply skill-deprecated.yaml (revocations)
+        run: |
+          # Strip revoked entries from the published index. We keep them
+          # in the local repo so history is preserved, but the served
+          # index never advertises a revoked skill as installable.
+          if [ -f skill-deprecated.yaml ]; then
+            python3 - <<'PY'
+          import json, re, sys, yaml
+          with open("dist/skills-index.json") as f:
+              idx = json.load(f)
+          with open("skill-deprecated.yaml") as f:
+              dep = yaml.safe_load(f) or {}
+          revoked_names = set()
+          for r in dep.get("revoked", []) or []:
+              if isinstance(r, dict) and r.get("name"):
+                  revoked_names.add(r["name"])
+          if revoked_names:
+              kept = []
+              for e in idx.get("skills", []):
+                  if e["name"] in revoked_names:
+                      print(f"removing revoked: {e['name']}")
+                      continue
+                  kept.append(e)
+              idx["skills"] = kept
+              with open("dist/skills-index.json", "w") as f:
+                  json.dump(idx, f, indent=2, ensure_ascii=False)
+                  f.write("\n")
+          else:
+              print("no revoked entries to strip")
+          PY
+            # Re-sign after stripping revoked entries
+            cd dist
+            echo "$MINISIGN_PASSWORD" | minisign \
+              -S -s ~/.minisign/skills-publisher.key \
+              -m skills-index.json \
+              -x skills-index.json.minisig \
+              -t "robomotion-skills index ${{ needs.Pack.outputs.corpus_version }} (post-revoke)"
+            sha256sum skills-index.json | awk '{print $1}' > skills-index.json.sha256
+            cd ..
+          fi
+        env:
+          MINISIGN_PASSWORD: ${{ secrets.SKILLS_MINISIGN_PASSWORD }}
+
+      - name: Install rclone
+        run: |
+          curl --http1.1 https://rclone.org/install.sh | sudo bash
+          mkdir -p ~/.config/rclone
+
+      - name: Configure rclone
+        env:
+          CONF: ${{ secrets.RCLONE_CONF }}
+        run: echo "$CONF" > ~/.config/rclone/rclone.conf
+
+      - name: Publish to DO storage
+        run: |
+          rclone copy -P --s3-acl=public-read dist/ DO:robomotion-skills/stable/
+          rclone ls DO:robomotion-skills/stable/ | head -40
+
+      - name: Sanity-check published artifacts
+        run: |
+          curl -fsSI https://skills.robomotion.io/stable/skills-index.json
+          curl -fsSI https://skills.robomotion.io/stable/skills-index.json.minisig
