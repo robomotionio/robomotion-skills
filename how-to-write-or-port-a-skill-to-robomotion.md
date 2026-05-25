@@ -690,6 +690,8 @@ cd robomotion-new-designer && npx tsc --noEmit -p tsconfig.app.json
 - `validate.sh` + `.github/workflows/validate.yml` — contract checker + index drift-guard
 - `docs/agent-files.md` — the agent context/memory model (`AGENT.md`/`SOUL.md`/
   `IDENTITY.md`/`USER.md`/`MEMORY.md`); where durable state goes (Memory vs workspace)
+- `docs/claude-plugin-support.md` — how vendored collections (agentskills/Claude-Code
+  plugins) are detected, staged structure-preserving, and resolved (`${CLAUDE_PLUGIN_ROOT}`)
 - `docs/skill-system-scale-design.md` — the scale architecture (index → bundles → registry)
 - `docs/marketingskills-full-port-plan.md` — the marketingskills port plan/decisions
 - `docs/marketingskills-review-and-skill-system-gaps.md` — review + the skill-system roadmap
