@@ -107,32 +107,27 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 | `polymarket` | container (script) | — | Query Polymarket prediction markets (public, no auth) |
 | `spotify` | container (script) | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` | Play/search/queue + manage playlists, devices, library via the Web API |
 
-### Marketing skills (`marketing-skills/`)
+### Marketing skills (`marketing-skills/`) — vendored verbatim
 
-41 marketing skills ported from [marketingskills](https://github.com/coreyhaines31/marketingskills)
-(agentskills.io spec; MIT), sub-grouped by category. Each category that uses live
-tools carries a self-contained **`_shared/`** library (zero-dep Node CLIs in
-`_shared/scripts/` + per-tool API guides in `_shared/references/`); `${SHARED_DIR}`
-resolves to a skill's nearest category `_shared`. All skills are host-mode
-knowledge; a category run goes **container** when its `_shared` ships CLIs. Tool
-credentials are declared per skill in `env.optional` (advisory — a skill works as
-pure knowledge with none bound). See `docs/marketingskills-full-port-plan.md`.
+[marketingskills](https://github.com/coreyhaines31/marketingskills) (41 skills;
+agentskills.io spec / Claude Code plugin; MIT) is vendored **byte-for-byte** under
+`marketing-skills/` — the upstream `skills/`, `tools/`, and `.claude-plugin/` are
+mirrored unchanged, so the collection updates with a plain re-sync
+(`git subtree pull` / re-copy) and **no per-skill re-port**. The 41
+`marketing-skills/skills/<name>/` folders are each individually selectable.
 
-| Category | Skills | `_shared` CLIs |
-|---|---|---|
-| `conversion` | cro, signup, onboarding, popups, paywalls | — |
-| `content` | copywriting, copy-editing, cold-email, social, image, video, content-strategy | — (guides only) |
-| `email` | emails, sms | resend, mailchimp, customer-io, kit, sendgrid, klaviyo, brevo |
-| `seo` | seo-audit, ai-seo, programmatic-seo, site-architecture, competitors, schema, aso | ahrefs, semrush, dataforseo, google-search-console, keywords-everywhere, rankparse, similarweb |
-| `paid` | ads, ad-creative | ga4, google-ads, meta-ads, linkedin-ads, tiktok-ads, segment |
-| `measurement` | analytics, ab-testing | ga4, mixpanel, amplitude, segment (+posthog guide) |
-| `growth` | referrals, co-marketing, community-marketing, free-tools, lead-magnets, directory-submissions, churn-prevention | dub, rewardful, tolt, mention-me, partnerstack, crossbeam |
-| `sales` | revops, sales-enablement | activecampaign, apollo, clearbit, calendly, savvycal, crossbeam, zapier |
-| `strategy` | product-marketing, marketing-ideas, marketing-psychology, launch, pricing, customer-research, competitor-profiling | — (guides only) |
-
-Cross-domain CLIs (`ga4`, `segment`, `customer-io`, `crossbeam`, …) are intentionally
-duplicated across the categories that use them — `${SHARED_DIR}` resolves to a single
-nearest `_shared` (no cascade), so each category's library is self-contained.
+- **Nothing of ours lives inside the mirror** — no edited bodies, no `${SHARED_DIR}`
+  rewrites, no injected `env`/`LICENSE`/`CHANGELOG`/`tags`. `validate.sh` detects a
+  vendored collection (an ancestor `.claude-plugin/plugin.json`) and skips the
+  per-skill LICENSE/CHANGELOG convention — those are governed by the collection's
+  own upstream `LICENSE`. It still `node --check`s the bundled `tools/clis/`.
+- **Capability is CLI-favored.** Skills are knowledge; tools come from the bundled
+  CLIs in `marketing-skills/tools/clis/` run via the `terminal` tool (MCP only when
+  no usable CLI exists). Putting those CLIs on `$PATH`, and injecting tool
+  credentials, are **platform/overlay** concerns wired *beside* the mirror — never
+  files added to it. See `how-to-write-or-port-a-skill-to-robomotion.md` §10 and
+  `docs/agent-files.md`.
+- **Bump:** re-sync `marketing-skills/` from upstream, then run `build-index.py`.
 
 ## Discovery index (`index.json`)
 

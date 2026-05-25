@@ -45,16 +45,35 @@ Markdown (plus optional helper scripts and install hooks). The agent's
 `skill_loader` injects `SKILL.md` into the system prompt; nothing in this repo
 registers tools. (See `packages-main/src/hermes-agent/nodes/skills/skill_loader.py`.)
 
-So the capability a ported skill relies on must already exist as one of:
+So the capability a ported skill relies on must already exist. Pick it in this
+**preference order** (Robomotion is **CLI-favored**):
 
-- the generic **`terminal`** tool (run `curl`, or a CLI you ship in `scripts/`), or
-- a **built-in Hermes toolset** that Robomotion already exposes (e.g. `file`,
-  `web`, `browser`, `vision`, `discord`, …). The authoritative list is
-  `_HERMES_INTERNAL_TOOLS` in
-  `packages-main/src/hermes-agent/nodes/agent/hermes_agent.py`.
+1. **A CLI run via the generic `terminal` tool** — `curl`, or a bundled CLI
+   (`scripts/`, or a collection's `bin/` / `tools/clis/` placed on `$PATH`; §8).
+   This is the default: self-contained in the sandbox, no external server, the
+   credential proxy brokers secrets on the outbound call.
+2. **A built-in Hermes toolset** Robomotion already exposes (`file`, `web`,
+   `browser`, `vision`, `discord`, …). The authoritative list is
+   `_HERMES_INTERNAL_TOOLS` in `nodes/agent/hermes_agent.py`.
+3. **An MCP server — only when a CLI/curl path isn't practical** (OAuth-heavy
+   tools with no usable CLI, or a vendor that only ships MCP). MCP is wired at the
+   **agent/node level** (native server, or a gateway like Composio/Cogny), not by
+   the skill. Both Hermes and ADK support MCP — reach for it last, not first.
 
-There is no way to add a *new* registered tool from this repo. If a capability
-needs one, that's a code change in the Hermes Agent package, not a skill.
+You cannot register a *new* in-process tool from this repo. If a capability needs
+one, that's a code change in the Hermes Agent package, not a skill.
+
+**Two governing principles** (detailed in §8 and §10):
+
+- **Verbatim ingestion.** Treat a third-party skill repo (agentskills.io
+  collection, Claude Code plugin) as a *vendored dependency*: mirror it
+  byte-for-byte, never edit skill bodies, and bump it with `git pull`. Anything
+  Robomotion needs that upstream lacks lives **beside** the mirror or in the
+  platform — never inside the synced tree.
+- **Self-containment.** A skill must work on its own and degrade gracefully (ask
+  the user if context is missing). There are **no formal skill→skill
+  dependencies**; durable cross-skill state lives in agent **Memory**, not in
+  files a skill writes (§8, and `docs/agent-files.md`).
 
 ---
 
@@ -333,8 +352,13 @@ In your `SKILL.md`, reference env vars exactly as the shell sees them
 ### `post-install.sh`
 
 Runs **once at image build** as a cached Docker layer (`dockerfile.go` emits
-`RUN .../post-install.sh`). Use it for `apt`/`pip`/`npm` installs.
+`RUN .../post-install.sh`). **Use it only for a *genuine* install** — `apt`/`pip`/
+`npm` of a real dependency the base image lacks (e.g. PyMuPDF, `ffmpeg`, the `gh`
+CLI). Create it **only when necessary**.
 
+- **It is NOT for putting bundled CLIs on `$PATH`.** Zero-dependency CLIs need no
+  install; the platform exposes them on `$PATH` instead (see *CLIs on `$PATH`*
+  below). Don't write a `post-install.sh` just to symlink scripts.
 - Start with `#!/bin/sh` and `set -eu`.
 - **Idempotent** and minimal. The base image
   (`gcr.io/robomotion/robomotion-skills-base`) already ships **python3, node20,
@@ -373,6 +397,35 @@ Ship a helper CLI the model invokes via the `terminal` tool. Conventions:
 - Map upstream failure modes to clear messages (auth revoked, rate limit, "no
   active device", etc.) so the model can react instead of looping.
 
+### CLIs on `$PATH` (the CLI-favored capability path)
+
+Robomotion is **CLI-favored**: the model acts by running a CLI through the
+`terminal` tool. Bundled CLIs are made runnable **by the platform**, not by a
+per-skill install step:
+
+- A skill/collection's **`bin/`** (the Claude-plugin convention) — and, for repos
+  that use it, **`tools/clis/`** — is added to the terminal tool's `$PATH` at stage
+  time. The model runs `resend send …`, `ga4 report …` **by name**, with no
+  symlink script of yours inside the tree.
+- Zero-dependency CLIs (Node 18+/`fetch`, Python stdlib) therefore need **no
+  `post-install.sh`** — only a *genuine* dependency does (above).
+- CLIs read creds from env (§7), print JSON to stdout incl. `{"error": …}`, and are
+  executable. A non-empty CLI dir classifies the run as **container mode**.
+- Reach for **MCP only when there's no usable CLI** (§1) — wired at the agent/node
+  level, never as the default.
+
+### Cross-skill state → use Memory, not files
+
+If a skill produces context other skills should reuse (e.g. a product brief),
+**do not write a file at a hardcoded path for other skills to read** — that's a
+brittle filesystem side-channel. Durable, cross-skill, per-agent state belongs in
+the agent's **Memory**: `MEMORY.md` (world/project facts) and `USER.md` (the
+*human's* profile — never product/project facts). The runtime persists Memory and
+injects it every run, so consumers get it **without any file read**. File
+*artifacts* (generated CSV, image, code) go to the agent **workspace**
+(`/workspace`, the cwd). Skills never invent filesystem paths. Full model:
+`docs/agent-files.md`.
+
 ---
 
 ### Shared library (`_shared/`)
@@ -404,10 +457,12 @@ dozens of credentials, but each skill uses only a few. So a skill that calls
 vars the *active* skills use, not the whole library. Names dedup across skills, so
 one binding covers every skill that shares a CLI.
 
-Prefer `_shared/` over copying the same CLI into many skills. This is the
-mechanism for porting shared-library collections (e.g. a repo of marketing
-skills backed by one CLI library) into Robomotion. (Cross-agent front-matter
-compatibility, which pairs with this for ingesting spec repos, is covered in §5.)
+Prefer `_shared/` over copying the same CLI into many skills, **for skills you
+author first-party in this repo**. Do **not** restructure a *third-party*
+collection into `_shared/` — that's an edit to the upstream tree and breaks
+`git pull` updates. A third-party repo keeps its own layout (e.g. `tools/clis/`)
+and is ingested **verbatim**; its CLIs reach `$PATH` via the platform, not a
+rewrite (§10 *Porting a third-party collection verbatim*).
 
 ## 9. Writing a brand-new skill
 
@@ -466,6 +521,40 @@ Step by step:
 7. Add `CHANGELOG.md` (record what you changed from upstream) and `LICENSE`.
 8. Update `README.md` Inventory.
 9. Verify (§12) and open a PR.
+
+### Porting a third-party collection verbatim (agentskills.io / Claude Code plugins)
+
+This is the **preferred** path for a third-party repo that already follows the
+agentskills.io spec or ships as a Claude Code plugin (e.g. `marketingskills`).
+Don't rewrite it skill-by-skill — **mirror it and let the platform adapt:**
+
+1. **Mirror the upstream `skills/` byte-for-byte.** No body edits, no front-matter
+   rewrites, no path rewrites, no restructuring into `_shared/`. Each
+   `skills/<name>/` becomes an **individually selectable** skill (the collection
+   name is just a group label — expose the skills, don't collapse them into one,
+   and don't auto-activate the whole set — keep the active set small).
+2. **Capability = CLI on `$PATH`** (§8). The repo's CLIs (`bin/` or `tools/clis/`)
+   are exposed on `$PATH` by the platform at stage time — the model runs them by
+   name. **No `post-install.sh` unless a real dependency must be installed.** Use
+   MCP only for tools with no usable CLI (§1).
+3. **Robomotion metadata lives *beside* the mirror, never inside it.** The one
+   thing upstream lacks is **env declarations** (`env.required`/`env.optional`) so
+   creds inject — keep these in an overlay alongside the mirror; the launcher
+   merges them at stage time. Nothing of ours enters the synced tree.
+4. **Leave soft references alone.** Upstream repo-relative links (`../../tools/…`,
+   `references/…`) and any `.agents/…` context paths stay as-is — they resolve via
+   the staged layout / persistent `/workspace` cwd, and where one doesn't it's a
+   *soft* "see the guide" pointer the model degrades past. Don't rewrite them.
+5. **Cross-skill context → Memory** (§8): the collection's own "producer writes a
+   file, consumers read it" convention maps onto agent Memory — no dependency
+   mechanism needed (skills are self-contained, §1).
+6. **Bump = `git pull`.** Nothing inside the tree changed, so updating to a new
+   upstream release is a re-sync, not a re-port.
+
+> Contrast with the upstream-*Hermes*-skill rewrite above: that edits the source
+> because a Hermes plugin-tool skill can't run as-is. A spec-compliant collection
+> needs **no** such edits — verbatim is both less work and maintainable. Fall back
+> to per-skill rewrites only if a skill genuinely can't run verbatim.
 
 ---
 
@@ -569,12 +658,26 @@ cd robomotion-new-designer && npx tsc --noEmit -p tsconfig.app.json
 - **Scripts that print tracebacks.** Catch errors and emit `{"error": "..."}`.
 - **Hand-encoding URLs / formulas.** Let `python3 -m urllib.parse` do it (see
   `airtable`'s `filterByFormula` pattern).
-- **Repo-level `tools/` instead of `_shared/`.** The launcher extracts each skill
-  folder in isolation, so a sibling `tools/` dir is never shipped with a skill and
-  `../../tools/...` won't resolve. Put shared code in `_shared/` and reference it
-  with `${SHARED_DIR}`.
+- **Repo-level `tools/` in a *first-party* skill.** If you author skills here, the
+  launcher extracts each folder in isolation, so a sibling `tools/` never ships and
+  `../../tools/...` won't resolve — put shared code in `_shared/` and use
+  `${SHARED_DIR}`. (A *third-party* collection is different: it's mirrored verbatim
+  and its `tools/clis/` reaches `$PATH` via the platform — §10.)
 - **`${SHARED_DIR}` left literal at runtime.** It only resolves when the repo
   actually ships a `_shared/` dir; an unresolved token means the dir is missing.
+- **Editing a third-party skill's body to "fit" Robomotion.** Rewriting paths,
+  front-matter, or restructuring into `_shared/` breaks `git pull` updates. Mirror
+  it verbatim; adapt via the platform + a beside-the-mirror env overlay (§10).
+- **Writing a context file for other skills to read.** A hardcoded
+  producer-writes-a-file / consumers-read-it path is a brittle side-channel. Put
+  durable cross-skill state in **Memory** (`MEMORY.md`), not files (§8, `docs/agent-files.md`).
+- **Putting product/project facts in `USER.md`.** `USER.md` is the *human's*
+  profile; world/project facts go in `MEMORY.md`. (`docs/agent-files.md`.)
+- **Writing a `post-install.sh` just to symlink CLIs onto `$PATH`.** Unnecessary —
+  the platform PATHs `bin/` / `tools/clis/`. Reserve `post-install.sh` for a
+  *genuine* install (§8).
+- **Reaching for MCP first.** Robomotion is CLI-favored; use a CLI via `terminal`,
+  and MCP only when no usable CLI exists (§1).
 
 ---
 
@@ -585,7 +688,10 @@ cd robomotion-new-designer && npx tsc --noEmit -p tsconfig.app.json
 - `build-index.py` → `index.json` — the discovery manifest the Designer reads
   (regenerate + commit when adding/changing a skill; CI drift-checks it)
 - `validate.sh` + `.github/workflows/validate.yml` — contract checker + index drift-guard
+- `docs/agent-files.md` — the agent context/memory model (`AGENT.md`/`SOUL.md`/
+  `IDENTITY.md`/`USER.md`/`MEMORY.md`); where durable state goes (Memory vs workspace)
 - `docs/skill-system-scale-design.md` — the scale architecture (index → bundles → registry)
+- `docs/marketingskills-full-port-plan.md` — the marketingskills port plan/decisions
 - `docs/marketingskills-review-and-skill-system-gaps.md` — review + the skill-system roadmap
 - existing skills — the canonical examples (`linear`, `airtable`, `notion`,
   `obsidian`, `spotify`, `github-issues`, `arxiv`, the marketing pilots, …)

@@ -1,12 +1,21 @@
 # Full port plan: `marketingskills` → `robomotion-skills`
 
-> Plan for porting the entire [marketingskills](https://github.com/coreyhaines31/marketingskills)
-> collection (v2.1.0) — all 41 skills **plus** its shared `tools/` CLI library —
-> into this repo under a `marketing-skills/` group with a group-scoped `_shared/`.
-> Authored 2026-05-25. Status: **executed 2026-05-25** — all 41 skills + 8
-> per-category `_shared` libraries ported under `marketing-skills/`; index/README/
-> validator updated; `validate.sh` + `build-index.py --check` green. (Sections
-> below describe the design as built.)
+> ⚠️ **SUPERSEDED (2026-05-25).** This document describes an earlier design — a
+> heavyweight per-category restructure with a group-scoped `_shared/` and
+> per-skill rewrites (token paths, injected `env`/`LICENSE`/`CHANGELOG`/`tags`).
+> **That approach was abandoned in favor of vendoring `marketingskills` verbatim.**
+> The collection is now mirrored **byte-for-byte** under `marketing-skills/`
+> (upstream `skills/` + `tools/` + `.claude-plugin/`), with nothing of ours inside
+> the tree; capability is **CLI-favored** (bundled `tools/clis/` on `$PATH`, MCP
+> only when necessary) and credential/PATH wiring is a platform/overlay concern
+> *beside* the mirror. See the current guidance in
+> `how-to-write-or-port-a-skill-to-robomotion.md` §10 *Porting a third-party
+> collection verbatim* and `docs/agent-files.md`. The sections below are retained
+> only as a record of the rejected design and the analysis behind it.
+>
+> Original status line (no longer accurate): *"Plan for porting all 41 skills plus
+> its shared tools/ CLI library under a `marketing-skills/` group with a
+> group-scoped `_shared/`."*
 
 ## 1. Why this is feasible without platform changes
 
