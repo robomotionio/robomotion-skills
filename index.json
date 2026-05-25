@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    {
+      "name": "airtable",
+      "path": "airtable",
+      "group": "",
+      "summary": "Airtable REST API via curl — list, read, filter, create, update, upsert, and delete records.",
+      "tags": [
+        "airtable",
+        "database",
+        "records",
+        "productivity"
+      ],
+      "version": "1.0.0",
+      "mode": "host",
+      "env": {
+        "required": [
+          "AIRTABLE_API_KEY"
+        ],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "8ba584279a43"
+    },
+    {
+      "name": "arxiv",
+      "path": "arxiv",
+      "group": "",
+      "summary": "Search and download academic papers from arXiv. Ships a stdlib Python CLI.",
+      "tags": [
+        "research",
+        "papers",
+        "academic",
+        "search"
+      ],
+      "version": "1.0.0",
+      "mode": "container",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "22950d80cf6a"
+    },
+    {
+      "name": "cold-email",
+      "path": "cold-email",
+      "group": "",
+      "summary": "Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions \"cold outreach,\" \"prospecting email,\" \"outbound email,\" \"email to leads,\" \"reach out to prospects,\" \"sales email,\" \"follow-up email sequence,\" \"nobody's replying to my emails,\" or \"how do I write a cold email.\" Covers subject lines, opening lines, body copy, CTAs, personalization, and multi-touch follow-up sequences. For warm/lifecycle email sequences, see emails. For sales collateral beyond emails, see sales-enablement.",
+      "tags": [
+        "cold-email",
+        "outbound",
+        "sales",
+        "copywriting"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "683fd02fbcc2"
+    },
+    {
+      "name": "copywriting",
+      "path": "copywriting",
+      "group": "",
+      "summary": "When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy,\" \"value proposition,\" \"tagline,\" \"subheadline,\" \"hero section copy,\" \"above the fold,\" \"this copy is weak,\" \"make this more compelling,\" or \"help me describe my product.\" Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing.",
+      "tags": [
+        "copywriting",
+        "messaging",
+        "landing-pages"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "146469b899ae"
+    },
+    {
+      "name": "cro",
+      "path": "cro",
+      "group": "",
+      "summary": "When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms. Also use when the user says 'CRO,' 'conversion rate optimization,' 'this page isn't converting,' 'improve conversions,' 'why isn't this page working,' 'my landing page sucks,' 'form abandonment,' 'nobody's converting,' 'low conversion rate,' or 'this page needs work.' Use this even if the user just shares a URL and asks for feedback. For signup/registration flows, see signup. For post-signup activation, see onboarding. For popups/modals, see popups.",
+      "tags": [
+        "cro",
+        "conversion",
+        "landing-pages",
+        "optimization"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "155f8a48281b"
+    },
+    {
+      "name": "excalidraw",
+      "path": "excalidraw",
+      "group": "",
+      "summary": "Generate hand-drawn diagrams as Excalidraw JSON. Optional upload to excalidraw.com for shareable links.",
+      "tags": [
+        "diagrams",
+        "visualization",
+        "drawing"
+      ],
+      "version": "1.0.0",
+      "mode": "container",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "97148305dab6"
+    },
+    {
+      "name": "github-issues",
+      "path": "github-issues",
+      "group": "",
+      "summary": "Read, file, comment, label, and close GitHub issues via the gh CLI.",
+      "tags": [
+        "github",
+        "issues",
+        "project-management"
+      ],
+      "version": "1.0.0",
+      "mode": "container",
+      "env": {
+        "required": [
+          "GITHUB_TOKEN"
+        ],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "59e9bea154c5"
+    },
+    {
+      "name": "linear",
+      "path": "linear",
+      "group": "",
+      "summary": "Read and modify Linear issues, projects, and cycles via GraphQL. Ships a stdlib Python CLI.",
+      "tags": [
+        "linear",
+        "issues",
+        "project-management"
+      ],
+      "version": "1.0.0",
+      "mode": "container",
+      "env": {
+        "required": [
+          "LINEAR_API_KEY"
+        ],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "168025710381"
+    },
+    {
+      "name": "marketing-psychology",
+      "path": "marketing-psychology",
+      "group": "",
+      "summary": "When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why people buy,' 'decision-making,' 'consumer behavior,' 'anchoring,' 'social proof,' 'scarcity,' 'loss aversion,' 'framing,' or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing context. For applying psychology to specific pages, see cro; for pricing tactics, see pricing; for copy framing, see copywriting.",
+      "tags": [
+        "marketing-psychology",
+        "persuasion",
+        "behavioral-science"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "685822e2a418"
+    },
+    {
+      "name": "notion",
+      "path": "notion",
+      "group": "",
+      "summary": "Read and write Notion pages, databases (data sources), and blocks via the HTTP API and curl.",
+      "tags": [
+        "notion",
+        "notes",
+        "database",
+        "productivity"
+      ],
+      "version": "1.0.0",
+      "mode": "host",
+      "env": {
+        "required": [
+          "NOTION_API_KEY"
+        ],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "b9950445cb8b"
+    },
+    {
+      "name": "obsidian",
+      "path": "obsidian",
+      "group": "",
+      "summary": "Filesystem-first Obsidian vault work — read, list, search, create, append, and link notes.",
+      "tags": [
+        "obsidian",
+        "notes",
+        "markdown",
+        "note-taking"
+      ],
+      "version": "1.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": [
+          "OBSIDIAN_VAULT_PATH"
+        ]
+      },
+      "shared": null,
+      "contentHash": "c6e125ccfced"
+    },
+    {
+      "name": "pdf-extract",
+      "path": "pdf-extract",
+      "group": "",
+      "summary": "Extract text, tables, and metadata from PDFs (text-based and digital-native). Uses PyMuPDF.",
+      "tags": [
+        "pdf",
+        "extraction",
+        "documents",
+        "text"
+      ],
+      "version": "1.0.0",
+      "mode": "container",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "e57232cb1e1d"
+    },
+    {
+      "name": "polymarket",
+      "path": "polymarket",
+      "group": "",
+      "summary": "Query Polymarket prediction markets — events, prices, orderbooks, history. Read-only, no auth.",
+      "tags": [
+        "polymarket",
+        "prediction-markets",
+        "finance"
+      ],
+      "version": "1.0.0",
+      "mode": "container",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "54a8c8360f3d"
+    },
+    {
+      "name": "pricing",
+      "path": "pricing",
+      "group": "",
+      "summary": "When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packaging,' 'price increase,' 'value metric,' 'Van Westendorp,' 'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs monthly,' 'per seat pricing,' or 'should I offer a free plan.' Use this whenever someone is figuring out what to charge or how to structure their plans. For in-app upgrade screens, see paywalls.",
+      "tags": [
+        "pricing",
+        "packaging",
+        "monetization"
+      ],
+      "version": "2.0.0",
+      "mode": "host",
+      "env": {
+        "required": [],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "046e4fc9acc1"
+    },
+    {
+      "name": "spotify",
+      "path": "spotify",
+      "group": "",
+      "summary": "Control Spotify — play, search, queue, manage playlists, devices, and library — via the Web API.",
+      "tags": [
+        "spotify",
+        "music",
+        "playback",
+        "media"
+      ],
+      "version": "1.0.0",
+      "mode": "container",
+      "env": {
+        "required": [
+          "SPOTIFY_CLIENT_ID",
+          "SPOTIFY_CLIENT_SECRET",
+          "SPOTIFY_REFRESH_TOKEN"
+        ],
+        "optional": []
+      },
+      "shared": null,
+      "contentHash": "266c1dcae833"
+    }
+  ],
+  "shared": []
+}

@@ -59,6 +59,23 @@ python3 "$SKILL_DIR/scripts/foo.py" --bar baz
 
 Skills shipping scripts force container mode (the `scripts/` dir is non-empty, classified as install-bearing).
 
+## Shared library (`_shared/`)
+
+A repo may ship a top-level **`_shared/`** directory of **code and docs** reused across its skills — common CLIs (`_shared/scripts/`), integration guides (`_shared/references/`), and optionally a `_shared/post-install.sh` for shared deps. The launcher extracts it once per repo and the agent exposes it to every skill from that repo via the **`${SHARED_DIR}`** token:
+
+```sh
+# In any SKILL.md from this repo:
+node ${SHARED_DIR}/scripts/ga4.js report --property 123
+```
+
+- `${SHARED_DIR}` resolves to the repo's shared dir (`<owner>__<repo>___shared`); it's left literal if the repo ships no `_shared/`.
+- A `_shared/` containing `scripts/` (or a `_shared/post-install.sh`) forces **container mode**, so shared tooling always runs sandboxed.
+- Its content is hashed into the image cache key, so editing a shared CLI forces a rebuild even on a moving branch.
+
+**Credentials stay per-skill — `_shared/` carries no env.** A skill that calls `${SHARED_DIR}/scripts/ga4.js` declares `GA4_ACCESS_TOKEN` in **its own** `env.required`/`env.optional`. This is deliberate: a shared CLI library can need dozens of credentials, but each skill uses only a few — declaring them per skill means the launcher only requires (and the Designer only shows) the vars the *active* skills actually use, instead of every credential in the library. Across skills the names dedup, so one binding covers all skills that share a CLI.
+
+Use `_shared/` instead of vendoring the same CLI into many skills. (This repo's curated skills are self-contained today; `_shared/` exists for shared-library collections.)
+
 ## Classification
 
 - **Pure-knowledge** (no `post-install.sh`, no non-empty `scripts/`) → host mode. No Podman dependency.
@@ -72,14 +89,32 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 |---|---|---|---|
 | `airtable` | host (knowledge) | `AIRTABLE_API_KEY` | Airtable REST API: records CRUD, filters, upsert via curl |
 | `arxiv` | container (script) | — | Search / fetch academic papers from arXiv |
+| `cold-email` | host (knowledge) | — | Write B2B cold emails + follow-up sequences (knowledge) |
+| `copywriting` | host (knowledge) | — | Write/improve marketing page copy (knowledge) |
+| `cro` | host (knowledge) | — | Conversion-rate optimization for pages & forms (knowledge) |
 | `excalidraw` | container (script) | — | Generate hand-drawn diagrams; upload to excalidraw.com |
 | `github-issues` | container | `GITHUB_TOKEN` | Read, file, comment, close GitHub issues via `gh` |
 | `linear` | container (script) | `LINEAR_API_KEY` | Read/write Linear issues via GraphQL |
+| `marketing-psychology` | host (knowledge) | — | Apply behavioral science / mental models to marketing (knowledge) |
 | `notion` | host (knowledge) | `NOTION_API_KEY` | Notion pages, databases (data sources) & blocks via HTTP API + curl |
 | `obsidian` | host (knowledge) | — | Filesystem Obsidian vault: read/search/create/append/link notes |
 | `pdf-extract` | container (script) | — | Extract text + tables from PDFs (pymupdf) |
 | `polymarket` | container (script) | — | Query Polymarket prediction markets (public, no auth) |
+| `pricing` | host (knowledge) | — | Pricing, packaging & monetization strategy (knowledge) |
 | `spotify` | container (script) | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` | Play/search/queue + manage playlists, devices, library via the Web API |
+
+## Discovery index (`index.json`)
+
+The Designer discovers skills by reading one generated **`index.json`** at the repo root — name, path, group, summary, tags, version, mode, env, and the nearest `_shared` for each skill. This replaces probing every skill's `SKILL.md` over the GitHub API (which rate-limits), so discovery scales to thousands of skills. See `docs/skill-system-scale-design.md`.
+
+Regenerate it whenever you add or change a skill:
+
+```sh
+python3 build-index.py            # writes index.json
+python3 build-index.py --check    # CI: fails if index.json is stale
+```
+
+`index.json` is committed; CI (`validate.yml`) fails a PR whose index is out of date. The Designer falls back to live enumeration for repos that don't ship an index.
 
 ## Authoring checklist
 
@@ -88,4 +123,5 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 3. If the skill needs OS packages or libraries, write `post-install.sh` and mark it executable.
 4. If it ships helpers the LLM invokes, drop them in `scripts/` and document the invocation pattern in `SKILL.md`.
 5. If it needs credentials, list the mandatory ones in `env.required` and any with a fallback in `env.optional`.
-6. Open a PR.
+6. Run `python3 build-index.py` and commit the updated `index.json`.
+7. Run `bash validate.sh`, then open a PR.
