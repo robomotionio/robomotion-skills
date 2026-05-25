@@ -67,6 +67,16 @@ def env_names(path: str) -> list:
     return out
 
 
+def file_list(d: str) -> list:
+    """Sorted relative (posix) paths of every regular file under d — the
+    manifest the launcher uses to fetch a skill/_shared file-by-file."""
+    out = []
+    for root, _, files in os.walk(d):
+        for f in files:
+            out.append(os.path.relpath(os.path.join(root, f), d).replace(os.sep, "/"))
+    return sorted(out)
+
+
 def dir_content_hash(d: str) -> str:
     h = hashlib.sha256()
     for root, _, files in os.walk(d):
@@ -132,11 +142,16 @@ def build(repo_root: str) -> dict:
             },
             "shared": shared,
             "contentHash": dir_content_hash(root),
+            "files": file_list(root),
         })
 
     skills.sort(key=lambda s: s["path"])
     shared = [
-        {"path": p, "contentHash": dir_content_hash(os.path.join(repo_root, p))}
+        {
+            "path": p,
+            "contentHash": dir_content_hash(os.path.join(repo_root, p)),
+            "files": file_list(os.path.join(repo_root, p)),
+        }
         for p in sorted(shared_paths)
     ]
     return {"schemaVersion": SCHEMA_VERSION, "skills": skills, "shared": shared}

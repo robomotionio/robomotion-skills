@@ -114,7 +114,12 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 
 ## Discovery index (`index.json`)
 
-The Designer discovers skills by reading one generated **`index.json`** at the repo root — name, path, group, summary, tags, version, mode, env, and the nearest `_shared` for each skill. This replaces probing every skill's `SKILL.md` over the GitHub API (which rate-limits), so discovery scales to thousands of skills. See `docs/skill-system-scale-design.md`.
+A generated **`index.json`** at the repo root is the discovery manifest — for each skill: name, path, group, summary, tags, version, mode, env, the nearest `_shared`, a `contentHash`, and the `files` manifest. It serves two consumers, so neither has to walk the repo:
+
+- **Designer** reads it to browse/search/show env — one fetch instead of probing every `SKILL.md` over the GitHub API (which rate-limits).
+- **Launcher** reads it to fetch **only the active skills** (+ their nearest `_shared`) file-by-file from `raw.githubusercontent`, instead of downloading the whole-repo tarball.
+
+Both scale to thousands of skills; both fall back to the old behavior when a repo ships no index. See `docs/skill-system-scale-design.md`.
 
 Regenerate it whenever you add or change a skill:
 

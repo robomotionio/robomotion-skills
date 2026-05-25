@@ -79,7 +79,7 @@ Per-skill and per-`_shared` `contentHash` drives: the image cache key, bundle ca
 
 1. **Index (per-repo). ✅ DONE.** `build-index.py` emits `index.json` (CI drift-checks it via `--check`); the Designer (`stores/skills.ts`) prefers it and the Environment tab reads its `env`, falling back to enumeration when absent. → kills B1/B5, no launcher change.
 2. **Nearest-ancestor `_shared` + hierarchy. ✅ DONE.** Group-scoped shared library: a skill's `${SHARED_DIR}` resolves to the closest `_shared/` up its path (repo-root fallback). Launcher extracts each distinct group `_shared` once; loader mirrors the resolution; `build-index.py` records `group`/`shared`. → P3.
-3. **Content-addressed bundles.** CI emits per-skill bundles; launcher fetches active-only, falls back to whole-repo tarball. → kills B2.
+3. **Active-only fetch. ✅ DONE (per-file via index).** `index.json` carries a `files` manifest + `contentHash` per skill/`_shared`; the launcher (`fetchViaIndex`) downloads only the active skills + their nearest `_shared` from `raw.githubusercontent`, keyed/cached by content hash, with the whole-repo tarball as fallback. → kills B2. (CI-published content-addressed bundles remain a future optimization for very large skills.)
 4. **Progressive disclosure.** Loader tier-1/tier-2 injection. → kills B4.
 5. **Registry API.** Central catalog; Designer queries backend. → P5.
 

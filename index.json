@@ -21,7 +21,13 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "8ba584279a43"
+      "contentHash": "8ba584279a43",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.required"
+      ]
     },
     {
       "name": "arxiv",
@@ -41,7 +47,13 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "22950d80cf6a"
+      "contentHash": "22950d80cf6a",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "scripts/search_arxiv.py"
+      ]
     },
     {
       "name": "cold-email",
@@ -61,7 +73,17 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "683fd02fbcc2"
+      "contentHash": "683fd02fbcc2",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/benchmarks.md",
+        "references/follow-up-sequences.md",
+        "references/frameworks.md",
+        "references/personalization.md",
+        "references/subject-lines.md"
+      ]
     },
     {
       "name": "copywriting",
@@ -80,7 +102,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "146469b899ae"
+      "contentHash": "146469b899ae",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/copy-frameworks.md",
+        "references/natural-transitions.md"
+      ]
     },
     {
       "name": "cro",
@@ -100,7 +129,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "155f8a48281b"
+      "contentHash": "155f8a48281b",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/experiments.md",
+        "references/form.md"
+      ]
     },
     {
       "name": "excalidraw",
@@ -119,7 +155,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "97148305dab6"
+      "contentHash": "97148305dab6",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "post-install.sh",
+        "scripts/upload.py"
+      ]
     },
     {
       "name": "github-issues",
@@ -140,7 +183,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "59e9bea154c5"
+      "contentHash": "59e9bea154c5",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.required",
+        "post-install.sh"
+      ]
     },
     {
       "name": "linear",
@@ -161,7 +211,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "168025710381"
+      "contentHash": "168025710381",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.required",
+        "scripts/linear_api.py"
+      ]
     },
     {
       "name": "marketing-psychology",
@@ -180,7 +237,12 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "685822e2a418"
+      "contentHash": "685822e2a418",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md"
+      ]
     },
     {
       "name": "notion",
@@ -202,7 +264,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "b9950445cb8b"
+      "contentHash": "b9950445cb8b",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.required",
+        "references/block-types.md"
+      ]
     },
     {
       "name": "obsidian",
@@ -224,7 +293,13 @@
         ]
       },
       "shared": null,
-      "contentHash": "c6e125ccfced"
+      "contentHash": "c6e125ccfced",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.optional"
+      ]
     },
     {
       "name": "pdf-extract",
@@ -244,7 +319,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "e57232cb1e1d"
+      "contentHash": "e57232cb1e1d",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "post-install.sh",
+        "scripts/extract.py"
+      ]
     },
     {
       "name": "polymarket",
@@ -263,7 +345,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "54a8c8360f3d"
+      "contentHash": "54a8c8360f3d",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/api-endpoints.md",
+        "scripts/polymarket.py"
+      ]
     },
     {
       "name": "pricing",
@@ -282,7 +371,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "046e4fc9acc1"
+      "contentHash": "046e4fc9acc1",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "references/research-methods.md",
+        "references/tier-structure.md"
+      ]
     },
     {
       "name": "spotify",
@@ -306,7 +402,14 @@
         "optional": []
       },
       "shared": null,
-      "contentHash": "266c1dcae833"
+      "contentHash": "266c1dcae833",
+      "files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "SKILL.md",
+        "env.required",
+        "scripts/spotify_api.py"
+      ]
     }
   ],
   "shared": []
