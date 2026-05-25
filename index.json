@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "skills": [
     {
       "name": "airtable",
@@ -21,6 +21,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "8ba584279a43",
       "files": [
         "CHANGELOG.md",
@@ -47,6 +48,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "22950d80cf6a",
       "files": [
         "CHANGELOG.md",
@@ -72,6 +74,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "97148305dab6",
       "files": [
         "CHANGELOG.md",
@@ -100,6 +103,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "59e9bea154c5",
       "files": [
         "CHANGELOG.md",
@@ -128,6 +132,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "168025710381",
       "files": [
         "CHANGELOG.md",
@@ -150,6 +155,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "b8c101e50181",
       "files": [
         "SKILL.md",
@@ -171,6 +177,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "9e5a12ffcd4b",
       "files": [
         "SKILL.md",
@@ -192,6 +199,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "27ce3b4e02f5",
       "files": [
         "SKILL.md",
@@ -215,6 +223,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "178ce4ee5ecd",
       "files": [
         "SKILL.md",
@@ -237,6 +246,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "0be17d8a9a20",
       "files": [
         "SKILL.md",
@@ -259,6 +269,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "d4323f8a55e9",
       "files": [
         "SKILL.md",
@@ -283,6 +294,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "670da8d3ce39",
       "files": [
         "SKILL.md",
@@ -304,6 +316,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "deedf557f302",
       "files": [
         "SKILL.md",
@@ -323,6 +336,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "ea9dddc434b4",
       "files": [
         "SKILL.md",
@@ -347,6 +361,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "2c9f27a0f17a",
       "files": [
         "SKILL.md",
@@ -366,6 +381,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "3d3fe54e360e",
       "files": [
         "SKILL.md",
@@ -387,6 +403,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "85c4cde0952a",
       "files": [
         "SKILL.md",
@@ -408,6 +425,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "04e3c6bd33da",
       "files": [
         "SKILL.md",
@@ -428,6 +446,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "1f86edb2ed87",
       "files": [
         "SKILL.md",
@@ -450,6 +469,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "40d82c8d7069",
       "files": [
         "SKILL.md",
@@ -471,6 +491,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "a60ba2544f55",
       "files": [
         "SKILL.md",
@@ -492,6 +513,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "a2913fac60ac",
       "files": [
         "SKILL.md",
@@ -512,6 +534,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "e6b3b2baa0f2",
       "files": [
         "SKILL.md",
@@ -534,6 +557,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "9369451d34b6",
       "files": [
         "SKILL.md",
@@ -556,6 +580,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "2b11ba9f758a",
       "files": [
         "SKILL.md",
@@ -576,6 +601,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "dd204199a710",
       "files": [
         "SKILL.md",
@@ -596,6 +622,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "f7aa9a7c3ef3",
       "files": [
         "SKILL.md",
@@ -615,6 +642,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "fc9277f833a7",
       "files": [
         "SKILL.md",
@@ -636,6 +664,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "18c3f60978a2",
       "files": [
         "SKILL.md",
@@ -656,6 +685,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "b555d59c727a",
       "files": [
         "SKILL.md",
@@ -675,6 +705,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "e0c4f49aa99c",
       "files": [
         "SKILL.md",
@@ -695,6 +726,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "c2e02ff8fd53",
       "files": [
         "SKILL.md",
@@ -715,6 +747,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "bc0bea26b124",
       "files": [
         "SKILL.md",
@@ -734,6 +767,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "f1938639d8ed",
       "files": [
         "SKILL.md",
@@ -755,6 +789,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "a8ddab4333e3",
       "files": [
         "SKILL.md",
@@ -774,6 +809,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "cda32945eb69",
       "files": [
         "SKILL.md",
@@ -794,6 +830,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "83d448c7b457",
       "files": [
         "SKILL.md",
@@ -815,6 +852,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "4f280978ea87",
       "files": [
         "SKILL.md",
@@ -838,6 +876,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "c80f7f1ca55f",
       "files": [
         "SKILL.md",
@@ -861,6 +900,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "178e72caadb7",
       "files": [
         "SKILL.md",
@@ -881,6 +921,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "38b0a8a95b2e",
       "files": [
         "SKILL.md",
@@ -902,6 +943,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "e44599b5fae2",
       "files": [
         "SKILL.md",
@@ -921,6 +963,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "1407e9fcdde2",
       "files": [
         "SKILL.md",
@@ -943,6 +986,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "eb4047c7c8cb",
       "files": [
         "SKILL.md",
@@ -965,6 +1009,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "2b21c525bf35",
       "files": [
         "SKILL.md",
@@ -989,6 +1034,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": "marketing-skills",
       "contentHash": "1f85b10491c7",
       "files": [
         "SKILL.md",
@@ -1016,6 +1062,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "b9950445cb8b",
       "files": [
         "CHANGELOG.md",
@@ -1045,6 +1092,7 @@
         ]
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "c6e125ccfced",
       "files": [
         "CHANGELOG.md",
@@ -1071,6 +1119,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "e57232cb1e1d",
       "files": [
         "CHANGELOG.md",
@@ -1097,6 +1146,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "54a8c8360f3d",
       "files": [
         "CHANGELOG.md",
@@ -1128,6 +1178,7 @@
         "optional": []
       },
       "shared": null,
+      "plugin": null,
       "contentHash": "266c1dcae833",
       "files": [
         "CHANGELOG.md",
@@ -1138,5 +1189,188 @@
       ]
     }
   ],
-  "shared": []
+  "shared": [],
+  "plugins": [
+    {
+      "path": "marketing-skills",
+      "contentHash": "b18fb05f1b50",
+      "files": [
+        ".claude-plugin/marketplace.json",
+        ".claude-plugin/plugin.json",
+        ".github/FUNDING.yml",
+        ".github/ISSUE_TEMPLATE/config.yml",
+        ".github/ISSUE_TEMPLATE/skill-request.yml",
+        ".github/PULL_REQUEST_TEMPLATE/documentation.md",
+        ".github/PULL_REQUEST_TEMPLATE/new-skill.md",
+        ".github/PULL_REQUEST_TEMPLATE/skill-update.md",
+        ".github/scripts/sync-skills.js",
+        ".github/workflows/sync-skills.yml",
+        ".github/workflows/validate-skill.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md",
+        "VERSIONS.md",
+        "tools/REGISTRY.md",
+        "tools/clis/README.md",
+        "tools/clis/activecampaign.js",
+        "tools/clis/adobe-analytics.js",
+        "tools/clis/ahrefs.js",
+        "tools/clis/airops.js",
+        "tools/clis/amplitude.js",
+        "tools/clis/apollo.js",
+        "tools/clis/beehiiv.js",
+        "tools/clis/brevo.js",
+        "tools/clis/buffer.js",
+        "tools/clis/calendly.js",
+        "tools/clis/clay.js",
+        "tools/clis/clearbit.js",
+        "tools/clis/close.js",
+        "tools/clis/coupler.js",
+        "tools/clis/crossbeam.js",
+        "tools/clis/customer-io.js",
+        "tools/clis/dataforseo.js",
+        "tools/clis/demio.js",
+        "tools/clis/dub.js",
+        "tools/clis/exa.js",
+        "tools/clis/g2.js",
+        "tools/clis/ga4.js",
+        "tools/clis/google-ads.js",
+        "tools/clis/google-search-console.js",
+        "tools/clis/hotjar.js",
+        "tools/clis/hunter.js",
+        "tools/clis/instantly.js",
+        "tools/clis/intercom.js",
+        "tools/clis/keywords-everywhere.js",
+        "tools/clis/kit.js",
+        "tools/clis/klaviyo.js",
+        "tools/clis/lemlist.js",
+        "tools/clis/linkedin-ads.js",
+        "tools/clis/livestorm.js",
+        "tools/clis/mailchimp.js",
+        "tools/clis/mention-me.js",
+        "tools/clis/meta-ads.js",
+        "tools/clis/mixpanel.js",
+        "tools/clis/onesignal.js",
+        "tools/clis/optimizely.js",
+        "tools/clis/outreach.js",
+        "tools/clis/paddle.js",
+        "tools/clis/partnerstack.js",
+        "tools/clis/pendo.js",
+        "tools/clis/plausible.js",
+        "tools/clis/postmark.js",
+        "tools/clis/rankparse.js",
+        "tools/clis/resend.js",
+        "tools/clis/rewardful.js",
+        "tools/clis/savvycal.js",
+        "tools/clis/segment.js",
+        "tools/clis/semrush.js",
+        "tools/clis/sendgrid.js",
+        "tools/clis/similarweb.js",
+        "tools/clis/snov.js",
+        "tools/clis/supermetrics.js",
+        "tools/clis/tiktok-ads.js",
+        "tools/clis/tolt.js",
+        "tools/clis/trustpilot.js",
+        "tools/clis/typeform.js",
+        "tools/clis/wistia.js",
+        "tools/clis/zapier.js",
+        "tools/clis/zoominfo.js",
+        "tools/composio/README.md",
+        "tools/composio/marketing-tools.md",
+        "tools/integrations/activecampaign.md",
+        "tools/integrations/adobe-analytics.md",
+        "tools/integrations/ahrefs.md",
+        "tools/integrations/airops.md",
+        "tools/integrations/amplitude.md",
+        "tools/integrations/apollo.md",
+        "tools/integrations/attentive.md",
+        "tools/integrations/audiencetap.md",
+        "tools/integrations/beehiiv.md",
+        "tools/integrations/brevo.md",
+        "tools/integrations/buffer.md",
+        "tools/integrations/calendly.md",
+        "tools/integrations/clay.md",
+        "tools/integrations/clearbit.md",
+        "tools/integrations/close.md",
+        "tools/integrations/cogny.md",
+        "tools/integrations/composio.md",
+        "tools/integrations/contentful.md",
+        "tools/integrations/coupler.md",
+        "tools/integrations/crossbeam.md",
+        "tools/integrations/customer-io.md",
+        "tools/integrations/dataforseo.md",
+        "tools/integrations/demio.md",
+        "tools/integrations/dub-co.md",
+        "tools/integrations/exa.md",
+        "tools/integrations/firehose.md",
+        "tools/integrations/g2.md",
+        "tools/integrations/ga4.md",
+        "tools/integrations/gong.md",
+        "tools/integrations/google-ads.md",
+        "tools/integrations/google-search-console.md",
+        "tools/integrations/heygen.md",
+        "tools/integrations/hotjar.md",
+        "tools/integrations/hubspot.md",
+        "tools/integrations/hunter.md",
+        "tools/integrations/hyperframes.md",
+        "tools/integrations/instantly.md",
+        "tools/integrations/intercom.md",
+        "tools/integrations/introw.md",
+        "tools/integrations/keywords-everywhere.md",
+        "tools/integrations/kit.md",
+        "tools/integrations/klaviyo.md",
+        "tools/integrations/lemlist.md",
+        "tools/integrations/linkedin-ads.md",
+        "tools/integrations/livestorm.md",
+        "tools/integrations/mailchimp.md",
+        "tools/integrations/mention-me.md",
+        "tools/integrations/meta-ads.md",
+        "tools/integrations/mixpanel.md",
+        "tools/integrations/nitrosend.md",
+        "tools/integrations/onesignal.md",
+        "tools/integrations/optimizely.md",
+        "tools/integrations/outreach.md",
+        "tools/integrations/paddle.md",
+        "tools/integrations/partnerstack.md",
+        "tools/integrations/pendo.md",
+        "tools/integrations/plausible.md",
+        "tools/integrations/plivo.md",
+        "tools/integrations/posthog.md",
+        "tools/integrations/postmark.md",
+        "tools/integrations/postscript.md",
+        "tools/integrations/rankparse.md",
+        "tools/integrations/rb2b.md",
+        "tools/integrations/resend.md",
+        "tools/integrations/rewardful.md",
+        "tools/integrations/salesforce.md",
+        "tools/integrations/sanity.md",
+        "tools/integrations/savvycal.md",
+        "tools/integrations/segment.md",
+        "tools/integrations/semrush.md",
+        "tools/integrations/sendgrid.md",
+        "tools/integrations/shopify.md",
+        "tools/integrations/similarweb.md",
+        "tools/integrations/snov.md",
+        "tools/integrations/sparktoro.md",
+        "tools/integrations/strapi.md",
+        "tools/integrations/stripe.md",
+        "tools/integrations/supermetrics.md",
+        "tools/integrations/tiktok-ads.md",
+        "tools/integrations/tolt.md",
+        "tools/integrations/trustpilot.md",
+        "tools/integrations/twilio.md",
+        "tools/integrations/typeform.md",
+        "tools/integrations/webflow.md",
+        "tools/integrations/wistia.md",
+        "tools/integrations/wordpress.md",
+        "tools/integrations/zapier.md",
+        "tools/integrations/zoominfo.md",
+        "validate-skills-official.sh",
+        "validate-skills.sh"
+      ]
+    }
+  ]
 }

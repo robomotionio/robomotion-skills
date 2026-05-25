@@ -22,8 +22,9 @@ import os
 import re
 import sys
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 SHARED_DIR = "_shared"
+PLUGIN_MANIFEST = ".claude-plugin/plugin.json"  # Claude-Code/agentskills plugin marker
 SKIP_DIRS = {".git", ".github", "node_modules", "docs"}
 
 
@@ -120,6 +121,35 @@ def nearest_shared(repo_root: str, skill_rel: str) -> str | None:
         d = os.path.dirname(d)
 
 
+def nearest_plugin(repo_root: str, skill_rel: str) -> str | None:
+    """Walk up from the skill's parent dir; return the relative path of the
+    nearest dir that is a Claude-Code/agentskills plugin — i.e. holds
+    `.claude-plugin/plugin.json`. Generic marker; no repo/skill names. This is
+    how a verbatim-vendored collection (e.g. marketingskills) is detected so the
+    launcher can stage it structure-preserving and resolve ${CLAUDE_PLUGIN_ROOT}."""
+    d = os.path.dirname(skill_rel)
+    while True:
+        cand = os.path.join(repo_root, d, PLUGIN_MANIFEST) if d else os.path.join(repo_root, PLUGIN_MANIFEST)
+        if os.path.isfile(cand):
+            return d.replace(os.sep, "/") if d else "."
+        if not d:
+            return None
+        d = os.path.dirname(d)
+
+
+def files_content_hash(base: str, files: list) -> str:
+    """Hash a specific (relative) file list under base — for a plugin's shared
+    (non-skill) assets, whose set is a subset of the dir."""
+    h = hashlib.sha256()
+    for rel in sorted(files):
+        h.update(rel.encode())
+        h.update(b"\0")
+        with open(os.path.join(base, rel.replace("/", os.sep)), "rb") as fh:
+            h.update(fh.read())
+        h.update(b"\0")
+    return h.hexdigest()[:12]
+
+
 def classify(skill_dir: str) -> str:
     scripts = os.path.join(skill_dir, "scripts")
     has_scripts = os.path.isdir(scripts) and any(os.scandir(scripts))
@@ -129,7 +159,7 @@ def classify(skill_dir: str) -> str:
 
 
 def build(repo_root: str) -> dict:
-    skills, shared_paths = [], set()
+    skills, shared_paths, plugin_paths = [], set(), set()
     for root, dirs, files in os.walk(repo_root):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".")]
         if "SKILL.md" not in files:
@@ -144,6 +174,9 @@ def build(repo_root: str) -> dict:
         shared = nearest_shared(repo_root, rel)
         if shared:
             shared_paths.add(shared)
+        plugin = nearest_plugin(repo_root, rel)
+        if plugin:
+            plugin_paths.add(plugin)
         skills.append({
             "name": name,
             "path": rel,
@@ -157,6 +190,7 @@ def build(repo_root: str) -> dict:
                 "optional": env_names(os.path.join(root, "env.optional")),
             },
             "shared": shared,
+            "plugin": plugin,
             "contentHash": dir_content_hash(root),
             "files": file_list(root),
         })
@@ -170,7 +204,30 @@ def build(repo_root: str) -> dict:
         }
         for p in sorted(shared_paths)
     ]
-    return {"schemaVersion": SCHEMA_VERSION, "skills": skills, "shared": shared}
+    # plugins[]: a vendored collection's SHARED (non-skill) assets — tools/, bin/,
+    # .claude-plugin/, root docs — i.e. everything under the plugin root EXCEPT its
+    # own skills (which are fetched per-active). The launcher stages these once and
+    # nests the active skills inside, so ${CLAUDE_PLUGIN_ROOT} + the skills' own
+    # repo-relative refs (../../tools/…) resolve verbatim.
+    plugins = []
+    for p in sorted(plugin_paths):
+        proot = repo_root if p == "." else os.path.join(repo_root, p)
+        all_files = file_list(proot)
+        skill_rels = [
+            ("" if p == "." else os.path.relpath(s["path"], p).replace(os.sep, "/"))
+            or s["path"]
+            for s in skills if s["plugin"] == p
+        ]
+        shared_files = [
+            f for f in all_files
+            if not any(f == sr or f.startswith(sr + "/") for sr in skill_rels)
+        ]
+        plugins.append({
+            "path": p,
+            "contentHash": files_content_hash(proot, shared_files),
+            "files": shared_files,
+        })
+    return {"schemaVersion": SCHEMA_VERSION, "skills": skills, "shared": shared, "plugins": plugins}
 
 
 def main() -> int:
