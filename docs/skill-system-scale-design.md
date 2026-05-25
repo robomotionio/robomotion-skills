@@ -14,7 +14,7 @@
 | **B1** | **Browser-side GitHub enumeration** — 1 Contents API call per repo + 1 raw `SKILL.md` fetch per skill (N+1) | Designer `stores/skills.ts: fetchSkills` | Unauthenticated GitHub API = **60 req/h**; thousands of skills = thousands of fetches → instant rate-limit, slow, fragile |
 | **B2** | **Whole-repo tarball per agent run** | Launcher `skills.go: ensureArchive` (GitHub `/tarball/<ref>`) | A monorepo of thousands of skills is a huge download for every run; you fetch everything to use one skill |
 | **B3** | **Flat repo-root layout** | repo convention; Designer enumerates top-level + one `skills/` level | Thousands of folders in one namespace is unbrowsable and collision-prone |
-| **B4** | **All active skills' full `SKILL.md` injected** | Loader `skill_loader.py: load_active_skills` | Many active skills → system-prompt bloat (no progressive disclosure) |
+| **B4** | Active skills' full `SKILL.md` injected | Loader `skill_loader.py: load_active_skills` | **Not a catalog-scale problem.** Only the builder-selected active set is injected (curated, small); the prompt never sees the whole catalog. Would only matter for one agent with dozens of active skills — which we don't foresee. |
 | **B5** | **Client-side browse/search** | Designer marketplace | Searching/paginating thousands client-side is unworkable |
 
 B1 and B2 are the hard blockers — they make "thousands of skills" non-functional today, not just slow.
@@ -58,8 +58,17 @@ CI packages **each skill** (and each `_shared`) into a content-addressed tarball
 ### P3 — Hierarchy + namespacing (fixes B3)
 Skills live under `skills/<group…>/<skill>` (arbitrary depth). The index carries `path` + `group`; the Designer offers category facets. **`_shared` is resolved nearest-ancestor** within the hierarchy (group-scoped shared library — `marketing-skills/_shared` serves `marketing-skills/*`, repo-root `_shared` is the fallback). Names are display labels; `path` is the unique key.
 
-### P4 — Progressive disclosure in the prompt (fixes B4)
-Inject only **`name` + `description`** for active skills (tier 1); the model pulls a skill's full `SKILL.md` on demand via a `skill_view`-style call (tier 2); `references/` on further demand (tier 3). Prompt size stays bounded no matter how many skills are active. (Upstream Hermes has this; Robomotion currently injects full bodies — restore it.)
+### P4 — Progressive disclosure — NOT PLANNED
+Robomotion uses **explicit, curated activation**: the builder toggles an agent's
+skills in the Designer (`optActiveSkills`) and `skill_loader.py` injects exactly
+those skills' full `SKILL.md`. The prompt only ever carries that small active set
+— it never sees the whole catalog — so prompt size is already bounded.
+
+Upstream Hermes instead lets the model auto-discover from a large *local* catalog
+via a `name`+`description` index plus an on-demand `skill_view` tool (tier 1/2/3).
+That's a different activation model, not something Robomotion "lost" — and it only
+pays off for an agent with a very large active set, which we don't foresee. **We
+are not building progressive disclosure.**
 
 ### P5 — A central registry API (scales B1/B5 beyond per-repo)
 A Robomotion-hosted catalog (`/v1/skills.search?q=&category=&tags=&page=`) aggregates repo indexes server-side. The Designer queries the backend, not GitHub — search, ranking, pagination, private repos, millions of skills. Repos stay the source of truth; CI publishes their index to the registry.
@@ -80,8 +89,9 @@ Per-skill and per-`_shared` `contentHash` drives: the image cache key, bundle ca
 1. **Index (per-repo). ✅ DONE.** `build-index.py` emits `index.json` (CI drift-checks it via `--check`); the Designer (`stores/skills.ts`) prefers it and the Environment tab reads its `env`, falling back to enumeration when absent. → kills B1/B5, no launcher change.
 2. **Nearest-ancestor `_shared` + hierarchy. ✅ DONE.** Group-scoped shared library: a skill's `${SHARED_DIR}` resolves to the closest `_shared/` up its path (repo-root fallback). Launcher extracts each distinct group `_shared` once; loader mirrors the resolution; `build-index.py` records `group`/`shared`. → P3.
 3. **Active-only fetch. ✅ DONE (per-file via index).** `index.json` carries a `files` manifest + `contentHash` per skill/`_shared`; the launcher (`fetchViaIndex`) downloads only the active skills + their nearest `_shared` from `raw.githubusercontent`, keyed/cached by content hash, with the whole-repo tarball as fallback. → kills B2. (CI-published content-addressed bundles remain a future optimization for very large skills.)
-4. **Progressive disclosure.** Loader tier-1/tier-2 injection. → kills B4.
-5. **Registry API.** Central catalog; Designer queries backend. → P5.
+4. **Progressive disclosure — NOT PLANNED.** Curated activation already bounds
+   the prompt (see P4); not worth the complexity for our model.
+5. **Registry API.** Central catalog; Designer queries backend. → P5 (future).
 
 Each phase is independently shippable and reversible; nothing forces a big-bang rewrite.
 
@@ -90,4 +100,5 @@ Each phase is independently shippable and reversible; nothing forces a big-bang 
 - **D1 — Registry vs. per-repo index first?** Per-repo `index.json` is the fast, low-risk first step; the central registry is the end state. Start with the index?
 - **D2 — One monorepo vs. many repos** for first-party skills. Index + bundles make a monorepo viable (fetch active-only); many repos shard discovery. Recommendation: monorepo + index + bundles.
 - **D3 — Who builds the index/bundles?** CI in each skill repo (recommended) vs. the registry ingesting raw repos.
-- **D4 — Progressive disclosure** depends on the agent exposing a `skill_view` tool — confirm we restore that upstream capability.
+- **D4 — Progressive disclosure: decided NO.** Curated per-agent activation keeps
+  the prompt bounded; we won't build the `skill_view` tier model.
