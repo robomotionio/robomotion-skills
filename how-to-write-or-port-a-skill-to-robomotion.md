@@ -84,24 +84,25 @@ credentials (e.g. client id/secret + a refresh token generated once, out-of-band
 What happens between "user toggles a skill on the agent" and "the model can use it":
 
 ```
-Designer (Agent Editor)                 Launcher (per agent run)              Agent process
-─────────────────────────              ──────────────────────────           ──────────────
-node config:                            1. collectActiveSkills(nodeConfig)
-  optSkills      [{name,repoUrl,           → which skills, which repo/path
-                  path,version}]         2. fetchAndExtract(...)             skill_loader.py:
-  optActiveSkills ["linear", ...]          → download repo tarball,           reads each active
-  optEnvironmentBindings                    extract each skill to             SKILL.md from the
-  optToolsEnvRequired                       HERMES_HOME/skills/                extracted path,
-                                            <owner>__<repo>__<name>/          substitutes
-Environment tab fetches each            3. needsSandbox(skills)?              ${SKILL_DIR}/
-  skill's env.required + env.optional       host mode  → run agent on host   ${SESSION_ID},
-  from raw.githubusercontent and            container mode → build image:     injects body under
-  renders Vault pickers.                       FROM base; COPY skills;        "## Active Skills"
-                                               RUN post-install.sh (cached)   into the system
-                                          4. validate required env bound      prompt.
-                                          5. inject --env (required∪optional)
-                                             via the credential proxy
-                                          6. emit LaunchPlan
+1. Designer (Agent Editor)
+   - reads the repo's index.json (ONE fetch) → browse / search / env display
+   - writes node config: optSkills [{name, repoUrl, path, version}],
+     optActiveSkills ["linear", …], optEnvironmentBindings, optToolsEnvRequired
+
+2. Launcher (per agent run)
+   - collectActiveSkills(nodeConfig) → which skills, which repo/path
+   - fetchAndExtract: index-driven — download ONLY the active skills + their
+     nearest _shared, file-by-file from raw.githubusercontent, into
+     HERMES_HOME/skills/<owner>__<repo>__<name>/   (whole-repo tarball = fallback)
+   - needsSandbox? → host mode, OR container mode (build image:
+     FROM base; COPY skills; RUN post-install.sh — layer-cached)
+   - validate required env bound; inject --env (required ∪ optional) via the
+     credential proxy; emit LaunchPlan
+
+3. Agent process (skill_loader.py)
+   - reads each ACTIVE skill's SKILL.md from its staged path
+   - substitutes ${SKILL_DIR} / ${SESSION_ID} / ${SHARED_DIR}
+   - injects each body under "## Active Skills" in the system prompt
 ```
 
 Key facts that shape how you author:
@@ -113,11 +114,16 @@ Key facts that shape how you author:
   text reaches the model — so `python3 ${SKILL_DIR}/scripts/foo.py` just works.
   `${SESSION_ID}` is likewise substituted with the current turn's session id.
   (Both `HERMES_SKILL_DIR` / `HERMES_SESSION_ID` long forms also work.)
-- **`${SHARED_DIR}`** resolves to a repo-level shared library (`_shared/`),
-  extracted once per repo and reusable across its skills — see §8 *Shared library*.
-- **Discovery is index-driven.** The Designer reads one generated `index.json`
-  (built by `build-index.py`) rather than probing each `SKILL.md` — so add/change
-  a skill ⇒ regenerate + commit `index.json`. See `docs/skill-system-scale-design.md`.
+- **`${SHARED_DIR}`** resolves to the **nearest `_shared/` walking up a skill's
+  path** (group-scoped, repo-root as fallback) — see §8 *Shared library*.
+- **Discovery + fetch are index-driven.** `index.json` (built by `build-index.py`)
+  is the single manifest: the Designer reads it to browse/show env (one fetch, no
+  per-`SKILL.md` probing), and the launcher reads it to fetch **only the active
+  skills** (+ nearest `_shared`) instead of the whole repo. So add/change a skill
+  ⇒ regenerate + commit `index.json`. See `docs/skill-system-scale-design.md`.
+- **Only the active set reaches the prompt.** The builder curates an agent's skills
+  in the Designer; the loader injects just those — never the whole catalog — so the
+  system prompt stays bounded regardless of how many skills exist in the repo.
 - **The model reads `SKILL.md` as prose.** It then either runs `curl`/your script
   via the `terminal` tool, or calls a built-in toolset. Write for that audience.
 - **`version:` busts the image cache.** The container image hash includes each
