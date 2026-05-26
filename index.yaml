@@ -1,5 +1,465 @@
 schema_version: 1
 groups:
+- path: engineering-skills
+  name: engineering-skills
+  title: Engineering Skills
+  type: group
+  version: 1.0.0
+  author: Addy Osmani
+  source_url: https://github.com/addyosmani/agent-skills
+  license: MIT
+  summary: 23 production-grade engineering skills covering the full SDLC — define, plan, build, verify, review, ship. Vendored
+    verbatim from upstream.
+  tags:
+  - engineering
+  - software
+  - sdlc
+  - testing
+  - security
+  - performance
+  - devops
+  - code-review
+  - frontend
+  - api
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: b102e222657a
+  skills:
+  - name: api-and-interface-design
+    path: engineering-skills/skills/api-and-interface-design
+    title: api-and-interface-design
+    summary: Guides stable API and interface design. Use when designing APIs, module boundaries, or any public interface.
+      Use when creating REST or GraphQL endpoints, defining type contracts between modules, or establishing boundaries between
+      frontend and backend.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0f762ddae2eb
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/api-and-interface-design
+    license: MIT
+    group: engineering-skills
+  - name: browser-testing-with-devtools
+    path: engineering-skills/skills/browser-testing-with-devtools
+    title: browser-testing-with-devtools
+    summary: Tests in real browsers via Chrome DevTools MCP. Use when building or debugging anything that runs in a browser.
+      Use when you need to inspect the DOM, capture console errors, analyze network requests, profile performance, or verify
+      visual output with real runtime data. Requires the chrome-devtools MCP server to be configured.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 61e236fba5b1
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/browser-testing-with-devtools
+    license: MIT
+    group: engineering-skills
+  - name: ci-cd-and-automation
+    path: engineering-skills/skills/ci-cd-and-automation
+    title: ci-cd-and-automation
+    summary: Automates CI/CD pipeline setup. Use when setting up or modifying build and deployment pipelines. Use when you
+      need to automate quality gates, configure test runners in CI, or establish deployment strategies.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 706d42c02e05
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/ci-cd-and-automation
+    license: MIT
+    group: engineering-skills
+  - name: code-review-and-quality
+    path: engineering-skills/skills/code-review-and-quality
+    title: code-review-and-quality
+    summary: Conducts multi-axis code review. Use before merging any change. Use when reviewing code written by yourself,
+      another agent, or a human. Use when you need to assess code quality across multiple dimensions before it enters the
+      main branch.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9b086a4c540e
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/code-review-and-quality
+    license: MIT
+    group: engineering-skills
+  - name: code-simplification
+    path: engineering-skills/skills/code-simplification
+    title: code-simplification
+    summary: Simplifies code for clarity. Use when refactoring code for clarity without changing behavior. Use when code works
+      but is harder to read, maintain, or extend than it should be. Use when reviewing code that has accumulated unnecessary
+      complexity.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a6d4aba8358a
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/code-simplification
+    license: MIT
+    group: engineering-skills
+  - name: context-engineering
+    path: engineering-skills/skills/context-engineering
+    title: context-engineering
+    summary: Optimizes agent context setup. Use when starting a new session, when agent output quality degrades, when switching
+      between tasks, or when you need to configure rules files and context for a project.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: cef1aaff5829
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/context-engineering
+    license: MIT
+    group: engineering-skills
+  - name: debugging-and-error-recovery
+    path: engineering-skills/skills/debugging-and-error-recovery
+    title: debugging-and-error-recovery
+    summary: Guides systematic root-cause debugging. Use when tests fail, builds break, behavior doesn't match expectations,
+      or you encounter any unexpected error. Use when you need a systematic approach to finding and fixing the root cause
+      rather than guessing.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 03cadb08513e
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/debugging-and-error-recovery
+    license: MIT
+    group: engineering-skills
+  - name: deprecation-and-migration
+    path: engineering-skills/skills/deprecation-and-migration
+    title: deprecation-and-migration
+    summary: Manages deprecation and migration. Use when removing old systems, APIs, or features. Use when migrating users
+      from one implementation to another. Use when deciding whether to maintain or sunset existing code.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e7c66efa744c
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/deprecation-and-migration
+    license: MIT
+    group: engineering-skills
+  - name: documentation-and-adrs
+    path: engineering-skills/skills/documentation-and-adrs
+    title: documentation-and-adrs
+    summary: Records decisions and documentation. Use when making architectural decisions, changing public APIs, shipping
+      features, or when you need to record context that future engineers and agents will need to understand the codebase.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c0075d076299
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/documentation-and-adrs
+    license: MIT
+    group: engineering-skills
+  - name: doubt-driven-development
+    path: engineering-skills/skills/doubt-driven-development
+    title: doubt-driven-development
+    summary: Subjects every non-trivial decision to a fresh-context adversarial review before it stands. Use when correctness
+      matters more than speed, when working in unfamiliar code, when stakes are high (production, security-sensitive logic,
+      irreversible operations), or any time a confident output would be cheaper to verify now than to debug later.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 09368d9d07fa
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/doubt-driven-development
+    license: MIT
+    group: engineering-skills
+  - name: frontend-ui-engineering
+    path: engineering-skills/skills/frontend-ui-engineering
+    title: frontend-ui-engineering
+    summary: Builds production-quality UIs. Use when building or modifying user-facing interfaces. Use when creating components,
+      implementing layouts, managing state, or when the output needs to look and feel production-quality rather than AI-generated.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 58542bff1be0
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/frontend-ui-engineering
+    license: MIT
+    group: engineering-skills
+  - name: git-workflow-and-versioning
+    path: engineering-skills/skills/git-workflow-and-versioning
+    title: git-workflow-and-versioning
+    summary: Structures git workflow practices. Use when making any code change. Use when committing, branching, resolving
+      conflicts, or when you need to organize work across multiple parallel streams.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fe0c66e7f818
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/git-workflow-and-versioning
+    license: MIT
+    group: engineering-skills
+  - name: idea-refine
+    path: engineering-skills/skills/idea-refine
+    title: idea-refine
+    summary: Refines raw ideas into sharp, actionable concepts through structured divergent and convergent thinking. Use when
+      an idea is still vague, when you need to stress-test assumptions before committing to a plan, or when you want to expand
+      options before converging on one. Triggers on "ideate", "refine this idea", or "stress-test my plan".
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 95d25093532c
+    files:
+    - SKILL.md
+    - examples.md
+    - frameworks.md
+    - refinement-criteria.md
+    - scripts/idea-refine.sh
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/idea-refine
+    license: MIT
+    group: engineering-skills
+  - name: incremental-implementation
+    path: engineering-skills/skills/incremental-implementation
+    title: incremental-implementation
+    summary: Delivers changes incrementally. Use when implementing any feature or change that touches more than one file.
+      Use when you're about to write a large amount of code at once, or when a task feels too big to land in one step.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3a55804e2a3e
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/incremental-implementation
+    license: MIT
+    group: engineering-skills
+  - name: interview-me
+    path: engineering-skills/skills/interview-me
+    title: interview-me
+    summary: Extracts what the user actually wants instead of what they think they should want. Achieves this through one-question-at-a-time
+      interview until ~95% confidence about the underlying intent. Use when an ask is underspecified ("build me X" without
+      "for whom" or "why now"), when the user explicitly invokes ("interview me", "grill me", "are we sure?", "stress-test
+      my thinking"), or when you catch yourself silently filling in ambiguous requirements before any plan, spec, or code
+      exists.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f271a5931d37
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/interview-me
+    license: MIT
+    group: engineering-skills
+  - name: performance-optimization
+    path: engineering-skills/skills/performance-optimization
+    title: performance-optimization
+    summary: Optimizes application performance. Use when performance requirements exist, when you suspect performance regressions,
+      or when Core Web Vitals or load times need improvement. Use when profiling reveals bottlenecks that need fixing.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a0ed8ae6affa
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/performance-optimization
+    license: MIT
+    group: engineering-skills
+  - name: planning-and-task-breakdown
+    path: engineering-skills/skills/planning-and-task-breakdown
+    title: planning-and-task-breakdown
+    summary: Breaks work into ordered tasks. Use when you have a spec or clear requirements and need to break work into implementable
+      tasks. Use when a task feels too large to start, when you need to estimate scope, or when parallel work is possible.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 44758184c486
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/planning-and-task-breakdown
+    license: MIT
+    group: engineering-skills
+  - name: security-and-hardening
+    path: engineering-skills/skills/security-and-hardening
+    title: security-and-hardening
+    summary: Hardens code against vulnerabilities. Use when handling user input, authentication, data storage, or external
+      integrations. Use when building any feature that accepts untrusted data, manages user sessions, or interacts with third-party
+      services.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2877b26f4495
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/security-and-hardening
+    license: MIT
+    group: engineering-skills
+  - name: shipping-and-launch
+    path: engineering-skills/skills/shipping-and-launch
+    title: shipping-and-launch
+    summary: Prepares production launches. Use when preparing to deploy to production. Use when you need a pre-launch checklist,
+      when setting up monitoring, when planning a staged rollout, or when you need a rollback strategy.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 982ef292ae1a
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/shipping-and-launch
+    license: MIT
+    group: engineering-skills
+  - name: source-driven-development
+    path: engineering-skills/skills/source-driven-development
+    title: source-driven-development
+    summary: Grounds every implementation decision in official documentation. Use when you want authoritative, source-cited
+      code free from outdated patterns. Use when building with any framework or library where correctness matters.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4b9caeb329c2
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/source-driven-development
+    license: MIT
+    group: engineering-skills
+  - name: spec-driven-development
+    path: engineering-skills/skills/spec-driven-development
+    title: spec-driven-development
+    summary: Creates specs before coding. Use when starting a new project, feature, or significant change and no specification
+      exists yet. Use when requirements are unclear, ambiguous, or only exist as a vague idea.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 251328f1ccf0
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/spec-driven-development
+    license: MIT
+    group: engineering-skills
+  - name: test-driven-development
+    path: engineering-skills/skills/test-driven-development
+    title: test-driven-development
+    summary: Drives development with tests. Use when implementing any logic, fixing any bug, or changing any behavior. Use
+      when you need to prove that code works, when a bug report arrives, or when you're about to modify existing functionality.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6c8e03bc2f63
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/test-driven-development
+    license: MIT
+    group: engineering-skills
+  - name: using-agent-skills
+    path: engineering-skills/skills/using-agent-skills
+    title: using-agent-skills
+    summary: Discovers and invokes agent skills. Use when starting a session or when you need to discover which skill applies
+      to the current task. This is the meta-skill that governs how all other skills are discovered and invoked.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7576ce048c30
+    files:
+    - SKILL.md
+    author: Addy Osmani
+    source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/using-agent-skills
+    license: MIT
+    group: engineering-skills
+  files:
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
 - path: marketing-skills
   name: marketing-skills
   title: Marketing Skills
