@@ -4,7 +4,7 @@ groups:
   name: marketing-skills
   title: Marketing Skills
   type: group
-  version: 1.9.0
+  version: 2.1.0
   author: Corey Haines
   source_url: https://github.com/coreyhaines31/marketingskills
   license: MIT
@@ -22,7 +22,7 @@ groups:
   has_env_yaml: true
   has_changelog: true
   has_license: true
-  content_hash: 017d9a2367a0
+  content_hash: 02903aea406a
   skills:
   - name: ab-testing
     path: marketing-skills/skills/ab-testing
@@ -34,7 +34,7 @@ groups:
       "ICE score," "experimentation program," or "experiment playbook." Use this whenever someone is comparing two approaches
       and wants to measure which performs better, or when they want to build a systematic experimentation practice. For tracking
       implementation, see analytics. For page-level conversion optimization, see cro.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -59,7 +59,7 @@ groups:
       'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' or 'I need more ad variations.'
       Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting,
       see ads. For landing page copy, see copywriting.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -83,7 +83,7 @@ groups:
       'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad
       spend,' or 'should I run ads.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk
       ad creative generation and iteration, see ad-creative. For landing page optimization, see cro.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -110,7 +110,7 @@ groups:
       'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' or 'optimize for Claude/Gemini.' Use this whenever
       someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical
       and on-page SEO audits, see seo-audit. For structured data implementation, see schema.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -135,7 +135,7 @@ groups:
       "GTM," "analytics implementation," "tracking plan," "how do I measure this," "track conversions," "attribution," "Mixpanel,"
       "Segment," "are my events firing," or "analytics isn't working." Use this whenever someone asks how to know if something
       is working or wants to measure marketing results. For A/B test measurement, see ab-testing.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -159,7 +159,7 @@ groups:
       'ASO audit,' 'app store optimization,' 'optimize my app listing,' 'improve app visibility,' 'app store ranking,' 'audit
       my listing,' 'why aren't people downloading my app,' 'improve my app conversion,' 'keyword optimization for app,' or
       'compare my app to competitors.' Use when the user shares an App Store or Google Play URL and wants to improve it.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -187,7 +187,7 @@ groups:
       'people keep canceling,' 'churn rate is too high,' 'how do I keep users,' or 'customers are leaving.' Use this whenever
       someone is losing subscribers or wants to build systems to prevent it. For post-cancel win-back email sequences, see
       emails. For in-app upgrade paywalls, see paywalls.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -210,7 +210,7 @@ groups:
       Use when the user says 'co-marketing,' 'partner marketing,' 'joint campaign,' 'who should we partner with,' 'integration
       marketing,' 'cross-promotion,' 'collaborate with another company,' 'partnership ideas,' or 'co-brand.' For customer
       referral programs, see referrals. For launch-specific partnerships, see launch.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -233,7 +233,7 @@ groups:
       email sequence," "nobody's replying to my emails," or "how do I write a cold email." Covers subject lines, opening lines,
       body copy, CTAs, personalization, and multi-touch follow-up sequences. For warm/lifecycle email sequences, see emails.
       For sales collateral beyond emails, see sales-enablement.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -261,7 +261,7 @@ groups:
       phrases: \"build a community,\" \"community strategy,\" \"Discord community,\" \"Slack community,\" \"community-led
       growth,\" \"brand advocates,\" \"user community,\" \"forum strategy,\" \"community engagement,\" \"grow our community,\"
       \"ambassador program,\" \"community flywheel.\"'
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -284,7 +284,7 @@ groups:
       'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor
       profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific
       battle cards, see sales-enablement.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -309,7 +309,7 @@ groups:
       or ''competitor teardown.'' Use this for any content that positions your product against competitors. Covers four formats:
       singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For sales-specific competitor
       docs, see sales-enablement.'
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -334,7 +334,7 @@ groups:
       create," "blog topics," "content pillars," or "I don't know what to write." Use this whenever someone needs help deciding
       what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits,
       see seo-audit. For social media content specifically, see social.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -357,7 +357,7 @@ groups:
       'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,'
       'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit.' Use this when the user already
       has copy and wants it improved or refreshed rather than rewritten from scratch. For writing new copy, see copywriting.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -383,7 +383,7 @@ groups:
       "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product."
       Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails.
       For popup copy, see popups. For editing existing copy, see copy-editing.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -408,7 +408,7 @@ groups:
       'my landing page sucks,' 'form abandonment,' 'nobody's converting,' 'low conversion rate,' or 'this page needs work.'
       Use this even if the user just shares a URL and asks for feedback. For signup/registration flows, see signup. For post-signup
       activation, see onboarding. For popups/modals, see popups.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -434,7 +434,7 @@ groups:
       holes," "community research," "forum research," "competitor reviews," "customer sentiment," or "find out why customers
       churn/convert/buy." Use for both analyzing existing research assets AND gathering new research from online sources.
       For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -459,7 +459,7 @@ groups:
       "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product
       launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should
       live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -484,7 +484,7 @@ groups:
       "welcome sequence," "re-engagement emails," "email automation," "lifecycle emails," "trigger-based emails," "email funnel,"
       "email workflow," "what emails should I send," "welcome series," or "email cadence." Use this for any multi-email automated
       flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -510,7 +510,7 @@ groups:
       tool," "audit tool," "should I build a free tool," or "tools for lead gen." Use this whenever someone wants to build
       something useful and give it away to attract leads or earn links. For downloadable content lead magnets (ebooks, checklists,
       templates), see lead-magnets.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -535,7 +535,7 @@ groups:
       Images,' 'Ideogram,' 'Gemini image,' 'Nano Banana,' 'Recraft,' 'Stable Diffusion,' 'Canva,' 'Figma,' 'image optimization,'
       'compress images,' 'WebP,' or 'OG image.' Use this for general-purpose marketing image creation and optimization. For
       paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -557,7 +557,7 @@ groups:
       mentions 'launch,' 'Product Hunt,' 'feature release,' 'announcement,' 'go-to-market,' 'beta launch,' 'early access,'
       'waitlist,' 'product update,' 'how do I launch this,' 'launch checklist,' 'GTM plan,' or 'we're about to ship.' Use
       this whenever someone is preparing to release something publicly. For ongoing marketing after launch, see marketing-ideas.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -580,7 +580,7 @@ groups:
       "Notion template," "spreadsheet template," or "what should I give away for emails." Use this for planning what to create
       and how to distribute it. For interactive tools as lead magnets, see free-tools. For writing the actual content, see
       copywriting. For the email sequence after capture, see emails.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -604,7 +604,7 @@ groups:
       'ways to promote,' 'ideas to grow,' 'what else can I try,' 'I don't know how to market this,' 'brainstorm marketing,'
       or 'what marketing should I do.' Use this as a starting point whenever someone is stuck or looking for inspiration on
       how to grow. For specific channel execution, see the relevant skill (ads, social, emails, etc.).
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -628,7 +628,7 @@ groups:
       or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing
       context. For applying psychology to specific pages, see cro; for pricing tactics, see pricing; for copy framing, see
       copywriting.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -651,7 +651,7 @@ groups:
       "low activation rate," "users sign up but don't use the product," "time to value," or "first session experience." Use
       this whenever users are signing up but not sticking around. For signup/registration optimization, see signup. For ongoing
       email sequences, see emails.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -675,7 +675,7 @@ groups:
       "free users won't upgrade," "trial to paid conversion," or "how do I get users to pay." Use this for any in-product
       moment where you're asking users to upgrade. Distinct from public pricing pages (see cro) — this focuses on in-product
       upgrade moments where the user has already experienced value. For pricing decisions, see pricing.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -698,7 +698,7 @@ groups:
       popup," "announcement banner," "overlay," "collect emails with a popup," "exit popup," "scroll trigger," "sticky bar,"
       or "notification bar." Use this for any overlay or interrupt-style conversion element. For forms outside of popups,
       see cro. For general page conversion optimization, see cro.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -720,7 +720,7 @@ groups:
       'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs
       monthly,' 'per seat pricing,' or 'should I offer a free plan.' Use this whenever someone is figuring out what to charge
       or how to structure their plans. For in-app upgrade screens, see paywalls.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -744,7 +744,7 @@ groups:
       'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this
       at the start of any new project before using other marketing skills — it creates `.agents/product-marketing.md` that
       all other skills reference for product, audience, and positioning context.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -766,7 +766,7 @@ groups:
       "comparison pages," "integration pages," "building many pages for SEO," "pSEO," "generate 100 pages," "data-driven pages,"
       or "templated landing pages." Use this whenever someone wants to create many similar pages targeting different keywords
       or locations. For auditing existing SEO issues, see seo-audit. For content strategy planning, see content-strategy.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -789,7 +789,7 @@ groups:
       'partner program,' 'referral incentive,' 'how to get referrals,' 'customers referring customers,' or 'affiliate payout.'
       Use this whenever someone wants existing users or partners to bring in new customers. For launch-specific virality,
       see launch.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -814,7 +814,7 @@ groups:
       'pipeline management,' 'lead qualification,' or 'when should marketing hand off to sales.' Use this for anything involving
       the systems and processes that connect marketing to revenue. For cold outreach emails, see cold-email. For email drip
       campaigns, see emails. For pricing decisions, see pricing.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -841,7 +841,7 @@ groups:
       team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales
       team close deals. For competitor comparison pages and battle cards, see competitors. For marketing website copy, see
       copywriting. For cold outreach emails, see cold-email.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -867,7 +867,7 @@ groups:
       "review schema," "breadcrumb schema," "Google rich results," "knowledge panel," "star ratings in search," or "add structured
       data." Use this whenever someone wants their pages to show enhanced results in Google. For broader SEO issues, see seo-audit.
       For AI search optimization, see ai-seo.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -891,7 +891,7 @@ groups:
       speed," "core web vitals," "crawl errors," or "indexing issues." Use this even if the user just says something vague
       like "my SEO is bad" or "help with SEO" — start with an audit. For building pages at scale to target keywords, see programmatic-seo.
       For adding structured data, see schema. For AI search optimization, see ai-seo.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -916,7 +916,7 @@ groups:
       "nobody completes registration," "too many steps to sign up," or "simplify our signup." Use this whenever the user has
       a signup or registration flow that isn't performing. For post-signup onboarding, see onboarding. For lead capture forms
       (not account creation), see cro.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -939,7 +939,7 @@ groups:
       "website planning," "what pages do I need," "how should I organize my site," or "site navigation." Use this whenever
       someone is planning what pages a website should have and how they connect. NOT for XML sitemaps (that's technical SEO
       — see seo-audit). For SEO audits, see seo-audit. For structured data, see schema.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -965,7 +965,7 @@ groups:
       "Postscript," "Attentive," "Twilio," "A2P 10DLC," "TCPA," "SMS compliance," "short code," "toll-free SMS," "MMS campaign,"
       "should I do SMS," or "SMS vs email." For email sequences, see emails. For SMS copy framing, see copywriting. For opt-in
       popups that capture phone numbers, see popups.
-    version: 1.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -992,7 +992,7 @@ groups:
       'video script,' 'video hook,' 'short-form video,' or 'create a reel.' Use this for social media content creation, repurposing,
       scheduling, and short-form video scripting. For broader content strategy, see content-strategy. For paid video ads,
       see ad-creative.
-    version: 2.0.0
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -1020,7 +1020,7 @@ groups:
       'talking head video,' 'programmatic video,' 'video template,' 'explainer video,' 'product demo video,' 'video pipeline,'
       or 'make me a video.' Use this for video creation, generation, and production workflows. For video content strategy
       and what to post, see social. For paid video ad creative, see ad-creative.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:

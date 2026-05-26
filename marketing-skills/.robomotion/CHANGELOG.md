@@ -8,6 +8,12 @@ The format roughly follows [Keep a Changelog](https://keepachangelog.com/).
 for the upstream history. This file tracks only what *we* shipped: vendoring
 events, version pins, and Robomotion-side additions inside `.robomotion/`.
 
+## [2.1.0] — 2026-05-26
+
+### Changed
+- Bumped group version to match the actual upstream release tag (`v2.1.0`). Upstream's own metadata disagrees with itself — `plugin.json` still says 1.9.0, inner `SKILL.md`s say `metadata.version: 2.0.0`, and the actual release is `2.1.0`. We display ONE consistent number across all 41 inner skill cards.
+- `build-index.py`: inner-skill version inherits from the group's `.robomotion/skill.yaml` instead of each inner SKILL.md frontmatter. Group version is the authoritative pin.
+
 ## [1.9.0] — 2026-05-26
 
 ### Added

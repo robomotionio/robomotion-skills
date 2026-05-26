@@ -159,11 +159,20 @@ def read_skill(repo_root: str, skill_rel: str, group: dict | None) -> dict:
     fm = frontmatter(md)
     name = fm_scalar(fm, "name") or os.path.basename(skill_rel)
     summary = fm_scalar(fm, "summary") or fm_scalar(fm, "description")
-    version = (
-        fm_scalar(fm, "version")
-        or fm_metadata_scalar(fm, "version")
-        or (group["version"] if group else "")
-    )
+    # Group version wins for inner skills — group's .robomotion/skill.yaml is
+    # the authoritative Robomotion-side version (matches our release pin).
+    # Upstream SKILL.md frontmatter can drift between releases (e.g. upstream
+    # marketingskills has 1.9.0 in plugin.json, 2.0.0 in each SKILL.md, and
+    # 2.1.0 as the actual release tag) — we display ONE consistent number.
+    # Standalone skills fall back to their own SKILL.md frontmatter.
+    if group is not None:
+        version = group["version"]
+    else:
+        version = (
+            fm_scalar(fm, "version")
+            or fm_metadata_scalar(fm, "version")
+            or ""
+        )
     entry = {
         "name": name,
         "path": skill_rel,
