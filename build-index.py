@@ -252,6 +252,19 @@ def build(repo_root: str) -> dict:
         if unit_type == "group":
             inner_rels = discover_inner_skills(repo_root, unit_rel)
             meta["skills"] = [read_skill(repo_root, r, meta) for r in inner_rels]
+            # files[] = shared assets at the group root (everything OUTSIDE skills/<name>/)
+            # — used by the launcher to fetch the group's .robomotion/, tools/, bin/, root docs,
+            # etc. via the per-file index fetch path. Inner skill files are listed separately
+            # in each skill entry.
+            all_files = file_list(unit_abs)
+            inner_prefixes = [
+                ("" if not unit_rel else os.path.relpath(r, unit_rel).replace(os.sep, "/"))
+                for r in inner_rels
+            ]
+            meta["files"] = [
+                f for f in all_files
+                if not any(f == p or f.startswith(p + "/") for p in inner_prefixes)
+            ]
             groups.append(meta)
         else:
             # type: skill — unit_rel itself contains SKILL.md
