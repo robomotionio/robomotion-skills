@@ -94,18 +94,9 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 
 ## Inventory
 
-| Skill | Mode | Required env | What it does |
+| Group | Skills | Author | Source |
 |---|---|---|---|
-| `airtable` | host (knowledge) | `AIRTABLE_API_KEY` | Airtable REST API: records CRUD, filters, upsert via curl |
-| `arxiv` | container (script) | — | Search / fetch academic papers from arXiv |
-| `excalidraw` | container (script) | — | Generate hand-drawn diagrams; upload to excalidraw.com |
-| `github-issues` | container | `GITHUB_TOKEN` | Read, file, comment, close GitHub issues via `gh` |
-| `linear` | container (script) | `LINEAR_API_KEY` | Read/write Linear issues via GraphQL |
-| `notion` | host (knowledge) | `NOTION_API_KEY` | Notion pages, databases (data sources) & blocks via HTTP API + curl |
-| `obsidian` | host (knowledge) | — | Filesystem Obsidian vault: read/search/create/append/link notes |
-| `pdf-extract` | container (script) | — | Extract text + tables from PDFs (pymupdf) |
-| `polymarket` | container (script) | — | Query Polymarket prediction markets (public, no auth) |
-| `spotify` | container (script) | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` | Play/search/queue + manage playlists, devices, library via the Web API |
+| `marketing-skills/` | 41 | Corey Haines | https://github.com/coreyhaines31/marketingskills |
 
 ### Marketing skills (`marketing-skills/`) — vendored verbatim
 

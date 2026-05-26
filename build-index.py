@@ -22,10 +22,11 @@ import os
 import re
 import sys
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 SHARED_DIR = "_shared"
 PLUGIN_MANIFEST = ".claude-plugin/plugin.json"  # Claude-Code/agentskills plugin marker
 SKIP_DIRS = {".git", ".github", "node_modules", "docs"}
+DEFAULT_AUTHOR = "Robomotion"
 
 
 def frontmatter(md: str) -> str:
@@ -121,6 +122,29 @@ def nearest_shared(repo_root: str, skill_rel: str) -> str | None:
         d = os.path.dirname(d)
 
 
+def load_plugin_manifest(repo_root: str, plugin_rel: str) -> dict:
+    """Read .claude-plugin/plugin.json for the plugin at plugin_rel. Returns {} on missing/invalid."""
+    base = repo_root if plugin_rel == "." else os.path.join(repo_root, plugin_rel)
+    path = os.path.join(base, PLUGIN_MANIFEST)
+    if not os.path.isfile(path):
+        return {}
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def plugin_author(manifest: dict) -> str:
+    """Extract author name. Accepts `author: "Foo"` or `author: {name: "Foo"}`."""
+    a = manifest.get("author")
+    if isinstance(a, dict):
+        return str(a.get("name", "")).strip()
+    if isinstance(a, str):
+        return a.strip()
+    return ""
+
+
 def nearest_plugin(repo_root: str, skill_rel: str) -> str | None:
     """Walk up from the skill's parent dir; return the relative path of the
     nearest dir that is a Claude-Code/agentskills plugin — i.e. holds
@@ -160,6 +184,7 @@ def classify(skill_dir: str) -> str:
 
 def build(repo_root: str) -> dict:
     skills, shared_paths, plugin_paths = [], set(), set()
+    plugin_manifests: dict[str, dict] = {}
     for root, dirs, files in os.walk(repo_root):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".")]
         if "SKILL.md" not in files:
@@ -177,6 +202,11 @@ def build(repo_root: str) -> dict:
         plugin = nearest_plugin(repo_root, rel)
         if plugin:
             plugin_paths.add(plugin)
+            if plugin not in plugin_manifests:
+                plugin_manifests[plugin] = load_plugin_manifest(repo_root, plugin)
+            author = plugin_author(plugin_manifests[plugin]) or DEFAULT_AUTHOR
+        else:
+            author = DEFAULT_AUTHOR
         skills.append({
             "name": name,
             "path": rel,
@@ -184,6 +214,7 @@ def build(repo_root: str) -> dict:
             "summary": fm_scalar(fm, "summary") or fm_scalar(fm, "description"),
             "tags": fm_tags(fm),
             "version": fm_scalar(fm, "version") or fm_metadata_scalar(fm, "version") or "",
+            "author": author,
             "mode": classify(root),
             "env": {
                 "required": env_names(os.path.join(root, "env.required")),
@@ -222,8 +253,15 @@ def build(repo_root: str) -> dict:
             f for f in all_files
             if not any(f == sr or f.startswith(sr + "/") for sr in skill_rels)
         ]
+        manifest = plugin_manifests.get(p) or load_plugin_manifest(repo_root, p)
         plugins.append({
             "path": p,
+            "name": manifest.get("name", "") or "",
+            "author": plugin_author(manifest),
+            "version": manifest.get("version", "") or "",
+            "license": manifest.get("license", "") or "",
+            "homepage": manifest.get("homepage", "") or "",
+            "repository": manifest.get("repository", "") or "",
             "contentHash": files_content_hash(proot, shared_files),
             "files": shared_files,
         })
