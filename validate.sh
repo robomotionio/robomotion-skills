@@ -1,30 +1,23 @@
 #!/usr/bin/env bash
-# Validate every skill folder against the Robomotion skill contract.
-# See how-to-write-or-port-a-skill-to-robomotion.md and README.md.
+# Validate the Robomotion skill contract.
+# See how-to-write-or-port-a-skill-to-robomotion.md.
 #
-# A skill is ANY directory containing SKILL.md (repo root OR nested, e.g. a
-# vendored collection at marketing-skills/skills/<name>/). `_shared/` dirs are
-# not skills (no SKILL.md) but their scripts are still syntax-checked.
-#
-# VENDORED collections — a third-party repo mirrored verbatim (detected by an
-# ancestor `.claude-plugin/plugin.json`) — are NOT held to our per-skill repo
-# conventions (LICENSE/CHANGELOG): those are governed by the collection's own
-# upstream LICENSE, and adding them would break verbatim `git pull` sync.
-#
-# Checks per skill:
-#   - front-matter present; `name:` matches the directory's basename
-#   - a version is declared (top-level `version:` or nested `metadata.version`)
-#   - LICENSE and CHANGELOG.md present (repo convention) — SKIPPED for vendored
-#   - env.required / env.optional contain only valid env-var names
-#   - any scripts/*.py compile; any scripts/*.js pass `node --check`
-# Plus: every _shared/scripts/* and vendored tools/clis|bin/* is syntax-checked.
-# Prints per-skill results and exits non-zero if any check fails.
+# Contract:
+#   * Every "unit" (group OR standalone skill) has a .robomotion/skill.yaml.
+#   * Groups also have inner skills under <group>/skills/<name>/SKILL.md.
+#   * SKILL.md has YAML front-matter with `name:` matching the directory.
+#   * .robomotion/{LICENSE,CHANGELOG.md} live at the unit root (NOT per inner skill).
+#   * env.required / env.optional contain valid env-var names.
+#   * Any scripts/*.py compiles; any scripts/*.js passes `node --check`.
+#   * Vendored CLI bundles (tools/clis, bin) are syntax-checked.
+#   * index.yaml is up-to-date with build-index.py.
 set -uo pipefail
-
 cd "$(dirname "$0")"
 
 fail=0
-skills=0
+units=0
+inner_skills=0
+standalone_skills=0
 
 is_valid_env_name() { [[ "$1" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; }
 
@@ -34,36 +27,27 @@ check_env_file() {
   local n=0 line name
   while IFS= read -r line || [ -n "$line" ]; do
     n=$((n+1))
-    line="${line#"${line%%[![:space:]]*}"}"   # ltrim
+    line="${line#"${line%%[![:space:]]*}"}"
     [ -z "$line" ] && continue
     case "$line" in \#*) continue;; esac
-    name="${line%%=*}"                          # strip inline =VALUE
-    name="${name%"${name##*[![:space:]]}"}"     # rtrim
+    name="${line%%=*}"
+    name="${name%"${name##*[![:space:]]}"}"
     if ! is_valid_env_name "$name"; then
       echo "    FAIL: $(basename "$file"):$n invalid env name: '$name'"; fail=1
     fi
   done < "$file"
 }
 
-frontmatter() {  # print the YAML front-matter block of $1
+frontmatter() {
   awk 'NR==1 && $0!="---"{exit} NR==1{next} /^---[[:space:]]*$/{exit} {print}' "$1"
 }
 
-vendored_root() {  # echo nearest ancestor holding .claude-plugin/plugin.json (a vendored collection), else nothing
-  local d="$1"
-  while [ -n "$d" ] && [ "$d" != "." ] && [ "$d" != "/" ]; do
-    [ -f "$d/.claude-plugin/plugin.json" ] && { echo "$d"; return 0; }
-    d="$(dirname "$d")"
-  done
-}
-
-check_scripts() {  # syntax-check scripts in $1/scripts (py + js)
+check_scripts() {
   local base="$1"
   [ -d "$base/scripts" ] || return 0
   local py js
   for py in "$base"/scripts/*.py; do
     [ -e "$py" ] || continue
-    # in-memory syntax check — does NOT write __pycache__ (which would pollute index.json)
     python3 -c 'import sys; compile(open(sys.argv[1]).read(), sys.argv[1], "exec")' "$py" 2>/dev/null \
       || { echo "    FAIL: $py does not compile"; fail=1; }
   done
@@ -75,80 +59,104 @@ check_scripts() {  # syntax-check scripts in $1/scripts (py + js)
   fi
 }
 
-# Discover skills: any dir with SKILL.md, excluding VCS/docs/node_modules.
-while IFS= read -r md; do
-  skill_dir="$(dirname "$md")"
-  skill="$(basename "$skill_dir")"
-  rel="${skill_dir#./}"
-  skills=$((skills+1))
+check_skill_md() {
+  # $1 = path/to/skill dir (containing SKILL.md)
+  # $2 = optional "vendored" marker (skip strict name/version checks for upstream content)
+  local sd="$1" vendored="${2:-}"
+  local md="$sd/SKILL.md"
+  local skill=$(basename "$sd")
+  local rel="${sd#./}"
+  local fm name
   echo "• $rel"
 
   fm="$(frontmatter "$md")"
   if [ -z "$fm" ]; then
-    echo "    FAIL: missing or empty YAML front-matter"; fail=1; continue
+    echo "    FAIL: missing or empty YAML front-matter"; fail=1; return
   fi
 
   name="$(printf '%s\n' "$fm" | sed -n 's/^name:[[:space:]]*//p' | head -1 | tr -d '"'"'"' ')"
-  if [ "$name" != "$skill" ]; then
+  if [ -n "$name" ] && [ "$name" != "$skill" ]; then
     echo "    FAIL: name '$name' != directory '$skill'"; fail=1
   fi
 
   if ! printf '%s\n' "$fm" | grep -qE '^version:' \
      && ! printf '%s\n' "$fm" | grep -qE '^[[:space:]]+version:'; then
-    echo "    WARN: no version (top-level 'version:' or 'metadata.version') — cache-busting weakened"
+    [ -z "$vendored" ] && echo "    WARN: no version (top-level 'version:' or 'metadata.version')"
   fi
 
-  vroot="$(vendored_root "$skill_dir")"
-  if [ -n "$vroot" ]; then
-    echo "    vendored (upstream collection at ${vroot#./}) — LICENSE/CHANGELOG governed upstream"
-  else
-    [ -f "$skill_dir/LICENSE" ]      || { echo "    FAIL: missing LICENSE"; fail=1; }
-    [ -f "$skill_dir/CHANGELOG.md" ] || { echo "    FAIL: missing CHANGELOG.md"; fail=1; }
-  fi
+  check_env_file "$sd/env.required"
+  check_env_file "$sd/env.optional"
+  check_scripts "$sd"
 
-  check_env_file "$skill_dir/env.required"
-  check_env_file "$skill_dir/env.optional"
-  check_scripts "$skill_dir"
-
-  if [ -d "$skill_dir/scripts" ] && [ -n "$(ls -A "$skill_dir/scripts" 2>/dev/null)" ]; then
+  if [ -d "$sd/scripts" ] && [ -n "$(ls -A "$sd/scripts" 2>/dev/null)" ]; then
     echo "    mode: container (ships scripts/)"
-  elif [ -f "$skill_dir/post-install.sh" ]; then
+  elif [ -f "$sd/post-install.sh" ]; then
     echo "    mode: container (ships post-install.sh)"
   else
-    echo "    mode: host (knowledge); container if its nearest _shared ships scripts"
+    echo "    mode: host (knowledge)"
   fi
-done < <(find . \( -name .git -o -name node_modules -o -name docs \) -prune -o -name SKILL.md -print | sort)
+}
 
-# Syntax-check shared libraries (not skills themselves).
-shared_count=0
-while IFS= read -r shdir; do
-  shared_count=$((shared_count+1))
-  echo "• ${shdir#./} (shared library)"
-  check_scripts "$shdir"
-done < <(find . \( -name .git -o -name node_modules \) -prune -o -type d -name _shared -print | sort)
+# ---- discover units (anything with .robomotion/skill.yaml) -----------------
 
-# Syntax-check vendored collection CLIs (bin/, tools/clis) — not skills.
-vendored_count=0
-if command -v node >/dev/null 2>&1; then
-  while IFS= read -r pj; do
-    vdir="$(dirname "$(dirname "$pj")")"   # .../.claude-plugin/plugin.json -> collection root
-    vendored_count=$((vendored_count+1))
-    for clidir in "$vdir/bin" "$vdir/tools/clis"; do
-      [ -d "$clidir" ] || continue
-      n=0
-      for js in "$clidir"/*.js; do
-        [ -e "$js" ] || continue
-        n=$((n+1))
-        node --check "$js" 2>/dev/null || { echo "    FAIL: $js failed node --check"; fail=1; }
+while IFS= read -r sy; do
+  unit_dir="$(dirname "$(dirname "$sy")")"
+  unit_rel="${unit_dir#./}"
+  units=$((units+1))
+  type="$(sed -n 's/^type:[[:space:]]*//p' "$sy" | head -1 | tr -d '"'"'"' ')"
+  echo "▼ UNIT: $unit_rel  (type: ${type:-?})"
+
+  # Group-level required files
+  [ -f "$unit_dir/.robomotion/LICENSE" ]      || { echo "    WARN: $unit_rel/.robomotion/LICENSE missing"; }
+  [ -f "$unit_dir/.robomotion/CHANGELOG.md" ] || { echo "    WARN: $unit_rel/.robomotion/CHANGELOG.md missing"; }
+
+  if [ "$type" = "group" ]; then
+    # walk inner skills
+    if [ -d "$unit_dir/skills" ]; then
+      while IFS= read -r md; do
+        check_skill_md "$(dirname "$md")" vendored
+        inner_skills=$((inner_skills+1))
+      done < <(find "$unit_dir/skills" -maxdepth 3 -name SKILL.md | sort)
+    fi
+    # check group's .robomotion/post-install.sh syntactically (best-effort)
+    [ -f "$unit_dir/.robomotion/post-install.sh" ] && sh -n "$unit_dir/.robomotion/post-install.sh" \
+      || true
+    # syntax-check group's CLI bundles
+    if command -v node >/dev/null 2>&1; then
+      for clidir in "$unit_dir/bin" "$unit_dir/tools/clis"; do
+        [ -d "$clidir" ] || continue
+        n=0
+        for js in "$clidir"/*.js; do
+          [ -e "$js" ] || continue
+          n=$((n+1))
+          node --check "$js" 2>/dev/null || { echo "    FAIL: $js failed node --check"; fail=1; }
+        done
+        [ "$n" -gt 0 ] && echo "  • ${clidir#./} ($n CLIs checked)"
       done
-      [ "$n" -gt 0 ] && echo "• ${clidir#./} (vendored CLIs: $n checked)"
-    done
-  done < <(find . \( -name .git -o -name node_modules \) -prune -o -name plugin.json -path '*/.claude-plugin/*' -print | sort)
+    fi
+  elif [ "$type" = "skill" ]; then
+    # standalone — SKILL.md is at the unit root
+    if [ -f "$unit_dir/SKILL.md" ]; then
+      check_skill_md "$unit_dir"
+      standalone_skills=$((standalone_skills+1))
+    else
+      echo "    FAIL: $unit_rel declares type: skill but has no SKILL.md"; fail=1
+    fi
+  else
+    echo "    FAIL: $unit_rel/.robomotion/skill.yaml has unknown type '$type'"; fail=1
+  fi
+done < <(find . \( -name .git -o -name node_modules -o -name docs \) -prune -o -path '*/.robomotion/skill.yaml' -print | sort)
+
+# ---- index.yaml drift check ------------------------------------------------
+
+if command -v python3 >/dev/null 2>&1; then
+  echo
+  python3 build-index.py --check || fail=1
 fi
 
 echo
 if [ "$fail" -ne 0 ]; then
-  echo "FAILED — $skills skill(s) + $shared_count shared + $vendored_count vendored checked, errors above."
+  echo "FAILED — $units unit(s), $inner_skills inner + $standalone_skills standalone skill(s), errors above."
   exit 1
 fi
-echo "OK — $skills skill(s) + $shared_count shared lib(s) + $vendored_count vendored collection(s) valid."
+echo "OK — $units unit(s) valid · $inner_skills inner + $standalone_skills standalone skill(s)."

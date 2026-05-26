@@ -1,728 +1,416 @@
-# How to write or port a Skill to Robomotion
+# How to add a skill to Robomotion
 
-> The complete guide to authoring a new Agent Skill — or porting one from the
-> upstream Hermes Agent (`NousResearch/hermes-agent`) — into this repository
-> (`robomotion-skills`), so it runs correctly inside Robomotion's **Hermes
-> Agent** node.
+> Walkthrough from a **vanilla `robomotion-skills` repo** to having
+> `marketing-skills` (vendored, 41 skills by Corey Haines) running as our
+> first production unit. The same pattern applies to any future group or
+> single skill.
 >
-> Audience: skill authors and anyone porting upstream skills. Read §1–§4 once to
-> build the mental model, then use §9 (write new) or §10 (port) as a checklist.
+> Audience: anyone adding a skill collection or authoring one. Read §1–§2
+> once for the mental model, then follow §3 as a checklist for vendoring,
+> §4 for first-party authoring.
+>
+> **One repo holds everything.** `robomotion-skills` is the single monorepo
+> for all skills and skill groups — no submodules, no subtrees, no external
+> registry. Once content is in, it's ours. Skills (single `SKILL.md` folders)
+> and groups (bundles of related skills) coexist as peer directories at the
+> repo root.
 
 ---
 
-## Table of contents
+## 1. Mental model
 
-1. [The mental model: capability vs knowledge](#1-the-mental-model-capability-vs-knowledge)
-2. [What Robomotion can and cannot port](#2-what-robomotion-can-and-cannot-port)
-3. [The runtime pipeline (how a skill reaches the model)](#3-the-runtime-pipeline)
-4. [Anatomy of a skill folder](#4-anatomy-of-a-skill-folder)
-5. [`SKILL.md` in depth](#5-skillmd-in-depth)
-6. [Host mode vs container mode (classification)](#6-host-mode-vs-container-mode)
-7. [Credentials: `env.required` and `env.optional`](#7-credentials-envrequired-and-envoptional)
-8. [Installs and scripts](#8-installs-and-scripts)
-9. [Writing a brand-new skill (step by step)](#9-writing-a-brand-new-skill)
-10. [Porting an upstream Hermes skill (step by step)](#10-porting-an-upstream-hermes-skill)
-11. [Worked examples](#11-worked-examples)
-12. [Testing & verification](#12-testing--verification)
-13. [Pitfalls & gotchas](#13-pitfalls--gotchas)
-14. [Reference: files & paths](#14-reference-files--paths)
+Two units exist in this repo:
 
----
-
-## 1. The mental model: capability vs knowledge
-
-Upstream Hermes splits every integration into **two independent halves** that
-meet only at tool names:
-
-| | **Plugin** (`plugins/<name>/`) | **Skill** (`skills/<cat>/<name>/`) |
+| Unit | What it is | Example |
 |---|---|---|
-| What it is | Executable Python registered as tools | Markdown documentation |
-| Provides | **Capability** — the ability to *act* | **Knowledge** — *when & how* to act |
-| Runtime | `registry.dispatch(...)` runs it | The model reads it; it never executes |
+| **Skill** | A single `SKILL.md` folder. Knowledge the model reads at runtime; capability comes from the `terminal` tool (curl / a bundled CLI) or a built-in Hermes toolset. | A standalone skill at the repo root (we have none currently) |
+| **Group** | A bundle of related skills under one root. Carries its own metadata, install hooks, env overlay. Marketplace ships **groups**. | `marketing-skills/` (41 skills) |
 
-**Robomotion ships only the knowledge half.** A Robomotion skill is a folder of
-Markdown (plus optional helper scripts and install hooks). The agent's
-`skill_loader` injects `SKILL.md` into the system prompt; nothing in this repo
-registers tools. (See `packages-main/src/hermes-agent/nodes/skills/skill_loader.py`.)
-
-So the capability a ported skill relies on must already exist. Pick it in this
-**preference order** (Robomotion is **CLI-favored**):
-
-1. **A CLI run via the generic `terminal` tool** — `curl`, or a bundled CLI
-   (`scripts/`, or a collection's `bin/` / `tools/clis/` placed on `$PATH`; §8).
-   This is the default: self-contained in the sandbox, no external server, the
-   credential proxy brokers secrets on the outbound call.
-2. **A built-in Hermes toolset** Robomotion already exposes (`file`, `web`,
-   `browser`, `vision`, `discord`, …). The authoritative list is
-   `_HERMES_INTERNAL_TOOLS` in `nodes/agent/hermes_agent.py`.
-3. **An MCP server — only when a CLI/curl path isn't practical** (OAuth-heavy
-   tools with no usable CLI, or a vendor that only ships MCP). MCP is wired at the
-   **agent/node level** (native server, or a gateway like Composio/Cogny), not by
-   the skill. Both Hermes and ADK support MCP — reach for it last, not first.
-
-You cannot register a *new* in-process tool from this repo. If a capability needs
-one, that's a code change in the Hermes Agent package, not a skill.
-
-**Two governing principles** (detailed in §8 and §10):
-
-- **Verbatim ingestion.** Treat a third-party skill repo (agentskills.io
-  collection, Claude Code plugin) as a *vendored dependency*: mirror it
-  byte-for-byte, never edit skill bodies, and bump it with `git pull`. Anything
-  Robomotion needs that upstream lacks lives **beside** the mirror or in the
-  platform — never inside the synced tree.
-- **Self-containment.** A skill must work on its own and degrade gracefully (ask
-  the user if context is missing). There are **no formal skill→skill
-  dependencies**; durable cross-skill state lives in agent **Memory**, not in
-  files a skill writes (§8, and `docs/agent-files.md`).
-
----
-
-## 2. What Robomotion can and cannot port
-
-Read the source skill's front-matter and body, then classify it:
-
-| Signal in the source skill | Capability source | Portable here? |
-|---|---|---|
-| `prerequisites.env_vars` / `prerequisites.commands`, body uses `curl`/CLI | generic `terminal` | ✅ **Yes** — self-contained (e.g. `linear`, `airtable`, `notion`, `github-issues`) |
-| Body uses file/web/browser/etc. tools | a built-in toolset | ✅ **Yes, iff** that toolset is in `_HERMES_INTERNAL_TOOLS` (e.g. `obsidian` → `file`) |
-| `prerequisites.tools` or `metadata.hermes.requires_tools` | a **plugin's** registered tools | ⚠️ **Only via rewrite** — re-implement the capability as a CLI in `scripts/` (e.g. `spotify` → `scripts/spotify_api.py` over the Web API) |
-
-> **The plugin trap.** A skill whose capability is a plugin's tools is useless if
-> you copy only its `SKILL.md` — the model will emit tool calls (`spotify_*`) that
-> don't exist and fail at dispatch. Either the toolset is already built into the
-> agent, or you **port it to a CLI equivalent** the `terminal` tool can run.
-
-When rewriting a plugin-backed skill to a CLI, also solve auth for a **headless
-sandbox**: interactive OAuth (`hermes auth <x>`) won't work. Use vault-bound
-credentials (e.g. client id/secret + a refresh token generated once, out-of-band).
-
----
-
-## 3. The runtime pipeline
-
-What happens between "user toggles a skill on the agent" and "the model can use it":
+The repo's **discovery contract** is the `.robomotion/` namespace, present on every group (and on standalone skills):
 
 ```
-1. Designer (Agent Editor)
-   - reads the repo's index.json (ONE fetch) → browse / search / env display
-   - writes node config: optSkills [{name, repoUrl, path, version}],
-     optActiveSkills ["linear", …], optEnvironmentBindings, optToolsEnvRequired
-
-2. Launcher (per agent run)
-   - collectActiveSkills(nodeConfig) → which skills, which repo/path
-   - fetchAndExtract: index-driven — download ONLY the active skills + their
-     nearest _shared, file-by-file from raw.githubusercontent, into
-     HERMES_HOME/skills/<owner>__<repo>__<name>/   (whole-repo tarball = fallback)
-   - needsSandbox? → host mode, OR container mode (build image:
-     FROM base; COPY skills; RUN post-install.sh — layer-cached)
-   - validate required env bound; inject --env (required ∪ optional) via the
-     credential proxy; emit LaunchPlan
-
-3. Agent process (skill_loader.py)
-   - reads each ACTIVE skill's SKILL.md from its staged path
-   - substitutes ${SKILL_DIR} / ${SESSION_ID} / ${SHARED_DIR}
-   - injects each body under "## Active Skills" in the system prompt
+<unit>/
+  .robomotion/
+    skill.yaml        # REQUIRED — name, version, author, source_url, license, summary
+    CHANGELOG.md      # optional — Robomotion-side changelog (what WE shipped and bumped)
+    LICENSE           # optional — license file for display (copy from upstream for vendored)
+    post-install.sh   # optional — install hook (runs once at image build)
+    env.yaml          # optional — env overlay (generated from upstream tool docs)
 ```
 
-Key facts that shape how you author:
+For a **group**, these are *group-level* — all inner skills inherit them. The Designer reads `.robomotion/LICENSE` and `.robomotion/CHANGELOG.md` from the group root and surfaces them for every skill in the group. No per-skill `LICENSE` or `CHANGELOG.md` files.
 
-- **Install dir / `${SKILL_DIR}`.** Each skill is extracted to
-  `HERMES_HOME/skills/<owner>__<repo>__<name>/` (host) or
-  `/opt/robomotion/skills/<owner>__<repo>__<name>/` (container). In `SKILL.md`,
-  the token `${SKILL_DIR}` is substituted with that concrete path **before** the
-  text reaches the model — so `python3 ${SKILL_DIR}/scripts/foo.py` just works.
-  `${SESSION_ID}` is likewise substituted with the current turn's session id.
-  (Both `HERMES_SKILL_DIR` / `HERMES_SESSION_ID` long forms also work.)
-- **`${SHARED_DIR}`** resolves to the **nearest `_shared/` walking up a skill's
-  path** (group-scoped, repo-root as fallback) — see §8 *Shared library*.
-- **Discovery + fetch are index-driven.** `index.json` (built by `build-index.py`)
-  is the single manifest: the Designer reads it to browse/show env (one fetch, no
-  per-`SKILL.md` probing), and the launcher reads it to fetch **only the active
-  skills** (+ nearest `_shared`) instead of the whole repo. So add/change a skill
-  ⇒ regenerate + commit `index.json`. See `docs/skill-system-scale-design.md`.
-- **Only the active set reaches the prompt.** The builder curates an agent's skills
-  in the Designer; the loader injects just those — never the whole catalog — so the
-  system prompt stays bounded regardless of how many skills exist in the repo.
-- **The model reads `SKILL.md` as prose.** It then either runs `curl`/your script
-  via the `terminal` tool, or calls a built-in toolset. Write for that audience.
-- **`version:` busts the image cache.** The container image hash includes each
-  skill's version, so bumping it forces a rebuild even when the git ref is a
-  moving branch like `main`. Always bump it when you change a script or
-  `post-install.sh`. The version is read from top-level `version:` **or** nested
-  `metadata.version` (the agentskills.io spec shape — see §5).
+`.robomotion/` is **ours**. We never read `.claude-plugin/plugin.json` or any other upstream metadata file for logic — that's Claude Code / agentskills.io convention, not ours. Upstream is free to ship whatever; we mirror it byte-for-byte and only ever add inside `.robomotion/`.
+
+Other governing principles:
+
+- **Verbatim vendoring.** Upstream content is **never edited** — no SKILL.md rewrites, no path rewrites, no restructuring into our conventions. Bumps are a manual re-copy + diff; no `git subtree` linkage. All Robomotion additions live inside `.robomotion/`.
+- **CLI-favored capability.** The model acts by running CLIs through the `terminal` tool — curl, or a bundled CLI on `$PATH`. MCP only when no usable CLI exists.
+- **Memory over files.** Durable cross-skill state lives in agent **Memory** (`MEMORY.md`), not in files producer-skills write for consumers to read. See `docs/agent-files.md`.
 
 ---
 
-## 4. Anatomy of a skill folder
+## 2. The vanilla repo
 
-A skill is a single top-level folder in this repo. Its name is **kebab-case** and
-**must equal** the `name:` in `SKILL.md`.
+Before any skill is added, the repo looks like this:
+
+```
+robomotion-skills/
+  README.md
+  validate.sh                 # per-unit contract checker
+  build-index.py              # walks .robomotion/skill.yaml → index.yaml
+  generate-env-overlay.py     # generator: marketing-skills tool docs → .robomotion/env.yaml
+  docs/
+    agent-files.md            # Memory + workspace model
+    skill-system-scale-design.md
+    claude-plugin-support.md  # how vendored groups are staged (the runtime side)
+  how-to-write-or-port-a-skill-to-robomotion.md   # this doc
+```
+
+No skills yet. Discovery is a no-op (the index is empty). We add the first unit next.
+
+---
+
+## 3. Adding `marketing-skills` (the worked example)
+
+You found [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills): 41 marketing skills, 63 zero-dep Node CLIs in `tools/clis/`, 88 integration guides in `tools/integrations/`, MIT, active maintainer, agentskills.io-spec compliant. This is the kind of collection we want.
+
+Bringing it in is **eight steps**.
+
+### 3.1 Find — quick gut check
+
+Before you spend a vendoring round, confirm:
+
+- **Permissive license** (MIT / Apache 2.0 / similar).
+- **Spec-compliant or close** — skills under `skills/<name>/SKILL.md`, sensible frontmatter (`name`, `description`, `metadata.version`). Doesn't have to be exactly the agentskills.io spec; needs to be navigable.
+- **Active and trusted** — recent commits, real author, healthy issue tracker.
+- **Self-contained skills** — each `SKILL.md` is useful standalone, doesn't silently depend on a sibling writing a magic file. (Producer/consumer file conventions get mapped to Memory in Robomotion — see §5.4.)
+
+### 3.2 Vendor — copy the upstream in
+
+We do **not** use `git subtree` / `git submodule` here. They're awkward at scale (100s of collections, each with its own prefix to track), and most collections don't need live upstream tracking — they get bumped once in a while, not continuously.
+
+Plain copy is enough:
+
+```sh
+cd robomotion-skills
+# clone upstream to a scratch dir
+git clone --depth 1 git@github.com:coreyhaines31/marketingskills.git /tmp/marketingskills
+# copy in (everything except .git)
+rsync -a --exclude=.git /tmp/marketingskills/ marketing-skills/
+rm -rf /tmp/marketingskills
+```
+
+From this point the files are **ours** — committed to this repo with no live link back to upstream. **Do not touch anything inside** (§1 verbatim rule); edits collide with the next bump.
+
+Bumps are manual: re-clone upstream, `diff -r` against `marketing-skills/`, apply the changes you want, bump `version` in `.robomotion/skill.yaml`. Most collections need this rarely — quarterly at most.
+
+After this step the tree looks like:
+
+```
+robomotion-skills/
+  marketing-skills/
+    .claude-plugin/plugin.json   # upstream's Claude Code marker — we ignore it
+    skills/<name>/SKILL.md       # ×41
+    tools/clis/<name>.js         # ×63
+    tools/integrations/<name>.md # ×88
+    LICENSE, README.md, ...
+```
+
+### 3.3 Write the group's `.robomotion/skill.yaml`
+
+This is the authoritative metadata for the group. Place it at `marketing-skills/.robomotion/skill.yaml`:
+
+```yaml
+schema_version: 1
+name: marketing-skills
+title: Marketing Skills
+type: group                      # 'group' (has skills/) or 'skill' (single SKILL.md)
+version: 1.9.0                   # what we shipped — Robomotion-pinned, NOT upstream HEAD
+author: Corey Haines             # creator credit
+source_url: https://github.com/coreyhaines31/marketingskills
+license: MIT
+summary: 41 marketing skills — copywriting, SEO, paid ads, growth, lifecycle, CRO, and more.
+tags: [marketing, copywriting, seo, ads, growth, cro]
+```
+
+Notes:
+
+- `version` is **our pin**, not necessarily upstream's HEAD. If we vendored `1.9.0` and upstream advances to `2.0.0`, ours stays `1.9.0` until we re-pull and bump.
+- `author` is the real upstream creator. The Designer renders `by Corey Haines` on skill cards and links the external icon to `source_url`.
+- `type: group` tells the indexer to also walk `marketing-skills/skills/<name>/SKILL.md` to discover the inner skills.
+
+### 3.4 Add `.robomotion/LICENSE` and `.robomotion/CHANGELOG.md`
+
+Both are optional but recommended. The Designer surfaces them per-skill in the marketplace.
+
+**LICENSE** — for a vendored group, copy upstream's LICENSE into `.robomotion/LICENSE` so the Designer has a stable path to read from:
+
+```sh
+cp marketing-skills/LICENSE marketing-skills/.robomotion/LICENSE
+```
+
+Don't *edit* the copy — keep it identical to upstream so we're transparent about whose terms we ship under. We adopt their license (MIT here) for the vendored copy.
+
+**CHANGELOG.md** — this is **our** changelog, not upstream's. It records what *we* shipped: when we vendored, what version we pinned, what we bumped to, any Robomotion-side patches in `.robomotion/`. Example seed:
+
+```markdown
+# Changelog — marketing-skills
+
+## [1.9.0] — 2026-05-26
+- Vendored from coreyhaines31/marketingskills@v1.9.0.
+- Added `.robomotion/post-install.sh` (PATHs `tools/clis/*.js`).
+- Added `.robomotion/env.yaml` (generated env overlay).
+```
+
+Future bumps add a new entry; the `version` in `.robomotion/skill.yaml` matches the latest entry.
+
+### 3.5 Handle install exceptions — `.robomotion/post-install.sh`
+
+Most vendored groups need nothing here. Marketing-skills needs one exception: its CLI library is at `tools/clis/` (non-standard) instead of `bin/` (the conventional location the platform auto-adds to `$PATH`). Without a wrapper, the model has to type `node ${CLAUDE_PLUGIN_ROOT}/tools/clis/ga4.js …` every time; with one, it can just say `ga4 …`.
+
+```sh
+# marketing-skills/.robomotion/post-install.sh
+#!/bin/sh
+set -eu
+# Put tools/clis/*.js on $PATH so the model invokes CLIs by short name.
+for f in tools/clis/*.js; do
+  name=$(basename "$f" .js)
+  cat > "/usr/local/bin/$name" <<EOF
+#!/bin/sh
+exec node "$(pwd)/$f" "\$@"
+EOF
+  chmod +x "/usr/local/bin/$name"
+done
+```
+
+`chmod +x` the file. Runs at image build, CWD = group root. Triggers container mode for any agent that activates a marketing skill.
+
+This file is **the place** for exceptions to the upstream layout. If a vendored group needs a one-time install (`apt`, `pip`, `npm`), it goes here too. Per-skill `post-install.sh` still works (rare for vendored — usually all the exceptions are group-wide).
+
+### 3.6 Generate the env overlay — `.robomotion/env.yaml`
+
+Marketing skills can each speak to several alternative tools (analytics → GA4 *or* Mixpanel *or* Amplitude *or* …). The env overlay lists every possible env var across the group so the hire wizard / launcher can offer them.
+
+Generated automatically by `generate-env-overlay.py` (skills-repo root):
+
+```sh
+python3 generate-env-overlay.py
+# → writes marketing-skills/.robomotion/env.yaml
+```
+
+The generator walks:
+- `marketing-skills/tools/clis/*.js` — extracts `process.env.*` references per integration.
+- `marketing-skills/tools/integrations/*.md` — extracts the "## Relevant Skills" section per integration.
+
+Output shape:
+
+```yaml
+schema_version: 1
+collection: marketing-skills
+integrations:
+  ga4:
+    env_optional: [GA4_ACCESS_TOKEN]
+    skills: [ab-testing, analytics, cro, seo-audit]
+  # … 83 integrations
+skills:
+  analytics:
+    integrations: [ga4, mixpanel, amplitude, ...]    # 26 entries
+    env_optional: [GA4_ACCESS_TOKEN, MIXPANEL_API_KEY, ...]   # 35 entries
+  # … 41 skills (26 with credentials, 12 pure-knowledge)
+```
+
+Every entry is **optional**. Marketing skills are knowledge; no single tool is a prerequisite. The user only supplies keys for tools they actually have.
+
+### 3.7 Regenerate the index
+
+```sh
+python3 build-index.py
+```
+
+Walks the repo, reads every `.robomotion/skill.yaml`, and (for `type: group`) walks the contained `skills/<name>/SKILL.md` files. Emits `index.yaml` with a top-level `groups[]` (each carrying its `skill.yaml` data + an inner `skills[]` array) and a `skills[]` for standalone units.
+
+After this step the Designer can discover marketing-skills, render `by Corey Haines` on each card, and link to the upstream source URL.
+
+### 3.8 Validate + commit
+
+```sh
+bash validate.sh
+git status
+git add marketing-skills/.robomotion/ index.yaml README.md
+git commit -m "feat(marketing-skills): vendor + Robomotion metadata"
+```
+
+`validate.sh` checks that every group has a `.robomotion/skill.yaml`, every inner skill has a `SKILL.md`, bundled CLIs (`tools/clis/*.js`) syntax-check, and the index is in sync.
+
+---
+
+## 4. Variants
+
+### 4.1 First-party group (we author both metadata + skills)
+
+Same layout as a vendored group, but we author everything:
+
+```
+<group-name>/
+  .robomotion/
+    skill.yaml             # author: Robomotion, source_url: this repo
+    CHANGELOG.md           # group-level changelog (shared by all inner skills)
+    LICENSE                # group-level license (MIT etc.)
+    post-install.sh        # optional
+    env.yaml               # optional — author by hand if no tool-doc generator applies
+  skills/
+    <skill-name>/
+      SKILL.md             # name, summary, version, tags in frontmatter
+      env.required         # optional — mandatory creds
+      env.optional         # optional — creds with fallback
+      post-install.sh      # optional — per-skill install (rarely needed)
+      scripts/             # optional — first-party CLIs invoked via ${SKILL_DIR}
+      references/          # optional — extra markdown the model can read on demand
+```
+
+Inner skills have **no `LICENSE` or `CHANGELOG.md`** of their own — they inherit from `<group>/.robomotion/`.
+
+`skill.yaml` for a first-party group:
+
+```yaml
+schema_version: 1
+name: <group-name>
+title: <Display Name>
+type: group
+version: 1.0.0
+author: Robomotion
+source_url: https://github.com/robomotionio/robomotion-skills/tree/main/<group-name>
+license: MIT
+summary: …
+tags: [...]
+```
+
+### 4.2 Single standalone skill (no group)
+
+A standalone skill is its own unit with `.robomotion/skill.yaml` next to its `SKILL.md`:
 
 ```
 <skill-name>/
-  SKILL.md          # REQUIRED — capability + operating notes for the model
-  env.required      # optional — mandatory creds, one VAR per line (blocks run if unbound)
-  env.optional      # optional — creds/config with a fallback (never blocks)
-  post-install.sh   # optional — runs once at image build (apt/pip/npm)
-  pre-run.sh        # optional — runs at every container start (login ceremonies)
-  scripts/          # optional — helper CLIs the model invokes via terminal
-  references/       # optional — extra markdown the model can read on demand
-  CHANGELOG.md      # REQUIRED by repo convention — Keep a Changelog format
-  LICENSE           # REQUIRED by repo convention — MIT + attribution
+  .robomotion/
+    skill.yaml             # type: skill
+    CHANGELOG.md           # the skill's changelog
+    LICENSE                # the skill's license
+    post-install.sh        # optional — install hook
+    env.yaml               # optional — env overlay
+  SKILL.md
+  env.required
+  env.optional
+  scripts/                 # optional
+  references/              # optional
 ```
 
-Only `SKILL.md` is needed for the launcher to recognize the folder as a skill.
-`CHANGELOG.md` and `LICENSE` are repo conventions (every skill here has them).
-
-Beyond the per-skill folder, a repo may also ship one top-level **`_shared/`**
-directory (not per-skill) holding code/docs/env reused across its skills — see
-§8 *Shared library*.
-
----
-
-## 5. `SKILL.md` in depth
-
-### Front-matter
+`skill.yaml` for a standalone skill:
 
 ```yaml
----
-name: linear                 # REQUIRED — kebab-case, == folder name
-version: 1.0.0               # REQUIRED — semver; participates in the image cache hash
-summary: One-line capability statement.   # what the skill does, in a sentence
-tags: ["linear", "issues", "project-management"]
----
+schema_version: 1
+name: <skill-name>
+title: <Display Name>
+type: skill
+version: 1.0.0
+author: Robomotion
+source_url: https://github.com/robomotionio/robomotion-skills/tree/main/<skill-name>
+license: MIT
+summary: …
+tags: [...]
 ```
 
-- Keep front-matter **simple**: the loader uses a minimal YAML parser (scalars,
-  inline lists `[a, b]`, one-level block lists). Avoid anchors and deep nesting —
-  the one nested field the platform reads is `metadata.version` (see *Cross-agent
-  compatibility* below).
-- New first-party skills start at `version: 1.0.0` (repo convention), regardless
-  of upstream — note the upstream version in `CHANGELOG.md`. Third-party spec
-  skills may instead keep their `metadata.version`.
-- Drop upstream-only fields (`author`, `license`, `platforms`, `prerequisites`,
-  `metadata.hermes.*`). License → `LICENSE` file; required env → `env.required`;
-  `prerequisites` is not read by Robomotion's loader.
-
-### Body structure
-
-Follow the same shape as the existing skills so the model gets consistent routing
-signals:
-
-```markdown
-# <Title>
-
-<1–3 sentence intro: what it does, how it's accessed (curl / which script).>
-
-## Capabilities
-- bullet list of what it can do
-
-## Usage
-<concrete, copy-pasteable commands. Use ${SKILL_DIR}/scripts/... for shipped CLIs.>
-
-## When to use
-- example user requests that should route here
-
-## When NOT to use
-- adjacent skills / out-of-scope cases (route elsewhere)
-
-## Operating notes
-- failure modes, auth header quirks, rate limits, pagination, gotchas
-
-## Attribution
-Adapted from the [Nous Hermes Agent](https://github.com/NousResearch/hermes-agent) `<name>` skill (MIT).
-```
-
-Rules:
-
-- **No install prose.** Don't tell the model to `pip install` / `apt-get` / "set
-  this env var in `~/.hermes/.env`". Installs go in `post-install.sh`; credentials
-  are declared in `env.required` / `env.optional` and bound from the Vault.
-- **When-to-use / When-NOT-to-use are not filler.** They are the routing hints
-  that make the model pick the right skill. Name adjacent skills explicitly.
-- **Operating notes earn their keep.** Put the things models get wrong here: auth
-  header format, "check the `errors` array even on HTTP 200", URL-encoding rules,
-  "don't retry on 403", pagination cursors.
-- Reference extra docs via `${SKILL_DIR}/references/<file>.md`. The loader also
-  auto-appends a "Reference docs at: …" line when a `references/` dir exists.
-
-### Cross-agent (agentskills.io) compatibility
-
-Robomotion also accepts the [agentskills.io](https://agentskills.io) /
-Claude-plugin front-matter shape, so a spec-compliant third-party skill installs
-with little or no rewriting:
-
-- **`description`** is read as a fallback for `summary` in the Designer marketplace.
-- **`metadata.version`** (nested) is read as a fallback for top-level `version:`
-  by both the launcher (cache key) and the Designer.
-- Skills nested under a repo's **`skills/<name>/`** directory are discovered in
-  addition to repo-root skills.
-
-So you can drop a spec skill in nearly as-is — the 5 marketing pilots (`cro`,
-`copywriting`, `cold-email`, `pricing`, `marketing-psychology`) did exactly this,
-keeping `name` + `description` + `metadata.version` and only adding `tags`. Use
-the native four-field shape (above) for new first-party skills; rely on these
-shims when ingesting third-party spec skills.
+Whether to make something a group or a standalone skill: **start standalone, promote to a group** when a second related skill arrives. A group exists to share metadata + an install hook + an env overlay; one skill never needs that.
 
 ---
 
-## 6. Host mode vs container mode
+## 5. The metadata files in depth
 
-The launcher classifies each agent run (`launcher/launchplan.go: needsSandbox`):
+### 5.1 `.robomotion/skill.yaml`
 
-- **Container mode** if **any** active skill ships a `post-install.sh` **or** a
-  non-empty `scripts/` directory. The launcher builds a Podman image
-  (`FROM` the base image, `COPY` skills, `RUN` each `post-install.sh`) and runs
-  the agent inside it.
-- **Host mode** otherwise (pure-knowledge skills: just `SKILL.md` + `references/`
-  + env files). The agent runs directly on the host; no Podman dependency.
+The only **required** file in `.robomotion/`. Fields:
 
-`references/` and `env.*` files do **not** force container mode — only
-`post-install.sh` and a non-empty `scripts/` do.
-
-Consequences you must design around:
-
-- **Need to reach the host filesystem?** (e.g. `obsidian` editing a local vault)
-  → stay **pure-knowledge / host mode**. Do **not** add a `scripts/` dir, or the
-  agent gets containerized and the host files won't be there (unless mounted).
-- **Need OS packages, pip libs, or a bundled CLI?** → you're container mode by
-  definition; that's fine and expected.
-- **Mixing is fine.** One install-bearing skill puts the whole agent in container
-  mode; pure-knowledge skills work in either mode (the base image has
-  python3/node/curl/jq, so `curl`-based knowledge skills work in the container
-  too).
-
----
-
-## 7. Credentials: `env.required` and `env.optional`
-
-Robomotion never hard-codes secrets in a skill. A skill **declares** the env var
-*names* it needs; the user binds each to a **Vault** item in the Designer; the
-deskbot resolves them and the launcher injects them into the run.
-
-Two files, same format (one `VAR_NAME` per line; `#` comments and blank lines
-ignored; inline `=VALUE` is stripped — declare names only):
-
-| | `env.required` | `env.optional` |
+| Field | Required | Notes |
 |---|---|---|
-| Meaning | Mandatory — the skill can't work without it | Has a sensible fallback / default |
-| Launcher | `validateEnvBindings` **blocks the run** if unbound (`secret_unbound`) | **Never blocks**; injected only when bound |
-| Injection | injected as `--env` | injected as `--env` when bound (union with required) |
-| Designer | Environment tab flags unbound ones (red "won't run") | shown in a separate non-blocking "Optional" section |
+| `schema_version` | yes | Currently `1`. |
+| `name` | yes | kebab-case identifier; must match the directory name. |
+| `title` | yes | Display name shown in the Designer. |
+| `type` | yes | `group` (has `skills/`) or `skill` (single SKILL.md). |
+| `version` | yes | Semver. For vendored groups: what we pin (not necessarily upstream HEAD). |
+| `author` | yes | Creator credit. Upstream author for vendored; `Robomotion` for first-party. |
+| `source_url` | yes | Canonical source. Upstream repo for vendored; this repo + path for first-party. |
+| `license` | yes | SPDX identifier (e.g. `MIT`, `Apache-2.0`). |
+| `summary` | yes | One-sentence description. |
+| `tags` | optional | List of strings, for filtering in the Designer. |
 
-**Decision rule:** if the skill has a documented fallback for a var, put it in
-`env.optional`; otherwise `env.required`. Example: `obsidian` declares
-`OBSIDIAN_VAULT_PATH` in `env.optional` because it falls back to
-`~/Documents/Obsidian Vault`. Listing it as required would wrongly block runs
-that rely on the default.
+### 5.2 `.robomotion/CHANGELOG.md` and `.robomotion/LICENSE`
 
-Write helpful comments — the Designer doesn't show them, but they document intent
-for the next author:
+Both are **group-level** for a group — all inner skills inherit them. For a standalone skill, they live in *its* `.robomotion/`. The Designer reads them from the unit root and surfaces them on every skill card.
 
-```sh
-# Personal API key — generate at https://linear.app/settings/account/security
-# under "Personal API keys".
-LINEAR_API_KEY
-```
+- **`CHANGELOG.md`** — *Robomotion-side* log. Records what we shipped: vendoring events, version bumps, patches added inside `.robomotion/`. NOT a copy of upstream's changelog; we're tracking *our* changes to *our* mirror.
+- **`LICENSE`** — for a vendored group, a verbatim copy of upstream's LICENSE so the Designer has a stable path. We adopt upstream's terms; don't edit the copy. For first-party, we author it.
 
-How it's wired (for the curious / when debugging):
+No per-skill `LICENSE` / `CHANGELOG.md` inside a group — the group-root files cover all inner skills.
 
-- **Launcher** `env.go`: `aggregateEnvRequired` / `aggregateEnvOptional` union the
-  names across active skills. `main.go` validates **required-only** but injects the
-  **union** (`mergeEnvRequired(required, optional)`) via `envFlags`. Tool-declared
-  env (`optToolsEnvRequired`) folds into the required set.
-- **Designer** `components/editors/EnvironmentTab.tsx` (inside the Agent Editor):
-  fetches `env.required` and `env.optional` from
-  `raw.githubusercontent.com/<owner>/<repo>/main/<path>/<file>`, renders a Vault +
-  item picker per var, and persists `optEnvironmentBindings`
-  (`ENV_VAR -> {vault_id, vault_item_id}`) on the node.
-- **Security.** For sandboxed (container) runs, the launcher fails closed unless
-  the deskbot's **credential proxy** is present: the injected `--env` values are
-  vault-reference placeholders, and the proxy substitutes the real secret only on
-  the live outbound request. As a skill author you just reference the env var
-  normally (`$LINEAR_API_KEY`); the platform handles the rest.
+### 5.3 `.robomotion/post-install.sh`
 
-In your `SKILL.md`, reference env vars exactly as the shell sees them
-(`-H "Authorization: Bearer $AIRTABLE_API_KEY"`). Don't restate how to set them.
+Runs once at image build (per active group). Used for:
 
----
+- Wrapping a non-standard CLI dir onto `$PATH` (marketing-skills' `tools/clis/`).
+- Real OS/pip/npm dependencies the base image lacks.
+- Idempotent setup the group needs before any of its skills run.
 
-## 8. Installs and scripts
+The container's base image already ships `python3`, `node20`, `jq`, `git`, `curl`, `wget`, `ca-certificates`. Don't re-install those.
 
-### `post-install.sh`
+A non-zero exit fails the image build. Guard best-effort steps with `|| true`.
 
-Runs **once at image build** as a cached Docker layer (`dockerfile.go` emits
-`RUN .../post-install.sh`). **Use it only for a *genuine* install** — `apt`/`pip`/
-`npm` of a real dependency the base image lacks (e.g. PyMuPDF, `ffmpeg`, the `gh`
-CLI). Create it **only when necessary**.
+### 5.4 `.robomotion/env.yaml`
 
-- **It is NOT for putting bundled CLIs on `$PATH`.** Zero-dependency CLIs need no
-  install; the platform exposes them on `$PATH` instead (see *CLIs on `$PATH`*
-  below). Don't write a `post-install.sh` just to symlink scripts.
-- Start with `#!/bin/sh` and `set -eu`.
-- **Idempotent** and minimal. The base image
-  (`gcr.io/robomotion/robomotion-skills-base`) already ships **python3, node20,
-  jq, git, curl, wget, ca-certificates** — only add what's genuinely missing.
-- A non-zero exit **fails the image build**. If a step is best-effort, guard it
-  (`... || true`) — but prefer steps that reliably succeed.
+Group-level env overlay. **Generated**, not hand-edited (for vendored groups where a `tools/integrations/` library exists).
 
-```sh
-#!/bin/sh
-# PyMuPDF for text + table extraction.
-set -eu
-pip3 install --no-cache-dir --break-system-packages pymupdf
-```
+The launcher (roadmap item, not yet wired) reads this at stage time and surfaces each integration's env vars as `env.optional` on every inner skill that lists it.
 
-For an OS CLI (the `gh` / GitHub-CLI pattern), see `github-issues/post-install.sh`.
+For first-party groups without an upstream tool library, author `env.yaml` by hand or skip it entirely (per-skill `env.required` / `env.optional` files in each skill folder cover the basics).
 
-### `pre-run.sh`
+### 5.5 Producer/consumer files → Memory
 
-Chmod'd at build, executed by the entrypoint at **every container start**. Use it
-for login ceremonies that need fresh credentials each run. Most skills don't need
-one.
+Many upstream collections have one "producer" skill that writes a context file (e.g. marketingskills' `product-marketing` writes `.agents/product-marketing.md` for the other 40 skills to read). In Robomotion that **doesn't work as a file** — the model has no stable filesystem to maintain such conventions. The equivalent is to write to **Memory** (`MEMORY.md`) via the memory tool; the memory manager re-injects it into the prompt every run, so consumer skills read from context with no file step.
 
-### `scripts/`
-
-Ship a helper CLI the model invokes via the `terminal` tool. Conventions:
-
-- **Stdlib-first.** Prefer zero third-party deps (Python `urllib`, `argparse`,
-  `json`) so you don't need a `post-install.sh` — see `arxiv`, `linear`,
-  `spotify`. (Shipping `scripts/` still forces container mode regardless.)
-- **Pin the path with `${SKILL_DIR}`** in `SKILL.md`:
-  `python3 ${SKILL_DIR}/scripts/foo.py --bar baz`.
-- **Read credentials from env** (the vars you declared in `env.required`).
-- **Print JSON to stdout**, including a clean `{"error": "..."}` on failure — the
-  model reads stdout; never let a traceback leak.
-- Mark the script executable (`chmod +x`).
-- Map upstream failure modes to clear messages (auth revoked, rate limit, "no
-  active device", etc.) so the model can react instead of looping.
-
-### CLIs on `$PATH` (the CLI-favored capability path)
-
-Robomotion is **CLI-favored**: the model acts by running a CLI through the
-`terminal` tool. Bundled CLIs are made runnable **by the platform**, not by a
-per-skill install step:
-
-- A skill/collection's **`bin/`** (the Claude-plugin convention) — and, for repos
-  that use it, **`tools/clis/`** — is added to the terminal tool's `$PATH` at stage
-  time. The model runs `resend send …`, `ga4 report …` **by name**, with no
-  symlink script of yours inside the tree.
-- Zero-dependency CLIs (Node 18+/`fetch`, Python stdlib) therefore need **no
-  `post-install.sh`** — only a *genuine* dependency does (above).
-- CLIs read creds from env (§7), print JSON to stdout incl. `{"error": …}`, and are
-  executable. A non-empty CLI dir classifies the run as **container mode**.
-- Reach for **MCP only when there's no usable CLI** (§1) — wired at the agent/node
-  level, never as the default.
-
-### Cross-skill state → use Memory, not files
-
-If a skill produces context other skills should reuse (e.g. a product brief),
-**do not write a file at a hardcoded path for other skills to read** — that's a
-brittle filesystem side-channel. Durable, cross-skill, per-agent state belongs in
-the agent's **Memory**: `MEMORY.md` (world/project facts) and `USER.md` (the
-*human's* profile — never product/project facts). The runtime persists Memory and
-injects it every run, so consumers get it **without any file read**. File
-*artifacts* (generated CSV, image, code) go to the agent **workspace**
-(`/workspace`, the cwd). Skills never invent filesystem paths. Full model:
-`docs/agent-files.md`.
+Skills authored verbatim from upstream keep referencing the file path; the runtime resolves them under `/workspace` if the user happens to have one. The proper fix is upstream-side or via a thin Robomotion wrapper. See `docs/agent-files.md` for the full Memory model.
 
 ---
 
-### Shared library (`_shared/`)
+## 6. Pitfalls
 
-When skills share **code/docs**, ship a **`_shared/`** dir (CLIs in
-`_shared/scripts/`, guides in `_shared/references/`, optionally a
-`_shared/post-install.sh` for shared deps). A skill's **`${SHARED_DIR}`** token
-resolves to the **nearest `_shared/` walking up its path** — group-scoped, with
-the repo root as fallback:
-
-```
-marketing-skills/_shared/     → marketing-skills/* skills
-_shared/  (repo root)         → fallback for everything else
-```
-```sh
-node ${SHARED_DIR}/scripts/ga4.js report --property 123
-```
-
-- `${SHARED_DIR}` → nearest `_shared/` up the skill's path (key
-  `<owner>__<repo>__<group>___shared`, or `…___shared` at root); left literal if none.
-- A `_shared/scripts/` (or `_shared/post-install.sh`) forces **container mode**.
-- Each `_shared/`'s content is hashed into the image key, so editing a shared CLI rebuilds.
-
-**Env stays per-skill — `_shared/` carries no env.** A shared CLI library can need
-dozens of credentials, but each skill uses only a few. So a skill that calls
-`${SHARED_DIR}/scripts/ga4.js` declares `GA4_ACCESS_TOKEN` in **its own**
-`env.required`/`env.optional` (§7) — never in `_shared/`. The launcher ignores any
-`_shared/env.*`; this keeps the run requiring (and the Designer showing) only the
-vars the *active* skills use, not the whole library. Names dedup across skills, so
-one binding covers every skill that shares a CLI.
-
-Prefer `_shared/` over copying the same CLI into many skills, **for skills you
-author first-party in this repo**. Do **not** restructure a *third-party*
-collection into `_shared/` — that's an edit to the upstream tree and breaks
-`git pull` updates. A third-party repo keeps its own layout (e.g. `tools/clis/`)
-and is ingested **verbatim**; its CLIs reach `$PATH` via the platform, not a
-rewrite (§10 *Porting a third-party collection verbatim*).
-
-## 9. Writing a brand-new skill
-
-1. **Pick the capability surface** (§1–§2): `curl` via `terminal`, a built-in
-   toolset, or a CLI you ship in `scripts/`.
-2. **Create the folder** `mkdir <skill-name>` (kebab-case).
-3. **Write `SKILL.md`** with the front-matter and body structure in §5.
-4. **Credentials:** add `env.required` (mandatory) and/or `env.optional` (has a
-   fallback) with the var names + comments.
-5. **Installs:** if you need OS/pip/npm packages, write `post-install.sh`
-   (idempotent, minimal).
-6. **Scripts:** if you ship a CLI, put it in `scripts/`, make it executable,
-   reference it with `${SKILL_DIR}/scripts/...`, and smoke-test it offline.
-7. **Add `CHANGELOG.md`** (start at `[1.0.0]`) and **`LICENSE`** (MIT; see an
-   existing skill for the two-copyright wording).
-8. **Update `README.md`** — add a row to the Inventory table (alphabetical).
-9. **Verify** (§12) and open a PR.
+- **Editing a vendored skill's body.** Collides with the next manual bump (re-copy + diff). The only place we ever add inside the mirror is `<group>/.robomotion/`.
+- **Leaving install prose in `SKILL.md`.** "First, `pip install …`" belongs in `post-install.sh`, not the prompt. The launcher handles installs.
+- **Putting an optional var in `env.required`.** It will block every run that doesn't bind it. Use `env.optional` when there's a fallback or alternative.
+- **Adding `scripts/` to a skill that needs the host filesystem.** `scripts/` forces container mode; a filesystem skill (Obsidian-style) then loses host access. Stay pure-knowledge (no `scripts/`, no `post-install.sh`) if you need host fs.
+- **Forgetting to bump `version` in `.robomotion/skill.yaml`** after editing a `post-install.sh`. The container image hash includes the version + post-install content; without a bump the cache may serve a stale build.
+- **Inventing filesystem paths for cross-skill state.** Producer-writes-a-file / consumer-reads-it is a brittle side-channel. Use Memory (`MEMORY.md`) instead — `docs/agent-files.md`.
+- **Reaching for MCP first.** Robomotion is CLI-favored. Use a CLI via the `terminal` tool; reach for MCP only when there's no usable CLI.
 
 ---
 
-## 10. Porting an upstream Hermes skill
+## 7. Reference: files & paths
 
-First confirm it's portable (§2). Then apply this transformation:
+- `README.md` — repo overview + Inventory table (one row per group).
+- `build-index.py` → `index.yaml` — discovery manifest the Designer fetches.
+- `generate-env-overlay.py` → `<group>/.robomotion/env.yaml` — env overlay generator (currently scoped to marketing-skills; will generalize).
+- `validate.sh` + `.github/workflows/validate.yml` — contract checker + index drift-guard.
+- `docs/agent-files.md` — Memory + workspace model (where durable state goes).
+- `docs/claude-plugin-support.md` — how vendored groups are staged at runtime (`${CLAUDE_PLUGIN_ROOT}`, structure-preserving extraction, `bin/`→`$PATH`).
+- `docs/skill-system-scale-design.md` — index → bundles → registry architecture.
 
-| Aspect | Source (`hermes-agent/skills/<cat>/<name>/`) | Ported (`robomotion-skills/<name>/`) |
-|---|---|---|
-| Location | nested under a category | flattened to repo root; folder == `name:` |
-| Front-matter | `name, description, version, author, license, platforms, prerequisites, metadata.hermes.*` | trimmed to `name, version, summary, tags` |
-| Version | upstream value | `1.0.0` (note upstream version in CHANGELOG) |
-| Install prose | "Setup", `apt`/`pip`/`npm`, "set ENV in `~/.hermes/.env`" **in** SKILL.md | **removed** → `post-install.sh` + `env.required`/`env.optional` |
-| Path refs | `~/.hermes/...` / relative `scripts/foo.py` | `${SKILL_DIR}/scripts/foo.py` |
-| Body | reference dump | + Capabilities, When-to / When-NOT, Operating notes, Attribution |
-| Plugin-tool skill | documents `spotify_*` etc. | **rewrite** as a `scripts/` CLI over the Web API (§2) |
-| New files | — | `env.required`/`env.optional`, `post-install.sh`/`pre-run.sh` (if needed), `CHANGELOG.md`, `LICENSE` |
-| Kept | `scripts/`, `references/` | same (rewrite path refs to `${SKILL_DIR}`) |
+**Launcher (other repo — `packages-main/src/hermes-agent/launcher/`):**
 
-> Porting a **non-Hermes** skill (agentskills.io / Claude-plugin spec, e.g. a
-> marketing-skills repo)? You can skip most of the front-matter rewrite — keep
-> `name` + `description` + `metadata.version`, add `tags`, rewrite path refs, and
-> add `LICENSE`/`CHANGELOG`. See §5 *Cross-agent compatibility* and §11(e). If the
-> repo uses a shared CLI library, port it under `_shared/` (§8).
+- `skills.go` — fetch/extract active skills + group `.robomotion/`. Reads index, stages structure-preserving for groups.
+- `dockerfile.go` — image build. `RUN <group>/.robomotion/post-install.sh` once per active group; includes its content hash in the image key.
+- `launchplan.go: needsSandbox` — triggers container mode if a group ships `.robomotion/post-install.sh`.
+- `env.go` — `aggregateEnvRequired` / `aggregateEnvOptional` across active skills.
 
-Step by step:
+**Designer (other repo — `robomotion-new-designer/src/`):**
 
-1. Copy the source folder to `robomotion-skills/<name>/` (flatten out the
-   category).
-2. Rewrite the front-matter to the four-field shape; set `version: 1.0.0`.
-3. Move install instructions out of the body: package installs → `post-install.sh`;
-   env vars → `env.required` (or `env.optional` if it has a fallback). Delete the
-   "Setup" / "Prerequisites" prose.
-4. Rewrite every path reference to `${SKILL_DIR}/...`.
-5. Restructure the body: add Capabilities, When-to-use, When-NOT-to-use, Operating
-   notes, and an Attribution line.
-6. If it's a plugin-tool skill, **rewrite the capability** as a stdlib CLI in
-   `scripts/` with vault-based headless auth; document its subcommands in Usage.
-7. Add `CHANGELOG.md` (record what you changed from upstream) and `LICENSE`.
-8. Update `README.md` Inventory.
-9. Verify (§12) and open a PR.
-
-### Porting a third-party collection verbatim (agentskills.io / Claude Code plugins)
-
-This is the **preferred** path for a third-party repo that already follows the
-agentskills.io spec or ships as a Claude Code plugin (e.g. `marketingskills`).
-Don't rewrite it skill-by-skill — **mirror it and let the platform adapt:**
-
-1. **Mirror the upstream `skills/` byte-for-byte.** No body edits, no front-matter
-   rewrites, no path rewrites, no restructuring into `_shared/`. Each
-   `skills/<name>/` becomes an **individually selectable** skill (the collection
-   name is just a group label — expose the skills, don't collapse them into one,
-   and don't auto-activate the whole set — keep the active set small).
-2. **Capability = CLI on `$PATH`** (§8). The repo's CLIs (`bin/` or `tools/clis/`)
-   are exposed on `$PATH` by the platform at stage time — the model runs them by
-   name. **No `post-install.sh` unless a real dependency must be installed.** Use
-   MCP only for tools with no usable CLI (§1).
-3. **Robomotion metadata lives *beside* the mirror, never inside it.** The one
-   thing upstream lacks is **env declarations** (`env.required`/`env.optional`) so
-   creds inject — keep these in an overlay alongside the mirror; the launcher
-   merges them at stage time. Nothing of ours enters the synced tree.
-4. **Leave soft references alone.** Upstream repo-relative links (`../../tools/…`,
-   `references/…`) and any `.agents/…` context paths stay as-is — they resolve via
-   the staged layout / persistent `/workspace` cwd, and where one doesn't it's a
-   *soft* "see the guide" pointer the model degrades past. Don't rewrite them.
-5. **Cross-skill context → Memory** (§8): the collection's own "producer writes a
-   file, consumers read it" convention maps onto agent Memory — no dependency
-   mechanism needed (skills are self-contained, §1).
-6. **Bump = `git pull`.** Nothing inside the tree changed, so updating to a new
-   upstream release is a re-sync, not a re-port.
-
-> Contrast with the upstream-*Hermes*-skill rewrite above: that edits the source
-> because a Hermes plugin-tool skill can't run as-is. A spec-compliant collection
-> needs **no** such edits — verbatim is both less work and maintainable. Fall back
-> to per-skill rewrites only if a skill genuinely can't run verbatim.
-
----
-
-## 11. Worked examples
-
-All of these live in this repo — read them alongside this section.
-
-### (a) curl + required key → `linear`, `airtable`
-Pure `curl` against a REST/GraphQL API. `airtable` ships only `SKILL.md` +
-`env.required` (host mode, pure-knowledge); `linear` additionally ships a stdlib
-`scripts/linear_api.py` ergonomics wrapper (→ container mode). Both declare a
-single required key. Install prose from upstream became `env.required` comments.
-
-### (b) pure-knowledge, no script → `airtable`, `notion`
-No `scripts/`, no `post-install.sh` → **host mode**. `notion` was reduced to the
-HTTP-API/`curl` path only (upstream's `ntn` CLI + hosted Workers were dropped as a
-poor fit for a headless sandbox), and keeps `references/block-types.md`.
-
-### (c) filesystem / host mode + optional env → `obsidian`
-Uses the built-in `file` toolset, so it's portable without a script. Deliberately
-ships **no** `scripts/` so it stays **host mode** and can reach the real vault on
-disk. Declares `OBSIDIAN_VAULT_PATH` in **`env.optional`** (it falls back to a
-default path) — the canonical example of when to choose optional over required.
-
-### (d) plugin → CLI rewrite → `spotify`
-Upstream `spotify` was a **plugin** exposing `spotify_*` tools — not portable as
-prose. Rewritten as `scripts/spotify_api.py`, a stdlib CLI over the Spotify Web
-API driven by `terminal`. Headless auth uses vault-bound
-`SPOTIFY_CLIENT_ID`/`SPOTIFY_CLIENT_SECRET`/`SPOTIFY_REFRESH_TOKEN` (refresh
-flow) instead of interactive OAuth. Container mode (ships a script).
-
-### (e) cross-agent spec port → `cro`, `copywriting`, `cold-email`, `pricing`, `marketing-psychology`
-Pure-knowledge skills lifted from [marketingskills](https://github.com/coreyhaines31/marketingskills),
-an agentskills.io / Claude-plugin collection. Ported in **native spec
-front-matter** (`name` + `description` + `metadata.version`, plus `tags`) to
-exercise the §5 compatibility shims — no four-field rewrite. `references/` came
-along; `evals/` and the repo's shared CLI library were left out. All host mode.
-A repo like this with live tools would carry its CLI library under `_shared/` (§8).
-
----
-
-## 12. Testing & verification
-
-Before opening a PR, confirm:
-
-```sh
-# 1. Folder name matches front-matter `name:`
-grep -m1 '^name:' <skill>/SKILL.md      # must equal the directory name
-
-# 2. Classification is what you intend
-#    container if post-install.sh OR non-empty scripts/ ; else host
-ls <skill>/post-install.sh <skill>/scripts/ 2>/dev/null
-
-# 3. Required files present
-ls <skill>/SKILL.md <skill>/CHANGELOG.md <skill>/LICENSE
-
-# 4. env files are name-only, valid identifiers
-cat <skill>/env.required <skill>/env.optional 2>/dev/null
-```
-
-If you shipped a script:
-
-```sh
-python3 -m py_compile <skill>/scripts/*.py        # compiles
-python3 <skill>/scripts/foo.py --help             # CLI surface
-# error path must print clean JSON, not a traceback:
-env -u THE_REQUIRED_KEY python3 <skill>/scripts/foo.py <subcmd>
-chmod +x <skill>/scripts/*.py                       # executable bit
-```
-
-Also: every command in `SKILL.md`'s Usage section must match the script's actual
-flags (a model trusts the docs — wrong examples burn recovery tool calls).
-
-If you changed the **launcher** or **Designer** (e.g. extending the env contract):
-
-```sh
-# launcher
-cd packages-main/src/hermes-agent/launcher && go vet ./... && go test ./...
-# designer
-cd robomotion-new-designer && npx tsc --noEmit -p tsconfig.app.json
-```
-
----
-
-## 13. Pitfalls & gotchas
-
-- **Copying a plugin-backed skill's `SKILL.md` verbatim.** The model will call
-  tools that don't exist. Rewrite to a CLI (§2, §11d).
-- **Leaving install prose in `SKILL.md`.** The launcher handles installs; the body
-  should be pure knowledge. Move it to `post-install.sh` / `env.required`.
-- **Putting an optional var in `env.required`.** It will block every run that
-  doesn't set it. Use `env.optional` when there's a fallback.
-- **Adding `scripts/` to a host-only skill.** It forces container mode; a
-  filesystem skill (like `obsidian`) then can't see host files.
-- **Forgetting to bump `version:`** after editing a script or `post-install.sh` —
-  the image cache may serve a stale build on a moving branch.
-- **`post-install.sh` that can fail the build.** A non-zero exit aborts the image.
-  Keep it reliable; guard best-effort steps.
-- **Reinstalling what the base image already has** (python3/node20/jq/git/curl/
-  wget/ca-certificates). Don't.
-- **Scripts that print tracebacks.** Catch errors and emit `{"error": "..."}`.
-- **Hand-encoding URLs / formulas.** Let `python3 -m urllib.parse` do it (see
-  `airtable`'s `filterByFormula` pattern).
-- **Repo-level `tools/` in a *first-party* skill.** If you author skills here, the
-  launcher extracts each folder in isolation, so a sibling `tools/` never ships and
-  `../../tools/...` won't resolve — put shared code in `_shared/` and use
-  `${SHARED_DIR}`. (A *third-party* collection is different: it's mirrored verbatim
-  and its `tools/clis/` reaches `$PATH` via the platform — §10.)
-- **`${SHARED_DIR}` left literal at runtime.** It only resolves when the repo
-  actually ships a `_shared/` dir; an unresolved token means the dir is missing.
-- **Editing a third-party skill's body to "fit" Robomotion.** Rewriting paths,
-  front-matter, or restructuring into `_shared/` breaks `git pull` updates. Mirror
-  it verbatim; adapt via the platform + a beside-the-mirror env overlay (§10).
-- **Writing a context file for other skills to read.** A hardcoded
-  producer-writes-a-file / consumers-read-it path is a brittle side-channel. Put
-  durable cross-skill state in **Memory** (`MEMORY.md`), not files (§8, `docs/agent-files.md`).
-- **Putting product/project facts in `USER.md`.** `USER.md` is the *human's*
-  profile; world/project facts go in `MEMORY.md`. (`docs/agent-files.md`.)
-- **Writing a `post-install.sh` just to symlink CLIs onto `$PATH`.** Unnecessary —
-  the platform PATHs `bin/` / `tools/clis/`. Reserve `post-install.sh` for a
-  *genuine* install (§8).
-- **Reaching for MCP first.** Robomotion is CLI-favored; use a CLI via `terminal`,
-  and MCP only when no usable CLI exists (§1).
-
----
-
-## 14. Reference: files & paths
-
-**This repo (`robomotion-skills`)**
-- `README.md` — folder contract, classification, inventory, authoring checklist
-- `build-index.py` → `index.json` — the discovery manifest the Designer reads
-  (regenerate + commit when adding/changing a skill; CI drift-checks it)
-- `validate.sh` + `.github/workflows/validate.yml` — contract checker + index drift-guard
-- `docs/agent-files.md` — the agent context/memory model (`AGENT.md`/`SOUL.md`/
-  `IDENTITY.md`/`USER.md`/`MEMORY.md`); where durable state goes (Memory vs workspace)
-- `docs/claude-plugin-support.md` — how vendored collections (agentskills/Claude-Code
-  plugins) are detected, staged structure-preserving, and resolved (`${CLAUDE_PLUGIN_ROOT}`)
-- `docs/skill-system-scale-design.md` — the scale architecture (index → bundles → registry)
-- `docs/marketingskills-full-port-plan.md` — the marketingskills port plan/decisions
-- `docs/marketingskills-review-and-skill-system-gaps.md` — review + the skill-system roadmap
-- existing skills — the canonical examples (`linear`, `airtable`, `notion`,
-  `obsidian`, `spotify`, `github-issues`, `arxiv`, the marketing pilots, …)
-
-**Hermes Agent package (`packages-main/src/hermes-agent/`)**
-- `nodes/skills/skill_loader.py` — reads `SKILL.md`, substitutes `${SKILL_DIR}` /
-  `${SESSION_ID}` / `${SHARED_DIR}` (`local_shared_path`), injects into the prompt
-- `nodes/agent/hermes_agent.py` — the node; `_HERMES_INTERNAL_TOOLS` (the
-  built-in toolset catalog), curated models, assets
-- `launcher/skills.go` — fetch/extract active skills + repo `_shared/`, install
-  dir naming, `version:` / `metadata.version` read (`readSkillVersion`),
-  `dirContentHash`
-- `launcher/launchplan.go` — `needsSandbox` (host vs container classification)
-- `launcher/dockerfile.go` — base image, image hash (incl. version + `_shared`
-  content), `post-install.sh` / `pre-run.sh` wiring
-- `launcher/env.go` — `aggregateEnvRequired` / `aggregateEnvOptional`,
-  `validateEnvBindings`, `envFlags`
-- `launcher/main.go` — `planFromEnvelope`: validate required-only, inject
-  required∪optional, cred-proxy fail-closed gate
-
-**Flow Designer (`robomotion-new-designer/src/`)**
-- `stores/skills.ts` — Browse-Skills discovery: front-matter parse (`summary`/
-  `description`, `metadata.version`), root + nested `skills/<name>/` enumeration
-- `components/editors/LLMAgentEditor.tsx` — the Agent Editor shell
-- `components/editors/EnvironmentTab.tsx` — fetches each active skill's
-  `env.required`/`env.optional` (per-skill only), renders Vault bindings (required
-  gate + optional section)
-- `components/editors/ToolsTab.tsx` — internal-tool toggles → `optToolsEnvRequired`
-
-**Product context**
-- `robomotion-flow-designer-robots-and-agents.md` — the platform guide (Designer,
-  Robots, Vaults §12, security model §25, AI Agents §23)
+- `stores/skills.ts` — fetches `index.yaml`, builds the Browse-Skills list. Reads `author` + `source_url` per skill.
+- `components/skills/SkillCard.tsx` — renders `by {author}` + external-link icon to `source_url`.
+- `components/editors/EnvironmentTab.tsx` — surfaces each active skill's `env.required` / `env.optional` (and, once the launcher overlay merge ships, the group's `env.yaml` too).
