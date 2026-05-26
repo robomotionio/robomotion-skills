@@ -1,0 +1,1219 @@
+schema_version: 1
+groups:
+- path: marketing-skills
+  name: marketing-skills
+  title: Marketing Skills
+  type: group
+  version: 2.1.0
+  author: Corey Haines
+  source_url: https://github.com/coreyhaines31/marketingskills
+  license: MIT
+  summary: 41 marketing skills — copywriting, SEO, paid ads, growth, lifecycle, CRO, and more. Vendored verbatim from upstream.
+  tags:
+  - marketing
+  - copywriting
+  - seo
+  - ads
+  - growth
+  - cro
+  - lifecycle
+  - pmm
+  has_post_install: true
+  has_env_yaml: true
+  has_changelog: true
+  has_license: true
+  content_hash: 02903aea406a
+  skills:
+  - name: ab-testing
+    path: marketing-skills/skills/ab-testing
+    title: ab-testing
+    summary: When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation
+      program. Also use when the user mentions "A/B test," "split test," "experiment," "test this change," "variant copy,"
+      "multivariate test," "hypothesis," "should I test this," "which version is better," "test two versions," "statistical
+      significance," "how long should I run this test," "growth experiments," "experiment velocity," "experiment backlog,"
+      "ICE score," "experimentation program," or "experiment playbook." Use this whenever someone is comparing two approaches
+      and wants to measure which performs better, or when they want to build a systematic experimentation practice. For tracking
+      implementation, see analytics. For page-level conversion optimization, see cro.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b8c101e50181
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/sample-size-guide.md
+    - references/test-templates.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/ab-testing
+    license: MIT
+    group: marketing-skills
+  - name: ad-creative
+    path: marketing-skills/skills/ad-creative
+    title: ad-creative
+    summary: When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full
+      ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,'
+      'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'ad performance optimization,'
+      'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' or 'I need more ad variations.'
+      Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting,
+      see ads. For landing page copy, see copywriting.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9e5a12ffcd4b
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/generative-tools.md
+    - references/platform-specs.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/ad-creative
+    license: MIT
+    group: marketing-skills
+  - name: ads
+    path: marketing-skills/skills/ads
+    title: ads
+    summary: When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn,
+      Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,'
+      'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad
+      spend,' or 'should I run ads.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk
+      ad creative generation and iteration, see ad-creative. For landing page optimization, see cro.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 27ce3b4e02f5
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/ad-copy-templates.md
+    - references/audience-targeting.md
+    - references/conversion-tracking.md
+    - references/platform-setup-checklists.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/ads
+    license: MIT
+    group: marketing-skills
+  - name: ai-seo
+    path: marketing-skills/skills/ai-seo
+    title: ai-seo
+    summary: When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers.
+      Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,'
+      'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,'
+      'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' or 'optimize for Claude/Gemini.' Use this whenever
+      someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical
+      and on-page SEO audits, see seo-audit. For structured data implementation, see schema.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 178ce4ee5ecd
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/content-patterns.md
+    - references/content-types.md
+    - references/platform-ranking-factors.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/ai-seo
+    license: MIT
+    group: marketing-skills
+  - name: analytics
+    path: marketing-skills/skills/analytics
+    title: analytics
+    summary: When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions
+      "set up tracking," "GA4," "Google Analytics," "conversion tracking," "event tracking," "UTM parameters," "tag manager,"
+      "GTM," "analytics implementation," "tracking plan," "how do I measure this," "track conversions," "attribution," "Mixpanel,"
+      "Segment," "are my events firing," or "analytics isn't working." Use this whenever someone asks how to know if something
+      is working or wants to measure marketing results. For A/B test measurement, see ab-testing.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0be17d8a9a20
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/event-library.md
+    - references/ga4-implementation.md
+    - references/gtm-implementation.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/analytics
+    license: MIT
+    group: marketing-skills
+  - name: aso
+    path: marketing-skills/skills/aso
+    title: aso
+    summary: When the user wants to audit or optimize an App Store or Google Play listing. Also use when the user mentions
+      'ASO audit,' 'app store optimization,' 'optimize my app listing,' 'improve app visibility,' 'app store ranking,' 'audit
+      my listing,' 'why aren't people downloading my app,' 'improve my app conversion,' 'keyword optimization for app,' or
+      'compare my app to competitors.' Use when the user shares an App Store or Google Play URL and wants to improve it.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d4323f8a55e9
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/apple-specs.md
+    - references/benchmarks.md
+    - references/google-play-specs.md
+    - references/report-template.md
+    - references/scoring-criteria.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/aso
+    license: MIT
+    group: marketing-skills
+  - name: churn-prevention
+    path: marketing-skills/skills/churn-prevention
+    title: churn-prevention
+    summary: When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or
+      implement retention strategies. Also use when the user mentions 'churn,' 'cancel flow,' 'offboarding,' 'save offer,'
+      'dunning,' 'failed payment recovery,' 'win-back,' 'retention,' 'exit survey,' 'pause subscription,' 'involuntary churn,'
+      'people keep canceling,' 'churn rate is too high,' 'how do I keep users,' or 'customers are leaving.' Use this whenever
+      someone is losing subscribers or wants to build systems to prevent it. For post-cancel win-back email sequences, see
+      emails. For in-app upgrade paywalls, see paywalls.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 670da8d3ce39
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/cancel-flow-patterns.md
+    - references/dunning-playbook.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/churn-prevention
+    license: MIT
+    group: marketing-skills
+  - name: co-marketing
+    path: marketing-skills/skills/co-marketing
+    title: co-marketing
+    summary: When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities.
+      Use when the user says 'co-marketing,' 'partner marketing,' 'joint campaign,' 'who should we partner with,' 'integration
+      marketing,' 'cross-promotion,' 'collaborate with another company,' 'partnership ideas,' or 'co-brand.' For customer
+      referral programs, see referrals. For launch-specific partnerships, see launch.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: deedf557f302
+    files:
+    - SKILL.md
+    - evals/evals.json
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/co-marketing
+    license: MIT
+    group: marketing-skills
+  - name: cold-email
+    path: marketing-skills/skills/cold-email
+    title: cold-email
+    summary: Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach
+      emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions
+      "cold outreach," "prospecting email," "outbound email," "email to leads," "reach out to prospects," "sales email," "follow-up
+      email sequence," "nobody's replying to my emails," or "how do I write a cold email." Covers subject lines, opening lines,
+      body copy, CTAs, personalization, and multi-touch follow-up sequences. For warm/lifecycle email sequences, see emails.
+      For sales collateral beyond emails, see sales-enablement.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ea9dddc434b4
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/benchmarks.md
+    - references/follow-up-sequences.md
+    - references/frameworks.md
+    - references/personalization.md
+    - references/subject-lines.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/cold-email
+    license: MIT
+    group: marketing-skills
+  - name: community-marketing
+    path: marketing-skills/skills/community-marketing
+    title: community-marketing
+    summary: 'Build and leverage online communities to drive product growth and brand loyalty. Use when the user wants to
+      create a community strategy, grow a Discord or Slack community, manage a forum or subreddit, build brand advocates,
+      increase word-of-mouth, drive community-led growth, engage users post-signup, or turn customers into evangelists. Trigger
+      phrases: \"build a community,\" \"community strategy,\" \"Discord community,\" \"Slack community,\" \"community-led
+      growth,\" \"brand advocates,\" \"user community,\" \"forum strategy,\" \"community engagement,\" \"grow our community,\"
+      \"ambassador program,\" \"community flywheel.\"'
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2c9f27a0f17a
+    files:
+    - SKILL.md
+    - evals/evals.json
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/community-marketing
+    license: MIT
+    group: marketing-skills
+  - name: competitor-profiling
+    path: marketing-skills/skills/competitor-profiling
+    title: competitor-profiling
+    summary: When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions
+      'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,'
+      'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,'
+      'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor
+      profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific
+      battle cards, see sales-enablement.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3d3fe54e360e
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/templates.md
+    - references/tool-reference.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/competitor-profiling
+    license: MIT
+    group: marketing-skills
+  - name: competitors
+    path: marketing-skills/skills/competitors
+    title: competitors
+    summary: 'When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also
+      use when the user mentions ''alternative page,'' ''vs page,'' ''competitor comparison,'' ''comparison page,'' ''[Product]
+      vs [Product],'' ''[Product] alternative,'' ''competitive landing pages,'' ''how do we compare to X,'' ''battle card,''
+      or ''competitor teardown.'' Use this for any content that positions your product against competitors. Covers four formats:
+      singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For sales-specific competitor
+      docs, see sales-enablement.'
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 85c4cde0952a
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/content-architecture.md
+    - references/templates.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/competitors
+    license: MIT
+    group: marketing-skills
+  - name: content-strategy
+    path: marketing-skills/skills/content-strategy
+    title: content-strategy
+    summary: When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover.
+      Also use when the user mentions "content strategy," "what should I write about," "content ideas," "blog strategy," "topic
+      clusters," "content planning," "editorial calendar," "content marketing," "content roadmap," "what content should I
+      create," "blog topics," "content pillars," or "I don't know what to write." Use this whenever someone needs help deciding
+      what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits,
+      see seo-audit. For social media content specifically, see social.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 04e3c6bd33da
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/headless-cms.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/content-strategy
+    license: MIT
+    group: marketing-skills
+  - name: copy-editing
+    path: marketing-skills/skills/copy-editing
+    title: copy-editing
+    summary: When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use
+      when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,'
+      'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,'
+      'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit.' Use this when the user already
+      has copy and wants it improved or refreshed rather than rewritten from scratch. For writing new copy, see copywriting.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1f86edb2ed87
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/checklist.md
+    - references/content-refresh.md
+    - references/plain-english-alternatives.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/copy-editing
+    license: MIT
+    group: marketing-skills
+  - name: copywriting
+    path: marketing-skills/skills/copywriting
+    title: copywriting
+    summary: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,
+      pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve
+      this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline,"
+      "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product."
+      Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails.
+      For popup copy, see popups. For editing existing copy, see copy-editing.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 40d82c8d7069
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/copy-frameworks.md
+    - references/natural-transitions.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting
+    license: MIT
+    group: marketing-skills
+  - name: cro
+    path: marketing-skills/skills/cro
+    title: cro
+    summary: When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage,
+      landing pages, pricing pages, feature pages, lead capture forms, or contact forms. Also use when the user says 'CRO,'
+      'conversion rate optimization,' 'this page isn't converting,' 'improve conversions,' 'why isn't this page working,'
+      'my landing page sucks,' 'form abandonment,' 'nobody's converting,' 'low conversion rate,' or 'this page needs work.'
+      Use this even if the user just shares a URL and asks for feedback. For signup/registration flows, see signup. For post-signup
+      activation, see onboarding. For popups/modals, see popups.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a60ba2544f55
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/experiments.md
+    - references/form.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/cro
+    license: MIT
+    group: marketing-skills
+  - name: customer-research
+    path: marketing-skills/skills/customer-research
+    title: customer-research
+    summary: When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions "customer
+      research," "ICP research," "talk to customers," "analyze transcripts," "customer interviews," "survey analysis," "support
+      ticket analysis," "voice of customer," "VOC," "build personas," "customer personas," "jobs to be done," "JTBD," "what
+      do customers say," "what are customers struggling with," "Reddit mining," "G2 reviews," "review mining," "digital watering
+      holes," "community research," "forum research," "competitor reviews," "customer sentiment," or "find out why customers
+      churn/convert/buy." Use for both analyzing existing research assets AND gathering new research from online sources.
+      For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a2913fac60ac
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/source-guides.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/customer-research
+    license: MIT
+    group: marketing-skills
+  - name: directory-submissions
+    path: marketing-skills/skills/directory-submissions
+    title: directory-submissions
+    summary: When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories
+      for backlinks, domain rating, and discovery. Also use when the user mentions "directory submissions," "submit to directories,"
+      "backlinks from directories," "list my product," "submit to Product Hunt," "BetaList," "TAAFT," "Futurepedia," "G2 listing,"
+      "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "agent directory," "dofollow backlinks,"
+      "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product
+      launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should
+      live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e6b3b2baa0f2
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/directory-list.md
+    - references/positioning-variations.md
+    - references/submission-tracker-template.csv
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/directory-submissions
+    license: MIT
+    group: marketing-skills
+  - name: emails
+    path: marketing-skills/skills/emails
+    title: emails
+    summary: When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle
+      email program. Also use when the user mentions "email sequence," "drip campaign," "nurture sequence," "onboarding emails,"
+      "welcome sequence," "re-engagement emails," "email automation," "lifecycle emails," "trigger-based emails," "email funnel,"
+      "email workflow," "what emails should I send," "welcome series," or "email cadence." Use this for any multi-email automated
+      flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9369451d34b6
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/copy-guidelines.md
+    - references/email-types.md
+    - references/sequence-templates.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/emails
+    license: MIT
+    group: marketing-skills
+  - name: free-tools
+    path: marketing-skills/skills/free-tools
+    title: free-tools
+    summary: When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value,
+      or brand awareness. Also use when the user mentions "engineering as marketing," "free tool," "marketing tool," "calculator,"
+      "generator," "interactive tool," "lead gen tool," "build a tool for leads," "free resource," "ROI calculator," "grader
+      tool," "audit tool," "should I build a free tool," or "tools for lead gen." Use this whenever someone wants to build
+      something useful and give it away to attract leads or earn links. For downloadable content lead magnets (ebooks, checklists,
+      templates), see lead-magnets.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2b11ba9f758a
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/tool-types.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/free-tools
+    license: MIT
+    group: marketing-skills
+  - name: image
+    path: marketing-skills/skills/image
+    title: image
+    summary: When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics,
+      product mockups, profile banners, listing visuals, or brand assets. Also use when the user mentions 'AI image generation,'
+      'generate an image,' 'create a graphic,' 'product mockup,' 'hero image,' 'social media graphic,' 'banner image,' 'cover
+      photo,' 'profile banner,' 'listing screenshot,' 'Flux,' 'Flux Kontext,' 'Midjourney,' 'DALL-E,' 'GPT Image,' 'ChatGPT
+      Images,' 'Ideogram,' 'Gemini image,' 'Nano Banana,' 'Recraft,' 'Stable Diffusion,' 'Canva,' 'Figma,' 'image optimization,'
+      'compress images,' 'WebP,' or 'OG image.' Use this for general-purpose marketing image creation and optimization. For
+      paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: dd204199a710
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/ai-image-prompting.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/image
+    license: MIT
+    group: marketing-skills
+  - name: launch
+    path: marketing-skills/skills/launch
+    title: launch
+    summary: When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user
+      mentions 'launch,' 'Product Hunt,' 'feature release,' 'announcement,' 'go-to-market,' 'beta launch,' 'early access,'
+      'waitlist,' 'product update,' 'how do I launch this,' 'launch checklist,' 'GTM plan,' or 'we're about to ship.' Use
+      this whenever someone is preparing to release something publicly. For ongoing marketing after launch, see marketing-ideas.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f7aa9a7c3ef3
+    files:
+    - SKILL.md
+    - evals/evals.json
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/launch
+    license: MIT
+    group: marketing-skills
+  - name: lead-magnets
+    path: marketing-skills/skills/lead-magnets
+    title: lead-magnets
+    summary: When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use
+      when the user mentions "lead magnet," "gated content," "content upgrade," "downloadable," "ebook," "cheat sheet," "checklist,"
+      "template download," "opt-in," "freebie," "PDF download," "resource library," "content offer," "email capture content,"
+      "Notion template," "spreadsheet template," or "what should I give away for emails." Use this for planning what to create
+      and how to distribute it. For interactive tools as lead magnets, see free-tools. For writing the actual content, see
+      copywriting. For the email sequence after capture, see emails.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fc9277f833a7
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/benchmarks.md
+    - references/format-guide.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/lead-magnets
+    license: MIT
+    group: marketing-skills
+  - name: marketing-ideas
+    path: marketing-skills/skills/marketing-ideas
+    title: marketing-ideas
+    summary: When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use
+      when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,'
+      'ways to promote,' 'ideas to grow,' 'what else can I try,' 'I don't know how to market this,' 'brainstorm marketing,'
+      or 'what marketing should I do.' Use this as a starting point whenever someone is stuck or looking for inspiration on
+      how to grow. For specific channel execution, see the relevant skill (ads, social, emails, etc.).
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 18c3f60978a2
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/ideas-by-category.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-ideas
+    license: MIT
+    group: marketing-skills
+  - name: marketing-psychology
+    path: marketing-skills/skills/marketing-psychology
+    title: marketing-psychology
+    summary: When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also
+      use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why
+      people buy,' 'decision-making,' 'consumer behavior,' 'anchoring,' 'social proof,' 'scarcity,' 'loss aversion,' 'framing,'
+      or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing
+      context. For applying psychology to specific pages, see cro; for pricing tactics, see pricing; for copy framing, see
+      copywriting.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b555d59c727a
+    files:
+    - SKILL.md
+    - evals/evals.json
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-psychology
+    license: MIT
+    group: marketing-skills
+  - name: onboarding
+    path: marketing-skills/skills/onboarding
+    title: onboarding
+    summary: When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value.
+      Also use when the user mentions "onboarding flow," "activation rate," "user activation," "first-run experience," "empty
+      states," "onboarding checklist," "aha moment," "new user experience," "users aren't activating," "nobody completes setup,"
+      "low activation rate," "users sign up but don't use the product," "time to value," or "first session experience." Use
+      this whenever users are signing up but not sticking around. For signup/registration optimization, see signup. For ongoing
+      email sequences, see emails.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e0c4f49aa99c
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/experiments.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/onboarding
+    license: MIT
+    group: marketing-skills
+  - name: paywalls
+    path: marketing-skills/skills/paywalls
+    title: paywalls
+    summary: When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates.
+      Also use when the user mentions "paywall," "upgrade screen," "upgrade modal," "upsell," "feature gate," "convert free
+      to paid," "freemium conversion," "trial expiration screen," "limit reached screen," "plan upgrade prompt," "in-app pricing,"
+      "free users won't upgrade," "trial to paid conversion," or "how do I get users to pay." Use this for any in-product
+      moment where you're asking users to upgrade. Distinct from public pricing pages (see cro) — this focuses on in-product
+      upgrade moments where the user has already experienced value. For pricing decisions, see pricing.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c2e02ff8fd53
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/experiments.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/paywalls
+    license: MIT
+    group: marketing-skills
+  - name: popups
+    path: marketing-skills/skills/popups
+    title: popups
+    summary: When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes.
+      Also use when the user mentions "exit intent," "popup conversions," "modal optimization," "lead capture popup," "email
+      popup," "announcement banner," "overlay," "collect emails with a popup," "exit popup," "scroll trigger," "sticky bar,"
+      or "notification bar." Use this for any overlay or interrupt-style conversion element. For forms outside of popups,
+      see cro. For general page conversion optimization, see cro.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bc0bea26b124
+    files:
+    - SKILL.md
+    - evals/evals.json
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/popups
+    license: MIT
+    group: marketing-skills
+  - name: pricing
+    path: marketing-skills/skills/pricing
+    title: pricing
+    summary: When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user
+      mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packaging,' 'price increase,' 'value metric,' 'Van Westendorp,'
+      'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs
+      monthly,' 'per seat pricing,' or 'should I offer a free plan.' Use this whenever someone is figuring out what to charge
+      or how to structure their plans. For in-app upgrade screens, see paywalls.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f1938639d8ed
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/research-methods.md
+    - references/tier-structure.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/pricing
+    license: MIT
+    group: marketing-skills
+  - name: product-marketing
+    path: marketing-skills/skills/product-marketing
+    title: product-marketing
+    summary: When the user wants to create or update their product marketing context document. Also use when the user mentions
+      'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,'
+      'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this
+      at the start of any new project before using other marketing skills — it creates `.agents/product-marketing.md` that
+      all other skills reference for product, audience, and positioning context.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a8ddab4333e3
+    files:
+    - SKILL.md
+    - evals/evals.json
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/product-marketing
+    license: MIT
+    group: marketing-skills
+  - name: programmatic-seo
+    path: marketing-skills/skills/programmatic-seo
+    title: programmatic-seo
+    summary: When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions
+      "programmatic SEO," "template pages," "pages at scale," "directory pages," "location pages," "[keyword] + [city] pages,"
+      "comparison pages," "integration pages," "building many pages for SEO," "pSEO," "generate 100 pages," "data-driven pages,"
+      or "templated landing pages." Use this whenever someone wants to create many similar pages targeting different keywords
+      or locations. For auditing existing SEO issues, see seo-audit. For content strategy planning, see content-strategy.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: cda32945eb69
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/playbooks.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/programmatic-seo
+    license: MIT
+    group: marketing-skills
+  - name: referrals
+    path: marketing-skills/skills/referrals
+    title: referrals
+    summary: When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy.
+      Also use when the user mentions 'referral,' 'affiliate,' 'ambassador,' 'word of mouth,' 'viral loop,' 'refer a friend,'
+      'partner program,' 'referral incentive,' 'how to get referrals,' 'customers referring customers,' or 'affiliate payout.'
+      Use this whenever someone wants existing users or partners to bring in new customers. For launch-specific virality,
+      see launch.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 83d448c7b457
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/affiliate-programs.md
+    - references/program-examples.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/referrals
+    license: MIT
+    group: marketing-skills
+  - name: revops
+    path: marketing-skills/skills/revops
+    title: revops
+    summary: When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes.
+      Also use when the user mentions 'RevOps,' 'revenue operations,' 'lead scoring,' 'lead routing,' 'MQL,' 'SQL,' 'pipeline
+      stages,' 'deal desk,' 'CRM automation,' 'marketing-to-sales handoff,' 'data hygiene,' 'leads aren't getting to sales,'
+      'pipeline management,' 'lead qualification,' or 'when should marketing hand off to sales.' Use this for anything involving
+      the systems and processes that connect marketing to revenue. For cold outreach emails, see cold-email. For email drip
+      campaigns, see emails. For pricing decisions, see pricing.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4f280978ea87
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/automation-playbooks.md
+    - references/lifecycle-definitions.md
+    - references/routing-rules.md
+    - references/scoring-models.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/revops
+    license: MIT
+    group: marketing-skills
+  - name: sales-enablement
+    path: marketing-skills/skills/sales-enablement
+    title: sales-enablement
+    summary: When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts.
+      Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific
+      ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'help my sales
+      team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales
+      team close deals. For competitor comparison pages and battle cards, see competitors. For marketing website copy, see
+      copywriting. For cold outreach emails, see cold-email.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c80f7f1ca55f
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/deck-frameworks.md
+    - references/demo-scripts.md
+    - references/objection-library.md
+    - references/one-pager-templates.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/sales-enablement
+    license: MIT
+    group: marketing-skills
+  - name: schema
+    path: marketing-skills/skills/schema
+    title: schema
+    summary: When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the
+      user mentions "schema markup," "structured data," "JSON-LD," "rich snippets," "schema.org," "FAQ schema," "product schema,"
+      "review schema," "breadcrumb schema," "Google rich results," "knowledge panel," "star ratings in search," or "add structured
+      data." Use this whenever someone wants their pages to show enhanced results in Google. For broader SEO issues, see seo-audit.
+      For AI search optimization, see ai-seo.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 178e72caadb7
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/schema-examples.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/schema
+    license: MIT
+    group: marketing-skills
+  - name: seo-audit
+    path: marketing-skills/skills/seo-audit
+    title: seo-audit
+    summary: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO
+      audit," "technical SEO," "why am I not ranking," "SEO issues," "on-page SEO," "meta tags review," "SEO health check,"
+      "my traffic dropped," "lost rankings," "not showing up in Google," "site isn't ranking," "Google update hit me," "page
+      speed," "core web vitals," "crawl errors," or "indexing issues." Use this even if the user just says something vague
+      like "my SEO is bad" or "help with SEO" — start with an audit. For building pages at scale to target keywords, see programmatic-seo.
+      For adding structured data, see schema. For AI search optimization, see ai-seo.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 38b0a8a95b2e
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/ai-writing-detection.md
+    - references/international-seo.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/seo-audit
+    license: MIT
+    group: marketing-skills
+  - name: signup
+    path: marketing-skills/skills/signup
+    title: signup
+    summary: When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when
+      the user mentions "signup conversions," "registration friction," "signup form optimization," "free trial signup," "reduce
+      signup dropoff," "account creation flow," "people aren't signing up," "signup abandonment," "trial conversion rate,"
+      "nobody completes registration," "too many steps to sign up," or "simplify our signup." Use this whenever the user has
+      a signup or registration flow that isn't performing. For post-signup onboarding, see onboarding. For lead capture forms
+      (not account creation), see cro.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e44599b5fae2
+    files:
+    - SKILL.md
+    - evals/evals.json
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/signup
+    license: MIT
+    group: marketing-skills
+  - name: site-architecture
+    path: marketing-skills/skills/site-architecture
+    title: site-architecture
+    summary: When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or
+      internal linking. Also use when the user mentions "sitemap," "site map," "visual sitemap," "site structure," "page hierarchy,"
+      "information architecture," "IA," "navigation design," "URL structure," "breadcrumbs," "internal linking strategy,"
+      "website planning," "what pages do I need," "how should I organize my site," or "site navigation." Use this whenever
+      someone is planning what pages a website should have and how they connect. NOT for XML sitemaps (that's technical SEO
+      — see seo-audit). For SEO audits, see seo-audit. For structured data, see schema.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1407e9fcdde2
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/mermaid-templates.md
+    - references/navigation-patterns.md
+    - references/site-type-templates.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/site-architecture
+    license: MIT
+    group: marketing-skills
+  - name: sms
+    path: marketing-skills/skills/sms
+    title: sms
+    summary: When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart
+      texts, post-purchase, win-back, promotional sends, or transactional/auth SMS. Also use when the user mentions "SMS marketing,"
+      "text message campaigns," "SMS sequence," "SMS automation," "abandoned cart text," "post-purchase SMS," "Klaviyo SMS,"
+      "Postscript," "Attentive," "Twilio," "A2P 10DLC," "TCPA," "SMS compliance," "short code," "toll-free SMS," "MMS campaign,"
+      "should I do SMS," or "SMS vs email." For email sequences, see emails. For SMS copy framing, see copywriting. For opt-in
+      popups that capture phone numbers, see popups.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: eb4047c7c8cb
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/compliance.md
+    - references/platforms.md
+    - references/sequence-templates.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/sms
+    license: MIT
+    group: marketing-skills
+  - name: social
+    path: marketing-skills/skills/social
+    title: social
+    summary: When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,
+      TikTok, Facebook, or other platforms. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,'
+      'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,'
+      'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,'
+      'video script,' 'video hook,' 'short-form video,' or 'create a reel.' Use this for social media content creation, repurposing,
+      scheduling, and short-form video scripting. For broader content strategy, see content-strategy. For paid video ads,
+      see ad-creative.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2b21c525bf35
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/platform-limits.md
+    - references/platforms.md
+    - references/post-templates.md
+    - references/reverse-engineering.md
+    - references/short-form-video.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/social
+    license: MIT
+    group: marketing-skills
+  - name: video
+    path: marketing-skills/skills/video
+    title: video
+    summary: When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks.
+      Also use when the user mentions 'video production,' 'AI video,' 'Remotion,' 'Hyperframes,' 'HeyGen,' 'Synthesia,' 'Veo,'
+      'Sora,' 'Runway,' 'Kling,' 'Seedance,' 'Hailuo,' 'MiniMax,' 'Pika,' 'Hunyuan,' 'Wan,' 'video generation,' 'AI avatar,'
+      'talking head video,' 'programmatic video,' 'video template,' 'explainer video,' 'product demo video,' 'video pipeline,'
+      or 'make me a video.' Use this for video creation, generation, and production workflows. For video content strategy
+      and what to post, see social. For paid video ad creative, see ad-creative.
+    version: 2.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1f85b10491c7
+    files:
+    - SKILL.md
+    - evals/evals.json
+    - references/ai-video-prompting.md
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/video
+    license: MIT
+    group: marketing-skills
+  files:
+  - .claude-plugin/marketplace.json
+  - .claude-plugin/plugin.json
+  - .github/FUNDING.yml
+  - .github/ISSUE_TEMPLATE/config.yml
+  - .github/ISSUE_TEMPLATE/skill-request.yml
+  - .github/PULL_REQUEST_TEMPLATE/documentation.md
+  - .github/PULL_REQUEST_TEMPLATE/new-skill.md
+  - .github/PULL_REQUEST_TEMPLATE/skill-update.md
+  - .github/scripts/sync-skills.js
+  - .github/workflows/sync-skills.yml
+  - .github/workflows/validate-skill.yml
+  - .gitignore
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/env.yaml
+  - .robomotion/post-install.sh
+  - .robomotion/skill.yaml
+  - AGENTS.md
+  - CLAUDE.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - README.md
+  - VERSIONS.md
+  - tools/REGISTRY.md
+  - tools/clis/README.md
+  - tools/clis/activecampaign.js
+  - tools/clis/adobe-analytics.js
+  - tools/clis/ahrefs.js
+  - tools/clis/airops.js
+  - tools/clis/amplitude.js
+  - tools/clis/apollo.js
+  - tools/clis/beehiiv.js
+  - tools/clis/brevo.js
+  - tools/clis/buffer.js
+  - tools/clis/calendly.js
+  - tools/clis/clay.js
+  - tools/clis/clearbit.js
+  - tools/clis/close.js
+  - tools/clis/coupler.js
+  - tools/clis/crossbeam.js
+  - tools/clis/customer-io.js
+  - tools/clis/dataforseo.js
+  - tools/clis/demio.js
+  - tools/clis/dub.js
+  - tools/clis/exa.js
+  - tools/clis/g2.js
+  - tools/clis/ga4.js
+  - tools/clis/google-ads.js
+  - tools/clis/google-search-console.js
+  - tools/clis/hotjar.js
+  - tools/clis/hunter.js
+  - tools/clis/instantly.js
+  - tools/clis/intercom.js
+  - tools/clis/keywords-everywhere.js
+  - tools/clis/kit.js
+  - tools/clis/klaviyo.js
+  - tools/clis/lemlist.js
+  - tools/clis/linkedin-ads.js
+  - tools/clis/livestorm.js
+  - tools/clis/mailchimp.js
+  - tools/clis/mention-me.js
+  - tools/clis/meta-ads.js
+  - tools/clis/mixpanel.js
+  - tools/clis/onesignal.js
+  - tools/clis/optimizely.js
+  - tools/clis/outreach.js
+  - tools/clis/paddle.js
+  - tools/clis/partnerstack.js
+  - tools/clis/pendo.js
+  - tools/clis/plausible.js
+  - tools/clis/postmark.js
+  - tools/clis/rankparse.js
+  - tools/clis/resend.js
+  - tools/clis/rewardful.js
+  - tools/clis/savvycal.js
+  - tools/clis/segment.js
+  - tools/clis/semrush.js
+  - tools/clis/sendgrid.js
+  - tools/clis/similarweb.js
+  - tools/clis/snov.js
+  - tools/clis/supermetrics.js
+  - tools/clis/tiktok-ads.js
+  - tools/clis/tolt.js
+  - tools/clis/trustpilot.js
+  - tools/clis/typeform.js
+  - tools/clis/wistia.js
+  - tools/clis/zapier.js
+  - tools/clis/zoominfo.js
+  - tools/composio/README.md
+  - tools/composio/marketing-tools.md
+  - tools/integrations/activecampaign.md
+  - tools/integrations/adobe-analytics.md
+  - tools/integrations/ahrefs.md
+  - tools/integrations/airops.md
+  - tools/integrations/amplitude.md
+  - tools/integrations/apollo.md
+  - tools/integrations/attentive.md
+  - tools/integrations/audiencetap.md
+  - tools/integrations/beehiiv.md
+  - tools/integrations/brevo.md
+  - tools/integrations/buffer.md
+  - tools/integrations/calendly.md
+  - tools/integrations/clay.md
+  - tools/integrations/clearbit.md
+  - tools/integrations/close.md
+  - tools/integrations/cogny.md
+  - tools/integrations/composio.md
+  - tools/integrations/contentful.md
+  - tools/integrations/coupler.md
+  - tools/integrations/crossbeam.md
+  - tools/integrations/customer-io.md
+  - tools/integrations/dataforseo.md
+  - tools/integrations/demio.md
+  - tools/integrations/dub-co.md
+  - tools/integrations/exa.md
+  - tools/integrations/firehose.md
+  - tools/integrations/g2.md
+  - tools/integrations/ga4.md
+  - tools/integrations/gong.md
+  - tools/integrations/google-ads.md
+  - tools/integrations/google-search-console.md
+  - tools/integrations/heygen.md
+  - tools/integrations/hotjar.md
+  - tools/integrations/hubspot.md
+  - tools/integrations/hunter.md
+  - tools/integrations/hyperframes.md
+  - tools/integrations/instantly.md
+  - tools/integrations/intercom.md
+  - tools/integrations/introw.md
+  - tools/integrations/keywords-everywhere.md
+  - tools/integrations/kit.md
+  - tools/integrations/klaviyo.md
+  - tools/integrations/lemlist.md
+  - tools/integrations/linkedin-ads.md
+  - tools/integrations/livestorm.md
+  - tools/integrations/mailchimp.md
+  - tools/integrations/mention-me.md
+  - tools/integrations/meta-ads.md
+  - tools/integrations/mixpanel.md
+  - tools/integrations/nitrosend.md
+  - tools/integrations/onesignal.md
+  - tools/integrations/optimizely.md
+  - tools/integrations/outreach.md
+  - tools/integrations/paddle.md
+  - tools/integrations/partnerstack.md
+  - tools/integrations/pendo.md
+  - tools/integrations/plausible.md
+  - tools/integrations/plivo.md
+  - tools/integrations/posthog.md
+  - tools/integrations/postmark.md
+  - tools/integrations/postscript.md
+  - tools/integrations/rankparse.md
+  - tools/integrations/rb2b.md
+  - tools/integrations/resend.md
+  - tools/integrations/rewardful.md
+  - tools/integrations/salesforce.md
+  - tools/integrations/sanity.md
+  - tools/integrations/savvycal.md
+  - tools/integrations/segment.md
+  - tools/integrations/semrush.md
+  - tools/integrations/sendgrid.md
+  - tools/integrations/shopify.md
+  - tools/integrations/similarweb.md
+  - tools/integrations/snov.md
+  - tools/integrations/sparktoro.md
+  - tools/integrations/strapi.md
+  - tools/integrations/stripe.md
+  - tools/integrations/supermetrics.md
+  - tools/integrations/tiktok-ads.md
+  - tools/integrations/tolt.md
+  - tools/integrations/trustpilot.md
+  - tools/integrations/twilio.md
+  - tools/integrations/typeform.md
+  - tools/integrations/webflow.md
+  - tools/integrations/wistia.md
+  - tools/integrations/wordpress.md
+  - tools/integrations/zapier.md
+  - tools/integrations/zoominfo.md
+  - validate-skills-official.sh
+  - validate-skills.sh
+skills: []
