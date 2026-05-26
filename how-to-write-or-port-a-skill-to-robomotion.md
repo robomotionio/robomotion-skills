@@ -46,7 +46,7 @@ Other governing principles:
 
 - **Verbatim vendoring.** Upstream content is **never edited** — no SKILL.md rewrites, no path rewrites, no restructuring into our conventions. Bumps are a manual re-copy + diff; no `git subtree` linkage. All Robomotion additions live inside `.robomotion/`.
 - **CLI-favored capability.** The model acts by running CLIs through the `terminal` tool — curl, or a bundled CLI on `$PATH`. MCP only when no usable CLI exists.
-- **Memory over files.** Durable cross-skill state lives in agent **Memory** (`MEMORY.md`), not in files producer-skills write for consumers to read. See `docs/agent-files.md`.
+- **Three layers of durable state.** Per-agent context goes in **Memory** (`MEMORY.md`), current-turn artifacts in the per-hire **workspace** (`/workspace`), team-shared durable docs in **Agent Teams channel attachments** (`files_upload` / `files_download`). See §5.5 and `docs/agent-files.md`.
 
 ---
 
@@ -84,7 +84,7 @@ Before you spend a vendoring round, confirm:
 - **Permissive license** (MIT / Apache 2.0 / similar).
 - **Spec-compliant or close** — skills under `skills/<name>/SKILL.md`, sensible frontmatter (`name`, `description`, `metadata.version`). Doesn't have to be exactly the agentskills.io spec; needs to be navigable.
 - **Active and trusted** — recent commits, real author, healthy issue tracker.
-- **Self-contained skills** — each `SKILL.md` is useful standalone, doesn't silently depend on a sibling writing a magic file. (Producer/consumer file conventions get mapped to Memory in Robomotion — see §5.4.)
+- **Self-contained skills** — each `SKILL.md` is useful standalone, doesn't silently depend on a sibling writing a magic file. (Producer/consumer file conventions get mapped to one of three durable layers — Memory, workspace, or channel attachments — see §5.5.)
 
 ### 3.2 Vendor — copy the upstream in
 
@@ -126,7 +126,9 @@ schema_version: 1
 name: marketing-skills
 title: Marketing Skills
 type: group                      # 'group' (has skills/) or 'skill' (single SKILL.md)
-version: 1.9.0                   # what we shipped — Robomotion-pinned, NOT upstream HEAD
+version: 2.1.0                   # canonical upstream release tag — NOT necessarily what
+                                 # upstream's plugin.json or each SKILL.md's metadata.version
+                                 # says (those can drift; the release tag is the truth)
 author: Corey Haines             # creator credit
 source_url: https://github.com/coreyhaines31/marketingskills
 license: MIT
@@ -136,7 +138,7 @@ tags: [marketing, copywriting, seo, ads, growth, cro]
 
 Notes:
 
-- `version` is **our pin**, not necessarily upstream's HEAD. If we vendored `1.9.0` and upstream advances to `2.0.0`, ours stays `1.9.0` until we re-pull and bump.
+- `version` is **our pin**, matching upstream's canonical release tag. Upstream's own metadata can disagree with itself — marketingskills v2.1.0 has `plugin.json: 1.9.0` and `metadata.version: 2.0.0`/`2.0.1` in various SKILL.md files. The release tag wins; the loader propagates it to every inner skill (see §5.1 *Version inheritance*).
 - `author` is the real upstream creator. The Designer renders `by Corey Haines` on skill cards and links the external icon to `source_url`.
 - `type: group` tells the indexer to also walk `marketing-skills/skills/<name>/SKILL.md` to discover the inner skills.
 
@@ -157,10 +159,10 @@ Don't *edit* the copy — keep it identical to upstream so we're transparent abo
 ```markdown
 # Changelog — marketing-skills
 
-## [1.9.0] — 2026-05-26
-- Vendored from coreyhaines31/marketingskills@v1.9.0.
-- Added `.robomotion/post-install.sh` (PATHs `tools/clis/*.js`).
-- Added `.robomotion/env.yaml` (generated env overlay).
+## [2.1.0] — 2026-05-26
+- Vendored from coreyhaines31/marketingskills@v2.1.0 (41 skills, 63 zero-dep Node CLIs, 88 integration guides).
+- Added `.robomotion/post-install.sh` — wraps `tools/clis/*.js` as short-name commands on `$PATH`.
+- Added `.robomotion/env.yaml` — generated env overlay (83 integrations × 41 skills, all-optional).
 ```
 
 Future bumps add a new entry; the `version` in `.robomotion/skill.yaml` matches the latest entry.
@@ -190,7 +192,7 @@ This file is **the place** for exceptions to the upstream layout. If a vendored 
 
 ### 3.6 Generate the env overlay — `.robomotion/env.yaml`
 
-Marketing skills can each speak to several alternative tools (analytics → GA4 *or* Mixpanel *or* Amplitude *or* …). The env overlay lists every possible env var across the group so the hire wizard / launcher can offer them.
+Marketing skills can each speak to several alternative tools (analytics → GA4 *or* Mixpanel *or* Amplitude *or* …). The env overlay lists every possible env var across the group so the launcher and hire wizard can offer them. The launcher's overlay-merge is a roadmap item (not yet wired in 0.13.0); generating the file now means it's ready the moment that lands.
 
 Generated automatically by `generate-env-overlay.py` (skills-repo root):
 
@@ -343,6 +345,8 @@ The only **required** file in `.robomotion/`. Fields:
 | `summary` | yes | One-sentence description. |
 | `tags` | optional | List of strings, for filtering in the Designer. |
 
+**Version inheritance.** For a `type: group` unit, the launcher's skill loader reads `version` from `.robomotion/skill.yaml` and **propagates it to every inner skill at load time**, overriding whatever each `SKILL.md` frontmatter declares. The indexer (`build-index.py`) does the same — every inner-skill row in `index.yaml` carries the group's version, not the upstream frontmatter value. This keeps the entire group on one consistent number (e.g. all 41 marketing skills show `v2.1.0`) and shields us from upstream's per-skill `metadata.version` drift.
+
 ### 5.2 `.robomotion/CHANGELOG.md` and `.robomotion/LICENSE`
 
 Both are **group-level** for a group — all inner skills inherit them. For a standalone skill, they live in *its* `.robomotion/`. The Designer reads them from the unit root and surfaces them on every skill card.
@@ -372,11 +376,21 @@ The launcher (roadmap item, not yet wired) reads this at stage time and surfaces
 
 For first-party groups without an upstream tool library, author `env.yaml` by hand or skip it entirely (per-skill `env.required` / `env.optional` files in each skill folder cover the basics).
 
-### 5.5 Producer/consumer files → Memory
+### 5.5 Three layers of durable state
 
-Many upstream collections have one "producer" skill that writes a context file (e.g. marketingskills' `product-marketing` writes `.agents/product-marketing.md` for the other 40 skills to read). In Robomotion that **doesn't work as a file** — the model has no stable filesystem to maintain such conventions. The equivalent is to write to **Memory** (`MEMORY.md`) via the memory tool; the memory manager re-injects it into the prompt every run, so consumer skills read from context with no file step.
+A skill that needs to persist something has three places it can live, with different scopes:
 
-Skills authored verbatim from upstream keep referencing the file path; the runtime resolves them under `/workspace` if the user happens to have one. The proper fix is upstream-side or via a thin Robomotion wrapper. See `docs/agent-files.md` for the full Memory model.
+| Layer | Mechanism | Scope | Auto-injected? | Right for |
+|---|---|---|---|---|
+| **Memory** | `MEMORY.md` via the memory tool | One agent-node (same `<robot>/<flow>/<agent>` across restarts) | Yes — every turn | Agent's private durable notes (its own learned facts about this user / its own work style) |
+| **Workspace** | `/workspace/<file>` (per-hire bind mount) | One hire instance | No — explicit `cat`/read | Per-hire scratch, transient task artifacts, current-turn outputs |
+| **Channel attachment** | `files_upload` to scope=channel | All members (humans + agents) of an Agent Teams channel | ✓ when posted in the inbound message (`msg.files`); on-demand via `files_download` | Team-shared durable docs — briefs, plans, references that flow across roles |
+
+Upstream collections often use a producer/consumer file convention — one skill writes `.agents/<name>.md`, others read it. In Robomotion that pattern is wrong twice over: per-hire `/workspace` is isolated (Copywriter's brief doesn't reach Lifecycle Manager), and there's no platform-wide filesystem that means "team shared state."
+
+The **right primitive for team-shared durable docs is the channel attachment.** Upload the brief (or tracking plan, or competitor matrix) to the team's Agent Teams channel; every member — every other hired agent **and** every human in the channel — can download it. Membership is the ACL. The agent toolkit already exposes `files_upload`, `files_download`, and `get_channel_messages` for exactly this; inbound attachments to a message auto-download into `msg.files` for multimodal LLM input, no manual tool call required.
+
+Vendored skills keep their upstream file path references (verbatim rule — no SKILL.md edits). The runtime resolves them under `/workspace` if a per-hire copy exists; otherwise the skill asks the user inline. The clean upgrade is a Robomotion-side overlay that teaches a vendored skill to check the channel first — that mechanism is documented in `docs/agent-files.md`.
 
 ---
 
@@ -387,7 +401,8 @@ Skills authored verbatim from upstream keep referencing the file path; the runti
 - **Putting an optional var in `env.required`.** It will block every run that doesn't bind it. Use `env.optional` when there's a fallback or alternative.
 - **Adding `scripts/` to a skill that needs the host filesystem.** `scripts/` forces container mode; a filesystem skill (Obsidian-style) then loses host access. Stay pure-knowledge (no `scripts/`, no `post-install.sh`) if you need host fs.
 - **Forgetting to bump `version` in `.robomotion/skill.yaml`** after editing a `post-install.sh`. The container image hash includes the version + post-install content; without a bump the cache may serve a stale build.
-- **Inventing filesystem paths for cross-skill state.** Producer-writes-a-file / consumer-reads-it is a brittle side-channel. Use Memory (`MEMORY.md`) instead — `docs/agent-files.md`.
+- **Inventing filesystem paths for cross-skill state.** Producer-writes-a-file / consumer-reads-it is a brittle side-channel. Pick the right durable layer (§5.5): Memory for per-agent state, channel attachments for team-shared docs.
+- **Treating `/workspace` as shared team state.** A hired agent's workspace is per-hire — Copywriter and Lifecycle Manager don't share files there. For state multiple roles or humans need, upload to the team's Agent Teams channel and have other agents `files_download` it. See §5.5.
 - **Reaching for MCP first.** Robomotion is CLI-favored. Use a CLI via the `terminal` tool; reach for MCP only when there's no usable CLI.
 
 ---
@@ -404,13 +419,19 @@ Skills authored verbatim from upstream keep referencing the file path; the runti
 
 **Launcher (other repo — `packages-main/src/hermes-agent/launcher/`):**
 
-- `skills.go` — fetch/extract active skills + group `.robomotion/`. Reads index, stages structure-preserving for groups.
-- `dockerfile.go` — image build. `RUN <group>/.robomotion/post-install.sh` once per active group; includes its content hash in the image key.
-- `launchplan.go: needsSandbox` — triggers container mode if a group ships `.robomotion/post-install.sh`.
+- `skills.go` — reads `index.yaml` (yaml.v3), parses the `groups[]` / `skills[]` schema, fetches active skills + the group's `.robomotion/` + `tools/` per-file. Structure-preserving staging at `<owner>__<repo>__<group-slug>/`.
+- `dockerfile.go` — image build. `RUN <group>/.robomotion/post-install.sh` once per active group; includes its content hash in the image key. `bin/` → `$PATH` for the standard Claude-plugin layout.
+- `launchplan.go: needsSandbox` — triggers container mode if a group ships `.robomotion/post-install.sh`, `bin/`, or any skill ships `scripts/` / `post-install.sh`.
 - `env.go` — `aggregateEnvRequired` / `aggregateEnvOptional` across active skills.
+
+**Skill loader (other repo — `packages-main/src/hermes-agent/nodes/skills/`):**
+
+- `skill_loader.py` — substitutes `${SKILL_DIR}`, `${SESSION_ID}`, `${SHARED_DIR}`, `${CLAUDE_PLUGIN_ROOT}` in SKILL.md before injection. Inherits group `version` from `.robomotion/skill.yaml` for every inner skill, overriding upstream's per-SKILL.md frontmatter.
 
 **Designer (other repo — `robomotion-new-designer/src/`):**
 
 - `stores/skills.ts` — fetches `index.yaml`, builds the Browse-Skills list. Reads `author` + `source_url` per skill.
 - `components/skills/SkillCard.tsx` — renders `by {author}` + external-link icon to `source_url`.
 - `components/editors/EnvironmentTab.tsx` — surfaces each active skill's `env.required` / `env.optional` (and, once the launcher overlay merge ships, the group's `env.yaml` too).
+
+**Where skills get *used* (other repo — `robomotion-agent-hub`):** hireable agent templates live in `robomotion-agent-hub/<slug>/` — each carries `agent.yaml`, `credentials.yaml`, `assets/<node-guid>/AGENT.md`, `main.ts`, `main.designer.ts`. The flow's Hermes Agent node `optSkills` references skills from this repo by `repoUrl + path + version` (or omits `version` to track `main`). Bumping a role to a newer Hermes Agent package version is a one-line edit in the role's `main.ts`. End-to-end pipeline reference: `<monorepo>/docs/how-skills-work.md`.
