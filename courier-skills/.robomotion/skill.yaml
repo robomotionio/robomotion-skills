@@ -1,0 +1,10 @@
+schema_version: 1
+name: courier-skills
+title: 'Courier Skills'
+type: skill
+version: 0.1.0
+author: 'trycourier'
+source_url: https://github.com/trycourier/courier-skills
+license: MIT
+summary: 'Multi-channel notifications via email, SMS, push, and chat'
+tags: [ai]
