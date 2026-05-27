@@ -1,0 +1,51 @@
+---
+import { CopyButton } from "./copy-button";
+
+type Props = {
+  lines?: Array<Array<{ text: string; className?: string }>>;
+  copyContent?: string;
+  align?: "start" | "center";
+  truncate?: boolean;
+  className?: string;
+  id?: string;
+};
+
+const {
+  lines = [],
+  copyContent,
+  align = "start",
+  truncate = false,
+  className = "",
+  id,
+} = Astro.props as Props;
+const content =
+  copyContent ??
+  lines.map((line) => line.map((segment) => segment.text).join("")).join("\n");
+const alignClass = align === "center" ? "items-center" : "items-start";
+const preClass = truncate
+  ? "m-0 min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap pr-3 font-mono text-[15px] leading-6"
+  : "m-0 font-mono text-[15px] leading-6";
+---
+
+<div
+  id={id}
+  class={`relative flex justify-between rounded-none border-t border-b border-neutral-200 bg-white py-3.5 pr-4 pl-6 shadow-2xs sm:rounded-[8px] sm:border-none sm:ring-1 sm:ring-black/10 ${alignClass} ${className}`}
+>
+  <pre class={preClass}><code>{lines.map((line, lineIndex) => (
+    <>
+      {line.map((segment) => (
+        <span class={segment.className}>{segment.text}</span>
+      ))}
+      {lineIndex < lines.length - 1 ? <br /> : null}
+    </>
+  ))}</code></pre>
+  <div class="flex items-center gap-1">
+    <CopyButton
+      content={content}
+      showText={false}
+      className="size-8"
+      client:load
+    />
+  </div>
+  <slot />
+</div>

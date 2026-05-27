@@ -1,0 +1,96 @@
+---
+type Props = {
+  previousHref?: string;
+  nextHref?: string;
+};
+
+const { previousHref, nextHref } = Astro.props as Props;
+---
+
+<div class="inline-flex items-stretch overflow-hidden rounded-[8px] border border-neutral-200 bg-white">
+  {
+    previousHref ? (
+      <a
+        href={previousHref}
+        aria-label="Previous skill"
+        class="text-parchment-700 hover:bg-parchment-100 inline-flex size-8 items-center justify-center transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-4"
+          aria-hidden="true"
+        >
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </a>
+    ) : (
+      <span
+        aria-label="Previous skill unavailable"
+        class="text-parchment-300 inline-flex size-8 items-center justify-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-4"
+          aria-hidden="true"
+        >
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </span>
+    )
+  }
+  <span class="bg-neutral-200 self-stretch w-px" aria-hidden="true" />
+  {
+    nextHref ? (
+      <a
+        href={nextHref}
+        aria-label="Next skill"
+        class="text-parchment-700 hover:bg-parchment-100 inline-flex size-8 items-center justify-center transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-4"
+          aria-hidden="true"
+        >
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </a>
+    ) : (
+      <span
+        aria-label="Next skill unavailable"
+        class="text-parchment-300 inline-flex size-8 items-center justify-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-4"
+          aria-hidden="true"
+        >
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </span>
+    )
+  }
+</div>

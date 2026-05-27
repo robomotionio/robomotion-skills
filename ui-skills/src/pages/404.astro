@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+Astro.response.status = 404;
+---
+
+<Layout
+  title="Page Not Found | UI Skills"
+  description="The page you requested could not be found."
+  robots="noindex,follow"
+>
+  <div class="relative flex min-h-dvh flex-col items-center justify-center px-4">
+    <div class="w-full max-w-2xl text-center">
+      <p class="text-parchment-500 text-sm">404</p>
+      <h1 class="text-parchment-900 mt-2 text-3xl font-medium tracking-tight">
+        Page not found
+      </h1>
+      <p class="text-parchment-500 mt-3 text-[15px]">
+        This link does not exist anymore or was moved.
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-5 text-sm font-medium">
+        <a
+          href="/"
+          class="text-parchment-700 hover:text-parchment-900 underline underline-offset-4"
+        >
+          Home
+        </a>
+        <a
+          href="/skills"
+          class="text-parchment-700 hover:text-parchment-900 underline underline-offset-4"
+        >
+          Browse skills
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

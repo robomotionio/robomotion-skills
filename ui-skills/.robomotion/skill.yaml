@@ -1,0 +1,10 @@
+schema_version: 1
+name: ui-skills
+title: 'Ui Skills'
+type: group
+version: 0.1.0
+author: 'ibelick'
+source_url: https://github.com/ibelick/ui-skills
+license: MIT
+summary: '4 skills — Opinionated, evolving constraints to guide agents when building interfaces'
+tags: [development, testing, ai, design]

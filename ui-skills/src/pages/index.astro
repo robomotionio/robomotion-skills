@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { skills } from "../data/skills";
+import Button from "../ui/button.astro";
+import SkillCard from "../ui/skill-card.astro";
+
+const MAX_SKILLS = 18;
+
+const FEATURED_PATH_SLUGS = [
+  "ibelick/baseline-ui",
+  "ibelick/fixing-accessibility",
+  "ibelick/fixing-motion-performance",
+  "anthropics/frontend-design",
+  "wshobson/wcag-audit-patterns",
+  "emilkowalski/emil-design-eng",
+  "millionco/react-doctor",
+  "shadcn-ui/shadcn",
+  "jakubkrehel/make-interfaces-feel-better",
+  "0xdesign/design-lab",
+  "nextlevelbuilder/ui-ux-pro-max",
+  "dammyjay93/interface-design",
+  "raphaelsalaja/12-principles-of-animation",
+  "pbakaus/impeccable",
+  "bencium/bencium-innovative-ux-designer",
+  "leonxlnx/gpt-tasteskill",
+  "zarazhangrui/frontend-slides",
+  "dimillian/swiftui-ui-patterns",
+] as const;
+
+const skillByPathSlug = new Map(skills.map((skill) => [skill.pathSlug, skill]));
+const isDefined = <T,>(value: T | undefined): value is T => value !== undefined;
+
+const displayedSkills = FEATURED_PATH_SLUGS.map((pathSlug) => skillByPathSlug.get(pathSlug))
+  .filter(isDefined)
+  .slice(0, MAX_SKILLS)
+  .map((skill) => {
+    const owner = skill.sourceKey ?? "ibelick";
+
+    return {
+      ...skill,
+      owner,
+      ownerLabel: skill.sourceLabel ?? "Ibelick",
+      avatarUrl: `https://github.com/${owner}.png?size=40`,
+    };
+  });
+---
+
+<Layout
+  preloadFiraMono={true}
+  title="UI Skills for Design Engineers | Curated Skill Directory"
+  description="Discover curated UI Skills for design engineers, including accessibility, motion, frontend craft, and interface quality guides with copy-ready install commands."
+>
+  <div
+    class="relative flex min-h-dvh flex-col items-center justify-end px-0 sm:px-4"
+  >
+    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+      <div class="mx-auto flex w-full flex-col gap-14">
+        <div class="px-4 sm:px-0">
+          <h1 class="sr-only">UI Skills</h1>
+          <div class="relative inline-block overflow-hidden">
+            <pre
+              aria-hidden="true"
+              class="text-parchment-500 font-['Fira_Mono'] text-[12px] leading-[110%] tracking-[-1.5px] whitespace-pre select-none lg:text-[12px]"
+              style="font-weight: 300">{`
+██╗   ██╗██╗    ███████╗██╗  ██╗██╗██╗     ██╗     ███████╗
+██║   ██║██║    ██╔════╝██║ ██╔╝██║██║     ██║     ██╔════╝
+██║   ██║██║    ███████╗█████╔╝ ██║██║     ██║     ███████╗
+██║   ██║██║    ╚════██║██╔═██╗ ██║██║     ██║     ╚════██║
+╚██████╔╝██║    ███████║██║  ██╗██║███████╗███████╗███████║
+ ╚═════╝ ╚═╝    ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝
+              `}</pre>
+            <pre
+              aria-hidden="true"
+              class="text-parchment-500/60 absolute top-0 left-0 font-['Fira_Mono'] text-[12px] leading-[110%] tracking-[-1.5px] whitespace-pre select-none lg:text-[12px]"
+              style="font-weight: 300">{`
+██    ██ ██     ███████ ██   ██ ██ ██      ██      ███████ 
+██    ██ ██     ██      ██  ██  ██ ██      ██      ██      
+██    ██ ██     ███████ █████   ██ ██      ██      ███████ 
+██    ██ ██          ██ ██  ██  ██ ██      ██           ██ 
+ ██████  ██     ███████ ██   ██ ██ ███████ ███████ ███████ 
+`}</pre>
+          </div>
+          <p class="text-parchment-600 text-lg">Skills for Design Engineers</p>
+        </div>
+
+        <div>
+          <div class="grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+            {
+              displayedSkills.map((skill) => (
+                <SkillCard
+                  href={`/skills/${skill.pathSlug}`}
+                  slug={skill.slug}
+                  description={skill.description}
+                  ownerLabel={skill.ownerLabel}
+                  avatarUrl={skill.avatarUrl}
+                />
+              ))
+            }
+          </div>
+          <div class="mt-4 flex justify-center px-4 sm:px-0">
+            <Button href="/skills"> See all skills </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

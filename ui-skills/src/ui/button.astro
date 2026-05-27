@@ -1,0 +1,44 @@
+---
+type Props = {
+  href?: string;
+  variant?: "default" | "ghost";
+  className?: string;
+  type?: "button" | "submit" | "reset";
+} & Record<string, any>;
+
+const {
+  href,
+  variant = "default",
+  className = "",
+  type = "button",
+  ...rest
+} = Astro.props as Props;
+
+const baseClass =
+  "inline-flex items-center justify-center rounded-[6px] text-[14px] tracking-tight transition-colors focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary";
+
+const variantClass =
+  variant === "ghost"
+    ? "border border-transparent bg-transparent font-[450] text-parchment-700 hover:bg-parchment-100 hover:text-parchment-900"
+    : "border border-neutral-200 bg-transparent px-3 py-1.5 font-[450] text-parchment-900 hover:border-parchment-300 hover:bg-parchment-100";
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={`${baseClass} ${variantClass} ${className}`}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={`${baseClass} ${variantClass} ${className}`}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
+}

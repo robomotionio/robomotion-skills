@@ -1,0 +1,81 @@
+---
+import CodeBlock from "./code-block.astro";
+
+type Props = {
+  lines: Array<Array<{ text: string; className?: string }>>;
+  maxHeight?: number;
+};
+
+const { lines, maxHeight = 180 } = Astro.props as Props;
+---
+
+<div class="expandable-code-wrapper relative" data-max-height={maxHeight}>
+  <CodeBlock
+    lines={lines}
+    className="expandable-code-container overflow-hidden transition-[max-height] duration-150"
+  >
+    <div
+      class="expandable-code-mask pointer-events-none absolute right-0 bottom-0 left-0 h-24 bg-linear-to-t from-white to-transparent transition-opacity duration-300 sm:rounded-b-[8px]"
+    >
+    </div>
+  </CodeBlock>
+  <div class="mt-4 flex justify-center">
+    <button
+      type="button"
+      class="expandable-code-btn text-parchment-500 hover:text-parchment-900 cursor-pointer text-sm font-medium transition-colors"
+    >
+      Show all skills
+    </button>
+  </div>
+</div>
+
+<script>
+  function setupExpandableCode() {
+    const wrappers = document.querySelectorAll(".expandable-code-wrapper");
+
+    wrappers.forEach((wrapper) => {
+      const container = wrapper.querySelector(
+        ".expandable-code-container",
+      ) as HTMLElement;
+      const btn = wrapper.querySelector(".expandable-code-btn");
+      const mask = wrapper.querySelector(".expandable-code-mask");
+      const maxHeight = wrapper.getAttribute("data-max-height") || "180";
+
+      if (container) {
+        container.style.maxHeight = `${maxHeight}px`;
+      }
+
+      btn?.addEventListener("click", () => {
+        const isExpanded =
+          container?.style.maxHeight === "none" ||
+          (container?.style.maxHeight &&
+            parseInt(container.style.maxHeight) > parseInt(maxHeight));
+
+        if (isExpanded) {
+          if (container) {
+            container.classList.remove("ease-out");
+            container.classList.add("ease-in");
+            container.style.maxHeight = `${maxHeight}px`;
+          }
+          if (btn) btn.textContent = "Show all skills";
+          mask?.classList.remove("opacity-0");
+        } else {
+          if (container) {
+            container.classList.remove("ease-in");
+            container.classList.add("ease-out");
+            // Set to scrollHeight for an "instant" start to the animation
+            container.style.maxHeight = `${container.scrollHeight}px`;
+          }
+          if (btn) btn.textContent = "Show less";
+          mask?.classList.add("opacity-0");
+        }
+      });
+    });
+  }
+
+  // Run on initial load
+  setupExpandableCode();
+
+  // Run on view transitions if enabled
+  document.addEventListener("astro:after-swap", setupExpandableCode);
+</script>

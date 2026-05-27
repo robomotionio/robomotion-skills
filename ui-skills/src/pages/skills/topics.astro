@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../ui/breadcrumbs.astro";
+import TopicTag from "../../ui/topic-tag.astro";
+import { skills } from "../../data/skills";
+import { topics } from "../../data/topics";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Skills", href: "/skills" },
+  { label: "Topics" },
+];
+
+const topicCounts = topics
+  .map((topic) => ({
+    ...topic,
+    count: skills.filter((skill) => skill.topics?.includes(topic.slug)).length,
+  }))
+  .filter((topic) => topic.count > 0);
+
+const designTopics = topicCounts.filter((topic) => topic.isDesignCore);
+const broaderTopics = topicCounts.filter((topic) => !topic.isDesignCore);
+const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
+const topicsPageUrl = new URL("/skills/topics", siteOrigin).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "UI Skills Topics",
+  description: "Browse all UI Skills topics and jump into filtered skill collections.",
+  url: topicsPageUrl,
+  hasPart: {
+    "@type": "ItemList",
+    itemListElement: topicCounts.map((topic, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: new URL(`/skills/${topic.slug}`, siteOrigin).toString(),
+      name: topic.label,
+    })),
+  },
+};
+---
+
+<Layout
+  structuredData={structuredData}
+  title="Browse Skills by Topic | UI Skills"
+  description="Browse all UI Skills topics and jump into filtered skill collections."
+>
+  <div class="relative flex min-h-dvh flex-col items-center justify-start px-0 sm:px-4">
+    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+      <div class="mx-auto flex w-full flex-col gap-10">
+        <Breadcrumbs items={breadcrumbItems} />
+
+        <div class="px-4 sm:px-0">
+          <h1 class="text-parchment-900 text-3xl font-medium tracking-tight">
+            Browse topics
+          </h1>
+          <p class="text-parchment-500 mt-3 text-[15px]">
+            Explore all topic filters and discover relevant skills faster.
+          </p>
+        </div>
+
+        <section class="px-4 sm:px-0">
+          <h2 class="text-parchment-900 mb-3 text-lg font-medium tracking-tight">
+            Design Engineering
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {
+              designTopics.map((topic) => (
+                <TopicTag href={`/skills/${topic.slug}`} label={topic.label} count={topic.count} />
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="px-4 pb-6 sm:px-0">
+          <h2 class="text-parchment-900 mb-3 text-lg font-medium tracking-tight">
+            Frontend & Frameworks
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {
+              broaderTopics.map((topic) => (
+                <TopicTag href={`/skills/${topic.slug}`} label={topic.label} count={topic.count} />
+              ))
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>

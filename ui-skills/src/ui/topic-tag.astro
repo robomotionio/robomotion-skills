@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  count?: number;
+}
+
+const { href, label, count } = Astro.props;
+---
+
+<a
+  href={href}
+  class="text-parchment-700 hover:bg-parchment-100 inline-flex h-8 items-center gap-1.5 rounded-lg border border-neutral-200 bg-transparent px-2.5 text-sm font-medium tracking-normal transition-colors"
+>
+  <span>{label}</span>
+  {
+    typeof count === "number" ? (
+      <span class="text-parchment-400 tabular-nums">{count}</span>
+    ) : null
+  }
+</a>

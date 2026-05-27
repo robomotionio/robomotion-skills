@@ -1,0 +1,202 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../ui/breadcrumbs.astro";
+import { skills } from "../../data/skills";
+import { primaryDesignTopicSlugs, topicBySlug } from "../../data/topics";
+import SkillCard from "../../ui/skill-card.astro";
+import TopicTag from "../../ui/topic-tag.astro";
+
+const breadcrumbItems = [{ label: "Home", href: "/" }, { label: "Skills" }];
+
+const mixedSkills = [...skills]
+  .sort((a, b) => a.pathSlug.localeCompare(b.pathSlug))
+  .map((skill) => {
+    const owner = skill.sourceKey ?? "ibelick";
+
+    return {
+      ...skill,
+      ownerLabel: skill.sourceLabel ?? "Ibelick",
+      avatarUrl: `https://github.com/${owner}.png?size=40`,
+    };
+  });
+
+const primaryTopicBadges = primaryDesignTopicSlugs
+  .map((slug) => {
+    const topic = topicBySlug.get(slug);
+    if (!topic) return null;
+
+    const count = mixedSkills.filter((skill) =>
+      skill.topics?.includes(slug),
+    ).length;
+    return {
+      slug,
+      label: topic.label,
+      count,
+      href: `/skills/${slug}`,
+    };
+  })
+  .filter((topic): topic is NonNullable<typeof topic> => topic !== null)
+  .filter((topic) => topic.count > 0);
+
+const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
+const skillsIndexUrl = new URL("/skills", siteOrigin).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "UI Skills Library",
+  description: "Browse every skill available in this collection.",
+  url: skillsIndexUrl,
+  hasPart: {
+    "@type": "ItemList",
+    itemListElement: mixedSkills.map((skill, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: new URL(`/skills/${skill.pathSlug}`, siteOrigin).toString(),
+      name: skill.label,
+    })),
+  },
+};
+---
+
+<Layout
+  structuredData={structuredData}
+  title="UI Skills Directory for Design Engineers | UI Skills"
+  description="Browse the complete UI Skills directory: curated local and community skills with install commands for accessibility, motion, frontend craft, and design engineering workflows."
+>
+  <div
+    class="relative flex min-h-dvh flex-col items-center justify-start px-0 sm:px-4"
+  >
+    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+      <div class="mx-auto flex w-full flex-col gap-10">
+        <Breadcrumbs items={breadcrumbItems} />
+
+        <div>
+          <h1
+            class="text-parchment-900 px-4 text-3xl font-medium tracking-tight sm:px-0"
+          >
+            Discover today's top UI skills
+          </h1>
+          <p class="text-parchment-500 mt-3 px-4 text-[15px] sm:px-0">
+            A thoughtful directory of {mixedSkills.length.toLocaleString()} high-quality
+            skills for design engineers and frontend teams, including accessibility,
+            motion, frameworks, testing, and performance guidance.
+          </p>
+          <div class="scroll-fade mt-5 px-4 sm:px-0" id="topic-scroll-row">
+            <div
+              class="flex w-max min-w-full flex-nowrap items-center gap-2 pb-1 whitespace-nowrap"
+            >
+              {
+                primaryTopicBadges.map((topic) => (
+                  <TopicTag href={topic.href} label={topic.label} />
+                ))
+              }
+              <TopicTag href="/skills/topics" label="More +" />
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-4 px-4 sm:grid-cols-2 sm:px-0 lg:grid-cols-3">
+          {
+            mixedSkills.map((skill) => (
+              <SkillCard
+                href={`/skills/${skill.pathSlug}`}
+                slug={skill.slug}
+                description={skill.description}
+                ownerLabel={skill.ownerLabel}
+                avatarUrl={skill.avatarUrl}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .scroll-fade {
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scroll-fade::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-fade[data-mask="left"] {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px);
+    mask-image: linear-gradient(to right, transparent 0, black 24px);
+    -webkit-mask-size: calc(100% + 24px) 100%;
+    mask-size: calc(100% + 24px) 100%;
+    -webkit-mask-position: -12px 0;
+    mask-position: -12px 0;
+  }
+
+  .scroll-fade[data-mask="right"] {
+    -webkit-mask-image: linear-gradient(to left, transparent 0, black 24px);
+    mask-image: linear-gradient(to left, transparent 0, black 24px);
+    -webkit-mask-size: calc(100% + 24px) 100%;
+    mask-size: calc(100% + 24px) 100%;
+    -webkit-mask-position: -12px 0;
+    mask-position: -12px 0;
+  }
+
+  .scroll-fade[data-mask="both"] {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 24px,
+      black calc(100% - 24px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 24px,
+      black calc(100% - 24px),
+      transparent 100%
+    );
+    -webkit-mask-size: calc(100% + 24px) 100%;
+    mask-size: calc(100% + 24px) 100%;
+    -webkit-mask-position: -12px 0;
+    mask-position: -12px 0;
+  }
+</style>
+
+<script>
+  const initTopicScrollMask = () => {
+    const scroller = document.getElementById("topic-scroll-row");
+    if (!scroller) return;
+
+    const updateMask = () => {
+      const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+      if (maxScrollLeft <= 1) {
+        scroller.setAttribute("data-mask", "none");
+        return;
+      }
+
+      const atStart = scroller.scrollLeft <= 1;
+      const atEnd = scroller.scrollLeft >= maxScrollLeft - 1;
+
+      if (atStart) {
+        scroller.setAttribute("data-mask", "right");
+        return;
+      }
+
+      if (atEnd) {
+        scroller.setAttribute("data-mask", "left");
+        return;
+      }
+
+      scroller.setAttribute("data-mask", "both");
+    };
+
+    updateMask();
+    scroller.addEventListener("scroll", updateMask, { passive: true });
+    window.addEventListener("resize", updateMask);
+  };
+
+  document.addEventListener("astro:page-load", initTopicScrollMask);
+  initTopicScrollMask();
+</script>
