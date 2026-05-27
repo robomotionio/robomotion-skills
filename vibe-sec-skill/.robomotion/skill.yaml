@@ -1,0 +1,10 @@
+schema_version: 1
+name: vibe-sec-skill
+title: 'Vibe Sec Skill'
+type: skill
+version: 0.1.0
+author: 'BehiSecc'
+source_url: https://github.com/BehiSecc/VibeSec-Skill
+license: Apache-2.0
+summary: 'Helps write secure code by preventing common vulnerabilities including IDOR, XSS, SQL injection, SSRF, and weak authentication, approaching code from a bug hunter''s perspective'
+tags: [development, security, ai, data]
