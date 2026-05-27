@@ -1,0 +1,40 @@
+# Credentials - NEVER commit actual connection configs
+.env
+**/.env
+connections.json
+**/connections.json
+**/config.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+# Claude / AI tooling
+.claude/
+.entire/
