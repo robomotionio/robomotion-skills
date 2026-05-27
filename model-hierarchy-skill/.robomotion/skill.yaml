@@ -1,0 +1,10 @@
+schema_version: 1
+name: model-hierarchy-skill
+title: 'Model Hierarchy Skill'
+type: skill
+version: 0.1.0
+author: 'zscole'
+source_url: https://github.com/zscole/model-hierarchy-skill
+license: MIT
+summary: 'Cost-optimized model routing based on task complexity'
+tags: [development, testing, ai]
