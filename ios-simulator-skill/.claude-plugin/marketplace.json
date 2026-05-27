@@ -1,0 +1,14 @@
+{
+  "name": "conorluddy",
+  "owner": {
+    "name": "Conor Luddy"
+  },
+  "description": "iOS simulator automation skills for Claude Code",
+  "plugins": [
+    {
+      "name": "ios-simulator-skill",
+      "source": "./ios-simulator-skill",
+      "description": "29 production-ready scripts for iOS app testing, building, and automation"
+    }
+  ]
+}

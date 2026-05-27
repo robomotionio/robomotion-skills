@@ -1,0 +1,10 @@
+schema_version: 1
+name: ios-simulator-skill
+title: 'Ios Simulator Skill'
+type: group
+version: 0.1.0
+author: 'conorluddy'
+source_url: https://github.com/conorluddy/ios-simulator-skill
+license: MIT
+summary: 'Control iOS Simulator'
+tags: [development, testing, ios]
