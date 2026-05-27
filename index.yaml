@@ -1348,6 +1348,1780 @@ groups:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
   - .robomotion/skill.yaml
+- path: gws-cli
+  name: gws-cli
+  title: Google Workspace CLI Skills
+  type: group
+  version: 1.0.0
+  author: Google Workspace
+  source_url: https://github.com/googleworkspace/cli
+  license: Apache-2.0
+  summary: Official Google Workspace agent skills wrapping the `gws` CLI — Drive, Sheets, Gmail, Calendar, Docs, Slides, Tasks,
+    People, Chat, Classroom, Forms, Keep, Events, Admin Reports, Model Armor, and cross-service workflow recipes. 17 service
+    skills, 50 action sub-skills, 28 recipe workflows.
+  tags:
+  - google-workspace
+  - gws
+  - gmail
+  - drive
+  - calendar
+  - sheets
+  - docs
+  - slides
+  - chat
+  - productivity
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 2ee7268cfbef
+  skills:
+  - name: gws-admin-reports
+    path: gws-cli/skills/gws-admin-reports
+    title: gws-admin-reports
+    summary: 'Google Workspace Admin SDK: Audit logs and usage reports.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6b0a8a59988d
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-admin-reports
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-calendar
+    path: gws-cli/skills/gws-calendar
+    title: gws-calendar
+    summary: 'Google Calendar: Manage calendars and events.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: eda5000f5e3e
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-calendar
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-calendar-agenda
+    path: gws-cli/skills/gws-calendar-agenda
+    title: gws-calendar-agenda
+    summary: 'Google Calendar: Show upcoming events across all calendars.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e23f23eead96
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-calendar-agenda
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-calendar-insert
+    path: gws-cli/skills/gws-calendar-insert
+    title: gws-calendar-insert
+    summary: 'Google Calendar: Create a new event.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 807fc18b5832
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-calendar-insert
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-chat
+    path: gws-cli/skills/gws-chat
+    title: gws-chat
+    summary: 'Google Chat: Manage Chat spaces and messages.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 00825879e994
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-chat
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-chat-send
+    path: gws-cli/skills/gws-chat-send
+    title: gws-chat-send
+    summary: 'Google Chat: Send a message to a space.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1fa05e8dddbd
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-chat-send
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-classroom
+    path: gws-cli/skills/gws-classroom
+    title: gws-classroom
+    summary: 'Google Classroom: Manage classes, rosters, and coursework.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 90af15b7bae6
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-classroom
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-docs
+    path: gws-cli/skills/gws-docs
+    title: gws-docs
+    summary: Read and write Google Docs.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fc1d1a8bd55b
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-docs
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-docs-write
+    path: gws-cli/skills/gws-docs-write
+    title: gws-docs-write
+    summary: 'Google Docs: Append text to a document.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3791bc32375c
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-docs-write
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-drive
+    path: gws-cli/skills/gws-drive
+    title: gws-drive
+    summary: 'Google Drive: Manage files, folders, and shared drives.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6b860e7edc46
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-drive
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-drive-upload
+    path: gws-cli/skills/gws-drive-upload
+    title: gws-drive-upload
+    summary: 'Google Drive: Upload a file with automatic metadata.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2f816853e237
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-drive-upload
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-events
+    path: gws-cli/skills/gws-events
+    title: gws-events
+    summary: Subscribe to Google Workspace events.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 567af25216e6
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-events
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-events-renew
+    path: gws-cli/skills/gws-events-renew
+    title: gws-events-renew
+    summary: 'Google Workspace Events: Renew/reactivate Workspace Events subscriptions.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6555e1a0f2b9
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-events-renew
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-events-subscribe
+    path: gws-cli/skills/gws-events-subscribe
+    title: gws-events-subscribe
+    summary: 'Google Workspace Events: Subscribe to Workspace events and stream them as NDJSON.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2faa3861d29c
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-events-subscribe
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-forms
+    path: gws-cli/skills/gws-forms
+    title: gws-forms
+    summary: Read and write Google Forms.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 989ac06bd43d
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-forms
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail
+    path: gws-cli/skills/gws-gmail
+    title: gws-gmail
+    summary: 'Gmail: Send, read, and manage email.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 23940a8c581f
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail-forward
+    path: gws-cli/skills/gws-gmail-forward
+    title: gws-gmail-forward
+    summary: 'Gmail: Forward a message to new recipients.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c3cca6279414
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail-forward
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail-read
+    path: gws-cli/skills/gws-gmail-read
+    title: gws-gmail-read
+    summary: 'Gmail: Read a message and extract its body or headers.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 258c3e542c3e
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail-read
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail-reply
+    path: gws-cli/skills/gws-gmail-reply
+    title: gws-gmail-reply
+    summary: 'Gmail: Reply to a message (handles threading automatically).'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b6d00739f14b
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail-reply
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail-reply-all
+    path: gws-cli/skills/gws-gmail-reply-all
+    title: gws-gmail-reply-all
+    summary: 'Gmail: Reply-all to a message (handles threading automatically).'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d5e4953102c3
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail-reply-all
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail-send
+    path: gws-cli/skills/gws-gmail-send
+    title: gws-gmail-send
+    summary: 'Gmail: Send an email.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2cd2af3dc3d8
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail-send
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail-triage
+    path: gws-cli/skills/gws-gmail-triage
+    title: gws-gmail-triage
+    summary: 'Gmail: Show unread inbox summary (sender, subject, date).'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bd168fa637c5
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail-triage
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-gmail-watch
+    path: gws-cli/skills/gws-gmail-watch
+    title: gws-gmail-watch
+    summary: 'Gmail: Watch for new emails and stream them as NDJSON.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5e953db9b808
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-gmail-watch
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-keep
+    path: gws-cli/skills/gws-keep
+    title: gws-keep
+    summary: Manage Google Keep notes.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6f1a7f0be52c
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-keep
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-meet
+    path: gws-cli/skills/gws-meet
+    title: gws-meet
+    summary: Manage Google Meet conferences.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 21f1106142af
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-meet
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-modelarmor
+    path: gws-cli/skills/gws-modelarmor
+    title: gws-modelarmor
+    summary: 'Google Model Armor: Filter user-generated content for safety.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8bf249e2a7c1
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-modelarmor
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-modelarmor-create-template
+    path: gws-cli/skills/gws-modelarmor-create-template
+    title: gws-modelarmor-create-template
+    summary: 'Google Model Armor: Create a new Model Armor template.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c0ff61bdad30
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-modelarmor-create-template
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-modelarmor-sanitize-prompt
+    path: gws-cli/skills/gws-modelarmor-sanitize-prompt
+    title: gws-modelarmor-sanitize-prompt
+    summary: 'Google Model Armor: Sanitize a user prompt through a Model Armor template.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9d32084670c1
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-modelarmor-sanitize-prompt
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-modelarmor-sanitize-response
+    path: gws-cli/skills/gws-modelarmor-sanitize-response
+    title: gws-modelarmor-sanitize-response
+    summary: 'Google Model Armor: Sanitize a model response through a Model Armor template.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 48b8d124be51
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-modelarmor-sanitize-response
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-people
+    path: gws-cli/skills/gws-people
+    title: gws-people
+    summary: 'Google People: Manage contacts and profiles.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ca35e0f68175
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-people
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-script
+    path: gws-cli/skills/gws-script
+    title: gws-script
+    summary: Manage Google Apps Script projects.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7d0c87cb886e
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-script
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-script-push
+    path: gws-cli/skills/gws-script-push
+    title: gws-script-push
+    summary: 'Google Apps Script: Upload local files to an Apps Script project.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d5a07d7f2bae
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-script-push
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-shared
+    path: gws-cli/skills/gws-shared
+    title: gws-shared
+    summary: 'gws CLI: Shared patterns for authentication, global flags, and output formatting.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7dd8dacb7928
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-shared
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-sheets
+    path: gws-cli/skills/gws-sheets
+    title: gws-sheets
+    summary: 'Google Sheets: Read and write spreadsheets.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 39c019ffadb4
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-sheets
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-sheets-append
+    path: gws-cli/skills/gws-sheets-append
+    title: gws-sheets-append
+    summary: 'Google Sheets: Append a row to a spreadsheet.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9dd982eecdf6
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-sheets-append
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-sheets-read
+    path: gws-cli/skills/gws-sheets-read
+    title: gws-sheets-read
+    summary: 'Google Sheets: Read values from a spreadsheet.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7064ae4bd8a2
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-sheets-read
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-slides
+    path: gws-cli/skills/gws-slides
+    title: gws-slides
+    summary: 'Google Slides: Read and write presentations.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6242cd2e6ebc
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-slides
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-tasks
+    path: gws-cli/skills/gws-tasks
+    title: gws-tasks
+    summary: 'Google Tasks: Manage task lists and tasks.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9c79ad35864f
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-tasks
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-workflow
+    path: gws-cli/skills/gws-workflow
+    title: gws-workflow
+    summary: 'Google Workflow: Cross-service productivity workflows.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: dfabdcf5c80d
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-workflow-email-to-task
+    path: gws-cli/skills/gws-workflow-email-to-task
+    title: gws-workflow-email-to-task
+    summary: 'Google Workflow: Convert a Gmail message into a Google Tasks entry.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ec54432d12a8
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow-email-to-task
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-workflow-file-announce
+    path: gws-cli/skills/gws-workflow-file-announce
+    title: gws-workflow-file-announce
+    summary: 'Google Workflow: Announce a Drive file in a Chat space.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e90f20e574ec
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow-file-announce
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-workflow-meeting-prep
+    path: gws-cli/skills/gws-workflow-meeting-prep
+    title: gws-workflow-meeting-prep
+    summary: 'Google Workflow: Prepare for your next meeting: agenda, attendees, and linked docs.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f20a4ae62c7d
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow-meeting-prep
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-workflow-standup-report
+    path: gws-cli/skills/gws-workflow-standup-report
+    title: gws-workflow-standup-report
+    summary: 'Google Workflow: Today''s meetings + open tasks as a standup summary.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c419612a4f53
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow-standup-report
+    license: Apache-2.0
+    group: gws-cli
+  - name: gws-workflow-weekly-digest
+    path: gws-cli/skills/gws-workflow-weekly-digest
+    title: gws-workflow-weekly-digest
+    summary: 'Google Workflow: Weekly summary: this week''s meetings + unread email count.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7709cd27e5d2
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow-weekly-digest
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-content-creator
+    path: gws-cli/skills/persona-content-creator
+    title: persona-content-creator
+    summary: Create, organize, and distribute content across Workspace.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 10b23072c6e0
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-content-creator
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-customer-support
+    path: gws-cli/skills/persona-customer-support
+    title: persona-customer-support
+    summary: Manage customer support — track tickets, respond, escalate issues.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9de0bcc145ff
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-customer-support
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-event-coordinator
+    path: gws-cli/skills/persona-event-coordinator
+    title: persona-event-coordinator
+    summary: Plan and manage events — scheduling, invitations, and logistics.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1826d6f6064a
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-event-coordinator
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-exec-assistant
+    path: gws-cli/skills/persona-exec-assistant
+    title: persona-exec-assistant
+    summary: Manage an executive's schedule, inbox, and communications.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c5d9153819c7
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-exec-assistant
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-hr-coordinator
+    path: gws-cli/skills/persona-hr-coordinator
+    title: persona-hr-coordinator
+    summary: Handle HR workflows — onboarding, announcements, and employee comms.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4cf905eda7eb
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-hr-coordinator
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-it-admin
+    path: gws-cli/skills/persona-it-admin
+    title: persona-it-admin
+    summary: Administer IT — monitor security and configure Workspace.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3beceb63fdd3
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-it-admin
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-project-manager
+    path: gws-cli/skills/persona-project-manager
+    title: persona-project-manager
+    summary: Coordinate projects — track tasks, schedule meetings, and share docs.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4c3a5a4cff58
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-project-manager
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-researcher
+    path: gws-cli/skills/persona-researcher
+    title: persona-researcher
+    summary: Organize research — manage references, notes, and collaboration.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6367da4f424a
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-researcher
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-sales-ops
+    path: gws-cli/skills/persona-sales-ops
+    title: persona-sales-ops
+    summary: Manage sales workflows — track deals, schedule calls, client comms.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1fdf3463028c
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-sales-ops
+    license: Apache-2.0
+    group: gws-cli
+  - name: persona-team-lead
+    path: gws-cli/skills/persona-team-lead
+    title: persona-team-lead
+    summary: Lead a team — run standups, coordinate tasks, and communicate.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 71c8c8070e48
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/persona-team-lead
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-backup-sheet-as-csv
+    path: gws-cli/skills/recipe-backup-sheet-as-csv
+    title: recipe-backup-sheet-as-csv
+    summary: Export a Google Sheets spreadsheet as a CSV file for local backup or processing.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c41acebc1186
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-backup-sheet-as-csv
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-batch-invite-to-event
+    path: gws-cli/skills/recipe-batch-invite-to-event
+    title: recipe-batch-invite-to-event
+    summary: Add a list of attendees to an existing Google Calendar event and send notifications.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8e6115ca36be
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-batch-invite-to-event
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-block-focus-time
+    path: gws-cli/skills/recipe-block-focus-time
+    title: recipe-block-focus-time
+    summary: Create recurring focus time blocks on Google Calendar to protect deep work hours.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d3e727dbedc7
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-block-focus-time
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-bulk-download-folder
+    path: gws-cli/skills/recipe-bulk-download-folder
+    title: recipe-bulk-download-folder
+    summary: List and download all files from a Google Drive folder.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2fb08395d866
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-bulk-download-folder
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-collect-form-responses
+    path: gws-cli/skills/recipe-collect-form-responses
+    title: recipe-collect-form-responses
+    summary: Retrieve and review responses from a Google Form.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4c658e7b9116
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-collect-form-responses
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-compare-sheet-tabs
+    path: gws-cli/skills/recipe-compare-sheet-tabs
+    title: recipe-compare-sheet-tabs
+    summary: Read data from two tabs in a Google Sheet to compare and identify differences.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7e673219b3bb
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-compare-sheet-tabs
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-copy-sheet-for-new-month
+    path: gws-cli/skills/recipe-copy-sheet-for-new-month
+    title: recipe-copy-sheet-for-new-month
+    summary: Duplicate a Google Sheets template tab for a new month of tracking.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e53175391a26
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-copy-sheet-for-new-month
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-classroom-course
+    path: gws-cli/skills/recipe-create-classroom-course
+    title: recipe-create-classroom-course
+    summary: Create a Google Classroom course and invite students.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1ef6330b4eb3
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-classroom-course
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-doc-from-template
+    path: gws-cli/skills/recipe-create-doc-from-template
+    title: recipe-create-doc-from-template
+    summary: Copy a Google Docs template, fill in content, and share with collaborators.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 422c5fe97d1e
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-doc-from-template
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-events-from-sheet
+    path: gws-cli/skills/recipe-create-events-from-sheet
+    title: recipe-create-events-from-sheet
+    summary: Read event data from a Google Sheets spreadsheet and create Google Calendar entries for each row.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a07feadec01f
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-events-from-sheet
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-expense-tracker
+    path: gws-cli/skills/recipe-create-expense-tracker
+    title: recipe-create-expense-tracker
+    summary: Set up a Google Sheets spreadsheet for tracking expenses with headers and initial entries.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 262b4b5a5d87
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-expense-tracker
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-feedback-form
+    path: gws-cli/skills/recipe-create-feedback-form
+    title: recipe-create-feedback-form
+    summary: Create a Google Form for feedback and share it via Gmail.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 791e48d64152
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-feedback-form
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-gmail-filter
+    path: gws-cli/skills/recipe-create-gmail-filter
+    title: recipe-create-gmail-filter
+    summary: Create a Gmail filter to automatically label, star, or categorize incoming messages.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9a02fcf88141
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-gmail-filter
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-meet-space
+    path: gws-cli/skills/recipe-create-meet-space
+    title: recipe-create-meet-space
+    summary: Create a Google Meet meeting space and share the join link.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c10473aa43ba
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-meet-space
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-presentation
+    path: gws-cli/skills/recipe-create-presentation
+    title: recipe-create-presentation
+    summary: Create a new Google Slides presentation and add initial slides.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f2344ac50e5c
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-presentation
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-shared-drive
+    path: gws-cli/skills/recipe-create-shared-drive
+    title: recipe-create-shared-drive
+    summary: Create a Google Shared Drive and add members with appropriate roles.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5e2fcd2c3eb1
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-shared-drive
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-task-list
+    path: gws-cli/skills/recipe-create-task-list
+    title: recipe-create-task-list
+    summary: Set up a new Google Tasks list with initial tasks.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 270e3d78ac77
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-task-list
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-create-vacation-responder
+    path: gws-cli/skills/recipe-create-vacation-responder
+    title: recipe-create-vacation-responder
+    summary: Enable a Gmail out-of-office auto-reply with a custom message and date range.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 54956bbea03d
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-create-vacation-responder
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-draft-email-from-doc
+    path: gws-cli/skills/recipe-draft-email-from-doc
+    title: recipe-draft-email-from-doc
+    summary: Read content from a Google Doc and use it as the body of a Gmail message.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a3e26428cc7f
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-draft-email-from-doc
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-email-drive-link
+    path: gws-cli/skills/recipe-email-drive-link
+    title: recipe-email-drive-link
+    summary: Share a Google Drive file and email the link with a message to recipients.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b06334c9d1a5
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-email-drive-link
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-find-free-time
+    path: gws-cli/skills/recipe-find-free-time
+    title: recipe-find-free-time
+    summary: Query Google Calendar free/busy status for multiple users to find a meeting slot.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e654ea978b1c
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-find-free-time
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-find-large-files
+    path: gws-cli/skills/recipe-find-large-files
+    title: recipe-find-large-files
+    summary: Identify large Google Drive files consuming storage quota.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a853da82a103
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-find-large-files
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-forward-labeled-emails
+    path: gws-cli/skills/recipe-forward-labeled-emails
+    title: recipe-forward-labeled-emails
+    summary: Find Gmail messages with a specific label and forward them to another address.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6d7d358a6b63
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-forward-labeled-emails
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-generate-report-from-sheet
+    path: gws-cli/skills/recipe-generate-report-from-sheet
+    title: recipe-generate-report-from-sheet
+    summary: Read data from a Google Sheet and create a formatted Google Docs report.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d96050c95331
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-generate-report-from-sheet
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-label-and-archive-emails
+    path: gws-cli/skills/recipe-label-and-archive-emails
+    title: recipe-label-and-archive-emails
+    summary: Apply Gmail labels to matching messages and archive them to keep your inbox clean.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a8dffb47edca
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-label-and-archive-emails
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-log-deal-update
+    path: gws-cli/skills/recipe-log-deal-update
+    title: recipe-log-deal-update
+    summary: Append a deal status update to a Google Sheets sales tracking spreadsheet.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 64da49c6716e
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-log-deal-update
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-organize-drive-folder
+    path: gws-cli/skills/recipe-organize-drive-folder
+    title: recipe-organize-drive-folder
+    summary: Create a Google Drive folder structure and move files into the right locations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1638d3845b39
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-organize-drive-folder
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-plan-weekly-schedule
+    path: gws-cli/skills/recipe-plan-weekly-schedule
+    title: recipe-plan-weekly-schedule
+    summary: Review your Google Calendar week, identify gaps, and add events to fill them.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c22c9f660a11
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-plan-weekly-schedule
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-post-mortem-setup
+    path: gws-cli/skills/recipe-post-mortem-setup
+    title: recipe-post-mortem-setup
+    summary: Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 14a95cc0a036
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-post-mortem-setup
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-reschedule-meeting
+    path: gws-cli/skills/recipe-reschedule-meeting
+    title: recipe-reschedule-meeting
+    summary: Move a Google Calendar event to a new time and automatically notify all attendees.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8b6b5e1c34b0
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-reschedule-meeting
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-review-meet-participants
+    path: gws-cli/skills/recipe-review-meet-participants
+    title: recipe-review-meet-participants
+    summary: Review who attended a Google Meet conference and for how long.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 21b842328681
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-review-meet-participants
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-review-overdue-tasks
+    path: gws-cli/skills/recipe-review-overdue-tasks
+    title: recipe-review-overdue-tasks
+    summary: Find Google Tasks that are past due and need attention.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b8842cc73b99
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-review-overdue-tasks
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-save-email-attachments
+    path: gws-cli/skills/recipe-save-email-attachments
+    title: recipe-save-email-attachments
+    summary: Find Gmail messages with attachments and save them to a Google Drive folder.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f4678e117462
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-save-email-attachments
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-save-email-to-doc
+    path: gws-cli/skills/recipe-save-email-to-doc
+    title: recipe-save-email-to-doc
+    summary: Save a Gmail message body into a Google Doc for archival or reference.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 43398aa8d03d
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-save-email-to-doc
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-schedule-recurring-event
+    path: gws-cli/skills/recipe-schedule-recurring-event
+    title: recipe-schedule-recurring-event
+    summary: Create a recurring Google Calendar event with attendees.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3670f92a7b0b
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-schedule-recurring-event
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-send-team-announcement
+    path: gws-cli/skills/recipe-send-team-announcement
+    title: recipe-send-team-announcement
+    summary: Send a team announcement via both Gmail and a Google Chat space.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5340037d004e
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-send-team-announcement
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-share-doc-and-notify
+    path: gws-cli/skills/recipe-share-doc-and-notify
+    title: recipe-share-doc-and-notify
+    summary: Share a Google Docs document with edit access and email collaborators the link.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b6d1fe26dd03
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-share-doc-and-notify
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-share-event-materials
+    path: gws-cli/skills/recipe-share-event-materials
+    title: recipe-share-event-materials
+    summary: Share Google Drive files with all attendees of a Google Calendar event.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 378ea1467400
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-share-event-materials
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-share-folder-with-team
+    path: gws-cli/skills/recipe-share-folder-with-team
+    title: recipe-share-folder-with-team
+    summary: Share a Google Drive folder and all its contents with a list of collaborators.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ee473af45835
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-share-folder-with-team
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-sync-contacts-to-sheet
+    path: gws-cli/skills/recipe-sync-contacts-to-sheet
+    title: recipe-sync-contacts-to-sheet
+    summary: Export Google Contacts directory to a Google Sheets spreadsheet.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 971ac7c3765a
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-sync-contacts-to-sheet
+    license: Apache-2.0
+    group: gws-cli
+  - name: recipe-watch-drive-changes
+    path: gws-cli/skills/recipe-watch-drive-changes
+    title: recipe-watch-drive-changes
+    summary: Subscribe to change notifications on a Google Drive file or folder.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 36c92f1b037a
+    files:
+    - SKILL.md
+    author: Google Workspace
+    source_url: https://github.com/googleworkspace/cli/tree/main/skills/recipe-watch-drive-changes
+    license: Apache-2.0
+    group: gws-cli
+  files:
+  - .agent/skills/vhs.md
+  - .agent/workflows/verify-skills.md
+  - .changeset/README.md
+  - .changeset/config.json
+  - .changeset/sheets-append-range.md
+  - .claude/settings.json
+  - .env.example
+  - .gemini/config.yaml
+  - .gemini/style_guide.md
+  - .github/CODEOWNERS
+  - .github/PULL_REQUEST_TEMPLATE.md
+  - .github/labeler.yml
+  - .github/workflows/audit.yml
+  - .github/workflows/automation.yml
+  - .github/workflows/ci.yml
+  - .github/workflows/cla.yml
+  - .github/workflows/coverage.yml
+  - .github/workflows/generate-skills.yml
+  - .github/workflows/policy.yml
+  - .github/workflows/publish-skills.yml
+  - .github/workflows/release-changesets.yml
+  - .github/workflows/release.yml
+  - .github/workflows/stale.yml
+  - .gitignore
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
+  - .vscode/extensions.json
+  - AGENTS.md
+  - CHANGELOG.md
+  - CLAUDE.md
+  - CONTEXT.md
+  - Cargo.lock
+  - Cargo.toml
+  - LICENSE
+  - README.md
+  - SECURITY.md
+  - art/features.txt
+  - art/intro.txt
+  - art/outro.txt
+  - art/qr.txt
+  - art/scene1.txt
+  - art/scene2.txt
+  - art/scene2b.txt
+  - art/scene3.txt
+  - art/scene3b.txt
+  - art/scene4.txt
+  - art/scene5.txt
+  - art/scene6.txt
+  - art/scene7.txt
+  - art/scene8.txt
+  - art/scene9.txt
+  - crates/google-workspace-cli/Cargo.toml
+  - crates/google-workspace-cli/README.md
+  - crates/google-workspace-cli/registry/personas.toml
+  - crates/google-workspace-cli/registry/recipes.toml
+  - crates/google-workspace-cli/src/auth.rs
+  - crates/google-workspace-cli/src/auth_commands.rs
+  - crates/google-workspace-cli/src/client.rs
+  - crates/google-workspace-cli/src/commands.rs
+  - crates/google-workspace-cli/src/credential_store.rs
+  - crates/google-workspace-cli/src/discovery.rs
+  - crates/google-workspace-cli/src/error.rs
+  - crates/google-workspace-cli/src/executor.rs
+  - crates/google-workspace-cli/src/formatter.rs
+  - crates/google-workspace-cli/src/fs_util.rs
+  - crates/google-workspace-cli/src/generate_skills.rs
+  - crates/google-workspace-cli/src/helpers/README.md
+  - crates/google-workspace-cli/src/helpers/calendar.rs
+  - crates/google-workspace-cli/src/helpers/chat.rs
+  - crates/google-workspace-cli/src/helpers/docs.rs
+  - crates/google-workspace-cli/src/helpers/drive.rs
+  - crates/google-workspace-cli/src/helpers/events/mod.rs
+  - crates/google-workspace-cli/src/helpers/events/renew.rs
+  - crates/google-workspace-cli/src/helpers/events/subscribe.rs
+  - crates/google-workspace-cli/src/helpers/gmail/forward.rs
+  - crates/google-workspace-cli/src/helpers/gmail/mod.rs
+  - crates/google-workspace-cli/src/helpers/gmail/read.rs
+  - crates/google-workspace-cli/src/helpers/gmail/reply.rs
+  - crates/google-workspace-cli/src/helpers/gmail/send.rs
+  - crates/google-workspace-cli/src/helpers/gmail/triage.rs
+  - crates/google-workspace-cli/src/helpers/gmail/watch.rs
+  - crates/google-workspace-cli/src/helpers/mod.rs
+  - crates/google-workspace-cli/src/helpers/modelarmor.rs
+  - crates/google-workspace-cli/src/helpers/script.rs
+  - crates/google-workspace-cli/src/helpers/sheets.rs
+  - crates/google-workspace-cli/src/helpers/workflows.rs
+  - crates/google-workspace-cli/src/logging.rs
+  - crates/google-workspace-cli/src/main.rs
+  - crates/google-workspace-cli/src/oauth_config.rs
+  - crates/google-workspace-cli/src/output.rs
+  - crates/google-workspace-cli/src/schema.rs
+  - crates/google-workspace-cli/src/services.rs
+  - crates/google-workspace-cli/src/setup.rs
+  - crates/google-workspace-cli/src/setup_tui.rs
+  - crates/google-workspace-cli/src/text.rs
+  - crates/google-workspace-cli/src/timezone.rs
+  - crates/google-workspace-cli/src/token_storage.rs
+  - crates/google-workspace-cli/src/validate.rs
+  - crates/google-workspace-cli/templates/modelarmor/jailbreak.json
+  - crates/google-workspace/Cargo.toml
+  - crates/google-workspace/README.md
+  - crates/google-workspace/src/client.rs
+  - crates/google-workspace/src/discovery.rs
+  - crates/google-workspace/src/error.rs
+  - crates/google-workspace/src/lib.rs
+  - crates/google-workspace/src/services.rs
+  - crates/google-workspace/src/validate.rs
+  - demo.gif
+  - deny.toml
+  - docs/CODE_OF_CONDUCT.md
+  - docs/CONTRIBUTING.md
+  - docs/demo.tape
+  - docs/logo.jpg
+  - docs/skills.md
+  - flake.lock
+  - flake.nix
+  - gemini-extension.json
+  - lefthook.yml
+  - npm/.gitignore
+  - npm/install.js
+  - npm/package.json
+  - npm/platform.js
+  - npm/run.js
+  - package.json
+  - pnpm-lock.yaml
+  - scripts/coverage.sh
+  - scripts/show-art.sh
+  - scripts/tag-release.sh
+  - scripts/version-sync.sh
 - path: marketing-skills
   name: marketing-skills
   title: Marketing Skills

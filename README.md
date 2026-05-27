@@ -101,6 +101,7 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 | `ui-ux-pro-max-skill/` | 7 | NextLevelBuilder | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
 | `trailofbits-skills/` | 73 | Trail of Bits | https://github.com/trailofbits/skills |
 | `claude-seo/` | 25 | AgriciDaniel | https://github.com/AgriciDaniel/claude-seo |
+| `gws-cli/` | 95 | Google Workspace | https://github.com/googleworkspace/cli |
 
 ### Marketing skills (`marketing-skills/`) — vendored verbatim
 
