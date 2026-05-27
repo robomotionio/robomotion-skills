@@ -1,0 +1,20 @@
+{
+  "name": "skill-optimizer",
+  "description": "Agent Skills for improving SKILL.md files: mine repeated workflows from history, personalize and audit existing skills, or generalize personal skills for publication.",
+  "version": "2.0.0",
+  "author": {
+    "name": "hqhq1025"
+  },
+  "homepage": "https://github.com/hqhq1025/skill-optimizer",
+  "repository": "https://github.com/hqhq1025/skill-optimizer",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "claude-skill",
+    "skill-miner",
+    "skill-generalizer",
+    "skill-personalizer",
+    "skill-audit",
+    "agent-skills"
+  ]
+}

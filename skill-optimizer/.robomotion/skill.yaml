@@ -1,0 +1,10 @@
+schema_version: 1
+name: skill-optimizer
+title: 'Skill Optimizer'
+type: group
+version: 0.1.0
+author: 'hqhq1025'
+source_url: https://github.com/hqhq1025/skill-optimizer
+license: MIT
+summary: '3 skills — Diagnose and optimize Agent Skills (SKILL.md) with real session data and research-backed static analysis. Works with Claude Code, Codex, and any Agent Skills-compatible agent'
+tags: [development, testing, data]
