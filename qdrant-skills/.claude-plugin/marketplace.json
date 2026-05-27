@@ -1,0 +1,14 @@
+{
+  "name": "qdrant",
+  "owner": {
+    "name": "Qdrant",
+    "url": "https://qdrant.tech"
+  },
+  "plugins": [
+    {
+      "name": "qdrant",
+      "source": "./",
+      "description": "Agent skills for Qdrant vector search"
+    }
+  ]
+}

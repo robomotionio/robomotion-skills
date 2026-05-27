@@ -1,0 +1,68 @@
+---
+name: qdrant-search-strategies
+description: "Guides Qdrant search strategy selection. Use when someone asks 'should I use hybrid search?', 'how to rerank?', 'results are not relevant', 'I don't get needed results from my dataset but they're there', 'retrieval quality is not good enough', 'results too similar', 'need diversity', 'MMR', 'relevance feedback', 'recommendation API', 'discovery API', or 'missing keyword matches'"
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+---
+
+# How to Improve Search Results with Advanced Strategies
+
+These strategies complement basic vector search. Use them after confirming the embedding model is fitting the task and HNSW config is correct. If exact search returns bad results, verify the selection of the embedding model (retriever) first.
+If the user wants to use a weaker embedding model because it is small, fast, and cheap, use reranking or relevance feedback to improve search quality.
+
+## Missing Keyword Matches or Need to Combine Multiple Search Signals
+
+Use when: pure vector search misses keyword/domain term matches, or the use case benefits from combining searches on multiple representations (including languages and modalities) of the same item.
+
+See how to use [hybrid search](hybrid-search/SKILL.md)
+
+## Right Documents Found But Not in the Top Results
+
+Use when: good recall but poor precision (right docs in top-100, not top-10).
+
+- See how to use [Multistage queries](https://search.qdrant.tech/md/documentation/search/hybrid-queries/?s=multi-stage-queries), for example with late interaction rerankers through [Multivectors](https://search.qdrant.tech/md/documentation/manage-data/vectors/?s=multivectors).
+- Cross-encoder rerankers via FastEmbed [Rerankers](https://search.qdrant.tech/md/documentation/fastembed/fastembed-rerankers/)
+
+## Right Documents Not Found But They Are There
+
+Use when: basic retrieval is in place but the retriever misses relevant items you know exist in the dataset. Works on any embeddable data (text, images, etc.).
+
+Relevance Feedback (RF) Query uses a feedback model's scores on retrieved results to steer the retriever through the full vector space on subsequent iterations, like reranking the entire collection through the retriever. Complementary to reranking: a reranker sees a limited subset, RF leverages feedback signals collection-wide. Even 3–5 feedback scores are enough. Can run multiple iterations.
+
+A feedback model is anything producing a relevance score per document: a bi-encoder, cross-encoder, late-interaction model, LLM-as-judge. Fuzzy relevance scores work, not just binary (good/bad, relevant/irrelevant), due to the fact that feedback is expressed as a graded relevance score (higher = more relevant).
+
+Skip when: if the retriever already has strong recall, or if retriever and feedback model strongly agree on relevance.
+
+- RF Query is currently based on a [3-parameter naive formula](https://search.qdrant.tech/md/documentation/search/search-relevance/?s=naive-strategy) with no universal defaults, so it must be tuned per dataset, retriever, and feedback model
+- Use [qdrant-relevance-feedback](https://pypi.org/project/qdrant-relevance-feedback/) to tune parameters, evaluate impact with Evaluator, and check retriever-feedback agreement. See README for setup instructions. No GPUs are needed, and the framework also provides predefined retriever and feedback model options.
+- Check the configuration of the [Relevance Feedback Query API](https://search.qdrant.tech/md/documentation/search/search-relevance/?s=relevance-feedback)
+- Use this as a helper end-to-end text retrieval example with parameter tuning and evals to understand how to use the API and run the `qdrant-relevance-feedback` framework: [RF tutorial](https://search.qdrant.tech/md/documentation/tutorials-search-engineering/using-relevance-feedback/)
+
+## Results Too Similar
+
+Use when: top results are redundant, near-duplicates, or lack diversity. Common in dense content domains (academic papers, product catalogs).
+
+- Use MMR (v1.15+) as a query parameter with `diversity` to balance relevance and diversity [MMR](https://search.qdrant.tech/md/documentation/search/search-relevance/?s=maximal-marginal-relevance-mmr)
+- Start with `diversity=0.5`, lower for more precision, higher for more exploration
+- MMR is slower than standard search. Only use when redundancy is an actual problem.
+
+## Want to improve search results based on examples (positive and negative)
+
+Use when: you can provide positive and negative example points to steer search closer to positive and further from negative.
+
+- Recommendation API: positive/negative examples to recommend fitting vectors [Recommendation API](https://search.qdrant.tech/md/documentation/search/explore/?s=recommendation-api)
+  - Best score strategy: better for diverse examples, supports negative-only [Best score](https://search.qdrant.tech/md/documentation/search/explore/?s=best-score-strategy)
+- Discovery API: context pairs (positive/negative) to constrain search regions without a request target [Discovery](https://search.qdrant.tech/md/documentation/search/explore/?s=discovery-api)
+
+## Have Business Logic Behind Results Relevance
+
+Use when: results should be additionally ranked according to some business logic based on data, like recency or distance.
+
+Check how to set up in [Score Boosting docs](https://search.qdrant.tech/md/documentation/search/search-relevance/?s=score-boosting)
+
+## What NOT to Do
+
+- Use hybrid search before verifying pure vector search quality (adds complexity, may mask model issues)
+- Skip evaluation when adding relevance feedback — score the end-to-end pipeline to confirm it actually helps [Pipeline Output Quality](https://search.qdrant.tech/md/documentation/improve-search/pipeline-output-quality/)

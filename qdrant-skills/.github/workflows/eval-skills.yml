@@ -1,0 +1,37 @@
+name: eval skills
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+      - 'evals/**'
+      - 'scripts/run_eval.py'
+
+permissions:
+  contents: read
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.12'
+
+      - name: install claude cli
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: run skill evals
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/run_eval.py
+
+      - name: upload eval results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: eval-results
+          path: eval-results.json
