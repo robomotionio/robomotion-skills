@@ -1,0 +1,27 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "mirrord-skills",
+  "version": "1.0.0",
+  "description": "Skills for working with mirrord - Kubernetes development tool by MetalBear",
+  "owner": {
+    "name": "MetalBear",
+    "email": "support@metalbear.com"
+  },
+  "plugins": [
+    {
+      "name": "mirrord",
+      "description": "Official mirrord skills for Claude Code",
+      "source": "./",
+      "version": "1.0.0",
+      "category": "development",
+      "keywords": ["mirrord", "kubernetes", "config", "k8s"],
+      "skills": [
+        "./skills/mirrord-config",
+        "./skills/mirrord-quickstart",
+        "./skills/mirrord-operator",
+        "./skills/mirrord-ci",
+        "./skills/mirrord-db-branching"
+      ]
+    }
+  ]
+}

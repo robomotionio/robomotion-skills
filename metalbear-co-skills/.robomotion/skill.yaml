@@ -1,0 +1,10 @@
+schema_version: 1
+name: metalbear-co-skills
+title: 'Metalbear Co Skills'
+type: group
+version: 0.1.0
+author: 'metalbear-co'
+source_url: https://github.com/metalbear-co/skills
+license: MIT
+summary: '6 skills — Skills that let agents code and test against your Kubernetes cluster using mirrord'
+tags: [development, testing, ai]
