@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build core
+        run: pnpm --filter @understand-anything/core build
+
+      - name: Build skill
+        run: pnpm --filter @understand-anything/skill build
+
+      - name: Test core
+        run: pnpm --filter @understand-anything/core test
+
+      - name: Test skill
+        run: pnpm test

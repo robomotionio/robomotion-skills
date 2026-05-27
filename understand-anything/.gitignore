@@ -1,0 +1,16 @@
+node_modules
+dist
+.understand-anything
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+coverage/
+*.log
+__pycache__/
+.claude/
+.worktrees/
+homepage/public/demo/
+.private/
+__pycache__/
+*.pyc
