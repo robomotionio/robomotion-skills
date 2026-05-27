@@ -43,18 +43,19 @@ frontmatter() {
 }
 
 check_scripts() {
-  local base="$1"
+  local base="$1" vendored="${2:-}"
   [ -d "$base/scripts" ] || return 0
-  local py js
+  local py js sev
+  sev="FAIL"; [ -n "$vendored" ] && sev="WARN"
   for py in "$base"/scripts/*.py; do
     [ -e "$py" ] || continue
     python3 -c 'import sys; compile(open(sys.argv[1]).read(), sys.argv[1], "exec")' "$py" 2>/dev/null \
-      || { echo "    FAIL: $py does not compile"; fail=1; }
+      || { echo "    ${sev}: $py does not compile"; [ -z "$vendored" ] && fail=1; }
   done
   if command -v node >/dev/null 2>&1; then
     for js in "$base"/scripts/*.js; do
       [ -e "$js" ] || continue
-      node --check "$js" 2>/dev/null || { echo "    FAIL: $js failed node --check"; fail=1; }
+      node --check "$js" 2>/dev/null || { echo "    ${sev}: $js failed node --check"; [ -z "$vendored" ] && fail=1; }
     done
   fi
 }
@@ -71,6 +72,10 @@ check_skill_md() {
 
   fm="$(frontmatter "$md")"
   if [ -z "$fm" ]; then
+    if [ -n "$vendored" ]; then
+      echo "    WARN: missing or empty YAML front-matter (vendored — upstream's fault, skill will be unindexed)"
+      return
+    fi
     echo "    FAIL: missing or empty YAML front-matter"; fail=1; return
   fi
 
@@ -90,7 +95,7 @@ check_skill_md() {
 
   check_env_file "$sd/env.required"
   check_env_file "$sd/env.optional"
-  check_scripts "$sd"
+  check_scripts "$sd" "$vendored"
 
   if [ -d "$sd/scripts" ] && [ -n "$(ls -A "$sd/scripts" 2>/dev/null)" ]; then
     echo "    mode: container (ships scripts/)"
@@ -142,8 +147,10 @@ while IFS= read -r sy; do
     fi
   elif [ "$type" = "skill" ]; then
     # standalone — SKILL.md is at the unit root
+    # Treated as vendored: name in upstream SKILL.md may not match our directory
+    # (we may have renamed for collision uniqueness across the vendored corpus).
     if [ -f "$unit_dir/SKILL.md" ]; then
-      check_skill_md "$unit_dir"
+      check_skill_md "$unit_dir" vendored
       standalone_skills=$((standalone_skills+1))
     else
       echo "    FAIL: $unit_rel declares type: skill but has no SKILL.md"; fail=1
