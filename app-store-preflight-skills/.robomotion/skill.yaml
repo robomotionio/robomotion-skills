@@ -1,0 +1,10 @@
+schema_version: 1
+name: app-store-preflight-skills
+title: 'App Store Preflight Skills'
+type: skill
+version: 0.1.0
+author: 'truongduy2611'
+source_url: https://github.com/truongduy2611/app-store-preflight-skills
+license: MIT
+summary: 'Scan iOS/macOS projects to catch common mistakes that lead to App Store rejection before submission'
+tags: [development, testing, ios]
