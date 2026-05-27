@@ -120,8 +120,10 @@ while IFS= read -r sy; do
   [ -f "$unit_dir/.robomotion/CHANGELOG.md" ] || { echo "    WARN: $unit_rel/.robomotion/CHANGELOG.md missing"; }
 
   if [ "$type" = "group" ]; then
-    # walk inner skills — both the agentskills.io layout (skills/<name>/)
-    # and the Claude Code plugin layout (.claude/skills/<name>/)
+    # walk inner skills — the agentskills.io layout (skills/<name>/),
+    # the Claude Code plugin layout (.claude/skills/<name>/),
+    # and the Claude Code marketplace meta-group layout
+    # (plugins/<plugin>/skills/<name>/).
     for skills_subdir in "$unit_dir/skills" "$unit_dir/.claude/skills"; do
       [ -d "$skills_subdir" ] || continue
       while IFS= read -r md; do
@@ -129,6 +131,12 @@ while IFS= read -r sy; do
         inner_skills=$((inner_skills+1))
       done < <(find "$skills_subdir" -maxdepth 3 -name SKILL.md | sort)
     done
+    if [ -d "$unit_dir/plugins" ]; then
+      while IFS= read -r md; do
+        check_skill_md "$(dirname "$md")" vendored
+        inner_skills=$((inner_skills+1))
+      done < <(find "$unit_dir/plugins" -mindepth 4 -maxdepth 4 -name SKILL.md | sort)
+    fi
     # check group's .robomotion/post-install.sh syntactically (best-effort)
     [ -f "$unit_dir/.robomotion/post-install.sh" ] && sh -n "$unit_dir/.robomotion/post-install.sh" \
       || true

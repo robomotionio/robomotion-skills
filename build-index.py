@@ -283,8 +283,11 @@ def build_inner_source_url(group: dict, skill_rel: str) -> str:
 
 
 def discover_inner_skills(repo_root: str, group_rel: str) -> list:
-    """For a group, walk <group>/skills/<name>/SKILL.md and
-    <group>/.claude/skills/<name>/SKILL.md (Claude Code plugin layout)."""
+    """For a group, walk:
+      <group>/skills/<name>/SKILL.md           (agentskills.io layout)
+      <group>/.claude/skills/<name>/SKILL.md   (Claude Code plugin layout)
+      <group>/plugins/<plugin>/skills/<name>/SKILL.md   (Claude Code marketplace meta-group)
+    """
     rels = []
     for skills_subpath in ("skills", ".claude/skills"):
         skills_dir = os.path.join(repo_root, group_rel, skills_subpath)
@@ -294,6 +297,19 @@ def discover_inner_skills(repo_root: str, group_rel: str) -> list:
             sub = os.path.join(skills_dir, entry)
             if os.path.isdir(sub) and os.path.isfile(os.path.join(sub, "SKILL.md")):
                 rels.append(f"{group_rel}/{skills_subpath}/{entry}")
+    # Meta-group: a marketplace root with N independent plugins, each having
+    # its own skills/. Each <plugin>/skills/<name> becomes an indexable skill,
+    # path-prefixed so collisions across plugins stay unique.
+    plugins_dir = os.path.join(repo_root, group_rel, "plugins")
+    if os.path.isdir(plugins_dir):
+        for plugin in sorted(os.listdir(plugins_dir)):
+            psk_dir = os.path.join(plugins_dir, plugin, "skills")
+            if not os.path.isdir(psk_dir):
+                continue
+            for entry in sorted(os.listdir(psk_dir)):
+                sub = os.path.join(psk_dir, entry)
+                if os.path.isdir(sub) and os.path.isfile(os.path.join(sub, "SKILL.md")):
+                    rels.append(f"{group_rel}/plugins/{plugin}/skills/{entry}")
     return rels
 
 

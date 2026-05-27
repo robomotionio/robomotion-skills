@@ -1,0 +1,10 @@
+schema_version: 1
+name: trailofbits-skills
+title: Trail of Bits Skills
+type: group
+version: 1.0.0
+author: Trail of Bits
+source_url: https://github.com/trailofbits/skills
+license: CC-BY-SA-4.0
+summary: 40+ Claude Code plugins from Trail of Bits for security analysis and development — code review, crypto auditing, supply-chain risk, mutation testing, semgrep authoring, YARA, smart contracts, and more.
+tags: [security, auditing, code-review, semgrep, yara, smart-contracts, supply-chain, mutation-testing, static-analysis, crypto]

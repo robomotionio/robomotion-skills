@@ -208,13 +208,26 @@ def discover_units(repo_root: Path):
 
 
 def inner_skill_dirs(unit_dir: Path):
-    """Yield skill dirs under a group: <unit>/skills/<name> and <unit>/.claude/skills/<name>."""
+    """Yield skill dirs under a group:
+      <unit>/skills/<name>
+      <unit>/.claude/skills/<name>
+      <unit>/plugins/<plugin>/skills/<name>   (Claude Code marketplace meta-group)
+    """
     for parent in (unit_dir / "skills", unit_dir / ".claude" / "skills"):
         if not parent.is_dir():
             continue
         for child in sorted(parent.iterdir()):
             if child.is_dir() and (child / "SKILL.md").is_file():
                 yield child
+    plugins = unit_dir / "plugins"
+    if plugins.is_dir():
+        for plugin in sorted(plugins.iterdir()):
+            psk = plugin / "skills"
+            if not psk.is_dir():
+                continue
+            for child in sorted(psk.iterdir()):
+                if child.is_dir() and (child / "SKILL.md").is_file():
+                    yield child
 
 
 _SKIP_DIRS = {"node_modules", ".venv", "__pycache__", "__tests__", "tests", "test"}

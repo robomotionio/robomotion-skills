@@ -1680,6 +1680,2101 @@ groups:
   - tools/integrations/zoominfo.md
   - validate-skills-official.sh
   - validate-skills.sh
+- path: trailofbits-skills
+  name: trailofbits-skills
+  title: Trail of Bits Skills
+  type: group
+  version: 1.0.0
+  author: Trail of Bits
+  source_url: https://github.com/trailofbits/skills
+  license: CC-BY-SA-4.0
+  summary: 40+ Claude Code plugins from Trail of Bits for security analysis and development — code review, crypto auditing,
+    supply-chain risk, mutation testing, semgrep authoring, YARA, smart contracts, and more.
+  tags:
+  - security
+  - auditing
+  - code-review
+  - semgrep
+  - yara
+  - smart-contracts
+  - supply-chain
+  - mutation-testing
+  - static-analysis
+  - crypto
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 5cea6f69064c
+  skills:
+  - name: agentic-actions-auditor
+    path: trailofbits-skills/plugins/agentic-actions-auditor/skills/agentic-actions-auditor
+    title: agentic-actions-auditor
+    summary: Audits GitHub Actions workflows for security vulnerabilities in AI agent integrations including Claude Code Action,
+      Gemini CLI, OpenAI Codex, and GitHub AI Inference. Detects attack vectors where attacker-controlled input reaches AI
+      agents running in CI/CD pipelines, including env var intermediary patterns, direct expression injection, dangerous sandbox
+      configurations, and wildcard user allowlists. Use when reviewing workflow files that invoke AI coding agents, auditing
+      CI/CD pipeline security for prompt injection risks, or evaluating agentic action configurations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 49c4be55a219
+    files:
+    - SKILL.md
+    - references/action-profiles.md
+    - references/cross-file-resolution.md
+    - references/foundations.md
+    - references/vector-a-env-var-intermediary.md
+    - references/vector-b-direct-expression-injection.md
+    - references/vector-c-cli-data-fetch.md
+    - references/vector-d-pr-target-checkout.md
+    - references/vector-e-error-log-injection.md
+    - references/vector-f-subshell-expansion.md
+    - references/vector-g-eval-of-ai-output.md
+    - references/vector-h-dangerous-sandbox-configs.md
+    - references/vector-i-wildcard-allowlists.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/agentic-actions-auditor/skills/agentic-actions-auditor
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: ask-questions-if-underspecified
+    path: trailofbits-skills/plugins/ask-questions-if-underspecified/skills/ask-questions-if-underspecified
+    title: ask-questions-if-underspecified
+    summary: Clarify requirements before implementing. Use when serious doubts arise.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ee66548287d7
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/ask-questions-if-underspecified/skills/ask-questions-if-underspecified
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: audit-context-building
+    path: trailofbits-skills/plugins/audit-context-building/skills/audit-context-building
+    title: audit-context-building
+    summary: Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or
+      bug finding.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 14a53879ddbe
+    files:
+    - SKILL.md
+    - resources/COMPLETENESS_CHECKLIST.md
+    - resources/FUNCTION_MICRO_ANALYSIS_EXAMPLE.md
+    - resources/OUTPUT_REQUIREMENTS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/audit-context-building/skills/audit-context-building
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: algorand-vulnerability-scanner
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/algorand-vulnerability-scanner
+    title: algorand-vulnerability-scanner
+    summary: Scans Algorand smart contracts for 11 common vulnerabilities including rekeying attacks, unchecked transaction
+      fees, missing field validations, and access control issues. Use when auditing Algorand projects (TEAL/PyTeal).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 44d0c9727769
+    files:
+    - SKILL.md
+    - resources/VULNERABILITY_PATTERNS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/algorand-vulnerability-scanner
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: audit-prep-assistant
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/audit-prep-assistant
+    title: audit-prep-assistant
+    summary: Prepares codebases for security review using Trail of Bits' checklist. Helps set review goals, runs static analysis
+      tools, increases test coverage, removes dead code, ensures accessibility, and generates documentation (flowcharts, user
+      stories, inline comments).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 095f9fd51fb4
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/audit-prep-assistant
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: cairo-vulnerability-scanner
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/cairo-vulnerability-scanner
+    title: cairo-vulnerability-scanner
+    summary: Scans Cairo/StarkNet smart contracts for 6 critical vulnerabilities including felt252 arithmetic overflow, L1-L2
+      messaging issues, address conversion problems, and signature replay. Use when auditing StarkNet projects.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5017217a799e
+    files:
+    - SKILL.md
+    - resources/VULNERABILITY_PATTERNS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/cairo-vulnerability-scanner
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: code-maturity-assessor
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/code-maturity-assessor
+    title: code-maturity-assessor
+    summary: Systematic code maturity assessment using Trail of Bits' 9-category framework. Analyzes codebase for arithmetic
+      safety, auditing practices, access controls, complexity, decentralization, documentation, MEV risks, low-level code,
+      and testing. Produces professional scorecard with evidence-based ratings and actionable recommendations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9312feea552e
+    files:
+    - SKILL.md
+    - resources/ASSESSMENT_CRITERIA.md
+    - resources/EXAMPLE_REPORT.md
+    - resources/REPORT_FORMAT.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/code-maturity-assessor
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: cosmos-vulnerability-scanner
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/cosmos-vulnerability-scanner
+    title: cosmos-vulnerability-scanner
+    summary: Scans Cosmos SDK blockchain modules and CosmWasm contracts for consensus-critical vulnerabilities — chain halts,
+      fund loss, state divergence. 25 core + 16 IBC + 10 EVM + 3 CosmWasm patterns. Use when auditing custom x/ modules, reviewing
+      IBC integrations, or assessing pre-launch chain security. Updated for SDK v0.53.x.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 583cca91a551
+    files:
+    - CHANGELOG.md
+    - SKILL.md
+    - resources/ADVANCED_VULNERABILITY_PATTERNS.md
+    - resources/COSMWASM_VULNERABILITY_PATTERNS.md
+    - resources/DISCOVERY.md
+    - resources/EVM_VULNERABILITY_PATTERNS.md
+    - resources/IBC_VULNERABILITY_PATTERNS.md
+    - resources/STATE_VULNERABILITY_PATTERNS.md
+    - resources/VULNERABILITY_PATTERNS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/cosmos-vulnerability-scanner
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: guidelines-advisor
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/guidelines-advisor
+    title: guidelines-advisor
+    summary: Smart contract development advisor based on Trail of Bits' best practices. Analyzes codebase to generate documentation/specifications,
+      review architecture, check upgradeability patterns, assess implementation quality, identify pitfalls, review dependencies,
+      and evaluate testing. Provides actionable recommendations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 32ae10a2f8d1
+    files:
+    - SKILL.md
+    - resources/ASSESSMENT_AREAS.md
+    - resources/DELIVERABLES.md
+    - resources/EXAMPLE_REPORT.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/guidelines-advisor
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: secure-workflow-guide
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/secure-workflow-guide
+    title: secure-workflow-guide
+    summary: Guides through Trail of Bits' 5-step secure development workflow. Runs Slither scans, checks special features
+      (upgradeability/ERC conformance/token integration), generates visual security diagrams, helps document security properties
+      for fuzzing/verification, and reviews manual security areas.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 10c1148017ed
+    files:
+    - SKILL.md
+    - resources/EXAMPLE_REPORT.md
+    - resources/WORKFLOW_STEPS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/secure-workflow-guide
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: solana-vulnerability-scanner
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/solana-vulnerability-scanner
+    title: solana-vulnerability-scanner
+    summary: Scans Solana programs for 6 critical vulnerabilities including arbitrary CPI, improper PDA validation, missing
+      signer/ownership checks, and sysvar spoofing. Use when auditing Solana/Anchor programs.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: be81cb81ef0f
+    files:
+    - SKILL.md
+    - resources/VULNERABILITY_PATTERNS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/solana-vulnerability-scanner
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: substrate-vulnerability-scanner
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/substrate-vulnerability-scanner
+    title: substrate-vulnerability-scanner
+    summary: Scans Substrate/Polkadot pallets for 7 critical vulnerabilities including arithmetic overflow, panic DoS, incorrect
+      weights, and bad origin checks. Use when auditing Substrate runtimes or FRAME pallets.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e2e24b99538d
+    files:
+    - SKILL.md
+    - resources/VULNERABILITY_PATTERNS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/substrate-vulnerability-scanner
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: token-integration-analyzer
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/token-integration-analyzer
+    title: token-integration-analyzer
+    summary: Token integration and implementation analyzer based on Trail of Bits' token integration checklist. Analyzes token
+      implementations for ERC20/ERC721 conformity, checks for 20+ weird token patterns, assesses contract composition and
+      owner privileges, performs on-chain scarcity analysis, and evaluates how protocols handle non-standard tokens. Context-aware
+      for both token implementations and token integrations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8a09edad366f
+    files:
+    - SKILL.md
+    - resources/ASSESSMENT_CATEGORIES.md
+    - resources/REPORT_TEMPLATES.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/token-integration-analyzer
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: ton-vulnerability-scanner
+    path: trailofbits-skills/plugins/building-secure-contracts/skills/ton-vulnerability-scanner
+    title: ton-vulnerability-scanner
+    summary: Scans TON (The Open Network) smart contracts for 3 critical vulnerabilities including integer-as-boolean misuse,
+      fake Jetton contracts, and forward TON without gas checks. Use when auditing FunC contracts.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: adfc34d6accd
+    files:
+    - SKILL.md
+    - resources/VULNERABILITY_PATTERNS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/ton-vulnerability-scanner
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: burpsuite-project-parser
+    path: trailofbits-skills/plugins/burpsuite-project-parser/skills/burpsuite-project-parser
+    title: burpsuite-project-parser
+    summary: Searches and explores Burp Suite project files (.burp) from the command line. Use when searching response headers
+      or bodies with regex patterns, extracting security audit findings, dumping proxy history or site map data, or analyzing
+      HTTP traffic captured in a Burp project.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 078b5065805c
+    files:
+    - SKILL.md
+    - scripts/burp-search.sh
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/burpsuite-project-parser/skills/burpsuite-project-parser
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: c-review
+    path: trailofbits-skills/plugins/c-review/skills/c-review
+    title: c-review
+    summary: Performs comprehensive C/C++ security review for memory corruption, integer overflows, race conditions, and platform-specific
+      vulnerabilities. Use when auditing native C/C++ applications, reviewing daemons or services for memory safety, or hunting
+      integer overflow / use-after-free / race conditions in userspace code.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: cb324ef6a8eb
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/c-review/skills/c-review
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: claude-in-chrome-troubleshooting
+    path: trailofbits-skills/plugins/claude-in-chrome-troubleshooting/skills/claude-in-chrome-troubleshooting
+    title: claude-in-chrome-troubleshooting
+    summary: Diagnose and fix Claude in Chrome MCP extension connectivity issues. Use when mcp__claude-in-chrome__* tools
+      fail, return "Browser extension is not connected", or behave erratically.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4064fad699d9
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/claude-in-chrome-troubleshooting/skills/claude-in-chrome-troubleshooting
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: constant-time-analysis
+    path: trailofbits-skills/plugins/constant-time-analysis/skills/constant-time-analysis
+    title: constant-time-analysis
+    summary: Detects timing side-channel vulnerabilities in cryptographic code. Use when implementing or reviewing crypto
+      code, encountering division on secrets, secret-dependent branches, or constant-time programming questions in C, C++,
+      Go, Rust, Swift, Java, Kotlin, C#, PHP, JavaScript, TypeScript, Python, or Ruby.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a12f4fa9b0b4
+    files:
+    - README.md
+    - SKILL.md
+    - references/compiled.md
+    - references/javascript.md
+    - references/kotlin.md
+    - references/php.md
+    - references/python.md
+    - references/ruby.md
+    - references/swift.md
+    - references/vm-compiled.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/constant-time-analysis/skills/constant-time-analysis
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: interpreting-culture-index
+    path: trailofbits-skills/plugins/culture-index/skills/interpreting-culture-index
+    title: interpreting-culture-index
+    summary: Interprets Culture Index (CI) surveys, behavioral profiles, and personality assessment data. Supports individual
+      profile interpretation, team composition analysis (gas/brake/glue), burnout detection, profile comparison, hiring profiles,
+      manager coaching, interview transcript analysis for trait prediction, candidate debrief, onboarding planning, and conflict
+      mediation. Accepts extracted JSON or PDF input via OpenCV extraction script.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 54f7916528e0
+    files:
+    - SKILL.md
+    - references/anti-patterns.md
+    - references/archetype-administrator.md
+    - references/archetype-coordinator.md
+    - references/archetype-craftsman.md
+    - references/archetype-daredevil.md
+    - references/archetype-debater.md
+    - references/archetype-facilitator.md
+    - references/archetype-influencer.md
+    - references/archetype-operator.md
+    - references/archetype-persuader.md
+    - references/archetype-philosopher.md
+    - references/archetype-rainmaker.md
+    - references/archetype-scholar.md
+    - references/archetype-socializer.md
+    - references/archetype-specialist.md
+    - references/archetype-technical-expert.md
+    - references/archetype-traditionalist.md
+    - references/archetype-trailblazer.md
+    - references/conversation-starters.md
+    - references/interview-trait-signals.md
+    - references/motivators.md
+    - references/patterns-archetypes.md
+    - references/primary-traits.md
+    - references/secondary-traits.md
+    - references/team-composition.md
+    - scripts/check_deps.py
+    - scripts/culture_index/__init__.py
+    - scripts/culture_index/constants.py
+    - scripts/culture_index/extract.py
+    - scripts/culture_index/models.py
+    - scripts/culture_index/opencv_extractor.py
+    - scripts/extract_pdf.py
+    - scripts/pyproject.toml
+    - templates/burnout-report.md
+    - templates/comparison-report.md
+    - templates/hiring-profile.md
+    - templates/individual-report.md
+    - templates/predicted-profile.md
+    - templates/team-report.md
+    - workflows/analyze-team.md
+    - workflows/coach-manager.md
+    - workflows/compare-profiles.md
+    - workflows/define-hiring-profile.md
+    - workflows/detect-burnout.md
+    - workflows/extract-from-pdf.md
+    - workflows/interpret-individual.md
+    - workflows/interview-debrief.md
+    - workflows/mediate-conflict.md
+    - workflows/plan-onboarding.md
+    - workflows/predict-from-interview.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/culture-index/skills/interpreting-culture-index
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: debug-buttercup
+    path: trailofbits-skills/plugins/debug-buttercup/skills/debug-buttercup
+    title: debug-buttercup
+    summary: 'Debugs the Buttercup CRS (Cyber Reasoning System) running on Kubernetes. Use when diagnosing pod crashes, restart
+      loops, Redis failures, resource pressure, disk saturation, DinD issues, or any service misbehavior in the crs namespace.
+      Covers triage, log analysis, queue inspection, and common failure patterns for: redis, fuzzer-bot, coverage-bot, seed-gen,
+      patcher, build-bot, scheduler, task-server, task-downloader, program-model, litellm, dind, tracer-bot, merger-bot, competition-api,
+      pov-reproducer, scratch-cleaner, registry-cache, image-preloader, ui.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 5d15dac057f9
+    files:
+    - SKILL.md
+    - references/failure-patterns.md
+    - scripts/diagnose.sh
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/debug-buttercup/skills/debug-buttercup
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: devcontainer-setup
+    path: trailofbits-skills/plugins/devcontainer-setup/skills/devcontainer-setup
+    title: devcontainer-setup
+    summary: Creates devcontainers with Claude Code, language-specific tooling (Python/Node/Rust/Go), and persistent volumes.
+      Use when adding devcontainer support to a project, setting up isolated development environments, or configuring sandboxed
+      Claude Code workspaces.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: cfa346a4fbbd
+    files:
+    - SKILL.md
+    - references/dockerfile-best-practices.md
+    - references/features-vs-dockerfile.md
+    - resources/.zshrc
+    - resources/Dockerfile
+    - resources/devcontainer.json
+    - resources/install.sh
+    - resources/post_install.py
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/devcontainer-setup/skills/devcontainer-setup
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: differential-review
+    path: trailofbits-skills/plugins/differential-review/skills/differential-review
+    title: differential-review
+    summary: Performs security-focused differential review of code changes (PRs, commits, diffs). Adapts analysis depth to
+      codebase size, uses git history for context, calculates blast radius, checks test coverage, and generates comprehensive
+      markdown reports. Automatically detects and prevents security regressions.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5c2c92dcf324
+    files:
+    - SKILL.md
+    - adversarial.md
+    - methodology.md
+    - patterns.md
+    - reporting.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/differential-review/skills/differential-review
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: dimensional-analysis
+    path: trailofbits-skills/plugins/dimensional-analysis/skills/dimensional-analysis
+    title: dimensional-analysis
+    summary: Annotates codebases with dimensional analysis comments documenting units, dimensions, and decimal scaling. Use
+      when someone asks to annotate units in a codebase, perform a dimensional analysis, or find vulnerabilities in a DeFi
+      protocol, offchain code, or other blockchain-related codebase with arithmetic. Prevents dimensional mismatches and catches
+      formula bugs early.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 25fbbdb168c4
+    files:
+    - SKILL.md
+    - references/annotate.md
+    - references/bug-patterns.md
+    - references/common-dimensions.md
+    - references/dimension-algebra.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/dimensional-analysis/skills/dimensional-analysis
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: dwarf-expert
+    path: trailofbits-skills/plugins/dwarf-expert/skills/dwarf-expert
+    title: dwarf-expert
+    summary: Provides expertise for analyzing DWARF debug files and understanding the DWARF debug format/standard (v3-v5).
+      Triggers when understanding DWARF information, interacting with DWARF files, answering DWARF-related questions, or working
+      with code that parses DWARF data.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 68d0b860f507
+    files:
+    - SKILL.md
+    - reference/coding.md
+    - reference/dwarfdump.md
+    - reference/readelf.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/dwarf-expert/skills/dwarf-expert
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: entry-point-analyzer
+    path: trailofbits-skills/plugins/entry-point-analyzer/skills/entry-point-analyzer
+    title: entry-point-analyzer
+    summary: Analyzes smart contract codebases to identify state-changing entry points for security auditing. Detects externally
+      callable functions that modify state, categorizes them by access level (public, admin, role-restricted, contract-only),
+      and generates structured audit reports. Excludes view/pure/read-only functions. Use when auditing smart contracts (Solidity,
+      Vyper, Solana/Rust, Move, TON, CosmWasm) or when asked to find entry points, audit flows, external functions, access
+      control patterns, or privileged operations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5b3dfa53f4b2
+    files:
+    - SKILL.md
+    - references/cosmwasm.md
+    - references/move-aptos.md
+    - references/move-sui.md
+    - references/solana.md
+    - references/solidity.md
+    - references/ton.md
+    - references/vyper.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/entry-point-analyzer/skills/entry-point-analyzer
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: firebase-apk-scanner
+    path: trailofbits-skills/plugins/firebase-apk-scanner/skills/firebase-apk-scanner
+    title: firebase-apk-scanner
+    summary: Scans Android APKs for Firebase security misconfigurations including open databases, storage buckets, authentication
+      issues, and exposed cloud functions. Use when analyzing APK files for Firebase vulnerabilities, performing mobile app
+      security audits, or testing Firebase endpoint security. For authorized security research only.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 36bb16099248
+    files:
+    - SKILL.md
+    - references/vulnerabilities.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/firebase-apk-scanner/skills/firebase-apk-scanner
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: fp-check
+    path: trailofbits-skills/plugins/fp-check/skills/fp-check
+    title: fp-check
+    summary: Systematically verifies suspected security bugs to eliminate false positives. Produces TRUE POSITIVE or FALSE
+      POSITIVE verdicts with documented evidence for each bug.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d14fed3cd362
+    files:
+    - SKILL.md
+    - references/bug-class-verification.md
+    - references/deep-verification.md
+    - references/evidence-templates.md
+    - references/false-positive-patterns.md
+    - references/gate-reviews.md
+    - references/standard-verification.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/fp-check/skills/fp-check
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: git-cleanup
+    path: trailofbits-skills/plugins/git-cleanup/skills/git-cleanup
+    title: git-cleanup
+    summary: Safely analyzes and cleans up local git branches and worktrees by categorizing them as merged, squash-merged,
+      superseded, or active work.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8da99c21a7a7
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/git-cleanup/skills/git-cleanup
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: insecure-defaults
+    path: trailofbits-skills/plugins/insecure-defaults/skills/insecure-defaults
+    title: insecure-defaults
+    summary: Detects fail-open insecure defaults (hardcoded secrets, weak auth, permissive security) that allow apps to run
+      insecurely in production. Use when auditing security, reviewing config management, or analyzing environment variable
+      handling.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8e87613fcc95
+    files:
+    - SKILL.md
+    - references/examples.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/insecure-defaults/skills/insecure-defaults
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: let-fate-decide
+    path: trailofbits-skills/plugins/let-fate-decide/skills/let-fate-decide
+    title: let-fate-decide
+    summary: Draws 4 Tarot cards to inject entropy into planning when prompts are vague, ambiguous, or casually delegated.
+      Interprets the spread to guide next steps. Use when the user says 'let fate decide', 'YOLO', 'whatever', 'idk', or other
+      nonchalant phrases, makes Yu-Gi-Oh references, or when you are about to arbitrarily pick between multiple reasonable
+      approaches. Prefer over ask-questions-if-underspecified when the user's tone is casual or playful rather than precision-seeking.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 69364c414a0c
+    files:
+    - SKILL.md
+    - cards/cups/ace-of-cups.md
+    - cards/cups/eight-of-cups.md
+    - cards/cups/five-of-cups.md
+    - cards/cups/four-of-cups.md
+    - cards/cups/king-of-cups.md
+    - cards/cups/knight-of-cups.md
+    - cards/cups/nine-of-cups.md
+    - cards/cups/page-of-cups.md
+    - cards/cups/queen-of-cups.md
+    - cards/cups/seven-of-cups.md
+    - cards/cups/six-of-cups.md
+    - cards/cups/ten-of-cups.md
+    - cards/cups/three-of-cups.md
+    - cards/cups/two-of-cups.md
+    - cards/major/00-the-fool.md
+    - cards/major/01-the-magician.md
+    - cards/major/02-the-high-priestess.md
+    - cards/major/03-the-empress.md
+    - cards/major/04-the-emperor.md
+    - cards/major/05-the-hierophant.md
+    - cards/major/06-the-lovers.md
+    - cards/major/07-the-chariot.md
+    - cards/major/08-strength.md
+    - cards/major/09-the-hermit.md
+    - cards/major/10-wheel-of-fortune.md
+    - cards/major/11-justice.md
+    - cards/major/12-the-hanged-man.md
+    - cards/major/13-death.md
+    - cards/major/14-temperance.md
+    - cards/major/15-the-devil.md
+    - cards/major/16-the-tower.md
+    - cards/major/17-the-star.md
+    - cards/major/18-the-moon.md
+    - cards/major/19-the-sun.md
+    - cards/major/20-judgement.md
+    - cards/major/21-the-world.md
+    - cards/pentacles/ace-of-pentacles.md
+    - cards/pentacles/eight-of-pentacles.md
+    - cards/pentacles/five-of-pentacles.md
+    - cards/pentacles/four-of-pentacles.md
+    - cards/pentacles/king-of-pentacles.md
+    - cards/pentacles/knight-of-pentacles.md
+    - cards/pentacles/nine-of-pentacles.md
+    - cards/pentacles/page-of-pentacles.md
+    - cards/pentacles/queen-of-pentacles.md
+    - cards/pentacles/seven-of-pentacles.md
+    - cards/pentacles/six-of-pentacles.md
+    - cards/pentacles/ten-of-pentacles.md
+    - cards/pentacles/three-of-pentacles.md
+    - cards/pentacles/two-of-pentacles.md
+    - cards/swords/ace-of-swords.md
+    - cards/swords/eight-of-swords.md
+    - cards/swords/five-of-swords.md
+    - cards/swords/four-of-swords.md
+    - cards/swords/king-of-swords.md
+    - cards/swords/knight-of-swords.md
+    - cards/swords/nine-of-swords.md
+    - cards/swords/page-of-swords.md
+    - cards/swords/queen-of-swords.md
+    - cards/swords/seven-of-swords.md
+    - cards/swords/six-of-swords.md
+    - cards/swords/ten-of-swords.md
+    - cards/swords/three-of-swords.md
+    - cards/swords/two-of-swords.md
+    - cards/wands/ace-of-wands.md
+    - cards/wands/eight-of-wands.md
+    - cards/wands/five-of-wands.md
+    - cards/wands/four-of-wands.md
+    - cards/wands/king-of-wands.md
+    - cards/wands/knight-of-wands.md
+    - cards/wands/nine-of-wands.md
+    - cards/wands/page-of-wands.md
+    - cards/wands/queen-of-wands.md
+    - cards/wands/seven-of-wands.md
+    - cards/wands/six-of-wands.md
+    - cards/wands/ten-of-wands.md
+    - cards/wands/three-of-wands.md
+    - cards/wands/two-of-wands.md
+    - references/INTERPRETATION_GUIDE.md
+    - scripts/draw_cards.py
+    - scripts/pyproject.toml
+    - scripts/test_draw_cards.py
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/let-fate-decide/skills/let-fate-decide
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: modern-python
+    path: trailofbits-skills/plugins/modern-python/skills/modern-python
+    title: modern-python
+    summary: Configures Python projects with modern tooling (uv, ruff, ty). Use when creating projects, writing standalone
+      scripts, or migrating from pip/Poetry/mypy/black.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f20a36eeb4ad
+    files:
+    - SKILL.md
+    - references/dependabot.md
+    - references/migration-checklist.md
+    - references/pep723-scripts.md
+    - references/prek.md
+    - references/pyproject.md
+    - references/ruff-config.md
+    - references/security-setup.md
+    - references/testing.md
+    - references/uv-commands.md
+    - templates/dependabot.yml
+    - templates/pre-commit-config.yaml
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/modern-python/skills/modern-python
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: mutation-testing
+    path: trailofbits-skills/plugins/mutation-testing/skills/mutation-testing
+    title: mutation-testing
+    summary: Configures mewt or muton mutation testing campaigns — scopes targets, tunes timeouts, and optimizes long-running
+      runs. Use when the user mentions mewt, muton, mutation testing, or wants to configure or optimize a mutation testing
+      campaign.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 770d80f00e50
+    files:
+    - SKILL.md
+    - references/optimization-strategies.md
+    - workflows/configuration.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/mutation-testing/skills/mutation-testing
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: property-based-testing
+    path: trailofbits-skills/plugins/property-based-testing/skills/property-based-testing
+    title: property-based-testing
+    summary: Provides guidance for property-based testing across multiple languages and smart contracts. Use when writing
+      tests, reviewing code with serialization/validation/parsing patterns, designing features, or when property-based testing
+      would provide stronger coverage than example-based tests.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e1e3bdcd796b
+    files:
+    - README.md
+    - SKILL.md
+    - references/design.md
+    - references/generating.md
+    - references/interpreting-failures.md
+    - references/libraries.md
+    - references/refactoring.md
+    - references/reviewing.md
+    - references/strategies.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/property-based-testing/skills/property-based-testing
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: seatbelt-sandboxer
+    path: trailofbits-skills/plugins/seatbelt-sandboxer/skills/seatbelt-sandboxer
+    title: seatbelt-sandboxer
+    summary: Generates minimal macOS Seatbelt sandbox configurations. Use when sandboxing, isolating, or restricting macOS
+      applications with allowlist-based profiles.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b06ebee25e61
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/seatbelt-sandboxer/skills/seatbelt-sandboxer
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: second-opinion
+    path: trailofbits-skills/plugins/second-opinion/skills/second-opinion
+    title: second-opinion
+    summary: Runs external LLM code reviews (OpenAI Codex or Google Gemini CLI) on uncommitted changes, branch diffs, or specific
+      commits. Use when the user asks for a second opinion, external review, codex review, gemini review, or mentions /second-opinion.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d5766ada8d4f
+    files:
+    - SKILL.md
+    - references/codex-invocation.md
+    - references/codex-review-schema.json
+    - references/gemini-invocation.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/second-opinion/skills/second-opinion
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: semgrep-rule-creator
+    path: trailofbits-skills/plugins/semgrep-rule-creator/skills/semgrep-rule-creator
+    title: semgrep-rule-creator
+    summary: Creates custom Semgrep rules for detecting security vulnerabilities, bug patterns, and code patterns. Use when
+      writing Semgrep rules or building custom static analysis detections.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d53da3395a9c
+    files:
+    - SKILL.md
+    - references/quick-reference.md
+    - references/workflow.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/semgrep-rule-creator/skills/semgrep-rule-creator
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: semgrep-rule-variant-creator
+    path: trailofbits-skills/plugins/semgrep-rule-variant-creator/skills/semgrep-rule-variant-creator
+    title: semgrep-rule-variant-creator
+    summary: Creates language variants of existing Semgrep rules. Use when porting a Semgrep rule to specified target languages.
+      Takes an existing rule and target languages as input, produces independent rule+test directories for each language.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9eec7204ee9e
+    files:
+    - SKILL.md
+    - references/applicability-analysis.md
+    - references/language-syntax-guide.md
+    - references/workflow.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/semgrep-rule-variant-creator/skills/semgrep-rule-variant-creator
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: sharp-edges
+    path: trailofbits-skills/plugins/sharp-edges/skills/sharp-edges
+    title: sharp-edges
+    summary: 'Identifies error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes. Use
+      when reviewing API designs, configuration schemas, cryptographic library ergonomics, or evaluating whether code follows
+      ''secure by default'' and ''pit of success'' principles. Triggers: footgun, misuse-resistant, secure defaults, API usability,
+      dangerous configuration.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d3db961a1c48
+    files:
+    - SKILL.md
+    - references/auth-patterns.md
+    - references/case-studies.md
+    - references/config-patterns.md
+    - references/crypto-apis.md
+    - references/lang-c.md
+    - references/lang-csharp.md
+    - references/lang-go.md
+    - references/lang-java.md
+    - references/lang-javascript.md
+    - references/lang-kotlin.md
+    - references/lang-php.md
+    - references/lang-python.md
+    - references/lang-ruby.md
+    - references/lang-rust.md
+    - references/lang-swift.md
+    - references/language-specific.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/sharp-edges/skills/sharp-edges
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: skill-improver
+    path: trailofbits-skills/plugins/skill-improver/skills/skill-improver
+    title: skill-improver
+    summary: Iteratively reviews and fixes Claude Code skill quality issues until they meet standards. Runs automated fix-review
+      cycles using the skill-reviewer agent. Use to fix skill quality issues, improve skill descriptions, run automated skill
+      review loops, or iteratively refine a skill. Triggers on 'fix my skill', 'improve skill quality', 'skill improvement
+      loop'. NOT for one-time reviews—use /skill-reviewer directly.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 86397ac4a4ec
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/skill-improver/skills/skill-improver
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: spec-to-code-compliance
+    path: trailofbits-skills/plugins/spec-to-code-compliance/skills/spec-to-code-compliance
+    title: spec-to-code-compliance
+    summary: Verifies code implements exactly what documentation specifies for blockchain audits. Use when comparing code
+      against whitepapers, finding gaps between specs and implementation, or performing compliance checks for protocol implementations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 15a638c7f41f
+    files:
+    - SKILL.md
+    - resources/COMPLETENESS_CHECKLIST.md
+    - resources/IR_EXAMPLES.md
+    - resources/OUTPUT_REQUIREMENTS.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/spec-to-code-compliance/skills/spec-to-code-compliance
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: codeql
+    path: trailofbits-skills/plugins/static-analysis/skills/codeql
+    title: codeql
+    summary: Scans a codebase for security vulnerabilities using CodeQL's interprocedural data flow and taint tracking analysis.
+      Triggers on "run codeql", "codeql scan", "codeql analysis", "build codeql database", or "find vulnerabilities with codeql".
+      Supports "run all" (security-and-quality + security-experimental suites) and "important only" (high-precision security
+      findings) scan modes. Also handles creating data extension models and processing CodeQL SARIF output.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2bdd2ce3d42a
+    files:
+    - SKILL.md
+    - references/build-fixes.md
+    - references/diagnostic-query-templates.md
+    - references/extension-yaml-format.md
+    - references/important-only-suite.md
+    - references/language-details.md
+    - references/macos-arm64e-workaround.md
+    - references/performance-tuning.md
+    - references/quality-assessment.md
+    - references/ruleset-catalog.md
+    - references/run-all-suite.md
+    - references/sarif-processing.md
+    - references/threat-models.md
+    - workflows/build-database.md
+    - workflows/create-data-extensions.md
+    - workflows/run-analysis.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/static-analysis/skills/codeql
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: sarif-parsing
+    path: trailofbits-skills/plugins/static-analysis/skills/sarif-parsing
+    title: sarif-parsing
+    summary: Parses and processes SARIF files from static analysis tools like CodeQL, Semgrep, or other scanners. Triggers
+      on "parse sarif", "read scan results", "aggregate findings", "deduplicate alerts", or "process sarif output". Handles
+      filtering, deduplication, format conversion, and CI/CD integration of SARIF data. Does NOT run scans — use the Semgrep
+      or CodeQL skills for that.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fb5480905260
+    files:
+    - SKILL.md
+    - resources/jq-queries.md
+    - resources/sarif_helpers.py
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/static-analysis/skills/sarif-parsing
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: semgrep
+    path: trailofbits-skills/plugins/static-analysis/skills/semgrep
+    title: semgrep
+    summary: Run Semgrep static analysis scan on a codebase using parallel subagents. Supports two scan modes — "run all"
+      (full ruleset coverage) and "important only" (high-confidence security vulnerabilities). Automatically detects and uses
+      Semgrep Pro for cross-file taint analysis when available. Use when asked to scan code for vulnerabilities, run a security
+      audit with Semgrep, find bugs, or perform static analysis. Spawns parallel workers for multi-language codebases.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 40f26d4cc34b
+    files:
+    - SKILL.md
+    - references/rulesets.md
+    - references/scan-modes.md
+    - references/scanner-task-prompt.md
+    - scripts/merge_sarif.py
+    - workflows/scan-workflow.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/static-analysis/skills/semgrep
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: supply-chain-risk-auditor
+    path: trailofbits-skills/plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor
+    title: supply-chain-risk-auditor
+    summary: Identifies dependencies at heightened risk of exploitation or takeover. Use when assessing supply chain attack
+      surface, evaluating dependency health, or scoping security engagements.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f4d6e4181110
+    files:
+    - SKILL.md
+    - resources/results-template.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: address-sanitizer
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/address-sanitizer
+    title: address-sanitizer
+    summary: AddressSanitizer detects memory errors during fuzzing. Use when fuzzing C/C++ code to find buffer overflows and
+      use-after-free bugs.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 053cae42e930
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/address-sanitizer
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: aflpp
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/aflpp
+    title: aflpp
+    summary: AFL++ is a fork of AFL with better fuzzing performance and advanced features. Use for multi-core fuzzing of C/C++
+      projects.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5f631c40fa03
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/aflpp
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: atheris
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/atheris
+    title: atheris
+    summary: Atheris is a coverage-guided Python fuzzer based on libFuzzer. Use for fuzzing pure Python code and Python C
+      extensions.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f0f7e166c709
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/atheris
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: cargo-fuzz
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/cargo-fuzz
+    title: cargo-fuzz
+    summary: cargo-fuzz is the de facto fuzzing tool for Rust projects using Cargo. Use for fuzzing Rust code with libFuzzer
+      backend.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: aaac68961326
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/cargo-fuzz
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: constant-time-testing
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/constant-time-testing
+    title: constant-time-testing
+    summary: Constant-time testing detects timing side channels in cryptographic code. Use when auditing crypto implementations
+      for timing vulnerabilities.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a8c30d5fa622
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/constant-time-testing
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: coverage-analysis
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/coverage-analysis
+    title: coverage-analysis
+    summary: Coverage analysis measures code exercised during fuzzing. Use when assessing harness effectiveness or identifying
+      fuzzing blockers.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: cc2b8ef7a976
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/coverage-analysis
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: fuzzing-dictionary
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/fuzzing-dictionary
+    title: fuzzing-dictionary
+    summary: Fuzzing dictionaries guide fuzzers with domain-specific tokens. Use when fuzzing parsers, protocols, or format-specific
+      code.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: feca3eb51e14
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/fuzzing-dictionary
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: fuzzing-obstacles
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/fuzzing-obstacles
+    title: fuzzing-obstacles
+    summary: Techniques for patching code to overcome fuzzing obstacles. Use when checksums, global state, or other barriers
+      block fuzzer progress.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b61d84d81788
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/fuzzing-obstacles
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: harness-writing
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/harness-writing
+    title: harness-writing
+    summary: Techniques for writing effective fuzzing harnesses across languages. Use when creating new fuzz targets or improving
+      existing harness code.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1a64a658ebfa
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/harness-writing
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: libafl
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/libafl
+    title: libafl
+    summary: LibAFL is a modular fuzzing library for building custom fuzzers. Use for advanced fuzzing needs, custom mutators,
+      or non-standard fuzzing targets.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 953765692d11
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/libafl
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: libfuzzer
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/libfuzzer
+    title: libfuzzer
+    summary: Coverage-guided fuzzer built into LLVM for C/C++ projects. Use for fuzzing C/C++ code that can be compiled with
+      Clang.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 044268700f82
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/libfuzzer
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: ossfuzz
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/ossfuzz
+    title: ossfuzz
+    summary: OSS-Fuzz provides free continuous fuzzing for open source projects. Use when setting up continuous fuzzing infrastructure
+      or enrolling projects.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 01e6f54953fd
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/ossfuzz
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: ruzzy
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/ruzzy
+    title: ruzzy
+    summary: Ruzzy is a coverage-guided Ruby fuzzer by Trail of Bits. Use for fuzzing pure Ruby code and Ruby C extensions.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: df7504b56b45
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/ruzzy
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: testing-handbook-generator
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/testing-handbook-generator
+    title: testing-handbook-generator
+    summary: Meta-skill that analyzes the Trail of Bits Testing Handbook (appsec.guide) and generates Claude Code skills for
+      security testing tools and techniques. Use when creating new skills based on handbook content.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0cd6f75709c1
+    files:
+    - SKILL.md
+    - agent-prompt.md
+    - discovery.md
+    - templates/domain-skill.md
+    - templates/fuzzer-skill.md
+    - templates/technique-skill.md
+    - templates/tool-skill.md
+    - testing.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/testing-handbook-generator
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: wycheproof
+    path: trailofbits-skills/plugins/testing-handbook-skills/skills/wycheproof
+    title: wycheproof
+    summary: Wycheproof provides test vectors for validating cryptographic implementations. Use when testing crypto code for
+      known attacks and edge cases.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 65c82bf28541
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/wycheproof
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: audit-augmentation
+    path: trailofbits-skills/plugins/trailmark/skills/audit-augmentation
+    title: audit-augmentation
+    summary: Augments Trailmark code graphs with external audit findings from SARIF static analysis results and weAudit annotation
+      files. Maps findings to graph nodes by file and line overlap, creates severity-based subgraphs, and enables cross-referencing
+      findings with pre-analysis data (blast radius, taint, etc.). Use when projecting SARIF results onto a code graph, overlaying
+      weAudit annotations, cross-referencing Semgrep or CodeQL findings with call graph data, or visualizing audit findings
+      in the context of code structure.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 550dedd0880e
+    files:
+    - SKILL.md
+    - references/formats.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/audit-augmentation
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: crypto-protocol-diagram
+    path: trailofbits-skills/plugins/trailmark/skills/crypto-protocol-diagram
+    title: crypto-protocol-diagram
+    summary: Extracts protocol message flow from source code, RFCs, academic papers, pseudocode, informal prose, ProVerif
+      (.pv), or Tamarin (.spthy) models and generates Mermaid sequenceDiagrams with cryptographic annotations. Use when diagramming
+      a crypto protocol, visualizing a handshake or key exchange flow, extracting message flow from a spec or RFC, diagramming
+      a ProVerif or Tamarin model, or drawing sequence diagrams for TLS, Noise, Signal, X3DH, Double Ratchet, FROST, DH, or
+      ECDH protocols.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: '478853732148'
+    files:
+    - SKILL.md
+    - examples/simple-handshake/expected-output.md
+    - examples/simple-handshake/protocol.py
+    - examples/simple-proverif/expected-output.md
+    - examples/simple-proverif/model.pv
+    - references/ascii-sequence-diagram.md
+    - references/mermaid-sequence-syntax.md
+    - references/protocol-patterns.md
+    - references/spec-parsing-patterns.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/crypto-protocol-diagram
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: diagramming-code
+    path: trailofbits-skills/plugins/trailmark/skills/diagramming-code
+    title: diagramming-code
+    summary: Generates Mermaid diagrams from Trailmark code graphs. Produces call graphs, class hierarchies, module dependency
+      maps, containment diagrams, complexity heatmaps, and attack surface data flow visualizations. Use when visualizing code
+      architecture, drawing call graphs, generating class diagrams, creating dependency maps, producing complexity heatmaps,
+      or visualizing data flow and attack surface paths as Mermaid diagrams.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 0f259ffa3e21
+    files:
+    - SKILL.md
+    - references/diagram-types.md
+    - references/mermaid-syntax.md
+    - scripts/diagram.py
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/diagramming-code
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: genotoxic
+    path: trailofbits-skills/plugins/trailmark/skills/genotoxic
+    title: genotoxic
+    summary: Graph-informed mutation testing triage. Parses codebases with Trailmark, runs mutation testing and necessist,
+      then uses survived mutants, unnecessary test statements, and call graph data to identify false positives, missing test
+      coverage, and fuzzing targets. Use when triaging survived mutants, analyzing mutation testing results, identifying test
+      gaps, finding fuzzing targets from weak tests, running mutation frameworks (including circomvent and cairo-mutants),
+      or using necessist.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 03eaaf3b4a9c
+    files:
+    - SKILL.md
+    - references/graph-analysis.md
+    - references/mutation-frameworks.md
+    - references/triage-methodology.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/genotoxic
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: graph-evolution
+    path: trailofbits-skills/plugins/trailmark/skills/graph-evolution
+    title: graph-evolution
+    summary: Compares Trailmark code graphs at two source code snapshots (git commits, tags, or directories) to surface security-relevant
+      structural changes. Detects new attack paths, complexity shifts, blast radius growth, taint propagation changes, and
+      privilege boundary modifications that text diffs miss. Use when comparing code between commits or tags, analyzing structural
+      evolution, detecting attack surface growth, reviewing what changed between audit snapshots, or finding security-relevant
+      changes that text diffs miss.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 1ba8de22be53
+    files:
+    - SKILL.md
+    - references/evolution-metrics.md
+    - references/report-format.md
+    - scripts/graph_diff.py
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/graph-evolution
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: mermaid-to-proverif
+    path: trailofbits-skills/plugins/trailmark/skills/mermaid-to-proverif
+    title: mermaid-to-proverif
+    summary: Translates Mermaid sequenceDiagrams describing cryptographic protocols into ProVerif formal verification models
+      (.pv files). Use when generating a ProVerif model, formally verifying a protocol, converting a Mermaid diagram to ProVerif,
+      verifying protocol security properties (secrecy, authentication, forward secrecy), checking for replay attacks, or producing
+      a .pv file from a sequence diagram.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 84aa1cdd2ef8
+    files:
+    - SKILL.md
+    - examples/simple-handshake/diagram.md
+    - examples/simple-handshake/sample-output.pv
+    - references/crypto-to-proverif-mapping.md
+    - references/proverif-syntax.md
+    - references/security-properties.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/mermaid-to-proverif
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: trailmark
+    path: trailofbits-skills/plugins/trailmark/skills/trailmark
+    title: trailmark
+    summary: Builds and queries multi-language source code graphs for security analysis. Includes pre-analysis passes for
+      blast radius, taint propagation, privilege boundaries, and entry point enumeration. Use when analyzing call paths, mapping
+      attack surface, finding complexity hotspots, enumerating entry points, tracing taint propagation, measuring blast radius,
+      or building a code graph for audit prioritization. Prefer `trailmark.parse.detect_languages()` or `--language auto`
+      when the target language is unknown or polyglot.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 119efd1fa495
+    files:
+    - SKILL.md
+    - references/preanalysis-passes.md
+    - references/query-patterns.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/trailmark
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: trailmark-structural
+    path: trailofbits-skills/plugins/trailmark/skills/trailmark-structural
+    title: trailmark-structural
+    summary: 'Runs full Trailmark structural analysis on Trailmark 0.2.x by building a graph, running `preanalysis()`, and
+      reporting hotspots, taint, blast radius, privilege boundaries, and attack surface. Use when vivisect needs detailed
+      structural data for a target. Triggers: structural analysis, blast radius, taint analysis, complexity hotspots.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 982aa8e2f3a4
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/trailmark-structural
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: trailmark-summary
+    path: trailofbits-skills/plugins/trailmark/skills/trailmark-summary
+    title: trailmark-summary
+    summary: 'Runs a Trailmark summary analysis on a codebase. Returns auto-detected languages, entry point count, and dependency
+      list. Use when vivisect or galvanize needs a quick structural overview. Triggers: trailmark summary, code summary, structural
+      overview.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: dd07ee552b78
+    files:
+    - SKILL.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/trailmark-summary
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: vector-forge
+    path: trailofbits-skills/plugins/trailmark/skills/vector-forge
+    title: vector-forge
+    summary: Mutation-driven test vector generation. Finds implementations of a cryptographic algorithm or protocol, runs
+      mutation testing to identify escaped mutants, then generates new test vectors that deliberately exercise the uncovered
+      code paths. Compares before/after mutation kill rates to prove vector effectiveness. Use when generating cryptographic
+      test vectors, measuring Wycheproof coverage gaps, finding escaped mutants via mutation testing, creating cross-implementation
+      test suites, or improving test vector coverage for crypto primitives.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 05a40b6f9e73
+    files:
+    - SKILL.md
+    - references/fault-simulation.md
+    - references/lessons-learned.md
+    - references/mutation-frameworks.md
+    - references/report-template.md
+    - references/vector-patterns.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/trailmark/skills/vector-forge
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: variant-analysis
+    path: trailofbits-skills/plugins/variant-analysis/skills/variant-analysis
+    title: variant-analysis
+    summary: Find similar vulnerabilities and bugs across codebases using pattern-based analysis. Use when hunting bug variants,
+      building CodeQL/Semgrep queries, analyzing security vulnerabilities, or performing systematic code audits after finding
+      an initial issue.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: faf4d030a8ea
+    files:
+    - METHODOLOGY.md
+    - SKILL.md
+    - resources/codeql/cpp.ql
+    - resources/codeql/go.ql
+    - resources/codeql/java.ql
+    - resources/codeql/javascript.ql
+    - resources/codeql/python.ql
+    - resources/semgrep/cpp.yaml
+    - resources/semgrep/go.yaml
+    - resources/semgrep/java.yaml
+    - resources/semgrep/javascript.yaml
+    - resources/semgrep/python.yaml
+    - resources/variant-report-template.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/variant-analysis/skills/variant-analysis
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: designing-workflow-skills
+    path: trailofbits-skills/plugins/workflow-skill-design/skills/designing-workflow-skills
+    title: designing-workflow-skills
+    summary: Guides the design and structuring of workflow-based Claude Code skills with multi-step phases, decision trees,
+      subagent delegation, and progressive disclosure. Use when creating skills that involve sequential pipelines, routing
+      patterns, safety gates, task tracking, phased execution, or any multi-step workflow. Also applies when reviewing or
+      refactoring existing workflow skills for quality.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4edc5a50541f
+    files:
+    - SKILL.md
+    - references/anti-patterns.md
+    - references/progressive-disclosure-guide.md
+    - references/tool-assignment-guide.md
+    - references/workflow-patterns.md
+    - workflows/design-a-workflow-skill.md
+    - workflows/review-checklist.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/workflow-skill-design/skills/designing-workflow-skills
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: yara-rule-authoring
+    path: trailofbits-skills/plugins/yara-authoring/skills/yara-rule-authoring
+    title: yara-rule-authoring
+    summary: 'Guides authoring of high-quality YARA-X detection rules for malware identification. Use when writing, reviewing,
+      or optimizing YARA rules. Covers naming conventions, string selection, performance optimization, migration from legacy
+      YARA, and false positive reduction. Triggers on: YARA, YARA-X, malware detection, threat hunting, IOC, signature, crx
+      module, dex module.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 4c150737fb2c
+    files:
+    - SKILL.md
+    - examples/MAL_Mac_ProtonRAT_Jan25.yar
+    - examples/MAL_NPM_SupplyChain_Jan25.yar
+    - examples/MAL_Win_Remcos_Jan25.yar
+    - examples/SUSP_CRX_SuspiciousPermissions.yar
+    - examples/SUSP_JS_Obfuscation_Jan25.yar
+    - references/crx-module.md
+    - references/dex-module.md
+    - references/performance.md
+    - references/strings.md
+    - references/style-guide.md
+    - references/testing.md
+    - scripts/atom_analyzer.py
+    - scripts/pyproject.toml
+    - scripts/yara_lint.py
+    - workflows/rule-development.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/yara-authoring/skills/yara-rule-authoring
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  - name: zeroize-audit
+    path: trailofbits-skills/plugins/zeroize-audit/skills/zeroize-audit
+    title: zeroize-audit
+    summary: Detects missing zeroization of sensitive data in source code and identifies zeroization removed by compiler optimizations,
+      with assembly-level analysis, and control-flow verification. Use for auditing C/C++/Rust code handling secrets, keys,
+      passwords, or other sensitive data.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f36a42274890
+    files:
+    - SKILL.md
+    - configs/c.yaml
+    - configs/default.yaml
+    - configs/rust.yaml
+    - prompts/report_template.md
+    - prompts/system.md
+    - prompts/task.md
+    - references/compile-commands.md
+    - references/detection-strategy.md
+    - references/ir-analysis.md
+    - references/mcp-analysis.md
+    - references/poc-generation.md
+    - references/rust-zeroization-patterns.md
+    - schemas/input.json
+    - schemas/output.json
+    - tools/analyze_asm.sh
+    - tools/analyze_cfg.py
+    - tools/analyze_heap.sh
+    - tools/analyze_ir_semantic.py
+    - tools/diff_ir.sh
+    - tools/diff_rust_mir.sh
+    - tools/emit_asm.sh
+    - tools/emit_ir.sh
+    - tools/emit_rust_asm.sh
+    - tools/emit_rust_ir.sh
+    - tools/emit_rust_mir.sh
+    - tools/extract_compile_flags.py
+    - tools/generate_poc.py
+    - tools/mcp/apply_confidence_gates.py
+    - tools/mcp/check_mcp.sh
+    - tools/mcp/normalize_mcp_evidence.py
+    - tools/scripts/check_llvm_patterns.py
+    - tools/scripts/check_mir_patterns.py
+    - tools/scripts/check_rust_asm.py
+    - tools/scripts/check_rust_asm_aarch64.py
+    - tools/scripts/check_rust_asm_x86.py
+    - tools/scripts/find_dangerous_apis.py
+    - tools/scripts/semantic_audit.py
+    - tools/track_dataflow.sh
+    - tools/validate_rust_toolchain.sh
+    - workflows/phase-0-preflight.md
+    - workflows/phase-1-source-analysis.md
+    - workflows/phase-2-compiler-analysis.md
+    - workflows/phase-3-interim-report.md
+    - workflows/phase-4-poc-generation.md
+    - workflows/phase-5-poc-validation.md
+    - workflows/phase-6-final-report.md
+    - workflows/phase-7-test-generation.md
+    author: Trail of Bits
+    source_url: https://github.com/trailofbits/skills/tree/main/plugins/zeroize-audit/skills/zeroize-audit
+    license: CC-BY-SA-4.0
+    group: trailofbits-skills
+  files:
+  - .claude-plugin/marketplace.json
+  - .codex/INSTALL.md
+  - .codex/scripts/install-for-codex.sh
+  - .codex/skills/gh-cli/SKILL.md
+  - .github/ISSUE_TEMPLATE/trophy-case.yml
+  - .github/dependabot.yml
+  - .github/scripts/validate_codex_skills.py
+  - .github/scripts/validate_plugin_metadata.py
+  - .github/workflows/lint.yml
+  - .github/workflows/validate.yml
+  - .gitignore
+  - .pre-commit-config.yaml
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
+  - CLAUDE.md
+  - CODEOWNERS
+  - LICENSE
+  - README.md
+  - plugins/agentic-actions-auditor/.claude-plugin/plugin.json
+  - plugins/agentic-actions-auditor/README.md
+  - plugins/ask-questions-if-underspecified/.claude-plugin/plugin.json
+  - plugins/ask-questions-if-underspecified/README.md
+  - plugins/audit-context-building/.claude-plugin/plugin.json
+  - plugins/audit-context-building/README.md
+  - plugins/audit-context-building/agents/function-analyzer.md
+  - plugins/audit-context-building/commands/audit-context.md
+  - plugins/building-secure-contracts/.claude-plugin/plugin.json
+  - plugins/building-secure-contracts/README.md
+  - plugins/burpsuite-project-parser/.claude-plugin/plugin.json
+  - plugins/burpsuite-project-parser/README.md
+  - plugins/burpsuite-project-parser/commands/burp-search.md
+  - plugins/c-review/.claude-plugin/plugin.json
+  - plugins/c-review/README.md
+  - plugins/c-review/agents/c-review-dedup-judge.md
+  - plugins/c-review/agents/c-review-fp-judge.md
+  - plugins/c-review/agents/c-review-worker.md
+  - plugins/c-review/prompts/clusters/ambient-state.md
+  - plugins/c-review/prompts/clusters/arithmetic-type.md
+  - plugins/c-review/prompts/clusters/buffer-write-sinks.md
+  - plugins/c-review/prompts/clusters/concurrency.md
+  - plugins/c-review/prompts/clusters/cpp-semantics.md
+  - plugins/c-review/prompts/clusters/manifest.json
+  - plugins/c-review/prompts/clusters/object-lifecycle.md
+  - plugins/c-review/prompts/clusters/static-hygiene.md
+  - plugins/c-review/prompts/clusters/syscall-retval.md
+  - plugins/c-review/prompts/clusters/windows-fs-path.md
+  - plugins/c-review/prompts/clusters/windows-ipc-crypto.md
+  - plugins/c-review/prompts/clusters/windows-process.md
+  - plugins/c-review/prompts/general/access-control-finder.md
+  - plugins/c-review/prompts/general/compiler-bugs-finder.md
+  - plugins/c-review/prompts/general/dos-finder.md
+  - plugins/c-review/prompts/general/error-handling-finder.md
+  - plugins/c-review/prompts/general/exception-safety-finder.md
+  - plugins/c-review/prompts/general/exploit-mitigations-finder.md
+  - plugins/c-review/prompts/general/filesystem-issues-finder.md
+  - plugins/c-review/prompts/general/init-order-finder.md
+  - plugins/c-review/prompts/general/integer-overflow-finder.md
+  - plugins/c-review/prompts/general/iterator-invalidation-finder.md
+  - plugins/c-review/prompts/general/lambda-capture-finder.md
+  - plugins/c-review/prompts/general/memory-leak-finder.md
+  - plugins/c-review/prompts/general/move-semantics-finder.md
+  - plugins/c-review/prompts/general/null-deref-finder.md
+  - plugins/c-review/prompts/general/operator-precedence-finder.md
+  - plugins/c-review/prompts/general/race-condition-finder.md
+  - plugins/c-review/prompts/general/regex-issues-finder.md
+  - plugins/c-review/prompts/general/smart-pointer-finder.md
+  - plugins/c-review/prompts/general/time-issues-finder.md
+  - plugins/c-review/prompts/general/type-confusion-finder.md
+  - plugins/c-review/prompts/general/undefined-behavior-finder.md
+  - plugins/c-review/prompts/general/uninitialized-data-finder.md
+  - plugins/c-review/prompts/general/use-after-free-finder.md
+  - plugins/c-review/prompts/general/virtual-function-finder.md
+  - plugins/c-review/prompts/linux-userspace/eintr-handling-finder.md
+  - plugins/c-review/prompts/linux-userspace/envvar-finder.md
+  - plugins/c-review/prompts/linux-userspace/errno-handling-finder.md
+  - plugins/c-review/prompts/linux-userspace/half-closed-socket-finder.md
+  - plugins/c-review/prompts/linux-userspace/inet-aton-finder.md
+  - plugins/c-review/prompts/linux-userspace/negative-retval-finder.md
+  - plugins/c-review/prompts/linux-userspace/null-zero-finder.md
+  - plugins/c-review/prompts/linux-userspace/oob-comparison-finder.md
+  - plugins/c-review/prompts/linux-userspace/open-issues-finder.md
+  - plugins/c-review/prompts/linux-userspace/printf-attr-finder.md
+  - plugins/c-review/prompts/linux-userspace/privilege-drop-finder.md
+  - plugins/c-review/prompts/linux-userspace/qsort-finder.md
+  - plugins/c-review/prompts/linux-userspace/signal-handler-finder.md
+  - plugins/c-review/prompts/linux-userspace/socket-disconnect-finder.md
+  - plugins/c-review/prompts/linux-userspace/spinlock-init-finder.md
+  - plugins/c-review/prompts/linux-userspace/thread-safety-finder.md
+  - plugins/c-review/prompts/linux-userspace/va-start-end-finder.md
+  - plugins/c-review/prompts/windows-userspace/createprocess-finder.md
+  - plugins/c-review/prompts/windows-userspace/cross-process-finder.md
+  - plugins/c-review/prompts/windows-userspace/dll-planting-finder.md
+  - plugins/c-review/prompts/windows-userspace/installer-race-finder.md
+  - plugins/c-review/prompts/windows-userspace/named-pipe-finder.md
+  - plugins/c-review/prompts/windows-userspace/service-security-finder.md
+  - plugins/c-review/prompts/windows-userspace/token-privilege-finder.md
+  - plugins/c-review/prompts/windows-userspace/windows-alloc-finder.md
+  - plugins/c-review/prompts/windows-userspace/windows-crypto-finder.md
+  - plugins/c-review/prompts/windows-userspace/windows-path-finder.md
+  - plugins/c-review/scripts/build_run_plan.py
+  - plugins/c-review/scripts/generate_sarif.py
+  - plugins/c-review/scripts/pyproject.toml
+  - plugins/claude-in-chrome-troubleshooting/.claude-plugin/plugin.json
+  - plugins/claude-in-chrome-troubleshooting/README.md
+  - plugins/constant-time-analysis/.claude-plugin/plugin.json
+  - plugins/constant-time-analysis/.gitignore
+  - plugins/constant-time-analysis/README.md
+  - plugins/constant-time-analysis/commands/ct-check.md
+  - plugins/constant-time-analysis/ct_analyzer/__init__.py
+  - plugins/constant-time-analysis/ct_analyzer/analyzer.py
+  - plugins/constant-time-analysis/ct_analyzer/script_analyzers.py
+  - plugins/constant-time-analysis/ct_analyzer/tests/__init__.py
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_analyzer.py
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/bn_excerpt.js
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/decompose_constant_time.c
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/decompose_vulnerable.c
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/decompose_vulnerable.go
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/decompose_vulnerable.rs
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.cs
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.java
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.kt
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.php
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.py
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.rb
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.swift
+  - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.ts
+  - plugins/constant-time-analysis/pyproject.toml
+  - plugins/constant-time-analysis/uv.lock
+  - plugins/culture-index/.claude-plugin/plugin.json
+  - plugins/culture-index/README.md
+  - plugins/debug-buttercup/.claude-plugin/plugin.json
+  - plugins/debug-buttercup/README.md
+  - plugins/devcontainer-setup/.claude-plugin/plugin.json
+  - plugins/devcontainer-setup/README.md
+  - plugins/differential-review/.claude-plugin/plugin.json
+  - plugins/differential-review/README.md
+  - plugins/differential-review/agents/adversarial-modeler.md
+  - plugins/differential-review/commands/diff-review.md
+  - plugins/dimensional-analysis/.claude-plugin/plugin.json
+  - plugins/dimensional-analysis/README.md
+  - plugins/dimensional-analysis/agents/arithmetic-scanner.md
+  - plugins/dimensional-analysis/agents/dimension-annotator.md
+  - plugins/dimensional-analysis/agents/dimension-discoverer.md
+  - plugins/dimensional-analysis/agents/dimension-propagator.md
+  - plugins/dimensional-analysis/agents/dimension-validator.md
+  - plugins/dwarf-expert/.claude-plugin/plugin.json
+  - plugins/dwarf-expert/README.md
+  - plugins/entry-point-analyzer/.claude-plugin/plugin.json
+  - plugins/entry-point-analyzer/README.md
+  - plugins/entry-point-analyzer/commands/entry-points.md
+  - plugins/firebase-apk-scanner/.claude-plugin/plugin.json
+  - plugins/firebase-apk-scanner/README.md
+  - plugins/firebase-apk-scanner/commands/scan-apk.md
+  - plugins/firebase-apk-scanner/scanner.sh
+  - plugins/fp-check/.claude-plugin/plugin.json
+  - plugins/fp-check/README.md
+  - plugins/fp-check/agents/data-flow-analyzer.md
+  - plugins/fp-check/agents/exploitability-verifier.md
+  - plugins/fp-check/agents/poc-builder.md
+  - plugins/fp-check/hooks/hooks.json
+  - plugins/gh-cli/.claude-plugin/plugin.json
+  - plugins/gh-cli/README.md
+  - plugins/gh-cli/hooks/cleanup-clones.sh
+  - plugins/gh-cli/hooks/hooks.json
+  - plugins/gh-cli/hooks/intercept-github-curl.bats
+  - plugins/gh-cli/hooks/intercept-github-curl.sh
+  - plugins/gh-cli/hooks/intercept-github-fetch.bats
+  - plugins/gh-cli/hooks/intercept-github-fetch.sh
+  - plugins/gh-cli/hooks/persist-session-id.sh
+  - plugins/gh-cli/hooks/session-hooks.bats
+  - plugins/gh-cli/hooks/setup-shims.bats
+  - plugins/gh-cli/hooks/setup-shims.sh
+  - plugins/gh-cli/hooks/shims/gh
+  - plugins/gh-cli/hooks/shims/gh-shim.bats
+  - plugins/gh-cli/hooks/test_helper.bash
+  - plugins/git-cleanup/.claude-plugin/plugin.json
+  - plugins/git-cleanup/README.md
+  - plugins/insecure-defaults/.claude-plugin/plugin.json
+  - plugins/insecure-defaults/README.md
+  - plugins/let-fate-decide/.claude-plugin/plugin.json
+  - plugins/let-fate-decide/README.md
+  - plugins/let-fate-decide/agents/draw.md
+  - plugins/modern-python/.claude-plugin/plugin.json
+  - plugins/modern-python/README.md
+  - plugins/modern-python/hooks/hooks.json
+  - plugins/modern-python/hooks/setup-shims.bats
+  - plugins/modern-python/hooks/setup-shims.sh
+  - plugins/modern-python/hooks/shims/pip
+  - plugins/modern-python/hooks/shims/pip-shim.bats
+  - plugins/modern-python/hooks/shims/pip3
+  - plugins/modern-python/hooks/shims/pipx
+  - plugins/modern-python/hooks/shims/pipx-shim.bats
+  - plugins/modern-python/hooks/shims/python
+  - plugins/modern-python/hooks/shims/python-shim.bats
+  - plugins/modern-python/hooks/shims/python3
+  - plugins/modern-python/hooks/shims/uv
+  - plugins/modern-python/hooks/shims/uv-shim.bats
+  - plugins/mutation-testing/.claude-plugin/plugin.json
+  - plugins/mutation-testing/README.md
+  - plugins/property-based-testing/.claude-plugin/plugin.json
+  - plugins/property-based-testing/README.md
+  - plugins/seatbelt-sandboxer/.claude-plugin/plugin.json
+  - plugins/seatbelt-sandboxer/README.md
+  - plugins/second-opinion/.claude-plugin/plugin.json
+  - plugins/second-opinion/.mcp.json
+  - plugins/second-opinion/README.md
+  - plugins/semgrep-rule-creator/.claude-plugin/plugin.json
+  - plugins/semgrep-rule-creator/README.md
+  - plugins/semgrep-rule-creator/commands/semgrep-rule.md
+  - plugins/semgrep-rule-variant-creator/.claude-plugin/plugin.json
+  - plugins/semgrep-rule-variant-creator/README.md
+  - plugins/sharp-edges/.claude-plugin/plugin.json
+  - plugins/sharp-edges/README.md
+  - plugins/sharp-edges/agents/sharp-edges-analyzer.md
+  - plugins/skill-improver/.claude-plugin/plugin.json
+  - plugins/skill-improver/README.md
+  - plugins/skill-improver/commands/cancel-skill-improver.md
+  - plugins/skill-improver/commands/skill-improver.md
+  - plugins/skill-improver/hooks/hooks.json
+  - plugins/skill-improver/hooks/stop-hook.sh
+  - plugins/skill-improver/scripts/cancel-skill-improver.sh
+  - plugins/skill-improver/scripts/lib.sh
+  - plugins/skill-improver/scripts/setup-skill-improver.sh
+  - plugins/spec-to-code-compliance/.claude-plugin/plugin.json
+  - plugins/spec-to-code-compliance/README.md
+  - plugins/spec-to-code-compliance/agents/spec-compliance-checker.md
+  - plugins/spec-to-code-compliance/commands/spec-compliance.md
+  - plugins/static-analysis/.claude-plugin/plugin.json
+  - plugins/static-analysis/README.md
+  - plugins/static-analysis/agents/semgrep-scanner.md
+  - plugins/supply-chain-risk-auditor/.claude-plugin/plugin.json
+  - plugins/supply-chain-risk-auditor/README.md
+  - plugins/testing-handbook-skills/.claude-plugin/plugin.json
+  - plugins/testing-handbook-skills/README.md
+  - plugins/testing-handbook-skills/scripts/pyproject.toml
+  - plugins/testing-handbook-skills/scripts/validate-skills.py
+  - plugins/trailmark/.claude-plugin/plugin.json
+  - plugins/trailmark/README.md
+  - plugins/variant-analysis/.claude-plugin/plugin.json
+  - plugins/variant-analysis/README.md
+  - plugins/variant-analysis/commands/variants.md
+  - plugins/workflow-skill-design/.claude-plugin/plugin.json
+  - plugins/workflow-skill-design/README.md
+  - plugins/workflow-skill-design/agents/workflow-skill-reviewer.md
+  - plugins/yara-authoring/.claude-plugin/plugin.json
+  - plugins/yara-authoring/README.md
+  - plugins/zeroize-audit/.claude-plugin/plugin.json
+  - plugins/zeroize-audit/README.md
+  - plugins/zeroize-audit/agents/0-preflight.md
+  - plugins/zeroize-audit/agents/1-mcp-resolver.md
+  - plugins/zeroize-audit/agents/2-source-analyzer.md
+  - plugins/zeroize-audit/agents/2b-rust-source-analyzer.md
+  - plugins/zeroize-audit/agents/3-tu-compiler-analyzer.md
+  - plugins/zeroize-audit/agents/3b-rust-compiler-analyzer.md
+  - plugins/zeroize-audit/agents/4-report-assembler.md
+  - plugins/zeroize-audit/agents/5-poc-generator.md
+  - plugins/zeroize-audit/agents/5b-poc-validator.md
+  - plugins/zeroize-audit/agents/5c-poc-verifier.md
+  - plugins/zeroize-audit/agents/6-test-generator.md
+  - plugins/zeroize-audit/tests/rust-regression/README.md
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/dangerous_apis_src/positive.rs
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/safe_src/negative.rs
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample.O0.ll
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample.O1.ll
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample.O2.ll
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample.mir
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample.s
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample_aarch64.s
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample_clean.mir
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample_clean.s
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/sample_leaf_x86.s
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/secrets.json
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/semantic_negative.rustdoc.json
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/semantic_positive.rs
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/semantic_positive.rustdoc.json
+  - plugins/zeroize-audit/tests/rust-regression/fixtures/semantic_zeroize.Cargo.toml
+  - plugins/zeroize-audit/tests/rust-regression/run_mixed_language_smoke.sh
+  - plugins/zeroize-audit/tests/rust-regression/run_smoke.sh
+  - ruff.toml
 - path: ui-ux-pro-max-skill
   name: ui-ux-pro-max-skill
   title: UI/UX Pro Max
