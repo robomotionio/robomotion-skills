@@ -1,0 +1,13 @@
+{
+  "name": "videodb-skills",
+  "owner": {
+    "name": "VideoDB"
+  },
+  "plugins": [
+    {
+      "name": "videodb",
+      "description": "Process videos using VideoDB Python SDK. Upload, search, edit, generate subtitles, transcode, capture, and stream — all via natural language.",
+      "source": "./"
+    }
+  ]
+}
