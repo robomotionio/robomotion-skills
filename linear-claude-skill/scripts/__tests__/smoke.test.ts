@@ -1,0 +1,138 @@
+/**
+ * Smoke tests for the Linear CLI build output.
+ *
+ * These tests validate that:
+ * - esbuild produces the expected dist/ files
+ * - __BUNDLED__ is replaced at build time
+ * - CLI commands exit with expected codes
+ * - External dependencies are not inlined
+ *
+ * Run: npm test (requires: npm run build)
+ * Requires: dist/ to exist (run `npm run build` first)
+ */
+
+import { describe, it, before } from 'node:test';
+import assert from 'node:assert';
+import { execSync } from 'node:child_process';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+const ROOT = join(import.meta.dirname, '..', '..');
+const DIST = join(ROOT, 'dist');
+const SCRIPTS = join(ROOT, 'scripts');
+
+describe('smoke tests', () => {
+  before(() => {
+    if (!existsSync(join(DIST, 'linear-ops.js'))) {
+      throw new Error('dist/ not built — run `npm run build` first');
+    }
+  });
+
+  it('all scripts/*.ts files have corresponding dist/*.js files', () => {
+    const tsFiles = readdirSync(SCRIPTS)
+      .filter(f => f.endsWith('.ts'));
+    for (const ts of tsFiles) {
+      const js = ts.replace(/\.ts$/, '.js');
+      assert.ok(
+        existsSync(join(DIST, js)),
+        `Missing dist/${js} for scripts/${ts}`
+      );
+    }
+  });
+
+  it('__BUNDLED__ is replaced in dist/linear-ops.js', () => {
+    const content = readFileSync(join(DIST, 'linear-ops.js'), 'utf8');
+    assert.ok(
+      !content.includes('__BUNDLED__'),
+      'dist/linear-ops.js still contains __BUNDLED__ placeholder'
+    );
+    assert.ok(
+      content.includes('true'),
+      'dist/linear-ops.js should contain the replaced value "true"'
+    );
+  });
+
+  it('CLI help exits 0', () => {
+    execSync(`node ${join(DIST, 'linear-ops.js')} help`, {
+      stdio: 'pipe',
+      cwd: ROOT,
+      env: { ...process.env, LINEAR_API_KEY: '' }
+    });
+  });
+
+  it('CLI labels taxonomy exits 0 without API key', () => {
+    execSync(`node ${join(DIST, 'linear-ops.js')} labels taxonomy`, {
+      stdio: 'pipe',
+      cwd: ROOT,
+      env: { ...process.env, LINEAR_API_KEY: '' }
+    });
+  });
+
+  it('CLI create-issue exits non-0 without API key', () => {
+    try {
+      execSync(`node ${join(DIST, 'linear-ops.js')} create-issue`, {
+        stdio: 'pipe',
+        cwd: ROOT,
+        env: { ...process.env, LINEAR_API_KEY: '' }
+      });
+      assert.fail('Expected create-issue to exit non-0 without API key');
+    } catch (err: unknown) {
+      const error = err as { status: number; stderr?: Buffer };
+      assert.ok(
+        error.status !== 0,
+        `Expected non-0 exit code, got ${error.status}`
+      );
+    }
+  });
+
+  it('npm run ops -- help forwards args correctly', () => {
+    execSync('npm run ops -- help', {
+      stdio: 'pipe',
+      cwd: ROOT,
+      env: { ...process.env, LINEAR_API_KEY: '' }
+    });
+  });
+
+  it('external SDK is not bundled into dist/linear-ops.js', () => {
+    const content = readFileSync(join(DIST, 'linear-ops.js'), 'utf8');
+    assert.ok(
+      content.includes('@linear/sdk'),
+      'dist/linear-ops.js should reference @linear/sdk as an external import'
+    );
+  });
+
+  it('CLI create-issue exits 5 (VALIDATION_ERROR) on strict AC failure', () => {
+    // Validation runs BEFORE the API call, so no LINEAR_API_KEY is needed.
+    try {
+      execSync(
+        `node ${join(DIST, 'linear-ops.js')} create-issue "X" "Y" "too short"`,
+        { stdio: 'pipe', cwd: ROOT, env: { ...process.env, LINEAR_API_KEY: '' } }
+      );
+      assert.fail('Expected create-issue to exit non-0 on invalid description');
+    } catch (err: unknown) {
+      const error = err as { status: number };
+      assert.strictEqual(
+        error.status,
+        5,
+        `Expected exit 5 (VALIDATION_ERROR), got ${error.status}`
+      );
+    }
+  });
+
+  it('SKILL.md frontmatter version matches package.json version', () => {
+    const skill = readFileSync(join(ROOT, 'SKILL.md'), 'utf8');
+    const fm = skill.match(/^---\n([\s\S]*?)\n---\n/);
+    assert.ok(fm, 'SKILL.md must start with YAML frontmatter');
+    const versionLine = fm[1].match(/^version:\s*(.+)$/m);
+    assert.ok(versionLine, 'SKILL.md frontmatter must contain a version: line');
+    const skillVersion = versionLine[1].trim();
+    const pkgVersion = JSON.parse(
+      readFileSync(join(ROOT, 'package.json'), 'utf8')
+    ).version;
+    assert.strictEqual(
+      skillVersion,
+      pkgVersion,
+      `SKILL.md version (${skillVersion}) must equal package.json version (${pkgVersion}). Run 'node scripts/sync-skill-version.mjs ${pkgVersion}' to fix.`
+    );
+  });
+});

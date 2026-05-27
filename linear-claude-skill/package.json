@@ -1,0 +1,81 @@
+{
+  "name": "claude-plugin-linear",
+  "version": "3.2.0",
+  "type": "module",
+  "description": "Claude Code skill for Linear issue, project, and team management with MCP integration",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-plugin",
+    "linear",
+    "project-management",
+    "issue-tracking",
+    "workflow"
+  ],
+  "author": "wrsmith108",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wrsmith108/linear-claude-skill.git"
+  },
+  "homepage": "https://github.com/wrsmith108/linear-claude-skill#readme",
+  "bugs": {
+    "url": "https://github.com/wrsmith108/linear-claude-skill/issues"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts",
+    "dist",
+    "!dist/__tests__",
+    "docs",
+    "hooks",
+    "api.md",
+    "sdk.md",
+    "sync.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prebuild": "npm run typecheck",
+    "prepublishOnly": "npm run build",
+    "setup": "sh scripts/run.sh setup",
+    "ops": "sh scripts/run.sh linear-ops",
+    "query": "sh scripts/run.sh query",
+    "sync": "sh scripts/run.sh sync",
+    "lint-issues": "sh scripts/run.sh lint-issues",
+    "test-connection": "sh scripts/run.sh query \"query { viewer { name } }\"",
+    "upload-image": "sh scripts/run.sh upload-image",
+    "extract-image": "sh scripts/run.sh extract-image",
+    "pretest": "npm run build",
+    "test": "node --test dist/__tests__/*.test.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint scripts/",
+    "lint:fix": "eslint scripts/ --fix"
+  },
+  "claude-plugin": {
+    "name": "Linear",
+    "description": "Manage Linear issues, projects, and teams with MCP tools, SDK automation, and GraphQL API patterns",
+    "skills": [
+      "."
+    ]
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "dependencies": {
+    "@linear/sdk": "^68.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@types/node": "^25.0.10",
+    "esbuild": "^0.27.4",
+    "eslint": "^9.0.0",
+    "semantic-release": "^25.0.2",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+schema_version: 1
+name: linear-claude-skill
+title: 'Linear Claude Skill'
+type: skill
+version: 3.2.0
+author: 'wrsmith108'
+source_url: https://github.com/wrsmith108/linear-claude-skill
+license: MIT
+summary: 'Manage Linear issues, projects, and teams'
+tags: [productivity]
