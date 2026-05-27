@@ -1,14 +1,6 @@
 ---
 name: mirrord-kafka
-description: >
-  Helps DevOps engineers configure mirrord Operator's Kafka queue splitting feature end-to-end.
-  Generates MirrordKafkaClientConfig and MirrordKafkaTopicsConsumer Kubernetes CRD YAMLs,
-  the matching mirrord.json split_queues section, and Helm value guidance.
-  Use this skill whenever the user mentions Kafka splitting with mirrord, MirrordKafkaClientConfig,
-  MirrordKafkaTopicsConsumer, Kafka queue splitting, Kafka topic splitting, configuring mirrord
-  with Kafka, setting up Kafka for mirrord operator, or troubleshooting Kafka splitting sessions.
-  Also trigger when users mention split_queues with queue_type Kafka, or ask about connecting
-  mirrord to a Kafka cluster. This is a Team/Enterprise feature of mirrord.
+description: "Helps DevOps engineers configure mirrord Operator's Kafka queue splitting feature end-to-end. Generates MirrordKafkaClientConfig and MirrordKafkaTopicsConsumer Kubernetes CRD YAMLs, the matching mirrord.json split_queues section, and Helm value guidance. Use this skill whenever the user mentions Kafka splitting with mirrord, MirrordKafkaClientConfig, MirrordKafkaTopicsConsumer, Kafka queue splitting, Kafka topic splitting, configuring mirrord with Kafka, setting up Kafka for mirrord operator, or troubleshooting Kafka splitting sessions. Also trigger when users mention split_queues with queue_type Kafka, or ask about connecting mirrord to a Kafka cluster. This is a Team/Enterprise feature of mirrord."
 metadata:
   author: MetalBear
   version: "1.0"
