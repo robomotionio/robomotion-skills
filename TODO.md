@@ -55,7 +55,7 @@ Each entry below is one upstream repo. As each one is vendored:
 
 - [~] `BrianRWagner/ai-marketing-skills` — 17 marketing frameworks for cold outreach, homepage audit, social cards, and more → `ai-marketing-skills` (SKIPPED — license: missing)
 - [x] `AgriciDaniel/claude-seo` — Universal SEO skill for comprehensive website analysis and optimization → `claude-seo`
-- [x] `wshuyi/x-article-publisher-skill` — Publish articles to X/Twitter → `x-article-publisher-skill`
+- [~] `wshuyi/x-article-publisher-skill` — Publish articles to X/Twitter → `x-article-publisher-skill` (REMOVED — non-English or no-description content)
 - [x] `CosmoBlk/email-marketing-bible` — 55K-word email marketing guide as an AI skill → `email-marketing-bible`
 - [x] `smixs/creative-director-skill` — AI creative director with recursive self-assessment: 20+ methodologies (SIT, TRIZ, Bisociation, SCAMPER, Synectics), 3-axis evaluation calibrated against Cannes/D&AD/HumanKind, 5-phase process from brief to presentation → `creative-director-skill`
 - [x] `Xquik-dev/x-twitter-scraper` — Tweet search, profile tweets, follower export, media, posting, replies, MCP → `x-twitter-scraper`
@@ -77,7 +77,7 @@ Each entry below is one upstream repo. As each one is vendored:
 - [x] `PleasePrompto/notebooklm-skill` — Interact with NotebookLM for document-based conversations → `notebooklm-skill`
 - [x] `obra/superpowers-lab` — Lab environment for Claude superpowers → `superpowers-lab`
 - [x] `obra/superpowers` — Generate and explore ideas → `superpowers`
-- [x] `op7418/Youtube-clipper-skill` — YouTube clip generation and editing with automated workflows → `youtube-clipper-skill`
+- [~] `op7418/Youtube-clipper-skill` — YouTube clip generation and editing with automated workflows → `youtube-clipper-skill` (REMOVED — non-English or no-description content)
 - [x] `ognjengt/founder-skills` — Claude skills for founders with packaged startup workflows → `founder-skills`
 - [x] `EveryInc/charlie-cfo-skill` — Bootstrapped CFO financial management inspired by Charlie Munger → `charlie-cfo-skill`
 - [~] `openaccountants/openaccountants` — 371 tax classification skills across 134 countries → `openaccountants` (SKIPPED — license: unclassified (LICENSE))
@@ -154,7 +154,7 @@ Each entry below is one upstream repo. As each one is vendored:
 - [x] `honeydew-ai/honeydew-ai-coding-agents-plugins` — 11 skills for the Honeydew semantic layer over Snowflake, Databricks, and BigQuery: model exploration, entity/relation/attribute/metric/context/domain creation, validation, query, filtering, and workspace branching → `honeydew-ai-coding-agents-plugins`
 - [x] `raintree-technology/apple-hig-skills` — Apple Human Interface Guidelines as 14 agent skills covering platforms, foundations, components, patterns, inputs, and technologies for iOS, macOS, visionOS, watchOS, and tvOS → `apple-hig-skills`
 - [x] `K-Dense-AI/claude-scientific-skills` — Scientific research and analysis skills → `claude-scientific-skills`
-- [x] `NotMyself/claude-win11-speckit-update-skill` — Windows 11 system management → `claude-win11-speckit-update-skill`
+- [~] `NotMyself/claude-win11-speckit-update-skill` — Windows 11 system management → `claude-win11-speckit-update-skill` (REMOVED — non-English or no-description content)
 - [~] `jeffersonwarrior/claudisms` — SMS messaging integration → `claudisms` (SKIPPED — repo no longer exists on GitHub)
 - [~] `SHADOWPR0/security-bluebook-builder` — Build security Blue Books for sensitive apps → `security-bluebook-builder` (SKIPPED — license: missing)
 - [x] `huifer/Claude-Ally-Health` — A health assistant skill for medical information analysis, symptom tracking, and wellness guidance → `claude-ally-health`
@@ -171,7 +171,7 @@ Each entry below is one upstream repo. As each one is vendored:
 - [x] `video-db/skills` — Realtime and batch video workflows: capture screen/audio, ingest URLs/YouTube/RTSP, transcribe, index, search, generate subtitles, edit timelines, and stream HLS output → `video-db-skills`
 - [x] `HeshamFS/materials-simulation-skills` — Agent skills for computational materials science: numerical stability, time-stepping, linear solvers, mesh generation, simulation validation, parameter optimization, and post-processing → `materials-simulation-skills`
 - [x] `takechanman1228/claude-ecom` — Ecommerce CSV to business review with KPI decomposition → `claude-ecom`
-- [x] `talkstream/ru-text` — Russian text quality: ~1,040 rules for typography, info-style, editorial, UX writing, business correspondence. Cross-platform: Claude Code, Codex CLI, Gemini CLI, Cursor → `ru-text`
+- [~] `talkstream/ru-text` — Russian text quality: ~1,040 rules for typography, info-style, editorial, UX writing, business correspondence. Cross-platform: Claude Code, Codex CLI, Gemini CLI, Cursor → `ru-text` (REMOVED — non-English or no-description content)
 - [x] `helius-labs/core-ai` — Ship Solana apps end-to-end; transaction sending, asset queries, real-time streaming, token swaps, prediction markets, browser wallets, and deep research into protocol internals all powered by Helius APIs, DFlow trading, and Phantom wallet integrations → `core-ai`
 - [~] `meodai/skill.color-expert` — Color science expert skill with 286K words of reference material covering OKLCH/OKLAB, palette generation, accessibility/contrast, color naming, pigment mixing, and historical color theory → `skill-color-expert` (SKIPPED — license: unclassified (LICENSE))
 - [x] `aklofas/kicad-happy` — AI-powered KiCad electronics design review and analysis → `kicad-happy`
