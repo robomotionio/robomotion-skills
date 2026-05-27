@@ -1,0 +1,10 @@
+schema_version: 1
+name: swift-ui-agent-skill
+title: 'Swift Ui Agent Skill'
+type: group
+version: 3.3.0
+author: 'AvdLee'
+source_url: https://github.com/AvdLee/SwiftUI-Agent-Skill
+license: MIT
+summary: '2 skills — Modern SwiftUI best practices and iOS 26+ Liquid Glass adoption'
+tags: [development, testing, ios, design]
