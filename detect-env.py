@@ -207,18 +207,31 @@ def discover_units(repo_root: Path):
         yield unit, type_
 
 
+def _walk_skill_leaves(base: Path):
+    """Recursively yield directories containing SKILL.md under ``base``.
+    Stops descending the moment SKILL.md is found in a directory (skills
+    don't nest). Hidden dirs are skipped. Matches build-index.py's
+    _walk_skill_leaves for consistency between discovery and indexing.
+    """
+    if not base.is_dir():
+        return
+    for child in sorted(base.iterdir()):
+        if child.name.startswith('.') or not child.is_dir():
+            continue
+        if (child / "SKILL.md").is_file():
+            yield child
+        else:
+            yield from _walk_skill_leaves(child)
+
+
 def inner_skill_dirs(unit_dir: Path):
     """Yield skill dirs under a group:
-      <unit>/skills/<name>
-      <unit>/.claude/skills/<name>
+      <unit>/skills/**/SKILL.md               (recursive)
+      <unit>/.claude/skills/**/SKILL.md       (recursive)
       <unit>/plugins/<plugin>/skills/<name>   (Claude Code marketplace meta-group)
     """
     for parent in (unit_dir / "skills", unit_dir / ".claude" / "skills"):
-        if not parent.is_dir():
-            continue
-        for child in sorted(parent.iterdir()):
-            if child.is_dir() and (child / "SKILL.md").is_file():
-                yield child
+        yield from _walk_skill_leaves(parent)
     plugins = unit_dir / "plugins"
     if plugins.is_dir():
         for plugin in sorted(plugins.iterdir()):

@@ -3411,6 +3411,2297 @@ groups:
   - scripts/show-art.sh
   - scripts/tag-release.sh
   - scripts/version-sync.sh
+- path: hermes-skills
+  name: hermes-skills
+  title: Hermes Agent Skills
+  type: group
+  version: 0.14.0
+  author: Nous Research
+  source_url: https://github.com/NousResearch/hermes-agent
+  license: MIT
+  summary: 90 skills from the Hermes Agent collection. Spans software development, AI/ML ops, research, productivity, creative
+    work, devops, and platform-specific automation (Apple, Smart Home, GitHub).
+  category: Productivity
+  tags:
+  - hermes
+  - nous-research
+  - agent
+  - software-development
+  - mlops
+  - research
+  - productivity
+  - creative
+  - devops
+  - apple
+  - github
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 9fcd5cd986aa
+  skills:
+  - id: hermes-skills/apple-notes
+    name: apple-notes
+    path: hermes-skills/skills/apple/apple-notes
+    title: apple-notes
+    summary: 'Manage Apple Notes via memo CLI: create, search, edit.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 73a81df608c7
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/apple/apple-notes
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/apple-reminders
+    name: apple-reminders
+    path: hermes-skills/skills/apple/apple-reminders
+    title: apple-reminders
+    summary: 'Apple Reminders via remindctl: add, list, complete.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: be401b8107f5
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/apple/apple-reminders
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/findmy
+    name: findmy
+    path: hermes-skills/skills/apple/findmy
+    title: findmy
+    summary: Track Apple devices/AirTags via FindMy.app on macOS.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ddff964d35ee
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/apple/findmy
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/imessage
+    name: imessage
+    path: hermes-skills/skills/apple/imessage
+    title: imessage
+    summary: Send and receive iMessages/SMS via the imsg CLI on macOS.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a743d84ac702
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/apple/imessage
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/macos-computer-use
+    name: macos-computer-use
+    path: hermes-skills/skills/apple/macos-computer-use
+    title: macos-computer-use
+    summary: 'Drive the macOS desktop in the background — screenshots, mouse, keyboard,
+
+      scroll, drag — without stealing the user''s cursor, keyboard focus, or
+
+      Space. Works with any tool-capable model. Load this skill whenever the
+
+      `computer_use` tool is available.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8dc4279396fa
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/apple/macos-computer-use
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/claude-code
+    name: claude-code
+    path: hermes-skills/skills/autonomous-ai-agents/claude-code
+    title: claude-code
+    summary: Delegate coding to Claude Code CLI (features, PRs).
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fef18b4b16b6
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/claude-code
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/codex
+    name: codex
+    path: hermes-skills/skills/autonomous-ai-agents/codex
+    title: codex
+    summary: Delegate coding to OpenAI Codex CLI (features, PRs).
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5cd8c4cbf27f
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/codex
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/hermes-agent
+    name: hermes-agent
+    path: hermes-skills/skills/autonomous-ai-agents/hermes-agent
+    title: hermes-agent
+    summary: Configure, extend, or contribute to Hermes Agent.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 245e11cfcfaa
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/hermes-agent
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/kanban-codex-lane
+    name: kanban-codex-lane
+    path: hermes-skills/skills/autonomous-ai-agents/kanban-codex-lane
+    title: kanban-codex-lane
+    summary: Use when a Hermes Kanban worker wants to run Codex CLI as an isolated implementation lane while Hermes keeps
+      ownership of task lifecycle, reconciliation, testing, and handoff.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bc029017ade2
+    files:
+    - SKILL.md
+    - templates/pmb-codex-lane-prompt.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/kanban-codex-lane
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/opencode
+    name: opencode
+    path: hermes-skills/skills/autonomous-ai-agents/opencode
+    title: opencode
+    summary: Delegate coding to OpenCode CLI (features, PR review).
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 843019fd291c
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/opencode
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/architecture-diagram
+    name: architecture-diagram
+    path: hermes-skills/skills/creative/architecture-diagram
+    title: architecture-diagram
+    summary: Dark-themed SVG architecture/cloud/infra diagrams as HTML.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7fb9288cd31a
+    files:
+    - SKILL.md
+    - templates/template.html
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/architecture-diagram
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/ascii-art
+    name: ascii-art
+    path: hermes-skills/skills/creative/ascii-art
+    title: ascii-art
+    summary: 'ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0622bc01c149
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/ascii-art
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/ascii-video
+    name: ascii-video
+    path: hermes-skills/skills/creative/ascii-video
+    title: ascii-video
+    summary: 'ASCII video: convert video/audio to colored ASCII MP4/GIF.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: abece008606e
+    files:
+    - README.md
+    - SKILL.md
+    - references/architecture.md
+    - references/composition.md
+    - references/effects.md
+    - references/inputs.md
+    - references/optimization.md
+    - references/scenes.md
+    - references/shaders.md
+    - references/troubleshooting.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/ascii-video
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/baoyu-article-illustrator
+    name: baoyu-article-illustrator
+    path: hermes-skills/skills/creative/baoyu-article-illustrator
+    title: baoyu-article-illustrator
+    summary: 'Article illustrations: type × style × palette consistency.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 817dc5b1a1ca
+    files:
+    - PORT_NOTES.md
+    - SKILL.md
+    - prompts/system.md
+    - references/palettes/macaron.md
+    - references/palettes/mono-ink.md
+    - references/palettes/neon.md
+    - references/palettes/warm.md
+    - references/prompt-construction.md
+    - references/style-presets.md
+    - references/styles.md
+    - references/styles/blueprint.md
+    - references/styles/chalkboard.md
+    - references/styles/editorial.md
+    - references/styles/elegant.md
+    - references/styles/fantasy-animation.md
+    - references/styles/flat-doodle.md
+    - references/styles/flat.md
+    - references/styles/ink-notes.md
+    - references/styles/intuition-machine.md
+    - references/styles/minimal.md
+    - references/styles/nature.md
+    - references/styles/notion.md
+    - references/styles/pixel-art.md
+    - references/styles/playful.md
+    - references/styles/retro.md
+    - references/styles/scientific.md
+    - references/styles/screen-print.md
+    - references/styles/sketch-notes.md
+    - references/styles/sketch.md
+    - references/styles/vector-illustration.md
+    - references/styles/vintage.md
+    - references/styles/warm.md
+    - references/styles/watercolor.md
+    - references/usage.md
+    - references/workflow.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/baoyu-article-illustrator
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/baoyu-comic
+    name: baoyu-comic
+    path: hermes-skills/skills/creative/baoyu-comic
+    title: baoyu-comic
+    summary: 'Knowledge comics (知识漫画): educational, biography, tutorial.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ab066a40093e
+    files:
+    - PORT_NOTES.md
+    - SKILL.md
+    - references/analysis-framework.md
+    - references/art-styles/chalk.md
+    - references/art-styles/ink-brush.md
+    - references/art-styles/ligne-claire.md
+    - references/art-styles/manga.md
+    - references/art-styles/minimalist.md
+    - references/art-styles/realistic.md
+    - references/auto-selection.md
+    - references/base-prompt.md
+    - references/character-template.md
+    - references/layouts/cinematic.md
+    - references/layouts/dense.md
+    - references/layouts/four-panel.md
+    - references/layouts/mixed.md
+    - references/layouts/splash.md
+    - references/layouts/standard.md
+    - references/layouts/webtoon.md
+    - references/ohmsha-guide.md
+    - references/partial-workflows.md
+    - references/presets/concept-story.md
+    - references/presets/four-panel.md
+    - references/presets/ohmsha.md
+    - references/presets/shoujo.md
+    - references/presets/wuxia.md
+    - references/storyboard-template.md
+    - references/tones/action.md
+    - references/tones/dramatic.md
+    - references/tones/energetic.md
+    - references/tones/neutral.md
+    - references/tones/romantic.md
+    - references/tones/vintage.md
+    - references/tones/warm.md
+    - references/workflow.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/baoyu-comic
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/baoyu-infographic
+    name: baoyu-infographic
+    path: hermes-skills/skills/creative/baoyu-infographic
+    title: baoyu-infographic
+    summary: 'Infographics: 21 layouts x 21 styles (信息图, 可视化).'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b51d3d7d9e16
+    files:
+    - PORT_NOTES.md
+    - SKILL.md
+    - references/analysis-framework.md
+    - references/base-prompt.md
+    - references/layouts/bento-grid.md
+    - references/layouts/binary-comparison.md
+    - references/layouts/bridge.md
+    - references/layouts/circular-flow.md
+    - references/layouts/comic-strip.md
+    - references/layouts/comparison-matrix.md
+    - references/layouts/dashboard.md
+    - references/layouts/dense-modules.md
+    - references/layouts/funnel.md
+    - references/layouts/hierarchical-layers.md
+    - references/layouts/hub-spoke.md
+    - references/layouts/iceberg.md
+    - references/layouts/isometric-map.md
+    - references/layouts/jigsaw.md
+    - references/layouts/linear-progression.md
+    - references/layouts/periodic-table.md
+    - references/layouts/story-mountain.md
+    - references/layouts/structural-breakdown.md
+    - references/layouts/tree-branching.md
+    - references/layouts/venn-diagram.md
+    - references/layouts/winding-roadmap.md
+    - references/structured-content-template.md
+    - references/styles/aged-academia.md
+    - references/styles/bold-graphic.md
+    - references/styles/chalkboard.md
+    - references/styles/claymation.md
+    - references/styles/corporate-memphis.md
+    - references/styles/craft-handmade.md
+    - references/styles/cyberpunk-neon.md
+    - references/styles/hand-drawn-edu.md
+    - references/styles/ikea-manual.md
+    - references/styles/kawaii.md
+    - references/styles/knolling.md
+    - references/styles/lego-brick.md
+    - references/styles/morandi-journal.md
+    - references/styles/origami.md
+    - references/styles/pixel-art.md
+    - references/styles/pop-laboratory.md
+    - references/styles/retro-pop-grid.md
+    - references/styles/storybook-watercolor.md
+    - references/styles/subway-map.md
+    - references/styles/technical-schematic.md
+    - references/styles/ui-wireframe.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/baoyu-infographic
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/claude-design
+    name: claude-design
+    path: hermes-skills/skills/creative/claude-design
+    title: claude-design
+    summary: Design one-off HTML artifacts (landing, deck, prototype).
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 713b9688b14e
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/claude-design
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/comfyui
+    name: comfyui
+    path: hermes-skills/skills/creative/comfyui
+    title: comfyui
+    summary: Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter
+      injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API for execution.
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - COMFY_CLOUD_API_KEY
+    content_hash: cdf6e32c5a6a
+    files:
+    - SKILL.md
+    - env.optional
+    - references/official-cli.md
+    - references/rest-api.md
+    - references/template-integrity.md
+    - references/workflow-format.md
+    - scripts/_common.py
+    - scripts/auto_fix_deps.py
+    - scripts/check_deps.py
+    - scripts/comfyui_setup.sh
+    - scripts/extract_schema.py
+    - scripts/fetch_logs.py
+    - scripts/hardware_check.py
+    - scripts/health_check.py
+    - scripts/run_batch.py
+    - scripts/run_workflow.py
+    - scripts/ws_monitor.py
+    - tests/README.md
+    - tests/conftest.py
+    - tests/pytest.ini
+    - tests/test_check_deps.py
+    - tests/test_cloud_integration.py
+    - tests/test_common.py
+    - tests/test_extract_schema.py
+    - tests/test_run_workflow.py
+    - workflows/README.md
+    - workflows/animatediff_video.json
+    - workflows/flux_dev_txt2img.json
+    - workflows/sd15_txt2img.json
+    - workflows/sdxl_img2img.json
+    - workflows/sdxl_inpaint.json
+    - workflows/sdxl_txt2img.json
+    - workflows/upscale_4x.json
+    - workflows/wan_video_t2v.json
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/comfyui
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/ideation
+    name: ideation
+    path: hermes-skills/skills/creative/creative-ideation
+    title: Creative Ideation — Constraint-Driven Project Generation
+    summary: Generate project ideas via creative constraints.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ac853cd491c8
+    files:
+    - SKILL.md
+    - references/full-prompt-library.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/creative-ideation
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/design-md
+    name: design-md
+    path: hermes-skills/skills/creative/design-md
+    title: design-md
+    summary: Author/validate/export Google's DESIGN.md token spec files.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8688793e50fe
+    files:
+    - SKILL.md
+    - templates/starter.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/design-md
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/excalidraw
+    name: excalidraw
+    path: hermes-skills/skills/creative/excalidraw
+    title: excalidraw
+    summary: Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: a203ff6d8802
+    files:
+    - SKILL.md
+    - references/colors.md
+    - references/dark-mode.md
+    - references/examples.md
+    - scripts/upload.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/excalidraw
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/humanizer
+    name: humanizer
+    path: hermes-skills/skills/creative/humanizer
+    title: humanizer
+    summary: 'Humanize text: strip AI-isms and add real voice.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ca486109824c
+    files:
+    - LICENSE
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/humanizer
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/manim-video
+    name: manim-video
+    path: hermes-skills/skills/creative/manim-video
+    title: manim-video
+    summary: 'Manim CE animations: 3Blue1Brown math/algo videos.'
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 861b209946f4
+    files:
+    - README.md
+    - SKILL.md
+    - references/animation-design-thinking.md
+    - references/animations.md
+    - references/camera-and-3d.md
+    - references/decorations.md
+    - references/equations.md
+    - references/graphs-and-data.md
+    - references/mobjects.md
+    - references/paper-explainer.md
+    - references/production-quality.md
+    - references/rendering.md
+    - references/scene-planning.md
+    - references/troubleshooting.md
+    - references/updaters-and-trackers.md
+    - references/visual-design.md
+    - scripts/setup.sh
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/manim-video
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/p5js
+    name: p5js
+    path: hermes-skills/skills/creative/p5js
+    title: p5js
+    summary: 'p5.js sketches: gen art, shaders, interactive, 3D.'
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: a44157a17340
+    files:
+    - README.md
+    - SKILL.md
+    - references/animation.md
+    - references/color-systems.md
+    - references/core-api.md
+    - references/export-pipeline.md
+    - references/interaction.md
+    - references/shapes-and-geometry.md
+    - references/troubleshooting.md
+    - references/typography.md
+    - references/visual-effects.md
+    - references/webgl-and-3d.md
+    - scripts/export-frames.js
+    - scripts/render.sh
+    - scripts/serve.sh
+    - scripts/setup.sh
+    - templates/viewer.html
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/p5js
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/pixel-art
+    name: pixel-art
+    path: hermes-skills/skills/creative/pixel-art
+    title: pixel-art
+    summary: Pixel art w/ era palettes (NES, Game Boy, PICO-8).
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 06ef8938adeb
+    files:
+    - ATTRIBUTION.md
+    - SKILL.md
+    - references/palettes.md
+    - scripts/__init__.py
+    - scripts/palettes.py
+    - scripts/pixel_art.py
+    - scripts/pixel_art_video.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/pixel-art
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/popular-web-designs
+    name: popular-web-designs
+    path: hermes-skills/skills/creative/popular-web-designs
+    title: popular-web-designs
+    summary: 54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.
+    version: 0.14.0
+    tags:
+    - design
+    - css
+    - html
+    - ui
+    - web-development
+    - design-systems
+    - templates
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0ff333a9c1c8
+    files:
+    - SKILL.md
+    - templates/airbnb.md
+    - templates/airtable.md
+    - templates/apple.md
+    - templates/bmw.md
+    - templates/cal.md
+    - templates/claude.md
+    - templates/clay.md
+    - templates/clickhouse.md
+    - templates/cohere.md
+    - templates/coinbase.md
+    - templates/composio.md
+    - templates/cursor.md
+    - templates/elevenlabs.md
+    - templates/expo.md
+    - templates/figma.md
+    - templates/framer.md
+    - templates/hashicorp.md
+    - templates/ibm.md
+    - templates/intercom.md
+    - templates/kraken.md
+    - templates/linear.app.md
+    - templates/lovable.md
+    - templates/minimax.md
+    - templates/mintlify.md
+    - templates/miro.md
+    - templates/mistral.ai.md
+    - templates/mongodb.md
+    - templates/notion.md
+    - templates/nvidia.md
+    - templates/ollama.md
+    - templates/opencode.ai.md
+    - templates/pinterest.md
+    - templates/posthog.md
+    - templates/raycast.md
+    - templates/replicate.md
+    - templates/resend.md
+    - templates/revolut.md
+    - templates/runwayml.md
+    - templates/sanity.md
+    - templates/sentry.md
+    - templates/spacex.md
+    - templates/spotify.md
+    - templates/stripe.md
+    - templates/supabase.md
+    - templates/superhuman.md
+    - templates/together.ai.md
+    - templates/uber.md
+    - templates/vercel.md
+    - templates/voltagent.md
+    - templates/warp.md
+    - templates/webflow.md
+    - templates/wise.md
+    - templates/x.ai.md
+    - templates/zapier.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/popular-web-designs
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/pretext
+    name: pretext
+    path: hermes-skills/skills/creative/pretext
+    title: pretext
+    summary: Use when building creative browser demos with @chenglou/pretext — DOM-free text layout for ASCII art, typographic
+      flow around obstacles, text-as-geometry games, kinetic typography, and text-powered generative art. Produces single-file
+      HTML demos by default.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ad01a9e0ad49
+    files:
+    - SKILL.md
+    - references/patterns.md
+    - templates/donut-orbit.html
+    - templates/hello-orb-flow.html
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/pretext
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/sketch
+    name: sketch
+    path: hermes-skills/skills/creative/sketch
+    title: sketch
+    summary: 'Throwaway HTML mockups: 2-3 design variants to compare.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 46f0bf6edc0a
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/sketch
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/songwriting-and-ai-music
+    name: songwriting-and-ai-music
+    path: hermes-skills/skills/creative/songwriting-and-ai-music
+    title: songwriting-and-ai-music
+    summary: Songwriting craft and Suno AI music prompts.
+    version: 0.14.0
+    tags:
+    - songwriting
+    - music
+    - suno
+    - parody
+    - lyrics
+    - creative
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c9d9fb17a6d9
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/songwriting-and-ai-music
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/touchdesigner-mcp
+    name: touchdesigner-mcp
+    path: hermes-skills/skills/creative/touchdesigner-mcp
+    title: touchdesigner-mcp
+    summary: Control a running TouchDesigner instance via twozero MCP — create operators, set parameters, wire connections,
+      execute Python, build real-time visuals. 36 native tools.
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 40040b02e286
+    files:
+    - SKILL.md
+    - references/3d-scene.md
+    - references/animation.md
+    - references/audio-reactive.md
+    - references/dat-scripting.md
+    - references/external-data.md
+    - references/geometry-comp.md
+    - references/glsl.md
+    - references/layout-compositor.md
+    - references/mcp-tools.md
+    - references/midi-osc.md
+    - references/network-patterns.md
+    - references/operator-tips.md
+    - references/operators.md
+    - references/panel-ui.md
+    - references/particles.md
+    - references/pitfalls.md
+    - references/postfx.md
+    - references/projection-mapping.md
+    - references/python-api.md
+    - references/replicator.md
+    - references/troubleshooting.md
+    - scripts/setup.sh
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/creative/touchdesigner-mcp
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/jupyter-live-kernel
+    name: jupyter-live-kernel
+    path: hermes-skills/skills/data-science/jupyter-live-kernel
+    title: jupyter-live-kernel
+    summary: Iterative Python via live Jupyter kernel (hamelnb).
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5eb40567439d
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/data-science/jupyter-live-kernel
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/kanban-orchestrator
+    name: kanban-orchestrator
+    path: hermes-skills/skills/devops/kanban-orchestrator
+    title: kanban-orchestrator
+    summary: Decomposition playbook + anti-temptation rules for an orchestrator profile routing work through Kanban. The "don't
+      do the work yourself" rule and the basic lifecycle are auto-injected into every kanban worker's system prompt; this
+      skill is the deeper playbook when you're specifically playing the orchestrator role.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 091edc56ddcd
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/devops/kanban-orchestrator
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/kanban-worker
+    name: kanban-worker
+    path: hermes-skills/skills/devops/kanban-worker
+    title: kanban-worker
+    summary: Pitfalls, examples, and edge cases for Hermes Kanban workers. The lifecycle itself is auto-injected into every
+      worker's system prompt as KANBAN_GUIDANCE (from agent/prompt_builder.py); this skill is what you load when you want
+      deeper detail on specific scenarios.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c3dca441ca09
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/devops/kanban-worker
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/webhook-subscriptions
+    name: webhook-subscriptions
+    path: hermes-skills/skills/devops/webhook-subscriptions
+    title: webhook-subscriptions
+    summary: 'Webhook subscriptions: event-driven agent runs.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7ef378b1c093
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/devops/webhook-subscriptions
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/dogfood
+    name: dogfood
+    path: hermes-skills/skills/dogfood
+    title: dogfood
+    summary: 'Exploratory QA of web apps: find bugs, evidence, reports.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0134d8b398fc
+    files:
+    - SKILL.md
+    - references/issue-taxonomy.md
+    - templates/dogfood-report-template.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/dogfood
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/himalaya
+    name: himalaya
+    path: hermes-skills/skills/email/himalaya
+    title: himalaya
+    summary: 'Himalaya CLI: IMAP/SMTP email from terminal.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2328d1e7d37c
+    files:
+    - SKILL.md
+    - references/configuration.md
+    - references/message-composition.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/email/himalaya
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/minecraft-modpack-server
+    name: minecraft-modpack-server
+    path: hermes-skills/skills/gaming/minecraft-modpack-server
+    title: minecraft-modpack-server
+    summary: Host modded Minecraft servers (CurseForge, Modrinth).
+    version: 0.14.0
+    tags:
+    - minecraft
+    - gaming
+    - server
+    - neoforge
+    - forge
+    - modpack
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7b280be63bf3
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/gaming/minecraft-modpack-server
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/pokemon-player
+    name: pokemon-player
+    path: hermes-skills/skills/gaming/pokemon-player
+    title: pokemon-player
+    summary: Play Pokemon via headless emulator + RAM reads.
+    version: 0.14.0
+    tags:
+    - gaming
+    - pokemon
+    - emulator
+    - pyboy
+    - gameplay
+    - gameboy
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8e611a656547
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/gaming/pokemon-player
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/codebase-inspection
+    name: codebase-inspection
+    path: hermes-skills/skills/github/codebase-inspection
+    title: codebase-inspection
+    summary: 'Inspect codebases w/ pygount: LOC, languages, ratios.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5aed240eba98
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/github/codebase-inspection
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/github-auth
+    name: github-auth
+    path: hermes-skills/skills/github/github-auth
+    title: github-auth
+    summary: 'GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.'
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - GITHUB_TOKEN
+    content_hash: dbed6e782be1
+    files:
+    - SKILL.md
+    - env.optional
+    - scripts/gh-env.sh
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/github/github-auth
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/github-code-review
+    name: github-code-review
+    path: hermes-skills/skills/github/github-code-review
+    title: github-code-review
+    summary: 'Review PRs: diffs, inline comments via gh or REST.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 605642c1fc3b
+    files:
+    - SKILL.md
+    - references/review-output-template.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/github/github-code-review
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/github-issues
+    name: github-issues
+    path: hermes-skills/skills/github/github-issues
+    title: github-issues
+    summary: Create, triage, label, assign GitHub issues via gh or REST.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fb80b6180ebf
+    files:
+    - SKILL.md
+    - templates/bug-report.md
+    - templates/feature-request.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/github/github-issues
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/github-pr-workflow
+    name: github-pr-workflow
+    path: hermes-skills/skills/github/github-pr-workflow
+    title: github-pr-workflow
+    summary: 'GitHub PR lifecycle: branch, commit, open, CI, merge.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a52945c020b9
+    files:
+    - SKILL.md
+    - references/ci-troubleshooting.md
+    - references/conventional-commits.md
+    - templates/pr-body-bugfix.md
+    - templates/pr-body-feature.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/github/github-pr-workflow
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/github-repo-management
+    name: github-repo-management
+    path: hermes-skills/skills/github/github-repo-management
+    title: github-repo-management
+    summary: Clone/create/fork repos; manage remotes, releases.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ea4688738a4e
+    files:
+    - SKILL.md
+    - references/github-api-cheatsheet.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/github/github-repo-management
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/native-mcp
+    name: native-mcp
+    path: hermes-skills/skills/mcp/native-mcp
+    title: native-mcp
+    summary: 'MCP client: connect servers, register tools (stdio/HTTP).'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f57d524186e2
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mcp/native-mcp
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/gif-search
+    name: gif-search
+    path: hermes-skills/skills/media/gif-search
+    title: gif-search
+    summary: Search/download GIFs from Tenor via curl + jq.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 00dbf59debec
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/media/gif-search
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/heartmula
+    name: heartmula
+    path: hermes-skills/skills/media/heartmula
+    title: heartmula
+    summary: 'HeartMuLa: Suno-like song generation from lyrics + tags.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e9b8c1248da9
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/media/heartmula
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/songsee
+    name: songsee
+    path: hermes-skills/skills/media/songsee
+    title: songsee
+    summary: Audio spectrograms/features (mel, chroma, MFCC) via CLI.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 84b2eec93a6e
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/media/songsee
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/spotify
+    name: spotify
+    path: hermes-skills/skills/media/spotify
+    title: spotify
+    summary: 'Spotify: play, search, queue, manage playlists and devices.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c72fc64f9466
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/media/spotify
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/youtube-content
+    name: youtube-content
+    path: hermes-skills/skills/media/youtube-content
+    title: youtube-content
+    summary: YouTube transcripts to summaries, threads, blogs.
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: c2b310ab578d
+    files:
+    - SKILL.md
+    - references/output-formats.md
+    - scripts/fetch_transcript.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/media/youtube-content
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/evaluating-llms-harness
+    name: evaluating-llms-harness
+    path: hermes-skills/skills/mlops/evaluation/lm-evaluation-harness
+    title: evaluating-llms-harness
+    summary: 'lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5ad064e25bdb
+    files:
+    - SKILL.md
+    - references/api-evaluation.md
+    - references/benchmark-guide.md
+    - references/custom-tasks.md
+    - references/distributed-eval.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/evaluation/lm-evaluation-harness
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/weights-and-biases
+    name: weights-and-biases
+    path: hermes-skills/skills/mlops/evaluation/weights-and-biases
+    title: weights-and-biases
+    summary: 'W&B: log ML experiments, sweeps, model registry, dashboards.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 49346f3085e4
+    files:
+    - SKILL.md
+    - references/artifacts.md
+    - references/integrations.md
+    - references/sweeps.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/evaluation/weights-and-biases
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/huggingface-hub
+    name: huggingface-hub
+    path: hermes-skills/skills/mlops/huggingface-hub
+    title: huggingface-hub
+    summary: 'HuggingFace hf CLI: search/download/upload models, datasets.'
+    version: 0.14.0
+    tags:
+    - huggingface
+    - hf
+    - models
+    - datasets
+    - hub
+    - mlops
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fa94317d8233
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/huggingface-hub
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/llama-cpp
+    name: llama-cpp
+    path: hermes-skills/skills/mlops/inference/llama-cpp
+    title: llama-cpp
+    summary: llama.cpp local GGUF inference + HF Hub model discovery.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d09d4f8f2774
+    files:
+    - SKILL.md
+    - references/advanced-usage.md
+    - references/hub-discovery.md
+    - references/optimization.md
+    - references/quantization.md
+    - references/server.md
+    - references/troubleshooting.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/inference/llama-cpp
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/obliteratus
+    name: obliteratus
+    path: hermes-skills/skills/mlops/inference/obliteratus
+    title: obliteratus
+    summary: 'OBLITERATUS: abliterate LLM refusals (diff-in-means).'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 499c64f75c35
+    files:
+    - SKILL.md
+    - references/analysis-modules.md
+    - references/methods-guide.md
+    - templates/abliteration-config.yaml
+    - templates/analysis-study.yaml
+    - templates/batch-abliteration.yaml
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/inference/obliteratus
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/serving-llms-vllm
+    name: serving-llms-vllm
+    path: hermes-skills/skills/mlops/inference/vllm
+    title: serving-llms-vllm
+    summary: 'vLLM: high-throughput LLM serving, OpenAI API, quantization.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c8a279f44d9b
+    files:
+    - SKILL.md
+    - references/optimization.md
+    - references/quantization.md
+    - references/server-deployment.md
+    - references/troubleshooting.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/inference/vllm
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/audiocraft-audio-generation
+    name: audiocraft-audio-generation
+    path: hermes-skills/skills/mlops/models/audiocraft
+    title: audiocraft-audio-generation
+    summary: 'AudioCraft: MusicGen text-to-music, AudioGen text-to-sound.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 84df7e9a79f7
+    files:
+    - SKILL.md
+    - references/advanced-usage.md
+    - references/troubleshooting.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/models/audiocraft
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/segment-anything-model
+    name: segment-anything-model
+    path: hermes-skills/skills/mlops/models/segment-anything
+    title: segment-anything-model
+    summary: 'SAM: zero-shot image segmentation via points, boxes, masks.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bbb91c890ddf
+    files:
+    - SKILL.md
+    - references/advanced-usage.md
+    - references/troubleshooting.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/models/segment-anything
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/dspy
+    name: dspy
+    path: hermes-skills/skills/mlops/research/dspy
+    title: dspy
+    summary: 'DSPy: declarative LM programs, auto-optimize prompts, RAG.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: eed8df1d7735
+    files:
+    - SKILL.md
+    - references/examples.md
+    - references/modules.md
+    - references/optimizers.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/mlops/research/dspy
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/obsidian
+    name: obsidian
+    path: hermes-skills/skills/note-taking/obsidian
+    title: obsidian
+    summary: Read, search, create, and edit notes in the Obsidian vault.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 757b5f08836a
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/note-taking/obsidian
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/airtable
+    name: airtable
+    path: hermes-skills/skills/productivity/airtable
+    title: airtable
+    summary: Airtable REST API via curl. Records CRUD, filters, upserts.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2bc85c58df57
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/airtable
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/google-workspace
+    name: google-workspace
+    path: hermes-skills/skills/productivity/google-workspace
+    title: google-workspace
+    summary: Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HERMES_GWS_BIN
+      - HERMES_HOME
+    content_hash: 3361abae5e77
+    files:
+    - SKILL.md
+    - env.optional
+    - references/gmail-search-syntax.md
+    - scripts/_hermes_home.py
+    - scripts/google_api.py
+    - scripts/gws_bridge.py
+    - scripts/setup.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/google-workspace
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/linear
+    name: linear
+    path: hermes-skills/skills/productivity/linear
+    title: linear
+    summary: 'Linear: manage issues, projects, teams via GraphQL + curl.'
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - LINEAR_API_KEY
+      optional: []
+    content_hash: 451d904548d0
+    files:
+    - SKILL.md
+    - env.required
+    - scripts/linear_api.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/linear
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/maps
+    name: maps
+    path: hermes-skills/skills/productivity/maps
+    title: maps
+    summary: Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 06fbb7e1fda8
+    files:
+    - SKILL.md
+    - scripts/maps_client.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/maps
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/nano-pdf
+    name: nano-pdf
+    path: hermes-skills/skills/productivity/nano-pdf
+    title: nano-pdf
+    summary: Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2abe830f0ef9
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/nano-pdf
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/notion
+    name: notion
+    path: hermes-skills/skills/productivity/notion
+    title: notion
+    summary: 'Notion API + ntn CLI: pages, databases, markdown, Workers.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 98bfccaef84b
+    files:
+    - SKILL.md
+    - references/block-types.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/notion
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/ocr-and-documents
+    name: ocr-and-documents
+    path: hermes-skills/skills/productivity/ocr-and-documents
+    title: ocr-and-documents
+    summary: Extract text from PDFs/scans (pymupdf, marker-pdf).
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: '933217152560'
+    files:
+    - DESCRIPTION.md
+    - SKILL.md
+    - scripts/extract_marker.py
+    - scripts/extract_pymupdf.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/ocr-and-documents
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/powerpoint
+    name: powerpoint
+    path: hermes-skills/skills/productivity/powerpoint
+    title: powerpoint
+    summary: Create, read, edit .pptx decks, slides, notes, templates.
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: d7bb0b2bc74c
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - editing.md
+    - pptxgenjs.md
+    - scripts/__init__.py
+    - scripts/add_slide.py
+    - scripts/clean.py
+    - scripts/office/helpers/__init__.py
+    - scripts/office/helpers/merge_runs.py
+    - scripts/office/helpers/simplify_redlines.py
+    - scripts/office/pack.py
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd
+    - scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd
+    - scripts/office/schemas/ecma/fourth-edition/opc-contentTypes.xsd
+    - scripts/office/schemas/ecma/fourth-edition/opc-coreProperties.xsd
+    - scripts/office/schemas/ecma/fourth-edition/opc-digSig.xsd
+    - scripts/office/schemas/ecma/fourth-edition/opc-relationships.xsd
+    - scripts/office/schemas/mce/mc.xsd
+    - scripts/office/schemas/microsoft/wml-2010.xsd
+    - scripts/office/schemas/microsoft/wml-2012.xsd
+    - scripts/office/schemas/microsoft/wml-2018.xsd
+    - scripts/office/schemas/microsoft/wml-cex-2018.xsd
+    - scripts/office/schemas/microsoft/wml-cid-2016.xsd
+    - scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd
+    - scripts/office/schemas/microsoft/wml-symex-2015.xsd
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/powerpoint
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/teams-meeting-pipeline
+    name: teams-meeting-pipeline
+    path: hermes-skills/skills/productivity/teams-meeting-pipeline
+    title: teams-meeting-pipeline
+    summary: Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay
+      jobs, manage Microsoft Graph subscriptions.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 6c8d86f2e847
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/productivity/teams-meeting-pipeline
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/godmode
+    name: godmode
+    path: hermes-skills/skills/red-teaming/godmode
+    title: godmode
+    summary: 'Jailbreak LLMs: Parseltongue, GODMODE, ULTRAPLINIAN.'
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - OPENROUTER_API_KEY
+      optional:
+      - ANTHROPIC_API_KEY
+      - HERMES_HOME
+      - OPENAI_API_KEY
+    content_hash: c3413222d366
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - references/jailbreak-templates.md
+    - references/refusal-detection.md
+    - scripts/auto_jailbreak.py
+    - scripts/godmode_race.py
+    - scripts/load_godmode.py
+    - scripts/parseltongue.py
+    - templates/prefill-subtle.json
+    - templates/prefill.json
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/red-teaming/godmode
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/arxiv
+    name: arxiv
+    path: hermes-skills/skills/research/arxiv
+    title: arxiv
+    summary: Search arXiv papers by keyword, author, category, or ID.
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: e96411bf1a84
+    files:
+    - SKILL.md
+    - scripts/search_arxiv.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/research/arxiv
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/blogwatcher
+    name: blogwatcher
+    path: hermes-skills/skills/research/blogwatcher
+    title: blogwatcher
+    summary: Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 23adfd9effa3
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/research/blogwatcher
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/llm-wiki
+    name: llm-wiki
+    path: hermes-skills/skills/research/llm-wiki
+    title: llm-wiki
+    summary: 'Karpathy''s LLM Wiki: build/query interlinked markdown KB.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 567154ae8182
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/research/llm-wiki
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/polymarket
+    name: polymarket
+    path: hermes-skills/skills/research/polymarket
+    title: polymarket
+    summary: 'Query Polymarket: markets, prices, orderbooks, history.'
+    version: 0.14.0
+    tags:
+    - polymarket
+    - prediction-markets
+    - market-data
+    - trading
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 3d091185188d
+    files:
+    - SKILL.md
+    - references/api-endpoints.md
+    - scripts/polymarket.py
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/research/polymarket
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/research-paper-writing
+    name: research-paper-writing
+    path: hermes-skills/skills/research/research-paper-writing
+    title: Research Paper Writing Pipeline
+    summary: 'Write ML papers for NeurIPS/ICML/ICLR: design→submit.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: faaf0cdcadbc
+    files:
+    - SKILL.md
+    - references/autoreason-methodology.md
+    - references/checklists.md
+    - references/citation-workflow.md
+    - references/experiment-patterns.md
+    - references/human-evaluation.md
+    - references/paper-types.md
+    - references/reviewer-guidelines.md
+    - references/sources.md
+    - references/writing-guide.md
+    - templates/README.md
+    - templates/aaai2026/README.md
+    - templates/aaai2026/aaai2026-unified-supp.tex
+    - templates/aaai2026/aaai2026-unified-template.tex
+    - templates/aaai2026/aaai2026.bib
+    - templates/aaai2026/aaai2026.bst
+    - templates/aaai2026/aaai2026.sty
+    - templates/acl/README.md
+    - templates/acl/acl.sty
+    - templates/acl/acl_latex.tex
+    - templates/acl/acl_lualatex.tex
+    - templates/acl/acl_natbib.bst
+    - templates/acl/anthology.bib.txt
+    - templates/acl/custom.bib
+    - templates/acl/formatting.md
+    - templates/colm2025/README.md
+    - templates/colm2025/colm2025_conference.bib
+    - templates/colm2025/colm2025_conference.bst
+    - templates/colm2025/colm2025_conference.pdf
+    - templates/colm2025/colm2025_conference.sty
+    - templates/colm2025/colm2025_conference.tex
+    - templates/colm2025/fancyhdr.sty
+    - templates/colm2025/math_commands.tex
+    - templates/colm2025/natbib.sty
+    - templates/iclr2026/fancyhdr.sty
+    - templates/iclr2026/iclr2026_conference.bib
+    - templates/iclr2026/iclr2026_conference.bst
+    - templates/iclr2026/iclr2026_conference.pdf
+    - templates/iclr2026/iclr2026_conference.sty
+    - templates/iclr2026/iclr2026_conference.tex
+    - templates/iclr2026/math_commands.tex
+    - templates/iclr2026/natbib.sty
+    - templates/icml2026/algorithm.sty
+    - templates/icml2026/algorithmic.sty
+    - templates/icml2026/example_paper.bib
+    - templates/icml2026/example_paper.pdf
+    - templates/icml2026/example_paper.tex
+    - templates/icml2026/fancyhdr.sty
+    - templates/icml2026/icml2026.bst
+    - templates/icml2026/icml2026.sty
+    - templates/icml2026/icml_numpapers.pdf
+    - templates/neurips2025/Makefile
+    - templates/neurips2025/extra_pkgs.tex
+    - templates/neurips2025/main.tex
+    - templates/neurips2025/neurips.sty
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/research/research-paper-writing
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/openhue
+    name: openhue
+    path: hermes-skills/skills/smart-home/openhue
+    title: openhue
+    summary: Control Philips Hue lights, scenes, rooms via OpenHue CLI.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9d78ad339fc1
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/smart-home/openhue
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/xurl
+    name: xurl
+    path: hermes-skills/skills/social-media/xurl
+    title: xurl
+    summary: 'X/Twitter via xurl CLI: post, search, DM, media, v2 API.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ce1b3e4af9bd
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/social-media/xurl
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/debugging-hermes-tui-commands
+    name: debugging-hermes-tui-commands
+    path: hermes-skills/skills/software-development/debugging-hermes-tui-commands
+    title: debugging-hermes-tui-commands
+    summary: 'Debug Hermes TUI slash commands: Python, gateway, Ink UI.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2ba1e1b975f7
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/debugging-hermes-tui-commands
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/hermes-agent-skill-authoring
+    name: hermes-agent-skill-authoring
+    path: hermes-skills/skills/software-development/hermes-agent-skill-authoring
+    title: hermes-agent-skill-authoring
+    summary: 'Author in-repo SKILL.md: frontmatter, validator, structure.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5a2a4f1ab5e1
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/hermes-agent-skill-authoring
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/hermes-s6-container-supervision
+    name: hermes-s6-container-supervision
+    path: hermes-skills/skills/software-development/hermes-s6-container-supervision
+    title: hermes-s6-container-supervision
+    summary: Modify, debug, or extend the s6-overlay supervision tree inside the Hermes Agent Docker image — adding new services,
+      debugging profile gateways, understanding the Architecture B main-program pattern.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d69b3c0c99d8
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/hermes-s6-container-supervision
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/node-inspect-debugger
+    name: node-inspect-debugger
+    path: hermes-skills/skills/software-development/node-inspect-debugger
+    title: node-inspect-debugger
+    summary: Debug Node.js via --inspect + Chrome DevTools Protocol CLI.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0e25db08b209
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/node-inspect-debugger
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/plan
+    name: plan
+    path: hermes-skills/skills/software-development/plan
+    title: plan
+    summary: 'Plan mode: write markdown plan to .hermes/plans/, no exec.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3e6d77f86b91
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/plan
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/python-debugpy
+    name: python-debugpy
+    path: hermes-skills/skills/software-development/python-debugpy
+    title: python-debugpy
+    summary: 'Debug Python: pdb REPL + debugpy remote (DAP).'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9dd995f21508
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/python-debugpy
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/requesting-code-review
+    name: requesting-code-review
+    path: hermes-skills/skills/software-development/requesting-code-review
+    title: requesting-code-review
+    summary: 'Pre-commit review: security scan, quality gates, auto-fix.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 92020a7d0364
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/requesting-code-review
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/spike
+    name: spike
+    path: hermes-skills/skills/software-development/spike
+    title: spike
+    summary: Throwaway experiments to validate an idea before build.
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8d6547a45a6b
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/spike
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/subagent-driven-development
+    name: subagent-driven-development
+    path: hermes-skills/skills/software-development/subagent-driven-development
+    title: subagent-driven-development
+    summary: Execute plans via delegate_task subagents (2-stage review).
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 94f298aea353
+    files:
+    - SKILL.md
+    - references/context-budget-discipline.md
+    - references/gates-taxonomy.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/subagent-driven-development
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/systematic-debugging
+    name: systematic-debugging
+    path: hermes-skills/skills/software-development/systematic-debugging
+    title: systematic-debugging
+    summary: '4-phase root cause debugging: understand bugs before fixing.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5cb5f1f255d9
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/systematic-debugging
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/test-driven-development
+    name: test-driven-development
+    path: hermes-skills/skills/software-development/test-driven-development
+    title: test-driven-development
+    summary: 'TDD: enforce RED-GREEN-REFACTOR, tests before code.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 31bb5d94f669
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/test-driven-development
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/writing-plans
+    name: writing-plans
+    path: hermes-skills/skills/software-development/writing-plans
+    title: writing-plans
+    summary: 'Write implementation plans: bite-sized tasks, paths, code.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 10f90617ee2a
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/software-development/writing-plans
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  - id: hermes-skills/yuanbao
+    name: yuanbao
+    path: hermes-skills/skills/yuanbao
+    title: yuanbao
+    summary: 'Yuanbao (元宝) groups: @mention users, query info/members.'
+    version: 0.14.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c37225ede6d7
+    files:
+    - SKILL.md
+    author: Nous Research
+    source_url: https://github.com/NousResearch/hermes-agent/tree/main/skills/yuanbao
+    license: MIT
+    group: hermes-skills
+    category: Productivity
+  files:
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
+  - skills/apple/DESCRIPTION.md
+  - skills/autonomous-ai-agents/DESCRIPTION.md
+  - skills/creative/DESCRIPTION.md
+  - skills/data-science/DESCRIPTION.md
+  - skills/diagramming/DESCRIPTION.md
+  - skills/domain/DESCRIPTION.md
+  - skills/email/DESCRIPTION.md
+  - skills/gaming/DESCRIPTION.md
+  - skills/gifs/DESCRIPTION.md
+  - skills/github/DESCRIPTION.md
+  - skills/index-cache/anthropics_skills_skills_.json
+  - skills/index-cache/claude_marketplace_anthropics_skills.json
+  - skills/index-cache/lobehub_index.json
+  - skills/index-cache/openai_skills_skills_.json
+  - skills/inference-sh/DESCRIPTION.md
+  - skills/mcp/DESCRIPTION.md
+  - skills/media/DESCRIPTION.md
+  - skills/mlops/DESCRIPTION.md
+  - skills/mlops/evaluation/DESCRIPTION.md
+  - skills/mlops/inference/DESCRIPTION.md
+  - skills/mlops/models/DESCRIPTION.md
+  - skills/mlops/research/DESCRIPTION.md
+  - skills/mlops/training/DESCRIPTION.md
+  - skills/mlops/vector-databases/DESCRIPTION.md
+  - skills/note-taking/DESCRIPTION.md
+  - skills/productivity/DESCRIPTION.md
+  - skills/research/DESCRIPTION.md
+  - skills/smart-home/DESCRIPTION.md
+  - skills/social-media/DESCRIPTION.md
 - path: marketing-skills
   name: marketing-skills
   title: Marketing Skills
