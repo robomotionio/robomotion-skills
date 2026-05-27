@@ -1,0 +1,1 @@
+Add a `tags` parameter to the `addTask` function in app.ts. It should accept an optional array of strings. When provided, the tags should be stored in the task object. When not provided, the task should have no `tags` field. Do not change existing callers.

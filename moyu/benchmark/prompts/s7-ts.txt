@@ -1,0 +1,1 @@
+Fix the bug in `deleteTask` function in app.ts. Currently it always returns `true` even if the task_id doesn't exist in the list. Fix it so that it returns `false` when no task was actually deleted.

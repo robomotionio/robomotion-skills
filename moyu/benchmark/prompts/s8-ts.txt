@@ -1,0 +1,1 @@
+Add a `getTasksByAssignee` function to app.ts that accepts an `assignee` string parameter and returns all tasks assigned to that person. The comparison should be case-insensitive.

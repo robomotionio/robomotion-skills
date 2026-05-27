@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Pixel Art Fish Logo for Moyu — 8-bit retro style -->
+
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#1a1a19"/>
+  <circle cx="64" cy="64" r="58" fill="none" stroke="#d97757" stroke-width="2" opacity="0.3"/>
+
+  <!-- Pixel grid: each "pixel" is 5x5 units for crispier look -->
+
+  <!-- Tail fin -->
+  <g fill="#c96a47">
+    <rect x="18" y="44" width="5" height="5"/>
+    <rect x="13" y="49" width="5" height="5"/>
+    <rect x="18" y="49" width="5" height="5"/>
+    <rect x="13" y="54" width="5" height="5"/>
+    <rect x="18" y="54" width="5" height="5"/>
+    <rect x="13" y="59" width="5" height="5"/>
+    <rect x="18" y="59" width="5" height="5"/>
+    <rect x="13" y="64" width="5" height="5"/>
+    <rect x="18" y="64" width="5" height="5"/>
+    <rect x="18" y="69" width="5" height="5"/>
+  </g>
+
+  <!-- Fish body -->
+  <g fill="#d97757">
+    <!-- Row 1 - top -->
+    <rect x="43" y="34" width="5" height="5"/>
+    <rect x="48" y="34" width="5" height="5"/>
+    <rect x="53" y="34" width="5" height="5"/>
+
+    <!-- Row 2 -->
+    <rect x="33" y="39" width="5" height="5"/>
+    <rect x="38" y="39" width="5" height="5"/>
+    <rect x="43" y="39" width="5" height="5"/>
+    <rect x="48" y="39" width="5" height="5"/>
+    <rect x="53" y="39" width="5" height="5"/>
+    <rect x="58" y="39" width="5" height="5"/>
+    <rect x="63" y="39" width="5" height="5"/>
+    <rect x="68" y="39" width="5" height="5"/>
+
+    <!-- Row 3 -->
+    <rect x="28" y="44" width="5" height="5"/>
+    <rect x="33" y="44" width="5" height="5"/>
+    <rect x="38" y="44" width="5" height="5"/>
+    <rect x="43" y="44" width="5" height="5"/>
+    <rect x="48" y="44" width="5" height="5"/>
+    <rect x="53" y="44" width="5" height="5"/>
+    <rect x="58" y="44" width="5" height="5"/>
+    <rect x="63" y="44" width="5" height="5"/>
+    <rect x="68" y="44" width="5" height="5"/>
+    <rect x="73" y="44" width="5" height="5"/>
+    <rect x="78" y="44" width="5" height="5"/>
+
+    <!-- Row 4 -->
+    <rect x="23" y="49" width="5" height="5"/>
+    <rect x="28" y="49" width="5" height="5"/>
+    <rect x="33" y="49" width="5" height="5"/>
+    <rect x="38" y="49" width="5" height="5"/>
+    <rect x="43" y="49" width="5" height="5"/>
+    <rect x="48" y="49" width="5" height="5"/>
+    <rect x="53" y="49" width="5" height="5"/>
+    <rect x="58" y="49" width="5" height="5"/>
+    <rect x="63" y="49" width="5" height="5"/>
+    <rect x="68" y="49" width="5" height="5"/>
+    <rect x="73" y="49" width="5" height="5"/>
+    <rect x="78" y="49" width="5" height="5"/>
+    <rect x="83" y="49" width="5" height="5"/>
+
+    <!-- Row 5 (center) -->
+    <rect x="23" y="54" width="5" height="5"/>
+    <rect x="28" y="54" width="5" height="5"/>
+    <rect x="33" y="54" width="5" height="5"/>
+    <rect x="38" y="54" width="5" height="5"/>
+    <rect x="43" y="54" width="5" height="5"/>
+    <rect x="48" y="54" width="5" height="5"/>
+    <rect x="53" y="54" width="5" height="5"/>
+    <rect x="58" y="54" width="5" height="5"/>
+    <rect x="63" y="54" width="5" height="5"/>
+    <rect x="68" y="54" width="5" height="5"/>
+    <rect x="73" y="54" width="5" height="5"/>
+    <rect x="78" y="54" width="5" height="5"/>
+    <rect x="83" y="54" width="5" height="5"/>
+
+    <!-- Row 6 -->
+    <rect x="23" y="59" width="5" height="5"/>
+    <rect x="28" y="59" width="5" height="5"/>
+    <rect x="33" y="59" width="5" height="5"/>
+    <rect x="38" y="59" width="5" height="5"/>
+    <rect x="43" y="59" width="5" height="5"/>
+    <rect x="48" y="59" width="5" height="5"/>
+    <rect x="53" y="59" width="5" height="5"/>
+    <rect x="58" y="59" width="5" height="5"/>
+    <rect x="63" y="59" width="5" height="5"/>
+    <rect x="68" y="59" width="5" height="5"/>
+    <rect x="73" y="59" width="5" height="5"/>
+    <rect x="78" y="59" width="5" height="5"/>
+
+    <!-- Row 7 -->
+    <rect x="23" y="64" width="5" height="5"/>
+    <rect x="28" y="64" width="5" height="5"/>
+    <rect x="33" y="64" width="5" height="5"/>
+    <rect x="38" y="64" width="5" height="5"/>
+    <rect x="43" y="64" width="5" height="5"/>
+    <rect x="48" y="64" width="5" height="5"/>
+    <rect x="53" y="64" width="5" height="5"/>
+    <rect x="58" y="64" width="5" height="5"/>
+    <rect x="63" y="64" width="5" height="5"/>
+    <rect x="68" y="64" width="5" height="5"/>
+    <rect x="73" y="64" width="5" height="5"/>
+
+    <!-- Row 8 -->
+    <rect x="28" y="69" width="5" height="5"/>
+    <rect x="33" y="69" width="5" height="5"/>
+    <rect x="38" y="69" width="5" height="5"/>
+    <rect x="43" y="69" width="5" height="5"/>
+    <rect x="48" y="69" width="5" height="5"/>
+    <rect x="53" y="69" width="5" height="5"/>
+    <rect x="58" y="69" width="5" height="5"/>
+    <rect x="63" y="69" width="5" height="5"/>
+    <rect x="68" y="69" width="5" height="5"/>
+
+    <!-- Row 9 - bottom -->
+    <rect x="38" y="74" width="5" height="5"/>
+    <rect x="43" y="74" width="5" height="5"/>
+    <rect x="48" y="74" width="5" height="5"/>
+    <rect x="53" y="74" width="5" height="5"/>
+    <rect x="58" y="74" width="5" height="5"/>
+  </g>
+
+  <!-- Dorsal fin -->
+  <g fill="#c96a47">
+    <rect x="48" y="29" width="5" height="5"/>
+    <rect x="53" y="29" width="5" height="5"/>
+  </g>
+
+  <!-- Belly highlight -->
+  <g fill="#e8a882" opacity="0.5">
+    <rect x="38" y="64" width="5" height="5"/>
+    <rect x="43" y="64" width="5" height="5"/>
+    <rect x="48" y="64" width="5" height="5"/>
+    <rect x="53" y="64" width="5" height="5"/>
+    <rect x="58" y="64" width="5" height="5"/>
+    <rect x="43" y="69" width="5" height="5"/>
+    <rect x="48" y="69" width="5" height="5"/>
+    <rect x="53" y="69" width="5" height="5"/>
+  </g>
+
+  <!-- Eye (white + pupil) -->
+  <rect x="68" y="44" width="10" height="10" fill="#faf9f5"/>
+  <rect x="73" y="44" width="5" height="5" fill="#141413"/>
+
+  <!-- Mouth -->
+  <rect x="78" y="59" width="5" height="5" fill="#c96a47"/>
+  <rect x="73" y="64" width="5" height="5" fill="#c96a47"/>
+
+  <!-- Pixel "z z z" — pure pixel art, no text -->
+  <g fill="#faf9f5" opacity="0.45">
+    <!-- z1 (large, 5px grid) -->
+    <rect x="86" y="36" width="5" height="2"/>
+    <rect x="91" y="36" width="5" height="2"/>
+    <rect x="91" y="38" width="5" height="2"/>
+    <rect x="86" y="40" width="5" height="2"/>
+    <rect x="86" y="42" width="5" height="2"/>
+    <rect x="91" y="42" width="5" height="2"/>
+
+    <!-- z2 (medium, 4px grid) -->
+    <rect x="96" y="27" width="4" height="2"/>
+    <rect x="100" y="27" width="4" height="2"/>
+    <rect x="100" y="29" width="4" height="2"/>
+    <rect x="96" y="31" width="4" height="2"/>
+    <rect x="96" y="33" width="4" height="2"/>
+    <rect x="100" y="33" width="4" height="2"/>
+
+    <!-- z3 (small, 3px grid) -->
+    <rect x="104" y="20" width="3" height="2"/>
+    <rect x="107" y="20" width="3" height="2"/>
+    <rect x="107" y="22" width="3" height="2"/>
+    <rect x="104" y="24" width="3" height="2"/>
+    <rect x="104" y="26" width="3" height="2"/>
+    <rect x="107" y="26" width="3" height="2"/>
+  </g>
+
+  <!-- Water bubbles (pixel circles) -->
+  <g fill="#6a9bcc" opacity="0.3">
+    <rect x="86" y="70" width="3" height="3" rx="1"/>
+    <rect x="92" y="64" width="2" height="2" rx="1"/>
+  </g>
+</svg>

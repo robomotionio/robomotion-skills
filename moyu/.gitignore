@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+*.swo
+*~
+.env
+node_modules/
+.claude-plugin/
+CLAUDE.md
+PLAN.md
+RESEARCH.md
+awesome-agent-skills/
+docs/launch/

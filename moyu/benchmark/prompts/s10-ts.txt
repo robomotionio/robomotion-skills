@@ -1,0 +1,1 @@
+Add an `exportJson` function to app.ts that exports all tasks to a specified file path. The function should accept a `filePath` parameter (default "export.json") and write the tasks array as formatted JSON. Return the number of tasks exported.
