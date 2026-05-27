@@ -1,0 +1,102 @@
+# Claude Apple Bridges — Developer Notes
+
+## Compile All Bridges
+
+```bash
+# Reminders
+cat > /tmp/reminders-info.plist << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+    <key>NSRemindersUsageDescription</key>
+    <string>Claude Code needs access to Reminders to manage tasks.</string>
+</dict></plist>
+EOF
+swiftc reminders-bridge.swift -o ~/.claude/reminders-bridge -framework EventKit \
+  -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __info_plist -Xlinker /tmp/reminders-info.plist
+codesign --force --sign - --identifier com.claude.reminders-bridge ~/.claude/reminders-bridge
+
+# Contacts
+cat > /tmp/contacts-info.plist << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+    <key>NSContactsUsageDescription</key>
+    <string>Claude Code needs access to Contacts.</string>
+</dict></plist>
+EOF
+swiftc contacts-bridge.swift -o ~/.claude/contacts-bridge -framework Contacts \
+  -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __info_plist -Xlinker /tmp/contacts-info.plist
+codesign --force --sign - --identifier com.claude.contacts-bridge ~/.claude/contacts-bridge
+
+# Calendar
+cat > /tmp/calendar-info.plist << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+    <key>NSCalendarsFullAccessUsageDescription</key>
+    <string>Claude Code needs access to Calendar.</string>
+</dict></plist>
+EOF
+swiftc calendar-bridge.swift -o ~/.claude/calendar-bridge -framework EventKit \
+  -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __info_plist -Xlinker /tmp/calendar-info.plist
+codesign --force --sign - --identifier com.claude.calendar-bridge ~/.claude/calendar-bridge
+
+# Notes (no plist needed)
+swiftc notes-bridge.swift -o ~/.claude/notes-bridge
+codesign --force --sign - --identifier com.claude.notes-bridge ~/.claude/notes-bridge
+
+# Mail (no plist needed)
+swiftc mail-bridge.swift -o ~/.claude/mail-bridge
+codesign --force --sign - --identifier com.claude.mail-bridge ~/.claude/mail-bridge
+
+# tmux (no plist needed)
+swiftc tmux-bridge.swift -o ~/.claude/tmux-bridge
+codesign --force --sign - --identifier com.claude.tmux-bridge ~/.claude/tmux-bridge
+```
+
+## Quick Smoke Test
+
+```bash
+~/.claude/reminders-bridge lists
+~/.claude/reminders-bridge today
+~/.claude/reminders-bridge overdue
+~/.claude/calendar-bridge today
+~/.claude/calendar-bridge free-slots $(date +%Y-%m-%d)
+~/.claude/contacts-bridge search "test"
+~/.claude/contacts-bridge birthdays-upcoming 30
+~/.claude/notes-bridge accounts
+~/.claude/mail-bridge accounts
+~/.claude/tmux-bridge sessions
+```
+
+## Branching
+
+- `main` — stable releases
+- `develop` — active development, PRs go here
+
+## notes-bridge: HTML Formatting
+
+The `add` and `append` commands support HTML — Notes.app renders it natively:
+
+```bash
+notes-bridge add "Work" "Title" "<b>Bold</b><br><ul><li>Item 1</li><li>Item 2</li></ul>"
+notes-bridge append "Title" "<br><b>Update:</b> some text"
+```
+
+Supported tags: `<b>`, `<i>`, `<u>`, `<br>`, `<ul>`, `<ol>`, `<li>`, `<h1>`–`<h3>`, `<a href="...">`, `<p>`
+
+`read` always returns plain text (HTML stripped).
+
+## mail-bridge: Send Behavior
+
+- **Without `--force`**: opens Mail.app compose window — user reviews and sends manually
+- **With `--force`**: sends directly without UI (use only when explicitly requested)
+
+## Adding a New Bridge
+
+1. Create `<name>-bridge.swift` in repo root
+2. Add compile instructions to README.md and CLAUDE.md
+3. Add permission grant step to README.md
+4. Add to `settings.local.json` allowed tools
+5. Add usage examples to README.md
