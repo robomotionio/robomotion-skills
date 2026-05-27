@@ -1,11 +1,6 @@
 ---
 name: md-analysis-planner
-description: >
-  Plan molecular dynamics post-processing for materials simulations, including
-  RDF, MSD and diffusion, VACF/VDOS, coordination numbers, bond-angle
-  distributions, stress-strain curves, equilibration detection, PBC unwrapping,
-  and trajectory format choices. Use before writing MD analysis scripts or
-  trusting trajectory-derived results.
+description: "Plan molecular dynamics post-processing for materials simulations, including RDF, MSD and diffusion, VACF/VDOS, coordination numbers, bond-angle distributions, stress-strain curves, equilibration detection, PBC unwrapping, and trajectory format choices. Use before writing MD analysis scripts or trusting trajectory-derived results."
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

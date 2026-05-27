@@ -1,16 +1,6 @@
 ---
 name: nonlinear-solvers
-description: >
-  Select and configure nonlinear solvers for root-finding f(x)=0, optimization
-  min F(x), and least-squares problems — choose among Newton, Newton-Krylov,
-  quasi-Newton (BFGS, L-BFGS), Broyden, Anderson acceleration, and
-  Levenberg-Marquardt methods, configure line search or trust-region
-  globalization, diagnose convergence rate (quadratic, linear, stagnated),
-  and assess Jacobian quality and conditioning. Use when a Newton solver
-  converges slowly or diverges, choosing between line search and trust region,
-  debugging nonlinear iteration failures in FEM or phase-field codes, or
-  selecting a solver for large-scale unconstrained optimization, even if
-  the user only says "my Newton iterations aren't converging."
+description: "Select and configure nonlinear solvers for root-finding f(x)=0, optimization min F(x), and least-squares problems — choose among Newton, Newton-Krylov, quasi-Newton (BFGS, L-BFGS), Broyden, Anderson acceleration, and Levenberg-Marquardt methods, configure line search or trust-region globalization, diagnose convergence rate (quadratic, linear, stagnated), and assess Jacobian quality and conditioning. Use when a Newton solver converges slowly or diverges, choosing between line search and trust region, debugging nonlinear iteration failures in FEM or phase-field codes, or selecting a solver for large-scale unconstrained optimization, even if the user only says \"my Newton iterations aren't converging.\""
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

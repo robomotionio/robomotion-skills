@@ -1,15 +1,6 @@
 ---
 name: linear-solvers
-description: >
-  Select and configure linear solvers for Ax=b systems arising in numerical
-  simulations — choose between direct (LU, Cholesky) and iterative (CG, GMRES,
-  BiCGSTAB, MINRES) methods, analyze sparsity patterns and matrix conditioning,
-  recommend preconditioners (AMG, ILU, IC), apply row/column scaling, and
-  diagnose convergence stagnation from residual histories. Use when setting up
-  a linear solve for FEM/FVM assembly, debugging slow or stalled Krylov
-  iterations, choosing a preconditioner for SPD or nonsymmetric systems, or
-  investigating ill-conditioning, even if the user only says "my solver is
-  slow" or "GMRES won't converge."
+description: "Select and configure linear solvers for Ax=b systems arising in numerical simulations — choose between direct (LU, Cholesky) and iterative (CG, GMRES, BiCGSTAB, MINRES) methods, analyze sparsity patterns and matrix conditioning, recommend preconditioners (AMG, ILU, IC), apply row/column scaling, and diagnose convergence stagnation from residual histories. Use when setting up a linear solve for FEM/FVM assembly, debugging slow or stalled Krylov iterations, choosing a preconditioner for SPD or nonsymmetric systems, or investigating ill-conditioning, even if the user only says \"my solver is slow\" or \"GMRES won't converge.\""
 allowed-tools: Read, Write, Grep, Glob
 metadata:
   author: HeshamFS

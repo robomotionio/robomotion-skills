@@ -1,15 +1,6 @@
 ---
 name: differentiation-schemes
-description: >
-  Select and apply numerical differentiation schemes for PDE and ODE
-  discretization — generate finite-difference stencils at arbitrary order and
-  accuracy, choose between central, upwind, compact (Pade), and spectral
-  methods, handle boundary stencils, and estimate truncation error scaling.
-  Use when discretizing spatial derivatives, picking a scheme for advection-
-  or diffusion-dominated problems, building custom stencils for nonstandard
-  operators, or comparing dispersion and dissipation properties of candidate
-  schemes, even if the user just says "how do I approximate this derivative"
-  or "my solution is too diffusive."
+description: "Select and apply numerical differentiation schemes for PDE and ODE discretization — generate finite-difference stencils at arbitrary order and accuracy, choose between central, upwind, compact (Pade), and spectral methods, handle boundary stencils, and estimate truncation error scaling. Use when discretizing spatial derivatives, picking a scheme for advection- or diffusion-dominated problems, building custom stencils for nonstandard operators, or comparing dispersion and dissipation properties of candidate schemes, even if the user just says \"how do I approximate this derivative\" or \"my solution is too diffusive.\""
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

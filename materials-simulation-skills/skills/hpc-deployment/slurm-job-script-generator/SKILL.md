@@ -1,15 +1,6 @@
 ---
 name: slurm-job-script-generator
-description: >
-  Generate correct, copy-pasteable SLURM sbatch job scripts and sanity-check
-  HPC resource requests — configure nodes, MPI tasks, OpenMP threads, memory
-  (per-node or per-cpu), GPUs, walltime, partitions, modules, and environment
-  variables, with automatic detection of conflicting directives and
-  oversubscription. Use when preparing a SLURM submission script, deciding
-  between pure MPI and hybrid MPI+OpenMP layouts, standardizing #SBATCH
-  directives across a team, debugging why a job won't launch or gets killed,
-  or setting up GPU-accelerated simulation jobs, even if the user only says
-  "I need to run this on the cluster" or "my job keeps getting killed."
+description: "Generate correct, copy-pasteable SLURM sbatch job scripts and sanity-check HPC resource requests — configure nodes, MPI tasks, OpenMP threads, memory (per-node or per-cpu), GPUs, walltime, partitions, modules, and environment variables, with automatic detection of conflicting directives and oversubscription. Use when preparing a SLURM submission script, deciding between pure MPI and hybrid MPI+OpenMP layouts, standardizing #SBATCH directives across a team, debugging why a job won't launch or gets killed, or setting up GPU-accelerated simulation jobs, even if the user only says \"I need to run this on the cluster\" or \"my job keeps getting killed.\""
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

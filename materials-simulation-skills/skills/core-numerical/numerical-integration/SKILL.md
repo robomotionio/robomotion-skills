@@ -1,16 +1,6 @@
 ---
 name: numerical-integration
-description: >
-  Select and configure time integration methods for ODE and PDE simulations —
-  choose among explicit Runge-Kutta, BDF, Rosenbrock, and Adams families,
-  set relative and absolute error tolerances, implement adaptive step-size
-  control with I/PI/PID controllers, plan IMEX operator splitting for mixed
-  stiff and non-stiff terms, and estimate splitting errors. Use when picking
-  an integrator for a new simulation, diagnosing step rejections or tolerance
-  failures, setting up operator splitting for phase-field or reaction-diffusion
-  problems, or deciding between explicit and implicit time marching, even if
-  the user only says "my solver keeps rejecting steps" or "which ODE method
-  should I use."
+description: "Select and configure time integration methods for ODE and PDE simulations — choose among explicit Runge-Kutta, BDF, Rosenbrock, and Adams families, set relative and absolute error tolerances, implement adaptive step-size control with I/PI/PID controllers, plan IMEX operator splitting for mixed stiff and non-stiff terms, and estimate splitting errors. Use when picking an integrator for a new simulation, diagnosing step rejections or tolerance failures, setting up operator splitting for phase-field or reaction-diffusion problems, or deciding between explicit and implicit time marching, even if the user only says \"my solver keeps rejecting steps\" or \"which ODE method should I use.\""
 allowed-tools: Read, Write, Grep, Glob
 metadata:
   author: HeshamFS

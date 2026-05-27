@@ -1,14 +1,6 @@
 ---
 name: time-stepping
-description: >
-  Plan and control time-step policies for transient simulations — couple
-  CFL and physics-based stability limits with adaptive stepping, ramp initial
-  transients through sharp gradients or phase changes, schedule output intervals
-  and checkpoint cadence, and plan restart strategies for long-running jobs.
-  Use when choosing dt for a new simulation, diagnosing adaptive time-step
-  oscillations, deciding checkpoint frequency to minimize lost work, or
-  setting up output schedules aligned with physical time scales, even if
-  the user only says "my run is too slow" or "how often should I save."
+description: "Plan and control time-step policies for transient simulations — couple CFL and physics-based stability limits with adaptive stepping, ramp initial transients through sharp gradients or phase changes, schedule output intervals and checkpoint cadence, and plan restart strategies for long-running jobs. Use when choosing dt for a new simulation, diagnosing adaptive time-step oscillations, deciding checkpoint frequency to minimize lost work, or setting up output schedules aligned with physical time scales, even if the user only says \"my run is too slow\" or \"how often should I save.\""
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

@@ -1,11 +1,6 @@
 ---
 name: hpc-runtime-doctor
-description: >
-  Diagnose HPC runtime and scheduler problems for materials simulations,
-  including MPI/OpenMP/GPU layout, modules, CUDA/Kokkos hints, scratch paths,
-  walltime, job arrays, restart strategy, scheduler portability, and resource
-  mismatch. Use when jobs fail, run slowly, get killed, or behave differently
-  on a cluster than on a workstation.
+description: "Diagnose HPC runtime and scheduler problems for materials simulations, including MPI/OpenMP/GPU layout, modules, CUDA/Kokkos hints, scratch paths, walltime, job arrays, restart strategy, scheduler portability, and resource mismatch. Use when jobs fail, run slowly, get killed, or behave differently on a cluster than on a workstation."
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

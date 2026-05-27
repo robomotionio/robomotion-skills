@@ -1,14 +1,6 @@
 ---
 name: convergence-study
-description: >
-  Perform spatial and temporal convergence analysis for solution verification —
-  compute observed convergence orders from grid or timestep refinement studies,
-  apply Richardson extrapolation to estimate discretization error, and calculate
-  the Grid Convergence Index (GCI) per ASME V&V 20 standards. Use when verifying
-  that a numerical solution converges at the expected rate, estimating the
-  error on the finest mesh, checking whether grids are in the asymptotic range,
-  or preparing formal verification reports, even if the user only asks "is my
-  mesh fine enough" or "how accurate is my solution."
+description: "Perform spatial and temporal convergence analysis for solution verification — compute observed convergence orders from grid or timestep refinement studies, apply Richardson extrapolation to estimate discretization error, and calculate the Grid Convergence Index (GCI) per ASME V&V 20 standards. Use when verifying that a numerical solution converges at the expected rate, estimating the error on the finest mesh, checking whether grids are in the asymptotic range, or preparing formal verification reports, even if the user only asks \"is my mesh fine enough\" or \"how accurate is my solution.\""
 allowed-tools:
   - Bash
   - Read

@@ -1,16 +1,6 @@
 ---
 name: parameter-optimization
-description: >
-  Explore and optimize simulation parameters via design of experiments (DOE),
-  sensitivity analysis, and optimizer selection — generate Latin Hypercube,
-  quasi-random, or factorial sample plans, rank parameter influence with
-  sensitivity scores, recommend Bayesian optimization, CMA-ES, or gradient-
-  based methods based on dimension and budget, and fit surrogate models for
-  expensive evaluations. Use when calibrating material properties against
-  experimental data, planning a parameter sweep, performing uncertainty
-  quantification, or choosing an optimization strategy for a simulation
-  with a limited evaluation budget, even if the user only says "which
-  parameters matter most" or "how do I calibrate my model."
+description: "Explore and optimize simulation parameters via design of experiments (DOE), sensitivity analysis, and optimizer selection — generate Latin Hypercube, quasi-random, or factorial sample plans, rank parameter influence with sensitivity scores, recommend Bayesian optimization, CMA-ES, or gradient- based methods based on dimension and budget, and fit surrogate models for expensive evaluations. Use when calibrating material properties against experimental data, planning a parameter sweep, performing uncertainty quantification, or choosing an optimization strategy for a simulation with a limited evaluation budget, even if the user only says \"which parameters matter most\" or \"how do I calibrate my model.\""
 allowed-tools: Read, Write, Grep, Glob
 metadata:
   author: HeshamFS

@@ -1,17 +1,6 @@
 ---
 name: post-processing
-description: >
-  Extract, analyze, and summarize simulation output data — pull spatial fields
-  at specific timesteps, compute time-series trends and detect steady state,
-  extract line profiles through the domain, generate statistical summaries
-  and distributions, calculate derived quantities (gradients, fluxes, volume
-  fractions, interface area), compare results against analytical solutions or
-  experimental data, and produce automated analysis reports. Use when
-  interpreting finished simulation results, checking mass or energy
-  conservation, comparing two runs or meshes, extracting interface profiles
-  from phase-field output, or preparing publication-quality analysis, even
-  if the user only says "what do my results look like" or "did my simulation
-  reach steady state."
+description: "Extract, analyze, and summarize simulation output data — pull spatial fields at specific timesteps, compute time-series trends and detect steady state, extract line profiles through the domain, generate statistical summaries and distributions, calculate derived quantities (gradients, fluxes, volume fractions, interface area), compare results against analytical solutions or experimental data, and produce automated analysis reports. Use when interpreting finished simulation results, checking mass or energy conservation, comparing two runs or meshes, extracting interface profiles from phase-field output, or preparing publication-quality analysis, even if the user only says \"what do my results look like\" or \"did my simulation reach steady state.\""
 allowed-tools: Read, Write, Grep, Glob
 metadata:
   author: HeshamFS

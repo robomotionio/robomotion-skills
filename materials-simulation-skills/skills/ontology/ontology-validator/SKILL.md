@@ -1,16 +1,6 @@
 ---
 name: ontology-validator
-description: >
-  Validate material sample annotations against ontology constraints — check
-  that class names and property names exist in the ontology, verify domain
-  and range consistency for object property relationships, assess annotation
-  completeness (required, recommended, and optional properties), and flag
-  unknown or misspelled terms. Use when verifying that CMSO or other
-  ontology annotations are correct before publishing, checking whether all
-  required properties are present for a class like Crystal Structure or
-  Unit Cell, auditing relationship triples between instances, or catching
-  annotation errors early in a FAIR data workflow, even if the user only
-  says "is my annotation correct" or "what am I missing."
+description: "Validate material sample annotations against ontology constraints — check that class names and property names exist in the ontology, verify domain and range consistency for object property relationships, assess annotation completeness (required, recommended, and optional properties), and flag unknown or misspelled terms. Use when verifying that CMSO or other ontology annotations are correct before publishing, checking whether all required properties are present for a class like Crystal Structure or Unit Cell, auditing relationship triples between instances, or catching annotation errors early in a FAIR data workflow, even if the user only says \"is my annotation correct\" or \"what am I missing.\""
 allowed-tools: Read, Bash
 metadata:
   author: HeshamFS

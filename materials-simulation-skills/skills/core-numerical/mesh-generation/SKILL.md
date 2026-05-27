@@ -1,15 +1,6 @@
 ---
 name: mesh-generation
-description: >
-  Plan and evaluate mesh generation for numerical simulations — estimate grid
-  resolution from physics scales (interface width, boundary layers, wavelengths),
-  check aspect ratios and skewness against quality thresholds, choose between
-  structured, unstructured, and adaptive mesh refinement strategies, and compute
-  grid sizing for 1D/2D/3D domains. Use when setting up a new mesh, diagnosing
-  poor solver convergence caused by mesh quality, deciding how many points to
-  place across a phase-field interface or boundary layer, or preparing a mesh
-  convergence study, even if the user only asks "what resolution do I need"
-  or "why is my solver failing."
+description: "Plan and evaluate mesh generation for numerical simulations — estimate grid resolution from physics scales (interface width, boundary layers, wavelengths), check aspect ratios and skewness against quality thresholds, choose between structured, unstructured, and adaptive mesh refinement strategies, and compute grid sizing for 1D/2D/3D domains. Use when setting up a new mesh, diagnosing poor solver convergence caused by mesh quality, deciding how many points to place across a phase-field interface or boundary layer, or preparing a mesh convergence study, even if the user only asks \"what resolution do I need\" or \"why is my solver failing.\""
 allowed-tools: Read, Write, Grep, Glob
 metadata:
   author: HeshamFS

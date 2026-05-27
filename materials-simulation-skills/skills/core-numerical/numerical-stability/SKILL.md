@@ -1,13 +1,6 @@
 ---
 name: numerical-stability
-description: >
-  Analyze numerical stability for time-dependent PDE simulations — check CFL
-  and Fourier criteria, perform von Neumann stability analysis, detect stiffness,
-  evaluate matrix conditioning, and recommend explicit vs implicit time-stepping
-  schemes. Use when selecting time steps, diagnosing numerical blow-up or solver
-  divergence, checking convergence criteria, or evaluating scheme stability for
-  advection, diffusion, or reaction problems, even if the user doesn't explicitly
-  mention "stability" or "CFL."
+description: "Analyze numerical stability for time-dependent PDE simulations — check CFL and Fourier criteria, perform von Neumann stability analysis, detect stiffness, evaluate matrix conditioning, and recommend explicit vs implicit time-stepping schemes. Use when selecting time steps, diagnosing numerical blow-up or solver divergence, checking convergence criteria, or evaluating scheme stability for advection, diffusion, or reaction problems, even if the user doesn't explicitly mention \"stability\" or \"CFL.\""
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

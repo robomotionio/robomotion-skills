@@ -1,10 +1,6 @@
 ---
 name: workflow-engine-mapper
-description: >
-  Map computational materials tasks onto workflow engines such as atomate2,
-  jobflow, AiiDA, pyiron, or a simple one-off script. Use when deciding how to
-  structure a reproducible campaign, DAG, restart strategy, provenance record,
-  storage layout, or migration path from ad hoc scripts to managed workflows.
+description: "Map computational materials tasks onto workflow engines such as atomate2, jobflow, AiiDA, pyiron, or a simple one-off script. Use when deciding how to structure a reproducible campaign, DAG, restart strategy, provenance record, storage layout, or migration path from ad hoc scripts to managed workflows."
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

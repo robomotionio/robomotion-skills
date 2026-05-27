@@ -1,16 +1,6 @@
 ---
 name: simulation-validator
-description: >
-  Validate simulations across three stages — run pre-flight checks on
-  configuration files (parameter ranges, required fields, disk space),
-  monitor runtime logs for residual growth, NaN/Inf, and adaptive dt
-  collapse, and perform post-flight validation of results (physical bounds,
-  mass/energy conservation, convergence). Diagnose failed simulations with
-  probable-cause analysis and recommended fixes. Use when preparing to
-  launch a simulation, checking whether a running job is healthy, verifying
-  that finished results are trustworthy, or debugging a crash or blow-up,
-  even if the user only says "my simulation crashed" or "can I trust
-  these results."
+description: "Validate simulations across three stages — run pre-flight checks on configuration files (parameter ranges, required fields, disk space), monitor runtime logs for residual growth, NaN/Inf, and adaptive dt collapse, and perform post-flight validation of results (physical bounds, mass/energy conservation, convergence). Diagnose failed simulations with probable-cause analysis and recommended fixes. Use when preparing to launch a simulation, checking whether a running job is healthy, verifying that finished results are trustworthy, or debugging a crash or blow-up, even if the user only says \"my simulation crashed\" or \"can I trust these results.\""
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

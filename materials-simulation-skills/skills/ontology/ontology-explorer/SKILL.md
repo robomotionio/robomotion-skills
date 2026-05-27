@@ -1,16 +1,6 @@
 ---
 name: ontology-explorer
-description: >
-  Parse, navigate, and query materials science ontology structures — browse
-  class hierarchies, inspect individual classes and their properties, look up
-  object and data property definitions with domain/range, search for ontology
-  terms by keyword, and parse or summarize raw OWL/XML files. Supports the
-  OCDO ecosystem (CMSO, ASMO, CDCO, PODO, PLDO, LDO). Use when exploring
-  what classes or properties an ontology provides, finding the right CMSO
-  term for a crystal structure or simulation concept, understanding
-  parent-child class relationships, or onboarding to an unfamiliar materials
-  ontology, even if the user only says "what ontology terms describe my
-  FCC copper simulation" or "show me the CMSO class hierarchy."
+description: "Parse, navigate, and query materials science ontology structures — browse class hierarchies, inspect individual classes and their properties, look up object and data property definitions with domain/range, search for ontology terms by keyword, and parse or summarize raw OWL/XML files. Supports the OCDO ecosystem (CMSO, ASMO, CDCO, PODO, PLDO, LDO). Use when exploring what classes or properties an ontology provides, finding the right CMSO term for a crystal structure or simulation concept, understanding parent-child class relationships, or onboarding to an unfamiliar materials ontology, even if the user only says \"what ontology terms describe my FCC copper simulation\" or \"show me the CMSO class hierarchy.\""
 allowed-tools: Read, Bash
 metadata:
   author: HeshamFS

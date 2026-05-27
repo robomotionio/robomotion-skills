@@ -1,16 +1,6 @@
 ---
 name: performance-profiling
-description: >
-  Identify computational bottlenecks, analyze parallel scaling, estimate memory
-  requirements, and generate optimization recommendations for materials
-  simulations — parse timing logs to find dominant phases (solver, assembly,
-  I/O), evaluate strong and weak scaling efficiency, profile memory from mesh
-  and field parameters, and detect bottlenecks with actionable fix suggestions.
-  Use when a simulation is running slower than expected, investigating MPI
-  scaling efficiency, planning HPC resource allocation, deciding whether to
-  tune the preconditioner or reduce I/O frequency, or estimating if a problem
-  fits in available RAM, even if the user only says "my simulation is too
-  slow" or "how many nodes do I need."
+description: "Identify computational bottlenecks, analyze parallel scaling, estimate memory requirements, and generate optimization recommendations for materials simulations — parse timing logs to find dominant phases (solver, assembly, I/O), evaluate strong and weak scaling efficiency, profile memory from mesh and field parameters, and detect bottlenecks with actionable fix suggestions. Use when a simulation is running slower than expected, investigating MPI scaling efficiency, planning HPC resource allocation, deciding whether to tune the preconditioner or reduce I/O frequency, or estimating if a problem fits in available RAM, even if the user only says \"my simulation is too slow\" or \"how many nodes do I need.\""
 allowed-tools: Read, Write, Grep, Glob
 metadata:
   author: HeshamFS

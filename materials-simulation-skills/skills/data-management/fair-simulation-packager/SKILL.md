@@ -1,11 +1,6 @@
 ---
 name: fair-simulation-packager
-description: >
-  Create FAIR-minded reproducibility bundles for materials simulations by
-  collecting input/output file inventories, hashes, units, engine versions,
-  structure identifiers, provenance, and NOMAD/OPTIMADE/Materials Project
-  friendly metadata. Use before publishing, sharing, archiving, or handing
-  simulation results to another agent.
+description: "Create FAIR-minded reproducibility bundles for materials simulations by collecting input/output file inventories, hashes, units, engine versions, structure identifiers, provenance, and NOMAD/OPTIMADE/Materials Project friendly metadata. Use before publishing, sharing, archiving, or handing simulation results to another agent."
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

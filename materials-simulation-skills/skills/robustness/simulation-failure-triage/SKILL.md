@@ -1,11 +1,6 @@
 ---
 name: simulation-failure-triage
-description: >
-  Triage cross-code simulation failures and propose safe retry ladders for
-  nonconvergence, NaN/Inf, exploding energies, unstable timesteps, pressure
-  blow-up, missing potentials, bad pseudopotentials, corrupted output, and
-  incomplete runs. Use when an agent sees a failed or suspicious materials
-  simulation and needs a defensible first response.
+description: "Triage cross-code simulation failures and propose safe retry ladders for nonconvergence, NaN/Inf, exploding energies, unstable timesteps, pressure blow-up, missing potentials, bad pseudopotentials, corrupted output, and incomplete runs. Use when an agent sees a failed or suspicious materials simulation and needs a defensible first response."
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

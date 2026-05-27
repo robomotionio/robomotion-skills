@@ -1,11 +1,6 @@
 ---
 name: benchmark-and-mms-planner
-description: >
-  Plan verification and validation campaigns for simulation codes using
-  manufactured solutions, canonical benchmark problems, grid/time refinement,
-  uncertainty propagation, and pass/fail acceptance criteria. Use when an
-  agent needs to prove a solver, model, or result is trustworthy rather than
-  only plausible.
+description: "Plan verification and validation campaigns for simulation codes using manufactured solutions, canonical benchmark problems, grid/time refinement, uncertainty propagation, and pass/fail acceptance criteria. Use when an agent needs to prove a solver, model, or result is trustworthy rather than only plausible."
 allowed-tools: Read, Bash, Write, Grep, Glob
 metadata:
   author: HeshamFS

@@ -1,16 +1,6 @@
 ---
 name: simulation-orchestrator
-description: >
-  Orchestrate multi-simulation campaigns — generate parameter sweep
-  configurations (grid, linspace, or Latin Hypercube sampling), initialize
-  and track batch job campaigns, monitor job completion status, and aggregate
-  results with summary statistics across all runs. Use when running a
-  parameter study across dt, kappa, or other simulation inputs, managing
-  dozens or hundreds of simulation configurations, combining outputs from
-  completed batch runs to find the best result, or automating the
-  generate-run-collect workflow for systematic studies, even if the user
-  only says "I need to try many parameter combinations" or "how do I
-  organize a sweep."
+description: "Orchestrate multi-simulation campaigns — generate parameter sweep configurations (grid, linspace, or Latin Hypercube sampling), initialize and track batch job campaigns, monitor job completion status, and aggregate results with summary statistics across all runs. Use when running a parameter study across dt, kappa, or other simulation inputs, managing dozens or hundreds of simulation configurations, combining outputs from completed batch runs to find the best result, or automating the generate-run-collect workflow for systematic studies, even if the user only says \"I need to try many parameter combinations\" or \"how do I organize a sweep.\""
 allowed-tools: Read, Write, Grep, Glob
 metadata:
   author: HeshamFS

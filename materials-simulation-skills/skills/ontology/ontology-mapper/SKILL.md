@@ -1,17 +1,6 @@
 ---
 name: ontology-mapper
-description: >
-  Map materials science terms, crystal structures, and sample descriptions to
-  standardized ontology classes and properties — resolve natural-language
-  concepts to ontology entries with confidence scores, translate Bravais
-  lattice types, space groups, and lattice constants into ontology-compliant
-  annotations, and produce full sample metadata from structured descriptions.
-  Supports any ontology in ontology_registry.json (CMSO, ASMO, etc.). Use
-  when annotating simulation inputs with FAIR metadata, translating "BCC
-  iron" or "FCC copper" into formal ontology terms, preparing machine-
-  readable sample descriptions, or bridging between lab vocabulary and
-  ontology vocabulary, even if the user only says "what CMSO terms describe
-  my material" or "annotate this sample for me."
+description: "Map materials science terms, crystal structures, and sample descriptions to standardized ontology classes and properties — resolve natural-language concepts to ontology entries with confidence scores, translate Bravais lattice types, space groups, and lattice constants into ontology-compliant annotations, and produce full sample metadata from structured descriptions. Supports any ontology in ontology_registry.json (CMSO, ASMO, etc.). Use when annotating simulation inputs with FAIR metadata, translating \"BCC iron\" or \"FCC copper\" into formal ontology terms, preparing machine- readable sample descriptions, or bridging between lab vocabulary and ontology vocabulary, even if the user only says \"what CMSO terms describe my material\" or \"annotate this sample for me.\""
 allowed-tools: Read, Grep, Glob
 metadata:
   author: HeshamFS
