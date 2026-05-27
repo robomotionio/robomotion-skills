@@ -1,0 +1,10 @@
+schema_version: 1
+name: swift-patterns-skill
+title: 'Swift Patterns Skill'
+type: group
+version: 0.1.0
+author: 'efremidze'
+source_url: https://github.com/efremidze/swift-patterns-skill
+license: MIT
+summary: 'Modern Swift/SwiftUI best practices'
+tags: [development, testing, ios, design]
