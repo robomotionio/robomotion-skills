@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unslop"
+dynamic = ["version"]
+description = "Humanize markdown and text files — strip AI-isms while preserving code, URLs, headings, and technical content."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Unslop maintainers" }]
+keywords = ["unslop", "llm", "markdown", "ai-detection", "de-slop", "prose"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Text Processing :: Markup :: Markdown",
+  "Topic :: Software Development :: Documentation",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+llm = ["anthropic>=0.34"]
+surprisal = ["torch", "transformers", "scipy"]
+dev = ["pytest>=9", "pytest-cov>=7", "ruff>=0.15", "mypy>=1.20"]
+
+[project.urls]
+Homepage = "https://github.com/MohamedAbdallah-14/unslop"
+Issues = "https://github.com/MohamedAbdallah-14/unslop/issues"
+Source = "https://github.com/MohamedAbdallah-14/unslop"
+Changelog = "https://github.com/MohamedAbdallah-14/unslop/blob/main/CHANGELOG.md"
+
+[project.scripts]
+unslop = "scripts.cli:main"
+
+[tool.setuptools]
+py-modules = []
+
+[tool.setuptools.dynamic]
+version = { attr = "scripts.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*"]
+
+[tool.setuptools.package-data]
+scripts = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+check_untyped_defs = true
+files = ["scripts"]
+
+[[tool.mypy.overrides]]
+module = [
+  "anthropic",
+  "torch",
+  "torch.nn",
+  "torch.nn.functional",
+  "transformers",
+  "huggingface_hub",
+  "safetensors",
+  "safetensors.torch",
+]
+ignore_missing_imports = true
