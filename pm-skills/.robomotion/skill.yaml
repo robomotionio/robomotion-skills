@@ -1,0 +1,10 @@
+schema_version: 1
+name: pm-skills
+title: 'Pm Skills'
+type: group
+version: 0.1.0
+author: 'phuryn'
+source_url: https://github.com/phuryn/pm-skills
+license: MIT
+summary: '65 skills — Analyze A/B test results with statistical significance and recommendations'
+tags: []
