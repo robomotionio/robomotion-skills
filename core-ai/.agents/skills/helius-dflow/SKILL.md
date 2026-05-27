@@ -3,13 +3,7 @@
 ---
 name: helius-dflow
 version: "1.1.1"
-description: >
-  Build Solana trading applications combining DFlow trading APIs with Helius
-  infrastructure. Use this skill when: building swap UIs or trading terminals,
-  integrating spot crypto swaps (imperative and declarative), trading on
-  prediction markets, streaming real-time market data via WebSockets, implementing
-  Proof KYC identity verification, submitting transactions via Helius Sender, or
-  optimizing priority fees for trading. Requires helius-mcp MCP server.
+description: "Build Solana trading applications combining DFlow trading APIs with Helius infrastructure. Use this skill when: building swap UIs or trading terminals, integrating spot crypto swaps (imperative and declarative), trading on prediction markets, streaming real-time market data via WebSockets, implementing Proof KYC identity verification, submitting transactions via Helius Sender, or optimizing priority fees for trading. Requires helius-mcp MCP server."
 ---
 
 # Helius x DFlow — Build Trading Apps on Solana

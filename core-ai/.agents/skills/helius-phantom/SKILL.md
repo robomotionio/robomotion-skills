@@ -3,13 +3,7 @@
 ---
 name: helius-phantom
 version: "1.0.1"
-description: >
-  Build frontend Solana applications with Phantom Connect SDK and Helius
-  infrastructure. Use this skill when: connecting Phantom wallet in React,
-  React Native, or vanilla JS apps, signing and submitting transactions via
-  Helius Sender, building token-gated content, minting NFTs, accepting crypto
-  payments, displaying portfolio data, streaming real-time updates, or setting
-  up secure API key proxying. Requires helius-mcp MCP server.
+description: "Build frontend Solana applications with Phantom Connect SDK and Helius infrastructure. Use this skill when: connecting Phantom wallet in React, React Native, or vanilla JS apps, signing and submitting transactions via Helius Sender, building token-gated content, minting NFTs, accepting crypto payments, displaying portfolio data, streaming real-time updates, or setting up secure API key proxying. Requires helius-mcp MCP server."
 ---
 
 # Helius x Phantom — Build Frontend Solana Apps

@@ -3,14 +3,7 @@
 ---
 name: svm
 version: "1.0.0"
-description: >
-  Explore Solana's architecture and protocol internals. Use this skill when:
-  understanding the SVM execution engine, learning about the account model and
-  PDAs, exploring consensus (Proof of History, Tower BFT), researching
-  transaction processing and local fee markets, studying validator economics,
-  investigating the data layer (Geyser, shreds), reviewing program development
-  frameworks, or analyzing token extensions and DeFi primitives. Requires
-  helius-mcp MCP server for knowledge tools.
+description: "Explore Solana's architecture and protocol internals. Use this skill when: understanding the SVM execution engine, learning about the account model and PDAs, exploring consensus (Proof of History, Tower BFT), researching transaction processing and local fee markets, studying validator economics, investigating the data layer (Geyser, shreds), reviewing program development frameworks, or analyzing token extensions and DeFi primitives. Requires helius-mcp MCP server for knowledge tools."
 ---
 
 # SVM — Understand Solana's Architecture

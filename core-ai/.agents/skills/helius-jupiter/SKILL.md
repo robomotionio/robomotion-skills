@@ -3,13 +3,7 @@
 ---
 name: helius-jupiter
 version: "1.0.1"
-description: >
-  Build Solana DeFi applications combining Jupiter APIs with Helius
-  infrastructure. Use this skill when: building token swap UIs or trading terminals,
-  integrating lending/borrowing via Jupiter Lend, setting up limit orders or DCA,
-  querying token prices and metadata, checking token safety via Token Shield,
-  embedding a drop-in swap widget, submitting transactions via Helius Sender, or
-  optimizing priority fees for DeFi operations. Requires helius-mcp MCP server.
+description: "Build Solana DeFi applications combining Jupiter APIs with Helius infrastructure. Use this skill when: building token swap UIs or trading terminals, integrating lending/borrowing via Jupiter Lend, setting up limit orders or DCA, querying token prices and metadata, checking token safety via Token Shield, embedding a drop-in swap widget, submitting transactions via Helius Sender, or optimizing priority fees for DeFi operations. Requires helius-mcp MCP server."
 ---
 
 # Helius x Jupiter — Build DeFi Apps on Solana

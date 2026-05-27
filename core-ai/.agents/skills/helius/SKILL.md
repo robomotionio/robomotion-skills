@@ -3,12 +3,7 @@
 ---
 name: helius
 version: "1.1.1"
-description: >
-  Build Solana applications with Helius infrastructure. Use this skill when:
-  sending transactions (SOL, SPL tokens, swaps), querying assets/NFTs (DAS API),
-  streaming real-time data (WebSockets, Laserstream), setting up webhooks for
-  event notifications, analyzing wallets (balances, history, identity), or
-  managing Helius API keys and plans. Requires helius-mcp MCP server.
+description: "Build Solana applications with Helius infrastructure. Use this skill when: sending transactions (SOL, SPL tokens, swaps), querying assets/NFTs (DAS API), streaming real-time data (WebSockets, Laserstream), setting up webhooks for event notifications, analyzing wallets (balances, history, identity), or managing Helius API keys and plans. Requires helius-mcp MCP server."
 ---
 
 # Helius — Build on Solana

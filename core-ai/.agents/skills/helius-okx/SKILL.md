@@ -3,14 +3,7 @@
 ---
 name: helius-okx
 version: "1.0.1"
-description: >
-  Build Solana trading and intelligence applications combining OKX DEX aggregation
-  with Helius infrastructure. Use this skill when: executing swaps via OKX's 500+
-  liquidity source aggregator, discovering trending tokens, tracking smart money
-  signals, analyzing meme tokens (pump.fun scanning, dev reputation, bundle
-  detection), fetching market data and charts, submitting transactions via Helius
-  Sender, or building trading bots with LaserStream signals. Requires helius-mcp
-  MCP server and onchainos CLI.
+description: "Build Solana trading and intelligence applications combining OKX DEX aggregation with Helius infrastructure. Use this skill when: executing swaps via OKX's 500+ liquidity source aggregator, discovering trending tokens, tracking smart money signals, analyzing meme tokens (pump.fun scanning, dev reputation, bundle detection), fetching market data and charts, submitting transactions via Helius Sender, or building trading bots with LaserStream signals. Requires helius-mcp MCP server and onchainos CLI."
 ---
 
 # Helius x OKX — Build Trading & Intelligence Apps on Solana
