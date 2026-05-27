@@ -1,0 +1,109 @@
+name: v2 audit
+
+# Local-only by design: this workflow is wired up so the v2.0.0 audit
+# pass is ready to fire the moment we authorize a push, but it never
+# runs on a push or pull_request event. The two triggers are:
+#
+#   - workflow_dispatch (manual button in the Actions UI)
+#   - workflow_call    (so future workflows can chain it in)
+#
+# Until the v2 branch is pushed, this file lives on the branch but
+# GitHub never schedules it. After we push, the maintainer triggers it
+# manually from the Actions tab to gate the v2.0.0 tag.
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Why this audit run is happening (free text, goes to summary)"
+        required: false
+        default: "manual v2 audit"
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  manifest:
+    name: Manifest consistency (13 assertions)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+
+      - name: Install pytest + test deps
+        run: pip install pytest beautifulsoup4
+
+      - name: Run manifest consistency tests
+        run: pytest tests/test_manifest_consistency.py -v
+
+  security:
+    name: SSRF + DNS rebinding suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+
+      - name: Install runtime + test deps
+        run: |
+          pip install pytest
+          pip install -r requirements.txt
+
+      - name: Run url_safety regression battery
+        run: pytest tests/test_url_safety.py -v
+
+      - name: Confirm syntactic integrity of safety + renderer modules
+        run: |
+          python3 -m py_compile scripts/url_safety.py
+          python3 -m py_compile scripts/render_page.py
+          python3 -m py_compile scripts/fetch_page.py
+          python3 -m py_compile scripts/capture_screenshot.py
+          python3 -m py_compile scripts/google_auth.py
+          python3 -m py_compile scripts/backlinks_auth.py
+
+  full_pytest:
+    name: Full pytest suite
+    runs-on: ubuntu-latest
+    env:
+      # sync_flow tests need an authenticated gh CLI to bypass the
+      # 60/hr anonymous rate limit. Identical to ci.yml.
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+
+      - name: Install pytest + test deps
+        run: |
+          pip install pytest beautifulsoup4
+          pip install -r requirements.txt || true
+
+      - name: Run pytest
+        run: pytest tests/ -v
+
+  audit_summary:
+    name: Audit summary
+    runs-on: ubuntu-latest
+    needs: [manifest, security, full_pytest]
+    if: always()
+    steps:
+      - name: Emit summary
+        run: |
+          echo "## v2 audit summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Reason: ${{ inputs.reason }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Manifest: ${{ needs.manifest.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Security: ${{ needs.security.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Full pytest: ${{ needs.full_pytest.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All three must report 'success' before tagging v2.0.0." >> $GITHUB_STEP_SUMMARY
