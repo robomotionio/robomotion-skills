@@ -1,0 +1,34 @@
+name: Validate Plugin
+
+on:
+    pull_request:
+        paths:
+            - ".agents/plugins/**"
+            - ".claude-plugin/**"
+            - ".codex-plugin/**"
+            - ".cursor-plugin/**"
+            - ".github/plugin/**"
+            - "gemini-extension.json"
+            - "skills/**"
+            - "hooks/**"
+            - "AGENTS.md"
+            - "CLAUDE.md"
+            - "GEMINI.md"
+            - ".github/copilot-instructions.md"
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+
+            - uses: actions/setup-node@v6
+
+            - name: Install Claude CLI
+              run: npm install -g @anthropic-ai/claude-code@latest
+
+            - name: Validate plugin
+              run: claude plugin validate .
+
+            - name: Validate versions in sync
+              run: bash scripts/validate-versions.sh

@@ -1,0 +1,37 @@
+{
+  "description": "Pre-load skill guidance when Honeydew MCP tools are called",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__.*__(get_data_from_fields|get_sql_from_fields|ask_deep_analysis_question)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/guide-query.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*__(create_object|update_object|create_entity|import_tables|create_context_item|update_context_item)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/guide-creation.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*__(list_entities|get_entity|get_field|search_model|list_databases|list_schemas|list_tables|get_table_info)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/guide-exploration.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

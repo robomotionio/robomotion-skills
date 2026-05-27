@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build release zip
+        run: bash scripts/build-release-claude.sh
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          ZIP_FILES=(dist/honeydew-ai-claude-*.zip)
+          if [[ ${#ZIP_FILES[@]} -ne 1 ]] || [[ ! -f "${ZIP_FILES[0]}" ]]; then
+            echo "error: expected exactly one zip in dist/" >&2
+            exit 1
+          fi
+          VERSIONED_ZIP="${ZIP_FILES[0]}"
+          FIXED_ZIP="dist/honeydew-ai-claude.zip"
+          cp "${VERSIONED_ZIP}" "${FIXED_ZIP}"
+          gh release create "${TAG}" "${VERSIONED_ZIP}" "${FIXED_ZIP}" \
+            --title "${TAG}" \
+            --generate-notes
