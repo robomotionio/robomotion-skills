@@ -1,15 +1,6 @@
 ---
 name: agent-platform-deploy
-description: >-
-  Deploy open models or custom weights from Model Garden to Agent Platform
-  endpoints, check deployment status, verify serving endpoints, or clean up
-  resources by undeploying models and deleting endpoints. Use when asked to
-  deploy models on Agent Platform, list available Model Garden models, check if
-  a model is deployable, query deployment cost, troubleshoot deployment errors
-  (like quota limits), or undeploy/clean up endpoints. Also use when copying
-  and deploying a 1P Tuned Model. Don't use for public Vertex AI deployments
-  (use the `vertex-deploy` skill) or for running model evaluations (use the
-  `agent-platform-eval` skill).
+description: "Deploy open models or custom weights from Model Garden to Agent Platform endpoints, check deployment status, verify serving endpoints, or clean up resources by undeploying models and deleting endpoints. Use when asked to deploy models on Agent Platform, list available Model Garden models, check if a model is deployable, query deployment cost, troubleshoot deployment errors (like quota limits), or undeploy/clean up endpoints. Also use when copying and deploying a 1P Tuned Model. Don't use for public Vertex AI deployments (use the `vertex-deploy` skill) or for running model evaluations (use the `agent-platform-eval` skill)."
 ---
 
 # Agent Platform Model Garden Deploy Skill

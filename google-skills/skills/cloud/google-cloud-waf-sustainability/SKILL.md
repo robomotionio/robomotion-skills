@@ -1,11 +1,6 @@
 ---
 name: google-cloud-waf-sustainability
-description: >-
-  Generates sustainability-focused guidance for Google Cloud workloads based on
-  the design principles and recommendations in the Google Cloud Well-Architected
-  Framework (WAF). Use this skill to evaluate a workload, identify environmental
-  impact requirements, and provide actionable recommendations to build, deploy,
-  and manage the workload sustainably in Google Cloud.
+description: "Generates sustainability-focused guidance for Google Cloud workloads based on the design principles and recommendations in the Google Cloud Well-Architected Framework (WAF). Use this skill to evaluate a workload, identify environmental impact requirements, and provide actionable recommendations to build, deploy, and manage the workload sustainably in Google Cloud."
 ---
 
 # Google Cloud Well-Architected Framework skill for the Sustainability pillar

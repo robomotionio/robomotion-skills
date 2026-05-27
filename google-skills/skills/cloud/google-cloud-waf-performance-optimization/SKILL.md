@@ -1,12 +1,6 @@
 ---
 name: google-cloud-waf-performance-optimization
-description: >-
-  Generates performance-focused guidance for Google Cloud workloads based on the
-  design principles and recommendations in the Performance Optimization pillar
-  of the Google Cloud Well-Architected Framework (WAF). Use this skill
-  to evaluate a workload, identify performance requirements, and provide
-  actionable recommendations for resource allocation, modular design, and
-  elasticity.
+description: "Generates performance-focused guidance for Google Cloud workloads based on the design principles and recommendations in the Performance Optimization pillar of the Google Cloud Well-Architected Framework (WAF). Use this skill to evaluate a workload, identify performance requirements, and provide actionable recommendations for resource allocation, modular design, and elasticity."
 ---
 
 # Google Cloud Well-Architected Framework skill for the Performance Optimization pillar

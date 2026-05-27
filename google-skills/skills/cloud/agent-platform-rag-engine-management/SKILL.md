@@ -1,11 +1,6 @@
 ---
 name: agent-platform-rag-engine-management
-description: >-
-  Manage and query Agent Platform RAG Engine Corpora and retrieve grounded
-  contexts using the Google GenAI SDK. Use when listing RAG corpora or files,
-  inspecting a corpus, retrieving contexts, or generating content grounded in a
-  RAG corpus. Do not use for standard database queries (use SQL/Spanner skills),
-  Google Workspace RAG, or other RAG products like gRAG.
+description: "Manage and query Agent Platform RAG Engine Corpora and retrieve grounded contexts using the Google GenAI SDK. Use when listing RAG corpora or files, inspecting a corpus, retrieving contexts, or generating content grounded in a RAG corpus. Do not use for standard database queries (use SQL/Spanner skills), Google Workspace RAG, or other RAG products like gRAG."
 ---
 
 # Agent Platform RAG Engine Management
