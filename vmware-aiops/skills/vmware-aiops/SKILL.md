@@ -1,11 +1,6 @@
 ---
 name: vmware-aiops
-description: >
-  Use this skill whenever the user needs to manage VMs in VMware/vSphere/ESXi — it's the entry point for all VM operations.
-  Directly handles: power on/off, clone, snapshot, migrate, deploy from OVA or templates, run commands inside VMs, batch operations, cluster management, and vCenter alarm acknowledgment.
-  Always use this skill for any "power on", "clone", "deploy", "migrate", "batch", "guest exec", "alarm", or VM lifecycle task when the context is explicitly VMware, vSphere, or ESXi.
-  Do NOT use for read-only queries (use vmware-monitor), NSX networking (use vmware-nsx), storage/iSCSI/vSAN (use vmware-storage), or Kubernetes cluster lifecycle (use vmware-vks).
-  For multi-step workflows use vmware-pilot. For load balancing/AVI/AKO use vmware-avi.
+description: "Use this skill whenever the user needs to manage VMs in VMware/vSphere/ESXi — it's the entry point for all VM operations. Directly handles: power on/off, clone, snapshot, migrate, deploy from OVA or templates, run commands inside VMs, batch operations, cluster management, and vCenter alarm acknowledgment. Always use this skill for any \"power on\", \"clone\", \"deploy\", \"migrate\", \"batch\", \"guest exec\", \"alarm\", or VM lifecycle task when the context is explicitly VMware, vSphere, or ESXi. Do NOT use for read-only queries (use vmware-monitor), NSX networking (use vmware-nsx), storage/iSCSI/vSAN (use vmware-storage), or Kubernetes cluster lifecycle (use vmware-vks). For multi-step workflows use vmware-pilot. For load balancing/AVI/AKO use vmware-avi."
 installer:
   kind: uv
   package: vmware-aiops
