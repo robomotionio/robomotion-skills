@@ -1,5 +1,893 @@
 schema_version: 1
 groups:
+- path: claude-seo
+  name: claude-seo
+  title: Claude SEO
+  type: group
+  version: 2.0.0
+  author: AgriciDaniel
+  source_url: https://github.com/AgriciDaniel/claude-seo
+  license: MIT
+  summary: Universal SEO analysis — 25 sub-skills (technical, content, schema, sitemap, images, AI search/GEO, local, maps,
+    hreflang, e-commerce, drift, backlinks) backed by 18 sub-agents and 30+ Python scripts for Google APIs, DataForSEO, Moz,
+    Bing, Common Crawl, and shared headless rendering.
+  tags:
+  - seo
+  - content
+  - schema
+  - sitemap
+  - local-seo
+  - maps
+  - backlinks
+  - geo
+  - e-commerce
+  - hreflang
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 2c65f77775f8
+  skills:
+  - name: seo
+    path: claude-seo/skills/seo
+    title: seo
+    summary: 'Comprehensive SEO analysis for any website or business type. Full site audits, single-page analysis, technical
+      SEO (crawlability, indexability, Core Web Vitals with INP), schema markup, content quality (E-E-A-T), image optimization,
+      sitemap analysis, and GEO for AI Overviews/ChatGPT/Perplexity. Industry detection for SaaS, e-commerce, local, publishers,
+      agencies. Triggers on: SEO, audit, schema, Core Web Vitals, sitemap, E-E-A-T, AI Overviews, GEO, technical SEO, content
+      quality, page speed, structured data.'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional:
+      - BING_WEBMASTER_API_KEY
+      - GA4_PROPERTY_ID
+      - GOOGLE_API_KEY
+      - GOOGLE_APPLICATION_CREDENTIALS
+      - GSC_PROPERTY
+      - MOZ_API_KEY
+    content_hash: 4c9952529a7b
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - env.optional
+    - references/backlink-quality.md
+    - references/cwv-thresholds.md
+    - references/eeat-framework.md
+    - references/free-backlink-sources.md
+    - references/local-schema-types.md
+    - references/local-seo-signals.md
+    - references/maps-api-endpoints.md
+    - references/maps-free-apis.md
+    - references/maps-gbp-checklist.md
+    - references/maps-geo-grid.md
+    - references/quality-gates.md
+    - references/schema-types.md
+    - references/thinking-framework.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo
+    license: MIT
+    group: claude-seo
+  - name: seo-audit
+    path: claude-seo/skills/seo-audit
+    title: seo-audit
+    summary: Full website SEO audit with parallel subagent delegation. Crawls up to 500 pages, detects business type, delegates
+      to up to 15 specialists (8 always + 7 conditional), generates health score. Use when user says audit, full SEO check,
+      analyze my site, or website health check.
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional:
+      - BING_WEBMASTER_API_KEY
+      - GA4_PROPERTY_ID
+      - GOOGLE_API_KEY
+      - GOOGLE_APPLICATION_CREDENTIALS
+      - GSC_PROPERTY
+      - MOZ_API_KEY
+    content_hash: cd5d14639939
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - env.optional
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-audit
+    license: MIT
+    group: claude-seo
+  - name: seo-backlinks
+    path: claude-seo/skills/seo-backlinks
+    title: seo-backlinks
+    summary: 'Backlink profile analysis: referring domains, anchor text distribution, toxic link detection, competitor gap
+      analysis. Works with free APIs (Moz, Bing Webmaster, Common Crawl) and DataForSEO extension. Use when user says backlinks,
+      link profile, referring domains, anchor text, toxic links, link gap, link building, disavow, or backlink audit.'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional:
+      - BING_WEBMASTER_API_KEY
+      - MOZ_API_KEY
+    content_hash: a5601f18848e
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - env.optional
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-backlinks
+    license: MIT
+    group: claude-seo
+  - name: seo-cluster
+    path: claude-seo/skills/seo-cluster
+    title: seo-cluster
+    summary: SERP-based semantic topic clustering for content architecture planning. Groups keywords by actual Google SERP
+      overlap (not text similarity), designs hub-and-spoke content clusters with internal link matrices, and generates interactive
+      visualizations. Optionally executes content creation if claude-blog is installed. Use when user says "topic cluster",
+      "content cluster", "semantic clustering", "pillar page", "hub and spoke", "content architecture", "keyword grouping",
+      or "cluster plan".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 27e09a371eca
+    files:
+    - SKILL.md
+    - references/execution-workflow.md
+    - references/hub-spoke-architecture.md
+    - references/serp-overlap-methodology.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-cluster
+    license: MIT
+    group: claude-seo
+  - name: seo-competitor-pages
+    path: claude-seo/skills/seo-competitor-pages
+    title: seo-competitor-pages
+    summary: Generate SEO-optimized competitor comparison and alternatives pages. Covers "X vs Y" layouts, "alternatives to
+      X" pages, feature matrices, schema markup, and conversion optimization. Use when user says "comparison page", "vs page",
+      "alternatives page", "competitor comparison", "X vs Y", "versus", "compare competitors", or "alternative to".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 793b54728c37
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-competitor-pages
+    license: MIT
+    group: claude-seo
+  - name: seo-content
+    path: claude-seo/skills/seo-content
+    title: seo-content
+    summary: Content quality and E-E-A-T analysis with AI citation readiness assessment. Use when user says "content quality",
+      "E-E-A-T", "content analysis", "readability check", "thin content", or "content audit".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3cf6ac9620ca
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-content
+    license: MIT
+    group: claude-seo
+  - name: seo-content-brief
+    path: claude-seo/skills/seo-content-brief
+    title: seo-content-brief
+    summary: Generate competitive SEO content briefs with per-section word counts, competitor scoring, keyword density guidance,
+      and page-type templates. Supports both new page briefs and improve-existing-page briefs. Use when user says "content
+      brief", "write a brief", "content outline", "blog brief", "service page brief", "brief for", "writing brief", "content
+      plan", or "outline for".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 73fee52dd401
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - references/excluded-domains.md
+    - references/keyword-density.md
+    - references/page-type-templates.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-content-brief
+    license: MIT
+    group: claude-seo
+  - name: seo-dataforseo
+    path: claude-seo/skills/seo-dataforseo
+    title: seo-dataforseo
+    summary: Live SEO data via DataForSEO MCP server. SERP analysis (Google, Bing, Yahoo, YouTube, Google Images), keyword
+      research (volume, difficulty, intent, trends), backlink profiles, on-page analysis (Lighthouse, content parsing), competitor
+      analysis, content analysis, business listings, AI visibility (ChatGPT scraper, LLM mention tracking), and domain analytics.
+      Requires DataForSEO extension installed. Use when user says "dataforseo", "live SERP", "keyword volume", "backlink data",
+      "competitor data", "AI visibility check", "LLM mentions", "image SERP", "google images", "image rankings", or "real
+      search data".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 40fc03ee245c
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - references/cost-tiers.md
+    - references/tool-catalog.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-dataforseo
+    license: MIT
+    group: claude-seo
+  - name: seo-drift
+    path: claude-seo/skills/seo-drift
+    title: seo-drift
+    summary: 'SEO drift monitoring: capture baselines of SEO-critical elements, detect changes, and track regressions over
+      time. Git for SEO — baseline, diff, and track changes to your on-page SEO. Use when user says "SEO drift", "baseline",
+      "track changes", "did anything break", "SEO regression", "compare SEO", "before and after", "monitor SEO changes", or
+      "deployment check".'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1d8ddb0f49eb
+    files:
+    - SKILL.md
+    - references/comparison-rules.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-drift
+    license: MIT
+    group: claude-seo
+  - name: seo-ecommerce
+    path: claude-seo/skills/seo-ecommerce
+    title: seo-ecommerce
+    summary: 'E-commerce SEO analysis: Google Shopping visibility, Amazon marketplace intelligence, product schema validation,
+      competitor pricing analysis, and marketplace keyword gaps. Combines on-page product SEO with marketplace data from DataForSEO
+      Merchant API. Use when user says "ecommerce SEO", "product SEO", "Google Shopping", "marketplace SEO", "product schema",
+      "Amazon SEO", "product listings", "shopping ads", or "merchant SEO".'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_PASSWORD
+      - DATAFORSEO_USERNAME
+    content_hash: 4fdb9c0692a5
+    files:
+    - SKILL.md
+    - env.optional
+    - references/marketplace-endpoints.md
+    - references/ucp-universal-commerce-protocol.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-ecommerce
+    license: MIT
+    group: claude-seo
+  - name: seo-flow
+    path: claude-seo/skills/seo-flow
+    title: seo-flow
+    summary: FLOW framework integration — evidence-led SEO using the Find → Leverage → Optimize → Win loop. Surfaces stage-specific
+      AI prompts from the FLOW knowledge base (41 prompts, CC BY 4.0). Use when user says "FLOW", "FLOW framework", "seo flow",
+      "evidence-led SEO", "find leverage optimize win", or wants stage-specific SEO prompts.
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2745b9265b70
+    files:
+    - SKILL.md
+    - references/bibliography.md
+    - references/flow-framework.md
+    - references/flow-prompts.lock
+    - references/prompts/README.md
+    - references/prompts/find/content-planning-for-topical-relevance-prompt.md
+    - references/prompts/find/content-prioritization-prompt.md
+    - references/prompts/find/keyword-research-prompt.md
+    - references/prompts/find/keyword-variations-for-topical-relevance-prompt.md
+    - references/prompts/find/prompt-audience-avatar.md
+    - references/prompts/leverage/backlink-competition-prompt.md
+    - references/prompts/local/ai-homepage-rewrite-prompt.md
+    - references/prompts/local/claude-deep-research-prompt.md
+    - references/prompts/local/gbp-categories-prompt.md
+    - references/prompts/local/gbp-description-claude-prompt-1.md
+    - references/prompts/local/gbp-description-claude-prompt-2.md
+    - references/prompts/local/gbp-description-claude-prompt-3.md
+    - references/prompts/local/gbp-services-prompt.md
+    - references/prompts/local/prompt-generating-a-meta-description.md
+    - references/prompts/local/prompt-generating-a-title-tag.md
+    - references/prompts/local/prompt-rewriting-existing-homepage.md
+    - references/prompts/local/prompt-rewriting-existing-service-page.md
+    - references/prompts/optimize/ai-detector-test-follow-up-prompt.md
+    - references/prompts/optimize/ai-supporting-pages-rewrite-prompt.md
+    - references/prompts/optimize/basic-prompt.md
+    - references/prompts/optimize/blog-post-outline-prompt.md
+    - references/prompts/optimize/blog-post-writing-prompt.md
+    - references/prompts/optimize/claude-prompt-1.md
+    - references/prompts/optimize/claude-prompt-2.md
+    - references/prompts/optimize/ctr-audit-prompt.md
+    - references/prompts/optimize/follow-up-prompt-1.md
+    - references/prompts/optimize/follow-up-prompt-2.md
+    - references/prompts/optimize/follow-up-prompt.md
+    - references/prompts/optimize/paa-question-rewording-prompt.md
+    - references/prompts/optimize/prompt-core-30-content-audit.md
+    - references/prompts/optimize/property-content-with-authority-audit-prompt.md
+    - references/prompts/optimize/reddit-claude-prompt.md
+    - references/prompts/optimize/schema-prompt-1.md
+    - references/prompts/optimize/step-1-the-chatgpt-discovery-prompt.md
+    - references/prompts/optimize/step-2-the-follow-up-qualifying-prompt.md
+    - references/prompts/optimize/technical-audit-prompt.md
+    - references/prompts/optimize/visibility-follow-up-prompt.md
+    - references/prompts/optimize/visiblity-prompt.md
+    - references/prompts/win/bofu-page-brief-generator.md
+    - references/prompts/win/conversion-audit-prompt.md
+    - references/prompts/win/dual-surface-content-scorecard.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-flow
+    license: MIT
+    group: claude-seo
+  - name: seo-geo
+    path: claude-seo/skills/seo-geo
+    title: seo-geo
+    summary: Optimize content for AI Overviews (formerly SGE), ChatGPT web search, Perplexity, and other AI-powered search
+      experiences. Generative Engine Optimization (GEO) analysis including brand mention signals, AI crawler accessibility,
+      llms.txt compliance, passage-level citability scoring, and platform-specific optimization. Use when user says "AI Overviews",
+      "SGE", "GEO", "AI search", "LLM optimization", "Perplexity", "AI citations", "ChatGPT search", or "AI visibility".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 31e34e82711f
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - references/google-ai-optimization-guide.md
+    - references/llmstxt-evidence.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-geo
+    license: MIT
+    group: claude-seo
+  - name: seo-google
+    path: claude-seo/skills/seo-google
+    title: seo-google
+    summary: 'Google SEO APIs: Search Console (Search Analytics, URL Inspection, Sitemaps), PageSpeed Insights v5, CrUX field
+      data with 25-week history, Indexing API v3, and GA4 organic traffic. Provides real Google field data for Core Web Vitals,
+      indexation status, search performance, and organic traffic trends. Use when user says "search console", "GSC", "PageSpeed",
+      "CrUX", "field data", "indexing API", "GA4 organic", "URL inspection", "google api setup", "real CWV data", "impressions",
+      "clicks", "CTR", "position data", "LCP", "INP", "CLS", "FCP", "TTFB", or "Lighthouse scores".'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional:
+      - GA4_PROPERTY_ID
+      - GOOGLE_API_KEY
+      - GOOGLE_APPLICATION_CREDENTIALS
+      - GSC_PROPERTY
+    content_hash: 61776626128a
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - assets/templates/cwv-audit-report.md
+    - assets/templates/gsc-performance-report.md
+    - assets/templates/indexation-status-report.md
+    - env.optional
+    - references/auth-setup.md
+    - references/dma-consent-mode-v2.md
+    - references/ga4-data-api.md
+    - references/indexing-api.md
+    - references/keyword-planner-api.md
+    - references/nlp-api.md
+    - references/pagespeed-crux-api.md
+    - references/rate-limits-quotas.md
+    - references/search-console-api.md
+    - references/supplementary-apis.md
+    - references/youtube-api.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-google
+    license: MIT
+    group: claude-seo
+  - name: seo-hreflang
+    path: claude-seo/skills/seo-hreflang
+    title: seo-hreflang
+    summary: Hreflang and international SEO audit, validation, and generation. Detects common mistakes, validates language/region
+      codes, and generates correct hreflang implementations. Use when user says "hreflang", "i18n SEO", "international SEO",
+      "multi-language", "multi-region", or "language tags".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ac6acad24ba1
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - references/content-parity.md
+    - references/cultural-profiles.md
+    - references/locale-formats.md
+    - references/machine-translation-qa.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-hreflang
+    license: MIT
+    group: claude-seo
+  - name: seo-image-gen
+    path: claude-seo/skills/seo-image-gen
+    title: seo-image-gen
+    summary: 'AI image generation for SEO assets: OG/social preview images, blog hero images, schema images, product photography,
+      infographics. Powered by Gemini via nanobanana-mcp. Requires banana extension installed. Use when user says \"generate
+      image\", \"OG image\", \"social preview\", \"hero image\", \"blog image\", \"product photo\", \"infographic\", \"seo
+      image\", \"create visual\", \"image-gen\", \"favicon\", \"schema image\", \"pinterest pin\", \"generate visual\", \"banner\",
+      or \"thumbnail\".'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 91a26d766404
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - references/cost-tracking.md
+    - references/gemini-models.md
+    - references/mcp-tools.md
+    - references/post-processing.md
+    - references/presets.md
+    - references/prompt-engineering.md
+    - references/seo-image-presets.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-image-gen
+    license: MIT
+    group: claude-seo
+  - name: seo-images
+    path: claude-seo/skills/seo-images
+    title: seo-images
+    summary: Image optimization analysis for SEO and performance. Checks alt text, file sizes, formats, responsive images,
+      lazy loading, CLS prevention, image SERP rankings (via DataForSEO), and image file optimization (WebP/AVIF conversion,
+      IPTC/XMP metadata injection). Use when user says "image optimization", "alt text", "image SEO", "image size", "image
+      audit", "optimize images", "image metadata", "image SERP", "convert to webp", or "image file optimize".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bdce11eb6bc6
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-images
+    license: MIT
+    group: claude-seo
+  - name: seo-local
+    path: claude-seo/skills/seo-local
+    title: seo-local
+    summary: Local SEO analysis covering Google Business Profile optimization, NAP consistency, citation health, review signals,
+      local schema markup, location page quality, multi-location SEO, and industry-specific recommendations. Detects business
+      type (brick-and-mortar, SAB, hybrid) and industry vertical (restaurant, healthcare, legal, home services, real estate,
+      automotive). Use when user says "local SEO", "Google Business Profile", "GBP", "map pack", "local pack", "citations",
+      "NAP consistency", "local rankings", "service area", "multi-location", or "local search".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c88771e86984
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-local
+    license: MIT
+    group: claude-seo
+  - name: seo-maps
+    path: claude-seo/skills/seo-maps
+    title: seo-maps
+    summary: 'Maps intelligence for local SEO — geo-grid rank tracking, GBP profile auditing via API, review intelligence
+      across Google/Tripadvisor/Trustpilot, cross-platform NAP verification (Google/Bing/Apple/OSM), competitor radius mapping,
+      and LocalBusiness schema generation from API data. Three-tier capability: free (Overpass + Geoapify), DataForSEO (full
+      intelligence), DataForSEO + Google (maximum coverage). Use when user says "maps", "geo-grid", "rank tracking", "GBP
+      audit", "review velocity", "competitor radius", "maps analysis", "local rank tracking", "Share of Local Voice", or "SoLV".'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5570bb3ff51b
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-maps
+    license: MIT
+    group: claude-seo
+  - name: seo-page
+    path: claude-seo/skills/seo-page
+    title: seo-page
+    summary: Deep single-page SEO analysis covering on-page elements, content quality, technical meta tags, schema, images,
+      and performance. Use when user says "analyze this page", "check page SEO", "single URL", "check this page", "page analysis",
+      or provides a single URL for review.
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 942a84be8348
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-page
+    license: MIT
+    group: claude-seo
+  - name: seo-plan
+    path: claude-seo/skills/seo-plan
+    title: seo-plan
+    summary: Strategic SEO planning for new or existing websites. Industry-specific templates, competitive analysis, content
+      strategy, and implementation roadmap. Use when user says "SEO plan", "SEO strategy", "SEO planning", "content strategy",
+      "keyword strategy", "content calendar", "site architecture", or "SEO roadmap".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2da3280eabe5
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - assets/agency.md
+    - assets/ecommerce.md
+    - assets/generic.md
+    - assets/local-service.md
+    - assets/publisher.md
+    - assets/saas.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-plan
+    license: MIT
+    group: claude-seo
+  - name: seo-programmatic
+    path: claude-seo/skills/seo-programmatic
+    title: seo-programmatic
+    summary: Programmatic SEO planning and analysis for pages generated at scale from data sources. Covers template engines,
+      URL patterns, internal linking automation, thin content safeguards, and index bloat prevention. Use when user says "programmatic
+      SEO", "pages at scale", "dynamic pages", "template pages", "generated pages", or "data-driven SEO".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 94f7ce0a67b5
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-programmatic
+    license: MIT
+    group: claude-seo
+  - name: seo-schema
+    path: claude-seo/skills/seo-schema
+    title: seo-schema
+    summary: Detect, validate, and generate Schema.org structured data. JSON-LD format preferred. Use when user says "schema",
+      "structured data", "rich results", "JSON-LD", or "markup".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fad38b9713ca
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - references/deprecated-types-2024-2026.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-schema
+    license: MIT
+    group: claude-seo
+  - name: seo-sitemap
+    path: claude-seo/skills/seo-sitemap
+    title: seo-sitemap
+    summary: Analyze existing XML sitemaps or generate new ones with industry templates. Validates format, URLs, and structure.
+      Use when user says "sitemap", "generate sitemap", "sitemap issues", or "XML sitemap".
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: dd85d4965c5e
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-sitemap
+    license: MIT
+    group: claude-seo
+  - name: seo-sxo
+    path: claude-seo/skills/seo-sxo
+    title: seo-sxo
+    summary: 'Search Experience Optimization: reads Google SERPs backwards to detect page-type mismatches, derives user stories
+      from search intent signals, and scores pages from multiple persona perspectives. Identifies why well-optimized pages
+      fail to rank by analyzing what Google rewards for each keyword. Use when user says "SXO", "search experience", "page
+      type mismatch", "SERP analysis", "user story", "persona scoring", "why isn''t my page ranking", "intent mismatch", or
+      "wireframe".'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 36038ca3d244
+    files:
+    - SKILL.md
+    - references/page-type-taxonomy.md
+    - references/persona-scoring.md
+    - references/user-story-framework.md
+    - references/wireframe-templates.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-sxo
+    license: MIT
+    group: claude-seo
+  - name: seo-technical
+    path: claude-seo/skills/seo-technical
+    title: seo-technical
+    summary: 'Technical SEO audit across 9 categories: crawlability, indexability, security, URL structure, mobile, Core Web
+      Vitals, structured data, JavaScript rendering, and IndexNow protocol. Use when user says "technical SEO", "crawl issues",
+      "robots.txt", "Core Web Vitals", "site speed", or "security headers".'
+    version: 2.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8a135888e906
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - references/agent-friendly-pages.md
+    author: AgriciDaniel
+    source_url: https://github.com/AgriciDaniel/claude-seo/tree/main/skills/seo-technical
+    license: MIT
+    group: claude-seo
+  files:
+  - .claude-plugin/marketplace.json
+  - .claude-plugin/plugin.json
+  - .devcontainer/devcontainer.json
+  - .github/CODEOWNERS
+  - .github/FUNDING.yml
+  - .github/ISSUE_TEMPLATE/bug_report.yml
+  - .github/ISSUE_TEMPLATE/config.yml
+  - .github/ISSUE_TEMPLATE/feature_request.yml
+  - .github/PULL_REQUEST_TEMPLATE.md
+  - .github/dependabot.yml
+  - .github/release.yml
+  - .github/workflows/ci.yml
+  - .github/workflows/v2.yml
+  - .gitignore
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
+  - AGENTS.md
+  - CHANGELOG.md
+  - CITATION.cff
+  - CLAUDE.md
+  - CODEOWNERS
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - CONTRIBUTORS.md
+  - LICENSE
+  - PRIVACY.md
+  - README.md
+  - SECURITY.md
+  - agents/seo-backlinks.md
+  - agents/seo-cluster.md
+  - agents/seo-content.md
+  - agents/seo-dataforseo.md
+  - agents/seo-drift.md
+  - agents/seo-ecommerce.md
+  - agents/seo-flow.md
+  - agents/seo-geo.md
+  - agents/seo-google.md
+  - agents/seo-image-gen.md
+  - agents/seo-local.md
+  - agents/seo-maps.md
+  - agents/seo-performance.md
+  - agents/seo-schema.md
+  - agents/seo-sitemap.md
+  - agents/seo-sxo.md
+  - agents/seo-technical.md
+  - agents/seo-visual.md
+  - assets/banner.svg
+  - assets/diagrams/01-architecture-A.svg
+  - assets/diagrams/01-architecture-B.svg
+  - assets/diagrams/01-architecture-C.svg
+  - assets/diagrams/02-pipeline-A.svg
+  - assets/diagrams/02-pipeline-B.svg
+  - assets/diagrams/02-pipeline-C.svg
+  - assets/diagrams/03-sub-skill-map-A.svg
+  - assets/diagrams/03-sub-skill-map-B.svg
+  - assets/diagrams/03-sub-skill-map-C.svg
+  - assets/diagrams/04-framework-A.svg
+  - assets/diagrams/04-framework-B.svg
+  - assets/diagrams/04-framework-C.svg
+  - assets/diagrams/05-roadmap-A.svg
+  - assets/diagrams/05-roadmap-B.svg
+  - assets/diagrams/05-roadmap-C.svg
+  - branding/diagrams-preview.html
+  - branding/final.html
+  - branding/scripts/generate_diagrams.py
+  - data/google-updates.json
+  - docs/ARCHITECTURE.md
+  - docs/COMMANDS.md
+  - docs/INSTALLATION.md
+  - docs/MCP-INTEGRATION.md
+  - docs/MIGRATION-v1-to-v2.md
+  - docs/TROUBLESHOOTING.md
+  - docs/WORKFLOW-public-private.md
+  - extensions/ahrefs/docs/AHREFS-SETUP.md
+  - extensions/ahrefs/install.ps1
+  - extensions/ahrefs/install.sh
+  - extensions/ahrefs/skills/seo-ahrefs/SKILL.md
+  - extensions/ahrefs/uninstall.sh
+  - extensions/banana/README.md
+  - extensions/banana/agents/seo-image-gen.md
+  - extensions/banana/docs/BANANA-SETUP.md
+  - extensions/banana/install.sh
+  - extensions/banana/references/cost-tracking.md
+  - extensions/banana/references/gemini-models.md
+  - extensions/banana/references/mcp-tools.md
+  - extensions/banana/references/post-processing.md
+  - extensions/banana/references/presets.md
+  - extensions/banana/references/prompt-engineering.md
+  - extensions/banana/references/seo-image-presets.md
+  - extensions/banana/scripts/batch.py
+  - extensions/banana/scripts/cost_tracker.py
+  - extensions/banana/scripts/edit.py
+  - extensions/banana/scripts/generate.py
+  - extensions/banana/scripts/presets.py
+  - extensions/banana/scripts/setup_mcp.py
+  - extensions/banana/scripts/validate_setup.py
+  - extensions/banana/skills/seo-image-gen/LICENSE.txt
+  - extensions/banana/skills/seo-image-gen/SKILL.md
+  - extensions/banana/uninstall.sh
+  - extensions/bing-webmaster/docs/BING-WEBMASTER-SETUP.md
+  - extensions/bing-webmaster/install.ps1
+  - extensions/bing-webmaster/install.sh
+  - extensions/bing-webmaster/skills/seo-bing/SKILL.md
+  - extensions/bing-webmaster/uninstall.sh
+  - extensions/dataforseo/README.md
+  - extensions/dataforseo/agents/seo-dataforseo.md
+  - extensions/dataforseo/docs/DATAFORSEO-SETUP.md
+  - extensions/dataforseo/field-config.json
+  - extensions/dataforseo/install.ps1
+  - extensions/dataforseo/install.sh
+  - extensions/dataforseo/skills/seo-dataforseo/LICENSE.txt
+  - extensions/dataforseo/skills/seo-dataforseo/SKILL.md
+  - extensions/dataforseo/uninstall.ps1
+  - extensions/dataforseo/uninstall.sh
+  - extensions/firecrawl/README.md
+  - extensions/firecrawl/docs/FIRECRAWL-SETUP.md
+  - extensions/firecrawl/install.ps1
+  - extensions/firecrawl/install.sh
+  - extensions/firecrawl/skills/seo-firecrawl/LICENSE.txt
+  - extensions/firecrawl/skills/seo-firecrawl/SKILL.md
+  - extensions/firecrawl/uninstall.ps1
+  - extensions/firecrawl/uninstall.sh
+  - extensions/profound/docs/PROFOUND-SETUP.md
+  - extensions/profound/install.ps1
+  - extensions/profound/install.sh
+  - extensions/profound/skills/seo-profound/SKILL.md
+  - extensions/profound/uninstall.sh
+  - extensions/seranking/docs/SERANKING-SETUP.md
+  - extensions/seranking/install.ps1
+  - extensions/seranking/install.sh
+  - extensions/seranking/skills/seo-seranking/SKILL.md
+  - extensions/seranking/uninstall.sh
+  - extensions/unlighthouse/docs/UNLIGHTHOUSE-SETUP.md
+  - extensions/unlighthouse/install.ps1
+  - extensions/unlighthouse/install.sh
+  - extensions/unlighthouse/skills/seo-unlighthouse/SKILL.md
+  - extensions/unlighthouse/uninstall.sh
+  - hooks/hooks.json
+  - hooks/validate-schema.py
+  - install.ps1
+  - install.sh
+  - pdf/google-seo-reference.md
+  - pyproject.toml
+  - requirements.txt
+  - schema/templates.json
+  - screenshots/seo-audit-demo.gif
+  - screenshots/seo-command-demo.gif
+  - scripts/agent_ux_check.py
+  - scripts/analyze_visual.py
+  - scripts/backlinks_auth.py
+  - scripts/bing_webmaster.py
+  - scripts/capture_screenshot.py
+  - scripts/commoncrawl_graph.py
+  - scripts/content_humanize.py
+  - scripts/content_quality.py
+  - scripts/content_verify.py
+  - scripts/crux_history.py
+  - scripts/dataforseo_costs.py
+  - scripts/dataforseo_merchant.py
+  - scripts/dataforseo_normalize.py
+  - scripts/domain_history.py
+  - scripts/drift_baseline.py
+  - scripts/drift_compare.py
+  - scripts/drift_history.py
+  - scripts/drift_report.py
+  - scripts/fetch_page.py
+  - scripts/ga4_report.py
+  - scripts/gbp_deprecation_lint.py
+  - scripts/google_auth.py
+  - scripts/google_report.py
+  - scripts/gsc_inspect.py
+  - scripts/gsc_query.py
+  - scripts/indexing_notify.py
+  - scripts/indexnow_submit.py
+  - scripts/iptc_ai_label.py
+  - scripts/keyword_planner.py
+  - scripts/lcp_subparts.py
+  - scripts/moz_api.py
+  - scripts/nlp_analyze.py
+  - scripts/pagespeed_check.py
+  - scripts/parasite_risk.py
+  - scripts/parse_html.py
+  - scripts/portability_check.py
+  - scripts/preload_check.py
+  - scripts/release_sign.py
+  - scripts/render_page.py
+  - scripts/schema_ecommerce_validate.py
+  - scripts/schema_generate.py
+  - scripts/seo_updates.py
+  - scripts/sync_flow.py
+  - scripts/ucp_check.py
+  - scripts/unlighthouse_run.py
+  - scripts/url_safety.py
+  - scripts/validate_backlink_report.py
+  - scripts/verify_backlinks.py
+  - scripts/verify_release.py
+  - scripts/youtube_search.py
+  - tests/test_content_quality.py
+  - tests/test_gbp_lint_and_polish.py
+  - tests/test_lazy_detection.py
+  - tests/test_manifest_consistency.py
+  - tests/test_parasite_risk_and_extensions.py
+  - tests/test_phase_j_executable.py
+  - tests/test_portability.py
+  - tests/test_render_page.py
+  - tests/test_schema_v2.py
+  - tests/test_sync_flow.py
+  - tests/test_technical_depth.py
+  - tests/test_url_safety.py
+  - uninstall.ps1
+  - uninstall.sh
 - path: engineering-skills
   name: engineering-skills
   title: Engineering Skills

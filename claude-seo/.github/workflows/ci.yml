@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Python Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+
+      - name: Check Python syntax
+        run: |
+          python3 -m py_compile scripts/url_safety.py
+          python3 -m py_compile scripts/render_page.py
+          python3 -m py_compile scripts/fetch_page.py
+          python3 -m py_compile scripts/parse_html.py
+          python3 -m py_compile scripts/analyze_visual.py
+          python3 -m py_compile scripts/capture_screenshot.py
+          python3 -m py_compile scripts/google_auth.py
+          python3 -m py_compile scripts/pagespeed_check.py
+          python3 -m py_compile scripts/crux_history.py
+          python3 -m py_compile scripts/gsc_query.py
+          python3 -m py_compile scripts/gsc_inspect.py
+          python3 -m py_compile scripts/indexing_notify.py
+          python3 -m py_compile scripts/ga4_report.py
+          python3 -m py_compile scripts/google_report.py
+          python3 -m py_compile scripts/youtube_search.py
+          python3 -m py_compile scripts/nlp_analyze.py
+          python3 -m py_compile scripts/keyword_planner.py
+          python3 -m py_compile scripts/backlinks_auth.py
+          python3 -m py_compile scripts/moz_api.py
+          python3 -m py_compile scripts/bing_webmaster.py
+          python3 -m py_compile scripts/commoncrawl_graph.py
+          python3 -m py_compile scripts/verify_backlinks.py
+          python3 -m py_compile scripts/validate_backlink_report.py
+          python3 -m py_compile scripts/dataforseo_costs.py
+          python3 -m py_compile scripts/dataforseo_merchant.py
+          python3 -m py_compile scripts/dataforseo_normalize.py
+          python3 -m py_compile scripts/drift_baseline.py
+          python3 -m py_compile scripts/drift_compare.py
+          python3 -m py_compile scripts/drift_report.py
+          python3 -m py_compile scripts/drift_history.py
+          python3 -m py_compile scripts/sync_flow.py
+          python3 -m py_compile scripts/release_sign.py
+          python3 -m py_compile scripts/verify_release.py
+          python3 -m py_compile scripts/content_quality.py
+          python3 -m py_compile scripts/content_humanize.py
+          python3 -m py_compile scripts/content_verify.py
+          python3 -m py_compile scripts/domain_history.py
+          python3 -m py_compile scripts/seo_updates.py
+          python3 -m py_compile scripts/preload_check.py
+          python3 -m py_compile scripts/indexnow_submit.py
+          python3 -m py_compile scripts/lcp_subparts.py
+          python3 -m py_compile scripts/unlighthouse_run.py
+          python3 -m py_compile scripts/schema_generate.py
+          python3 -m py_compile scripts/schema_ecommerce_validate.py
+          python3 -m py_compile scripts/parasite_risk.py
+          python3 -m py_compile scripts/gbp_deprecation_lint.py
+          python3 -m py_compile scripts/portability_check.py
+          echo "All 48 scripts passed syntax check"
+
+  test:
+    name: Test suite (manifests + sync_flow)
+    runs-on: ubuntu-latest
+    env:
+      # gh CLI honors GH_TOKEN automatically; sync_flow.py uses gh for auth.
+      # Without this, anonymous API requests hit GitHub's 60/hr per-IP rate
+      # limit and the sync_flow dry-run test fails on shared-runner IPs.
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+
+      - name: Install runtime + test deps
+        # Tests import scripts that import url_safety.py (and others), which
+        # require the full runtime dependency set at module-import time. The
+        # prior minimal install (pytest + beautifulsoup4) broke when Phase J/K
+        # tests added imports through url_safety -> requests. Installing from
+        # requirements.txt matches the documented user install path and keeps
+        # CI in sync with the runtime contract.
+        run: pip install -r requirements.txt pytest
+
+      - name: Run pytest
+        run: pytest tests/ -v

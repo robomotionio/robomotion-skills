@@ -1,0 +1,10 @@
+schema_version: 1
+name: claude-seo
+title: Claude SEO
+type: group
+version: 2.0.0
+author: AgriciDaniel
+source_url: https://github.com/AgriciDaniel/claude-seo
+license: MIT
+summary: Universal SEO analysis — 25 sub-skills (technical, content, schema, sitemap, images, AI search/GEO, local, maps, hreflang, e-commerce, drift, backlinks) backed by 18 sub-agents and 30+ Python scripts for Google APIs, DataForSEO, Moz, Bing, Common Crawl, and shared headless rendering.
+tags: [seo, content, schema, sitemap, local-seo, maps, backlinks, geo, e-commerce, hreflang]
