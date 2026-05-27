@@ -4342,6 +4342,408 @@ groups:
   - tools/integrations/zoominfo.md
   - validate-skills-official.sh
   - validate-skills.sh
+- path: netlify-skills
+  name: netlify-skills
+  title: Netlify Skills
+  type: group
+  version: 1.0.0
+  author: Netlify
+  source_url: https://github.com/netlify/context-and-tools
+  license: MIT
+  summary: Official Netlify agent skills — Functions, Edge Functions, Blobs, Database, Image CDN, Forms, Frameworks, Caching,
+    Config, CLI & Deploy, AI Gateway, Identity. 13 skills covering site config, deployment, serverless, and platform features.
+  tags:
+  - netlify
+  - jamstack
+  - serverless
+  - edge
+  - deployment
+  - cdn
+  - ssr
+  - forms
+  - blobs
+  - database
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: d72e635a7ad0
+  skills:
+  - name: netlify-ai-gateway
+    path: netlify-skills/skills/netlify-ai-gateway
+    title: netlify-ai-gateway
+    summary: Reference for Netlify AI Gateway — the managed proxy that routes calls to OpenAI, Anthropic, and Google Gemini
+      SDKs without provider API keys. Use this skill any time the user wants to add AI on a Netlify site (chat, completion,
+      reasoning, image generation, image-to-image edit/stylize), choose or change a model, wire up the OpenAI / Anthropic
+      / @google/genai SDK, decide which provider to use for an image-gen feature (it's Gemini-only on the gateway), or debug
+      "model not found" / "API key missing" against the gateway. Required reading before pinning a model — the gateway exposes
+      a curated subset, not every provider model.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3d2daaec2ec2
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-ai-gateway
+    license: MIT
+    group: netlify-skills
+  - name: netlify-blobs
+    path: netlify-skills/skills/netlify-blobs
+    title: netlify-blobs
+    summary: Guide for using Netlify Blobs for file and asset storage — images, documents, uploads, exports, cached binary
+      artifacts. Covers getStore(), CRUD operations, metadata, listing, deploy-scoped vs site-scoped stores, and local development.
+      Do NOT use Blobs as a dynamic data store — use Netlify Database for that.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7a6aa3ccacd5
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-blobs
+    license: MIT
+    group: netlify-skills
+  - name: netlify-caching
+    path: netlify-skills/skills/netlify-caching
+    title: netlify-caching
+    summary: Guide for controlling caching on Netlify's CDN. Use when configuring cache headers, setting up stale-while-revalidate,
+      implementing on-demand cache purge, or understanding Netlify's CDN caching behavior. Covers Cache-Control, Netlify-CDN-Cache-Control,
+      cache tags, durable cache, and framework-specific caching patterns.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5d57db4d0659
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-caching
+    license: MIT
+    group: netlify-skills
+  - name: netlify-cli-and-deploy
+    path: netlify-skills/skills/netlify-cli-and-deploy
+    title: netlify-cli-and-deploy
+    summary: Guide for using the Netlify CLI and deploying sites. Use when installing the CLI, linking sites, deploying (Git-based
+      or manual), managing environment variables, or running local development. Covers netlify dev, netlify deploy, Git vs
+      non-Git workflows, and environment variable management.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 008efaca816f
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-cli-and-deploy
+    license: MIT
+    group: netlify-skills
+  - name: netlify-config
+    path: netlify-skills/skills/netlify-config
+    title: netlify-config
+    summary: Reference for netlify.toml configuration. Use when configuring build settings, redirects, rewrites, headers,
+      deploy contexts, environment variables, or any site-level configuration. Covers the complete netlify.toml syntax including
+      redirects with splats/conditions, headers, deploy contexts, functions config, and edge functions config.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: addcd1259479
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-config
+    license: MIT
+    group: netlify-skills
+  - name: netlify-database
+    path: netlify-skills/skills/netlify-database
+    title: netlify-database
+    summary: Guide for using Netlify Database — the GA managed Postgres product built into Netlify. Use when a project needs
+      any kind of dynamic, structured, or relational data. Covers provisioning via @netlify/database, Drizzle ORM (@beta)
+      setup, migrations, preview branching, and safe production data handling. Blobs is only for file/asset storage — any
+      dynamic data belongs in the database.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ab1f0a4172e9
+    files:
+    - SKILL.md
+    - references/legacy-extension.md
+    - references/local-dev.md
+    - references/migration-from-extension.md
+    - references/migrations.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-database
+    license: MIT
+    group: netlify-skills
+  - name: netlify-deploy
+    path: netlify-skills/skills/netlify-deploy
+    title: netlify-deploy
+    summary: Deploy web projects to Netlify using the Netlify CLI (`npx netlify`). Use when the user asks to deploy, host,
+      publish, or link a site/repo on Netlify, including preview and production deploys.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2282b04a9902
+    files:
+    - SKILL.md
+    - references/cli-commands.md
+    - references/deployment-patterns.md
+    - references/netlify-toml.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-deploy
+    license: MIT
+    group: netlify-skills
+  - name: netlify-edge-functions
+    path: netlify-skills/skills/netlify-edge-functions
+    title: netlify-edge-functions
+    summary: Guide for writing Netlify Edge Functions. Use when building middleware, geolocation-based logic, request/response
+      manipulation, authentication checks, A/B testing, or any low-latency edge compute. Covers Deno runtime, context.next()
+      middleware pattern, geolocation, and when to choose edge vs serverless.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: edfa59cf9a23
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-edge-functions
+    license: MIT
+    group: netlify-skills
+  - name: netlify-forms
+    path: netlify-skills/skills/netlify-forms
+    title: netlify-forms
+    summary: Guide for using Netlify Forms for HTML form handling. Use when adding contact forms, feedback forms, file upload
+      forms, or any form that should be collected by Netlify. Covers the data-netlify attribute, spam filtering, AJAX submissions,
+      file uploads, notifications, and the submissions API.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8de8d8e0d691
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-forms
+    license: MIT
+    group: netlify-skills
+  - name: netlify-frameworks
+    path: netlify-skills/skills/netlify-frameworks
+    title: netlify-frameworks
+    summary: Guide for deploying web frameworks on Netlify. Use when setting up a framework project (Vite/React, Astro, TanStack
+      Start, Next.js, Nuxt, SvelteKit, Remix) for Netlify deployment, configuring adapters or plugins, or troubleshooting
+      framework-specific Netlify integration. Covers what Netlify needs from each framework and how adapters handle server-side
+      rendering.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e47083e3fcc2
+    files:
+    - SKILL.md
+    - references/astro.md
+    - references/nextjs.md
+    - references/tanstack.md
+    - references/vite.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-frameworks
+    license: MIT
+    group: netlify-skills
+  - name: netlify-functions
+    path: netlify-skills/skills/netlify-functions
+    title: netlify-functions
+    summary: Guide for writing Netlify serverless functions. Use when creating API endpoints, background processing, scheduled
+      tasks, or any server-side logic using Netlify Functions. Covers modern syntax (default export + Config), TypeScript,
+      path routing, background functions, scheduled functions, streaming, and method routing.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7d5a6c53647e
+    files:
+    - SKILL.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-functions
+    license: MIT
+    group: netlify-skills
+  - name: netlify-identity
+    path: netlify-skills/skills/netlify-identity
+    title: netlify-identity
+    summary: Use when the task involves authentication, user signups, logins, password recovery, OAuth providers, role-based
+      access control, or protecting routes and functions. Always use `@netlify/identity`. Never use `netlify-identity-widget`
+      or `gotrue-js` — they are deprecated.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 0dd52b712663
+    files:
+    - SKILL.md
+    - references/advanced-patterns.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-identity
+    license: MIT
+    group: netlify-skills
+  - name: netlify-image-cdn
+    path: netlify-skills/skills/netlify-image-cdn
+    title: netlify-image-cdn
+    summary: Guide for using Netlify Image CDN for image optimization and transformation. Use when serving optimized images,
+      creating responsive image markup, setting up user-uploaded image pipelines, or configuring image transformations. Covers
+      the /.netlify/images endpoint, query parameters, remote image allowlisting, clean URL rewrites, and composing uploads
+      with Functions + Blobs.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fd3a963244c8
+    files:
+    - SKILL.md
+    - references/user-uploads.md
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/skills/netlify-image-cdn
+    license: MIT
+    group: netlify-skills
+  - name: skill-creator
+    path: netlify-skills/.claude/skills/skill-creator
+    title: skill-creator
+    summary: Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to
+      create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance
+      with variance analysis, or optimize a skill's description for better triggering accuracy.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 4557d54c524c
+    files:
+    - LICENSE.txt
+    - SKILL.md
+    - agents/analyzer.md
+    - agents/comparator.md
+    - agents/grader.md
+    - assets/eval_review.html
+    - eval-viewer/generate_review.py
+    - eval-viewer/viewer.html
+    - references/schemas.md
+    - scripts/__init__.py
+    - scripts/aggregate_benchmark.py
+    - scripts/generate_report.py
+    - scripts/improve_description.py
+    - scripts/package_skill.py
+    - scripts/quick_validate.py
+    - scripts/run_eval.py
+    - scripts/run_loop.py
+    - scripts/utils.py
+    author: Netlify
+    source_url: https://github.com/netlify/context-and-tools/tree/main/.claude/skills/skill-creator
+    license: MIT
+    group: netlify-skills
+  files:
+  - .claude-plugin/marketplace.json
+  - .claude-plugin/plugin.json
+  - .cursor-plugin/plugin.json
+  - .github/workflows/build-codex-skills.yml
+  - .github/workflows/build-cursor-rules.yml
+  - .github/workflows/validate-skills.yml
+  - .gitignore
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
+  - CLAUDE.md
+  - LICENSE
+  - README.md
+  - codex/AGENTS.md
+  - codex/skills/netlify-ai-gateway/SKILL.md
+  - codex/skills/netlify-blobs/SKILL.md
+  - codex/skills/netlify-caching/SKILL.md
+  - codex/skills/netlify-cli-and-deploy/SKILL.md
+  - codex/skills/netlify-config/SKILL.md
+  - codex/skills/netlify-database/SKILL.md
+  - codex/skills/netlify-database/references/legacy-extension.md
+  - codex/skills/netlify-database/references/local-dev.md
+  - codex/skills/netlify-database/references/migration-from-extension.md
+  - codex/skills/netlify-database/references/migrations.md
+  - codex/skills/netlify-deploy/SKILL.md
+  - codex/skills/netlify-deploy/references/cli-commands.md
+  - codex/skills/netlify-deploy/references/deployment-patterns.md
+  - codex/skills/netlify-deploy/references/netlify-toml.md
+  - codex/skills/netlify-edge-functions/SKILL.md
+  - codex/skills/netlify-forms/SKILL.md
+  - codex/skills/netlify-frameworks/SKILL.md
+  - codex/skills/netlify-frameworks/references/astro.md
+  - codex/skills/netlify-frameworks/references/nextjs.md
+  - codex/skills/netlify-frameworks/references/tanstack.md
+  - codex/skills/netlify-frameworks/references/vite.md
+  - codex/skills/netlify-functions/SKILL.md
+  - codex/skills/netlify-identity/SKILL.md
+  - codex/skills/netlify-identity/references/advanced-patterns.md
+  - codex/skills/netlify-image-cdn/SKILL.md
+  - codex/skills/netlify-image-cdn/references/user-uploads.md
+  - context/steering/netlify-deployment-power/POWER.md
+  - cursor/rules/netlify-ai-gateway.mdc
+  - cursor/rules/netlify-blobs.mdc
+  - cursor/rules/netlify-caching.mdc
+  - cursor/rules/netlify-cli-and-deploy.mdc
+  - cursor/rules/netlify-config.mdc
+  - cursor/rules/netlify-database-legacy-extension.mdc
+  - cursor/rules/netlify-database-local-dev.mdc
+  - cursor/rules/netlify-database-migration-from-extension.mdc
+  - cursor/rules/netlify-database-migrations.mdc
+  - cursor/rules/netlify-database.mdc
+  - cursor/rules/netlify-deploy-cli-commands.mdc
+  - cursor/rules/netlify-deploy-deployment-patterns.mdc
+  - cursor/rules/netlify-deploy-netlify-toml.mdc
+  - cursor/rules/netlify-deploy.mdc
+  - cursor/rules/netlify-edge-functions.mdc
+  - cursor/rules/netlify-forms.mdc
+  - cursor/rules/netlify-frameworks-astro.mdc
+  - cursor/rules/netlify-frameworks-nextjs.mdc
+  - cursor/rules/netlify-frameworks-tanstack.mdc
+  - cursor/rules/netlify-frameworks-vite.mdc
+  - cursor/rules/netlify-frameworks.mdc
+  - cursor/rules/netlify-functions.mdc
+  - cursor/rules/netlify-identity-advanced-patterns.mdc
+  - cursor/rules/netlify-identity.mdc
+  - cursor/rules/netlify-image-cdn-user-uploads.mdc
+  - cursor/rules/netlify-image-cdn.mdc
+  - cursor/rules/netlify-skills-router.mdc
+  - gemini-extension.json
+  - renovate.json
+  - scripts/build-codex-skills.sh
+  - scripts/build-cursor-rules.sh
+  - skills/CLAUDE.md
 - path: trailofbits-skills
   name: trailofbits-skills
   title: Trail of Bits Skills

@@ -1,0 +1,13 @@
+{
+  "name": "netlify-context-and-tools",
+  "owner": {
+    "name": "Netlify"
+  },
+  "plugins": [
+    {
+      "name": "netlify-skills",
+      "description": "Netlify platform skills — functions, edge functions, blobs, database, identity, image CDN, forms, config, CLI, frameworks, caching, AI gateway, and deployment",
+      "source": "./"
+    }
+  ]
+}
