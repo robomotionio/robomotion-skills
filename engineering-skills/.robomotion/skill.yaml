@@ -7,4 +7,5 @@ author: Addy Osmani
 source_url: https://github.com/addyosmani/agent-skills
 license: MIT
 summary: 23 production-grade engineering skills covering the full SDLC — define, plan, build, verify, review, ship. Vendored verbatim from upstream.
+category: Engineering
 tags: [engineering, software, sdlc, testing, security, performance, devops, code-review, frontend, api]

@@ -272,6 +272,11 @@ def read_skill(repo_root: str, skill_rel: str, group: dict | None) -> dict:
         entry["source_url"] = build_inner_source_url(group, skill_rel)
         entry["license"] = group["license"]
         entry["group"] = group["path"] or "."
+        # Denormalize the group's curated category onto each inner skill so the
+        # Designer's marketplace filter (Marketing / Engineering / Security / ...)
+        # can group skills without re-walking the group metadata.
+        if group.get("category"):
+            entry["category"] = group["category"]
     return entry
 
 
@@ -346,6 +351,7 @@ def build(repo_root: str) -> dict:
             "source_url": sy.get("source_url", ""),
             "license": sy.get("license", ""),
             "summary": sy.get("summary", ""),
+            "category": sy.get("category", "") or "",
             "tags": sy.get("tags", []) or [],
             "has_post_install": has_file(unit_abs, "post-install.sh"),
             "has_env_yaml": has_file(unit_abs, "env.yaml"),
@@ -377,6 +383,8 @@ def build(repo_root: str) -> dict:
             entry["author"] = meta["author"]
             entry["source_url"] = meta["source_url"]
             entry["license"] = meta["license"]
+            if meta.get("category"):
+                entry["category"] = meta["category"]
             standalone.append(entry)
 
     return {

@@ -7,4 +7,5 @@ author: Netlify
 source_url: https://github.com/netlify/context-and-tools
 license: MIT
 summary: Official Netlify agent skills — Functions, Edge Functions, Blobs, Database, Image CDN, Forms, Frameworks, Caching, Config, CLI & Deploy, AI Gateway, Identity. 13 skills covering site config, deployment, serverless, and platform features.
+category: DevOps
 tags: [netlify, jamstack, serverless, edge, deployment, cdn, ssr, forms, blobs, database]

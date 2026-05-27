@@ -7,4 +7,5 @@ author: Google Workspace
 source_url: https://github.com/googleworkspace/cli
 license: Apache-2.0
 summary: Official Google Workspace agent skills wrapping the `gws` CLI — Drive, Sheets, Gmail, Calendar, Docs, Slides, Tasks, People, Chat, Classroom, Forms, Keep, Events, Admin Reports, Model Armor, and cross-service workflow recipes. 17 service skills, 50 action sub-skills, 28 recipe workflows.
+category: Productivity
 tags: [google-workspace, gws, gmail, drive, calendar, sheets, docs, slides, chat, productivity]
