@@ -1,0 +1,10 @@
+schema_version: 1
+name: tweetclaw
+title: 'Tweetclaw'
+type: group
+version: 0.1.0
+author: 'Xquik-dev'
+source_url: https://github.com/Xquik-dev/tweetclaw
+license: MIT
+summary: 'Post tweets, replies, DMs; search, monitor, run giveaways'
+tags: [marketing]
