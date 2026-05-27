@@ -1,9 +1,0 @@
-__pycache__/
-*.pyc
-*.pyo
-CLAUDE.md
-/TODO-*
-.claude/
-.codex/
-test-output/
-docs/

@@ -1,7 +1,0 @@
-{
-  "name": "digital-marketing-pro",
-  "version": "3.9.0",
-  "description": "Open-source AI marketing plugin for agencies — 153 skills, 25 agents, 12-Part Strategy Flow, EU AI Act ready. Runs on Claude Code, Codex, Cursor, Antigravity.",
-  "contextFileName": "AGENTS.md",
-  "excludeTools": []
-}

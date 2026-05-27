@@ -97,6 +97,8 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 | Group | Skills | Author | Source |
 |---|---|---|---|
 | `marketing-skills/` | 41 | Corey Haines | https://github.com/coreyhaines31/marketingskills |
+| `engineering-skills/` | 23 | Addy Osmani | https://github.com/addyosmani/agent-skills |
+| `ui-ux-pro-max-skill/` | 7 | NextLevelBuilder | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
 
 ### Marketing skills (`marketing-skills/`) — vendored verbatim
 

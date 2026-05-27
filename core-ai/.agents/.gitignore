@@ -1,4 +1,0 @@
-# Ignore Codex runtime state (skills/ is tracked)
-*.log
-sessions/
-cache/

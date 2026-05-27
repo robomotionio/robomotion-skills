@@ -1,3 +1,0 @@
-recursive-include skills *.md *.json *.txt *.py
-recursive-include tools *.py
-include README.md LICENSE CONTRIBUTING.md

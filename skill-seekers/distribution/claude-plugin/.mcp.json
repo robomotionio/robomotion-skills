@@ -1,6 +1,0 @@
-{
-  "skill-seekers": {
-    "command": "python",
-    "args": ["-m", "skill_seekers.mcp.server_fastmcp"]
-  }
-}

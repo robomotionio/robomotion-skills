@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://hqhq1025.github.io/skill-optimizer/sitemap.xml

@@ -1,1 +1,0 @@
-"""Competitive Intelligence Knowledge Graph."""
