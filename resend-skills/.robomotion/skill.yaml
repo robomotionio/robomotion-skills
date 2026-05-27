@@ -1,0 +1,10 @@
+schema_version: 1
+name: resend-skills
+title: 'Resend Skills'
+type: group
+version: 0.1.0
+author: 'resend'
+source_url: https://github.com/resend/resend-skills
+license: MIT
+summary: '5 skills — Send and manage emails via the Resend API'
+tags: [ai]

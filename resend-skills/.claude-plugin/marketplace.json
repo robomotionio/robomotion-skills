@@ -1,0 +1,17 @@
+{
+  "name": "resend-skills",
+  "metadata": {
+    "description": "Resend email skills for Claude Code"
+  },
+  "owner": {
+    "name": "Resend",
+    "email": "support@resend.com"
+  },
+  "plugins": [
+    {
+      "name": "resend",
+      "source": "./",
+      "category": "developer-tools"
+    }
+  ]
+}

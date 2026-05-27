@@ -1,0 +1,13 @@
+{
+  "name": "resend",
+  "description": "Skills and MCP server for the Resend email platform — sending, receiving, templates, CLI, React Email, and deliverability best practices.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Resend",
+    "url": "https://resend.com"
+  },
+  "homepage": "https://resend.com",
+  "repository": "https://github.com/resend/resend-skills",
+  "license": "MIT",
+  "keywords": ["email", "resend", "smtp", "notifications", "agent-inbox"]
+}
