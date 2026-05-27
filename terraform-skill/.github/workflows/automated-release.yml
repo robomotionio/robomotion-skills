@@ -1,0 +1,104 @@
+name: Automated Release
+
+# PR-based release flow.
+#
+# Why: master has a ruleset requiring the "Validate Skill Files" status check.
+# A direct push of the release commit (the old flow) is rejected, and the
+# github-actions[bot] cannot be a ruleset bypass actor on a user-owned repo.
+# So the version bump goes through a PR whose required check actually runs.
+#
+# REQUIRES (one-time manual setup):
+#   1. Repo secret RELEASE_TOKEN = fine-grained PAT for this repo with
+#      contents:write + pull-requests:write. The default GITHUB_TOKEN will NOT
+#      work: PRs/branches it creates do not trigger workflows, so the required
+#      "Validate Skill Files" check would never run and auto-merge would hang.
+#   2. Repo Settings -> "Allow auto-merge" enabled (for `gh pr merge --auto`).
+#
+# This workflow (A) opens/refreshes the release PR. tag-release.yml (B) tags +
+# publishes after the PR merges to master.
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release-pr:
+    name: Open release PR
+    runs-on: ubuntu-latest
+    # Loop guard: do not re-release the merged release commit.
+    if: ${{ github.event_name == 'workflow_dispatch' || !startsWith(github.event.head_commit.message, 'chore(release):') }}
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN }}
+
+      # The changelog action commits on the CURRENT branch then runs
+      # `git push origin release/next`, so a local `release/next` ref must be
+      # checked out; its internal `git pull --ff-only` also needs an upstream.
+      # Create release/next from master HEAD, publish it, and track it (its own
+      # remote, never master - the action pushes explicitly to release/next).
+      - name: Prepare release branch
+        run: |
+          git push origin --delete release/next 2>/dev/null || true
+          git checkout -B release/next
+          git push origin release/next
+          git branch --set-upstream-to=origin/release/next release/next
+
+      # Version calc + CHANGELOG + version.json + pre-commit sync
+      # (SKILL.md frontmatter metadata.version + .codex-plugin/plugin.json),
+      # committed onto release/next. No tag here (tag is created after merge by
+      # tag-release.yml). skip-ci MUST be false so the PR runs the required check.
+      - name: Conventional Changelog (release branch)
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v5
+        with:
+          github-token: ${{ secrets.RELEASE_TOKEN }}
+          git-message: 'chore(release): {version}'
+          git-user-name: 'github-actions[bot]'
+          git-user-email: 'github-actions[bot]@users.noreply.github.com'
+          git-branch: 'release/next'
+          preset: 'angular'
+          tag-prefix: 'v'
+          output-file: 'CHANGELOG.md'
+          version-file: './version.json'
+          version-path: 'version'
+          skip-on-empty: 'true'
+          skip-version-file: 'false'
+          skip-commit: 'false'
+          skip-tag: 'true'
+          skip-ci: 'false'
+          pre-commit: '.github/release/pre-commit.js'
+
+      - name: Open / refresh release PR and enable auto-merge
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          TAG: ${{ steps.changelog.outputs.tag }}
+        run: |
+          set -euo pipefail
+          # Branch was reset+pushed by the changelog action. Open a PR if none
+          # is open for release/next; otherwise reuse it. Title drives the
+          # squash-merge commit subject so the loop guard (Workflow A) skips it
+          # and Workflow B's trigger matches it.
+          if gh pr view release/next --json number >/dev/null 2>&1; then
+            gh pr edit release/next --title "chore(release): ${TAG}"
+          else
+            gh pr create \
+              --base master \
+              --head release/next \
+              --title "chore(release): ${TAG}" \
+              --body "Automated release ${TAG}. Squash-merging publishes the tag and GitHub Release (tag-release.yml)."
+          fi
+          gh pr merge release/next --auto --squash --delete-branch --subject "chore(release): ${TAG}"
