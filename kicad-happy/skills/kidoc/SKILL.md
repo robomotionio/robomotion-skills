@@ -1,18 +1,6 @@
 ---
 name: kidoc
-description: >-
-  Generate professional engineering documentation from KiCad projects — Hardware
-  Design Descriptions (HDD), CE Technical Files, Interface Control Documents
-  (ICD), Design Review Packages, and Manufacturing Transfer Packages. Auto-runs
-  schematic, PCB, EMC, and thermal analyses; renders schematic and PCB SVGs
-  with subsystem cropping, focus dimming, net highlighting, and pin-net
-  annotation; generates power tree, bus topology, and architecture block
-  diagrams. Produces styled PDF with cover pages, TOC, and vector SVG
-  embedding. Markdown source of truth — human-editable, version-controllable.
-  Use for "generate documentation", "create report", "HDD", "CE technical
-  file", "design review package", "ICD", "render schematic", "render layout",
-  "generate block diagram", "manufacturing package", "generate PDF", or
-  "custom report".
+description: "Generate professional engineering documentation from KiCad projects — Hardware Design Descriptions (HDD), CE Technical Files, Interface Control Documents (ICD), Design Review Packages, and Manufacturing Transfer Packages. Auto-runs schematic, PCB, EMC, and thermal analyses; renders schematic and PCB SVGs with subsystem cropping, focus dimming, net highlighting, and pin-net annotation; generates power tree, bus topology, and architecture block diagrams. Produces styled PDF with cover pages, TOC, and vector SVG embedding. Markdown source of truth — human-editable, version-controllable. Use for \"generate documentation\", \"create report\", \"HDD\", \"CE technical file\", \"design review package\", \"ICD\", \"render schematic\", \"render layout\", \"generate block diagram\", \"manufacturing package\", \"generate PDF\", or \"custom report\"."
 ---
 
 # kidoc — Engineering Documentation Skill

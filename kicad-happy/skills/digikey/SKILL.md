@@ -1,18 +1,6 @@
 ---
 name: digikey
-description: >-
-  Search DigiKey for electronic components and download datasheets — primary
-  source for prototype orders and the preferred API method for fetching
-  datasheets. Find parts by keyword or MPN, check pricing/stock, download
-  datasheets via API, analyze specifications. Sync and maintain a local
-  datasheets directory — extract components from schematics, download missing
-  datasheets, keep them up to date. Also supports batch MPN-list seeding
-  (`--mpn-list`) for bulk workflows without a KiCad project. Use when the user asks about electronic
-  components, part specs, datasheets, pricing, stock, footprints, or needs to
-  download a datasheet — even without mentioning "DigiKey". Also for "sync
-  datasheets", "download datasheets for my board/project", or mentions a
-  datasheets directory. DigiKey is the default distributor for prototyping. For
-  BOM workflows, see the bom skill.
+description: "Search DigiKey for electronic components and download datasheets — primary source for prototype orders and the preferred API method for fetching datasheets. Find parts by keyword or MPN, check pricing/stock, download datasheets via API, analyze specifications. Sync and maintain a local datasheets directory — extract components from schematics, download missing datasheets, keep them up to date. Also supports batch MPN-list seeding (`--mpn-list`) for bulk workflows without a KiCad project. Use when the user asks about electronic components, part specs, datasheets, pricing, stock, footprints, or needs to download a datasheet — even without mentioning \"DigiKey\". Also for \"sync datasheets\", \"download datasheets for my board/project\", or mentions a datasheets directory. DigiKey is the default distributor for prototyping. For BOM workflows, see the bom skill."
 ---
 
 # DigiKey Parts Search & Analysis

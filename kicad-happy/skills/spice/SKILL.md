@@ -1,17 +1,6 @@
 ---
 name: spice
-description: >-
-  Run automatic SPICE simulations on subcircuits detected from KiCad schematic
-  analysis — validates filter frequencies, divider ratios, opamp gains, LC
-  resonance, and crystal load capacitance. Supports ngspice, LTspice, and Xyce
-  (auto-detected). Generates testbenches, runs batch mode, produces structured
-  pass/warn/fail report. Use when the user asks to simulate, verify, or
-  validate any analog subcircuit — RC filters, LC filters, voltage dividers,
-  opamp circuits, crystal oscillators. Also for "simulate my circuit", "run
-  spice", "verify with simulation", "check my filter cutoff", "does this
-  divider give the right voltage", "what's the bandwidth of this opamp stage".
-  Consider suggesting simulation during design reviews when the schematic
-  analyzer reports simulatable subcircuits and a SPICE simulator is available.
+description: "Run automatic SPICE simulations on subcircuits detected from KiCad schematic analysis — validates filter frequencies, divider ratios, opamp gains, LC resonance, and crystal load capacitance. Supports ngspice, LTspice, and Xyce (auto-detected). Generates testbenches, runs batch mode, produces structured pass/warn/fail report. Use when the user asks to simulate, verify, or validate any analog subcircuit — RC filters, LC filters, voltage dividers, opamp circuits, crystal oscillators. Also for \"simulate my circuit\", \"run spice\", \"verify with simulation\", \"check my filter cutoff\", \"does this divider give the right voltage\", \"what's the bandwidth of this opamp stage\". Consider suggesting simulation during design reviews when the schematic analyzer reports simulatable subcircuits and a SPICE simulator is available."
 ---
 
 # SPICE Simulation Skill

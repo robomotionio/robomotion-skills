@@ -1,19 +1,6 @@
 ---
 name: kicad
-description: >-
-  Analyze KiCad projects and PDF schematics: schematics, PCB layouts, Gerbers,
-  footprints, symbols, netlists, and design rules. Reviews designs for bugs,
-  traces nets, cross-references schematic to PCB, extracts BOM data, checks
-  DRC/ERC, DFM, power trees, and regulator circuits. Every finding carries a
-  confidence label and evidence source with trust_summary rollup. Analyzes PDF
-  schematics from dev boards, reference designs, eval kits, and datasheets.
-  Supports KiCad 5–10. Use whenever the user mentions .kicad_sch, .kicad_pcb,
-  .kicad_pro, PCB design review, schematic analysis, PDF schematics, reference
-  designs, Gerber files, DRC/ERC, netlist issues, BOM extraction, signal
-  tracing, power budget, DFM, or wants to understand, debug, compare, or
-  review any hardware design. Also for "check my board", "review before fab",
-  "what's wrong with my schematic", "is this ready to order", "check my power
-  supply", "verify this circuit", or any electronics/PCB design question.
+description: "Analyze KiCad projects and PDF schematics: schematics, PCB layouts, Gerbers, footprints, symbols, netlists, and design rules. Reviews designs for bugs, traces nets, cross-references schematic to PCB, extracts BOM data, checks DRC/ERC, DFM, power trees, and regulator circuits. Every finding carries a confidence label and evidence source with trust_summary rollup. Analyzes PDF schematics from dev boards, reference designs, eval kits, and datasheets. Supports KiCad 5–10. Use whenever the user mentions .kicad_sch, .kicad_pcb, .kicad_pro, PCB design review, schematic analysis, PDF schematics, reference designs, Gerber files, DRC/ERC, netlist issues, BOM extraction, signal tracing, power budget, DFM, or wants to understand, debug, compare, or review any hardware design. Also for \"check my board\", \"review before fab\", \"what's wrong with my schematic\", \"is this ready to order\", \"check my power supply\", \"verify this circuit\", or any electronics/PCB design question."
 ---
 
 # KiCad Project Analysis Skill
