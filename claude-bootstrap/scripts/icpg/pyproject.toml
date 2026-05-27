@@ -1,0 +1,31 @@
+[project]
+name = "icpg"
+version = "0.1.0"
+description = "iCPG — Intent-Augmented Code Property Graph for agentic development"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+readme = "README.md"
+
+dependencies = []
+
+[project.optional-dependencies]
+vectors = [
+    "chromadb>=0.4.0",
+    "sentence-transformers>=2.2.0",
+]
+tfidf = [
+    "scikit-learn>=1.3.0",
+]
+llm = [
+    "openai>=1.0.0",
+]
+all = [
+    "icpg[vectors,tfidf,llm]",
+]
+
+[project.scripts]
+icpg = "icpg.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"

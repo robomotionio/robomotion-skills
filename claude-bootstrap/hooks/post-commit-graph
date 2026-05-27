@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Post-Commit Graph Update Hook
+#
+# Triggers incremental codebase-memory-mcp graph update after each commit.
+# This hook is LIGHTWEIGHT (~10ms) — it does NOT run the MCP server or
+# any heavy process. It touches a marker file that the already-running
+# codebase-memory-mcp file watcher picks up.
+#
+# Installed by: /initialize-project or ~/.claude/install-hooks.sh
+# Remove with: rm .git/hooks/post-commit (or remove the code-graph section)
+
+# Skip if code graph is not configured for this project
+if [ ! -f ".mcp.json" ] || ! grep -q "codebase-memory" ".mcp.json" 2>/dev/null; then
+    exit 0
+fi
+
+# Get list of committed code files
+COMMITTED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null)
+
+if [ -z "$COMMITTED_FILES" ]; then
+    exit 0
+fi
+
+# Filter to code files only (skip configs, docs, images, etc.)
+CODE_EXTENSIONS='\.ts$|\.tsx$|\.js$|\.jsx$|\.py$|\.go$|\.rs$|\.java$|\.rb$|\.php$|\.swift$|\.kt$|\.c$|\.cpp$|\.h$|\.hpp$|\.cs$|\.scala$|\.lua$|\.vue$|\.svelte$'
+CODE_FILES=$(echo "$COMMITTED_FILES" | grep -E "$CODE_EXTENSIONS" || true)
+
+if [ -z "$CODE_FILES" ]; then
+    exit 0
+fi
+
+FILE_COUNT=$(echo "$CODE_FILES" | wc -l | tr -d ' ')
+
+# Touch marker file for codebase-memory-mcp file watcher
+# This is the lightest possible signal — no blocking, no spawning processes
+if [ -d ".code-graph" ]; then
+    touch ".code-graph/.needs-update" 2>/dev/null || true
+fi
+
+echo "code-graph: update queued ($FILE_COUNT code files changed)"
+
+exit 0

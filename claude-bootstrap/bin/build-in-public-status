@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+"""build-in-public status — show scheduled posts, monitored accounts, engagement per project.
+
+Usage:
+  build-in-public-status              # Show all projects summary
+  build-in-public-status maggy        # Show maggy specific
+  build-in-public-status --live       # Include live Buffer API data
+  build-in-public-status maggy --short  # Compact view
+"""
+
+import json
+import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+BIP_DIR = Path.home() / ".maggy" / "build-in-public"
+
+
+def load_json(path: Path):
+    try: return json.loads(path.read_text())
+    except: return None
+
+
+def load_jsonl(path: Path, last_n=20):
+    try:
+        lines = path.read_text().strip().split("\n")[-last_n:]
+        return [json.loads(l) for l in lines if l.strip()]
+    except: return []
+
+
+def get_buffer_posts():
+    """Fetch live scheduled posts from Buffer GraphQL API."""
+    token = os.environ.get("BUFFER_ACCESS_TOKEN", "")
+    if not token: return []
+    try:
+        import httpx
+        resp = httpx.post("https://api.buffer.com",
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+            json={"query": "query($input: PostsInput!) { posts(input: $input) { edges { node { id status dueAt channelService text } } } }",
+                  "variables": {"input": {"organizationId": "68133a1399360c9330545cdb"}}},
+            timeout=10)
+        if resp.status_code != 200: return []
+        edges = resp.json().get("data",{}).get("posts",{}).get("edges",[])
+        return [e["node"] for e in edges]
+    except: return []
+
+
+def status_for(project: str, live=False):
+    """Generated summary for one project."""
+    lines = []
+
+    # Engagement state
+    eng_path = BIP_DIR / f"engage-{project}.json"
+    eng = load_json(eng_path) or {}
+
+    # Projects enabled state
+    proj_path = BIP_DIR / "projects.json"
+    proj = load_json(proj_path) or {}
+    enabled = proj.get(project, {}).get("enabled", "not configured")
+
+    # Schedule queue
+    sched_path = BIP_DIR / "schedule.json"
+    sched = load_json(sched_path) or []
+
+    # Posts log
+    posts_path = BIP_DIR / "posts.jsonl"
+    posts = load_jsonl(posts_path)
+
+    # Images
+    img_dir = BIP_DIR / "images"
+    images = list(img_dir.glob("*.png")) + list(img_dir.glob("*.jpg")) if img_dir.exists() else []
+
+    # Monitored accounts (from topics.yaml)
+    topics_path = None
+    for candidate in [
+        BIP_DIR.parent.parent / "maggy" / "plugins" / "build-in-public" / f"topics-{project}.yaml",
+        BIP_DIR.parent.parent / "maggy" / "plugins" / "build-in-public" / "topics.yaml",
+        Path.home() / ".maggy" / "plugins" / "build-in-public" / "topics.yaml",
+    ]:
+        if candidate.exists(): topics_path = candidate; break
+
+    monitored = []
+    reddit_subs = []
+    watch_topics = []
+    if topics_path:
+        try:
+            import yaml
+            t = yaml.safe_load(topics_path.read_text())
+            monitored = [a["handle"] for a in t.get("monitor_accounts", [])]
+            reddit_subs = t.get("reddit_monitor", [])
+            watch_topics = t.get("watch", [])
+        except: pass
+
+    # Reddit state from engage file
+    reddit_state = eng.get("reddit_monitored", {})
+
+    # Build summary
+    lines.append(f"📋 Scheduled (queue):   {len(sched)}")
+    lines.append(f"👤 Monitored accounts:   {len(monitored)}")
+    if monitored:
+        lines.append(f"   {', '.join(monitored[:8])}")
+        if len(monitored) > 8: lines.append(f"   ... +{len(monitored)-8} more")
+    lines.append(f"🔴 Reddit subreddits:    {len(reddit_subs)}")
+    if reddit_subs:
+        lines.append(f"   {', '.join(reddit_subs[:8])}")
+    if reddit_state:
+        lines.append(f"   Last scan:            {reddit_state.get('last_scan', 'never')[:19]}")
+    lines.append(f"🏷️  Watch topics:         {len(watch_topics)}")
+    if watch_topics:
+        lines.append(f"   {', '.join(watch_topics[:6])}")
+    lines.append(f"💬 Engagements today:    {eng.get('engagements_today', 0)}")
+    lines.append(f"   Total replies:        {eng.get('replies', 0)}")
+    lines.append(f"   Last monitor scan:    {eng.get('last_monitor_scan', 'never')[:19]}")
+    lines.append(f"🖼️  Generated images:     {len(images)}")
+    lines.append(f"📝 Posts logged:         {len(posts)}")
+    lines.append(f"🔌 Plugin state:         {'✅ enabled' if enabled in (True, 'enabled', 1) else '⏸️  ' + str(enabled)}")
+
+    # Live Buffer data
+    if live:
+        buf = get_buffer_posts()
+        by_ch = {}
+        for p in buf:
+            ch = p.get("channelService","?")
+            by_ch[ch] = by_ch.get(ch, 0) + 1
+        lines.append(f"\n🔴 LIVE Buffer posts:   {len(buf)}")
+        for ch, count in sorted(by_ch.items()):
+            lines.append(f"   {ch}: {count}")
+        if buf:
+            lines.append(f"\n   Next 5 posts:")
+            for p in sorted(buf, key=lambda x: x.get("dueAt",""))[:5]:
+                due = p.get("dueAt","?")[:16]
+                ch = p.get("channelService","?")
+                text = (p.get("text") or "")[:80].replace("\n"," ")
+                lines.append(f"   [{ch:9s}] {due} | {text}...")
+
+    return lines
+
+
+def main():
+    import argparse
+    p = argparse.ArgumentParser(description="build-in-public status summary")
+    p.add_argument("project", nargs="?", help="Project name (maggy, edubites, etc.)")
+    p.add_argument("--live", action="store_true", help="Include live Buffer API data")
+    p.add_argument("--short", action="store_true", help="Compact one-line per project")
+    args = p.parse_args()
+
+    # Discover projects
+    projects = []
+    for f in BIP_DIR.glob("engage-*.json"):
+        proj = f.stem.replace("engage-", "")
+        if proj not in projects: projects.append(proj)
+
+    if not projects:
+        projects = ["maggy"]  # default
+
+    if args.project:
+        if args.project not in projects:
+            print(f"Unknown project: {args.project}")
+            print(f"Available: {', '.join(projects)}")
+            sys.exit(1)
+        target = [args.project]
+    else:
+        target = projects
+
+    for proj in target:
+        lines = status_for(proj, live=args.live)
+        w = 60
+        print(f"\n{'='*w}")
+        print(f"  🏗️  {proj}")
+        print(f"{'='*w}")
+        if args.short:
+            sched = [l for l in lines if "Scheduled" in l]
+            eng = [l for l in lines if "today" in l]
+            print(f"  {(sched[0] if sched else '')} | {(eng[0] if eng else '')}")
+        else:
+            for line in lines:
+                print(f"  {line}")
+
+    if not args.short:
+        print()
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,121 @@
+#!/bin/bash
+# Stop hook — asks qwen3 whether current state warrants a multi-model review.
+# No hardcoded thresholds — the smallest available model decides dynamically.
+# No set -euo pipefail: hook scripts must be defensive.
+
+INPUT=$(cat 2>/dev/null || true)
+CWD=$(echo "$INPUT" | jq -r '.cwd // empty' 2>/dev/null || echo ".")
+
+cd "$CWD" 2>/dev/null || exit 0
+
+TURN_COUNT=$(echo "$INPUT" | jq -r '.turn_count // 0' 2>/dev/null || echo "0")
+
+REVIEW_STATE="$HOME/.claude/auto-review-state.json"
+LAST_REVIEW_TURN=$(cat "$REVIEW_STATE" 2>/dev/null | jq -r '.last_turn // 0' 2>/dev/null || echo "0")
+TURNS_SINCE=$((TURN_COUNT - LAST_REVIEW_TURN))
+LAST_CHECK_TURN=$(cat "$REVIEW_STATE" 2>/dev/null | jq -r '.last_check // 0' 2>/dev/null || echo "0")
+CHECKS_SINCE=$((TURN_COUNT - LAST_CHECK_TURN))
+
+# Cooldown: don't even check more than every 5 turns
+if [ "$CHECKS_SINCE" -lt 5 ] 2>/dev/null; then
+  exit 0
+fi
+
+# Update last check time
+TMP_STATE=$(mktemp)
+cat "$REVIEW_STATE" 2>/dev/null | jq --arg t "$TURN_COUNT" '. + {last_check: ($t | tonumber)}' > "$TMP_STATE" 2>/dev/null && mv "$TMP_STATE" "$REVIEW_STATE" 2>/dev/null || true
+rm -f "$TMP_STATE"
+
+# Minimum 10 turns between reviews
+if [ "$TURNS_SINCE" -lt 10 ] 2>/dev/null; then
+  exit 0
+fi
+
+# ── Build context for qwen3 to decide ────────────────────────────────────
+GIT_DIFF_STAT=$(git diff --stat HEAD 2>/dev/null | tail -10 || echo "no changes")
+FILES_CHANGED=$(echo "$GIT_DIFF_STAT" | wc -l | tr -d ' ')
+SECURITY_PATHS=$(git diff --name-only HEAD 2>/dev/null | grep -iE '(auth|security|crypto|token|password|secret|encrypt)' || echo "none")
+BRANCH=$(git branch --show-current 2>/dev/null || echo "unknown")
+
+CLASSIFY_PROMPT="You are a review gatekeeper. Based on the following state, decide if this work warrants a multi-model code review. A review is warranted when: significant implementation is done (not just planning), multiple files changed, security-sensitive code touched, or the session has been working for a while without review. A review is NOT warranted for: small fixes, research, planning/discussion, single-file trivial changes, or documentation-only updates.
+
+State:
+- Branch: ${BRANCH}
+- Turn count: ${TURN_COUNT}
+- Turns since last review: ${TURNS_SINCE}
+- Files changed: ${FILES_CHANGED}
+- Security paths touched: ${SECURITY_PATHS}
+- Git diff stat: ${GIT_DIFF_STAT}
+
+Reply with exactly one word: REVIEW_NEEDED or NO_REVIEW. Then a colon and a one-sentence reason."
+
+# ── Cascading classifier to decide ───────────────────────────────────────
+# Try: qwen3 (free) → kimi (free) → deepseek-flash (~$0.0001) → skip
+DECISION=""
+CLASSIFIER=""
+
+# Level 1: qwen3 via Ollama (free, local)
+# Model + host env-var configurable (see bin/qwen3 for the matching pattern).
+OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5-coder:3b}"
+OLLAMA_BASE="${OLLAMA_BASE:-http://localhost:11434}"
+if [ -z "$DECISION" ] && curl -s --connect-timeout 2 "${OLLAMA_BASE}/api/tags" >/dev/null 2>&1; then
+  CONTENT=$(echo "$CLASSIFY_PROMPT" | jq -Rs .)
+  DECISION=$(curl -s --max-time 6 "${OLLAMA_BASE}/api/chat" \
+    -d "{\"model\": \"${OLLAMA_MODEL}\", \"messages\": [{\"role\": \"user\", \"content\": ${CONTENT}}], \"stream\": false, \"options\": {\"temperature\": 0.1, \"num_predict\": 20}}" \
+    2>/dev/null | jq -r '.message.content // ""' | head -1 || true)
+  [ -n "$DECISION" ] && CLASSIFIER="qwen3"
+fi
+
+# Level 2: kimi CLI (free, local)
+if [ -z "$DECISION" ] && [ -x "$HOME/bin/kimi" ]; then
+  DECISION=$("$HOME/bin/kimi" --quiet -p "$CLASSIFY_PROMPT" 2>/dev/null | tail -1 || true)
+  [ -n "$DECISION" ] && CLASSIFIER="kimi"
+fi
+
+# Level 3: deepseek-flash (cheap API, ~$0.0001)
+if [ -z "$DECISION" ] && [ -x "$HOME/bin/deepseek" ] && [ -n "$DEEPSEEK_API_KEY" ]; then
+  DECISION=$("$HOME/bin/deepseek" --flash "$CLASSIFY_PROMPT" 2>/dev/null | tail -1 || true)
+  [ -n "$DECISION" ] && CLASSIFIER="deepseek-flash"
+fi
+
+# ── Visual verification for static/ changes ──────────────────────────────
+STATIC_CHANGED=$(git diff --name-only HEAD 2>/dev/null | grep "static/" || true)
+if [ -n "$STATIC_CHANGED" ]; then
+  if command -v peekaboo >/dev/null 2>&1; then
+    PEEK_DIR="$HOME/.maggy/visual-verify"
+    mkdir -p "$PEEK_DIR"
+    BEFORE="$PEEK_DIR/before-$(date -u +%Y%m%d-%H%M%S).png"
+    AFTER="$PEEK_DIR/after-$(date -u +%Y%m%d-%H%M%S).png"
+    # Take screenshot
+    peekaboo image --mode screen --path "$AFTER" 2>/dev/null &
+    echo "[auto-review] 📸 visual verification screenshot captured" >&2
+    # Link previous as before for comparison
+    LATEST=$(ls -t "$PEEK_DIR"/after-*.png 2>/dev/null | head -2 | tail -1)
+    if [ -n "$LATEST" ] && [ "$LATEST" != "$AFTER" ]; then
+      echo "[auto-review] 📊 compare: $LATEST vs $AFTER" >&2
+    fi
+  fi
+fi
+
+# All classifiers unavailable — skip, retry next time
+if [ -z "$DECISION" ]; then
+  echo "[auto-review] all classifiers unavailable — skip (turn $TURN_COUNT)" >&2
+  exit 0
+fi
+
+# ── Act on decision ──────────────────────────────────────────────────────
+if echo "$DECISION" | grep -qi "REVIEW_NEEDED"; then
+  REASON=$(echo "$DECISION" | sed 's/^[^:]*:\s*//')
+  echo "[auto-review] $CLASSIFIER: REVIEW_NEEDED — $REASON (turn $TURN_COUNT)" >&2
+
+  REVIEW_BIN="$HOME/bin/review"
+  if [ -x "$REVIEW_BIN" ]; then
+    nohup "$REVIEW_BIN" --deepseek --kimi "Review the recent changes in $CWD (branch: $BRANCH). Context: $GIT_DIFF_STAT. Reason flagged: $REASON" \
+      > "$HOME/.claude/last-review.txt" 2>&1 &
+    echo "{\"last_turn\": $TURN_COUNT, \"last_check\": $TURN_COUNT, \"ts\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\", \"reason\": $(echo "$REASON" | jq -Rs .), \"classifier\": \"$CLASSIFIER\"}" > "$REVIEW_STATE"
+  fi
+else
+  echo "[auto-review] $CLASSIFIER: NO_REVIEW (turn $TURN_COUNT)" >&2
+fi
+
+exit 0

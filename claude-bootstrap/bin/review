@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+"""Multi-model review orchestrator — runs reviews in parallel across backends.
+
+Usage:
+  review "code or design to review"
+  review --file path/to/file.py
+  review --deepseek --kimi "prompt"        # Specific backends only
+  echo "code" | review --all               # Pipe mode
+
+Default backends: deepseek-pro + kimi (codex optional, needs OPENAI_API_KEY)
+"""
+
+import json
+import os
+import subprocess
+import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
+
+REVIEWERS = {
+    "deepseek": {
+        "cmd": [os.path.expanduser("~/bin/deepseek"), "--pro"],
+        "label": "DeepSeek Pro",
+        "cost_est": 0.0004,
+        "enabled": True,
+    },
+    "kimi": {
+        "cmd": [os.path.expanduser("~/bin/kimi"), "--quiet", "-p"],
+        "label": "Kimi K2.6",
+        "cost_est": 0.0006,
+        "enabled": True,
+    },
+    "codex": {
+        "cmd": ["codex", "exec"],
+        "label": "Codex",
+        "cost_est": 0.02,
+        "enabled": bool(os.environ.get("OPENAI_API_KEY")),
+    },
+}
+
+
+def run_reviewer(name: str, config: dict, prompt: str) -> dict:
+    """Run a single reviewer and return structured result."""
+    try:
+        cmd = config["cmd"] + [prompt]
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=120,
+        )
+        success = result.returncode == 0 and bool(result.stdout.strip())
+        return {
+            "reviewer": name,
+            "label": config["label"],
+            "success": success,
+            "output": result.stdout.strip() if success else result.stderr.strip()[:500],
+            "cost_est": config["cost_est"],
+        }
+    except subprocess.TimeoutExpired:
+        return {"reviewer": name, "label": config["label"], "success": False, "output": "Timeout (120s)", "cost_est": 0}
+    except Exception as e:
+        return {"reviewer": name, "label": config["label"], "success": False, "output": str(e)[:200], "cost_est": 0}
+
+
+def main():
+    args = sys.argv[1:]
+    specific_backends = []
+    prompt = None
+
+    for arg in args:
+        if arg in ("--deepseek", "-d"):
+            specific_backends.append("deepseek")
+        elif arg in ("--kimi", "-k"):
+            specific_backends.append("kimi")
+        elif arg in ("--codex", "-c"):
+            specific_backends.append("codex")
+        elif arg in ("--all", "-a"):
+            specific_backends = ["deepseek", "kimi", "codex"]
+        elif arg.startswith("--file"):
+            continue
+        elif arg == "-f":
+            continue
+        else:
+            prompt = arg
+
+    if not prompt and not sys.stdin.isatty():
+        prompt = sys.stdin.read().strip()
+
+    if not prompt:
+        print("Usage: review [--deepseek] [--kimi] [--codex] [--all] <prompt>", file=sys.stderr)
+        sys.exit(1)
+
+    # Determine active reviewers
+    active = specific_backends or ["deepseek", "kimi"]
+    reviewers = {k: v for k, v in REVIEWERS.items() if k in active and v["enabled"]}
+
+    if not reviewers:
+        print("[review] No reviewers available.", file=sys.stderr)
+        sys.exit(1)
+
+    ts = datetime.now(timezone.utc).isoformat()
+    print(f"[review] Running {len(reviewers)} reviewers in parallel...", file=sys.stderr)
+    for name in reviewers:
+        print(f"  {reviewers[name]['label']}", file=sys.stderr)
+
+    # Run all reviewers in parallel
+    results = {}
+    with ThreadPoolExecutor(max_workers=len(reviewers)) as executor:
+        futures = {
+            executor.submit(run_reviewer, name, config, prompt): name
+            for name, config in reviewers.items()
+        }
+        for future in as_completed(futures):
+            result = future.result()
+            results[result["reviewer"]] = result
+
+    total_cost = sum(r["cost_est"] for r in results.values())
+
+    # Output results
+    print(f"\n{'='*60}")
+    print(f"Multi-Model Review — {len(results)} reviewers, est. cost ${total_cost:.4f}")
+    print(f"{'='*60}\n")
+
+    for name in ["deepseek", "kimi", "codex"]:
+        if name not in results:
+            continue
+        r = results[name]
+        status = "PASS" if r["success"] else "FAIL"
+        print(f"## {r['label']} ({status})\n")
+        print(r["output"][:3000])
+        print(f"\n---\n")
+
+    # Log to eval
+    log_file = os.path.expanduser("~/.claude/review-log.jsonl")
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    with open(log_file, "a") as f:
+        f.write(json.dumps({
+            "ts": ts,
+            "prompt": prompt[:200],
+            "reviewers": list(results.keys()),
+            "total_cost": total_cost,
+        }) + "\n")
+
+
+if __name__ == "__main__":
+    main()

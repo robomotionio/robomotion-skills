@@ -1,0 +1,139 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "scripts/mnemos-statusline.sh",
+    "padding": 0
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm test *)",
+      "Bash(npm run lint *)",
+      "Bash(npm run typecheck *)",
+      "Bash(npx tsc *)",
+      "Bash(npx jest *)",
+      "Bash(npx vitest *)",
+      "Bash(pytest *)",
+      "Bash(ruff *)",
+      "Bash(mypy *)",
+      "Bash(eslint *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git branch *)",
+      "Bash(gh pr *)",
+      "Bash(gh issue *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(wc *)",
+      "Bash(icpg *)",
+      "Bash(python -m icpg *)",
+      "Bash(mnemos *)",
+      "Bash(python -m mnemos *)",
+      "Bash(polyphony *)",
+      "Bash(python -m polyphony *)",
+      "Bash(docker ps *)",
+      "Bash(docker logs *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Write(.env)",
+      "Write(.env.*)",
+      "Edit(.env)",
+      "Edit(.env.*)"
+    ]
+  },
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/mnemos-pre-compact.sh\" ]; then exec \".claude/scripts/mnemos-pre-compact.sh\"; fi; if [ -x \"$HOME/.claude/templates/mnemos-pre-compact.sh\" ]; then exec \"$HOME/.claude/templates/mnemos-pre-compact.sh\"; fi; echo \"[maggy] hook script 'mnemos-pre-compact.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/mnemos-pre-compact.sh to silence\" >&2; exit 0",
+            "timeout": 8,
+            "statusMessage": "Writing emergency checkpoint + compaction priorities..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/mnemos-post-compact-inject.sh\" ]; then exec \".claude/scripts/mnemos-post-compact-inject.sh\"; fi; if [ -x \"$HOME/.claude/templates/mnemos-post-compact-inject.sh\" ]; then exec \"$HOME/.claude/templates/mnemos-post-compact-inject.sh\"; fi; echo \"[maggy] hook script 'mnemos-post-compact-inject.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/mnemos-post-compact-inject.sh to silence\" >&2; exit 0",
+            "timeout": 2,
+            "statusMessage": "Checking for post-compaction restore..."
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/mnemos-pre-edit.sh\" ]; then exec \".claude/scripts/mnemos-pre-edit.sh\"; fi; if [ -x \"$HOME/.claude/templates/mnemos-pre-edit.sh\" ]; then exec \"$HOME/.claude/templates/mnemos-pre-edit.sh\"; fi; echo \"[maggy] hook script 'mnemos-pre-edit.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/mnemos-pre-edit.sh to silence\" >&2; exit 0",
+            "timeout": 5,
+            "statusMessage": "Checking fatigue + intent context..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/mnemos-post-tool.sh\" ]; then exec \".claude/scripts/mnemos-post-tool.sh\"; fi; if [ -x \"$HOME/.claude/templates/mnemos-post-tool.sh\" ]; then exec \"$HOME/.claude/templates/mnemos-post-tool.sh\"; fi; echo \"[maggy] hook script 'mnemos-post-tool.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/mnemos-post-tool.sh to silence\" >&2; exit 0",
+            "timeout": 1,
+            "statusMessage": "Logging tool outcome..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/tdd-loop-check.sh\" ]; then exec \".claude/scripts/tdd-loop-check.sh\"; fi; if [ -x \"$HOME/.claude/templates/tdd-loop-check.sh\" ]; then exec \"$HOME/.claude/templates/tdd-loop-check.sh\"; fi; echo \"[maggy] hook script 'tdd-loop-check.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/tdd-loop-check.sh to silence\" >&2; exit 0",
+            "timeout": 60,
+            "statusMessage": "Running tests..."
+          },
+          {
+            "type": "command",
+            "command": "if command -v codex &>/dev/null; then if [ -x \".claude/scripts/codex-auto-review.sh\" ]; then exec \".claude/scripts/codex-auto-review.sh\"; elif [ -x \"$HOME/.claude/templates/codex-auto-review.sh\" ]; then exec \"$HOME/.claude/templates/codex-auto-review.sh\"; fi; fi; exit 0",
+            "timeout": 120,
+            "statusMessage": "Codex reviewing changes..."
+          },
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/icpg-stop-record.sh\" ]; then exec \".claude/scripts/icpg-stop-record.sh\"; fi; if [ -x \"$HOME/.claude/templates/icpg-stop-record.sh\" ]; then exec \"$HOME/.claude/templates/icpg-stop-record.sh\"; fi; echo \"[maggy] hook script 'icpg-stop-record.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/icpg-stop-record.sh to silence\" >&2; exit 0",
+            "timeout": 5,
+            "statusMessage": "Recording symbols to intent graph..."
+          },
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/mnemos-stop-checkpoint.sh\" ]; then exec \".claude/scripts/mnemos-stop-checkpoint.sh\"; fi; if [ -x \"$HOME/.claude/templates/mnemos-stop-checkpoint.sh\" ]; then exec \"$HOME/.claude/templates/mnemos-stop-checkpoint.sh\"; fi; echo \"[maggy] hook script 'mnemos-stop-checkpoint.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/mnemos-stop-checkpoint.sh to silence\" >&2; exit 0",
+            "timeout": 5,
+            "statusMessage": "Writing session checkpoint..."
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \".claude/scripts/mnemos-session-start.sh\" ]; then exec \".claude/scripts/mnemos-session-start.sh\"; fi; if [ -x \"$HOME/.claude/templates/mnemos-session-start.sh\" ]; then exec \"$HOME/.claude/templates/mnemos-session-start.sh\"; fi; echo \"[maggy] hook script 'mnemos-session-start.sh' not installed \u2014 run <maggy>/install.sh (one-time) or touch .claude/scripts/mnemos-session-start.sh to silence\" >&2; exit 0",
+            "timeout": 5,
+            "statusMessage": "Loading session checkpoint + project context..."
+          }
+        ]
+      }
+    ]
+  }
+}

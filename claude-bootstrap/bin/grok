@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+"""Grok (xAI) delegation script — OpenAI-compatible API.
+
+Usage:
+  grok "prompt"                         # Default: grok-4.3
+  echo "prompt" | grok                  # Pipe mode
+
+Env: XAI_API_KEY required.
+"""
+
+import os
+import sys
+import httpx
+
+API_KEY = os.environ.get("XAI_API_KEY", "")
+BASE_URL = "https://api.x.ai/v1"
+
+
+def main():
+    prompt = None
+
+    args = sys.argv[1:]
+    for arg in args:
+        if not arg.startswith("-"):
+            prompt = arg
+            break
+
+    if not API_KEY:
+        print("[grok] ERROR: XAI_API_KEY not set", file=sys.stderr)
+        print("  Add to ~/.zshrc: export XAI_API_KEY=\"xai-...\"", file=sys.stderr)
+        sys.exit(1)
+
+    if not prompt and not sys.stdin.isatty():
+        prompt = sys.stdin.read().strip()
+
+    if not prompt:
+        print("Usage: grok <prompt>", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        with httpx.Client(timeout=120) as client:
+            resp = client.post(
+                f"{BASE_URL}/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": "grok-4.3",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "max_tokens": 16000,
+                },
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            choices = data.get("choices", [])
+            if choices:
+                content = choices[0].get("message", {}).get("content", "")
+                print(content)
+                return
+            print("[grok: no content in response]")
+    except httpx.HTTPError as e:
+        print(f"[Grok API error: {e}]", file=sys.stderr)
+    except Exception as e:
+        print(f"[Grok error: {e}]", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()

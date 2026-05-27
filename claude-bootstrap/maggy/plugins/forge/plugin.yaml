@@ -1,0 +1,11 @@
+id: forge
+version: 1
+entrypoint: plugin.py
+permissions: [mcp.read, tool.read]
+router: "plugin:router"
+heartbeat:
+  - name: forge_gap_scan
+    interval_seconds: 900
+    fn: scan_gaps
+config:
+  forge_path: "~/Documents/protaige/mcp-forge"

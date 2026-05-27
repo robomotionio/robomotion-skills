@@ -1,0 +1,203 @@
+#!/usr/bin/env python3
+"""Multi-backend research tool with auto-evaluation and fallback.
+
+Tries backends in order, evaluates results, auto-adjusts future preferences.
+Usage:
+  research "query"
+  research --brief "query"     # Prefer shorter results
+  research --deep "query"      # Prefer deep reasoning
+  research --eval              # Show evaluation stats
+
+Backend cascade: deepseek-flash → deepseek-pro → codex (if available)
+"""
+
+import json
+import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+EVAL_FILE = Path(os.environ["HOME"]) / ".claude" / "research-eval.jsonl"
+STATE_FILE = Path(os.environ["HOME"]) / ".claude" / "research-state.json"
+
+BACKENDS = [
+    {
+        "name": "deepseek-flash",
+        "cmd": [os.path.expanduser("~/bin/deepseek"), "--flash"],
+        "cost_est": 0.0001,
+        "timeout": 30,
+    },
+    {
+        "name": "deepseek-pro",
+        "cmd": [os.path.expanduser("~/bin/deepseek"), "--pro"],
+        "cost_est": 0.0004,
+        "timeout": 60,
+    },
+]
+
+
+def load_state():
+    if STATE_FILE.exists():
+        return json.loads(STATE_FILE.read_text())
+    return {"preferred": "deepseek-flash", "failures": {}, "scores": {}}
+
+
+def save_state(state):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2))
+
+
+def evaluate(text: str, query: str, mode: str = "default") -> dict:
+    """Score a result on 0-10 scale."""
+    score = 5.0
+    reasons = []
+
+    if not text or len(text) < 20:
+        return {"score": 0, "reasons": ["empty or too short"]}
+
+    if "error" in text.lower()[:100] or "failed" in text.lower()[:100]:
+        score -= 3
+        reasons.append("contains error markers")
+
+    # Length scoring
+    if mode == "brief" and len(text) < 500:
+        score += 1
+        reasons.append("concise (brief mode)")
+    elif mode == "deep" and len(text) > 500:
+        score += 1
+        reasons.append("comprehensive (deep mode)")
+    elif 200 < len(text) < 2000:
+        score += 0.5
+
+    # Content quality signals
+    if "```" in text:
+        score += 0.5
+        reasons.append("contains code blocks")
+    if any(h in text[:200] for h in ["#", "##", "###"]):
+        score += 0.5
+        reasons.append("structured (headings)")
+    if text.count("\n") > 10:
+        score += 0.5
+        reasons.append("well-formatted")
+
+    return {"score": min(10, score), "reasons": reasons}
+
+
+def log_eval(backend: str, query: str, score: float, success: bool):
+    EVAL_FILE.parent.mkdir(parents=True, exist_ok=True)
+    EVAL_FILE.open("a").write(
+        json.dumps({
+            "ts": datetime.now(timezone.utc).isoformat(),
+            "backend": backend,
+            "query": query[:200],
+            "score": score,
+            "success": success,
+        }) + "\n"
+    )
+
+
+def run_backend(backend: dict, query: str) -> str | None:
+    """Execute a backend and return stdout or None."""
+    import subprocess
+    try:
+        result = subprocess.run(
+            backend["cmd"] + [query],
+            capture_output=True,
+            text=True,
+            timeout=backend["timeout"],
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout.strip()
+    except Exception:
+        pass
+    return None
+
+
+def main():
+    args = sys.argv[1:]
+    mode = "default"
+    if "--brief" in args:
+        mode = "brief"
+        args.remove("--brief")
+    if "--deep" in args:
+        mode = "deep"
+        args.remove("--deep")
+
+    if "--eval" in args:
+        show_eval()
+        return
+
+    query = " ".join(args) if args else sys.stdin.read().strip()
+    if not query:
+        print("Usage: research [--brief|--deep] <query>", file=sys.stderr)
+        sys.exit(1)
+
+    state = load_state()
+    preferred = state.get("preferred", "deepseek-flash")
+
+    # Start with preferred backend
+    ordered = sorted(BACKENDS, key=lambda b: 0 if b["name"] == preferred else 1)
+
+    best_result = None
+    best_score = -1
+    best_backend = ""
+
+    for backend in ordered:
+        print(f"[research] trying {backend['name']}...", file=sys.stderr)
+        result = run_backend(backend, query)
+        if result:
+            ev = evaluate(result, query, mode)
+            success = ev["score"] >= 4
+            log_eval(backend["name"], query, ev["score"], success)
+
+            if ev["score"] > best_score:
+                best_score = ev["score"]
+                best_result = result
+                best_backend = backend["name"]
+
+            if success:
+                state["preferred"] = backend["name"]
+                save_state(state)
+                print(f"[research] {backend['name']} score={ev['score']:.1f}",
+                      file=sys.stderr)
+                break
+        else:
+            log_eval(backend["name"], query, 0, False)
+            print(f"[research] {backend['name']} failed", file=sys.stderr)
+
+    if best_result:
+        print(best_result)
+    else:
+        print("[research] all backends failed", file=sys.stderr)
+        sys.exit(1)
+
+
+def show_eval():
+    if not EVAL_FILE.exists():
+        print("No evaluation data yet.")
+        return
+    lines = EVAL_FILE.read_text().strip().split("\n")
+    records = [json.loads(l) for l in lines if l]
+    by_backend = {}
+    for r in records:
+        b = r["backend"]
+        if b not in by_backend:
+            by_backend[b] = {"count": 0, "total_score": 0, "successes": 0}
+        by_backend[b]["count"] += 1
+        by_backend[b]["total_score"] += r["score"]
+        if r["success"]:
+            by_backend[b]["successes"] += 1
+
+    print("Research Backend Evaluation:")
+    for name, stats in sorted(by_backend.items()):
+        avg = stats["total_score"] / stats["count"] if stats["count"] else 0
+        rate = stats["successes"] / stats["count"] * 100 if stats["count"] else 0
+        print(f"  {name}: {stats['count']} calls, avg score {avg:.1f}/10, "
+              f"{rate:.0f}% success")
+
+    state = load_state()
+    print(f"\nPreferred backend: {state.get('preferred', 'unknown')}")
+
+
+if __name__ == "__main__":
+    main()

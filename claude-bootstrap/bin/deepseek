@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+"""DeepSeek V4 CLI — calls DeepSeek API via Anthropic-compatible endpoint.
+
+Usage:
+  deepseek "prompt"                    # Uses default model (pro)
+  deepseek --flash "prompt"            # Uses deepseek-v4-flash
+  deepseek --pro "prompt"              # Uses deepseek-v4-pro (default)
+  echo "prompt" | deepseek             # Read from stdin
+  cat file.txt | deepseek --flash      # Pipe mode
+"""
+
+import os
+import sys
+
+import httpx
+
+API_KEY = os.environ.get("DEEPSEEK_API_KEY", "")
+BASE_URL = "https://api.deepseek.com/anthropic"
+
+MODELS = {
+    "flash": "deepseek-v4-flash",
+    "pro": "deepseek-v4-pro",
+}
+
+
+def main():
+    model_key = "pro"
+    prompt = None
+
+    args = sys.argv[1:]
+    i = 0
+    while i < len(args):
+        if args[i] in ("--flash", "-f"):
+            model_key = "flash"
+        elif args[i] in ("--pro", "-p"):
+            model_key = "pro"
+        elif args[i] == "--model":
+            i += 1
+            if i < len(args):
+                model_key = args[i]
+        elif not args[i].startswith("-"):
+            prompt = args[i]
+        i += 1
+
+    if not API_KEY:
+        print("[deepseek] ERROR: DEEPSEEK_API_KEY not set", file=sys.stderr)
+        sys.exit(1)
+
+    if not prompt and not sys.stdin.isatty():
+        prompt = sys.stdin.read().strip()
+
+    if not prompt:
+        print("Usage: deepseek [--flash|--pro] <prompt>", file=sys.stderr)
+        sys.exit(1)
+
+    model = MODELS.get(model_key, model_key)
+    result = call_deepseek(prompt, model)
+    print(result)
+
+
+def call_deepseek(prompt: str, model: str) -> str:
+    try:
+        with httpx.Client(timeout=300) as client:
+            resp = client.post(
+                f"{BASE_URL}/v1/messages",
+                headers={
+                    "x-api-key": API_KEY,
+                    "anthropic-version": "2023-06-01",
+                    "content-type": "application/json",
+                },
+                json={
+                    "model": model,
+                    "max_tokens": 16000,
+                    "messages": [
+                        {"role": "user", "content": prompt},
+                    ],
+                },
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            blocks = data.get("content", [])
+            for block in blocks:
+                if block.get("type") == "text":
+                    return block["text"]
+            return "[no text in response]"
+    except httpx.HTTPError as e:
+        return f"[DeepSeek API error: {e}]"
+    except Exception as e:
+        return f"[DeepSeek error: {e}]"
+
+
+if __name__ == "__main__":
+    main()

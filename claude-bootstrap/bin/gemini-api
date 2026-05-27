@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""Gemini delegation script — calls Google Gemini via OpenAI-compatible endpoint.
+
+Usage:
+  gemini "prompt"                       # Default: Gemini 2.5 Flash
+  gemini --flash-lite "prompt"          # Gemini 2.5 Flash-Lite (cheapest, bulk)
+  gemini --flash "prompt"               # Gemini 2.5 Flash (multimodal default)
+  gemini --pro "prompt"                 # Gemini 2.5 Pro (batch, 2M context)
+  gemini --pro-search "prompt"          # Gemini 3.1 Pro + Search grounding
+  echo "prompt" | gemini --flash-lite   # Pipe mode
+
+Env: GEMINI_API_KEY required. Set in ~/.zshrc.
+"""
+
+import os
+import sys
+import json
+
+import httpx
+
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
+BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai"
+
+MODELS = {
+    "flash-lite": "gemini-2.5-flash-lite",
+    "flash": "gemini-2.5-flash",
+    "pro": "gemini-2.5-pro",
+    "pro-search": "gemini-3.1-pro",
+}
+COSTS = {
+    "flash-lite": "$0.10/$0.40 per M",
+    "flash": "$0.15/$0.60 per M",
+    "pro": "$1.25/$10 per M ($0.625/$5 batch)",
+    "pro-search": "$1.25/$10 + search queries / $14 per 1K",
+}
+
+
+def main():
+    model_key = "flash"
+    prompt = None
+
+    args = sys.argv[1:]
+    i = 0
+    while i < len(args):
+        if args[i] in ("--flash-lite", "-fl"):
+            model_key = "flash-lite"
+        elif args[i] in ("--flash", "-f"):
+            model_key = "flash"
+        elif args[i] in ("--pro", "-p"):
+            model_key = "pro"
+        elif args[i] in ("--pro-search", "--search", "-ps"):
+            model_key = "pro-search"
+        elif not args[i].startswith("-"):
+            prompt = args[i]
+        i += 1
+
+    if not API_KEY:
+        print("[gemini] ERROR: GEMINI_API_KEY not set", file=sys.stderr)
+        print("  Add to ~/.zshrc: export GEMINI_API_KEY=\"your-key\"",
+              file=sys.stderr)
+        sys.exit(1)
+
+    if not prompt and not sys.stdin.isatty():
+        prompt = sys.stdin.read().strip()
+
+    if not prompt:
+        print("Usage: gemini [--flash-lite|--flash|--pro|--pro-search] <prompt>",
+              file=sys.stderr)
+        print(f"  Costs: {json.dumps(COSTS, indent=2)}", file=sys.stderr)
+        sys.exit(1)
+
+    model = MODELS.get(model_key, model_key)
+    result = call_gemini(prompt, model, model_key)
+    print(result)
+
+
+def call_gemini(prompt: str, model: str, model_key: str) -> str:
+    try:
+        with httpx.Client(timeout=300) as client:
+            payload = {
+                "model": model,
+                "messages": [
+                    {"role": "user", "content": prompt},
+                ],
+                "max_tokens": 16000,
+            }
+            # Gemini 3.1 Pro Search — add grounding if available
+            if model_key == "pro-search":
+                payload["tools"] = [{"google_search": {}}]
+
+            resp = client.post(
+                f"{BASE_URL}/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json=payload,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            choices = data.get("choices", [])
+            if choices:
+                msg = choices[0].get("message", {})
+                content = msg.get("content", "")
+                # May include search grounding metadata
+                if isinstance(content, list):
+                    parts = []
+                    for item in content:
+                        if isinstance(item, dict) and item.get("type") == "text":
+                            parts.append(item.get("text", ""))
+                    content = "\n".join(parts)
+                return content or "[no content in response]"
+            return "[no choices in response]"
+    except httpx.HTTPStatusError as e:
+        return f"[Gemini API error: {e.response.status_code} — {e.response.text[:200]}]"
+    except Exception as e:
+        return f"[Gemini error: {e}]"
+
+
+if __name__ == "__main__":
+    main()

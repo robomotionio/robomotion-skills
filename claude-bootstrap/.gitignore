@@ -1,0 +1,6 @@
+__pycache__/
+.DS_Store
+evals/.results/
+.pytest_cache/
+# Build-in-public generated images
+docs/images/
