@@ -1,0 +1,10 @@
+schema_version: 1
+name: coderabbitai-skills
+title: 'Coderabbitai Skills'
+type: group
+version: 0.1.0
+author: 'coderabbitai'
+source_url: https://github.com/coderabbitai/skills
+license: MIT
+summary: '2 skills — Code review and PR autofix workflows for coding agents'
+tags: [development, testing]
