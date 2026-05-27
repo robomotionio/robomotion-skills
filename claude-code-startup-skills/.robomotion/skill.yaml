@@ -1,0 +1,10 @@
+schema_version: 1
+name: claude-code-startup-skills
+title: 'Claude Code Startup Skills'
+type: group
+version: 0.1.0
+author: 'rameerez'
+source_url: https://github.com/rameerez/claude-code-startup-skills
+license: MIT
+summary: '5 skills — Skills for building and running software startups, apps, and SaaS'
+tags: [development, testing, design]
