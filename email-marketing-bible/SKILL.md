@@ -1,11 +1,6 @@
 ---
 name: email-marketing-bible
-description: >
-  Comprehensive, data-backed email marketing knowledge base. 908 sources,
-  4,798 insights. Use when reviewing email setups, building automation flows,
-  diagnosing deliverability, writing email copy, selecting platforms, or pulling
-  benchmarks. Covers strategy, flows, deliverability, copywriting, segmentation,
-  compliance, cold email, and 19 industry playbooks.
+description: "Comprehensive, data-backed email marketing knowledge base. 908 sources, 4,798 insights. Use when reviewing email setups, building automation flows, diagnosing deliverability, writing email copy, selecting platforms, or pulling benchmarks. Covers strategy, flows, deliverability, copywriting, segmentation, compliance, cold email, and 19 industry playbooks."
 license: MIT
 metadata:
   author: george-hartley
