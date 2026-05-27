@@ -1,0 +1,10 @@
+schema_version: 1
+name: core-ai
+title: 'Core Ai'
+type: group
+version: 0.1.0
+author: 'helius-labs'
+source_url: https://github.com/helius-labs/core-ai
+license: MIT
+summary: '24 skills — Ship Solana apps end-to-end; transaction sending, asset queries, real-time streaming, token swaps, prediction markets, browser wallets, and deep research into protocol internals all powered by Helius APIs, DFlow trading, and Phantom wallet integrations'
+tags: [ai, web3]
