@@ -1,0 +1,15 @@
+{
+  "name": "hig-doctor",
+  "version": "1.0.0",
+  "description": "Apple HIG audit tool for app projects",
+  "type": "module",
+  "bin": {
+    "hig-doctor": "./src/cli.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "audit": "bun src/cli.ts",
+    "audit:export": "bun src/cli.ts . --export",
+    "audit:stdout": "bun src/cli.ts . --stdout"
+  }
+}

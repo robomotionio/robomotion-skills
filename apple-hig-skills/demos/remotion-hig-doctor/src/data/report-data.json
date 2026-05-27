@@ -1,0 +1,420 @@
+{
+  "generatedAt": "2026-04-11T02:15:05.075Z",
+  "project": {
+    "name": "apple-hig-skills",
+    "score": 100,
+    "lowDensity": false,
+    "frameworks": [
+      "nextjs"
+    ],
+    "files": {
+      "code": 52,
+      "style": 1,
+      "config": 10
+    },
+    "totals": {
+      "concerns": 1,
+      "positives": 626,
+      "patterns": 93
+    },
+    "categories": [
+      {
+        "name": "Foundations",
+        "skill": "hig-foundations",
+        "detections": 589,
+        "concerns": 1,
+        "positives": 572,
+        "patterns": 16,
+        "files": [
+          "website/app/layout.tsx",
+          "website/app/page.tsx",
+          "website/app/topics/page.tsx",
+          "website/app/topics/[slug]/page.tsx",
+          "website/components/UseCases.tsx",
+          "website/components/Hero.tsx",
+          "website/components/ui/card.tsx",
+          "website/components/ui/accordion.tsx",
+          "website/components/ui/badge.tsx",
+          "website/components/ui/table.tsx",
+          "website/components/ui/button.tsx",
+          "website/components/Install.tsx",
+          "website/components/Audience.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/TopicCTA.tsx",
+          "website/components/TopicCopyButton.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/Footer.tsx",
+          "website/components/Header.tsx",
+          "website/components/UpdateNotify.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "website/components/FAQ.tsx",
+          "website/components/TopicSidebar.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts",
+          "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx",
+          "website/app/globals.css"
+        ]
+      },
+      {
+        "name": "Layout & Navigation",
+        "skill": "hig-components-layout",
+        "detections": 38,
+        "concerns": 0,
+        "positives": 10,
+        "patterns": 28,
+        "files": [
+          "website/app/page.tsx",
+          "website/app/topics/page.tsx",
+          "website/app/topics/[slug]/page.tsx",
+          "website/components/UseCases.tsx",
+          "website/components/Hero.tsx",
+          "website/components/Install.tsx",
+          "website/components/Audience.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/TopicCTA.tsx",
+          "website/components/TopicContent.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/Footer.tsx",
+          "website/components/Header.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "website/components/FAQ.tsx",
+          "website/components/TopicSidebar.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Interaction Patterns",
+        "skill": "hig-patterns",
+        "detections": 35,
+        "concerns": 0,
+        "positives": 33,
+        "patterns": 2,
+        "files": [
+          "website/app/layout.tsx",
+          "website/app/topics/page.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts",
+          "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx"
+        ]
+      },
+      {
+        "name": "Controls",
+        "skill": "hig-components-controls",
+        "detections": 23,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 23,
+        "files": [
+          "website/components/UseCases.tsx",
+          "website/components/Hero.tsx",
+          "website/components/Install.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/TopicCopyButton.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/Header.tsx",
+          "website/components/UpdateNotify.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Content Display",
+        "skill": "hig-components-content",
+        "detections": 14,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 14,
+        "files": [
+          "website/components/UseCases.tsx",
+          "website/components/ui/table.tsx",
+          "website/components/Install.tsx",
+          "website/components/Audience.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "website/components/FAQ.tsx",
+          "website/components/TopicSidebar.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Input Methods",
+        "skill": "hig-inputs",
+        "detections": 13,
+        "concerns": 0,
+        "positives": 11,
+        "patterns": 2,
+        "files": [
+          "website/app/layout.tsx",
+          "website/components/UpdateNotify.tsx",
+          "website/components/Skills.tsx",
+          "website/components/FAQ.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Apple Technologies",
+        "skill": "hig-technologies",
+        "detections": 2,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 2,
+        "files": [
+          "website/app/layout.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Status & Progress",
+        "skill": "hig-components-status",
+        "detections": 2,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 2,
+        "files": [
+          "website/components/AgentSkills.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Menus & Actions",
+        "skill": "hig-components-menus",
+        "detections": 2,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 2,
+        "files": [
+          "website/components/Header.tsx"
+        ]
+      },
+      {
+        "name": "Search & Navigation",
+        "skill": "hig-components-search",
+        "detections": 1,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 1,
+        "files": [
+          "website/components/Skills.tsx"
+        ]
+      },
+      {
+        "name": "Dialogs & Presentations",
+        "skill": "hig-components-dialogs",
+        "detections": 1,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 1,
+        "files": [
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      }
+    ]
+  },
+  "totalRules": 349,
+  "totalFrameworks": 12,
+  "topCategories": [
+    {
+      "name": "Foundations",
+      "skill": "hig-foundations",
+      "detections": 589,
+      "concerns": 1,
+      "positives": 572,
+      "patterns": 16,
+      "files": [
+        "website/app/layout.tsx",
+        "website/app/page.tsx",
+        "website/app/topics/page.tsx",
+        "website/app/topics/[slug]/page.tsx",
+        "website/components/UseCases.tsx",
+        "website/components/Hero.tsx",
+        "website/components/ui/card.tsx",
+        "website/components/ui/accordion.tsx",
+        "website/components/ui/badge.tsx",
+        "website/components/ui/table.tsx",
+        "website/components/ui/button.tsx",
+        "website/components/Install.tsx",
+        "website/components/Audience.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/TopicCTA.tsx",
+        "website/components/TopicCopyButton.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/Footer.tsx",
+        "website/components/Header.tsx",
+        "website/components/UpdateNotify.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "website/components/FAQ.tsx",
+        "website/components/TopicSidebar.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts",
+        "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx",
+        "website/app/globals.css"
+      ]
+    },
+    {
+      "name": "Layout & Navigation",
+      "skill": "hig-components-layout",
+      "detections": 38,
+      "concerns": 0,
+      "positives": 10,
+      "patterns": 28,
+      "files": [
+        "website/app/page.tsx",
+        "website/app/topics/page.tsx",
+        "website/app/topics/[slug]/page.tsx",
+        "website/components/UseCases.tsx",
+        "website/components/Hero.tsx",
+        "website/components/Install.tsx",
+        "website/components/Audience.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/TopicCTA.tsx",
+        "website/components/TopicContent.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/Footer.tsx",
+        "website/components/Header.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "website/components/FAQ.tsx",
+        "website/components/TopicSidebar.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
+    },
+    {
+      "name": "Interaction Patterns",
+      "skill": "hig-patterns",
+      "detections": 35,
+      "concerns": 0,
+      "positives": 33,
+      "patterns": 2,
+      "files": [
+        "website/app/layout.tsx",
+        "website/app/topics/page.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts",
+        "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx"
+      ]
+    },
+    {
+      "name": "Controls",
+      "skill": "hig-components-controls",
+      "detections": 23,
+      "concerns": 0,
+      "positives": 0,
+      "patterns": 23,
+      "files": [
+        "website/components/UseCases.tsx",
+        "website/components/Hero.tsx",
+        "website/components/Install.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/TopicCopyButton.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/Header.tsx",
+        "website/components/UpdateNotify.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
+    },
+    {
+      "name": "Content Display",
+      "skill": "hig-components-content",
+      "detections": 14,
+      "concerns": 0,
+      "positives": 0,
+      "patterns": 14,
+      "files": [
+        "website/components/UseCases.tsx",
+        "website/components/ui/table.tsx",
+        "website/components/Install.tsx",
+        "website/components/Audience.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "website/components/FAQ.tsx",
+        "website/components/TopicSidebar.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
+    },
+    {
+      "name": "Input Methods",
+      "skill": "hig-inputs",
+      "detections": 13,
+      "concerns": 0,
+      "positives": 11,
+      "patterns": 2,
+      "files": [
+        "website/app/layout.tsx",
+        "website/components/UpdateNotify.tsx",
+        "website/components/Skills.tsx",
+        "website/components/FAQ.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
+    }
+  ],
+  "frameworkRuleCounts": [
+    {
+      "framework": "React / Next.js",
+      "rules": "100+"
+    },
+    {
+      "framework": "SwiftUI",
+      "rules": "55+"
+    },
+    {
+      "framework": "CSS / SCSS",
+      "rules": "40+"
+    },
+    {
+      "framework": "Jetpack Compose",
+      "rules": "30+"
+    },
+    {
+      "framework": "Angular",
+      "rules": "25+"
+    },
+    {
+      "framework": "Vue / Nuxt",
+      "rules": "25+"
+    },
+    {
+      "framework": "Svelte / SvelteKit",
+      "rules": "20+"
+    },
+    {
+      "framework": "Android XML",
+      "rules": "20+"
+    },
+    {
+      "framework": "Flutter",
+      "rules": "20+"
+    },
+    {
+      "framework": "React Native",
+      "rules": "15+"
+    },
+    {
+      "framework": "HTML",
+      "rules": "15+"
+    },
+    {
+      "framework": "UIKit",
+      "rules": "10+"
+    }
+  ],
+  "scoreTimeline": [
+    {
+      "label": "Poor project",
+      "score": 35
+    },
+    {
+      "label": "Average project",
+      "score": 72
+    },
+    {
+      "label": "This repo",
+      "score": 100
+    }
+  ]
+}
