@@ -1,0 +1,19 @@
+{
+  "name": "vexor-marketplace",
+  "metadata": {
+    "description": "Marketplace for the Vexor Claude Code plugin (skills for indexing and semantic search)."
+  },
+  "owner": {
+    "name": "scarletkc"
+  },
+  "plugins": [
+    {
+      "name": "vexor",
+      "source": "./plugins/vexor",
+      "description": "A vector-powered CLI for semantic search over files (Vexor skill bundle).",
+      "category": "developer-tools",
+      "tags": ["search", "indexing", "cli"],
+      "strict": true
+    }
+  ]
+}

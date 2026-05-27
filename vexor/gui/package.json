@@ -1,0 +1,30 @@
+{
+  "name": "vexor-desktop",
+  "private": true,
+  "version": "0.19.0",
+  "main": "electron/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "electron:dev": "node electron/dev-runner.cjs",
+    "dev": "concurrently -k \"vite\" \"wait-on tcp:5173 && npm run electron:dev\"",
+    "build": "vite build",
+    "start": "electron .",
+    "package": "npm run build && electron-forge package",
+    "make": "npm run build && electron-forge make"
+  },
+  "dependencies": {
+    "vue": "^3.5.26"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.10.2",
+    "@electron-forge/maker-deb": "^7.10.2",
+    "@electron-forge/maker-rpm": "^7.10.2",
+    "@electron-forge/maker-squirrel": "^7.10.2",
+    "@electron-forge/maker-zip": "^7.10.2",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.7",
+    "vite": "^7.3.0",
+    "wait-on": "^9.0.3"
+  }
+}
