@@ -49,9 +49,78 @@ def frontmatter(md: str) -> str:
     return md[3:end] if end != -1 else ""
 
 
+_BLOCK_MARKER_RE = re.compile(r"^[|>][+-]?\d*$")
+
+
+def _read_block_scalar(lines: list, start: int, style: str) -> str:
+    """Join continuation lines of a YAML block scalar starting at lines[start].
+    style is the marker (e.g. '|', '>', '|-', '>-', '|+', '>+').
+    Folded (`>`) joins line-breaks as spaces; literal (`|`) preserves them.
+    """
+    # Find the indentation of the first non-blank continuation line
+    indent = None
+    body = []
+    i = start
+    while i < len(lines):
+        ln = lines[i]
+        stripped = ln.lstrip(" ")
+        leading = len(ln) - len(stripped)
+        if stripped == "":
+            body.append("")
+            i += 1
+            continue
+        if indent is None:
+            # First non-blank continuation establishes indent
+            indent = leading
+            if indent == 0:
+                # Not actually a continuation; nothing in the block
+                break
+        if leading < indent:
+            break
+        body.append(ln[indent:])
+        i += 1
+    # Drop trailing blanks
+    while body and body[-1] == "":
+        body.pop()
+    folded = style.startswith(">")
+    if folded:
+        # Folded: join lines with spaces; preserve blank-line paragraph breaks
+        out = []
+        para = []
+        for ln in body:
+            if ln == "":
+                if para:
+                    out.append(" ".join(para))
+                    para = []
+                out.append("")
+            else:
+                para.append(ln.strip())
+        if para:
+            out.append(" ".join(para))
+        return "\n".join(out).strip()
+    else:
+        return "\n".join(body).strip()
+
+
 def fm_scalar(fm: str, key: str) -> str:
-    m = re.search(rf'^{re.escape(key)}\s*:\s*"?(.+?)"?\s*$', fm, re.M)
-    return m.group(1).strip() if m else ""
+    """Read a top-level frontmatter scalar. Handles inline (`key: value`),
+    quoted (`key: "value"`), and YAML block scalars (`key: |`, `key: >`,
+    `key: |-`, `key: >-`, etc.).
+    """
+    lines = fm.splitlines()
+    key_re = re.compile(rf"^{re.escape(key)}\s*:\s*(.*?)\s*$")
+    for idx, ln in enumerate(lines):
+        m = key_re.match(ln)
+        if not m:
+            continue
+        rest = m.group(1)
+        if _BLOCK_MARKER_RE.match(rest):
+            return _read_block_scalar(lines, idx + 1, rest)
+        # Inline value: strip surrounding quotes if balanced
+        if len(rest) >= 2 and rest[0] == rest[-1] and rest[0] in ("'", '"'):
+            return rest[1:-1].strip()
+        return rest.strip()
+    return ""
 
 
 def fm_metadata_scalar(fm: str, key: str) -> str:
