@@ -1,0 +1,99 @@
+{
+  "manifest_kind": "vibeskills-distribution-manifest",
+  "manifest_version": 1,
+  "package_id": "vibeskills-claude-code",
+  "package_name": "VibeSkills for Claude Code",
+  "status": "supported-with-constraints",
+  "runtime_role": "host-adapter-supported",
+  "surface_roles": {
+    "notes": {
+      "flat_projection_contract": true,
+      "projection_scope": "public_distribution_manifest"
+    },
+    "runtime_authority": {
+      "runtime_role": "host-adapter-supported",
+      "status": "supported-with-constraints",
+      "host_adapter_ref": "adapters/claude-code/host-profile.json"
+    },
+    "truth_surfaces": [
+      "docs/universalization/host-capability-matrix.md",
+      "docs/universalization/platform-parity-contract.md",
+      "config/settings.template.claude.json",
+      "adapters/claude-code/host-profile.json",
+      "adapters/claude-code/settings-map.json",
+      "adapters/claude-code/closure.json",
+      "adapters/claude-code/platform-windows.json",
+      "adapters/claude-code/platform-linux.json",
+      "adapters/claude-code/platform-macos.json",
+      "README.md",
+      "tests/runtime_neutral/test_claude_preview_scaffold.py"
+    ],
+    "repo_provided_install_surfaces": [
+      "install.ps1 --host claude-code",
+      "install.sh --host claude-code",
+      "settings.json managed vibeskills stanza"
+    ],
+    "repo_provided_payload_surfaces": [],
+    "repo_provided_reference_surfaces": [],
+    "host_managed_surfaces": [
+      "plugin enablement",
+      "MCP registration",
+      "provider credentials",
+      "broader Claude host behavior outside the managed vibeskills settings surface"
+    ],
+    "boundary_claims": [
+      "Supported-with-constraints still means host-managed plugins, MCP, credentials, and broader Claude behavior remain outside repo ownership.",
+      "Claude Code is not claimed to be platform-parity with Codex or an official-runtime lane in this repository."
+    ]
+  },
+  "summary": "Claude Code now has a bounded managed install/check lane that writes and verifies a Claude settings surface, but it still does not become the Codex official runtime or full platform-parity lane.",
+  "source_release": {
+    "version": "3.1.1",
+    "updated": "2026-05-06"
+  },
+  "truth_sources": [
+    "docs/universalization/host-capability-matrix.md",
+    "docs/universalization/platform-parity-contract.md",
+    "config/settings.template.claude.json",
+    "adapters/claude-code/host-profile.json",
+    "adapters/claude-code/settings-map.json",
+    "adapters/claude-code/closure.json",
+    "adapters/claude-code/platform-windows.json",
+    "adapters/claude-code/platform-linux.json",
+    "adapters/claude-code/platform-macos.json",
+    "README.md",
+    "tests/runtime_neutral/test_claude_preview_scaffold.py"
+  ],
+  "host_adapter_ref": "adapters/claude-code/host-profile.json",
+  "platform_contracts": [
+    "adapters/claude-code/platform-windows.json",
+    "adapters/claude-code/platform-linux.json",
+    "adapters/claude-code/platform-macos.json"
+  ],
+  "install_entrypoints": {
+    "repo_provided": [
+      "install.ps1 --host claude-code",
+      "install.sh --host claude-code",
+      "settings.json managed vibeskills stanza"
+    ],
+    "host_managed": [
+      "plugin enablement",
+      "MCP registration",
+      "provider credentials",
+      "broader Claude host behavior outside the managed vibeskills settings surface"
+    ],
+    "notes": [
+      "The repo preserves existing Claude settings while merging a bounded managed surface.",
+      "Do not market this as Codex-equivalent official-runtime ownership or full platform parity."
+    ]
+  },
+  "degrade_states": {
+    "unverified_platform_lane": "not-yet-proven",
+    "missing_plugins": "degraded-but-supported",
+    "missing_provider_credentials": "degraded-but-supported"
+  },
+  "anti_overclaim": [
+    "Supported-with-constraints still means host-managed plugins, MCP, credentials, and broader Claude behavior remain outside repo ownership.",
+    "Claude Code is not claimed to be platform-parity with Codex or an official-runtime lane in this repository."
+  ]
+}

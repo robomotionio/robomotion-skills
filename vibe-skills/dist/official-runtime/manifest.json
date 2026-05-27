@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "lane_id": "official-runtime",
+  "lane_kind": "tier-1-official-runtime",
+  "stability": "tier-1",
+  "source_release": {
+    "version": "3.1.1",
+    "updated": "2026-05-06"
+  },
+  "summary": "Reference lane for the current governed official runtime. This dist pack points to it and must not rewrite it.",
+  "runtime_ownership": {
+    "owner": "canonical_repo",
+    "notes": "This lane points to the existing official runtime entrypoints (install/check/router/governance). Dist must not replace or rewrite runtime ownership."
+  },
+  "surface_roles": {
+    "notes": {
+      "flat_projection_contract": true,
+      "projection_scope": "release_lane_manifest"
+    },
+    "runtime_authority": {
+      "owner": "canonical_repo",
+      "notes": "This lane points to the existing official runtime entrypoints (install/check/router/governance). Dist must not replace or rewrite runtime ownership."
+    },
+    "repo_provided_entrypoints": [
+      "install.ps1",
+      "install.sh",
+      "check.ps1",
+      "check.sh"
+    ],
+    "proof_surfaces": [
+      "docs/universalization/distribution-lanes.md",
+      "docs/universalization/install-matrix.md",
+      "docs/universalization/platform-install-matrix.md",
+      "docs/universalization/platform-support-matrix.md",
+      "docs/universalization/host-capability-matrix.md",
+      "install.ps1",
+      "install.sh",
+      "check.ps1",
+      "check.sh",
+      "scripts/router/resolve-pack-route.ps1",
+      "scripts/verify/vibe-installed-runtime-freshness-gate.ps1",
+      "scripts/verify/vibe-bom-frontmatter-gate.ps1",
+      "scripts/verify/vibe-release-install-runtime-coherence-gate.ps1"
+    ],
+    "boundary_claims": [
+      "host_dependency_auto_install",
+      "host_credentials_provisioning",
+      "cross_platform_full_parity_claim",
+      "host_plugin_auto_provisioning"
+    ]
+  },
+  "entrypoints": {
+    "install_primary": "install.ps1",
+    "install_secondary": "install.sh",
+    "check_primary": "check.ps1",
+    "check_secondary": "check.sh"
+  },
+  "capability_promises": [
+    {
+      "id": "governed_install_entrypoints_exist",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "install.ps1",
+        "install.sh"
+      ]
+    },
+    {
+      "id": "governed_check_entrypoints_exist",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "check.ps1",
+        "check.sh"
+      ]
+    },
+    {
+      "id": "router_authority_local",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "scripts/router/resolve-pack-route.ps1"
+      ]
+    },
+    {
+      "id": "installed_runtime_gates_exist",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "scripts/verify/vibe-installed-runtime-freshness-gate.ps1",
+        "scripts/verify/vibe-bom-frontmatter-gate.ps1",
+        "scripts/verify/vibe-release-install-runtime-coherence-gate.ps1"
+      ]
+    },
+    {
+      "id": "governed_execution_truth_references_exist",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "docs/universalization/distribution-lanes.md",
+        "docs/universalization/install-matrix.md"
+      ]
+    }
+  ],
+  "non_goals": [
+    "host_dependency_auto_install",
+    "host_credentials_provisioning",
+    "cross_platform_full_parity_claim",
+    "host_plugin_auto_provisioning"
+  ],
+  "docs": {
+    "distribution_lanes": "docs/universalization/distribution-lanes.md",
+    "install_matrix": "docs/universalization/install-matrix.md",
+    "platform_install_matrix": "docs/universalization/platform-install-matrix.md",
+    "platform_support_matrix": "docs/universalization/platform-support-matrix.md",
+    "host_capability_matrix": "docs/universalization/host-capability-matrix.md"
+  },
+  "support": {
+    "platform_support": {
+      "truth_source": "docs/universalization/platform-support-matrix.md",
+      "interpretation": "inherit_official_runtime",
+      "ratings": {
+        "windows": "full-authoritative",
+        "linux_pwsh": "supported-with-constraints",
+        "linux_no_pwsh": "degraded-but-supported",
+        "macos_pwsh": "not-yet-proven",
+        "macos_no_pwsh": "not-yet-proven"
+      }
+    },
+    "host_support": {
+      "truth_source": "docs/universalization/host-capability-matrix.md",
+      "interpretation": "official_runtime_lane",
+      "ratings": {
+        "codex": "supported-with-constraints",
+        "claude_code": "preview",
+        "opencode": "preview",
+        "generic": "advisory-only"
+      }
+    }
+  }
+}

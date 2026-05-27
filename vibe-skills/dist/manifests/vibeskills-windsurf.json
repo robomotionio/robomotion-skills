@@ -1,0 +1,102 @@
+{
+  "manifest_kind": "vibeskills-distribution-manifest",
+  "manifest_version": 1,
+  "package_id": "vibeskills-windsurf",
+  "package_name": "VibeSkills for Windsurf (Preview Runtime-Core)",
+  "status": "preview",
+  "runtime_role": "official-runtime-adapter",
+  "surface_roles": {
+    "notes": {
+      "flat_projection_contract": true,
+      "projection_scope": "public_distribution_manifest"
+    },
+    "runtime_authority": {
+      "runtime_role": "official-runtime-adapter",
+      "status": "preview",
+      "host_adapter_ref": "adapters/windsurf/host-profile.json"
+    },
+    "truth_surfaces": [
+      "docs/universalization/host-capability-matrix.md",
+      "docs/universalization/platform-parity-contract.md",
+      "docs/universalization/distribution-lanes.md",
+      "adapters/windsurf/host-profile.json",
+      "adapters/windsurf/settings-map.json",
+      "adapters/windsurf/closure.json",
+      "adapters/windsurf/platform-windows.json",
+      "adapters/windsurf/platform-linux.json",
+      "adapters/windsurf/platform-macos.json",
+      "README.md"
+    ],
+    "repo_provided_install_surfaces": [
+      "install.ps1 --host windsurf",
+      "install.sh --host windsurf",
+      "check.ps1 --host windsurf",
+      "check.sh --host windsurf"
+    ],
+    "repo_provided_payload_surfaces": [],
+    "repo_provided_reference_surfaces": [
+      "dist/host-windsurf/manifest.json"
+    ],
+    "host_managed_surfaces": [
+      "login and account state",
+      "provider credentials",
+      "plugin provisioning",
+      "workspace projection and undocumented settings surfaces"
+    ],
+    "boundary_claims": [
+      "Preview means the repo only claims runtime-core payload install and truthful health checks for the documented host root.",
+      "Windsurf support does not imply host-native settings, login, or plugin closure."
+    ]
+  },
+  "summary": "Windsurf may consume the shared runtime-core payload through a documented host root, but this repository does not claim host-native governed closure for it.",
+  "source_release": {
+    "version": "3.1.1",
+    "updated": "2026-05-06"
+  },
+  "truth_sources": [
+    "docs/universalization/host-capability-matrix.md",
+    "docs/universalization/platform-parity-contract.md",
+    "docs/universalization/distribution-lanes.md",
+    "adapters/windsurf/host-profile.json",
+    "adapters/windsurf/settings-map.json",
+    "adapters/windsurf/closure.json",
+    "adapters/windsurf/platform-windows.json",
+    "adapters/windsurf/platform-linux.json",
+    "adapters/windsurf/platform-macos.json",
+    "README.md"
+  ],
+  "host_adapter_ref": "adapters/windsurf/host-profile.json",
+  "platform_contracts": [
+    "adapters/windsurf/platform-windows.json",
+    "adapters/windsurf/platform-linux.json",
+    "adapters/windsurf/platform-macos.json"
+  ],
+  "entry_manifest": "dist/host-windsurf/manifest.json",
+  "install_entrypoints": {
+    "repo_provided": [
+      "install.ps1 --host windsurf",
+      "install.sh --host windsurf",
+      "check.ps1 --host windsurf",
+      "check.sh --host windsurf"
+    ],
+    "host_managed": [
+      "login and account state",
+      "provider credentials",
+      "plugin provisioning",
+      "workspace projection and undocumented settings surfaces"
+    ],
+    "notes": [
+      "This is a preview runtime-core lane, not a governed host-native closure claim.",
+      "Attach / copy / bundle stay valid delivery paths for the documented host root."
+    ]
+  },
+  "degrade_states": {
+    "missing_provider_credentials": "degraded-but-supported",
+    "missing_host_plugins": "degraded-but-supported",
+    "unverified_platform_lane": "not-yet-proven"
+  },
+  "anti_overclaim": [
+    "Preview means the repo only claims runtime-core payload install and truthful health checks for the documented host root.",
+    "Windsurf support does not imply host-native settings, login, or plugin closure."
+  ]
+}

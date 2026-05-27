@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "lane_id": "core",
+  "lane_kind": "universal-core",
+  "stability": "preview",
+  "source_release": {
+    "version": "3.1.1",
+    "updated": "2026-05-06"
+  },
+  "summary": "Universal contracts only. No install/check runtime closure is promised by this lane.",
+  "runtime_ownership": {
+    "owner": "none",
+    "notes": "This lane must not claim official runtime ownership. It only provides contracts and schemas for reuse."
+  },
+  "surface_roles": {
+    "notes": {
+      "flat_projection_contract": true,
+      "projection_scope": "release_lane_manifest"
+    },
+    "runtime_authority": {
+      "owner": "none",
+      "notes": "This lane must not claim official runtime ownership. It only provides contracts and schemas for reuse."
+    },
+    "repo_provided_entrypoints": [],
+    "proof_surfaces": [
+      "docs/universalization/distribution-lanes.md",
+      "docs/universalization/install-matrix.md",
+      "docs/universalization/platform-install-matrix.md",
+      "docs/universalization/platform-support-matrix.md",
+      "docs/universalization/host-capability-matrix.md",
+      "docs/universalization/core-contract.md",
+      "docs/universalization/router-model-neutrality.md",
+      "scripts/router/resolve-pack-route.ps1"
+    ],
+    "boundary_claims": [
+      "one_shot_host_dependency_install",
+      "official_runtime_install_entrypoints",
+      "host_plugin_provisioning",
+      "cross_platform_parity_claims"
+    ]
+  },
+  "capability_promises": [
+    {
+      "id": "core_contract_docs_exist",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "docs/universalization/core-contract.md"
+      ]
+    },
+    {
+      "id": "router_authority_remains_local",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "docs/universalization/router-model-neutrality.md",
+        "scripts/router/resolve-pack-route.ps1"
+      ]
+    }
+  ],
+  "non_goals": [
+    "one_shot_host_dependency_install",
+    "official_runtime_install_entrypoints",
+    "host_plugin_provisioning",
+    "cross_platform_parity_claims"
+  ],
+  "docs": {
+    "distribution_lanes": "docs/universalization/distribution-lanes.md",
+    "install_matrix": "docs/universalization/install-matrix.md",
+    "platform_install_matrix": "docs/universalization/platform-install-matrix.md",
+    "platform_support_matrix": "docs/universalization/platform-support-matrix.md",
+    "host_capability_matrix": "docs/universalization/host-capability-matrix.md"
+  },
+  "support": {
+    "platform_support": {
+      "truth_source": "docs/universalization/platform-support-matrix.md",
+      "interpretation": "not_applicable"
+    },
+    "host_support": {
+      "truth_source": "docs/universalization/host-capability-matrix.md",
+      "interpretation": "contract_consumer_only"
+    }
+  }
+}

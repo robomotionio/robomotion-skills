@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "lane_id": "host-codex",
+  "lane_kind": "host-adapter",
+  "host_id": "codex",
+  "stability": "supported-with-constraints",
+  "source_release": {
+    "version": "3.1.1",
+    "updated": "2026-05-06"
+  },
+  "summary": "Codex host adapter lane. Uses the official runtime entrypoints, but remains honest about host-managed plugin and credential surfaces.",
+  "runtime_ownership": {
+    "owner": "canonical_repo",
+    "notes": "This lane does not replace the official runtime. It expresses Codex-specific configuration and install closure as documented in current repo tooling."
+  },
+  "surface_roles": {
+    "notes": {
+      "flat_projection_contract": true,
+      "projection_scope": "release_lane_manifest"
+    },
+    "runtime_authority": {
+      "owner": "canonical_repo",
+      "notes": "This lane does not replace the official runtime. It expresses Codex-specific configuration and install closure as documented in current repo tooling."
+    },
+    "repo_provided_entrypoints": [
+      "install.ps1",
+      "install.sh",
+      "check.ps1",
+      "check.sh"
+    ],
+    "proof_surfaces": [
+      "docs/universalization/distribution-lanes.md",
+      "docs/universalization/install-matrix.md",
+      "docs/universalization/platform-install-matrix.md",
+      "docs/universalization/platform-support-matrix.md",
+      "docs/universalization/host-capability-matrix.md",
+      "config/settings.template.codex.json",
+      "config/plugins-manifest.codex.json",
+      "adapters/codex/host-profile.json",
+      "adapters/codex/settings-map.json",
+      "adapters/codex/closure.json",
+      "mcp/servers.template.json",
+      "install.ps1",
+      "check.ps1",
+      "scripts/router/resolve-pack-route.ps1"
+    ],
+    "boundary_claims": [
+      "automatic_host_plugin_installation",
+      "automatic_credential_provisioning",
+      "cross_platform_full_parity_claim"
+    ]
+  },
+  "entrypoints": {
+    "install_primary": "install.ps1",
+    "install_secondary": "install.sh",
+    "check_primary": "check.ps1",
+    "check_secondary": "check.sh"
+  },
+  "capability_promises": [
+    {
+      "id": "codex_settings_template_exists",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "config/settings.template.codex.json"
+      ]
+    },
+    {
+      "id": "plugins_manifest_exists",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "config/plugins-manifest.codex.json"
+      ]
+    },
+    {
+      "id": "codex_adapter_contract_exists",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "adapters/codex/host-profile.json",
+        "adapters/codex/settings-map.json",
+        "adapters/codex/closure.json"
+      ]
+    },
+    {
+      "id": "mcp_template_exists",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "mcp/servers.template.json"
+      ]
+    },
+    {
+      "id": "official_runtime_entrypoints_exist",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "install.ps1",
+        "check.ps1",
+        "scripts/router/resolve-pack-route.ps1"
+      ]
+    }
+  ],
+  "non_goals": [
+    "automatic_host_plugin_installation",
+    "automatic_credential_provisioning",
+    "cross_platform_full_parity_claim"
+  ],
+  "docs": {
+    "distribution_lanes": "docs/universalization/distribution-lanes.md",
+    "install_matrix": "docs/universalization/install-matrix.md",
+    "platform_install_matrix": "docs/universalization/platform-install-matrix.md",
+    "platform_support_matrix": "docs/universalization/platform-support-matrix.md",
+    "host_capability_matrix": "docs/universalization/host-capability-matrix.md"
+  },
+  "support": {
+    "platform_support": {
+      "truth_source": "docs/universalization/platform-support-matrix.md",
+      "interpretation": "inherit_official_runtime",
+      "ratings": {
+        "windows": "full-authoritative",
+        "linux_pwsh": "supported-with-constraints",
+        "linux_no_pwsh": "degraded-but-supported",
+        "macos_pwsh": "not-yet-proven",
+        "macos_no_pwsh": "not-yet-proven"
+      }
+    },
+    "host_support": {
+      "truth_source": "docs/universalization/host-capability-matrix.md",
+      "interpretation": "host_matrix_rating",
+      "rating": "supported-with-constraints"
+    }
+  }
+}

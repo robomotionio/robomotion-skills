@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "lane_id": "host-openclaw",
+  "lane_kind": "host-adapter",
+  "host_id": "openclaw",
+  "stability": "preview",
+  "source_release": {
+    "version": "3.1.1",
+    "updated": "2026-05-06"
+  },
+  "summary": "OpenClaw host adapter preview. Uses the shared runtime-core installer and host-root payloads without claiming governed closure.",
+  "runtime_ownership": {
+    "owner": "canonical_repo",
+    "notes": "This lane stays inside the shared adapter and runtime-core architecture. OpenClaw login, model access, and editor-native settings surfaces remain host-managed."
+  },
+  "surface_roles": {
+    "notes": {
+      "flat_projection_contract": true,
+      "projection_scope": "release_lane_manifest"
+    },
+    "runtime_authority": {
+      "owner": "canonical_repo",
+      "notes": "This lane stays inside the shared adapter and runtime-core architecture. OpenClaw login, model access, and editor-native settings surfaces remain host-managed."
+    },
+    "repo_provided_entrypoints": [
+      "install.ps1 --host openclaw",
+      "install.sh --host openclaw",
+      "check.ps1 --host openclaw",
+      "check.sh --host openclaw"
+    ],
+    "proof_surfaces": [
+      "docs/universalization/distribution-lanes.md",
+      "docs/universalization/install-matrix.md",
+      "docs/universalization/platform-install-matrix.md",
+      "docs/universalization/platform-support-matrix.md",
+      "docs/universalization/host-capability-matrix.md",
+      "adapters/openclaw/host-profile.json",
+      "adapters/openclaw/settings-map.json",
+      "adapters/openclaw/closure.json",
+      "install.ps1",
+      "apps/vgo-cli/src/vgo_cli/commands.py",
+      "apps/vgo-cli/src/vgo_cli/core_bridge.py",
+      "packages/installer-core/src/vgo_installer/install_runtime.py"
+    ],
+    "boundary_claims": [
+      "governed_closure_claim",
+      "undocumented_host_settings_claims",
+      "workspace_projection_by_default"
+    ]
+  },
+  "entrypoints": {
+    "install_primary": "install.ps1 --host openclaw",
+    "install_secondary": "install.sh --host openclaw",
+    "check_primary": "check.ps1 --host openclaw",
+    "check_secondary": "check.sh --host openclaw"
+  },
+  "docs": {
+    "distribution_lanes": "docs/universalization/distribution-lanes.md",
+    "install_matrix": "docs/universalization/install-matrix.md",
+    "platform_install_matrix": "docs/universalization/platform-install-matrix.md",
+    "platform_support_matrix": "docs/universalization/platform-support-matrix.md",
+    "host_capability_matrix": "docs/universalization/host-capability-matrix.md"
+  },
+  "capability_promises": [
+    {
+      "id": "openclaw_adapter_contract_exists",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "adapters/openclaw/host-profile.json",
+        "adapters/openclaw/settings-map.json",
+        "adapters/openclaw/closure.json"
+      ]
+    },
+    {
+      "id": "shared_runtime_core_installer_is_used",
+      "promise_level": "promised",
+      "evidence_paths": [
+        "install.ps1",
+        "apps/vgo-cli/src/vgo_cli/commands.py",
+        "apps/vgo-cli/src/vgo_cli/core_bridge.py",
+        "packages/installer-core/src/vgo_installer/install_runtime.py"
+      ]
+    }
+  ],
+  "non_goals": [
+    "governed_closure_claim",
+    "undocumented_host_settings_claims",
+    "workspace_projection_by_default"
+  ],
+  "support": {
+    "platform_support": {
+      "truth_source": "docs/universalization/platform-support-matrix.md",
+      "interpretation": "not_yet_proven_for_this_lane"
+    },
+    "host_support": {
+      "truth_source": "docs/universalization/host-capability-matrix.md",
+      "interpretation": "host_matrix_rating",
+      "rating": "preview"
+    }
+  }
+}
