@@ -105,7 +105,7 @@ Each entry below is one upstream repo. As each one is vendored:
 - [~] `ramzesenok/iOS-Accessibility-Audit-Skill` — Audit iOS App against Accessibility norms → `ios-accessibility-audit-skill` (SKIPPED — license: missing)
 - [x] `truongduy2611/app-store-preflight-skills` — Scan iOS/macOS projects to catch common mistakes that lead to App Store rejection before submission → `app-store-preflight-skills`
 - [x] `coderabbitai/skills` — Code review and PR autofix workflows for coding agents → `coderabbitai-skills`
-- [x] `sanjay3290/ai-skills` — Execute safe read-only SQL queries against PostgreSQL databases → `ai-skills`
+- [~] `sanjay3290/ai-skills` — Execute safe read-only SQL queries against PostgreSQL databases → `ai-skills` (REMOVED — by request)
 - [~] `jthack/ffuf_claude_skill` — Web fuzzing with ffuf → `ffuf-claude-skill` (SKIPPED — license: missing)
 - [x] `lackeyjb/playwright-skill` — Browser automation with Playwright → `lackeyjb-playwright-skill`
 - [x] `ibelick/ui-skills` — Opinionated, evolving constraints to guide agents when building interfaces → `ui-skills`
