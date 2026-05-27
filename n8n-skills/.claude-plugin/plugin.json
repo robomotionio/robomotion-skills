@@ -1,0 +1,23 @@
+{
+  "name": "n8n-mcp-skills",
+  "version": "1.9.0",
+  "description": "Expert skills for building n8n workflows with n8n-mcp",
+  "author": {
+    "name": "Romuald Członkowski",
+    "url": "https://www.aiadvisors.pl/en"
+  },
+  "license": "MIT",
+  "keywords": [
+    "n8n",
+    "workflow",
+    "automation",
+    "mcp",
+    "validation",
+    "expressions",
+    "code",
+    "javascript",
+    "python"
+  ],
+  "repository": "https://github.com/czlonkowski/n8n-skills",
+  "homepage": "https://github.com/czlonkowski/n8n-skills"
+}
