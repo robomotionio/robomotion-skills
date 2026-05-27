@@ -1,0 +1,117 @@
+name: Test Installer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills.json'
+      - 'skills/**'
+  pull_request:
+    paths:
+      - 'skills.json'
+      - 'skills/**'
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        skill: [requesthunt, reddit, twitter, nanobanana, logo-creator, banner-creator, domain-hunter, producthunt, seo-geo]
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Test npx skills add for specific skill
+        shell: bash
+        run: |
+          # Create test directory
+          mkdir -p test-workspace
+          cd test-workspace
+          
+          # Test installing specific skill
+          npx skills add ${{ github.repository }} --skill ${{ matrix.skill }} -y
+          
+          # Verify installation
+          if [ -d ".factory/skills/${{ matrix.skill }}" ]; then
+            echo "✓ Skill ${{ matrix.skill }} installed successfully"
+            ls -la .factory/skills/${{ matrix.skill }}/
+          else
+            echo "✗ Skill ${{ matrix.skill }} installation failed"
+            exit 1
+          fi
+      
+  test-all-skills:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Test npx skills add for all skills
+        shell: bash
+        run: |
+          # Create test directory
+          mkdir -p test-workspace
+          cd test-workspace
+          
+          # Test installing all skills
+          npx skills add ${{ github.repository }} -y
+          
+          # Verify all skills are installed
+          SKILL_COUNT=$(ls -1 .factory/skills/ | wc -l)
+          echo "Installed $SKILL_COUNT skills"
+          
+          if [ "$SKILL_COUNT" -ge 9 ]; then
+            echo "✓ All skills installed successfully"
+            ls -la .factory/skills/
+          else
+            echo "✗ Expected at least 9 skills, found $SKILL_COUNT"
+            exit 1
+          fi
+
+  validate-skills-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate skills.json
+        run: |
+          # Check JSON is valid
+          jq empty skills.json
+          
+          # Check all skills have required fields
+          jq -e '.skills[] | select(.name and .description and .dependencies != null)' skills.json > /dev/null
+          
+          # Check dependencies reference valid skills (handle both object and array formats)
+          SKILL_NAMES=$(jq -r '.skills[].name' skills.json)
+          
+          # Get all dependency names from object format (current format)
+          for dep in $(jq -r '.skills[] | select(.dependencies | type == "object") | .dependencies | keys[]' skills.json 2>/dev/null); do
+            if ! echo "$SKILL_NAMES" | grep -q "^${dep}$"; then
+              echo "Error: Invalid dependency '$dep'"
+              exit 1
+            fi
+          done
+          
+          # Also support legacy array format for backwards compatibility
+          for dep in $(jq -r '.skills[] | select(.dependencies | type == "array") | .dependencies[]' skills.json 2>/dev/null); do
+            if ! echo "$SKILL_NAMES" | grep -q "^${dep}$"; then
+              echo "Error: Invalid dependency '$dep'"
+              exit 1
+            fi
+          done
+          
+          echo "✓ skills.json is valid"

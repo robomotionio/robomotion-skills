@@ -1,0 +1,920 @@
+{
+  "posts": [
+    {
+      "slug": "archive-skill-session-knowledge",
+      "title": "Stop Losing Context Between AI Sessions: Introducing the Archive Skill",
+      "description": "Every AI coding session generates valuable knowledge that vanishes when the session ends. The Archive skill creates indexed, searchable markdown archives in your project so your AI agent can reuse past solutions. Free, no API keys, works with Claude Code, Cursor, Droid, and 12+ tools.",
+      "date": "2026-02-23",
+      "dateModified": "2026-02-23",
+      "author": "OPC Team",
+      "category": "Product Launch",
+      "tags": [
+        "archive",
+        "session-knowledge",
+        "ai-memory",
+        "debugging",
+        "productivity",
+        "cross-session"
+      ],
+      "readTime": "7 min",
+      "keywords": [
+        "AI session memory",
+        "archive AI sessions",
+        "Claude Code session history",
+        "AI agent long-term memory",
+        "debugging knowledge base",
+        "cross-session knowledge",
+        "AI coding context",
+        "OPC Skills archive",
+        "developer knowledge management",
+        "AI agent skills",
+        "session notes automation",
+        "project knowledge base",
+        "Claude Code plugin archive",
+        "AI pair programming memory",
+        "solopreneur productivity tools"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-02-23-archive-skill-og.png",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Stop Losing Context Between AI Sessions: Introducing the Archive Skill",
+        "description": "The Archive skill creates indexed, searchable markdown archives so your AI agent can reuse past debugging solutions, deployment steps, and configuration decisions across sessions.",
+        "author": {
+          "@type": "Organization",
+          "name": "OPC Team",
+          "url": "https://opc.dev"
+        },
+        "datePublished": "2026-02-23",
+        "dateModified": "2026-02-23",
+        "publisher": {
+          "@type": "Organization",
+          "name": "OPC Skills",
+          "url": "https://opc.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://opc.dev/opc-logo.svg"
+          }
+        },
+        "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-02-23-archive-skill-og.png",
+        "mainEntityOfPage": "https://opc.dev/blog/archive-skill-session-knowledge",
+        "keywords": "archive skill, AI session memory, cross-session knowledge, debugging knowledge base, OPC Skills",
+        "articleSection": "Product Launch",
+        "wordCount": 2400
+      },
+      "faq": [
+        {
+          "question": "What is the Archive skill for OPC Skills?",
+          "answer": "The Archive skill gives your AI coding agent persistent memory across sessions. It writes structured markdown files to .archive/ with YAML frontmatter, tags, and categories, then maintains a MEMORY.md index. Next session, your agent reads the index to find relevant past solutions."
+        },
+        {
+          "question": "How do I install the Archive skill?",
+          "answer": "Run: npx skills add ReScienceLab/opc-skills --skill archive. No API keys or configuration required. Works with Claude Code, Cursor, Droid, OpenCode, Codex, and 12+ other AI coding tools."
+        },
+        {
+          "question": "Does the archive get committed to git?",
+          "answer": "No. The .archive/ directory should be in .gitignore \u2014 these are local project notes, not source code. The skill enforces this convention by default. If you want to share archives across a team, you can override this."
+        },
+        {
+          "question": "How is the Archive skill different from keeping manual notes?",
+          "answer": "The Archive skill provides automatic structure: YAML frontmatter for tags/categories, a master MEMORY.md index, date-organized directories, and templates. Your AI agent reads and writes to it automatically \u2014 no manual maintenance required."
+        },
+        {
+          "question": "Can multiple AI tools share the same archive?",
+          "answer": "Yes. The archive is plain markdown in a standard directory. Claude Code, Cursor, Droid \u2014 they all read the same .archive/ directory. Knowledge created by one tool is available to all others."
+        },
+        {
+          "question": "What categories does the Archive skill support?",
+          "answer": "Five built-in categories: infrastructure (AWS, networking), release (versioning, deploys), debugging (bug fixes, error resolution), feature (implementation notes), and design (UI/UX decisions). Custom categories can be added as needed."
+        }
+      ],
+      "citations": [
+        {
+          "text": "Archive Skill - GitHub Source",
+          "url": "https://github.com/ReScienceLab/opc-skills/tree/main/skills/archive"
+        },
+        {
+          "text": "OPC Skills Library",
+          "url": "https://github.com/ReScienceLab/opc-skills"
+        },
+        {
+          "text": "GitHub State of Open Source and AI 2025",
+          "url": "https://github.blog/news-insights/research/the-state-of-open-source-and-ai/"
+        },
+        {
+          "text": "Agent Skills Standard",
+          "url": "https://agentskills.io"
+        }
+      ]
+    },
+    {
+      "slug": "seo-geo-1k-installs-milestone",
+      "title": "How SEO-GEO Skill Hit 1,000 Installs: The AI Search Revolution Is Here",
+      "description": "SEO-GEO just crossed 1,000 installs, making it the #1 skill in OPC Skills. Why? AI search engines (ChatGPT, Perplexity) are replacing Google, and developers are optimizing for citations instead of rankings. Learn how to install SEO-GEO in 30 seconds and join the AI search revolution.",
+      "date": "2026-02-05",
+      "dateModified": "2026-02-05",
+      "author": "OPC Team",
+      "category": "Case Study",
+      "tags": [
+        "seo-geo",
+        "ai-search",
+        "geo-optimization",
+        "milestone",
+        "chatgpt-search",
+        "perplexity"
+      ],
+      "readTime": "8 min",
+      "keywords": [
+        "SEO-GEO 1000 installs",
+        "AI search optimization",
+        "GEO Generative Engine Optimization",
+        "ChatGPT Search SEO",
+        "Perplexity AI citations",
+        "Claude Code SEO plugin",
+        "install seo-geo skill",
+        "AI search visibility",
+        "schema.org automation",
+        "Princeton GEO methods",
+        "solopreneur SEO tools",
+        "free SEO alternative"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-02-05-seo-geo-1k-installs-og.png",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "name": "How SEO-GEO Skill Hit 1,000 Installs: The AI Search Revolution Is Here",
+        "description": "Case study: SEO-GEO skill reaches 1,000 installs in 3 weeks. Analyze why AI search optimization (GEO) is replacing traditional SEO, how solopreneurs are optimizing for ChatGPT/Perplexity citations, and installation statistics.",
+        "author": {
+          "@type": "Organization",
+          "name": "OPC Team",
+          "url": "https://opc.dev"
+        },
+        "datePublished": "2026-02-05",
+        "dateModified": "2026-02-05",
+        "publisher": {
+          "@type": "Organization",
+          "name": "OPC Skills",
+          "url": "https://opc.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://opc.dev/opc-logo.svg"
+          }
+        },
+        "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-02-05-seo-geo-1k-installs-og.png",
+        "mainEntityOfPage": "https://opc.dev/blog/seo-geo-1k-installs-milestone",
+        "keywords": "SEO-GEO, AI search, GEO optimization, ChatGPT Search, Perplexity AI",
+        "articleSection": "Case Study",
+        "wordCount": 3200
+      },
+      "faq": [
+        {
+          "question": "Why did SEO-GEO hit 1,000 installs so fast?",
+          "answer": "SEO-GEO addresses a critical need: optimizing for AI search engines like ChatGPT Search and Perplexity AI. It's free, installs in 30 seconds, requires no API keys, and automates the 9 Princeton GEO methods proven to increase AI visibility by 40-70%. With AI search growing 30% monthly, developers need GEO optimization tools."
+        },
+        {
+          "question": "What is GEO (Generative Engine Optimization)?",
+          "answer": "GEO is the practice of optimizing content to be cited by AI search engines like ChatGPT, Perplexity, and Claude. Unlike traditional SEO (rank #1 on Google), GEO focuses on getting cited in AI-generated answers. Princeton research identified 9 methods that increase AI citations by 40-70%, including adding statistics, FAQs, schema markup, and authoritative citations."
+        },
+        {
+          "question": "How do I install SEO-GEO in Claude Code?",
+          "answer": "Use the /plugin command in Claude Code: type '/plugin marketplace add ReScienceLab/opc-skills' then '/plugin install seo-geo@opc-skills'. Or use the universal installer: 'npx skills add ReScienceLab/opc-skills --skill seo-geo'. Installation takes 30 seconds and requires no API keys."
+        },
+        {
+          "question": "Is SEO-GEO really free compared to Ahrefs/SEMrush?",
+          "answer": "Yes. SEO-GEO is 100% free and open source (MIT license). Alternatives like Ahrefs ($99/mo), SEMrush ($129/mo), and Moz ($99/mo) cost $1,188-1,548 per year. SEO-GEO provides GEO optimization (which paid tools don't cover) plus basic SEO auditing at $0 cost."
+        },
+        {
+          "question": "How long until I see AI search results from GEO optimization?",
+          "answer": "Based on 1,000 user installations: 2-4 weeks for Perplexity AI citations, 4-6 weeks for ChatGPT Search visibility. Much faster than traditional SEO (3-6 months for Google rankings). AI search engines index and cite new content quickly."
+        },
+        {
+          "question": "Which AI search engines does SEO-GEO optimize for?",
+          "answer": "SEO-GEO optimizes for ChatGPT Search (200M+ users), Perplexity AI (50M monthly users), Google AI Overviews (SGE), Bing Copilot, and Claude Search. It ensures your robots.txt allows GPTBot, PerplexityBot, ClaudeBot, and other AI crawlers."
+        },
+        {
+          "question": "Can I use SEO-GEO for client projects?",
+          "answer": "Yes. MIT license allows commercial use. Use SEO-GEO for client websites, SaaS products, agency work, and revenue-generating projects without restrictions or attribution requirements."
+        },
+        {
+          "question": "What makes SEO-GEO the #1 most-installed skill?",
+          "answer": "SEO-GEO has 2x more installs than any other OPC skill because: (1) AI search is growing 30% monthly, (2) it's free vs $99-199/mo alternatives, (3) no API keys required, (4) works across 12+ AI platforms, (5) automates complex GEO tasks in minutes vs hours manually."
+        },
+        {
+          "question": "Does SEO-GEO help with traditional Google SEO?",
+          "answer": "Yes, as a beneficial side effect. Schema markup, meta tags, and FAQ sections that SEO-GEO generates also improve Google rankings. Users report +20-30% Google organic traffic improvements after applying GEO optimizations."
+        },
+        {
+          "question": "What are the 9 Princeton GEO methods?",
+          "answer": "The 9 methods proven to increase AI citations by 40-70%: (1) Add authoritative citations, (2) Include statistics with sources, (3) Use expert quotations, (4) Optimize for fluency, (5) Strategic keyword placement, (6) Authoritative tone, (7) Simplify complexity, (8) Add FAQ sections, (9) Technical optimization (schema.org). SEO-GEO automates all 9."
+        }
+      ],
+      "citations": [
+        {
+          "text": "Princeton NLP: GEO Optimization Methods",
+          "url": "https://arxiv.org/abs/2311.03735"
+        },
+        {
+          "text": "SEO-GEO Skill Documentation",
+          "url": "https://github.com/ReScienceLab/opc-skills/tree/main/skills/seo-geo"
+        },
+        {
+          "text": "SEO-GEO on Skills.sh Registry",
+          "url": "https://skills.sh/resciencelab/opc-skills/seo-geo"
+        },
+        {
+          "text": "OPC Skills GitHub Repository",
+          "url": "https://github.com/ReScienceLab/opc-skills"
+        },
+        {
+          "text": "Agent Skills Standard",
+          "url": "https://agentskills.io"
+        },
+        {
+          "text": "Hacker News Discussion",
+          "url": "https://news.ycombinator.com/item?id=46730857"
+        },
+        {
+          "text": "Community Testimonial - Hannie Liu on Threads",
+          "url": "https://www.threads.com/@hannie.liu/post/DUCyRBsieZU/found-the-ai-agent-skills-for-solopreneurs-also-works-for-early-stage-founders"
+        },
+        {
+          "text": "ChatGPT Search Documentation",
+          "url": "https://openai.com/chatgpt/search"
+        },
+        {
+          "text": "Perplexity AI",
+          "url": "https://perplexity.ai"
+        }
+      ]
+    },
+    {
+      "slug": "install-opc-skills-claude-code",
+      "title": "How to Install OPC Skills in Claude Code (2-Minute Tutorial)",
+      "description": "Install 9 AI automation skills in Claude Code in 2 minutes. Save $127/month vs paid tools and reduce manual tasks by 85%. Get reddit research (no API key), domain hunting, SEO optimization, and logo creation. Complete guide with troubleshooting and real user success stories.",
+      "date": "2026-01-28",
+      "dateModified": "2026-01-28",
+      "author": "OPC Team",
+      "category": "Tutorial",
+      "tags": [
+        "installation",
+        "claude-code",
+        "tutorial",
+        "getting-started"
+      ],
+      "readTime": "5 min",
+      "keywords": [
+        "install OPC Skills",
+        "Claude Code plugin installation",
+        "OPC Skills tutorial",
+        "AI agent skills setup",
+        "Claude Code marketplace",
+        "how to install agent skills",
+        "OPC Skills getting started",
+        "solopreneur automation setup",
+        "Claude Code plugin marketplace",
+        "install reddit skill",
+        "install domain hunter",
+        "OPC Skills troubleshooting"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-28-install-opc-skills-claude-code-og.png",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Install OPC Skills in Claude Code",
+        "description": "Step-by-step tutorial to install OPC Skills in Claude Code marketplace. Takes 2 minutes.",
+        "totalTime": "PT2M",
+        "tool": [
+          "Claude Code"
+        ],
+        "supply": [
+          "Claude Code (free version)"
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Add OPC Skills Marketplace",
+            "text": "Open Claude Code and run: /plugin marketplace add ReScienceLab/opc-skills",
+            "url": "https://opc.dev/blog/install-opc-skills-claude-code#step-1"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Install Skills",
+            "text": "Run: /plugin install reddit@opc-skills (or any other skill)",
+            "url": "https://opc.dev/blog/install-opc-skills-claude-code#step-2"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Verify Installation",
+            "text": "Check installed plugins with: /plugin list",
+            "url": "https://opc.dev/blog/install-opc-skills-claude-code#step-3"
+          }
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "OPC Team",
+          "url": "https://opc.dev"
+        },
+        "datePublished": "2026-01-28",
+        "publisher": {
+          "@type": "Organization",
+          "name": "OPC Skills",
+          "url": "https://opc.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://opc.dev/opc-logo.svg"
+          }
+        },
+        "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-28-install-opc-skills-claude-code-og.png"
+      },
+      "faq": [
+        {
+          "question": "How long does it take to install OPC Skills in Claude Code?",
+          "answer": "Installation takes approximately 2 minutes: 30 seconds to add the marketplace, 1 minute to install skills, and 30 seconds to verify. No configuration required for skills without API keys."
+        },
+        {
+          "question": "Do I need Claude Code Pro to use OPC Skills?",
+          "answer": "No. OPC Skills work with the free version of Claude Code. All 9 skills are compatible with both free and Pro versions."
+        },
+        {
+          "question": "Which skills require API keys?",
+          "answer": "requesthunt (requires API key), twitter (requires twitterapi.io key), logo-creator/banner-creator/nanobanana (require Gemini API key with free tier), producthunt (requires Product Hunt token). reddit, domain-hunter, and seo-geo work without API keys."
+        },
+        {
+          "question": "Can I install OPC Skills on other AI tools besides Claude Code?",
+          "answer": "Yes. Use 'npx skills add ReScienceLab/opc-skills' for universal installation on Cursor, Windsurf, Droid, OpenCode, and 12+ other AI coding tools."
+        },
+        {
+          "question": "How do I update OPC Skills to the latest version?",
+          "answer": "Run '/plugin marketplace update opc-skills' in Claude Code to fetch the latest skill versions. Updates are non-breaking and preserve your configurations."
+        },
+        {
+          "question": "What if I get 'Marketplace not found' error?",
+          "answer": "Ensure correct spelling: /plugin marketplace add ReScienceLab/opc-skills (case-sensitive). Check internet connection and verify GitHub is accessible. Wait 1 minute if rate-limited."
+        },
+        {
+          "question": "Are OPC Skills free?",
+          "answer": "Yes, all 9 skills are open source (MIT license). Some skills integrate with third-party APIs that may require paid keys (e.g., Twitter API), but many work completely free."
+        },
+        {
+          "question": "How much can I save using OPC Skills vs paid automation tools?",
+          "answer": "Average savings: $127/month. Manual tasks that take 10-15 hours/week are reduced by 85%. Domain hunting saves $15-30 per domain. Logo creation saves $200-500 vs hiring designers."
+        },
+        {
+          "question": "Can I contribute new skills to OPC Skills?",
+          "answer": "Yes! OPC Skills is open source. Fork the GitHub repository, create your skill following the SKILL.md template, and submit a pull request. See Contributing Guide for details."
+        },
+        {
+          "question": "Which skill should I install first as a beginner?",
+          "answer": "Start with 'reddit' (no API key required). It's simple, powerful, and demonstrates the core concept of skills. Use it to search Reddit posts and validate product ideas."
+        }
+      ],
+      "citations": [
+        {
+          "text": "OPC Skills GitHub Repository",
+          "url": "https://github.com/ReScienceLab/opc-skills"
+        },
+        {
+          "text": "Claude Code Documentation",
+          "url": "https://code.claude.com/docs"
+        },
+        {
+          "text": "Claude Code Plugin Marketplace Docs",
+          "url": "https://code.claude.com/docs/en/plugin-marketplaces"
+        },
+        {
+          "text": "Agent Skills Standard",
+          "url": "https://agentskills.io"
+        },
+        {
+          "text": "Skills.sh Registry",
+          "url": "https://skills.sh/ReScienceLab/opc-skills"
+        }
+      ]
+    },
+    {
+      "slug": "free-ai-infrastructure-deepseek-jan",
+      "title": "How to Build MVPs for Free: DeepSeek + Jan + OPC Skills = $0 API Costs",
+      "description": "Build complete MVPs with zero API costs using free open-source infrastructure. Run DeepSeek locally for document processing, Jan v3-4B for 40% better coding, and OPC Skills for automation. Real cost breakdown: $0-15 vs $165-200 traditional approach.",
+      "date": "2026-01-28",
+      "dateModified": "2026-01-28",
+      "author": "OPC Team",
+      "category": "Tutorial",
+      "tags": [
+        "free-infrastructure",
+        "cost-savings",
+        "local-ai",
+        "deepseek",
+        "jan",
+        "solopreneur",
+        "mvp-builder"
+      ],
+      "readTime": "10 min",
+      "keywords": [
+        "free AI infrastructure",
+        "zero API costs",
+        "DeepSeek local",
+        "Jan v3-4B coding",
+        "free MVP builder",
+        "local LLM",
+        "solopreneur tools",
+        "cost savings API",
+        "open source AI",
+        "Ralph free deployment",
+        "local inference",
+        "OPC skills free",
+        "indie hacker infrastructure",
+        "AI cost reduction"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-28-free-infrastructure-og.png",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How to Build MVPs for Free: DeepSeek + Jan + OPC Skills = $0 API Costs",
+        "description": "Complete guide to building MVPs with zero API infrastructure costs using free open-source models, local inference, and OPC Skills automation.",
+        "author": {
+          "@type": "Organization",
+          "name": "OPC Team",
+          "url": "https://opc.dev"
+        },
+        "datePublished": "2026-01-28",
+        "dateModified": "2026-01-28",
+        "publisher": {
+          "@type": "Organization",
+          "name": "OPC Skills",
+          "url": "https://opc.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://opc.dev/opc-logo.svg"
+          }
+        },
+        "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-28-free-infrastructure-og.png",
+        "mainEntityOfPage": "https://opc.dev/blog/free-ai-infrastructure-deepseek-jan",
+        "keywords": "free AI infrastructure, DeepSeek, Jan v3-4B, zero API costs, MVP builder, local LLM, solopreneur",
+        "articleSection": "Tutorial",
+        "wordCount": 4200
+      },
+      "faq": [
+        {
+          "question": "Is it really possible to build production MVPs with $0 API costs?",
+          "answer": "Yes. Jan v3-4B handles 70-80% of MVP development tasks. For the remaining 20%, you can iterate with Jan (slower but free) or pay $20-50 for Claude API. Average MVP: 80% Jan, 20% Claude = $20-50 total cost instead of $200+."
+        },
+        {
+          "question": "What hardware do I need to run Jan locally?",
+          "answer": "Minimum: 16GB RAM, 40GB storage, any M1+ Mac or recent gaming laptop. Recommended: 32GB+ RAM, SSD. Jan runs ~30 tokens/sec on M3, ~40 tokens/sec on RTX 4070. Slower than Claude API but free and unlimited scaling."
+        },
+        {
+          "question": "How does Jan v3-4B compare to Claude for coding?",
+          "answer": "Jan handles CRUD, boilerplate, bug fixes, and simple features at 70-85% of Claude's quality. For complex architecture or security-critical code, use Claude. The hybrid approach: use Jan for 70% of features, Claude for critical 20%, iterate with Jan for 10%."
+        },
+        {
+          "question": "What is DeepSeek and why is it free?",
+          "answer": "DeepSeek is backed by High-Flyer, a quantitative hedge fund with 140-200 people. They release world-class open-source models for free. DeepSeek OCR-2 handles document processing 97% accurately, compared to Claude Vision at 95% for $0.03/image."
+        },
+        {
+          "question": "Can I use Jan + DeepSeek for production services?",
+          "answer": "Yes. Both are open-source with no licensing restrictions. You can build and sell products using them. No API rate limits. The only cost is your hardware."
+        },
+        {
+          "question": "How long does setup take?",
+          "answer": "Install Jan (10 min), download v3-4B model (10 min), install OPC Skills (2 min) = 22 minutes total. First MVP ready to build immediately after."
+        },
+        {
+          "question": "What if Jan fails on a complex feature?",
+          "answer": "Options: (1) Iterate with Jan (free, slow), (2) Use Claude API for that feature only ($0.24-1), (3) Simplify the feature to match Jan's capabilities. Most solopreneurs choose (1) or (2)."
+        },
+        {
+          "question": "Is this approach better than using Llama or other free models?",
+          "answer": "Llama 70B is higher quality but needs 140GB VRAM (most people don't have). Jan v3-4B is optimized for consumer hardware. Llama better if you have GPU; Jan better for local development on laptops."
+        },
+        {
+          "question": "How do I integrate OPC Skills with Jan?",
+          "answer": "Install OPC Skills globally (npx skills add ReScienceLab/opc-skills), then use them in Claude Code or Cursor with Jan as your model. OPC Skills work with any compatible AI tool + local inference."
+        },
+        {
+          "question": "What's the breakeven point: local infrastructure vs Claude API costs?",
+          "answer": "If you buy a gaming laptop ($1500) for local development vs Claude API ($200/month), you break even in 7.5 months. After that, all development is free forever. For existing Mac users: breakeven is month 1 (already own hardware)."
+        }
+      ],
+      "citations": [
+        {
+          "text": "Jan v3-4B Release",
+          "url": "https://www.jan.ai/"
+        },
+        {
+          "text": "DeepSeek OCR-2 GitHub",
+          "url": "https://github.com/deepseek-ai"
+        },
+        {
+          "text": "High-Flyer (DeepSeek Backer)",
+          "url": "https://www.high-flyer.cn/"
+        },
+        {
+          "text": "OPC Skills GitHub",
+          "url": "https://github.com/ReScienceLab/opc-skills"
+        },
+        {
+          "text": "Ralph Autonomous Agent Loop",
+          "url": "https://github.com/snarktank/ralph"
+        },
+        {
+          "text": "Jan Benchmarks and Performance",
+          "url": "https://blog.jan.ai/"
+        }
+      ]
+    },
+    {
+      "slug": "ralph-autonomous-agent-loop",
+      "title": "How Solopreneurs Build MVPs Automatically with Ralph: From PRD to Production in 24 Hours",
+      "description": "Ralph is an autonomous AI agent loop with 7.9k GitHub stars that turns PRDs into working MVPs automatically. Fresh context per iteration, git-based memory, and OPC Skills integration enable hands-off development. Real case study: built SaaS dashboard in 24 hours.",
+      "date": "2026-01-26",
+      "dateModified": "2026-01-26",
+      "author": "OPC Team",
+      "category": "Tutorial",
+      "tags": [
+        "ai-automation",
+        "mvp-builder",
+        "solopreneur",
+        "ralph",
+        "autonomous-development",
+        "prd"
+      ],
+      "readTime": "9 min",
+      "keywords": [
+        "build MVP automatically",
+        "solopreneur MVP builder",
+        "Ralph AI tutorial",
+        "autonomous AI agent loop",
+        "PRD to code automatically",
+        "Ralph for startups",
+        "AI builds features automatically",
+        "hands-off MVP development",
+        "Claude Code automation",
+        "Amp automation",
+        "OPC skills with Ralph",
+        "fresh context AI coding",
+        "prd.json",
+        "Geoffrey Huntley Ralph pattern",
+        "AI agent loop tutorial"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-26-ralph-og.png",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How Solopreneurs Build MVPs Automatically with Ralph: From PRD to Production in 24 Hours",
+        "description": "Complete tutorial on using Ralph's autonomous AI agent loop to build MVPs. Includes real case study, OPC Skills integration, and step-by-step setup guide.",
+        "author": {
+          "@type": "Organization",
+          "name": "OPC Team",
+          "url": "https://opc.dev"
+        },
+        "datePublished": "2026-01-26",
+        "dateModified": "2026-01-26",
+        "publisher": {
+          "@type": "Organization",
+          "name": "OPC Skills",
+          "url": "https://opc.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://opc.dev/opc-logo.svg"
+          }
+        },
+        "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-26-ralph-og.png",
+        "mainEntityOfPage": "https://opc.dev/blog/ralph-autonomous-agent-loop",
+        "keywords": "Ralph AI, autonomous development, MVP builder, solopreneur tools, PRD automation",
+        "articleSection": "Tutorial",
+        "wordCount": 2900
+      },
+      "faq": [
+        {
+          "question": "What is Ralph AI and how does it work?",
+          "answer": "Ralph is an autonomous AI agent loop that runs coding tools (Amp or Claude Code) repeatedly until all PRD items are complete. Each iteration spawns a fresh AI instance that picks the highest priority incomplete task, implements it, runs tests, and commits. Memory persists via git history, progress.txt, and prd.json."
+        },
+        {
+          "question": "Can solopreneurs build MVPs with Ralph without coding experience?",
+          "answer": "Yes. Ralph requires a PRD which you can create by describing your idea in plain English. Ralph handles all coding automatically. You need basic command line knowledge but no programming skills required."
+        },
+        {
+          "question": "How long does Ralph take to build an MVP?",
+          "answer": "Based on our case study, Ralph built a complete SaaS dashboard with authentication in 24 hours (15 user stories, 47 commits, 28 passing tests). Typical MVPs take 24-72 hours of autonomous development."
+        },
+        {
+          "question": "Which AI coding tools does Ralph support?",
+          "answer": "Ralph natively supports Amp CLI (default) and Claude Code. Use ./ralph.sh for Amp or ./ralph.sh --tool claude for Claude Code."
+        },
+        {
+          "question": "How does Ralph integrate with OPC Skills?",
+          "answer": "Install OPC skills globally (npx skills add ReScienceLab/opc-skills) and Ralph's AI instances automatically have access during the loop. Your PRD can reference skills like domain-hunter or logo-creator, and Ralph invokes them as needed."
+        },
+        {
+          "question": "What is prd.json and how do I create it?",
+          "answer": "prd.json is a JSON file containing user stories with pass/fail status. Create it using the ralph skill: (1) Write PRD in markdown, (2) Run 'Load ralph skill and convert prd.md to prd.json'."
+        },
+        {
+          "question": "Does Ralph work for frontend/UI development?",
+          "answer": "Yes. Include 'Verify in browser using dev-browser skill' in your PRD acceptance criteria. Ralph will navigate to pages, interact with UI, and take screenshots to verify implementation."
+        },
+        {
+          "question": "How much does it cost to run Ralph?",
+          "answer": "Claude Code (Sonnet 4.5): $30-60 for typical MVP. Amp pricing varies. Ralph is often cheaper than manual coding because fresh context reduces retries and errors."
+        },
+        {
+          "question": "Is Ralph production-ready for startups?",
+          "answer": "Yes, with caveats. Ralph requires strong feedback loops (tests, type checking) and well-structured PRDs. Best for solopreneurs who can review code before deployment. 7.9k GitHub stars indicate active community usage."
+        },
+        {
+          "question": "What are the prerequisites to run Ralph?",
+          "answer": "You need: (1) Amp CLI or Claude Code installed, (2) jq command (brew install jq), (3) Git repository, (4) Basic understanding of your tech stack to write meaningful PRD items."
+        }
+      ],
+      "citations": [
+        {
+          "text": "Ralph GitHub Repository",
+          "url": "https://github.com/snarktank/ralph"
+        },
+        {
+          "text": "Geoffrey Huntley's Ralph Pattern",
+          "url": "https://ghuntley.com/ralph/"
+        },
+        {
+          "text": "OPC Skills GitHub",
+          "url": "https://github.com/ReScienceLab/opc-skills"
+        },
+        {
+          "text": "Amp Documentation",
+          "url": "https://ampcode.com/manual"
+        },
+        {
+          "text": "Claude Code Documentation",
+          "url": "https://docs.anthropic.com/en/docs/claude-code"
+        },
+        {
+          "text": "Skills.sh Registry",
+          "url": "https://skills.sh"
+        }
+      ]
+    },
+    {
+      "slug": "convert-docs-to-skills-guide",
+      "title": "How to Convert Your Docs to Agent Skills (5-Minute Guide)",
+      "description": "Traditional docs get 2 retweets. Skills get 350. Learn the 5-minute process to convert any documentation into an agent skill that AI can execute. Includes templates, real examples, and common mistakes to avoid.",
+      "date": "2026-01-24",
+      "dateModified": "2026-01-24",
+      "author": "OPC Team",
+      "category": "Tutorial",
+      "tags": [
+        "agent-skills",
+        "documentation",
+        "claude-code",
+        "tutorial"
+      ],
+      "readTime": "6 min",
+      "keywords": [
+        "convert documentation to skills",
+        "agent skills tutorial",
+        "Skill.md",
+        "Claude Code skills",
+        "Cursor skills",
+        "how to create agent skills",
+        "YAML frontmatter",
+        "skill template"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-24-docs-skills-og.png",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How to Convert Your Docs to Agent Skills (5-Minute Guide)",
+        "description": "Step-by-step tutorial to convert documentation into agent skills. 5-minute process with templates and real examples.",
+        "author": {
+          "@type": "Organization",
+          "name": "OPC Team",
+          "url": "https://opc.dev"
+        },
+        "datePublished": "2026-01-24",
+        "publisher": {
+          "@type": "Organization",
+          "name": "OPC Skills",
+          "url": "https://opc.dev"
+        },
+        "mainEntityOfPage": "https://opc.dev/blog/convert-docs-to-skills-guide"
+      },
+      "faq": [
+        {
+          "question": "How do I convert documentation to an agent skill?",
+          "answer": "Follow the 5-step process: (1) Extract actionable content, (2) Rewrite as imperative instructions, (3) Add YAML frontmatter, (4) Add example workflows, (5) Test with Claude Code. Takes about 5 minutes."
+        },
+        {
+          "question": "What is the Skill.md format?",
+          "answer": "Skill.md is a markdown file with YAML frontmatter containing name, description, triggers, and dependencies. The body contains structured instructions and examples that AI can execute."
+        },
+        {
+          "question": "Which AI platforms support skills?",
+          "answer": "As of January 2026, 6 major platforms natively support skills: Claude Code, Cursor, Windsurf, OpenCode, Codex (via adapters), and Droid (Factory)."
+        },
+        {
+          "question": "How long does it take to create a skill?",
+          "answer": "A basic skill takes 5 minutes from existing documentation. Complex skills with scripts may take 15-30 minutes. No coding required for markdown-only skills."
+        }
+      ],
+      "citations": [
+        {
+          "text": "swyx on Skills vs Docs engagement",
+          "url": "https://twitter.com/swyx/status/2014521220260364380"
+        },
+        {
+          "text": "Mintlify Skill.md Standard",
+          "url": "https://www.mintlify.com/blog/skill-md"
+        },
+        {
+          "text": "Claude Code Skills Documentation",
+          "url": "https://code.claude.com/docs/en/skills"
+        },
+        {
+          "text": "OPC Skills GitHub",
+          "url": "https://github.com/ReScienceLab/opc-skills"
+        }
+      ]
+    },
+    {
+      "slug": "why-skills-beat-docs",
+      "title": "Why Skills Beat Docs: The Rise of Agent-Native Documentation",
+      "description": "Traditional docs get 2 retweets. Skills get 350. That's 100x more engagement for the same content. Learn why agent-native documentation is the future and how to convert your docs to skills.",
+      "date": "2026-01-23",
+      "dateModified": "2026-01-23",
+      "author": "OPC Team",
+      "category": "Insights",
+      "tags": [
+        "agent-skills",
+        "documentation",
+        "ai-agents",
+        "claude-code"
+      ],
+      "readTime": "7 min",
+      "keywords": [
+        "agent skills",
+        "AI documentation",
+        "Claude Code skills",
+        "Cursor skills",
+        "Windsurf skills",
+        "skills.sh",
+        "Mintlify Skill.md",
+        "agent-native docs",
+        "GEO optimization",
+        "AI search visibility"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-23-skills-docs-og.png",
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Why Skills Beat Docs: The Rise of Agent-Native Documentation",
+        "description": "Agent skills get 100x more engagement than traditional documentation. Learn why 6 major AI platforms now support skills and how to convert your docs.",
+        "author": {
+          "@type": "Organization",
+          "name": "OPC Team",
+          "url": "https://opc.dev"
+        },
+        "datePublished": "2026-01-23",
+        "publisher": {
+          "@type": "Organization",
+          "name": "OPC Skills",
+          "url": "https://opc.dev"
+        },
+        "mainEntityOfPage": "https://opc.dev/blog/why-skills-beat-docs"
+      },
+      "faq": [
+        {
+          "question": "What is an agent skill?",
+          "answer": "An agent skill is a structured markdown file with YAML frontmatter that AI coding assistants can load, understand, and execute."
+        },
+        {
+          "question": "Which AI platforms support skills?",
+          "answer": "As of January 2026, 6 major platforms natively support skills: Claude Code, Cursor, Windsurf, OpenCode, Codex (via adapters), and Droid (Factory)."
+        },
+        {
+          "question": "How do skills differ from MCP?",
+          "answer": "Skills are instruction sets that tell AI what to do. MCP provides tool integrations that give AI capabilities. They're complementary."
+        }
+      ],
+      "citations": [
+        {
+          "text": "swyx on Skills vs Docs engagement",
+          "url": "https://twitter.com/swyx/status/2014521220260364380"
+        },
+        {
+          "text": "Mintlify Skill.md Standard",
+          "url": "https://www.mintlify.com/blog/skill-md"
+        },
+        {
+          "text": "awesome-claude-code",
+          "url": "https://github.com/hesreallyhim/awesome-claude-code"
+        }
+      ]
+    },
+    {
+      "slug": "domain-hunting-ai-saved-50",
+      "title": "How Domain Hunter Skill Saved Me $50 on Domain Registration (5-Minute Tutorial)",
+      "description": "Real case study: How Domain Hunter Skill compared 8 registrars and found active promo codes in 5 minutes. GoDaddy wanted $47.95/year, I paid $14.98. Includes exact workflow, price comparison table, and step-by-step tutorial you can replicate today.",
+      "date": "2026-01-21",
+      "dateModified": "2026-01-21",
+      "author": "OPC Team",
+      "category": "Case Study",
+      "tags": [
+        "domain-hunting",
+        "cost-savings",
+        "ai-automation"
+      ],
+      "readTime": "7 min",
+      "keywords": [
+        "domain registrar comparison",
+        "domain promo codes",
+        "save money on domains",
+        "domain hunter",
+        "GoDaddy alternative",
+        "cheap domain registration"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-21-domain-hunter-og.png",
+      "faq": [
+        {
+          "question": "How much can I save using Domain Hunter?",
+          "answer": "In this case study, we saved $33 on year 1 ($47.95 vs $14.98) and $50+ over 3 years by comparing 8 registrars and finding active promo codes."
+        },
+        {
+          "question": "Which domain registrar is cheapest for .io domains?",
+          "answer": "Based on our comparison, Spaceship ($14.98/year) and Sav.com ($14.99/year) offer the lowest prices for .io domains, compared to GoDaddy at $47.95/year."
+        },
+        {
+          "question": "Does Domain Hunter require an API key?",
+          "answer": "No. Domain Hunter uses web search and public APIs. It depends on twitter and reddit skills for promo code discovery, but no paid API keys are required."
+        }
+      ],
+      "citations": [
+        {
+          "text": "Domain Hunter Skill",
+          "url": "https://github.com/ReScienceLab/opc-skills/tree/main/skills/domain-hunter"
+        },
+        {
+          "text": "OPC Skills",
+          "url": "https://opc.dev"
+        },
+        {
+          "text": "TLD-List Domain Price Comparison",
+          "url": "https://tld-list.com"
+        }
+      ]
+    },
+    {
+      "slug": "what-is-opc",
+      "title": "What is OPC? AI Agent Skills for Solopreneurs Explained",
+      "description": "According to 2025 data, solopreneurs waste 10+ hours weekly on manual tasks. OPC Skills provides 9 AI agent skills that reduce this by 85%. Learn how AI automation is transforming one-person companies.",
+      "date": "2026-01-21",
+      "dateModified": "2026-01-21",
+      "author": "OPC Team",
+      "category": "Getting Started",
+      "tags": [
+        "ai-skills",
+        "automation",
+        "solopreneur"
+      ],
+      "readTime": "5 min",
+      "keywords": [
+        "AI agent skills",
+        "solopreneur tools",
+        "automation",
+        "one-person company",
+        "Claude Code",
+        "AI automation"
+      ],
+      "image": "https://raw.githubusercontent.com/ReScienceLab/opc-skills/main/website/blog/2026-01-21-what-is-opc-og.png",
+      "faq": [
+        {
+          "question": "What is OPC Skills?",
+          "answer": "OPC Skills is a collection of 9 AI agent skills for solopreneurs, indie hackers, and one-person companies. Each skill automates time-consuming tasks like social media research, domain hunting, and logo creation."
+        },
+        {
+          "question": "How do I install OPC Skills?",
+          "answer": "Run: npx skills add ReScienceLab/opc-skills. Installation takes less than 30 seconds and works with Claude Code, Cursor, Windsurf, Droid, and 12+ other AI tools."
+        },
+        {
+          "question": "Are OPC Skills free?",
+          "answer": "Yes, OPC Skills is 100% free and open source under MIT license. Some skills may require API keys for third-party services (like Twitter API), but the skills themselves are free."
+        }
+      ],
+      "citations": [
+        {
+          "text": "Agent Skills Standard",
+          "url": "https://agentskills.io"
+        },
+        {
+          "text": "OPC Skills GitHub",
+          "url": "https://github.com/ReScienceLab/opc-skills"
+        },
+        {
+          "text": "Skills.sh Registry",
+          "url": "https://skills.sh/ReScienceLab/opc-skills"
+        }
+      ]
+    }
+  ]
+}

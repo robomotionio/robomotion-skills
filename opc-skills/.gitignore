@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# Node
+node_modules/
+.wrangler/
+
+# AI Coding
+.agent/
+.agents/
+.codex/
+.gemini/
+.goose/
+.opencode/
+.claude/
+.factory/*
+!.factory/hooks.json
+!.factory/AGENTS.md
+!.factory/skills/
+.factory/skills/*
+!.factory/skills/add-new-opc-skill/
+.cursor/
+.github/skills
+
+# Archives
+.archive/
+.skill-archive/
+.bug-archive/

@@ -1,0 +1,7 @@
+# Exclude bot-generated files from repository statistics
+* linguist-vendored=false
+* linguist-generated=false
+
+# If there are specific files that bots modify, mark them as generated
+# Example:
+# package-lock.json linguist-generated=true
