@@ -1,0 +1,10 @@
+schema_version: 1
+name: orchestra-research-ai-research-skills
+title: 'Orchestra Research Ai Research Skills'
+type: group
+version: 0.1.0
+author: 'Orchestra-Research'
+source_url: https://github.com/Orchestra-Research/AI-research-SKILLs
+license: MIT
+summary: '98 skills — 20-module AI research skill library for model architecture, training, and ML paper writing'
+tags: [ai, writing]
