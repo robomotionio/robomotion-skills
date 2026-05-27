@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "vmware-aiops": {
+      "type": "stdio",
+      "command": "vmware-aiops",
+      "args": ["mcp"],
+      "env": {
+        "VMWARE_AIOPS_CONFIG": "~/.vmware-aiops/config.yaml"
+      }
+    }
+  }
+}

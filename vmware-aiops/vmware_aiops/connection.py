@@ -1,0 +1,128 @@
+"""Connection management for vCenter and ESXi hosts.
+
+Handles multi-target connections via pyVmomi with session reuse.
+"""
+
+from __future__ import annotations
+
+import atexit
+import ssl
+from typing import TYPE_CHECKING
+
+from pyVmomi import vim, vmodl
+from pyVmomi.VmomiSupport import VmomiJSONEncoder  # noqa: F401
+
+if TYPE_CHECKING:
+    from pyVmomi.vim import ServiceInstance
+
+from vmware_aiops.config import AppConfig, TargetConfig, load_config
+
+
+# ServiceInstance is a pyVmomi ManagedObject — its __setattr__ rejects any
+# attribute not in its allowed list (raises "Managed object attributes are
+# read-only" on pyVmomi 8.x). We keep per-connection metadata in this module
+# dict, keyed by id(si). Cleared via atexit when the SI is disconnected.
+# 踩坑 #32 (2026-05-19, 客户 vCenter 8.0U3 现场).
+_SI_VERIFY_SSL: dict[int, bool] = {}
+
+
+def get_verify_ssl(si: ServiceInstance) -> bool:
+    """Return verify_ssl flag stashed by the connect() that created ``si``.
+
+    Defaults to True (strict) if the SI was created outside this manager.
+    """
+    return _SI_VERIFY_SSL.get(id(si), True)
+
+
+class ConnectionManager:
+    """Manages connections to multiple vCenter/ESXi targets."""
+
+    def __init__(self, config: AppConfig) -> None:
+        self._config = config
+        self._connections: dict[str, ServiceInstance] = {}
+
+    @classmethod
+    def from_config(cls, config: AppConfig | None = None) -> ConnectionManager:
+        cfg = config or load_config()
+        return cls(cfg)
+
+    def connect(self, target_name: str | None = None) -> ServiceInstance:
+        """Connect to a target by name, or the default target."""
+        target = (
+            self._config.get_target(target_name)
+            if target_name
+            else self._config.default_target
+        )
+
+        if target.name in self._connections:
+            si = self._connections[target.name]
+            try:
+                # Test if session is still alive
+                _ = si.content.sessionManager.currentSession
+                return si
+            except (vmodl.fault.NotAuthenticated, Exception):
+                del self._connections[target.name]
+
+        si = self._create_connection(target)
+        self._connections[target.name] = si
+        return si
+
+    def disconnect(self, target_name: str) -> None:
+        """Disconnect from a specific target."""
+        if target_name in self._connections:
+            from pyVim.connect import Disconnect
+
+            Disconnect(self._connections[target_name])
+            del self._connections[target_name]
+
+    def disconnect_all(self) -> None:
+        """Disconnect from all targets."""
+        for name in list(self._connections):
+            self.disconnect(name)
+
+    def list_targets(self) -> list[str]:
+        """List all configured target names."""
+        return [t.name for t in self._config.targets]
+
+    def list_connected(self) -> list[str]:
+        """List currently connected target names."""
+        return list(self._connections.keys())
+
+    @staticmethod
+    def _create_connection(target: TargetConfig) -> ServiceInstance:
+        """Create a new pyVmomi connection."""
+        from pyVim.connect import Disconnect, SmartConnect
+
+        context = None
+        if not target.verify_ssl:
+            context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+            context.check_hostname = False
+            context.verify_mode = ssl.CERT_NONE
+
+        si = SmartConnect(
+            host=target.host,
+            user=target.username,
+            pwd=target.password,
+            port=target.port,
+            sslContext=context,
+            disableSslCertValidation=not target.verify_ssl,
+        )
+        # Stash verify_ssl in module dict (NOT on si — pyVmomi 8.x rejects
+        # setattr on ManagedObject, see 踩坑 #32). Consumers in ops/* read via
+        # get_verify_ssl(si).
+        _SI_VERIFY_SSL[id(si)] = target.verify_ssl
+
+        def _cleanup(_si: ServiceInstance = si) -> None:
+            _SI_VERIFY_SSL.pop(id(_si), None)
+            try:
+                Disconnect(_si)
+            except Exception:
+                pass
+
+        atexit.register(_cleanup)
+        return si
+
+
+def get_content(si: ServiceInstance) -> vim.ServiceInstanceContent:
+    """Shortcut to get ServiceContent from a ServiceInstance."""
+    return si.RetrieveContent()
