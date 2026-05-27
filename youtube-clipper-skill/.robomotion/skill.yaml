@@ -1,0 +1,10 @@
+schema_version: 1
+name: youtube-clipper-skill
+title: 'Youtube Clipper Skill'
+type: skill
+version: 0.1.0
+author: 'op7418'
+source_url: https://github.com/op7418/Youtube-clipper-skill
+license: MIT
+summary: 'YouTube clip generation and editing with automated workflows'
+tags: [productivity, video]
