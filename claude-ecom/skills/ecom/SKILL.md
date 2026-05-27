@@ -1,14 +1,7 @@
 ---
 name: ecom
 version: 0.1.0
-description: >
-  Claude-powered ecommerce business review toolkit for D2C stores.
-  Single command: review. Analyzes order transaction data across multiple
-  time periods (30d/90d/365d), produces KPI trees with health signals,
-  structured findings, and concrete action plans.
-  Triggers on: "ecommerce review", "store review", "store health",
-  "revenue analysis", "customer analysis", "product analysis",
-  "business review".
+description: "Claude-powered ecommerce business review toolkit for D2C stores. Single command: review. Analyzes order transaction data across multiple time periods (30d/90d/365d), produces KPI trees with health signals, structured findings, and concrete action plans. Triggers on: \"ecommerce review\", \"store review\", \"store health\", \"revenue analysis\", \"customer analysis\", \"product analysis\", \"business review\"."
 argument-hint: "review [30d|90d|365d]"
 allowed-tools:
   - Read
