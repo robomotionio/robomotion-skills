@@ -1,0 +1,10 @@
+schema_version: 1
+name: frontend-slides
+title: 'Frontend Slides'
+type: skill
+version: 2.1.0
+author: 'zarazhangrui'
+source_url: https://github.com/zarazhangrui/frontend-slides
+license: MIT
+summary: '2 skills — Generate animation-rich HTML presentations with visual style previews'
+tags: [productivity, ai]
