@@ -1,7 +1,6 @@
 ---
 name: preprocessing-data-with-automated-pipelines
-description: |
-  Design and implement repeatable preprocessing pipelines for cleaning, encoding, transforming, and validating ML input data.
+description: "Design and implement repeatable preprocessing pipelines for cleaning, encoding, transforming, and validating ML input data."
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(cmd:*)
 version: 1.0.0
 author: Jeremy Longshore <jeremy@intentsolutions.io>

@@ -1,8 +1,6 @@
 ---
 name: visualization-best-practices
-description: |
-  Review chart choice, labeling, accessibility, and storytelling quality for existing visualizations.
-  Use as an explicit/manual helper for critique and cleanup, not as the main owner for scientific figure production or general chart generation.
+description: "Review chart choice, labeling, accessibility, and storytelling quality for existing visualizations.\nUse as an explicit/manual helper for critique and cleanup, not as the main owner for scientific figure production or general chart generation."
 allowed-tools: Read, Write, Edit, Bash, Grep
 version: 1.0.0
 license: MIT

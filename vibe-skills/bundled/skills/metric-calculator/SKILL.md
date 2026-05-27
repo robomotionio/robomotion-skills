@@ -1,8 +1,6 @@
 ---
 name: metric-calculator
-description: |
-  Compute well-defined metrics from existing formulas, datasets, or test outputs.
-  Use as an explicit/manual helper when the metric definition is already known, not for choosing the overall analysis owner or dashboard strategy.
+description: "Compute well-defined metrics from existing formulas, datasets, or test outputs.\nUse as an explicit/manual helper when the metric definition is already known, not for choosing the overall analysis owner or dashboard strategy."
 allowed-tools: Read, Write, Edit, Bash, Grep
 version: 1.0.0
 license: MIT

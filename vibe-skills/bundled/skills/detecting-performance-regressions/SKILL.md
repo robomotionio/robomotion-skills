@@ -1,8 +1,6 @@
 ---
 name: detecting-performance-regressions
-description: |
-  Compare current benchmark results against historical baselines to spot performance regressions.
-  Use as an explicit/manual helper for build-to-build degradation review, not for broad optimization strategy or low-level profiling ownership.
+description: "Compare current benchmark results against historical baselines to spot performance regressions.\nUse as an explicit/manual helper for build-to-build degradation review, not for broad optimization strategy or low-level profiling ownership."
 version: 1.0.0
 allowed-tools: "Read, Write, Edit, Grep, Glob, Bash(ci:*), Bash(metrics:*), Bash(testing:*)"
 license: MIT

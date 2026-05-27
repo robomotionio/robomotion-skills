@@ -1,8 +1,6 @@
 ---
 name: evaluating-machine-learning-models
-description: |
-  Evaluate trained machine learning models with the right metrics and comparison logic.
-  Use for benchmark review, threshold selection, calibration, validation, and model comparison; not for feature engineering or leakage auditing.
+description: "Evaluate trained machine learning models with the right metrics and comparison logic.\nUse for benchmark review, threshold selection, calibration, validation, and model comparison; not for feature engineering or leakage auditing."
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(cmd:*)
 version: 1.0.0
 author: Jeremy Longshore <jeremy@intentsolutions.io>

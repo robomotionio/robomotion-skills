@@ -1,8 +1,6 @@
 ---
 name: providing-performance-optimization-advice
-description: |
-  Produce a prioritized performance-optimization roadmap across frontend, backend, and infrastructure.
-  Use as an explicit/manual helper after bottlenecks are known or suspected, not as the owner of regression detection, profiling capture, or test execution.
+description: "Produce a prioritized performance-optimization roadmap across frontend, backend, and infrastructure.\nUse as an explicit/manual helper after bottlenecks are known or suspected, not as the owner of regression detection, profiling capture, or test execution."
 version: 1.0.0
 allowed-tools: "Read, Write, Edit, Grep, Glob, Bash(profiling:*), Bash(analysis:*)"
 license: MIT

@@ -1,8 +1,6 @@
 ---
 name: explaining-machine-learning-models
-description: |
-  Explain trained machine learning models through feature attribution, local explanations, and behavior summaries.
-  Use as an explicit/manual helper once a model already exists, not for training ownership, leakage auditing, or general ML strategy selection.
+description: "Explain trained machine learning models through feature attribution, local explanations, and behavior summaries.\nUse as an explicit/manual helper once a model already exists, not for training ownership, leakage auditing, or general ML strategy selection."
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(cmd:*)
 version: 1.0.0
 author: Jeremy Longshore <jeremy@intentsolutions.io>

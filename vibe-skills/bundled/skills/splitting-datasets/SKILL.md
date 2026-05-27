@@ -1,8 +1,6 @@
 ---
 name: splitting-datasets
-description: |
-  Split datasets into training, validation, and test partitions with the right stratification and temporal rules.
-  Use as a narrow preprocessing helper once the broader ML workflow is already chosen, not as the main route owner for an end-to-end ML task.
+description: "Split datasets into training, validation, and test partitions with the right stratification and temporal rules.\nUse as a narrow preprocessing helper once the broader ML workflow is already chosen, not as the main route owner for an end-to-end ML task."
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(cmd:*)
 version: 1.0.0
 author: Jeremy Longshore <jeremy@intentsolutions.io>

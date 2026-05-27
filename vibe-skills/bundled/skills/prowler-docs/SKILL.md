@@ -1,8 +1,6 @@
 ---
 name: prowler-docs
-description: >
-  Prowler documentation style guide and writing standards.
-  Trigger: When writing documentation for Prowler features, tutorials, or guides.
+description: "Prowler documentation style guide and writing standards. Trigger: When writing documentation for Prowler features, tutorials, or guides."
 license: Apache-2.0
 metadata:
   author: prowler-cloud

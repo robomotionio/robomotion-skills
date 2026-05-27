@@ -1,8 +1,6 @@
 ---
 name: generating-test-reports
-description: |
-  Generate structured test reports with pass/fail rollups, coverage summaries, and test artifacts.
-  Use when the user is asking for test-result packaging or delivery, not for root-cause debugging or feature implementation.
+description: "Generate structured test reports with pass/fail rollups, coverage summaries, and test artifacts.\nUse when the user is asking for test-result packaging or delivery, not for root-cause debugging or feature implementation."
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(test:report-*)
 version: 1.0.0
 author: Jeremy Longshore <jeremy@intentsolutions.io>

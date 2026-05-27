@@ -3,11 +3,7 @@ created: 2025-12-16
 modified: 2025-12-16
 reviewed: 2025-12-16
 name: hypothesis-testing
-description: |
-  Property-based testing with Hypothesis for discovering edge cases and validating invariants.
-  Use when implementing comprehensive test coverage, testing complex logic with many inputs,
-  or validating mathematical properties and invariants across input domains.
-  Triggered by: hypothesis, property-based testing, @given, strategies, generative testing.
+description: "Property-based testing with Hypothesis for discovering edge cases and validating invariants.\nUse when implementing comprehensive test coverage, testing complex logic with many inputs,\nor validating mathematical properties and invariants across input domains.\nTriggered by: hypothesis, property-based testing, @given, strategies, generative testing."
 ---
 
 # Hypothesis Property-Based Testing

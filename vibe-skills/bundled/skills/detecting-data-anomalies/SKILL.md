@@ -1,8 +1,6 @@
 ---
 name: detecting-data-anomalies
-description: |
-  Investigate outliers, rare events, spikes, and suspicious records in datasets.
-  Use as an explicit anomaly-analysis helper when you want concrete anomaly-detection workflow guidance, not generic data validation or end-to-end ML ownership.
+description: "Investigate outliers, rare events, spikes, and suspicious records in datasets.\nUse as an explicit anomaly-analysis helper when you want concrete anomaly-detection workflow guidance, not generic data validation or end-to-end ML ownership."
 allowed-tools: Read, Bash(python:*), Grep, Glob
 version: 1.0.0
 author: Jeremy Longshore <jeremy@intentsolutions.io>
