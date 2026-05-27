@@ -1,0 +1,35 @@
+# kicad-happy
+
+> AI-powered design review skills for KiCad electronics projects
+
+A suite of 11 skills that turn an AI coding agent into an electronics design assistant. Structured Python analysis scripts (zero dependencies, Python 3.8+ stdlib only) for KiCad 5-10 projects. Works with Claude Code, OpenAI Codex, Cursor, and Gemini CLI.
+
+Capabilities: schematic analysis (40+ subcircuit detectors), PCB layout review, EMC pre-compliance (42 rules), SPICE simulation, thermal analysis, component sourcing (DigiKey/Mouser/LCSC/element14), BOM management, manufacturing prep (JLCPCB/PCBWay), and professional documentation generation.
+
+Install: `/plugin marketplace add aklofas/kicad-happy` (Claude Code), `gemini skills link ./kicad-happy/skills` after cloning (Gemini), or clone and symlink skills.
+
+## Documentation
+
+- [Contributing Guide](https://github.com/aklofas/kicad-happy/blob/main/CONTRIBUTING.md): How detectors work, how to add skills, test harness, code style
+- [Validation Summary](https://github.com/aklofas/kicad-happy/blob/main/VALIDATION.md): Test methodology, 1036-project corpus, 428K+ regression assertions
+- [Changelog](https://github.com/aklofas/kicad-happy/blob/main/CHANGELOG.md): Release history for v1.0, v1.1, v1.2
+
+## Core Skills
+
+- [Schematic Analysis](https://github.com/aklofas/kicad-happy/blob/main/skills/kicad/SKILL.md): Parse .kicad_sch files, detect 40+ subcircuit types, compute voltages/frequencies/currents, validate component values against datasheets
+- [EMC Pre-Compliance](https://github.com/aklofas/kicad-happy/blob/main/skills/emc/SKILL.md): 42 rule checks across 17 categories — ground planes, decoupling, switching harmonics, PDN impedance, diff pairs, board edge radiation
+- [SPICE Simulation](https://github.com/aklofas/kicad-happy/blob/main/skills/spice/SKILL.md): Auto-generated testbenches for 17 subcircuit types, Monte Carlo tolerance analysis, multi-simulator support
+- [Documentation Generation](https://github.com/aklofas/kicad-happy/blob/main/skills/kidoc/SKILL.md): Professional PDF/HTML reports, schematic SVG rendering, publication-quality figures
+- [BOM Management](https://github.com/aklofas/kicad-happy/blob/main/skills/bom/SKILL.md): Multi-supplier pricing, order file export, lifecycle auditing
+
+## Sourcing Skills
+
+- [DigiKey](https://github.com/aklofas/kicad-happy/blob/main/skills/digikey/SKILL.md): OAuth 2.0 API integration, datasheet sync, part search
+- [Mouser](https://github.com/aklofas/kicad-happy/blob/main/skills/mouser/SKILL.md): API key auth, part search, pricing
+- [LCSC](https://github.com/aklofas/kicad-happy/blob/main/skills/lcsc/SKILL.md): Free jlcsearch community API, no auth required
+- [element14](https://github.com/aklofas/kicad-happy/blob/main/skills/element14/SKILL.md): Newark/Farnell API, international sourcing
+
+## Optional
+
+- [JLCPCB](https://github.com/aklofas/kicad-happy/blob/main/skills/jlcpcb/SKILL.md): BOM/CPL format, assembly constraints, basic vs extended parts
+- [PCBWay](https://github.com/aklofas/kicad-happy/blob/main/skills/pcbway/SKILL.md): Turnkey assembly rules, MPN-based sourcing

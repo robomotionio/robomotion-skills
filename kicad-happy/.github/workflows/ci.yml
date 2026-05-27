@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  compile-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Compile check all scripts
+        run: |
+          find skills/ -name "*.py" -exec python -m py_compile {} +
+          echo "All scripts compile successfully"
+
+  smoke-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: analyze_schematic.py --help
+        run: python3 skills/kicad/scripts/analyze_schematic.py --help > /dev/null
+
+      - name: analyze_pcb.py --help
+        run: python3 skills/kicad/scripts/analyze_pcb.py --help > /dev/null
+
+      - name: analyze_gerbers.py --help
+        run: python3 skills/kicad/scripts/analyze_gerbers.py --help > /dev/null
+
+      - name: analyze_emc.py --help
+        run: python3 skills/emc/scripts/analyze_emc.py --help > /dev/null
+
+      - name: simulate_subcircuits.py --help
+        run: python3 skills/spice/scripts/simulate_subcircuits.py --help > /dev/null
+
+      - name: bom_manager.py --help
+        run: python3 skills/bom/scripts/bom_manager.py --help > /dev/null
+
+      - name: kidoc_orchestrator.py --help
+        run: python3 skills/kidoc/scripts/kidoc_orchestrator.py --help > /dev/null
+
+  harness-smoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Clone test harness at pinned commit
+        run: |
+          git clone https://github.com/aklofas/kicad-happy-testharness.git /tmp/harness
+          cd /tmp/harness
+          git checkout 2458489ca15
+
+      - name: Run smoke tests (~30s, 565-test PR-gate subset, no corpus dep)
+        env:
+          KICAD_HAPPY_DIR: ${{ github.workspace }}
+        run: |
+          cd /tmp/harness
+          python3 run_tests.py --smoke

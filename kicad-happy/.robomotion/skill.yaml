@@ -1,0 +1,10 @@
+schema_version: 1
+name: kicad-happy
+title: 'Kicad Happy'
+type: group
+version: 1
+author: 'aklofas'
+source_url: https://github.com/aklofas/kicad-happy
+license: MIT
+summary: '12 skills — AI-powered KiCad electronics design review and analysis'
+tags: [ai, design]
