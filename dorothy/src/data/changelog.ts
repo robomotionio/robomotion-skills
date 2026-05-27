@@ -1,0 +1,161 @@
+export interface Release {
+  id: number;
+  version: string;
+  date: string;
+  updates: string[];
+}
+
+export const CHANGELOG: Release[] = [
+  {
+    id: 11,
+    version: '1.2.8',
+    date: '2026-05-05',
+    updates: [
+      'Agent Templates — new sidebar page with 9 built-in role templates: Frontend Engineer, Backend Engineer, Security Engineer, Code Reviewer, Tester (QA), Refactor Specialist, Docs Writer, DevOps Engineer, Product Designer',
+      'Production-grade system prompts on every built-in template, grounded in patterns from Cursor, Cline, Roo Code, Anthropic Agent Skills, and the OpenAI Codex prompting guide',
+      'Built-in templates are editable — your edits are saved as overrides with a "Customized" badge and a one-click reset to defaults',
+      '"Use this template" → pick a project → agent created and auto-started with the template prompt; no extra setup',
+      '"Save as template" action on each agent card — turn any working agent into a reusable template',
+      'Clickable "+" badges on missing skills — install marketplace skills directly from a template card; the badge updates live when the install completes',
+      'Import / Export templates as .json files — share role packs with your team or back up your customizations',
+      'Agents list now sorts by creation time by default (newest first), so a freshly created agent appears at the top',
+      'Unlimited dashboard tabs — the previous 5-tab cap is gone; tabs scroll horizontally when they overflow',
+      'Ctrl+Tab / Ctrl+Shift+Tab to cycle through dashboard tabs, with focus auto-restored to the last active terminal in each tab — type straight into the agent without clicking',
+      'New blank template form simplified — no more model picker; uses the provider default',
+    ],
+  },
+  {
+    id: 10,
+    version: '1.2.7',
+    date: '2026-03-28',
+    updates: [
+      'New Support page — one-time and monthly donations via Stripe',
+      'Agent permission modes: Normal, Auto, and Bypass replace old toggle',
+      'Agent effort level setting (Low, Medium, High)',
+      'Major Usage page overhaul — model breakdown donut chart, top projects, weekly trends',
+      'Multiline input support — Shift+Enter inserts newline, auto-resizing textarea',
+      'Broadcast mode — send input to all terminals at once',
+      'Terminal fixes: preserve content on navigation, fix fullscreen buttons, scroll-to-bottom on replay',
+      'Sidebar and Kanban UI polish',
+    ],
+  },
+  {
+    id: 9,
+    version: '1.2.6',
+    date: '2026-03-28',
+    updates: [
+      'Add delay between PTY write and carriage return to fix Telegram/Slack input',
+      'Add Chrome browser sharing for agents (--chrome flag)',
+      'Fix CLI path detection, settings sidebar scroll, and UX improvements',
+    ],
+  },
+  {
+    id: 8,
+    version: '1.2.5',
+    date: '2026-03-17',
+    updates: [
+      'Add support of PI agent provider',
+      'Add support of OpenCode agent provider',
+      'Add support of JIRA self hosted domain',
+      'Added macOS menu bar tray with live agent status panel',
+      'Status tabs in tray: Working, Waiting for inputs, Ready to work, Idle',
+      'Manage all your external MCP servers (outside of Dorothy) from the settings page',
+      'Live task preview next to agent name when working or waiting',
+      'Full-color Dorothy logo in the macOS menu bar',
+      'Revamped agents page with improved layout and filtering',
+      'Add new Status line option (in settings) to display model, context usage, git branch, session time, and token stats in live on your Claude Code terminal',
+      'Custom MP3/audio file support per notification type',
+      'New "Response Finished" notification toggle (Stop hook)',
+      'Dedicated PermissionRequest and TaskCompleted hook events',
+      'Fixed agent status lifecycle: idle on start, working only after user prompt',
+      'Added pinned and favorites projects to the project page, quickly select your default project on create agent and kanban task',
+    ],
+  },
+  {
+    id: 7,
+    version: '1.2.4',
+    date: '2026-02-26',
+    updates: [
+      'Multi-provider support: Claude, Codex, and Gemini agents',
+      'Provider selector in agent creation flow',
+      'Memory page now shows projects across all providers',
+      'Custom MCP server configuration per provider',
+      'CLI Paths settings for all provider binaries',
+    ],
+  },
+  {
+    id: 6,
+    version: '1.2.3',
+    date: '2026-02-19',
+    updates: [
+      'React app preview tab in agent detail panel',
+      'Live preview of react-app code blocks from agent output',
+      'File watcher for .dorothy-preview/ directory',
+      'Window drag regions for macOS',
+      'Modular API routes for better maintainability',
+    ],
+  },
+  {
+    id: 5,
+    version: '1.2.2',
+    date: '2026-02-10',
+    updates: [
+      'Skills marketplace with community skill browser',
+      'Skill installation progress terminal',
+      'Link skills to specific providers',
+      'Improved agent world (ClaudeMon) with NPC zones',
+    ],
+  },
+  {
+    id: 4,
+    version: '1.2.1',
+    date: '2026-01-28',
+    updates: [
+      'Vault — shared document storage for agents and users',
+      'Folder organization and full-text search in Vault',
+      'Kanban board with agent task assignment',
+      'Auto-spawn agents from Kanban card moves',
+      'Scheduler improvements with cron expressions',
+    ],
+  },
+  {
+    id: 3,
+    version: '1.2.0',
+    date: '2026-01-10',
+    updates: [
+      'Telegram bot integration for remote agent control',
+      'Slack bot support with channel notifications',
+      'JIRA integration for issue tracking',
+      'Automations engine for event-driven workflows',
+      'Super Agent / Orchestrator mode',
+    ],
+  },
+  {
+    id: 2,
+    version: '1.0.1',
+    date: '2025-12-20',
+    updates: [
+      'Desktop notifications for agent events',
+      'Memory browser for Claude project memory files',
+      'Obsidian vault integration',
+      'Dark mode support',
+      'Worktree support for isolated git branches',
+    ],
+  },
+  {
+    id: 1,
+    version: '1.0.0',
+    date: '2025-12-01',
+    updates: [
+      'Initial release of Dorothy',
+      'Multi-agent management with persistent PTY sessions',
+      'Agent creation with project path, skills, and character',
+      'Terminal view with live output streaming',
+      'Dashboard with agent status overview',
+      'Scheduled tasks with cron support',
+    ],
+  },
+];
+
+export const LATEST_RELEASE = CHANGELOG[0];
+export const WHATS_NEW_STORAGE_KEY = 'dorothy_whats_new_last_seen';

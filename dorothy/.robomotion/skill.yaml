@@ -1,0 +1,10 @@
+schema_version: 1
+name: dorothy
+title: 'Dorothy'
+type: group
+version: 1.2.8
+author: 'Charlie85270'
+source_url: https://github.com/Charlie85270/Dorothy
+license: MIT
+summary: '4 skills — Orchestrate multiple AI CLI agents with automations and MCP servers'
+tags: [productivity, ai]
