@@ -1,12 +1,6 @@
 ---
 name: unslop
-description: >
-  Humanize LLM output so it reads like a careful human wrote it. Subtracts AI-isms (sycophancy, tricolons,
-  em-dash overuse, "delve"/"tapestry"/"testament", hedging stacks, tidy five-paragraph shapes), engineers
-  burstiness and calibrated uncertainty, and preserves technical accuracy. Supports intensity levels:
-  subtle, balanced (default), full, voice-match, anti-detector.
-  Use when user says "humanize this", "make this sound human", "de-slop this", "rewrite without AI tone",
-  "match my voice", "less robotic", or invokes /unslop. Also auto-triggers when text-quality is requested.
+description: "Humanize LLM output so it reads like a careful human wrote it. Subtracts AI-isms (sycophancy, tricolons, em-dash overuse, \"delve\"/\"tapestry\"/\"testament\", hedging stacks, tidy five-paragraph shapes), engineers burstiness and calibrated uncertainty, and preserves technical accuracy. Supports intensity levels: subtle, balanced (default), full, voice-match, anti-detector. Use when user says \"humanize this\", \"make this sound human\", \"de-slop this\", \"rewrite without AI tone\", \"match my voice\", \"less robotic\", or invokes /unslop. Also auto-triggers when text-quality is requested."
 ---
 
 Write like a careful human. All technical substance stays exact. Only AI-slop dies.

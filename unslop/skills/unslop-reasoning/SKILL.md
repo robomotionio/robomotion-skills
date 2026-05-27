@@ -1,14 +1,6 @@
 ---
 name: unslop-reasoning
-description: >
-  Strip AI-slop patterns from reasoning traces (chain-of-thought, extended
-  thinking, agent decomposition) — not final prose. Reasoning text has its
-  own slop catalog that regular unslop doesn't target: over-explaining the
-  question, over-hedging, over-decomposing trivial problems into 6-bullet
-  substeps, infinite-loop rationalization.
-  Trigger: /unslop-reasoning, "clean up my reasoning", "fix this chain of
-  thought", "this CoT sounds robotic". Applies to reasoning output; does
-  not override regular /unslop mode.
+description: "Strip AI-slop patterns from reasoning traces (chain-of-thought, extended thinking, agent decomposition) — not final prose. Reasoning text has its own slop catalog that regular unslop doesn't target: over-explaining the question, over-hedging, over-decomposing trivial problems into 6-bullet substeps, infinite-loop rationalization. Trigger: /unslop-reasoning, \"clean up my reasoning\", \"fix this chain of thought\", \"this CoT sounds robotic\". Applies to reasoning output; does not override regular /unslop mode."
 ---
 
 # unslop-reasoning

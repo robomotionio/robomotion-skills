@@ -1,13 +1,6 @@
 ---
 name: unslop-commit
-description: >
-  Rewrites commit messages so they sound like a careful human engineer wrote them.
-  Strips AI/marketing slop ("comprehensive solution", "robust implementation", "leverage", "enhance",
-  "seamlessly", "This commit..."). Keeps Conventional Commits format. Subject ≤72 chars (aim ≤50),
-  imperative mood. Body only when "why" isn't obvious from the subject.
-  Use when user says "humanize commit", "de-slop commit message", "make this commit sound human",
-  "/unslop-commit", "/commit", "write a commit", or pastes a draft commit to clean up.
-  Auto-triggers when staging changes.
+description: "Rewrites commit messages so they sound like a careful human engineer wrote them. Strips AI/marketing slop (\"comprehensive solution\", \"robust implementation\", \"leverage\", \"enhance\", \"seamlessly\", \"This commit...\"). Keeps Conventional Commits format. Subject ≤72 chars (aim ≤50), imperative mood. Body only when \"why\" isn't obvious from the subject. Use when user says \"humanize commit\", \"de-slop commit message\", \"make this commit sound human\", \"/unslop-commit\", \"/commit\", \"write a commit\", or pastes a draft commit to clean up. Auto-triggers when staging changes."
 ---
 
 # Unslop Commit

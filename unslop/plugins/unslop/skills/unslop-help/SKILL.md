@@ -1,9 +1,6 @@
 ---
 name: unslop-help
-description: >
-  Quick-reference card for unslop modes, sub-skills, and slash commands.
-  One-shot display, not a persistent mode. Trigger: /unslop-help,
-  "unslop help", "what unslop commands", "how do I use unslop".
+description: "Quick-reference card for unslop modes, sub-skills, and slash commands. One-shot display, not a persistent mode. Trigger: /unslop-help, \"unslop help\", \"what unslop commands\", \"how do I use unslop\"."
 ---
 
 # Unslop Help

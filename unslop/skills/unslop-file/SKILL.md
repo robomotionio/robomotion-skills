@@ -1,11 +1,6 @@
 ---
 name: unslop-file
-description: >
-  Humanize natural-language memory files (CLAUDE.md, todos, preferences, docs) by removing AI-isms
-  and adding burstiness while preserving every code block, URL, path, command, and heading exactly.
-  Two modes: --deterministic (fast, regex-based, no API) and LLM (default, calls Claude for rewrite).
-  Humanized version overwrites the original file. Plain backup saved as FILE.original.md.
-  Trigger: /unslop-file <filepath> or "humanize memory file"
+description: "Humanize natural-language memory files (CLAUDE.md, todos, preferences, docs) by removing AI-isms and adding burstiness while preserving every code block, URL, path, command, and heading exactly. Two modes: --deterministic (fast, regex-based, no API) and LLM (default, calls Claude for rewrite). Humanized version overwrites the original file. Plain backup saved as FILE.original.md. Trigger: /unslop-file <filepath> or \"humanize memory file\""
 ---
 
 # Unslop Humanize
