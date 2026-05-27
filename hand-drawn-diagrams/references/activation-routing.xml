@@ -1,0 +1,103 @@
+<activation-routing skill="hand-drawn-diagrams" version="2.0">
+  <defaults>
+    <rule>Pick one primary route.</rule>
+    <rule>Default to monochrome hand-drawn output.</rule>
+    <rule>Keep the same sketch font.</rule>
+    <rule>Use fundamental-shapes.md as the shared visual grammar.</rule>
+    <rule>Allow restrained color only for page-mockup when the user explicitly wants webpage-like fidelity.</rule>
+    <rule>Do not leave empty placeholder boxes or decorative empty sections in the final diagram.</rule>
+    <rule>Do not repeat the same long text across multiple regions; if text wraps badly or duplicates, simplify or remove it.</rule>
+  </defaults>
+
+  <diagram-rules>
+    <rule id="diagram-vs-notes">A diagram shows structure. Notes show content. Never write sentences or long bullet lists inside boxes — that is notes, not a diagram.</rule>
+    <rule id="label-length">Each shape label must be 1–5 words. If you need more, add another shape.</rule>
+    <rule id="one-concept-per-box">One concept per shape. If a topic has 10 concepts, use 10 shapes — not 1 shape with 10 bullets.</rule>
+    <rule id="bullets">Max 3 short bullets per container, each 5 words or fewer. No paragraphs inside shapes.</rule>
+  </diagram-rules>
+
+  <delivery-modes>
+    <rule>Infer the mode from the first prompt. Pass it as --mode to open_diagram.py in step-03. Never render before the .excalidraw file is written and validated.</rule>
+
+    <mode id="edit" open_diagram_flag="--mode edit" trigger="default; show me; open; just a diagram; no explicit output format">
+      <action>open_diagram.py --mode edit → writes open-edit.html (instant redirect to hosted Excalidraw editor) → opens in browser</action>
+    </mode>
+
+    <mode id="animate" open_diagram_flag="--mode animate" trigger="open animation; watch it animate; show animation; view animated">
+      <action>open_diagram.py --mode animate → writes open-animate.html (instant redirect to hosted animation view) → opens in browser</action>
+    </mode>
+
+    <mode id="save-excalidraw" open_diagram_flag="--mode save-excalidraw --dest {project}" trigger="save the file; save as excalidraw; keep the source; download the diagram">
+      <action>open_diagram.py --mode save-excalidraw → copies .excalidraw (and .animationinfo.json if present) to project directory</action>
+    </mode>
+
+    <mode id="save-animation" open_diagram_flag="--mode save-animation --dest {project}" trigger="save animation; animation video; animated SVG; save video">
+      <action>open_diagram.py --mode save-animation → renders and saves .animated.svg to project directory (always workspace, never /tmp)</action>
+    </mode>
+
+    <mode id="save-image" open_diagram_flag="--mode save-image --dest {project}" trigger="save image; export PNG; save PNG; export image">
+      <action>open_diagram.py --mode save-image → renders and saves .png to project directory</action>
+    </mode>
+
+    <mode id="open-image" open_diagram_flag="--mode open-image --dest {project}" trigger="show image; open image; open PNG; view image">
+      <action>open_diagram.py --mode open-image → renders .png, saves to project directory, opens with system viewer</action>
+    </mode>
+  </delivery-modes>
+
+  <routes>
+    <route id="teachers" reference="references/teachers-diagrams.md">
+      <when>teach, explain simply, lesson, compare, ELI5</when>
+      <goal>clarity and retention</goal>
+      <layout>top-to-bottom</layout>
+    </route>
+
+    <route id="ideation" reference="references/ideation-diagrams.md">
+      <when>brainstorm, notes, cluster, opportunity map, organize ideas</when>
+      <goal>surface patterns</goal>
+      <layout>center-out</layout>
+    </route>
+
+    <route id="ux" reference="references/ux-designer-diagrams.md">
+      <when>journey, wireflow, sitemap, screen flow, onboarding, checkout</when>
+      <goal>make the main path obvious</goal>
+      <layout>left-to-right</layout>
+    </route>
+
+    <route id="sales-funnel" reference="references/sales-funnel-diagrams.md">
+      <when>funnel, conversion, drop-off, lead stages, qualification</when>
+      <goal>show narrowing and leak points</goal>
+      <layout>top-wide to bottom-narrow</layout>
+    </route>
+
+    <route id="technical-explainer" reference="references/technical-explainer-diagrams.md">
+      <when>architecture, API, protocol, request flow, event flow, integration, retry</when>
+      <goal>explain one technical question well</goal>
+      <layout>left-to-right or top-to-bottom</layout>
+    </route>
+
+    <route id="medical" reference="references/medical-diagrams.md">
+      <when>condition, symptom, diagnosis, treatment, patient explanation</when>
+      <goal>plain-language medical clarity</goal>
+      <layout>top-to-bottom or left-to-right</layout>
+    </route>
+
+    <route id="creative-raw" reference="references/creative-raw-diagrams.md">
+      <when>full creative mode, raw creative mode, open composition, choose any diagram style, do whatever fits best</when>
+      <goal>use the best hand-drawn composition without forcing a narrow route</goal>
+      <layout>pattern-driven</layout>
+    </route>
+
+    <route id="page-mockup" reference="references/page-mockup-diagrams.md">
+      <when>webpage, landing page, dashboard, pricing page, UI mockup</when>
+      <goal>read like a webpage with strong hierarchy</goal>
+      <layout>top-to-bottom page sections</layout>
+    </route>
+  </routes>
+
+  <disambiguation>
+    <rule>If the page itself is the deliverable, use page-mockup. If the flow is the deliverable, use ux.</rule>
+    <rule>If the request is technical and educational, use technical-explainer first and borrow teaching simplicity only if needed.</rule>
+    <rule>If the request is exploratory, use ideation. If it is already structured, use the domain route instead.</rule>
+    <rule>Use creative-raw only when the user explicitly asks for broad creative freedom. Otherwise prefer a narrower route.</rule>
+  </disambiguation>
+</activation-routing>
