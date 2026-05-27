@@ -1,0 +1,203 @@
+{
+  "current_postpartum": {
+    "active": true,
+    "start_date": "2025-10-08",
+    "delivery_date": "2025-10-08",
+    "delivery_type": "vaginal",
+    "baby_count": 1,
+    "tracking_period_days": 180,
+    "tracking_period_type": "6months",
+    "days_postpartum": 45,
+    "stage": "late"
+  },
+  "recovery_tracking": {
+    "lochia": {
+      "current_stage": "alba",
+      "last_updated": "2025-10-20",
+      "amount": "light"
+    },
+    "pain": {
+      "current_level": 2,
+      "location": "uterus",
+      "last_updated": "2025-10-15"
+    },
+    "breastfeeding": {
+      "status": "exclusive",
+      "challenges": [],
+      "last_updated": "2025-10-22"
+    },
+    "weight": {
+      "pre_pregnancy": 65.0,
+      "delivery": 75.0,
+      "current": 68.5,
+      "last_updated": "2025-10-20"
+    },
+    "pelvic_floor": {
+      "status": "recovering",
+      "exercises": "kegel-exercises",
+      "last_updated": "2025-10-18"
+    }
+  },
+  "mental_health": {
+    "epds_screening": {
+      "total_score": 7,
+      "q10_score": 0,
+      "risk_level": "low",
+      "last_screened": "2025-10-20",
+      "action": "routine_monitoring"
+    },
+    "mood_tracking": {
+      "current_mood": "calm",
+      "anxiety_level": "mild",
+      "last_updated": "2025-10-22"
+    }
+  },
+  "babies": [
+    {
+      "baby_id": "A",
+      "name": "Emma",
+      "birth_weight": 3.4,
+      "current_weight": 4.2,
+      "feeding": {
+        "type": "breastfeeding",
+        "pattern": "every 2-3 hours",
+        "last_updated": "2025-10-22"
+      },
+      "sleep": {
+        "pattern": "3-4 hours",
+        "total_sleep": "14-16 hours/day",
+        "last_updated": "2025-10-21"
+      },
+      "diapers": {
+        "wet_per_day": 6,
+        "soiled_per_day": 3,
+        "last_updated": "2025-10-22"
+      }
+    }
+  ],
+  "red_flags": {
+    "maternal": [],
+    "baby": [],
+    "last_checked": "2025-10-22"
+  },
+  "epds_reference": {
+    "max_score": 30,
+    "questions_count": 10,
+    "risk_thresholds": {
+      "low_risk": {
+        "min": 0,
+        "max": 9,
+        "action": "routine_monitoring"
+      },
+      "moderate_risk": {
+        "min": 10,
+        "max": 12,
+        "action": "increase_monitoring"
+      },
+      "high_risk": {
+        "min": 13,
+        "max": 30,
+        "action": "immediate_referral"
+      },
+      "emergency": {
+        "q10_threshold": 2,
+        "action": "emergency_intervention"
+      }
+    }
+  },
+  "maternal_red_flags": {
+    "postpartum_hemorrhage": {
+      "threshold": ">1 pad/hour",
+      "severity": "high",
+      "action": "contact_provider"
+    },
+    "fever": {
+      "threshold": ">100.4°F (38°C)",
+      "severity": "high",
+      "action": "possible_infection"
+    },
+    "severe_headache": {
+      "threshold": "persistent, not relieved",
+      "severity": "high",
+      "action": "contact_provider"
+    },
+    "vision_changes": {
+      "threshold": "any changes",
+      "severity": "high",
+      "action": "contact_provider"
+    },
+    "shortness_of_breath": {
+      "threshold": "at rest",
+      "severity": "emergency",
+      "action": "emergency_care"
+    },
+    "suicidal_ideation": {
+      "threshold": "any thoughts",
+      "severity": "emergency",
+      "action": "emergency_intervention"
+    }
+  },
+  "baby_red_flags": {
+    "poor_feeding": {
+      "threshold": "<6 wet diapers/24hrs",
+      "severity": "high",
+      "action": "contact_provider"
+    },
+    "excessive_weight_loss": {
+      "threshold": ">10% birth weight",
+      "severity": "high",
+      "action": "contact_provider"
+    },
+    "fever": {
+      "threshold": ">100.4°F (38°C)",
+      "severity": "emergency",
+      "action": "emergency_care"
+    },
+    "feeding_difficulty": {
+      "threshold": "unable to suck/swallow",
+      "severity": "emergency",
+      "action": "emergency_care"
+    },
+    "respiratory_distress": {
+      "threshold": "grunting/retractions/cyanosis",
+      "severity": "emergency",
+      "action": "emergency_care"
+    }
+  },
+  "postpartum_stages": {
+    "immediate": {
+      "days": "0-2",
+      "focus": "hospital recovery, initial breastfeeding"
+    },
+    "early": {
+      "days": "3-14",
+      "focus": "establishing feeding, rest, recovery"
+    },
+    "subacute": {
+      "days": "15-42",
+      "focus": "healing, establishing routines"
+    },
+    "late": {
+      "days": "43+",
+      "focus": "long-term recovery, mental health"
+    }
+  },
+  "tracking_options": {
+    "periods": {
+      "6weeks": {
+        "days": 42,
+        "description": "Standard immediate recovery"
+      },
+      "6months": {
+        "days": 180,
+        "description": "Extended recovery (recommended)"
+      },
+      "1year": {
+        "days": 365,
+        "description": "Full recovery tracking"
+      }
+    }
+  },
+  "last_updated": "2025-10-22",
+  "notes": "Example postpartum tracking data for singleton pregnancy, vaginal delivery, 6-month tracking period"
+}

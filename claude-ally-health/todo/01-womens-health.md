@@ -1,0 +1,705 @@
+# 女性健康功能扩展提案
+
+**模块编号**: 01
+**分类**: 按人群分类 - 女性健康
+**状态**: ✅ 已实现
+**优先级**: 高
+**创建日期**: 2025-12-31
+**完成日期**: 2026-01-01
+
+---
+
+## 功能概述
+
+女性健康模块包含三个子模块，全面覆盖女性不同生命阶段的健康需求：
+
+1. 🤰 **孕期管理系统** - 从备孕到分娩的全周期管理
+2. 🌸 **更年期管理系统** - 围绝经期症状管理和健康指导
+3. 🎗️ **妇科癌症筛查追踪** - 宫颈癌、卵巢癌、子宫内膜癌筛查管理
+
+---
+
+## 子模块 1: 孕期管理系统
+
+### 功能描述
+
+全周期孕期追踪和管理，从备孕到产后恢复，提供全面的孕期健康监测和管理功能。
+
+### 核心功能
+
+#### 1. 预产期计算器
+- 基于末次月经日期（LMP）计算
+- 基于超声确认日期校正
+- 孕周自动更新和阶段划分
+- 预产期置信区间
+
+#### 2. 孕期里程碑追踪
+- **孕早期（1-12周）**：器官发育关键期、NT检查
+- **孕中期（13-27周）**：唐筛、大排畸、糖耐
+- **孕晚期（28-40周）**：胎动、胎位、分娩准备
+
+#### 3. 产检计划提醒
+- 常规产检时间表
+  - 12周、16周、20周、24周、28周
+  - 32周、34周、36周
+  - 37-40周每周
+- 特殊检查时间（NT、唐筛、糖耐、大排畸）
+- 检查项目准备和注意事项
+
+#### 4. 孕期症状记录
+- **孕吐（孕早期）**：恶心呕吐频率、严重程度
+- **水肿（孕晚期）**：手脚水肿程度
+- **胎动记录（孕28周后）**：胎动次数、时间
+- **宫缩记录（孕晚期）**：假性宫缩、真性宫缩
+- **体重增长曲线**：每周体重监测
+- **血压监测**：妊娠高血压筛查
+
+#### 5. 孕期用药安全检查
+- 药物妊娠分级（A/B/C/D/X）
+- 禁用药物警示
+- 安全替代建议
+- 中药安全性评估
+
+#### 6. 营养指导
+- **叶酸补充**：孕前3个月至孕早期（400-800μg/天）
+- **铁剂补充**：孕中晚期
+- **钙剂补充**：全程（1000-1200mg/天）
+- **DHA补充**：孕期（200-300mg/天）
+- 孕期禁忌食物（生食、酒精、高汞鱼类等）
+
+### 数据结构
+
+```json
+{
+  "pregnancy_id": "pregnancy_20250101",
+  "lmp_date": "2025-01-01",
+  "due_date": "2025-10-08",
+  "due_date_confidence": "high",
+  "current_week": 12,
+  "current_trimester": "first",
+  "corrected_by_ultrasound": false,
+
+  "prenatal_checks": [
+    {
+      "check_id": "check_001",
+      "week": 12,
+      "check_type": "NT",
+      "scheduled_date": "2025-03-25",
+      "completed": false,
+      "results": {},
+      "notes": ""
+    }
+  ],
+
+  "symptoms": {
+    "nausea": {
+      "severity": "moderate",
+      "frequency": "daily",
+      "triggers": ["morning", "empty_stomach"],
+      "relief_methods": ["crackers", "small_frequent_meals"]
+    },
+    "fatigue": {
+      "severity": "mild",
+      "frequency": "often"
+    },
+    "edema": {
+      "present": false,
+      "severity": null
+    }
+  },
+
+  "weight_tracking": [
+    {
+      "date": "2025-01-01",
+      "week": 0,
+      "weight": 60.0,
+      "weight_gain": 0.0,
+      "bmi": 22.5,
+      "recommended_gain": "11.5-16kg"
+    }
+  ],
+
+  "blood_pressure": [
+    {
+      "date": "2025-03-15",
+      "week": 10,
+      "systolic": 115,
+      "diastolic": 75,
+      "interpretation": "normal"
+    }
+  ],
+
+  "fetal_movement": {
+    "tracking_started": false,
+    "start_week": 28,
+    "movements": []
+  },
+
+  "contractions": [],
+
+  "medication_safety": {
+    "checked_medications": [],
+    "contraindications": [],
+    "safe_alternatives": {}
+  },
+
+  "nutrition_plan": {
+    "folic_acid": {
+      "dose": "400μg",
+      "frequency": "daily",
+      "started": "2024-10-01"
+    },
+    "iron": {
+      "dose": null,
+      "frequency": null,
+      "started": null
+    }
+  },
+
+  "metadata": {
+    "created_at": "2025-01-01T00:00:00.000Z",
+    "last_updated": "2025-03-25T10:00:00.000Z"
+  }
+}
+```
+
+### 命令接口
+
+```bash
+# 开始孕期记录
+/pregnancy start 2025-01-01              # 末次月经日期
+
+# 记录产检
+/pregnancy checkup week 12 NT normal     # 记录NT检查
+/pregnancy checkup week 16 唐筛 低风险   # 记录唐筛
+
+# 记录症状
+/pregnancy symptom nausea moderate        # 记录孕吐
+/pregnancy symptom edema feet            # 记录水肿
+
+# 记录体重
+/pregnancy weight 62.5                   # 记录当前体重
+
+# 记录胎动（28周后）
+/pregnancy movement 10 kicks              # 记录胎动
+
+# 记录血压
+/pregnancy bp 115/75                     # 记录血压
+
+# 用药安全检查
+/pregnancy medication-check 阿司匹林      # 检查药物安全性
+
+# 查看状态
+/pregnancy status                        # 查看当前状态
+/pregnancy next-checkup                  # 下次产检提醒
+```
+
+### 使用示例
+
+```
+用户: /pregnancy start 2025-01-01
+
+系统:
+✅ 孕期记录已创建
+
+孕期信息：
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+末次月经：2025年1月1日
+预产期：2025年10月8日
+当前孕周：12周
+孕期阶段：孕早期
+
+下次产检：
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+12周 NT检查 - 2025年3月25日（还有10天）
+
+💡 提示：
+- 继续补充叶酸 400μg/天
+- 如有阴道出血、腹痛，请立即就医
+⚠️ 重要声明：
+本系统仅供孕期健康追踪，不能替代专业产检。
+所有产检请按时进行，如有异常请及时就医。
+```
+
+---
+
+## 子模块 1.1: 多胎妊娠扩展 ✅
+
+### 功能描述
+
+支持双胎、三胎、四胎妊娠的专门追踪和管理，包括自动检测、额外监测和安全警示。
+
+### 核心功能
+
+#### 1. 多胎妊娠类型支持
+- **单胎妊娠** (singleton) - 标准追踪
+- **双胎妊娠** (twins) - 37周分娩，额外监测
+- **三胎妊娠** (triplets) - 35周分娩，高危管理
+- **四胎妊娠** (quadruplets) - 32周分娩，极高危管理
+
+#### 2. 智能检测
+- 从超声检查笔记中自动识别多胎妊娠
+- 支持中英文关键词：
+  - 中文：双胎、三胎、四胎、双胞胎、三胞胎
+  - 英文：twins, triplets, quadruplets, two/three/four fetuses
+- 需要用户确认后自动设置妊娠类型
+
+#### 3. 调整的预产期
+- 单胎：40周 (280天)
+- 双胎：37周 (259天) - 平均提前3周
+- 三胎：35周 (245天) - 平均提前5周
+- 四胎：32周 (224天) - 平均提前8周
+
+#### 4. 调整的体重增长建议
+- 单胎 BMI 18.5-24.9：11.5-16 kg
+- 双胎 BMI 18.5-24.9：16-20 kg (增加4-5kg)
+- 三胎 BMI 18.5-24.9：20-25 kg (增加8-9kg)
+- 四胎 BMI 18.5-24.9：22-27 kg (增加10-11kg)
+
+#### 5. 胎儿档案管理
+- 为每个胎儿创建独立档案 (A, B, C, D)
+- 追踪每个胎儿的：
+  - 估计体重
+  - 胎位 (头位、臀位、横位)
+  - 心率
+  - 羊水指数
+- 计算胎儿体重不一致度
+
+#### 6. 高危监测
+- **TTTS警示** (双胎输血综合征)：
+  - Stage I: MVP供者<2cm, 受者>8cm
+  - Stage II: 供者膀胱不可见
+  - Stage III: 异常多普勒血流
+  - Stage IV: 水肿
+  - Stage V: 一胎或双胎死亡
+- **宫颈长度监测**：<25mm需警惕
+- **胎儿生长不一致度**：>20%需关注
+
+### 命令接口
+
+```bash
+# 手动设置妊娠类型
+/pregnancy type twins                   # 设置为双胎
+/pregnancy type triplets                # 设置为三胎
+
+# 添加胎儿档案
+/pregnancy fetal A weight 1500 position cephalic  # 胎儿A
+/pregnancy fetal B weight 1400 position breech   # 胎儿B
+
+# 查看多胎状态
+/pregnancy status                       # 显示所有胎儿信息
+```
+
+### 实现状态
+
+✅ **已完成** (2026-01-01)
+- 数据结构支持1-4胎
+- 智能检测功能已实现
+- 调整的预产期和体重增长
+- TTTS监测警示
+- 21个原生测试用例全部通过
+- 原生测试框架（Shell + Python）
+
+---
+
+## 子模块 1.2: 产后护理追踪 ✅
+
+### 功能描述
+
+全面的产后恢复追踪，包括母亲身体恢复、心理健康筛查（EPDS）和新生儿护理。
+
+### 核心功能
+
+#### 1. 产后时期设置
+- **6周** (42天) - 标准即刻恢复期
+- **6个月** (180天) - 扩展恢复期 ✓ **推荐**
+- **1年** (365天) - 完整恢复追踪
+
+#### 2. 母亲恢复追踪
+- **恶露阶段**：
+  - 血性恶露 (rubra) - 0-3天
+  - 浆液性恶露 (serosa) - 4-9天
+  - 白色恶露 (alba) - 10+天
+- **疼痛管理**：子宫收缩痛、会阴/切口痛
+- **母乳喂养**：类型、挑战、记录
+- **盆底肌恢复**：凯格尔锻炼追踪
+- **体重追踪**：产后体重下降曲线
+
+#### 3. 心理健康筛查 (EPDS)
+- **爱丁堡产后抑郁量表** (EPDS)：
+  - 10个问题，每题0-3分
+  - 总分范围：0-30分
+- **风险分级**：
+  - **0-9分**：低风险 - 常规监测
+  - **10-12分**：中度风险 - 增加监测
+  - **13+分**：高风险 - ⚠️ **立即转介**
+  - **第10题≥2分**：紧急 - 🚨 **立即干预**
+
+#### 4. 红旗警示系统
+
+**母亲红旗**：
+- 产后出血 (>1卫生巾/小时) - ⚠️ 联系医生
+- 发热 (>100.4°F/38°C) - ⚠️ 可能感染
+- 严重头痛 - ⚠️ 联系医生
+- 视力变化 - ⚠️ 联系医生
+- 呼吸困难 (静息时) - 🚨 紧急
+- 自杀念头 - 🚨 **立即紧急干预**
+
+**婴儿红旗**：
+- 喂养不足 (<6湿尿布/24小时) - ⚠️ 联系医生
+- 体重过度下降 (>出生体重10%) - ⚠️ 联系医生
+- 发热 (>100.4°F/38°C) - 🚨 紧急
+- 喂养困难 (无法吸吮/吞咽) - 🚨 紧急
+- 呼吸窘迫 - 🚨 **立即紧急干预**
+
+#### 5. 新生儿护理追踪
+- **喂养记录**：
+  - 母乳喂养 (时长、左/右侧)
+  - 配方奶 (毫升数)
+  - 混合喂养
+- **睡眠模式**：睡眠时长、频次
+- **体重追踪**：当前体重 (kg)
+- **尿布记录**：湿/脏尿布计数
+
+#### 6. 产后阶段自动计算
+- **即刻期** (0-2天) - 住院恢复、初始母乳喂养
+- **早期** (3-14天) - 建立喂养、休息、恢复
+- **亚急性期** (15-42天) - 愈合、建立规律
+- **晚期** (43+天) - 长期恢复、心理健康
+
+### 命令接口
+
+```bash
+# 开始产后追踪
+/postpartum start 2025-10-08 vaginal 1-baby 6months
+
+# 母亲恢复记录
+/postpartum lochia rubra moderate           # 恶露记录
+/postpartum pain 3 uterus                  # 疼痛记录 (0-10分)
+/postpartum breastfeeding exclusive         # 母乳喂养状态
+/postpartum weight 68.5                     # 体重记录
+
+# 心理健康筛查
+/postpartum epds 7                          # EPDS总分 (0-30)
+/postpartum epds 15 2                       # 总分15，Q10为2 (紧急)
+/postpartum mood calm                       # 情绪记录
+
+# 新生儿护理 (多胎使用A, B, C, D标识)
+/postpartum baby A feeding breastfeeding 15min
+/postpartum baby A sleep 3hrs
+/postpartum baby A weight 3.2
+/postpartum baby A diaper wet
+
+# 查看状态
+/postpartum status                          # 当前状态
+/postpartum recovery-summary                # 完整恢复总结
+/postpartum extend 1year                    # 延长追踪期
+```
+
+### 实现状态
+
+✅ **已完成** (2026-01-01)
+- 完整的产后追踪数据结构
+- EPDS评分和风险评估
+- 红旗警示系统
+- 多胎新生儿支持 (A, B, C, D)
+- 21个原生测试用例全部通过
+- 原生测试框架（Shell + Python）
+- 完整用户文档：[docs/postpartum-care-guide.md](../docs/postpartum-care-guide.md)
+- 测试文档：[docs/testing.md](../docs/testing.md)
+
+---
+
+## 子模块 2: 更年期管理系统
+
+### 功能描述
+
+围绝经期症状追踪和管理，提供更年期健康评估和管理建议。
+
+### 核心功能
+
+#### 1. 更年期症状评分
+- **潮热出汗**：频率（每日次数）、严重程度、对生活的影响
+- **情绪波动**：焦虑、抑郁、易怒
+- **睡眠障碍**：失眠、早醒、睡眠质量
+- **阴道干涩**：程度、影响
+- **骨关节疼痛**：部位、程度
+
+#### 2. 激素替代治疗（HRT）记录
+- 治疗方案记录（雌激素、孕激素）
+- 效果评估
+- 风险监测（乳腺、子宫内膜、血栓）
+- 治疗持续时间
+
+#### 3. 骨密度监测
+- 骨密度检查记录（T值、Z值）
+- 骨折风险评估（FRAX）
+- 钙剂和维生素D补充
+
+#### 4. 心血管风险评估
+- 血脂监测
+- 血压监测
+- 生活方式建议
+
+### 数据结构
+
+```json
+{
+  "menopause_tracking": {
+    "stage": "perimenopausal",
+    "age": 48,
+    "last_menstrual_period": "2025-11-15",
+
+    "symptoms": {
+      "hot_flashes": {
+        "present": true,
+        "frequency": "5-10_per_day",
+        "severity": "moderate",
+        "impact_on_life": "mild",
+        "triggers": ["stress", "hot_drinks"]
+      },
+      "sleep_issues": {
+        "present": true,
+        "frequency": "often",
+        "type": "difficulty_falling_asleep",
+        "sleep_quality": "poor"
+      },
+      "mood_changes": {
+        "present": true,
+        "symptoms": ["anxiety", "irritability"]
+      },
+      "vaginal_dryness": {
+        "present": false,
+        "severity": null
+      }
+    },
+
+    "hrt": {
+      "on_treatment": false,
+      "medication": null,
+      "start_date": null,
+      "effectiveness": null,
+      "side_effects": null
+    },
+
+    "bone_density": {
+      "last_check": "2025-06-15",
+      "t_score": -1.5,
+      "z_score": -1.2,
+      "diagnosis": "osteopenia",
+      "fracture_risk": "low",
+      "calcium_supplement": "1000mg_daily",
+      "vitamin_d_supplement": "2000IU_daily"
+    },
+
+    "cardiovascular_risk": {
+      "blood_pressure": "120/80",
+      "total_cholesterol": 5.2,
+      "ldl": 3.2,
+      "hdl": 1.5,
+      "triglycerides": 1.3,
+      "risk_level": "low"
+    },
+
+    "metadata": {
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-01T00:00:00.000Z"
+    }
+  }
+}
+```
+
+### 命令接口
+
+```bash
+# 记录更年期症状
+/menopause symptom hot-flashes 5-10 moderate    # 记录潮热
+/menopause symptom sleep insomnia               # 记录睡眠问题
+/menopause symptom mood anxiety                 # 记录情绪变化
+
+# 记录骨密度检查
+/menopause bone-density -1.5 osteopenia         # 记录T值和诊断
+
+# 记录HRT治疗
+/menopause hrt start 雌二醇 1mg                # 开始HRT
+/menopause hrt effectiveness good               # 评估效果
+
+# 查看状态
+/menopause status                               # 查看更年期状态
+/menopause risk                                 # 查看风险评估
+```
+
+---
+
+## 子模块 3: 妇科癌症筛查追踪
+
+### 功能描述
+
+宫颈癌、卵巢癌、子宫内膜癌筛查计划管理和结果追踪。
+
+### 核心功能
+
+#### 1. 筛查计划管理
+- **HPV检测**：高危型（16/18）、低危型
+- **TCT检查**：液基薄层细胞检测
+- **联合筛查策略**：HPV+TCT
+- 筛查间隔提醒（3年/5年）
+
+#### 2. 异常结果追踪
+- **ASC-US**：非典型鳞状细胞，意义不明确
+- **LSIL/HSIL**：低/高度鳞状上皮内病变
+- 阴道镜检查预约
+- 活检结果记录
+
+#### 3. 妇科肿瘤标志物
+- **CA125**：卵巢癌（<35 U/mL）
+- **CA19-9**：卵巢癌、子宫内膜癌（<37 U/mL）
+- **CEA**：子宫内膜癌（<5 ng/mL）
+- **AFP**：卵黄囊瘤（<10 ng/mL）
+- 趋势分析和异常预警
+
+### 数据结构
+
+```json
+{
+  "cancer_screening": {
+    "cervical_cancer": {
+      "last_hpv": "2025-01-15",
+      "hpv_result": "negative",
+      "hpv_type": null,
+
+      "last_tct": "2025-01-15",
+      "tct_result": "NILM",
+      "tct_details": "阴性，上皮内病变或恶性病变",
+
+      "next_screening": "2030-01-15",
+      "screening_interval": "5_years",
+      "screening_strategy": "co-testing",
+
+      "abnormal_results": []
+    },
+
+    "tumor_markers": {
+      "CA125": {
+        "value": 15.5,
+        "reference": "<35",
+        "unit": "U/mL",
+        "date": "2025-06-20",
+        "trend": "stable",
+        "history": [18.2, 16.5, 15.5]
+      },
+      "CA19-9": {
+        "value": 22.0,
+        "reference": "<37",
+        "unit": "U/mL",
+        "date": "2025-06-20",
+        "trend": "stable"
+      }
+    },
+
+    "upcoming_appointments": [
+      {
+        "type": "annual_gyn_exam",
+        "date": "2026-01-15"
+      }
+    ],
+
+    "metadata": {
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-06-20T00:00:00.000Z"
+    }
+  }
+}
+```
+
+### 命令接口
+
+```bash
+# 记录HPV/TCT筛查
+/screening hpv negative                    # 记录HPV检查结果
+/screening tct NILM                        # 记录TCT检查结果
+/screening co-testing negative NILM        # 联合筛查记录
+
+# 记录肿瘤标志物
+/screening ca125 15.5                      # 记录CA125
+/screening ca19-9 22.0                     # 记录CA19-9
+
+# 异常结果处理
+/screening abnormal asc-us                # 记录异常结果
+/screening colposcopy scheduled 2025-07-01 # 阴道镜预约
+
+# 查看状态
+/screening status                          # 查看筛查状态
+/screening next                            # 下次筛查提醒
+/screening trend                           # 肿瘤标志物趋势
+```
+
+---
+
+## 医学安全原则
+
+### ⚠️ 安全红线
+
+1. **不给出具体用药剂量**
+   - 不建议具体的药物剂量
+   - 用药安全检查仅供参考
+
+2. **不直接开具处方药名**
+   - 不推荐具体处方药
+   - 药物选择需咨询医生
+
+3. **不判断妊娠结局**
+   - 不预测流产、早产风险
+   - 不评估胎儿健康
+
+4. **不替代医生诊断**
+   - 所有分析仅供参考
+   - 诊断需由专业医生进行
+
+### ✅ 系统能做到的
+
+- 孕期进度追踪和产检提醒
+- 孕期症状记录和分析
+- 药物安全性参考（妊娠分级）
+- 更年期症状评估和管理建议
+- 癌症筛查计划管理
+- 异常结果警示和建议
+
+---
+
+## 注意事项
+
+### 孕期管理
+
+- 本系统不能替代常规产检
+- 所有异常情况需及时就医
+- 预产期计算可能有误差，以超声为准
+- 胎动监测不能替代医学监护
+
+### 更年期管理
+
+- HRT治疗需在医生指导下进行
+- 定期进行骨密度检查
+- 关注心血管健康
+- 症状严重需就医
+
+### 癌症筛查
+
+- 遵循筛查指南进行定期筛查
+- 异常结果需进一步检查
+- 肿瘤标志物升高不等于癌症
+- 家族史需告知医生
+
+---
+
+## 参考资源
+
+- [ACOG 妇产科实践指南](https://www.acog.org/)
+- [NICE 更年期管理指南](https://www.nice.org.uk/guidance/ng23)
+- [USPSTF 宫颈癌筛查建议](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening)
+
+---
+
+**文档版本**: v1.0
+**最后更新**: 2025-12-31
+**维护者**: WellAlly Tech

@@ -1,0 +1,85 @@
+{
+  "date": "2025-06-20",
+  "assessment_record": {
+    "questionnaire": {
+      "questions": [
+        {
+          "id": 1,
+          "constitution": "气虚质",
+          "question": "您容易疲乏吗?",
+          "answer": 4,
+          "weight": 1.0
+        },
+        {
+          "id": 2,
+          "constitution": "气虚质",
+          "question": "您容易气短(呼吸短促,接不上气)吗?",
+          "answer": 4,
+          "weight": 1.0
+        },
+        {
+          "id": 3,
+          "constitution": "气虚质",
+          "question": "您比一般人容易感冒吗?",
+          "answer": 3,
+          "weight": 1.0
+        },
+        {
+          "id": 9,
+          "constitution": "阳虚质",
+          "question": "您手脚发凉吗?",
+          "answer": 4,
+          "weight": 1.0
+        },
+        {
+          "id": 10,
+          "constitution": "阳虚质",
+          "question": "您胃脘部、背部或腰膝部怕冷吗?",
+          "answer": 4,
+          "weight": 1.0
+        }
+      ],
+      "total_questions": 60,
+      "completed_questions": 60,
+      "completion_rate": 100
+    },
+    "results": {
+      "primary_constitution": "气虚质",
+      "secondary_constitutions": ["阳虚质"],
+      "constitution_scores": {
+        "平和质": 42.1,
+        "气虚质": 78.5,
+        "阳虚质": 62.3,
+        "阴虚质": 32.1,
+        "痰湿质": 38.7,
+        "湿热质": 28.4,
+        "血瘀质": 25.6,
+        "气郁质": 35.2,
+        "特禀质": 18.3
+      },
+      "constitution_type": "compound"
+    },
+    "user_notes": "经过3个月调理,感觉体力有所提升,但仍有疲乏感",
+    "system_notes": "相比上次评估,气虚质下降0.8分,阳虚质下降1.5分,改善明显"
+  },
+  "recommendations_given": {
+    "diet": {
+      "beneficial_foods": ["山药", "大枣", "黄芪", "羊肉", "韭菜"],
+      "avoid_foods": ["生冷寒凉", "油腻厚味"]
+    },
+    "exercise": {
+      "recommended": ["太极拳", "八段锦", "散步"],
+      "frequency": "每日1-2次,每次20-30分钟"
+    },
+    "lifestyle": {
+      "sleep": "保证充足睡眠",
+      "environment": "保持环境温暖"
+    }
+  },
+  "metadata": {
+    "assessment_time": "2025-06-20T10:30:00",
+    "assessment_duration_minutes": 15,
+    "user_age": 52,
+    "user_gender": "male"
+  }
+}

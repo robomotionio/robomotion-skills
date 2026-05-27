@@ -1,0 +1,253 @@
+{
+  "date": "2025-06-20",
+  "meals": [
+    {
+      "type": "breakfast",
+      "time": "07:30",
+      "foods": [
+        "燕麦粥 60g",
+        "香蕉 1根",
+        "低脂牛奶 250ml",
+        "核桃 5个"
+      ],
+      "calories": 450,
+      "macronutrients": {
+        "protein_g": 20,
+        "carbs_g": 65,
+        "fat_g": 12,
+        "fiber_g": 9,
+        "saturated_fat_g": 3,
+        "monounsaturated_fat_g": 5,
+        "polyunsaturated_fat_g": 3,
+        "trans_fat_g": 0
+      },
+      "micronutrients": {
+        "vitamin_a_mcg": 150,
+        "vitamin_c_mg": 10,
+        "vitamin_d_mcg": 2.5,
+        "vitamin_e_mg": 1.5,
+        "vitamin_k_mcg": 5,
+        "thiamine_mg": 0.4,
+        "riboflavin_mg": 0.5,
+        "niacin_mg": 5,
+        "vitamin_b6_mg": 0.2,
+        "folate_mcg": 35,
+        "vitamin_b12_mcg": 1.2,
+        "calcium_mg": 320,
+        "iron_mg": 2.5,
+        "magnesium_mg": 85,
+        "phosphorus_mg": 280,
+        "zinc_mg": 2.5,
+        "selenium_mcg": 15,
+        "potassium_mg": 650,
+        "sodium_mg": 180
+      },
+      "special_nutrients": {
+        "omega_3_g": 0.6,
+        "choline_mg": 85
+      },
+      "notes": "添加了维生素D3补充剂2000IU"
+    },
+    {
+      "type": "lunch",
+      "time": "12:15",
+      "foods": [
+        "糙米饭 150g",
+        "清蒸鸡胸肉 100g",
+        "炒西兰花 200g",
+        "凉拌黄瓜 100g"
+      ],
+      "calories": 550,
+      "macronutrients": {
+        "protein_g": 35,
+        "carbs_g": 70,
+        "fat_g": 8,
+        "fiber_g": 8,
+        "saturated_fat_g": 2,
+        "monounsaturated_fat_g": 3,
+        "polyunsaturated_fat_g": 2,
+        "trans_fat_g": 0
+      },
+      "micronutrients": {
+        "vitamin_a_mcg": 200,
+        "vitamin_c_mg": 80,
+        "vitamin_d_mcg": 0.5,
+        "vitamin_e_mg": 2,
+        "vitamin_k_mcg": 80,
+        "thiamine_mg": 0.5,
+        "riboflavin_mg": 0.3,
+        "niacin_mg": 12,
+        "vitamin_b6_mg": 0.8,
+        "folate_mcg": 50,
+        "vitamin_b12_mcg": 0.6,
+        "calcium_mg": 65,
+        "iron_mg": 3.5,
+        "magnesium_mg": 95,
+        "phosphorus_mg": 280,
+        "zinc_mg": 3,
+        "selenium_mcg": 25,
+        "potassium_mg": 950,
+        "sodium_mg": 550
+      },
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "choline_mg": 95
+      },
+      "notes": ""
+    },
+    {
+      "type": "afternoon_snack",
+      "time": "15:30",
+      "foods": [
+        "苹果 1个",
+        "低脂酸奶 1杯",
+        "杏仁 10个"
+      ],
+      "calories": 200,
+      "macronutrients": {
+        "protein_g": 10,
+        "carbs_g": 30,
+        "fat_g": 5,
+        "fiber_g": 6,
+        "saturated_fat_g": 1.5,
+        "monounsaturated_fat_g": 2,
+        "polyunsaturated_fat_g": 1,
+        "trans_fat_g": 0
+      },
+      "micronutrients": {
+        "vitamin_a_mcg": 10,
+        "vitamin_c_mg": 10,
+        "vitamin_d_mcg": 0.5,
+        "vitamin_e_mg": 1,
+        "vitamin_k_mcg": 5,
+        "thiamine_mg": 0.1,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 1,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 10,
+        "vitamin_b12_mcg": 0.5,
+        "calcium_mg": 250,
+        "iron_mg": 0.5,
+        "magnesium_mg": 45,
+        "phosphorus_mg": 150,
+        "zinc_mg": 1,
+        "selenium_mcg": 5,
+        "potassium_mg": 450,
+        "sodium_mg": 120
+      },
+      "special_nutrients": {
+        "omega_3_g": 0.05,
+        "choline_mg": 35
+      },
+      "notes": ""
+    },
+    {
+      "type": "dinner",
+      "time": "18:45",
+      "foods": [
+        "红薯 200g",
+        "清蒸鲈鱼 150g",
+        "菠菜 200g",
+        "豆腐 100g"
+      ],
+      "calories": 500,
+      "macronutrients": {
+        "protein_g": 35,
+        "carbs_g": 55,
+        "fat_g": 12,
+        "fiber_g": 9,
+        "saturated_fat_g": 3,
+        "monounsaturated_fat_g": 5,
+        "polyunsaturated_fat_g": 3,
+        "trans_fat_g": 0
+      },
+      "micronutrients": {
+        "vitamin_a_mcg": 850,
+        "vitamin_c_mg": 35,
+        "vitamin_d_mcg": 2,
+        "vitamin_e_mg": 3,
+        "vitamin_k_mcg": 250,
+        "thiamine_mg": 0.3,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 8,
+        "vitamin_b6_mg": 0.4,
+        "folate_mcg": 180,
+        "vitamin_b12_mcg": 1.5,
+        "calcium_mg": 280,
+        "iron_mg": 6,
+        "magnesium_mg": 140,
+        "phosphorus_mg": 300,
+        "zinc_mg": 3.5,
+        "selenium_mcg": 35,
+        "potassium_mg": 1200,
+        "sodium_mg": 450
+      },
+      "special_nutrients": {
+        "omega_3_g": 0.4,
+        "choline_mg": 120
+      },
+      "notes": "富含叶酸和维生素K"
+    }
+  ],
+  "daily_summary": {
+    "total_calories": 1700,
+    "total_macronutrients": {
+      "protein_g": 100,
+      "carbs_g": 220,
+      "fat_g": 37,
+      "fiber_g": 32
+    },
+    "total_micronutrients": {
+      "vitamin_a_mcg": 1210,
+      "vitamin_c_mg": 135,
+      "vitamin_d_mcg": 5.5,
+      "vitamin_e_mg": 7.5,
+      "vitamin_k_mcg": 340,
+      "thiamine_mg": 1.3,
+      "riboflavin_mg": 1.2,
+      "niacin_mg": 26,
+      "vitamin_b6_mg": 1.5,
+      "folate_mcg": 275,
+      "vitamin_b12_mcg": 3.8,
+      "calcium_mg": 915,
+      "iron_mg": 12.5,
+      "magnesium_mg": 365,
+      "phosphorus_mg": 1010,
+      "zinc_mg": 10,
+      "selenium_mcg": 80,
+      "potassium_mg": 3250,
+      "sodium_mg": 1300
+    },
+    "rda_achievement": {
+      "calories": 85,
+      "protein": 125,
+      "carbs": 88,
+      "fat": 57,
+      "fiber": 107,
+      "vitamin_a": 134,
+      "vitamin_c": 135,
+      "vitamin_d": 37,
+      "vitamin_e": 50,
+      "vitamin_k": 283,
+      "vitamin_b12": 158,
+      "folate": 69,
+      "calcium": 92,
+      "iron": 156,
+      "magnesium": 87,
+      "zinc": 91,
+      "potassium": 96,
+      "sodium": 87
+    },
+    "goal_achieved": true,
+    "diet_quality_score": 8.5,
+    "notes": "优秀的营养日，所有主要目标达成"
+  },
+  "supplements_taken": [
+    {
+      "name": "维生素D3",
+      "dose": "2000 IU",
+      "time_taken": "07:30",
+      "taken": true
+    }
+  ]
+}

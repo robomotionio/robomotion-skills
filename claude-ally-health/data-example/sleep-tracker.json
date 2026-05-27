@@ -1,0 +1,386 @@
+{
+  "sleep_tracking": {
+    "user_profile": {
+      "typical_bedtime": "23:00",
+      "typical_wake_time": "07:00",
+      "ideal_sleep_duration": 7.5,
+      "sleep_schedule": "regular",
+      "bedtime_routine_established": false,
+      "sleep_environment_score": 6,
+      "risk_factors": [
+        "high_stress"
+      ],
+      "medical_conditions": [
+        "hypertension"
+      ],
+      "medications_affecting_sleep": []
+    },
+    "baseline_metrics": {
+      "average_sleep_duration": 6.8,
+      "average_sleep_latency": 30,
+      "average_sleep_efficiency": 83.5,
+      "typical_bedtime": "23:15",
+      "typical_wake_time": "07:05",
+      "baseline_period_start": "2025-01-01",
+      "baseline_period_end": "2025-03-31"
+    },
+    "goals": {
+      "sleep_duration_goal": {
+        "goal_id": "sleep_goal_001",
+        "title": "达到理想睡眠时长7.5小时",
+        "target_hours": 7.5,
+        "current_hours": 7.1,
+        "progress": 87,
+        "target_date": "2025-06-30",
+        "status": "on_track",
+        "start_date": "2025-04-01"
+      },
+      "sleep_consistency_goal": {
+        "goal_id": "sleep_goal_002",
+        "title": "提高作息一致性评分至85分",
+        "target_score": 85,
+        "current_score": 72,
+        "progress": 75,
+        "target_date": "2025-06-30",
+        "status": "needs_improvement",
+        "start_date": "2025-04-01"
+      },
+      "bedtime_routine_goal": {
+        "goal_id": "sleep_goal_003",
+        "title": "建立稳定的睡前例行程序",
+        "established": false,
+        "target_date": "2025-05-31",
+        "status": "in_progress",
+        "start_date": "2025-04-01"
+      }
+    },
+    "statistics": {
+      "total_records": 90,
+      "first_record_date": "2025-01-01",
+      "last_record_date": "2025-06-20",
+      "average_sleep_duration": 7.0,
+      "average_bedtime": "23:10",
+      "average_wake_time": "07:05",
+      "average_sleep_latency": 28,
+      "average_sleep_efficiency": 84.2,
+      "longest_sleep": 9.5,
+      "shortest_sleep": 4.5,
+      "sleep_quality_distribution": {
+        "excellent": 8,
+        "very_good": 12,
+        "good": 15,
+        "fair": 42,
+        "poor": 10,
+        "very_poor": 3
+      },
+      "weekday_avg_duration": 6.8,
+      "weekend_avg_duration": 7.8,
+      "social_jetlag_minutes": 45
+    },
+    "metadata": {
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-06-20T23:59:59.000Z",
+      "version": "1.0"
+    }
+  },
+  "sleep_assessments": {
+    "psqi": {
+      "latest_assessment": "2025-06-20",
+      "latest_score": 8,
+      "interpretation": "fair",
+      "components": {
+        "subjective_quality": 2,
+        "sleep_latency": 2,
+        "sleep_duration": 1,
+        "sleep_efficiency": 1,
+        "sleep_disturbances": 1,
+        "medication_use": 0,
+        "daytime_dysfunction": 1
+      },
+      "history": [
+        {
+          "date": "2025-06-20",
+          "score": 8,
+          "interpretation": "fair"
+        },
+        {
+          "date": "2025-03-20",
+          "score": 10,
+          "interpretation": "fair"
+        },
+        {
+          "date": "2024-12-20",
+          "score": 12,
+          "interpretation": "poor"
+        }
+      ],
+      "trend": "improving"
+    },
+    "epworth": {
+      "latest_assessment": "2025-06-20",
+      "latest_score": 6,
+      "interpretation": "normal",
+      "responses": {
+        "sitting_reading": 1,
+        "watching_tv": 2,
+        "sitting_inactive_public": 0,
+        "passenger_car": 1,
+        "lying_afternoon": 1,
+        "sitting_talking": 0,
+        "sitting_after_lunch": 1,
+        "driving_stopped": 0
+      },
+      "history": [
+        {
+          "date": "2025-06-20",
+          "score": 6,
+          "interpretation": "normal"
+        },
+        {
+          "date": "2025-03-20",
+          "score": 9,
+          "interpretation": "mild_sleepiness"
+        }
+      ]
+    },
+    "isi": {
+      "latest_assessment": "2025-06-20",
+      "latest_score": 11,
+      "interpretation": "moderate_insomnia",
+      "items": {
+        "difficulty_falling_asleep": 2,
+        "difficulty_staying_asleep": 1,
+        "early_morning_awakening": 2,
+        "satisfaction_with_sleep": 2,
+        "daytime_fatigue": 2,
+        "impairment_daytime_functioning": 1,
+        "interference_with_quality_of_life": 1
+      },
+      "history": [
+        {
+          "date": "2025-06-20",
+          "score": 11,
+          "interpretation": "moderate_insomnia"
+        },
+        {
+          "date": "2025-03-20",
+          "score": 15,
+          "interpretation": "moderate_insomnia"
+        }
+      ],
+      "trend": "improving"
+    },
+    "assessment_schedule": {
+      "psqi_frequency": "quarterly",
+      "epworth_frequency": "quarterly",
+      "isi_frequency": "as_needed",
+      "next_assessment": "2025-09-20"
+    }
+  },
+  "sleep_problems": {
+    "insomnia": {
+      "present": true,
+      "type": "mixed",
+      "onset_date": "2024-01-01",
+      "duration_months": 18,
+      "frequency": "4-5_nights_per_week",
+      "symptoms": {
+        "difficulty_falling_asleep": true,
+        "sleep_maintenance": true,
+        "early_morning_awakening": false
+      },
+      "causes": [
+        "work_stress",
+        "excessive_worry"
+      ],
+      "impact": {
+        "daytime_fatigue": "moderate",
+        "mood_irritability": true,
+        "concentration_difficulty": true,
+        "work_performance": "mild_impairment"
+      },
+      "last_assessment": "2025-06-20"
+    },
+    "sleep_apnea": {
+      "screening": {
+        "stop_bang_score": 3,
+        "risk": "intermediate",
+        "snoring": true,
+        "tired": true,
+        "observed_apnea": false,
+        "pressure": "high",
+        "bmi": 28,
+        "age": 52,
+        "neck_size": "large",
+        "gender": "male",
+        "last_screening": "2025-06-15"
+      },
+      "symptoms": {
+        "snoring": true,
+        "snoring_loud": true,
+        "gasping_choking": false,
+        "dry_mouth_morning": true,
+        "morning_headache": true,
+        "daytime_sleepiness": "moderate",
+        "night_sweats": false
+      },
+      "diagnosis": {
+        "diagnosed": false,
+        "ahi": null,
+        "severity": null,
+        "psg_date": null
+      }
+    },
+    "rls": {
+      "present": false,
+      "symptoms": [],
+      "last_assessment": "2025-06-20"
+    },
+    "plmd": {
+      "present": false,
+      "diagnosed": false
+    },
+    "circadian_rhythm": {
+      "disorder": false,
+      "type": null,
+      "notes": ""
+    }
+  },
+  "sleep_hygiene": {
+    "current_practices": {
+      "bedroom_temperature": 22,
+      "light_level": "dim",
+      "noise_level": "quiet",
+      "mattress_comfort": "good",
+      "pillow_comfort": "good",
+      "bedtime_routine": "inconsistent",
+      "screen_time_before_bed": 60,
+      "relaxation_activities": [
+        "reading"
+      ],
+      "caffeine_cutoff": "4pm",
+      "alcohol_use": "occasional",
+      "exercise_time": "evening",
+      "exercise_frequency": "3x_weekly",
+      "naps": {
+        "takes_naps": true,
+        "frequency": "weekends",
+        "duration_minutes": 45
+      }
+    },
+    "environment_score": {
+      "temperature_score": 8,
+      "light_score": 7,
+      "noise_score": 8,
+      "comfort_score": 7,
+      "overall": 7.5
+    },
+    "recommendations": {
+      "schedule": [
+        "set_consistent_bedtime_2300",
+        "set_consistent_waketime_0700",
+        "limit_nap_to_30_minutes",
+        "avoid_napping_after_3pm"
+      ],
+      "bedtime_routine": [
+        "start_routine_1_hour_before_bed",
+        "avoid_screens_30_minutes_before_bed",
+        "dim_lights",
+        "practice_relaxation_technique",
+        "take_warm_bath"
+      ],
+      "environment": [
+        "optimize_temperature_18-22C",
+        "use_blackout_curtains",
+        "use_white_noise_machine",
+        "remove_clock_from_view"
+      ],
+      "lifestyle": [
+        "move_exercise_to_morning_or_afternoon",
+        "stop_caffeine_by_2pm",
+        "avoid_alcohol_before_bed",
+        "avoid_heavy_meals_3_hours_before_bed"
+      ],
+      "cbt_i_elements": [
+        "stimulus_control",
+        "sleep_restrictions",
+        "cognitive_restructuring",
+        "relaxation_training"
+      ]
+    },
+    "action_plan": {
+      "priority_1": "establish_consistent_schedule",
+      "priority_2": "create_bedtime_routine",
+      "priority_3": "optimize_bedroom",
+      "timeline": "4-6_weeks",
+      "start_date": "2025-06-20",
+      "target_date": "2025-08-01"
+    }
+  },
+  "sleep_analytics": {
+    "last_analysis": "2025-06-20",
+    "weekly_summary": {
+      "week_start": "2025-06-16",
+      "week_end": "2025-06-22",
+      "average_sleep_duration": 7.1,
+      "average_bedtime": "23:10",
+      "average_wake_time": "07:00",
+      "average_sleep_latency": 25,
+      "average_sleep_efficiency": 86.2,
+      "sleep_quality_distribution": {
+        "excellent": 1,
+        "very_good": 1,
+        "good": 1,
+        "fair": 3,
+        "poor": 1
+      },
+      "total_records": 7
+    },
+    "monthly_summary": {
+      "month": 6,
+      "year": 2025,
+      "average_sleep_duration": 7.0,
+      "average_bedtime": "23:12",
+      "average_wake_time": "07:03",
+      "average_sleep_latency": 27,
+      "average_sleep_efficiency": 84.5,
+      "quality_good_days": 12,
+      "quality_fair_days": 13,
+      "quality_poor_days": 5,
+      "total_records": 30
+    },
+    "patterns": {
+      "weekday_vs_weekend": {
+        "weekday_avg_duration": 6.8,
+        "weekend_avg_duration": 7.8,
+        "difference_hours": 1.0
+      },
+      "optimal_bedtime": "22:30-23:00",
+      "optimal_wake_time": "06:30-07:00",
+      "social_jetlag_minutes": 45,
+      "sleep_consistency_score": 72,
+      "best_sleep_day": "Friday",
+      "worst_sleep_day": "Monday"
+    },
+    "insights": [
+      {
+        "category": "schedule",
+        "insight": "周末睡眠时长显著长于工作日，存在社交时差",
+        "impact": "moderate",
+        "priority": "high"
+      },
+      {
+        "category": "environment",
+        "insight": "卧室环境评分良好，但光线可进一步优化",
+        "impact": "low",
+        "priority": "medium"
+      },
+      {
+        "category": "habits",
+        "insight": "晚间运动可能影响入睡时间",
+        "impact": "moderate",
+        "priority": "high"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "last_updated": "2025-06-20T23:59:59.000Z",
+  "months": [
+    {
+      "year_month": "2025-06",
+      "file_path": "data-example/fitness-logs/2025-06/",
+      "workout_count": 15,
+      "first_date": "2025-06-01",
+      "last_date": "2025-06-20"
+    },
+    {
+      "year_month": "2025-05",
+      "file_path": "data-example/fitness-logs/2025-05/",
+      "workout_count": 22,
+      "first_date": "2025-05-01",
+      "last_date": "2025-05-31"
+    }
+  ],
+  "quick_stats": {
+    "total_workouts_all_time": 152,
+    "last_workout_date": "2025-06-20"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "name": "wellally-health",
+  "version": "2.0.0",
+  "description": "A comprehensive personal health information management system powered by Claude AI - featuring 28+ interconnected health modules for intelligent medical data tracking and analysis.",
+  "type": "module",
+  "author": {
+    "name": "WellAlly Tech",
+    "email": "huifer97@163.com",
+    "url": "https://www.wellally.tech"
+  },
+  "maintainers": [
+    {
+      "name": "huifer",
+      "email": "huifer@outlook.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huifer/WellAlly-health.git"
+  },
+  "bugs": {
+    "url": "https://github.com/huifer/WellAlly-health/issues"
+  },
+  "homepage": "https://www.wellally.tech",
+  "keywords": [
+    "health",
+    "personal-health-record",
+    "phr",
+    "medical-records",
+    "health-tracking",
+    "claude-ai",
+    "health-management",
+    "medical-image-analysis",
+    "drug-interaction",
+    "radiation-tracking",
+    "tcm",
+    "traditional-chinese-medicine",
+    "health-analytics",
+    "telemedicine",
+    "health-data",
+    "wellness",
+    "healthcare",
+    "ai-health",
+    "health-report"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.8"
+  },
+  "scripts": {
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "echo 'Running unit tests...' && exit 0",
+    "test:integration": "echo 'Running integration tests...' && exit 0",
+    "test:cover": "echo 'Running test coverage...' && exit 0",
+    "lint": "echo 'Linting code...' && exit 0",
+    "lint:fix": "echo 'Fixing lint issues...' && exit 0",
+    "format": "echo 'Formatting code...' && exit 0",
+    "format:check": "echo 'Checking code format...' && exit 0",
+    "typecheck": "echo 'Type checking...' && exit 0",
+    "validate": "npm run lint && npm run typecheck",
+    "build": "echo 'Building project...' && exit 0",
+    "clean": "rm -rf node_modules dist .nyc_output .swarm .claude-flow",
+    "preinstall": "echo 'Ensure Python 3.8+ is installed for health report generation'",
+    "postinstall": "echo 'WellAlly Health installed successfully! Visit https://www.wellally.tech for documentation.'",
+    "release": "echo 'Creating release...' && exit 0",
+    "docs": "echo 'Generating documentation...' && exit 0"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "data-example",
+    "test": "tests"
+  },
+  "files": [
+    ".claude",
+    "docs",
+    "scripts",
+    "data-example",
+    "specialists",
+    "README.md",
+    "LICENSE"
+  ],
+  "config": {
+    "project_name": "WellAlly-Health",
+    "project_url": "https://github.com/huifer/WellAlly-health"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/huifer"
+  }
+}

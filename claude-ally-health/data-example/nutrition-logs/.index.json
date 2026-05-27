@@ -1,0 +1,12 @@
+{
+  "months": ["2025-06"],
+  "total_records": 1,
+  "first_record": "2025-06-20",
+  "last_record": "2025-06-20",
+  "yearly_totals": {
+    "2025": 1
+  },
+  "monthly_counts": {
+    "2025-06": 1
+  }
+}

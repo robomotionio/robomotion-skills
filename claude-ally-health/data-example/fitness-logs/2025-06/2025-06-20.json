@@ -1,0 +1,90 @@
+{
+  "date": "2025-06-20",
+  "workouts": [
+    {
+      "id": "workout_20250620070000001",
+      "timestamp": "2025-06-20T07:00:00.000Z",
+      "type": "running",
+      "subtype": "outdoor",
+      "type_display_name": "户外跑步",
+      "duration": {
+        "total_minutes": 30,
+        "active_minutes": 28,
+        "warm_up_minutes": 2,
+        "cool_down_minutes": 0
+      },
+      "intensity": {
+        "level": "moderate",
+        "rpe": 13,
+        "rpe_scale": "borg_6_20",
+        "perceived_exertion": "somewhat_hard"
+      },
+      "heart_rate": {
+        "avg": 145,
+        "max": 165,
+        "min": 120,
+        "zones": {
+          "zone_1_minutes": 0,
+          "zone_2_minutes": 5,
+          "zone_3_minutes": 20,
+          "zone_4_minutes": 5,
+          "zone_5_minutes": 0
+        }
+      },
+      "distance": {
+        "value_km": 5.0,
+        "value_miles": 3.11,
+        "unit": "km"
+      },
+      "pace": {
+        "min_per_km": "6:00",
+        "min_per_100m": null,
+        "speed_kmh": 10.0
+      },
+      "calories": {
+        "burned": 300,
+        "met": 8.0,
+        "calculation_method": "met_based"
+      },
+      "details": {
+        "route": "公园环线",
+        "terrain": "flat",
+        "equipment": null,
+        "weather": {
+          "temperature_c": 22,
+          "condition": "sunny",
+          "humidity_percent": 60,
+          "wind": "calm"
+        }
+      },
+      "how_felt": "good",
+      "how_felt_score": 7,
+      "notes": "感觉很舒服，配速稳定",
+      "tags": [
+        "morning_workout",
+        "cardio"
+      ],
+      "related_health_data": {
+        "pre_exercise_bp": null,
+        "post_exercise_bp": null,
+        "pre_exercise_glucose": null,
+        "post_exercise_glucose": null
+      },
+      "created_at": "2025-06-20T07:30:00.000Z"
+    }
+  ],
+  "daily_summary": {
+    "total_workouts": 1,
+    "total_duration_minutes": 30,
+    "total_calories_burned": 300,
+    "total_distance_km": 5.0,
+    "intensity_distribution": {
+      "low": 0,
+      "moderate": 25,
+      "high": 5
+    },
+    "type_distribution": {
+      "running": 30
+    }
+  }
+}

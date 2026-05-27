@@ -1,0 +1,178 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T10:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "小明",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "sleep_records": [
+    {
+      "date": "2025-01-13",
+      "age": "2y5m",
+      "age_months": 29,
+
+      "night_sleep": {
+        "bedtime": "21:00",
+        "fall_asleep_time": "21:30",
+        "fall_asleep_duration_minutes": 30,
+        "wake_time": "07:00",
+        "total_sleep_hours": 9.5,
+        "sleep_efficiency": "good",
+        "sleep_quality": "good"
+      },
+
+      "night_wakeups": {
+        "count": 1,
+        "wakeup_times": ["02:30"],
+        "durations_minutes": [10],
+        "reasons": ["口渴"],
+        "intervention_required": false,
+        "fell_asleep_independently": true
+      },
+
+      "day_sleep": {
+        "naps": 1,
+        "nap_times": [
+          {
+            "start": "13:00",
+            "end": "15:00",
+            "duration_hours": 2
+          }
+        ],
+        "total_nap_sleep": 2
+      },
+
+      "total_sleep": {
+        "hours": 11.5,
+        "within_recommended": true,
+        "recommended_range": "11-14",
+        "assessment": "adequate"
+      },
+
+      "notes": ""
+    },
+    {
+      "date": "2025-01-12",
+      "age": "2y5m",
+      "age_months": 29,
+
+      "night_sleep": {
+        "bedtime": "21:15",
+        "fall_asleep_time": "22:00",
+        "fall_asleep_duration_minutes": 45,
+        "wake_time": "07:00",
+        "total_sleep_hours": 9,
+        "sleep_efficiency": "fair",
+        "sleep_quality": "fair"
+      },
+
+      "night_wakeups": {
+        "count": 2,
+        "wakeup_times": ["01:00", "04:00"],
+        "durations_minutes": [15, 10],
+        "reasons": ["做噩梦", "口渴"],
+        "intervention_required": true,
+        "fell_asleep_independently": false
+      },
+
+      "day_sleep": {
+        "naps": 1,
+        "nap_times": [
+          {
+            "start": "13:30",
+            "end": "15:00",
+            "duration_hours": 1.5
+          }
+        ],
+        "total_nap_sleep": 1.5
+      },
+
+      "total_sleep": {
+        "hours": 10.5,
+        "within_recommended": true,
+        "recommended_range": "11-14",
+        "assessment": "slightly_low"
+      },
+
+      "notes": "入睡较慢，夜醒多"
+    }
+  ],
+
+  "sleep_schedule": {
+    "target_bedtime": "21:00",
+    "target_wake_time": "07:00",
+    "target_nap_time": "13:00-15:00",
+    "bedtime_routine_duration_minutes": 30,
+    "bedtime_routine_start": "20:30"
+  },
+
+  "bedtime_routine": [
+    {
+      "activity": "洗澡",
+      "duration_minutes": 15,
+      "order": 1
+    },
+    {
+      "activity": "换睡衣",
+      "duration_minutes": 5,
+      "order": 2
+    },
+    {
+      "activity": "绘本",
+      "duration_minutes": 10,
+      "order": 3
+    },
+    {
+      "activity": "安抚",
+      "duration_minutes": 5,
+      "order": 4
+    }
+  ],
+
+  "sleep_problems": {
+    "night_terrors": false,
+    "bedwetting": false,
+    "sleep_walking": false,
+    "teeth_grinding": false,
+    "snoring": false,
+    "mouth_breathing": false,
+    "restless_legs": false,
+    "difficulty_falling_asleep": true,
+    "frequent_night_wakeups": true
+  },
+
+  "sleep_environment": {
+    "room_temperature_celsius": 22,
+    "room_humidity_percent": 55,
+    "lighting": "dim",
+    "white_noise": true,
+    "comfort_item": "安抚玩偶"
+  },
+
+  "statistics": {
+    "total_records": 7,
+    "average_sleep_hours": 11.2,
+    "average_bedtime": "21:10",
+    "average_wake_time": "07:05",
+    "average_fall_asleep_duration": 20,
+    "average_night_wakeups": 1.2,
+    "sleep_quality_distribution": {
+      "excellent": 2,
+      "good": 3,
+      "fair": 2,
+      "poor": 0
+    },
+    "sleep_trend": "stable",
+    "within_recommended_percentage": 86
+  },
+
+  "settings": {
+    "reminder_enabled": true,
+    "reminder_time": "20:30",
+    "auto_track_naps": true
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T10:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "小明",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "assessments": [
+    {
+      "date": "2025-01-14",
+      "age": "5y",
+      "age_months": 60,
+
+      "mood_assessment": {
+        "overall_mood": "stable",
+        "overall_mood_name": "稳定",
+        "mood_rating": 7,
+        "mood_range": "5-9",
+        "emotional_expression": "appropriate",
+        "emotional_expression_name": "适当",
+        "emotional_regulation": "good",
+        "emotional_regulation_name": "良好",
+        "dominant_mood": "happy",
+        "dominant_mood_name": "开心"
+      },
+
+      "behavior_assessment": {
+        "overall_behavior": "normal",
+        "overall_behavior_name": "正常",
+        "activity_level": "appropriate",
+        "activity_level_name": "适中",
+        "attention_span": "age_appropriate",
+        "attention_span_minutes": "10-15",
+        "compliance": "good",
+        "compliance_name": "良好",
+        "aggression": "none",
+        "oppositional": "none",
+        "tantrums": "rare"
+      },
+
+      "anxiety_screening": {
+        "separation_anxiety": "none",
+        "separation_anxiety_score": 0,
+        "social_anxiety": "none",
+        "social_anxiety_score": 1,
+        "generalized_anxiety": "none",
+        "generalized_anxiety_score": 0,
+        "specific_phobias": "none",
+        "specific_phobias_score": 0,
+        "overall_anxiety": "low_risk",
+        "overall_anxiety_name": "低风险"
+      },
+
+      "attention_screening": {
+        "inattention_score": 8,
+        "hyperactivity_score": 5,
+        "total_score": 13,
+        "max_score": 54,
+        "interpretation": "below_clinical_range",
+        "interpretation_name": "低于临床范围",
+        "recommendation": "monitoring",
+        "recommendation_name": "继续观察"
+      },
+
+      "social_assessment": {
+        "peer_relationships": "good",
+        "peer_relationships_name": "良好",
+        "social_skills": "age_appropriate",
+        "social_skills_name": "符合年龄",
+        "play_behavior": "cooperative",
+        "play_behavior_name": "合作",
+        "communication": "age_appropriate",
+        "communication_name": "符合年龄",
+        "sharing": "good",
+        "sharing_name": "良好"
+      },
+
+      "sleep_assessment": {
+        "sleep_problems": false,
+        "bedtime_resistance": false,
+        "night_waking": false,
+        "morning_waking": "normal"
+      },
+
+      "overall_assessment": "normal",
+      "overall_assessment_name": "正常",
+      "recommendations": [
+        "继续保持良好的家庭环境",
+        "鼓励社交活动",
+        "规律作息"
+      ],
+      "concerns": [],
+      "notes": ""
+    }
+  ],
+
+  "mood_tracking": [
+    {
+      "date": "2025-01-14",
+      "time": "16:00",
+      "mood": "happy",
+      "mood_name": "开心",
+      "mood_rating": 7,
+      "context": "playing",
+      "context_name": "玩耍中",
+      "duration": null,
+      "notes": ""
+    },
+    {
+      "date": "2025-01-13",
+      "time": "19:00",
+      "mood": "happy",
+      "mood_name": "开心",
+      "mood_rating": 8,
+      "context": "family_time",
+      "context_name": "家庭时间",
+      "duration": null,
+      "notes": ""
+    },
+    {
+      "date": "2025-01-13",
+      "time": "14:00",
+      "mood": "sad",
+      "mood_name": "难过",
+      "mood_rating": 3,
+      "context": "fell_down",
+      "context_name": "摔倒了",
+      "duration": 30,
+      "notes": "很快被安抚"
+    }
+  ],
+
+  "behavior_tracking": {
+    "tantrums": {
+      "frequency": "rare",
+      "frequency_name": "偶尔",
+      "triggers": ["hungry", "tired"],
+      "average_duration_minutes": 5,
+      "intervention_effective": true,
+      "last_tantrum_date": "2025-01-10"
+    },
+    "sleep_issues": false,
+    "appetite_changes": false,
+    "social_withdrawal": false,
+    "aggression": false,
+    "regressive_behaviors": false,
+    "repetitive_behaviors": false
+  },
+
+  "milestones": {
+    "emotional_milestones": [
+      {
+        "milestone": "区分基本情绪",
+        "achieved": true,
+        "age_achieved": 36
+      },
+      {
+        "milestone": "表达情绪",
+        "achieved": true,
+        "age_achieved": 24
+      },
+      {
+        "milestone": "自我安抚",
+        "achieved": true,
+        "age_achieved": 48
+      },
+      {
+        "milestone": "理解他人情绪",
+        "achieved": true,
+        "age_achieved": 48
+      }
+    ],
+    "social_milestones": [
+      {
+        "milestone": "平行游戏",
+        "achieved": true,
+        "age_achieved": 30
+      },
+      {
+        "milestone": "合作游戏",
+        "achieved": true,
+        "age_achieved": 54
+      },
+      {
+        "milestone": "分享",
+        "achieved": true,
+        "age_achieved": 48
+      },
+      {
+        "milestone": "同理心",
+        "achieved": false,
+        "age_achieved": null
+      }
+    ]
+  },
+
+  "scales": {
+    "sdq": {
+      "completed": false,
+      "completed_date": null,
+      "total_difficulties": null,
+      "emotional_symptoms": null,
+      "conduct_problems": null,
+      "hyperactivity": null,
+      "peer_problems": null,
+      "prosocial": null
+    },
+    "rcads": {
+      "completed": false,
+      "completed_date": null,
+      "separation_anxiety": null,
+      "social_phobia": null,
+      "generalized_anxiety": null,
+      "obsessive_compulsive": null,
+      "depression": null
+    },
+    "conners": {
+      "completed": false,
+      "completed_date": null,
+      "inattention": null,
+      "hyperactivity": null,
+      "learning_problems": null
+    }
+  },
+
+  "risk_factors": [],
+
+  "alerts": [],
+
+  "professional_help": {
+    "sought": false,
+    "referrals": [],
+    "diagnoses": [],
+    "therapies": []
+  },
+
+  "statistics": {
+    "total_assessments": 1,
+    "last_assessment_date": "2025-01-14",
+    "overall_trend": "stable",
+    "mood_trend": "stable_positive",
+    "behavior_trend": "stable",
+    "concerns_count": 0
+  },
+
+  "settings": {
+    "reminder_frequency": "monthly",
+    "parent_report_only": false,
+    "teacher_report_needed": false
+  }
+}

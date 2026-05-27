@@ -1,0 +1,133 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T10:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "小明",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "safety_assessments": [
+    {
+      "date": "2025-01-14",
+      "age": "2y5m",
+      "age_months": 29,
+      "area": "home",
+      "area_name": "家庭安全",
+
+      "checklist": {
+        "window_protection": {
+          "item": "窗户防护",
+          "safe": true,
+          "notes": "已安装限位器，开启不超过10cm"
+        },
+        "outlet_covers": {
+          "item": "插座保护",
+          "safe": true,
+          "notes": "所有插座已安装保护盖"
+        },
+        "corner_guards": {
+          "item": "防撞角",
+          "safe": true,
+          "notes": "家具尖角已安装防撞条"
+        },
+        "chemical_storage": {
+          "item": "化学品收纳",
+          "safe": false,
+          "notes": "药品放在低处，需移至带锁高处"
+        },
+        "bathroom_safety": {
+          "item": "浴室安全",
+          "safe": true,
+          "notes": "已铺设防滑垫"
+        },
+        "stair_gates": {
+          "item": "楼梯防护门",
+          "safe": null,
+          "notes": "家中无楼梯，不适用"
+        }
+      },
+
+      "score": {
+        "total_items": 5,
+        "safe_items": 4,
+        "percentage": 80,
+        "level": "good",
+        "level_name": "良好"
+      },
+
+      "risks_identified": [
+        {
+          "item": "chemical_storage",
+          "risk_level": "high",
+          "description": "药品未安全存放",
+          "recommendation": "立即将药品移至带锁的高处或专用药品收纳盒"
+        }
+      ],
+
+      "recommendations": [
+        "将药品移至带锁的高处",
+        "定期检查窗户防护装置的完好性",
+        "继续维护其他安全措施"
+      ]
+    }
+  ],
+
+  "risk_history": [
+    {
+      "date": "2025-01-14",
+      "risk_type": "fall",
+      "risk_name": "跌落风险",
+      "level": "medium",
+      "mitigation": "已安装窗户限位器和防撞角"
+    }
+  ],
+
+  "emergency_contacts": [
+    {
+      "name": "爸爸",
+      "phone": "138****1234",
+      "relationship": "father"
+    },
+    {
+      "name": "妈妈",
+      "phone": "139****5678",
+      "relationship": "mother"
+    },
+    {
+      "name": "附近医院急诊",
+      "phone": "120",
+      "relationship": "hospital"
+    }
+  ],
+
+  "nearby_facilities": {
+    "nearest_hospital": {
+      "name": "市儿童医院",
+      "address": "XX路XX号",
+      "phone": "010-12345678",
+      "emergency": true
+    },
+    "nearest_pediatrician": {
+      "name": "XX社区医院儿科",
+      "address": "XX路XX号",
+      "phone": "010-87654321"
+    }
+  },
+
+  "statistics": {
+    "total_assessments": 1,
+    "last_assessment_date": "2025-01-14",
+    "average_score": 80,
+    "areas_assessed": ["home"],
+    "high_risk_count": 1,
+    "safety_trend": "stable"
+  },
+
+  "settings": {
+    "reminder_frequency": "monthly",
+    "assessment_areas": ["home", "car", "food", "outdoor"]
+  }
+}

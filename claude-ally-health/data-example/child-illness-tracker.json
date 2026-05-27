@@ -1,0 +1,234 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T20:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "小明",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "illness_records": [
+    {
+      "id": "illness_20250112",
+      "date": "2025-01-12",
+      "onset_date": "2025-01-12",
+      "recovery_date": null,
+      "days_illness": 3,
+      "days_to_recovery": null,
+
+      "condition": {
+        "name": "急性上呼吸道感染",
+        "category": "respiratory",
+        "type": "viral",
+        "severity": "mild",
+        "severity_name": "轻度",
+        "doctor_visit": false,
+        "diagnosis": "自我观察",
+        "icd_code": null
+      },
+
+      "symptoms": [
+        {
+          "name": "发热",
+          "severity": "moderate",
+          "severity_level": 2,
+          "status": "improving",
+          "onset_date": "2025-01-12",
+          "notes": "最高38.5℃"
+        },
+        {
+          "name": "咳嗽",
+          "severity": "mild",
+          "severity_level": 1,
+          "status": "improving",
+          "onset_date": "2025-01-12",
+          "notes": "干咳"
+        },
+        {
+          "name": "流涕",
+          "severity": "mild",
+          "severity_level": 1,
+          "status": "improving",
+          "onset_date": "2025-01-12",
+          "notes": "清涕"
+        },
+        {
+          "name": "咽痛",
+          "severity": "mild",
+          "severity_level": 1,
+          "status": "resolved",
+          "onset_date": "2025-01-12",
+          "notes": ""
+        }
+      ],
+
+      "fever_tracking": [
+        {
+          "date": "2025-01-12T18:00:00",
+          "temperature": 38.2,
+          "medication": null,
+          "notes": ""
+        },
+        {
+          "date": "2025-01-13T08:00:00",
+          "temperature": 38.5,
+          "medication": "布洛芬混悬液5ml",
+          "notes": "发热最高"
+        },
+        {
+          "date": "2025-01-13T14:00:00",
+          "temperature": 38.0,
+          "medication": null,
+          "notes": ""
+        },
+        {
+          "date": "2025-01-13T20:00:00",
+          "temperature": 37.8,
+          "medication": null,
+          "notes": ""
+        },
+        {
+          "date": "2025-01-14T08:00:00",
+          "temperature": 37.5,
+          "medication": null,
+          "notes": "体温下降"
+        },
+        {
+          "date": "2025-01-14T20:00:00",
+          "temperature": 37.0,
+          "medication": null,
+          "notes": "体温正常"
+        }
+      ],
+
+      "medications": [
+        {
+          "name": "布洛芬混悬液",
+          "generic_name": "布洛芬",
+          "dosage": "5ml",
+          "dosage_unit": "ml",
+          "frequency": "按需",
+          "times_given": 1,
+          "start_date": "2025-01-13",
+          "end_date": null,
+          "notes": "体温≥38.5℃时使用"
+        }
+      ],
+
+      "recovery_tracking": {
+        "day_1": {
+          "date": "2025-01-12",
+          "fever": 38.2,
+          "cough": "moderate",
+          "runny_nose": "moderate",
+          "spirit": "normal",
+          "appetite": "slightly_decreased",
+          "notes": "发病第1天"
+        },
+        "day_2": {
+          "date": "2025-01-13",
+          "fever": 38.5,
+          "cough": "moderate",
+          "runny_nose": "moderate",
+          "spirit": "slightly_poor",
+          "appetite": "decreased",
+          "notes": "发热高峰，精神稍差"
+        },
+        "day_3": {
+          "date": "2025-01-14",
+          "fever": 37.0,
+          "cough": "mild",
+          "runny_nose": "mild",
+          "spirit": "normal",
+          "appetite": "normal",
+          "notes": "体温正常，好转中"
+        }
+      },
+
+      "complications": [],
+
+      "follow_up": {
+        "needed": true,
+        "follow_up_date": "2025-01-17",
+        "reason": "评估是否完全恢复"
+      },
+
+      "notes": "居家观察中，状态良好"
+    }
+  ],
+
+  "symptom_history": [
+    {
+      "date": "2025-01-12",
+      "symptoms": ["发热", "咳嗽", "流涕", "咽痛"],
+      "condition": "急性上呼吸道感染"
+    },
+    {
+      "date": "2025-01-13",
+      "symptoms": ["发热", "咳嗽", "流涕"],
+      "condition": "急性上呼吸道感染"
+    },
+    {
+      "date": "2025-01-14",
+      "symptoms": ["咳嗽", "流涕"],
+      "condition": "急性上呼吸道感染"
+    }
+  ],
+
+  "medication_log": [
+    {
+      "date": "2025-01-13T08:00:00",
+      "medication": "布洛芬混悬液",
+      "dosage": "5ml",
+      "indication": "发热38.5℃",
+      "condition_id": "illness_20250112"
+    }
+  ],
+
+  "statistics": {
+    "total_illnesses": 6,
+    "total_days_ill": 33,
+    "average_duration": 5.5,
+    "most_common_condition": "急性上呼吸道感染",
+    "illnesses_last_12_months": 6,
+    "doctors_visits": 0,
+    "emergency_visits": 0,
+    "hospitalizations": 0,
+
+    "condition_distribution": {
+      "急性上呼吸道感染": 4,
+      "急性胃肠炎": 1,
+      "手足口病": 1
+    },
+
+    "monthly_distribution": {
+      "1": 1,
+      "2": 0,
+      "3": 1,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 1,
+      "8": 0,
+      "9": 1,
+      "10": 1,
+      "11": 0,
+      "12": 0
+    }
+  },
+
+  "medical_history": {
+    "allergies": [],
+    "chronic_conditions": [],
+    "surgeries": [],
+    "hospitalizations": []
+  },
+
+  "settings": {
+    "temperature_unit": "celsius",
+    "reminder_enabled": true,
+    "auto_track_fever": true
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "copd_management": {
+    "diagnosis_date": "2020-03-15",
+    "gold_grade": "2",
+    "gold_group": "B",
+
+    "lung_function": {
+      "date": "2025-06-10",
+      "post_bronchodilator": {
+        "fev1": 1.8,
+        "fev1_percent_predicted": 65,
+        "fvc": 3.2,
+        "fev1_fvc_ratio": 0.56
+      },
+      "interpretation": "中度气流受限"
+    },
+
+    "symptom_assessment": {
+      "cat_score": {
+        "date": "2025-06-20",
+        "total_score": 18,
+        "max_score": 40,
+        "interpretation": "中度症状影响",
+        "items": {
+          "cough": 2,
+          "sputum": 2,
+          "chest_tightness": 2,
+          "breathlessness_climbing": 3,
+          "activity_limitation": 2,
+          "confidence_outdoors": 2,
+          "sleep": 3,
+          "energy": 2
+        }
+      },
+      "mmrc_score": {
+        "date": "2025-06-20",
+        "score": 2,
+        "max_score": 4,
+        "interpretation": "平地行走时需停下喘气"
+      }
+    },
+
+    "symptoms": {
+      "dyspnea": {
+        "severity": "moderate",
+        "mrc_grade": 2
+      },
+      "cough": {
+        "present": true,
+        "frequency": "daily",
+        "productive": true
+      },
+      "sputum": {
+        "present": true,
+        "amount": "moderate",
+        "color": "white",
+        "consistency": "mucoid"
+      },
+      "wheeze": {
+        "present": true,
+        "frequency": "exertion"
+      }
+    },
+
+    "exacerbations": {
+      "last_year": 2,
+      "severe_exacerbations": 0,
+      "history": [
+        {
+          "id": "exace_20250215000000001",
+          "date": "2025-02-15",
+          "severity": "moderate",
+          "triggers": ["viral_infection"],
+          "symptoms": ["increased_dyspnea", "purulent_sputum"],
+          "treatment": ["antibiotics", "prednisone"],
+          "hospitalized": false,
+          "recovery_days": 10,
+          "notes": "",
+          "created_at": "2025-02-15T00:00:00.000Z"
+        }
+      ]
+    },
+
+    "medications": [
+      {
+        "medication_id": "med_example_003",
+        "added_from": "copd_management",
+        "added_date": "2020-03-15",
+        "indication": "COPD维持治疗"
+      }
+    ],
+
+    "vaccination": {
+      "influenza": {
+        "last_date": "2025-10-15",
+        "next_due": "2026-10-01"
+      },
+      "pneumococcal": {
+        "ppsv23": true,
+        "date": "2024-05-10",
+        "pcv13": false
+      }
+    },
+
+    "metadata": {
+      "created_at": "2020-03-15T00:00:00.000Z",
+      "last_updated": "2025-06-20T00:00:00.000Z"
+    }
+  }
+}

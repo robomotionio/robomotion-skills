@@ -1,0 +1,40 @@
+{
+  "last_updated": "2025-06-20T23:59:59.000Z",
+  "months": [
+    {
+      "year_month": "2025-06",
+      "file_path": "data-example/sleep-logs/2025-06/",
+      "sleep_count": 20,
+      "first_date": "2025-06-01",
+      "last_date": "2025-06-20"
+    },
+    {
+      "year_month": "2025-05",
+      "file_path": "data-example/sleep-logs/2025-05/",
+      "sleep_count": 31,
+      "first_date": "2025-05-01",
+      "last_date": "2025-05-31"
+    },
+    {
+      "year_month": "2025-04",
+      "file_path": "data-example/sleep-logs/2025-04/",
+      "sleep_count": 30,
+      "first_date": "2025-04-01",
+      "last_date": "2025-04-30"
+    },
+    {
+      "year_month": "2025-03",
+      "file_path": "data-example/sleep-logs/2025-03/",
+      "sleep_count": 31,
+      "first_date": "2025-03-01",
+      "last_date": "2025-03-31"
+    }
+  ],
+  "quick_stats": {
+    "total_records_all_time": 151,
+    "last_sleep_date": "2025-06-20",
+    "average_sleep_duration": 7.0,
+    "average_sleep_efficiency": 84.2,
+    "most_common_quality": "fair"
+  }
+}

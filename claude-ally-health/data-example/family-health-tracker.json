@@ -1,0 +1,527 @@
+{
+  "family_health_tracking": {
+    "family_info": {
+      "family_id": "fam_example_001",
+      "created_date": "2025-01-08",
+      "last_updated": "2025-01-08"
+    },
+
+    "members": [
+      {
+        "member_id": "mem_001",
+        "name": "张伟",
+        "relationship": "self",
+        "gender": "male",
+        "birth_date": "1985-06-15",
+        "blood_type": "A+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": [],
+          "allergies": ["花粉过敏"],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_002",
+        "name": "张明",
+        "relationship": "father",
+        "gender": "male",
+        "birth_date": "1958-03-20",
+        "blood_type": "A+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["高血压", "高脂血症"],
+          "allergies": [],
+          "medications": ["氨氯地平", "阿托伐他汀"],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_003",
+        "name": "李秀英",
+        "relationship": "mother",
+        "gender": "female",
+        "birth_date": "1960-08-12",
+        "blood_type": "B+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["糖尿病"],
+          "allergies": ["青霉素"],
+          "medications": ["二甲双胍"],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_004",
+        "name": "张婷",
+        "relationship": "spouse",
+        "gender": "female",
+        "birth_date": "1987-09-25",
+        "blood_type": "O+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": [],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_005",
+        "name": "张小明",
+        "relationship": "son",
+        "gender": "male",
+        "birth_date": "2015-05-01",
+        "blood_type": "A+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": [],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_006",
+        "name": "张建国",
+        "relationship": "paternal_grandfather",
+        "gender": "male",
+        "birth_date": "1935-02-10",
+        "blood_type": "A+",
+        "status": "deceased",
+        "deceased_date": "2020-11-05",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["高血压", "冠心病"],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_007",
+        "name": "王淑芬",
+        "relationship": "paternal_grandmother",
+        "gender": "female",
+        "birth_date": "1938-07-18",
+        "blood_type": "AB+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["高血压"],
+          "allergies": [],
+          "medications": ["硝苯地平"],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_008",
+        "name": "李国强",
+        "relationship": "maternal_grandfather",
+        "gender": "male",
+        "birth_date": "1940-11-25",
+        "blood_type": "B+",
+        "status": "deceased",
+        "deceased_date": "2018-06-30",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["糖尿病", "高血压"],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_009",
+        "name": "陈桂芳",
+        "relationship": "maternal_grandmother",
+        "gender": "female",
+        "birth_date": "1942-04-08",
+        "blood_type": "B+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["糖尿病"],
+          "allergies": [],
+          "medications": ["格列美脲"],
+          "genetic_tests": []
+        }
+      }
+    ],
+
+    "family_medical_history": {
+      "hereditary_diseases": [
+        {
+          "disease_name": "高血压",
+          "disease_category": "cardiovascular",
+          "affected_members": ["mem_002", "mem_006", "mem_007", "mem_008"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 45,
+            "max": 65,
+            "average": 55
+          },
+          "notes": "父系和母系均有高血压病史"
+        },
+        {
+          "disease_name": "糖尿病",
+          "disease_category": "metabolic",
+          "affected_members": ["mem_003", "mem_008", "mem_009"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 50,
+            "max": 60,
+            "average": 55
+          },
+          "notes": "母系糖尿病家族史明显"
+        },
+        {
+          "disease_name": "冠心病",
+          "disease_category": "cardiovascular",
+          "affected_members": ["mem_006"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 70,
+            "max": 75,
+            "average": 72
+          },
+          "notes": "祖父70岁确诊冠心病"
+        },
+        {
+          "disease_name": "高脂血症",
+          "disease_category": "metabolic",
+          "affected_members": ["mem_002"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 50,
+            "max": 55,
+            "average": 52
+          },
+          "notes": "父亲50岁发现高脂血症"
+        }
+      ],
+      "common_conditions": [
+        {
+          "condition": "花粉过敏",
+          "affected_members": ["mem_001"],
+          "notes": "本人对花粉过敏"
+        },
+        {
+          "condition": "青霉素过敏",
+          "affected_members": ["mem_003"],
+          "notes": "母亲青霉素过敏"
+        }
+      ],
+      "genetic_disorders": [],
+      "age_related_onset": [
+        {
+          "disease": "高血压",
+          "early_onset_cases": ["mem_002"],
+          "early_onset_age": 48,
+          "notes": "父亲48岁确诊高血压(早发)"
+        },
+        {
+          "disease": "糖尿病",
+          "early_onset_cases": ["mem_003"],
+          "early_onset_age": 52,
+          "notes": "母亲52岁确诊糖尿病(早发)"
+        }
+      ]
+    },
+
+    "risk_assessment": {
+      "last_assessment_date": "2025-01-08",
+      "hereditary_risks": [
+        {
+          "disease": "高血压",
+          "disease_category": "cardiovascular",
+          "risk_level": "high",
+          "confidence": "medium",
+          "confidence_score": 0.75,
+          "affected_members": ["父亲", "祖父", "祖母", "外祖父"],
+          "risk_factors": [
+            "一级亲属患病(父亲)",
+            "二级亲属患病(祖辈4人中有3人)",
+            "早发病例(父亲48岁)",
+            "家族聚集度高"
+          ],
+          "risk_score": 0.82,
+          "data_coverage": 0.85
+        },
+        {
+          "disease": "糖尿病",
+          "disease_category": "metabolic",
+          "risk_level": "moderate",
+          "confidence": "medium",
+          "confidence_score": 0.65,
+          "affected_members": ["母亲", "外祖父", "外祖母"],
+          "risk_factors": [
+            "一级亲属患病(母亲)",
+            "二级亲属患病(外祖父母2人)",
+            "早发病例(母亲52岁)",
+            "母系家族聚集"
+          ],
+          "risk_score": 0.58,
+          "data_coverage": 0.75
+        },
+        {
+          "disease": "冠心病",
+          "disease_category": "cardiovascular",
+          "risk_level": "low",
+          "confidence": "low",
+          "confidence_score": 0.45,
+          "affected_members": ["祖父"],
+          "risk_factors": [
+            "二级亲属患病(祖父)",
+            "晚发病例(70岁后)",
+            "单个病例"
+          ],
+          "risk_score": 0.32,
+          "data_coverage": 0.60
+        },
+        {
+          "disease": "高脂血症",
+          "disease_category": "metabolic",
+          "risk_level": "low",
+          "confidence": "low",
+          "confidence_score": 0.40,
+          "affected_members": ["父亲"],
+          "risk_factors": [
+            "一级亲属患病(父亲)",
+            "年龄相关(50岁后)"
+          ],
+          "risk_score": 0.35,
+          "data_coverage": 0.50
+        }
+      ],
+      "shared_risks": [
+        {
+          "risk_type": "心血管代谢综合征",
+          "related_diseases": ["高血压", "糖尿病", "高脂血症"],
+          "affected_members": ["父亲", "母亲"],
+          "notes": "父母均患有心血管代谢疾病"
+        }
+      ],
+      "preventive_recommendations": [
+        {
+          "recommendation_id": "rec_001",
+          "category": "screening",
+          "target_disease": "高血压",
+          "action": "定期血压监测",
+          "frequency": "每周3次",
+          "start_age": 30,
+          "priority": "high",
+          "details": "早晚各测量一次,记录血压值,保持<130/80 mmHg",
+          "evidence_level": "strong",
+          "source": "基于高血压家族史(父亲+祖辈多人)"
+        },
+        {
+          "recommendation_id": "rec_002",
+          "category": "screening",
+          "target_disease": "糖尿病",
+          "action": "空腹血糖检测",
+          "frequency": "每年1次",
+          "start_age": 35,
+          "priority": "high",
+          "details": "每年体检时检测空腹血糖和糖化血红蛋白",
+          "evidence_level": "moderate",
+          "source": "基于糖尿病家族史(母亲+外祖父母)"
+        },
+        {
+          "recommendation_id": "rec_003",
+          "category": "screening",
+          "target_disease": "血脂异常",
+          "action": "血脂检测",
+          "frequency": "每2年1次",
+          "start_age": 35,
+          "priority": "medium",
+          "details": "检测总胆固醇、甘油三酯、LDL-C、HDL-C",
+          "evidence_level": "moderate",
+          "source": "基于高脂血症家族史(父亲)"
+        },
+        {
+          "recommendation_id": "rec_004",
+          "category": "lifestyle",
+          "target_disease": "心血管代谢综合",
+          "action": "限制钠盐摄入",
+          "target": "<5g/天",
+          "priority": "high",
+          "details": "避免高盐食物,使用低钠盐,减少加工食品",
+          "evidence_level": "strong",
+          "source": "基于高血压家族史"
+        },
+        {
+          "recommendation_id": "rec_005",
+          "category": "lifestyle",
+          "target_disease": "心血管代谢综合",
+          "action": "规律有氧运动",
+          "target": "每周150分钟",
+          "priority": "high",
+          "details": "快走、游泳、骑车等,分3-5次进行",
+          "evidence_level": "strong",
+          "source": "基于心血管代谢疾病家族史"
+        },
+        {
+          "recommendation_id": "rec_006",
+          "category": "lifestyle",
+          "target_disease": "糖尿病",
+          "action": "控制体重和腰围",
+          "target": "BMI<24, 男性腰围<90cm, 女性<85cm",
+          "priority": "medium",
+          "details": "保持健康体重,避免腹型肥胖",
+          "evidence_level": "moderate",
+          "source": "基于糖尿病家族史"
+        },
+        {
+          "recommendation_id": "rec_007",
+          "category": "lifestyle",
+          "target_disease": "心血管代谢综合",
+          "action": "低脂低糖饮食",
+          "target": "减少饱和脂肪和添加糖",
+          "priority": "medium",
+          "details": "多摄入蔬菜、水果、全谷物,少红肉",
+          "evidence_level": "moderate",
+          "source": "基于心血管代谢疾病家族史"
+        },
+        {
+          "recommendation_id": "rec_008",
+          "category": "medical",
+          "target_disease": "综合",
+          "action": "定期体检",
+          "frequency": "每年1次",
+          "start_age": 30,
+          "priority": "high",
+          "details": "包括血压、血糖、血脂、肝肾功能、心电图等",
+          "evidence_level": "strong",
+          "source": "基于综合家族史"
+        },
+        {
+          "recommendation_id": "rec_009",
+          "category": "medical",
+          "target_disease": "遗传咨询",
+          "action": "考虑遗传咨询",
+          "priority": "low",
+          "details": "如计划生育,可咨询遗传咨询师了解子女遗传风险",
+          "evidence_level": "weak",
+          "source": "基于多系统疾病家族史"
+        },
+        {
+          "recommendation_id": "rec_010",
+          "category": "lifestyle",
+          "target_disease": "综合",
+          "action": "戒烟限酒",
+          "target": "戒烟,限制饮酒",
+          "priority": "high",
+          "details": "如吸烟应戒烟,饮酒应适量(男性<25g/天,女性<15g/天)",
+          "evidence_level": "strong",
+          "source": "心血管健康通用建议"
+        }
+      ]
+    },
+
+    "health_records": [],
+
+    "pedigree_data": {
+      "generations": [
+        {
+          "generation_id": "gen_1",
+          "generation_name": "第一代(祖辈)",
+          "members": ["mem_006", "mem_007", "mem_008", "mem_009"],
+          "birth_year_range": "1935-1942"
+        },
+        {
+          "generation_id": "gen_2",
+          "generation_name": "第二代(父辈)",
+          "members": ["mem_002", "mem_003"],
+          "birth_year_range": "1958-1960"
+        },
+        {
+          "generation_id": "gen_3",
+          "generation_name": "第三代(本人)",
+          "members": ["mem_001", "mem_004"],
+          "birth_year_range": "1985-1987"
+        },
+        {
+          "generation_id": "gen_4",
+          "generation_name": "第四代(子女)",
+          "members": ["mem_005"],
+          "birth_year_range": "2015"
+        }
+      ],
+      "relationships": [
+        {
+          "from_member": "mem_002",
+          "to_member": "mem_001",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_003",
+          "to_member": "mem_001",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_001",
+          "to_member": "mem_005",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_004",
+          "to_member": "mem_005",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_001",
+          "to_member": "mem_004",
+          "relationship_type": "spouse"
+        },
+        {
+          "from_member": "mem_002",
+          "to_member": "mem_003",
+          "relationship_type": "spouse"
+        },
+        {
+          "from_member": "mem_006",
+          "to_member": "mem_002",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_007",
+          "to_member": "mem_002",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_008",
+          "to_member": "mem_003",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_009",
+          "to_member": "mem_003",
+          "relationship_type": "parent-child"
+        }
+      ],
+      "affected_members": {
+        "hypertension": ["mem_002", "mem_006", "mem_007", "mem_008"],
+        "diabetes": ["mem_003", "mem_008", "mem_009"],
+        "coronary_artery_disease": ["mem_006"],
+        "hyperlipidemia": ["mem_002"]
+      }
+    },
+
+    "metadata": {
+      "created_at": "2025-01-08T10:00:00.000Z",
+      "last_updated": "2025-01-08T10:00:00.000Z",
+      "data_version": "1.0",
+      "total_members": 9,
+      "living_members": 7,
+      "deceased_members": 2,
+      "generations_count": 4
+    }
+  }
+}

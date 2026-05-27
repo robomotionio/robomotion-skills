@@ -1,0 +1,243 @@
+{
+  "fitness_tracking": {
+    "user_profile": {
+      "fitness_level": "beginner",
+      "level_assessed_date": "2025-01-01",
+      "preferences": [
+        "running",
+        "yoga"
+      ],
+      "restrictions": [],
+      "risk_factors": [],
+      "par_q": {
+        "completed": true,
+        "date": "2025-01-01",
+        "doctor_clearance": true,
+        "notes": ""
+      }
+    },
+    "baseline_metrics": {
+      "resting_heart_rate": 72,
+      "max_heart_rate": 175,
+      "blood_pressure_at_rest": "130/82",
+      "vo2_max_estimated": null,
+      "baseline_date": "2025-01-01"
+    },
+    "goals": {
+      "active_goals": [
+        {
+          "goal_id": "goal_20250101",
+          "category": "weight_loss",
+          "title": "减重5公斤",
+          "start_date": "2025-01-01",
+          "target_date": "2025-06-30",
+          "created_date": "2025-01-01T00:00:00.000Z",
+          "baseline_value": 75.0,
+          "current_value": 70.5,
+          "target_value": 70.0,
+          "unit": "kg",
+          "progress": 90,
+          "remaining": 0.5,
+          "status": "on_track",
+          "milestones": [
+            {
+              "title": "减重2.5公斤",
+              "target_value": 72.5,
+              "achieved_date": "2025-03-15",
+              "achieved": true
+            },
+            {
+              "title": "减重5公斤",
+              "target_value": 70.0,
+              "achieved_date": null,
+              "achieved": false
+            }
+          ],
+          "action_plan": [
+            "每周运动4次，每次30-60分钟",
+            "每天减少500卡路里摄入",
+            "每天记录饮食",
+            "每周称重1次"
+          ],
+          "obstacles": [
+            "weekend_social_events",
+            "work_stress"
+          ],
+          "coping_strategies": [
+            "提前规划饮食",
+            "压力管理技巧"
+          ],
+          "motivation": 8,
+          "confidence": 7,
+          "importance": 9,
+          "notes": ""
+        }
+      ],
+      "completed_goals": [
+        {
+          "goal_id": "goal_20241001",
+          "title": "完成10公里跑",
+          "completed_date": "2024-12-15",
+          "final_value": 10.0,
+          "target_value": 10.0
+        }
+      ],
+      "goal_templates": [
+        {
+          "name": "5公里跑新手计划",
+          "duration_weeks": 8,
+          "category": "endurance",
+          "description": "从0基础到完成5公里跑"
+        }
+      ]
+    },
+    "prescription_history": [],
+    "statistics": {
+      "total_workouts": 48,
+      "total_duration_minutes": 2160,
+      "total_calories_burned": 115200,
+      "total_distance_km": 240.0,
+      "first_workout_date": "2025-01-01",
+      "last_workout_date": "2025-06-20",
+      "longest_streak_days": 21,
+      "current_streak_days": 7
+    },
+    "metadata": {
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-06-20T20:00:00.000Z",
+      "version": "1.0"
+    },
+    "weight_loss_program": {
+      "active": false,
+      "start_date": null,
+      "body_composition": {
+        "current": {
+          "date": null,
+          "weight_kg": null,
+          "height_cm": null,
+          "body_fat_percentage": null,
+          "muscle_mass_kg": null,
+          "waist_cm": null,
+          "hip_cm": null,
+          "thigh_cm": null,
+          "arm_cm": null
+        },
+        "history": [],
+        "goals": {
+          "target_weight_kg": null,
+          "target_body_fat_percentage": null,
+          "target_waist_cm": null,
+          "timeline_months": null
+        },
+        "analysis": {
+          "bmi": null,
+          "bmi_category": null,
+          "ideal_weight": null,
+          "weight_to_lose": null,
+          "waist_hip_ratio": null,
+          "abdominal_obesity": null
+        }
+      },
+      "metabolic_profile": {
+        "personal_info": {
+          "gender": null,
+          "age": null,
+          "height_cm": null,
+          "weight_kg": null,
+          "body_fat_percentage": null
+        },
+        "bmr_calculations": {
+          "harris_benedict": {
+            "bmr": null,
+            "formula": "original_1919"
+          },
+          "mifflin_st_jeor": {
+            "bmr": null,
+            "formula": "recommended",
+            "used": true
+          },
+          "katch_mcardle": {
+            "bmr": null,
+            "formula": "based_on_lean_mass"
+          }
+        },
+        "activity_level": {
+          "current": "moderate",
+          "factor": 1.55,
+          "description": "每周3-5天中度运动"
+        },
+        "tdee": {
+          "calories": null,
+          "calculation": null,
+          "breakdown": {
+            "bmr_percent": 65,
+            "exercise_percent": 20,
+            "neat_percent": 15
+          }
+        },
+        "last_calculated": null
+      },
+      "phase_management": {
+        "current_phase": null,
+        "phase_start_date": null,
+        "phases": {
+          "weight_loss": {
+            "start_date": null,
+            "target_weight_loss_kg": null,
+            "actual_weight_loss_kg": null,
+            "progress": null,
+            "status": null
+          },
+          "plateau": {
+            "occurrences": 0,
+            "current_plateau": false,
+            "breakthrough_methods": []
+          },
+          "maintenance": {
+            "start_date": null,
+            "goal_weight": null,
+            "allowable_range_kg": 2.0
+          }
+        },
+        "milestones": []
+      }
+    }
+  },
+  "fitness_analytics": {
+    "last_analysis": "2025-06-20",
+    "weekly_summary": {
+      "week_start": "2025-06-16",
+      "week_end": "2025-06-22",
+      "total_workouts": 4,
+      "total_duration_minutes": 150,
+      "total_distance_km": 18.5,
+      "total_calories_burned": 1200,
+      "workout_days": [1, 2, 4, 6],
+      "rest_days": [3, 5, 7],
+      "intensity_distribution": {
+        "low": 20,
+        "moderate": 60,
+        "high": 20
+      },
+      "type_distribution": {
+        "running": 50,
+        "yoga": 25,
+        "strength": 25
+      }
+    },
+    "monthly_summary": {
+      "month": 6,
+      "year": 2025,
+      "total_workouts": 18,
+      "total_duration_minutes": 720,
+      "total_distance_km": 86.4,
+      "total_calories_burned": 5760,
+      "avg_workouts_per_week": 4.5,
+      "compared_to_last_month": "+15%"
+    }
+  },
+  "exercise_prescription": {
+    "last_updated": "2025-06-20",
+    "prescriptions": []
+  }
+}

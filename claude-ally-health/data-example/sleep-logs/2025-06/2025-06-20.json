@@ -1,0 +1,113 @@
+{
+  "date": "2025-06-20",
+  "sleep_records": [
+    {
+      "id": "sleep_20250620001",
+      "timestamp": "2025-06-20T07:15:00.000Z",
+      "sleep_times": {
+        "bedtime": "23:00",
+        "sleep_onset_time": "23:30",
+        "wake_time": "07:00",
+        "out_of_bed_time": "07:15"
+      },
+      "sleep_metrics": {
+        "sleep_duration_hours": 7.0,
+        "time_in_bed_hours": 8.25,
+        "sleep_latency_minutes": 30,
+        "sleep_efficiency": 84.8
+      },
+      "sleep_stages": {
+        "light_sleep_hours": 3.5,
+        "deep_sleep_hours": 1.5,
+        "rem_sleep_hours": 2.0,
+        "awake_hours": 0.5,
+        "data_source": "estimated"
+      },
+      "awakenings": {
+        "count": 2,
+        "total_duration_minutes": 15,
+        "causes": [
+          "bathroom",
+          "noise"
+        ],
+        "details": [
+          {
+            "time": "02:30",
+            "duration_minutes": 5,
+            "cause": "bathroom"
+          },
+          {
+            "time": "05:00",
+            "duration_minutes": 10,
+            "cause": "noise"
+          }
+        ]
+      },
+      "sleep_quality": {
+        "subjective_quality": "fair",
+        "quality_score": 5,
+        "rested_feeling": "somewhat",
+        "morning_mood": "neutral",
+        "morning_energy": 4
+      },
+      "factors": {
+        "caffeine_after_2pm": false,
+        "caffeine_times": [
+          "10:00",
+          "14:00"
+        ],
+        "alcohol": false,
+        "exercise": true,
+        "exercise_time": "18:00",
+        "exercise_duration_minutes": 45,
+        "exercise_type": "running",
+        "exercise_intensity": "moderate",
+        "screen_time_before_bed_minutes": 60,
+        "bedroom_temperature": 22,
+        "bedroom_humidity": 55,
+        "light_level": "dim",
+        "noise_level": "quiet"
+      },
+      "bedtime_routine": {
+        "routine_followed": false,
+        "routine_duration_minutes": 15,
+        "activities": [
+          "reading"
+        ],
+        "relaxation_technique": null,
+        "screens_off_before_bed_minutes": 30
+      },
+      "tags": [
+        "weekday",
+        "work_night",
+        "exercise_evening"
+      ],
+      "notes": "Work deadline caused stress, took longer to fall asleep",
+      "related_health_data": {
+        "evening_bp": null,
+        "morning_bp": "135/85",
+        "evening_glucose": null,
+        "morning_glucose": null,
+        "mood_before_bed": "stressed",
+        "mood_morning": "neutral",
+        "stress_level_evening": 7,
+        "stress_level_morning": 4
+      },
+      "created_at": "2025-06-20T07:15:00.000Z"
+    }
+  ],
+  "daily_summary": {
+    "total_records": 1,
+    "sleep_duration_hours": 7.0,
+    "sleep_latency_minutes": 30,
+    "sleep_efficiency": 84.8,
+    "sleep_quality": "fair",
+    "quality_score": 5,
+    "awakenings_count": 2,
+    "deep_sleep_hours": 1.5,
+    "rem_sleep_hours": 2.0,
+    "sleep_debt_hours": 0.5,
+    "bedtime_adherence": true,
+    "wake_time_adherence": true
+  }
+}

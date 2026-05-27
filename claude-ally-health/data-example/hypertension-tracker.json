@@ -1,0 +1,113 @@
+{
+  "hypertension_management": {
+    "diagnosis_date": "2023-01-01",
+    "classification": "grade_1",
+    "risk_category": "moderate",
+
+    "bp_readings": [
+      {
+        "date": "2025-06-20",
+        "time": "08:00",
+        "systolic": 135,
+        "diastolic": 85,
+        "pulse": 78,
+        "position": "sitting",
+        "measurement_device": "home_monitor",
+        "arm": "left"
+      },
+      {
+        "date": "2025-06-20",
+        "time": "20:00",
+        "systolic": 130,
+        "diastolic": 82,
+        "pulse": 72,
+        "position": "sitting",
+        "measurement_device": "home_monitor",
+        "arm": "left"
+      },
+      {
+        "date": "2025-06-19",
+        "time": "08:00",
+        "systolic": 138,
+        "diastolic": 88,
+        "pulse": 80,
+        "position": "sitting",
+        "measurement_device": "home_monitor",
+        "arm": "left"
+      },
+      {
+        "date": "2025-06-19",
+        "time": "20:00",
+        "systolic": 132,
+        "diastolic": 84,
+        "pulse": 75,
+        "position": "sitting",
+        "measurement_device": "home_monitor",
+        "arm": "left"
+      }
+    ],
+
+    "average_bp": {
+      "systolic": 134,
+      "diastolic": 85,
+      "calculation_period": "last_7_days",
+      "readings_count": 14
+    },
+
+    "blood_pressure_pattern": {
+      "dipping_pattern": "dipper",
+      "daynight_ratio": 0.87,
+      "interpretation": "正常杓型血压"
+    },
+
+    "target_bp": {
+      "systolic_target": "<130",
+      "diastolic_target": "<80",
+      "achievement_rate": 0.65,
+      "days_at_goal_last_month": 20
+    },
+
+    "medications": [
+      {
+        "medication_id": "med_example_001",
+        "added_from": "hypertension_management",
+        "added_date": "2023-01-01",
+        "indication": "高血压"
+      }
+    ],
+
+    "target_organ_damage": {
+      "left_ventricular_hypertrophy": {
+        "status": "none",
+        "last_assessment": "2025-01-15",
+        "method": "echocardiogram"
+      },
+      "microalbuminuria": {
+        "status": "negative",
+        "uacr": 15,
+        "reference": "<30",
+        "date": "2025-06-10"
+      },
+      "retinopathy": {
+        "grade": "grade_0",
+        "last_exam": "2025-03-20"
+      },
+      "arterial_stiffness": {
+        "pwv": 7.5,
+        "reference": "<10",
+        "date": "2025-02-15"
+      }
+    },
+
+    "cardiovascular_risk": {
+      "ascvd_score_10yr": 0.12,
+      "risk_level": "moderate",
+      "factors": ["age", "hypertension", "dyslipidemia"]
+    },
+
+    "metadata": {
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "last_updated": "2025-06-20T20:00:00.000Z"
+    }
+  }
+}

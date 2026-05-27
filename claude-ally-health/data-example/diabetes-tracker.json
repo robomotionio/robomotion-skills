@@ -1,0 +1,140 @@
+{
+  "diabetes_management": {
+    "type": "type_2",
+    "diagnosis_date": "2022-05-10",
+    "duration_years": 3.1,
+
+    "glucose_readings": [
+      {
+        "id": "glu_20250620070000001",
+        "date": "2025-06-20",
+        "time": "07:00",
+        "type": "fasting",
+        "value": 6.5,
+        "unit": "mmol/L",
+        "notes": "",
+        "created_at": "2025-06-20T07:00:00.000Z"
+      },
+      {
+        "id": "glu_20250620100000002",
+        "date": "2025-06-20",
+        "time": "10:00",
+        "type": "postprandial_2h",
+        "value": 8.2,
+        "unit": "mmol/L",
+        "meal": "breakfast",
+        "created_at": "2025-06-20T10:00:00.000Z"
+      },
+      {
+        "id": "glu_20250620210000003",
+        "date": "2025-06-20",
+        "time": "21:00",
+        "type": "bedtime",
+        "value": 7.2,
+        "unit": "mmol/L",
+        "notes": "",
+        "created_at": "2025-06-20T21:00:00.000Z"
+      }
+    ],
+
+    "hba1c": {
+      "history": [
+        {
+          "date": "2025-06-15",
+          "value": 6.8,
+          "unit": "%",
+          "change_from_previous": -0.3,
+          "created_at": "2025-06-15T00:00:00.000Z"
+        },
+        {
+          "date": "2025-03-15",
+          "value": 7.1,
+          "unit": "%",
+          "change_from_previous": 0.0,
+          "created_at": "2025-03-15T00:00:00.000Z"
+        }
+      ],
+      "target": "<7.0",
+      "achievement": true
+    },
+
+    "target_glucose": {
+      "fasting": {
+        "target": "4.4-7.0",
+        "unit": "mmol/L"
+      },
+      "postprandial_2h": {
+        "target": "<10.0",
+        "unit": "mmol/L"
+      },
+      "bedtime": {
+        "target": "6.0-9.0",
+        "unit": "mmol/L"
+      }
+    },
+
+    "tir": {
+      "percentage": 85,
+      "target": ">70",
+      "time_in_range_hours": 20.4,
+      "time_above_range_hours": 3.0,
+      "time_below_range_hours": 0.6,
+      "measurement_period": "last_14_days"
+    },
+
+    "hypoglycemia_episodes": [
+      {
+        "id": "hypo_20250618153000001",
+        "date": "2025-06-18",
+        "time": "15:30",
+        "value": 3.4,
+        "severity": "level_1",
+        "symptoms": ["sweating", "palpitations"],
+        "treatment": "glucose_tablets",
+        "resolved": true,
+        "created_at": "2025-06-18T15:30:00.000Z"
+      }
+    ],
+
+    "complications_screening": {
+      "retinopathy": {
+        "status": "none",
+        "last_exam": "2025-03-20",
+        "next_exam": "2026-03-20"
+      },
+      "nephropathy": {
+        "status": "microalbuminuria",
+        "uacr": 45,
+        "egfr": 78,
+        "ckd_stage": "G2A2",
+        "last_assessment": "2025-06-10"
+      },
+      "neuropathy": {
+        "status": "none",
+        "monofilament_test": "normal",
+        "last_assessment": "2025-06-15"
+      },
+      "foot": {
+        "status": "low_risk",
+        "pulses_present": true,
+        "ulcer": false,
+        "wagner_grade": 0,
+        "last_assessment": "2025-06-15"
+      }
+    },
+
+    "medications": [
+      {
+        "medication_id": "med_example_002",
+        "added_from": "diabetes_management",
+        "added_date": "2022-05-10",
+        "indication": "2型糖尿病"
+      }
+    ],
+
+    "metadata": {
+      "created_at": "2022-05-10T00:00:00.000Z",
+      "last_updated": "2025-06-20T21:00:00.000Z"
+    }
+  }
+}

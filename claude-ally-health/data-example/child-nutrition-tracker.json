@@ -1,0 +1,280 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T10:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "小明",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "dietary_records": [
+    {
+      "date": "2025-01-14",
+      "age": "2y5m",
+      "age_months": 29,
+
+      "meals": {
+        "breakfast": {
+          "time": "08:00",
+          "foods": [
+            {
+              "name": "牛奶",
+              "amount": "200ml",
+              "category": "dairy",
+              "nutrients": ["protein", "calcium", "vitamin_d"]
+            },
+            {
+              "name": "鸡蛋",
+              "amount": "1个",
+              "category": "protein",
+              "nutrients": ["protein", "iron", "vitamin_a"]
+            },
+            {
+              "name": "面包",
+              "amount": "1片",
+              "category": "grain",
+              "nutrients": ["carbohydrate"]
+            },
+            {
+              "name": "苹果",
+              "amount": "半个",
+              "category": "fruit",
+              "nutrients": ["vitamin_c", "fiber"]
+            }
+          ]
+        },
+        "morning_snack": {
+          "time": "10:30",
+          "foods": [
+            {
+              "name": "酸奶",
+              "amount": "100ml",
+              "category": "dairy",
+              "nutrients": ["protein", "calcium"]
+            }
+          ]
+        },
+        "lunch": {
+          "time": "12:00",
+          "foods": [
+            {
+              "name": "米饭",
+              "amount": "1小碗",
+              "category": "grain",
+              "nutrients": ["carbohydrate"]
+            },
+            {
+              "name": "青菜",
+              "amount": "适量",
+              "category": "vegetable",
+              "nutrients": ["vitamin_c", "fiber", "calcium"]
+            },
+            {
+              "name": "鸡肉",
+              "amount": "50g",
+              "category": "protein",
+              "nutrients": ["protein", "iron", "zinc"]
+            },
+            {
+              "name": "西红柿炒蛋",
+              "amount": "适量",
+              "category": "mixed",
+              "nutrients": ["protein", "vitamin_a", "vitamin_c"]
+            }
+          ]
+        },
+        "afternoon_snack": {
+          "time": "15:30",
+          "foods": [
+            {
+              "name": "香蕉",
+              "amount": "1根",
+              "category": "fruit",
+              "nutrients": ["potassium", "vitamin_c"]
+            }
+          ]
+        },
+        "dinner": {
+          "time": "18:00",
+          "foods": [
+            {
+              "name": "面条",
+              "amount": "1小碗",
+              "category": "grain",
+              "nutrients": ["carbohydrate"]
+            },
+            {
+              "name": "牛肉",
+              "amount": "50g",
+              "category": "protein",
+              "nutrients": ["protein", "iron", "zinc"]
+            },
+            {
+              "name": "西红柿",
+              "amount": "适量",
+              "category": "vegetable",
+              "nutrients": ["vitamin_c", "vitamin_a"]
+            },
+            {
+              "name": "黄瓜",
+              "amount": "适量",
+              "category": "vegetable",
+              "nutrients": ["vitamin_c", "fiber"]
+            }
+          ]
+        }
+      },
+
+      "water_intake": {
+        "amount_ml": 800,
+        "times": 6,
+        "recommended_min": 1000,
+        "recommended_max": 1300,
+        "adequate": false,
+        "notes": "饮水量略少，建议增加"
+      },
+
+      "supplements": [
+        {
+          "name": "维生素D",
+          "dosage": "400IU",
+          "frequency": "daily",
+          "time": "morning",
+          "consistent": true
+        }
+      ],
+
+      "nutrition_assessment": {
+        "calories": {
+          "status": "adequate",
+          "estimated": "约1200kcal",
+          "recommended": "1000-1400kcal"
+        },
+        "protein": {
+          "status": "adequate",
+          "sources": ["奶", "蛋", "肉"],
+          "estimated_g": 35
+        },
+        "calcium": {
+          "status": "adequate",
+          "estimated_mg": 600,
+          "recommended_mg": 600
+        },
+        "iron": {
+          "status": "adequate",
+          "sources": ["肉", "蛋"],
+          "estimated_mg": 10
+        },
+        "vitamin_d": {
+          "status": "supplemented",
+          "food_sources_insufficient": true,
+          "supplement_adequate": true
+        },
+        "zinc": {
+          "status": "adequate",
+          "sources": ["肉"]
+        },
+        "vitamin_a": {
+          "status": "adequate",
+          "sources": ["蛋", "蔬菜"]
+        },
+        "vitamin_c": {
+          "status": "adequate",
+          "sources": ["水果", "蔬菜"]
+        },
+        "fiber": {
+          "status": "adequate",
+          "estimated_g": 12,
+          "recommended_g": "10+"
+        },
+        "overall": "good"
+      },
+
+      "food_variety": {
+        "total_items": 15,
+        "categories_count": 5,
+        "categories_covered": ["grain", "protein", "vegetable", "fruit", "dairy"],
+        "colors": ["white", "yellow", "green", "red"],
+        "assessment": "good"
+      },
+
+      "notes": ""
+    }
+  ],
+
+  "picky_eating": {
+    "level": "mild",
+    "level_name": "轻度",
+    "refused_foods": [
+      {
+        "name": "胡萝卜",
+        "reason": "味道",
+        "since_age": "2y"
+      },
+      {
+        "name": "青椒",
+        "reason": "味道/口感",
+        "since_age": "2y"
+      },
+      {
+        "name": "菠菜",
+        "reason": "口感",
+        "since_age": "2y"
+      }
+    ],
+    "preferred_foods": [
+      "鸡肉",
+      "牛肉",
+      "香蕉",
+      "苹果",
+      "奶制品",
+      "面条",
+      "米饭"
+    ],
+    "strategies_tried": [
+      "切碎混入其他食物",
+      "改变烹饪方式"
+    ],
+    "improvement_notes": "逐步尝试中",
+    "impact_on_nutrition": "minimal"
+  },
+
+  "nutritional_status": {
+    "protein_status": "adequate",
+    "calcium_status": "adequate",
+    "iron_status": "adequate",
+    "zinc_status": "adequate",
+    "vitamin_d_status": "supplemented",
+    "vitamin_a_status": "adequate",
+    "vitamin_c_status": "adequate",
+    "vitamin_b_complex_status": "adequate",
+    "overall_status": "good",
+    "last_assessment_date": "2025-01-14"
+  },
+
+  "growth_nutrition_correlation": {
+    "height_percentile": 50,
+    "weight_percentile": 55,
+    "growth_velocity": "normal",
+    "nutrition_adequate_for_growth": true
+  },
+
+  "allergies": [],
+  "intolerances": [],
+  "special_diet": false,
+
+  "statistics": {
+    "total_records": 7,
+    "average_food_variety": "good",
+    "average_nutrition_score": "good",
+    "picky_eating_trend": "stable",
+    "water_intake_adequacy_percentage": 70
+  },
+
+  "settings": {
+    "reminder_enabled": false,
+    "track_water": true
+  }
+}

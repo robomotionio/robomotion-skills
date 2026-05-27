@@ -1,0 +1,18 @@
+# 医疗数据隐私保护 - 不要提交到版本控制
+data/
+
+# 临时文件
+*.tmp
+*.log
+医疗报告/
+emergency-cards/*
+.claude/settings.local.json
+.nyc_output
+.swarm
+.claude-flow
+.test
+.tests
+.node_modules
+.DS_Store
+.DS_Store
+.idea/
