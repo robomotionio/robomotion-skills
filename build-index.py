@@ -242,7 +242,16 @@ def read_skill(repo_root: str, skill_rel: str, group: dict | None) -> dict:
             or fm_metadata_scalar(fm, "version")
             or ""
         )
+    # Globally-unique id used by the Designer for storage / matching.
+    # Bare `name` may collide across groups (e.g. claude-seo/seo-audit and
+    # marketing-skills/seo-audit). `id` is "<group>/<name>" for inner skills,
+    # bare `<name>` for standalone units. Display still uses `name`.
+    if group is not None:
+        skill_id = f"{group['name']}/{name}"
+    else:
+        skill_id = name
     entry = {
+        "id": skill_id,
         "name": name,
         "path": skill_rel,
         "title": fm_scalar(fm, "title") or name,
