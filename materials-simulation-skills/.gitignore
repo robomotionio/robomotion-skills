@@ -1,0 +1,35 @@
+# Exclude all dot folders by default
+.*/
+
+# But include specific dot folders we need
+!.github/
+!.git/
+
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Temporary files
+*.log
+!tests/fixtures/**/*.log
+*.tmp
+temp_*.json
+timing_results.json
+scaling_results.json
+memory_results.json
+
+# OS
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+*~
