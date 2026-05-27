@@ -1,0 +1,616 @@
+#!/usr/bin/env python3
+"""
+connector_executor.py
+=====================
+Stdlib HTTP executor that fires the request manifests produced by
+connector_resolver.resolve_action(). Bridges the gap between
+"manifest_ready" (the orchestrator could execute) and "actually executed".
+
+Design constraints:
+  * stdlib only (urllib.request) — no requests / httpx dependency
+  * Write operations require BOTH --execute and --confirm flags
+  * Every execution is logged to execution-tracker (audit trail)
+  * Read operations are safe to auto-execute when --execute is passed
+  * Auth handled inline: Bearer, custom-header (Klaviyo/Brevo), Basic, query-param
+  * OAuth-only connectors (Google Ads, Meta, LinkedIn, TikTok, Gmail, GCal, GSC,
+    Twitter OAuth 1.0a) return mode="auth_required_oauth" — those need the MCP
+    path because Python cannot run an OAuth flow from a script
+  * Per-endpoint success codes are honored (Slack 200+body.ok, SendGrid 202,
+    HubSpot POST 201, Klaviyo 200, etc.)
+  * Timeouts default to 30 s; configurable
+
+Tested against a mock HTTP server in _shared/dmp_action_test_harness.py.
+
+API:
+    execute_manifest(http_request, env=None, data=None, timeout=30) -> dict
+    execute_action(action_id, brand, *, execute=True, confirm=False,
+                   data=None, timeout=30, **kwargs) -> dict
+    list_executable_connectors() -> list[str]
+"""
+from __future__ import annotations
+
+import json
+import os
+import re
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from copy import deepcopy
+from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from connector_resolver import ACTION_SPECS, resolve_action  # type: ignore  # noqa: E402
+
+BRANDS_DIR = Path.home() / ".claude-marketing" / "brands"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Per-connector execute schema:
+#   * connector name
+#   * which env var holds the credential
+#   * which auth pattern handler to use
+#   * expected success status code(s)
+#   * post-response logic check (e.g. Slack body.ok)
+#   * which write actions are allowed (None = read-only)
+#
+# Verified against current vendor docs (May 2026 research pass) — see
+# CHANGELOG v3.7.11 for source citations per endpoint.
+# ─────────────────────────────────────────────────────────────────────────────
+
+EXECUTE_PROFILES = {
+    "slack": {
+        "env_var": "SLACK_BOT_TOKEN",
+        "auth": "bearer",
+        "auth_header": "Authorization",
+        "auth_format": "Bearer {credential}",
+        "success_codes": [200],
+        "post_check": "slack_body_ok",   # MUST verify response.body.ok = True
+        "notes": "Bot token (xoxb-...). chat:write scope required.",
+    },
+    "hubspot": {
+        "env_var": "HUBSPOT_PRIVATE_APP_TOKEN",
+        "auth": "bearer",
+        "auth_header": "Authorization",
+        "auth_format": "Bearer {credential}",
+        "success_codes": [200, 201],
+        "notes": "Private App token. Required scopes vary per endpoint "
+                 "(automation for /flows; marketing-email for /campaigns).",
+    },
+    "klaviyo": {
+        "env_var": "KLAVIYO_PRIVATE_KEY",
+        "auth": "custom_header",
+        "auth_header": "Authorization",
+        "auth_format": "Klaviyo-API-Key {credential}",
+        "success_codes": [200, 201, 202],
+        "notes": "Private API key. Revision header bumped to 2026-04-15. "
+                 "PATCH ops require Content-Type: application/vnd.api+json.",
+    },
+    "sendgrid": {
+        "env_var": "SENDGRID_API_KEY",
+        "auth": "bearer",
+        "auth_header": "Authorization",
+        "auth_format": "Bearer {credential}",
+        "success_codes": [200, 202],   # mail/send returns 202
+        "notes": "API key starts with SG. — mail/send is async (202 + empty body).",
+    },
+    "brevo": {
+        "env_var": "BREVO_API_KEY",
+        "auth": "custom_header",
+        "auth_header": "api-key",
+        "auth_format": "{credential}",
+        "success_codes": [200, 201],
+        "notes": "Custom lowercase 'api-key' header, NOT Authorization Bearer.",
+    },
+    "customer-io": {
+        "env_var": "CUSTOMERIO_APP_API_KEY",
+        "auth": "bearer",
+        "auth_header": "Authorization",
+        "auth_format": "Bearer {credential}",
+        "success_codes": [200, 201],
+        "notes": "App API key, NOT Site/Track key. The /v1/send/email endpoint "
+                 "rejects Site/Track keys.",
+    },
+    "mailchimp": {
+        "env_var": "MAILCHIMP_API_KEY",
+        "auth": "basic",
+        "auth_header": "Authorization",
+        "auth_format": "anystring:{credential}",   # basic-auth user:pass form
+        "success_codes": [200],
+        "notes": "Basic auth with arbitrary username and api-key as password. "
+                 "Data-center is derived from the trailing -dcXX suffix in the key.",
+        "extra_setup": "datacenter_suffix",
+    },
+    "ahrefs": {
+        "env_var": "AHREFS_API_KEY",
+        "auth": "bearer",
+        "auth_header": "Authorization",
+        "auth_format": "Bearer {credential}",
+        "success_codes": [200],
+        "notes": "Bearer token in Authorization header (not query param). "
+                 "site-explorer endpoint is /metrics (not /overview).",
+    },
+
+    # OAuth-only connectors — execute path returns auth_required_oauth
+    "google-ads":         {"oauth_only": True, "reason": "Google Ads requires OAuth2 + developer-token; use MCP path."},
+    "meta-marketing":     {"oauth_only": True, "reason": "Meta Marketing API requires long-lived access token from FB Login flow; use MCP path."},
+    "linkedin-marketing": {"oauth_only": True, "reason": "LinkedIn Marketing API requires OAuth2 with marketing scopes; use MCP path."},
+    "linkedin-publishing":{"oauth_only": True, "reason": "LinkedIn Publishing API requires OAuth2; use MCP path."},
+    "tiktok-ads":         {"oauth_only": True, "reason": "TikTok Business API requires OAuth2 advertiser-grant; use MCP path."},
+    "twitter-x":          {"oauth_only": True, "reason": "Twitter/X Ads + posting requires OAuth 1.0a HMAC signing; use MCP path."},
+    "gmail":              {"oauth_only": True, "reason": "Gmail API requires OAuth2 with gmail.send scope; use MCP path."},
+    "google-calendar":    {"oauth_only": True, "reason": "Google Calendar API requires OAuth2; use MCP path."},
+    "google-analytics":   {"oauth_only": True, "reason": "GA4 Admin API requires OAuth2 with analytics scopes; use MCP path."},
+    "google-search-console": {"oauth_only": True, "reason": "Google Search Console API requires OAuth2 with webmasters scope; use MCP path."},
+    "meta-graph":         {"oauth_only": True, "reason": "Meta Graph organic posting requires page-scoped OAuth token; use MCP path."},
+    "salesforce":         {"oauth_only": True, "reason": "Salesforce REST API requires OAuth2 + instance URL; use MCP path."},
+    "pipedrive":          {"oauth_only": True, "reason": "Pipedrive can use API token (simpler) — execute support TODO."},
+    "zoho-crm":           {"oauth_only": True, "reason": "Zoho CRM requires OAuth refresh flow; use MCP path."},
+    "buffer":             {"oauth_only": True, "reason": "Buffer requires OAuth2 access token; use MCP path."},
+    "hootsuite":          {"oauth_only": True, "reason": "Hootsuite requires OAuth2; use MCP path."},
+    "cision":             {"oauth_only": True, "reason": "Cision API access requires enterprise account + OAuth; use MCP path."},
+    "muckrack":           {"oauth_only": True, "reason": "Muck Rack API token works but execute support TODO."},
+    "amplitude":          {"oauth_only": True, "reason": "Amplitude HTTP API uses API key + secret — execute support TODO."},
+    "similarweb":         {"oauth_only": True, "reason": "Similarweb API uses API key in query — execute support TODO."},
+    "semrush":            {"oauth_only": True, "reason": "SEMrush uses API key in query — execute support TODO."},
+    "moz":                {"oauth_only": True, "reason": "Moz requires HMAC-SHA1 signed requests; use MCP path."},
+    "intercom":           {"oauth_only": True, "reason": "Intercom uses Bearer token — execute support TODO."},
+    "canva":              {"oauth_only": True, "reason": "Canva Connect API requires OAuth2; use MCP path."},
+    "figma":              {"oauth_only": True, "reason": "Figma requires personal access token; execute support TODO."},
+}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Template substitution
+# ─────────────────────────────────────────────────────────────────────────────
+
+_VAR_PATTERN = re.compile(r"\{([A-Z_][A-Z0-9_]*)\}")
+_DATA_PATTERN = re.compile(r"\{([a-z][a-z0-9_.]*)\}")
+
+
+def _substitute_env(value: Any, env: dict) -> Any:
+    """Replace {ENV_VAR_NAME} placeholders with env values. Recursive."""
+    if isinstance(value, str):
+        def replace(match):
+            var = match.group(1)
+            return env.get(var, match.group(0))
+        return _VAR_PATTERN.sub(replace, value)
+    if isinstance(value, dict):
+        return {k: _substitute_env(v, env) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_substitute_env(x, env) for x in value]
+    return value
+
+
+def _substitute_data(value: Any, data: dict) -> Any:
+    """Replace {data.path.to.field} placeholders. Recursive."""
+    if isinstance(value, str):
+        def replace(match):
+            path = match.group(1).split(".")
+            cur = data
+            for key in path:
+                if isinstance(cur, dict) and key in cur:
+                    cur = cur[key]
+                else:
+                    return match.group(0)
+            return str(cur) if not isinstance(cur, (dict, list)) else json.dumps(cur)
+        return _DATA_PATTERN.sub(replace, value)
+    if isinstance(value, dict):
+        return {k: _substitute_data(v, data) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_substitute_data(x, data) for x in value]
+    return value
+
+
+def _find_unresolved_placeholders(obj) -> list[str]:
+    """Return any {placeholder} strings that survived substitution."""
+    found = []
+    if isinstance(obj, str):
+        found.extend(_VAR_PATTERN.findall(obj))
+        found.extend(_DATA_PATTERN.findall(obj))
+    elif isinstance(obj, dict):
+        for v in obj.values():
+            found.extend(_find_unresolved_placeholders(v))
+    elif isinstance(obj, list):
+        for x in obj:
+            found.extend(_find_unresolved_placeholders(x))
+    return found
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Auth handlers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _build_auth_header(profile: dict, credential: str, headers: dict) -> dict:
+    """Build/inject the auth header per the connector's profile."""
+    headers = dict(headers or {})
+    auth_type = profile["auth"]
+    header_name = profile["auth_header"]
+    format_template = profile["auth_format"]
+
+    if auth_type == "bearer":
+        headers[header_name] = format_template.format(credential=credential)
+    elif auth_type == "custom_header":
+        headers[header_name] = format_template.format(credential=credential)
+    elif auth_type == "basic":
+        import base64
+        userpass = format_template.format(credential=credential)
+        encoded = base64.b64encode(userpass.encode("utf-8")).decode("ascii")
+        headers[header_name] = f"Basic {encoded}"
+    else:
+        raise ValueError(f"unknown auth type: {auth_type}")
+    return headers
+
+
+def _mailchimp_dc_url(url: str, credential: str) -> str:
+    """Mailchimp URL has a {dc} placeholder derived from key suffix.
+    Key format: '<hex>-us6' -> dc='us6'.
+    """
+    if "{dc}" not in url and "{MAILCHIMP_DC}" not in url:
+        return url
+    if "-" not in credential:
+        return url  # malformed key; let the call fail
+    dc = credential.rsplit("-", 1)[-1]
+    return url.replace("{dc}", dc).replace("{MAILCHIMP_DC}", dc)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Core executor
+# ─────────────────────────────────────────────────────────────────────────────
+
+def execute_manifest(http_request: dict, env: dict | None = None,
+                     data: dict | None = None, timeout: int = 30,
+                     connector: str | None = None) -> dict:
+    """Execute a single HTTP request manifest produced by connector_resolver.
+    Returns a structured result dict — never raises on HTTP errors."""
+    if env is None:
+        env = dict(os.environ)
+    if data is None:
+        data = {}
+    if not http_request or not isinstance(http_request, dict):
+        return {"status": "error", "error": "http_request is empty or not a dict"}
+
+    started = time.time()
+
+    # Substitute placeholders
+    spec = deepcopy(http_request)
+    spec = _substitute_env(spec, env)
+    if data:
+        spec = _substitute_data(spec, data)
+
+    method = (spec.get("method") or "GET").upper()
+    url = spec.get("url") or ""
+    headers = spec.get("headers", {}) or {}
+    params = spec.get("params", {}) or {}
+    body_template = spec.get("body_template")
+
+    # Connector-specific URL post-processing
+    if connector == "mailchimp" and env.get("MAILCHIMP_API_KEY"):
+        url = _mailchimp_dc_url(url, env["MAILCHIMP_API_KEY"])
+
+    # Check for unresolved placeholders (missing env vars / data)
+    unresolved = _find_unresolved_placeholders({"url": url, "headers": headers,
+                                                "params": params, "body": body_template})
+    if unresolved:
+        return {
+            "status": "missing_credential",
+            "error": f"Unresolved placeholders after substitution: {sorted(set(unresolved))}",
+            "hint": "Set the missing env vars (or pass --data for body fields) "
+                    "and retry. Use --dry-run to see the substituted request without firing.",
+            "method": method,
+            "url": url,
+            "elapsed_ms": 0,
+        }
+
+    # Build query string
+    if params:
+        qs = urllib.parse.urlencode([(k, str(v)) for k, v in params.items()])
+        url = url + ("&" if "?" in url else "?") + qs
+
+    # Build body
+    body_bytes = None
+    if body_template is not None and method in ("POST", "PUT", "PATCH", "DELETE"):
+        ct = headers.get("Content-Type", "").lower()
+        if "form-urlencoded" in ct:
+            body_bytes = urllib.parse.urlencode(
+                [(k, str(v)) for k, v in body_template.items()]
+            ).encode("utf-8")
+        else:
+            body_bytes = json.dumps(body_template).encode("utf-8")
+
+    # Build request
+    req = urllib.request.Request(url, data=body_bytes, method=method)
+    for h, v in headers.items():
+        req.add_header(h, str(v))
+
+    # Fire
+    response = None
+    try:
+        response = urllib.request.urlopen(req, timeout=timeout)
+        status_code = response.status
+        raw = response.read()
+    except urllib.error.HTTPError as e:
+        status_code = e.code
+        try:
+            raw = e.read()
+        except Exception:
+            raw = b""
+    except urllib.error.URLError as e:
+        return {
+            "status": "network_error",
+            "error": f"URLError: {e.reason}",
+            "method": method,
+            "url": url,
+            "elapsed_ms": int((time.time() - started) * 1000),
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": f"{type(e).__name__}: {e}",
+            "method": method,
+            "url": url,
+            "elapsed_ms": int((time.time() - started) * 1000),
+        }
+    finally:
+        if response is not None:
+            try:
+                response.close()
+            except Exception:
+                pass
+
+    # Parse response body
+    parsed_body: Any = None
+    try:
+        parsed_body = json.loads(raw.decode("utf-8")) if raw else None
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        parsed_body = raw.decode("utf-8", errors="replace")[:1000] if raw else None
+
+    elapsed_ms = int((time.time() - started) * 1000)
+
+    return {
+        "status": "executed",
+        "http_status": status_code,
+        "method": method,
+        "url": url,
+        "response_body": parsed_body,
+        "elapsed_ms": elapsed_ms,
+        "request_summary": {
+            "method": method,
+            "url_host": urllib.parse.urlparse(url).netloc,
+            "auth_header_present": any(h.lower() in ("authorization", "api-key")
+                                       for h in headers.keys()),
+            "body_bytes": len(body_bytes) if body_bytes else 0,
+        },
+    }
+
+
+def _check_success(result: dict, profile: dict) -> dict:
+    """Apply per-connector success-code + post-check logic."""
+    if result.get("status") != "executed":
+        return result
+    success_codes = profile.get("success_codes", [200, 201, 202])
+    http_status = result.get("http_status")
+
+    is_success = http_status in success_codes
+
+    # Slack returns 200 even on logical failure; verify body.ok
+    if profile.get("post_check") == "slack_body_ok":
+        body = result.get("response_body")
+        if isinstance(body, dict):
+            slack_ok = bool(body.get("ok"))
+            result["slack_ok_check"] = slack_ok
+            if is_success and not slack_ok:
+                is_success = False
+                result["slack_error"] = body.get("error")
+
+    result["success"] = is_success
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Action-level executor (resolves THEN executes)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def execute_action(action_id: str, brand: str, *,
+                   execute: bool = True, confirm: bool = False,
+                   data: dict | None = None, timeout: int = 30,
+                   log_to_tracker: bool = True, env: dict | None = None,
+                   **kwargs) -> dict:
+    """Resolve an action and either execute it or return the manifest.
+
+    Args:
+      action_id:     one of ACTION_SPECS keys
+      brand:         brand slug
+      execute:       if False, returns the resolver response unchanged (no execution)
+      confirm:       REQUIRED for any operation=='write' action; rejects without it
+      data:          domain data for body_template substitution (e.g.
+                     {"plan": {"campaign_name": "X"}})
+      timeout:       HTTP timeout seconds
+      log_to_tracker: append execution to execution-tracker.py audit trail
+      env:           env-var dict; defaults to os.environ
+      **kwargs:      passed through to resolve_action
+    """
+    if env is None:
+        env = dict(os.environ)
+
+    # Step 1: resolve
+    resolved = resolve_action(action_id, brand, **kwargs)
+    resolved_mode = resolved.get("mode")
+
+    if not execute:
+        return resolved
+
+    if resolved_mode == "stub_unconfigured":
+        # No connector configured — execute mode can't help
+        resolved["execute_attempted"] = False
+        resolved["execute_blocked_reason"] = "no connector configured; nothing to execute"
+        return resolved
+
+    if resolved_mode == "real":
+        # arm-watchdog already executed in resolve_action()
+        resolved["execute_attempted"] = True
+        return resolved
+
+    if resolved_mode != "manifest_ready":
+        resolved["execute_attempted"] = False
+        resolved["execute_blocked_reason"] = f"unknown mode: {resolved_mode}"
+        return resolved
+
+    # Step 2: check write gate
+    spec = ACTION_SPECS.get(action_id, {})
+    operation = spec.get("operation", "read")
+    if operation == "write" and not confirm:
+        resolved["execute_attempted"] = False
+        resolved["execute_blocked_reason"] = (
+            f"action {action_id} is a write op (operation={operation}); "
+            f"--confirm flag is required. Re-run with confirm=True to fire."
+        )
+        return resolved
+
+    # Step 3: check connector executability
+    chosen = resolved.get("chosen_connector")
+    profile = EXECUTE_PROFILES.get(chosen, {})
+    if profile.get("oauth_only"):
+        resolved["execute_attempted"] = False
+        resolved["execute_blocked_reason"] = profile.get("reason", "OAuth-only connector")
+        resolved["alternative"] = (
+            f"Execute via the {chosen} MCP tool — Claude handles the OAuth flow. "
+            f"The manifest above is the exact request shape the MCP will send."
+        )
+        return resolved
+    if not profile:
+        resolved["execute_attempted"] = False
+        resolved["execute_blocked_reason"] = (
+            f"no execute profile defined for connector '{chosen}'; "
+            f"action can only be executed via the MCP path."
+        )
+        return resolved
+
+    # Step 4: check credential
+    env_var = profile.get("env_var")
+    credential = env.get(env_var) if env_var else None
+    if not credential:
+        resolved["execute_attempted"] = False
+        resolved["execute_blocked_reason"] = f"env var {env_var} is not set"
+        resolved["setup_hint_credential"] = (
+            f"Set {env_var} with the {chosen} credential and retry. "
+            f"Notes: {profile.get('notes', '')}"
+        )
+        return resolved
+
+    # Step 5: inject auth header into the manifest
+    manifest = resolved.get("manifest", {})
+    http_request = deepcopy(manifest.get("http_request") or {})
+    http_request["headers"] = _build_auth_header(
+        profile, credential, http_request.get("headers", {})
+    )
+    # Strip any leftover {AUTH_PLACEHOLDER} that the manifest had
+    # (the build_auth_header overwrites the right header; we also need
+    # to clean any other auth-shaped placeholders in headers like {KLAVIYO_PRIVATE_KEY})
+    # The env substitution in execute_manifest will handle the rest.
+
+    # Step 6: execute
+    exec_result = execute_manifest(http_request, env=env, data=data, timeout=timeout,
+                                   connector=chosen)
+    exec_result = _check_success(exec_result, profile)
+    resolved["execute_attempted"] = True
+    resolved["execution"] = exec_result
+
+    # Step 7: audit log
+    if log_to_tracker:
+        _log_execution(action_id, brand, chosen, exec_result, operation)
+
+    return resolved
+
+
+def _log_execution(action_id: str, brand: str, connector: str,
+                   exec_result: dict, operation: str):
+    """Append an entry to ~/.claude-marketing/{brand}/executions/."""
+    brand_dir = BRANDS_DIR / brand
+    if not brand_dir.exists():
+        return  # don't fail just because brand doesn't exist
+    executions_dir = brand_dir / "executions"
+    executions_dir.mkdir(exist_ok=True)
+    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+    exec_id = f"exec-{connector}-{action_id}-{ts}"
+    success = exec_result.get("success") or (exec_result.get("http_status") in (200, 201, 202)
+                                             and exec_result.get("status") == "executed")
+    entry = {
+        "execution_id": exec_id,
+        "action": action_id,
+        "platform": connector,
+        "operation": operation,
+        "action_type": f"{action_id}-via-{connector}",
+        "result": "success" if success else "failure",
+        "http_status": exec_result.get("http_status"),
+        "elapsed_ms": exec_result.get("elapsed_ms"),
+        "executed_at": datetime.now().isoformat(),
+        "error": exec_result.get("error") or exec_result.get("slack_error"),
+    }
+    try:
+        (executions_dir / f"{exec_id}.json").write_text(json.dumps(entry, indent=2))
+    except Exception:
+        pass  # logging never breaks the call
+
+
+def list_executable_connectors() -> list[str]:
+    """Names of connectors with execute profiles (excludes oauth_only)."""
+    return sorted(name for name, p in EXECUTE_PROFILES.items()
+                  if not p.get("oauth_only"))
+
+
+def list_oauth_only_connectors() -> list[str]:
+    """Names of connectors that require the MCP path."""
+    return sorted(name for name, p in EXECUTE_PROFILES.items()
+                  if p.get("oauth_only"))
+
+
+if __name__ == "__main__":
+    import argparse
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--action", required=True, help="action_id to execute")
+    parser.add_argument("--brand", required=True)
+    parser.add_argument("--execute", action="store_true",
+                        help="actually fire the request (default: dry-run / resolve only)")
+    parser.add_argument("--confirm", action="store_true",
+                        help="REQUIRED for write actions")
+    parser.add_argument("--data", help="JSON dict for body_template substitution")
+    parser.add_argument("--channel", help="channel (for inventory/automations/cadence)")
+    parser.add_argument("--automation-id", help="for enable-automation")
+    parser.add_argument("--plan", help="path to plan JSON")
+    parser.add_argument("--timeout", type=int, default=30)
+    parser.add_argument("--list-executable", action="store_true",
+                        help="List connectors with execute profiles")
+    parser.add_argument("--list-oauth-only", action="store_true",
+                        help="List connectors that require the MCP path")
+    args = parser.parse_args()
+
+    if args.list_executable:
+        print(json.dumps({"executable_connectors": list_executable_connectors()}, indent=2))
+        sys.exit(0)
+    if args.list_oauth_only:
+        print(json.dumps({"oauth_only_connectors": list_oauth_only_connectors()}, indent=2))
+        sys.exit(0)
+
+    data = json.loads(args.data) if args.data else None
+    extra_kwargs = {}
+    if args.channel:
+        extra_kwargs["channel"] = args.channel
+    if args.automation_id:
+        extra_kwargs["automation_id"] = args.automation_id
+    if args.plan:
+        extra_kwargs["plan_path"] = args.plan
+
+    result = execute_action(args.action, args.brand,
+                            execute=args.execute, confirm=args.confirm,
+                            data=data, timeout=args.timeout, **extra_kwargs)
+    print(json.dumps(result, indent=2, default=str))

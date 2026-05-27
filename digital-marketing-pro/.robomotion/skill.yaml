@@ -1,0 +1,10 @@
+schema_version: 1
+name: digital-marketing-pro
+title: 'Digital Marketing Pro'
+type: group
+version: 3.9.0
+author: 'indranilbanerjee'
+source_url: https://github.com/indranilbanerjee/digital-marketing-pro
+license: MIT
+summary: '153 skills — 150-skill engagement methodology — 12-Part Strategy Flow, 25 specialist agents, EU AI Act Article 50 ready (C2PA signing), 6-platform AEO/GEO incl. Google AI Mode'
+tags: [marketing, ai]
