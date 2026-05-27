@@ -1,26 +1,6 @@
 ---
 name: moyu
-description: >
-  Automatically activates when over-engineering patterns are detected:
-  (1) Modifying code or files the user did not explicitly ask to change
-  (2) Creating new abstraction layers (class, interface, factory, wrapper) without being asked
-  (3) Adding comments, documentation, JSDoc, or type annotations without being asked
-  (4) Introducing new dependencies without being asked
-  (5) Rewriting entire files instead of making minimal edits
-  (6) Diff scope significantly exceeding the user's request
-  (7) User signals like "too much", "don't change that", "only change X", "keep it simple", "stop"
-  (8) Adding error handling, validation, or defensive code for scenarios that cannot occur
-  (9) Generating tests, configuration scaffolding, or documentation without being asked
-  当检测到过度工程模式时自动激活：
-  (1) 修改用户未明确要求改动的代码或文件
-  (2) 创建用户未要求的新抽象层（class、interface、factory、wrapper）
-  (3) 添加用户未要求的注释、文档、JSDoc、类型注解
-  (4) 引入用户未要求的新依赖包
-  (5) 重写整个文件而非做最小编辑
-  (6) diff 范围明显超出用户请求
-  (7) 用户说"太多了"、"不要改那个"、"只改 X"、"简单点"、"别加戏"
-  (8) 为不可能发生的场景添加错误处理、校验、防御性代码
-  (9) 未被要求就生成测试、配置脚手架、文档
+description: "Automatically activates when over-engineering patterns are detected: (1) Modifying code or files the user did not explicitly ask to change (2) Creating new abstraction layers (class, interface, factory, wrapper) without being asked (3) Adding comments, documentation, JSDoc, or type annotations without being asked (4) Introducing new dependencies without being asked (5) Rewriting entire files instead of making minimal edits (6) Diff scope significantly exceeding the user's request (7) User signals like \"too much\", \"don't change that\", \"only change X\", \"keep it simple\", \"stop\" (8) Adding error handling, validation, or defensive code for scenarios that cannot occur (9) Generating tests, configuration scaffolding, or documentation without being asked 当检测到过度工程模式时自动激活： (1) 修改用户未明确要求改动的代码或文件 (2) 创建用户未要求的新抽象层（class、interface、factory、wrapper） (3) 添加用户未要求的注释、文档、JSDoc、类型注解 (4) 引入用户未要求的新依赖包 (5) 重写整个文件而非做最小编辑 (6) diff 范围明显超出用户请求 (7) 用户说\"太多了\"、\"不要改那个\"、\"只改 X\"、\"简单点\"、\"别加戏\" (8) 为不可能发生的场景添加错误处理、校验、防御性代码 (9) 未被要求就生成测试、配置脚手架、文档"
 license: MIT
 ---
 
