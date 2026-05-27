@@ -1,0 +1,164 @@
+{
+  "name": "aws-skills",
+  "owner": {
+    "name": "Kane Zhu",
+    "email": "me@kane.mx"
+  },
+  "metadata": {
+    "description": "AWS development skills for Claude Code including CDK, serverless architecture, cost optimization, and Bedrock AgentCore for AI agent deployment",
+    "version": "2.4.0"
+  },
+  "plugins": [
+    {
+      "name": "aws-common",
+      "description": "Shared AWS agent skills including AWS Documentation MCP configuration for querying up-to-date AWS knowledge",
+      "version": "1.0.1",
+      "author": {
+        "name": "Kane Zhu",
+        "email": "me@kane.mx"
+      },
+      "homepage": "https://github.com/zxkane/aws-skills",
+      "repository": "https://github.com/zxkane/aws-skills",
+      "license": "MIT",
+      "keywords": ["aws", "mcp", "documentation", "common", "shared"],
+      "category": "development",
+      "source": "./plugins/aws-common",
+      "strict": false,
+      "skills": [
+        "./skills/aws-mcp-setup"
+      ]
+    },
+    {
+      "name": "aws-cdk",
+      "description": "Comprehensive AWS development skills including CDK best practices, Lambda development workflows, and AWS documentation search capabilities",
+      "version": "1.2.1",
+      "author": {
+        "name": "Kane Zhu",
+        "email": "me@kane.mx"
+      },
+      "homepage": "https://github.com/zxkane/aws-skills",
+      "repository": "https://github.com/zxkane/aws-skills",
+      "license": "MIT",
+      "keywords": ["aws", "cdk", "lambda", "infrastructure", "cloud", "skills"],
+      "category": "development",
+      "source": "./plugins/aws-cdk",
+      "strict": false,
+      "skills": [
+        "./skills/aws-cdk-development"
+      ],
+      "mcpServers": {
+        "cdk": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": [
+            "awslabs.cdk-mcp-server@latest"
+          ],
+          "env": {
+            "FASTMCP_LOG_LEVEL": "ERROR"
+          }
+        }
+      }
+    },
+    {
+      "name": "aws-cost-ops",
+      "description": "AWS cost optimization, monitoring, and operational excellence with integrated MCP servers for billing, cost analysis, observability, and security assessment",
+      "version": "1.2.1",
+      "author": {
+        "name": "Kane Zhu",
+        "email": "me@kane.mx"
+      },
+      "homepage": "https://github.com/zxkane/aws-skills",
+      "repository": "https://github.com/zxkane/aws-skills",
+      "license": "MIT",
+      "keywords": ["aws", "cost", "billing", "monitoring", "cloudwatch", "operations", "observability"],
+      "category": "operations",
+      "source": "./plugins/aws-cost-ops",
+      "strict": false,
+      "skills": [
+        "./skills/aws-cost-operations"
+      ],
+      "mcpServers": {
+        "pricing": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": [
+            "awslabs.aws-pricing-mcp-server@latest"
+          ],
+          "env": {
+            "FASTMCP_LOG_LEVEL": "ERROR"
+          }
+        },
+        "costexp": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": [
+            "awslabs.cost-explorer-mcp-server@latest"
+          ],
+          "env": {
+            "FASTMCP_LOG_LEVEL": "ERROR"
+          }
+        },
+        "cw": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": [
+            "awslabs.cloudwatch-mcp-server@latest"
+          ],
+          "env": {
+            "FASTMCP_LOG_LEVEL": "ERROR"
+          }
+        }
+      }
+    },
+    {
+      "name": "serverless-eda",
+      "description": "AWS serverless and event-driven architecture best practices based on Well-Architected Framework with MCP servers for SAM, Lambda, Step Functions, and messaging",
+      "version": "1.2.1",
+      "author": {
+        "name": "Kane Zhu",
+        "email": "me@kane.mx"
+      },
+      "homepage": "https://github.com/zxkane/aws-skills",
+      "repository": "https://github.com/zxkane/aws-skills",
+      "license": "MIT",
+      "keywords": ["aws", "serverless", "lambda", "event-driven", "eda", "step-functions", "eventbridge", "sqs", "sns"],
+      "category": "development",
+      "source": "./plugins/serverless-eda",
+      "strict": false,
+      "skills": [
+        "./skills/aws-serverless-eda"
+      ]
+    },
+    {
+      "name": "aws-agentic-ai",
+      "description": "AWS Bedrock AgentCore comprehensive expert for deploying and managing all AgentCore services including Gateway, Runtime, Memory, Identity, Code Interpreter, Browser, Observability, Agent Registry, and Evaluations",
+      "version": "1.4.0",
+      "author": {
+        "name": "Kane Zhu",
+        "email": "me@kane.mx"
+      },
+      "homepage": "https://github.com/zxkane/aws-skills",
+      "repository": "https://github.com/zxkane/aws-skills",
+      "license": "MIT",
+      "keywords": ["aws", "bedrock", "agentcore", "ai-agents", "mcp", "gateway", "runtime", "memory", "identity", "agent-registry", "discovery", "evaluations"],
+      "category": "development",
+      "source": "./plugins/aws-agentic-ai",
+      "strict": false,
+      "skills": [
+        "./skills/aws-agentic-ai"
+      ],
+      "mcpServers": {
+        "acdocs": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": [
+            "awslabs.amazon-bedrock-agentcore-mcp-server@latest"
+          ],
+          "env": {
+            "FASTMCP_LOG_LEVEL": "ERROR"
+          }
+        }
+      }
+    }
+  ]
+}

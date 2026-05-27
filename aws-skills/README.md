@@ -1,0 +1,308 @@
+# AWS Skills for Claude Code
+
+Claude Code plugins for AWS development with specialized knowledge and MCP server integrations, including CDK, serverless architecture, cost optimization, and Bedrock AgentCore for AI agent deployment.
+
+## Plugins
+
+### 0. AWS Common Plugin (Dependency)
+
+Shared AWS agent skills including AWS Documentation MCP configuration for querying up-to-date AWS knowledge.
+
+**Features**:
+- AWS MCP server configuration guide
+- Documentation MCP setup for querying AWS knowledge
+- Shared by all other AWS plugins as a dependency
+
+**Note**: This plugin is automatically loaded as a dependency by other plugins. Install it first if installing plugins individually.
+
+### 1. AWS CDK Plugin
+
+AWS CDK development skill with integrated MCP server for infrastructure as code.
+
+**Features**:
+- AWS CDK best practices and patterns
+- Pre-deployment validation script
+- Comprehensive CDK patterns reference
+
+**Integrated MCP Server**:
+- AWS CDK MCP (stdio)
+
+### 2. AWS Cost & Operations Plugin
+
+Cost optimization, monitoring, and operational excellence with 3 integrated MCP servers.
+
+**Features**:
+- Cost estimation and optimization
+- Monitoring and observability patterns
+- Operational best practices
+
+**Integrated MCP Servers**:
+- AWS Pricing
+- AWS Cost Explorer
+- Amazon CloudWatch
+
+### 3. AWS Serverless & Event-Driven Architecture Plugin
+
+Serverless and event-driven architecture patterns based on Well-Architected Framework.
+
+**Features**:
+- Well-Architected serverless design principles
+- Event-driven architecture patterns
+- Orchestration with Step Functions
+- Saga patterns for distributed transactions
+- Event sourcing patterns
+
+### 4. AWS Agentic AI Plugin
+
+AWS Bedrock AgentCore comprehensive expert for deploying and managing AI agents.
+
+**Features**:
+- Gateway service for converting REST APIs to MCP tools
+- Runtime service for deploying and scaling agents
+- Memory service for managing conversation state
+- Identity service for credential and access management
+- Code Interpreter for secure code execution
+- Browser service for web automation
+- Observability for tracing and monitoring
+
+## Installation
+
+### Option 1: Claude Code Plugin Marketplace
+
+Add the marketplace to Claude Code:
+
+```bash
+/plugin marketplace add zxkane/aws-skills
+```
+
+Install plugins individually:
+
+```bash
+# Install the common dependency first
+/plugin install aws-common@aws-skills
+
+# Then install the plugins you need
+/plugin install aws-cdk@aws-skills
+/plugin install aws-cost-ops@aws-skills
+/plugin install serverless-eda@aws-skills
+/plugin install aws-agentic-ai@aws-skills
+```
+
+### Option 2: Install Individual Skills via npx
+
+Install a single skill directly from the repository using [skills.sh](https://skills.sh):
+
+```bash
+# AWS CDK development skill
+npx skills add https://github.com/zxkane/aws-skills --skill aws-cdk-development
+
+# AWS cost & operations skill
+npx skills add https://github.com/zxkane/aws-skills --skill aws-cost-operations
+
+# AWS serverless & event-driven architecture skill
+npx skills add https://github.com/zxkane/aws-skills --skill aws-serverless-eda
+
+# AWS Bedrock AgentCore skill
+npx skills add https://github.com/zxkane/aws-skills --skill aws-agentic-ai
+
+# AWS MCP setup (shared dependency)
+npx skills add https://github.com/zxkane/aws-skills --skill aws-mcp-setup
+```
+
+Browse all skills at [skills.sh/zxkane/aws-skills](https://skills.sh/zxkane/aws-skills).
+
+## Core CDK Principles
+
+### Resource Naming
+
+**Do NOT explicitly specify resource names** when they are optional in CDK constructs.
+
+```typescript
+// ✅ GOOD - Let CDK generate unique names
+new lambda.Function(this, 'MyFunction', {
+  // No functionName specified
+});
+
+// ❌ BAD - Prevents multiple deployments
+new lambda.Function(this, 'MyFunction', {
+  functionName: 'my-lambda',
+});
+```
+
+### Lambda Functions
+
+Use appropriate constructs for automatic bundling:
+
+- **TypeScript/JavaScript**: `NodejsFunction` from `aws-cdk-lib/aws-lambda-nodejs`
+- **Python**: `PythonFunction` from `@aws-cdk/aws-lambda-python-alpha`
+
+### Pre-Deployment Validation
+
+Before committing CDK code:
+
+```bash
+npm run build
+npm test
+npm run lint
+cdk synth
+./scripts/validate-stack.sh
+```
+
+## Usage Examples
+
+### CDK Development
+
+Ask Claude to help with CDK:
+
+```
+Create a CDK stack with a Lambda function that processes S3 events
+```
+
+Claude will:
+- Follow CDK best practices
+- Use NodejsFunction for automatic bundling
+- Avoid explicit resource naming
+- Grant proper IAM permissions
+- Use MCP servers for latest AWS information
+
+### Cost Optimization
+
+Estimate costs before deployment:
+
+```
+Estimate the monthly cost of running 10 Lambda functions with 1M invocations each
+```
+
+Analyze current spending:
+
+```
+Show me my AWS costs for the last 30 days broken down by service
+```
+
+### Monitoring and Observability
+
+Set up monitoring:
+
+```
+Create CloudWatch alarms for my Lambda functions to alert on errors and high duration
+```
+
+Investigate issues:
+
+```
+Show me CloudWatch logs for my API Gateway errors in the last hour
+```
+
+### Security and Audit
+
+Audit activity:
+
+```
+Show me all IAM changes made in the last 7 days
+```
+
+Assess security:
+
+```
+Run a Well-Architected security assessment on my infrastructure
+```
+
+### Serverless Development
+
+Build serverless applications:
+
+```
+Create a serverless API with Lambda and API Gateway for user management
+```
+
+Implement event-driven workflow:
+
+```
+Create an event-driven order processing system with EventBridge and Step Functions
+```
+
+Orchestrate complex workflows:
+
+```
+Implement a saga pattern for booking flights, hotels, and car rentals with compensation logic
+```
+
+### AI Agent Development
+
+Deploy AI agents with Bedrock AgentCore:
+
+```
+Deploy a REST API as an MCP tool using AgentCore Gateway
+```
+
+Manage agent memory:
+
+```
+Set up conversation memory for my AI agent with DynamoDB backend
+```
+
+Monitor agent performance:
+
+```
+Configure observability for my AgentCore runtime with CloudWatch dashboards
+```
+
+## Structure
+
+```
+.
+├── .claude-plugin/
+│   └── marketplace.json              # Plugin marketplace configuration
+├── plugins/                          # Each plugin has isolated skills
+│   ├── aws-common/
+│   │   └── skills/
+│   │       └── aws-mcp-setup/        # Shared MCP configuration skill
+│   │           └── SKILL.md
+│   ├── aws-cdk/
+│   │   └── skills/
+│   │       └── aws-cdk-development/  # CDK development skill
+│   │           ├── SKILL.md
+│   │           ├── references/
+│   │           │   └── cdk-patterns.md
+│   │           └── scripts/
+│   │               └── validate-stack.sh
+│   ├── aws-cost-ops/
+│   │   └── skills/
+│   │       └── aws-cost-operations/  # Cost & operations skill
+│   │           ├── SKILL.md
+│   │           └── references/
+│   │               ├── operations-patterns.md
+│   │               └── cloudwatch-alarms.md
+│   ├── serverless-eda/
+│   │   └── skills/
+│   │       └── aws-serverless-eda/   # Serverless & EDA skill
+│   │           ├── SKILL.md
+│   │           └── references/
+│   │               ├── serverless-patterns.md
+│   │               └── eda-patterns.md
+│   └── aws-agentic-ai/
+│       └── skills/
+│           └── aws-agentic-ai/       # Bedrock AgentCore skill
+│               ├── SKILL.md
+│               ├── services/         # Service-specific docs
+│               └── cross-service/    # Cross-service patterns
+└── README.md
+```
+
+## MCP Server Names
+
+MCP server names use short identifiers to comply with Bedrock's 64-character tool name limit. The naming pattern is: `mcp__plugin_{plugin}_{server}__{tool}`
+
+Examples: `awsdocs` (AWS docs), `cdk` (CDK), `cw` (CloudWatch), `sfn` (Step Functions), `sam` (Serverless), etc.
+
+## Resources
+
+- [Claude Agent Skills](https://docs.claude.com/en/docs/claude-code/skills)
+- [AWS MCP Servers](https://awslabs.github.io/mcp/)
+- [AWS CDK](https://aws.amazon.com/cdk/)
+- [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
+- [MCP Protocol](https://modelcontextprotocol.io/)
+
+## License
+
+MIT License - see [LICENSE](LICENSE)
