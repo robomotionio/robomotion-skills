@@ -1,5 +1,34 @@
 # How to add a skill to Robomotion
 
+> ## ⚠️ #1 PRIORITY — env detection from scripts is non-negotiable
+>
+> A vendored skill **does not work** without `env.required` / `env.optional`
+> files at the inner-skill level. The launcher's hire wizard reads those files
+> to prompt the user for credentials. If they are missing, the skill silently
+> fails at runtime when its script tries to read an unset env var.
+>
+> **You must read every script the skill ships** (`scripts/*.py`, `scripts/*.js`,
+> `tools/clis/*.js`, any bundled binaries' source) and extract every env-var
+> access pattern:
+>
+> - `os.environ["X"]` (no default), `os.getenv("X")` followed by an `if not X: raise`,
+>   `process.env.X` followed by `?? throw` or `if (!X) ...` → **`env.required`**
+> - `os.environ.get("X", default)`, `os.getenv("X", default)`, `process.env.X || fallback`,
+>   `process.env.X ?? default` → **`env.optional`**
+> - Any var listed in upstream `.env.example` / `.env.sample` → **`env.required`**
+>   (upstream-curated; trust the author)
+>
+> Emit one `env.required` and one `env.optional` per inner skill at
+> `<group>/skills/<skill>/env.required` and `<group>/skills/<skill>/env.optional`
+> (or at the unit root for standalone `type: skill` units).
+> One env-var name per line, comment lines start with `#`. See §3.5b for the
+> full procedure and §5.4 for the file format.
+>
+> **No env files = no usable skill.** This rule overrides every other "verbatim"
+> instinct. We don't edit the upstream `SKILL.md`, but we *do* add the
+> `env.required` / `env.optional` files inside the skill directories because
+> they live alongside upstream content — not inside `.robomotion/`.
+
 > Walkthrough from a **vanilla `robomotion-skills` repo** to having
 > `marketing-skills` (vendored, 41 skills by Corey Haines) running as our
 > first production unit. The same pattern applies to any future group or
@@ -190,6 +219,83 @@ done
 
 This file is **the place** for exceptions to the upstream layout. If a vendored group needs a one-time install (`apt`, `pip`, `npm`), it goes here too. Per-skill `post-install.sh` still works (rare for vendored — usually all the exceptions are group-wide).
 
+### 3.5b ⚠️ Detect env vars from scripts — **HIGHEST PRIORITY**
+
+> **Stop here if you skipped this in earlier steps.** This is the single most
+> common reason a vendored skill silently fails at runtime: the script tries
+> `os.environ["API_KEY"]`, the user never set it because the launcher had
+> no `env.required` to surface, and the script crashes.
+
+For **every inner skill** (each `skills/<name>/SKILL.md` or each standalone unit),
+read every script the skill bundles and classify every env-var access:
+
+1. **Find the scripts.** Each inner skill commonly ships:
+   ```
+   <group>/skills/<skill>/
+     SKILL.md
+     scripts/*.py          # Python automation
+     scripts/*.js          # Node CLIs
+     scripts/*.sh          # shell helpers
+   ```
+   Group-level bundles also live at `<group>/tools/clis/*.js` (e.g. marketing-skills).
+
+2. **Extract env-var names.** Use these regexes as a starting point — but **read the
+   surrounding 2–3 lines** to classify required vs optional (the regex doesn't know
+   if the value is later checked for truthiness):
+
+   ```sh
+   # Python — required (no default)
+   grep -rE 'os\.environ\[' --include='*.py' <group>/skills/<skill>/
+   grep -rE 'os\.getenv\(\s*["\x27][A-Z_][A-Z0-9_]*["\x27]\s*\)' --include='*.py' <group>/skills/<skill>/
+
+   # Python — optional (has default)
+   grep -rE 'os\.environ\.get\(' --include='*.py' <group>/skills/<skill>/
+
+   # JS/TS — both forms; classify by reading the surrounding code
+   grep -rE 'process\.env\.[A-Z_][A-Z0-9_]*' --include='*.js' --include='*.ts' --include='*.mjs' <group>/skills/<skill>/
+
+   # Shell
+   grep -rE '\$\{?[A-Z_][A-Z0-9_]*\}?' --include='*.sh' <group>/skills/<skill>/
+   ```
+
+3. **Classify each var.** Walk the matches and decide:
+   - **Required** if:
+     - `os.environ["X"]` (raises KeyError if unset)
+     - `os.getenv("X")` *followed by* `if not x: raise ...` / `assert x` / `sys.exit(...)`
+     - `process.env.X` *followed by* `?? throw`, `|| throw`, `if (!process.env.X) throw`
+     - The var appears in upstream `.env.example` / `.env.sample` without an explicit
+       "(optional)" annotation
+   - **Optional** otherwise (has default, has fallback, only used in conditional path,
+     etc.).
+
+4. **Cross-check upstream `.env.example`.** If the repo ships one, it is the
+   **author's curated required list**. Default to treating every var in it as
+   required *unless* the file annotates otherwise.
+
+5. **Write the files.** One env-var name per line, optional comments with `#`:
+
+   ```sh
+   # <group>/skills/<skill>/env.required
+   # Producing real API calls
+   STRIPE_API_KEY
+   STRIPE_WEBHOOK_SECRET
+
+   # <group>/skills/<skill>/env.optional
+   # Pretty-printing
+   STRIPE_LOG_LEVEL
+   STRIPE_DEFAULT_CURRENCY
+   ```
+
+6. **For standalone `type: skill` units**, write `env.required` / `env.optional` at
+   the unit root next to the `SKILL.md`, not inside a `skills/<name>/` subdir.
+
+7. **Sanity-check with `validate.sh`.** Invalid env-var names (lowercase, hyphens,
+   starts with digit) fail validation.
+
+**Practical tip:** when in doubt, mark a var **optional**. False optionals only
+mean the launcher offers an extra field; false requireds block hires from
+running skills they don't actually need that var for.
+
 ### 3.6 Generate the env overlay — `.robomotion/env.yaml`
 
 Marketing skills can each speak to several alternative tools (analytics → GA4 *or* Mixpanel *or* Amplitude *or* …). The env overlay lists every possible env var across the group so the launcher and hire wizard can offer them. The launcher's overlay-merge is a roadmap item (not yet wired in 0.13.0); generating the file now means it's ready the moment that lands.
@@ -368,13 +474,53 @@ The container's base image already ships `python3`, `node20`, `jq`, `git`, `curl
 
 A non-zero exit fails the image build. Guard best-effort steps with `|| true`.
 
-### 5.4 `.robomotion/env.yaml`
+### 5.4 Env vars — per-skill `env.required` / `env.optional` (REQUIRED) and `env.yaml` (optional overlay)
+
+> Two-layer model. The **per-skill** files are the source of truth; the
+> **group-level** `.robomotion/env.yaml` is a higher-level overlay for groups
+> where one skill can speak to many alternative tools (marketing-skills style).
+
+#### 5.4.1 Per-skill `env.required` / `env.optional` — REQUIRED for every skill that runs scripts
+
+Live alongside the upstream `SKILL.md`:
+
+```
+<group>/skills/<skill>/
+  SKILL.md
+  env.required        # vars whose absence breaks the skill
+  env.optional        # vars that change behavior but have defaults / fallbacks
+  scripts/...         # whatever the skill ships
+```
+
+For standalone `type: skill` units, the files live at the unit root next to the `SKILL.md`.
+
+**File format** — one valid env-var name per line; blank lines and `# comments` allowed:
+
+```sh
+# env.required — without these the skill's scripts crash
+STRIPE_API_KEY
+STRIPE_WEBHOOK_SECRET
+
+# env.optional — defaults exist; user only sets these to override
+STRIPE_LOG_LEVEL
+STRIPE_DEFAULT_CURRENCY
+```
+
+Validation rules (enforced by `validate.sh`):
+
+- Names match `^[A-Za-z_][A-Za-z0-9_]*$` (uppercase by convention, but not enforced).
+- No `KEY=value` lines — these are **var-name lists**, not assignments. Real values come from the user at hire time.
+- A var should appear in **either** `env.required` **or** `env.optional`, not both. If you're unsure, prefer `env.optional` (see §3.5b for the heuristic).
+
+The launcher reads these at hire time, surfaces each in the credentials wizard, and binds them to the skill's container at runtime. **A missing `env.required` is the #1 root cause of "the skill installed but doesn't do anything."**
+
+#### 5.4.2 Group-level `.robomotion/env.yaml` — optional overlay for "knows about many alternative integrations" groups
 
 Group-level env overlay. **Generated**, not hand-edited (for vendored groups where a `tools/integrations/` library exists).
 
 The launcher (roadmap item, not yet wired) reads this at stage time and surfaces each integration's env vars as `env.optional` on every inner skill that lists it.
 
-For first-party groups without an upstream tool library, author `env.yaml` by hand or skip it entirely (per-skill `env.required` / `env.optional` files in each skill folder cover the basics).
+For first-party groups without an upstream tool library, or for groups where each skill speaks to a single fixed tool, **skip `env.yaml` entirely** — the per-skill `env.required` / `env.optional` files from §5.4.1 are the source of truth.
 
 ### 5.5 Three layers of durable state
 
