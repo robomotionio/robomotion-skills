@@ -1,11 +1,6 @@
 ---
 name: robot-framework-skill
-description: >
-  Generates Robot Framework tests in keyword-driven syntax with Python.
-  Supports SeleniumLibrary, RequestsLibrary, and custom keywords. Use when
-  user mentions "Robot Framework", "*** Test Cases ***", "SeleniumLibrary",
-  ".robot file". Triggers on: "Robot Framework", "*** Test Cases ***",
-  ".robot", "SeleniumLibrary", "keyword-driven test".
+description: "Generates Robot Framework tests in keyword-driven syntax with Python. Supports SeleniumLibrary, RequestsLibrary, and custom keywords. Use when user mentions \"Robot Framework\", \"*** Test Cases ***\", \"SeleniumLibrary\", \".robot file\". Triggers on: \"Robot Framework\", \"*** Test Cases ***\", \".robot\", \"SeleniumLibrary\", \"keyword-driven test\"."
 languages:
   - Python
   - Robot Framework

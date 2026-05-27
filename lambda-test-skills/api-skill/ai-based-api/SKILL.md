@@ -1,12 +1,6 @@
 ---
 name: api-ai-augmented
-description: >
-  Designs AI-powered API features, LLM tool/function definitions, MCP server tool schemas, natural language
-  to API conversion, and agentic API workflows. Use whenever the user asks about "AI calling my API",
-  "function calling schema", "tool definition for LLM", "MCP tools", "natural language API", "AI agent",
-  "let Claude use my API", "OpenAI function calling", "Anthropic tool use", "API agent workflow",
-  or "convert user intent to API calls". Triggers on: "tool schema", "function spec", "agentic API",
-  "LLM plugin", "AI integration", "RAG with my API", or "chatbot that calls my API".
+description: "Designs AI-powered API features, LLM tool/function definitions, MCP server tool schemas, natural language to API conversion, and agentic API workflows. Use whenever the user asks about \"AI calling my API\", \"function calling schema\", \"tool definition for LLM\", \"MCP tools\", \"natural language API\", \"AI agent\", \"let Claude use my API\", \"OpenAI function calling\", \"Anthropic tool use\", \"API agent workflow\", or \"convert user intent to API calls\". Triggers on: \"tool schema\", \"function spec\", \"agentic API\", \"LLM plugin\", \"AI integration\", \"RAG with my API\", or \"chatbot that calls my API\"."
 languages:
   - JavaScript
   - TypeScript

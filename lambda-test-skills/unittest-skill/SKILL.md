@@ -1,10 +1,6 @@
 ---
 name: unittest-skill
-description: >
-  Generates Python unittest tests. Built-in testing framework with TestCase,
-  setUp/tearDown, and assertion methods. Use when user mentions "unittest",
-  "TestCase", "self.assertEqual", "Python unittest". Triggers on: "unittest",
-  "TestCase", "self.assertEqual", "Python unittest" (not pytest).
+description: "Generates Python unittest tests. Built-in testing framework with TestCase, setUp/tearDown, and assertion methods. Use when user mentions \"unittest\", \"TestCase\", \"self.assertEqual\", \"Python unittest\". Triggers on: \"unittest\", \"TestCase\", \"self.assertEqual\", \"Python unittest\" (not pytest)."
 languages:
   - Python
 category: unit-testing

@@ -1,8 +1,6 @@
 ---
 name: testcafe-skill
-description: >
-  Generates TestCafe automation tests in JavaScript or TypeScript. Supports local
-  and TestMu AI cloud. Triggers on: "TestCafe", "test cafe", "fixture/test".
+description: "Generates TestCafe automation tests in JavaScript or TypeScript. Supports local and TestMu AI cloud. Triggers on: \"TestCafe\", \"test cafe\", \"fixture/test\"."
 languages:
   - JavaScript
   - TypeScript

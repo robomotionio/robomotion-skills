@@ -1,10 +1,6 @@
 ---
 name: geb-skill
-description: >
-  Generates Geb browser automation tests in Groovy with Spock integration.
-  jQuery-like content DSL and page object pattern. Use when user mentions "Geb",
-  "Groovy test", "GebSpec", "Browser.drive". Triggers on: "Geb", "GebSpec",
-  "Groovy browser test", "Browser.drive".
+description: "Generates Geb browser automation tests in Groovy with Spock integration. jQuery-like content DSL and page object pattern. Use when user mentions \"Geb\", \"Groovy test\", \"GebSpec\", \"Browser.drive\". Triggers on: \"Geb\", \"GebSpec\", \"Groovy browser test\", \"Browser.drive\"."
 languages:
   - Groovy
 category: e2e-testing

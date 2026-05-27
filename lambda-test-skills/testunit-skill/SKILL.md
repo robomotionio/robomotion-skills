@@ -1,10 +1,6 @@
 ---
 name: testunit-skill
-description: >
-  Generates Test::Unit tests in Ruby. Classic xUnit-style testing with assert
-  methods and test case classes. Use when user mentions "Test::Unit",
-  "assert_equal Ruby", "Ruby test-unit". Triggers on: "Test::Unit",
-  "Ruby test-unit", "assert_equal Ruby" (not RSpec).
+description: "Generates Test::Unit tests in Ruby. Classic xUnit-style testing with assert methods and test case classes. Use when user mentions \"Test::Unit\", \"assert_equal Ruby\", \"Ruby test-unit\". Triggers on: \"Test::Unit\", \"Ruby test-unit\", \"assert_equal Ruby\" (not RSpec)."
 languages:
   - Ruby
 category: unit-testing

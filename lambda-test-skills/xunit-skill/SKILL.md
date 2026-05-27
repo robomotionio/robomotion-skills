@@ -1,10 +1,6 @@
 ---
 name: xunit-skill
-description: >
-  Generates xUnit.net tests in C#. Covers Fact/Theory, constructor injection,
-  IClassFixture, and FluentAssertions. Use when user mentions "xUnit",
-  "[Fact]", "[Theory]", "Assert.Equal", "C# xUnit". Triggers on: "xUnit",
-  "[Fact]", "[Theory]", "Assert.Equal C#", "xUnit.net".
+description: "Generates xUnit.net tests in C#. Covers Fact/Theory, constructor injection, IClassFixture, and FluentAssertions. Use when user mentions \"xUnit\", \"[Fact]\", \"[Theory]\", \"Assert.Equal\", \"C# xUnit\". Triggers on: \"xUnit\", \"[Fact]\", \"[Theory]\", \"Assert.Equal C#\", \"xUnit.net\"."
 languages:
   - C#
 category: unit-testing

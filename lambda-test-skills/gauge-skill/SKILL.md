@@ -1,11 +1,6 @@
 ---
 name: gauge-skill
-description: >
-  Generates Gauge test specifications in Markdown with step implementations
-  in Java, Python, JS, or Ruby. ThoughtWorks' test automation framework.
-  Use when user mentions "Gauge", "spec file", "## Scenario", "step
-  implementation". Triggers on: "Gauge", "Gauge spec", "Gauge framework",
-  "ThoughtWorks test".
+description: "Generates Gauge test specifications in Markdown with step implementations in Java, Python, JS, or Ruby. ThoughtWorks' test automation framework. Use when user mentions \"Gauge\", \"spec file\", \"## Scenario\", \"step implementation\". Triggers on: \"Gauge\", \"Gauge spec\", \"Gauge framework\", \"ThoughtWorks test\"."
 languages:
   - Java
   - Python

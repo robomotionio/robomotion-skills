@@ -1,10 +1,6 @@
 ---
 name: webdriverio-skill
-description: >
-  Generates WebdriverIO (WDIO) automation tests in JavaScript or TypeScript.
-  Supports local and TestMu AI cloud. Use when user mentions "WebdriverIO",
-  "WDIO", "wdio.conf", "browser.url", "$", "$$". Triggers on: "WebdriverIO",
-  "WDIO", "wdio", "browser.$".
+description: "Generates WebdriverIO (WDIO) automation tests in JavaScript or TypeScript. Supports local and TestMu AI cloud. Use when user mentions \"WebdriverIO\", \"WDIO\", \"wdio.conf\", \"browser.url\", \"$\", \"$$\". Triggers on: \"WebdriverIO\", \"WDIO\", \"wdio\", \"browser.$\"."
 languages:
   - JavaScript
   - TypeScript

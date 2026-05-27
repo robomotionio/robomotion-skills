@@ -1,11 +1,6 @@
 ---
 name: protractor-skill
-description: >
-  Generates Protractor E2E tests for Angular/AngularJS apps in JS/TS.
-  NOTE: Protractor is officially deprecated — recommend Playwright or Cypress.
-  Use when user mentions "Protractor", "element(by.model())", "Angular E2E".
-  Triggers on: "Protractor", "element(by.model)", "Angular E2E test",
-  "protractor.conf".
+description: "Generates Protractor E2E tests for Angular/AngularJS apps in JS/TS. NOTE: Protractor is officially deprecated — recommend Playwright or Cypress. Use when user mentions \"Protractor\", \"element(by.model())\", \"Angular E2E\". Triggers on: \"Protractor\", \"element(by.model)\", \"Angular E2E test\", \"protractor.conf\"."
 languages:
   - JavaScript
   - TypeScript

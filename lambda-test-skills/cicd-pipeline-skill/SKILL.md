@@ -1,11 +1,6 @@
 ---
 name: cicd-pipeline-skill
-description: >
-  Generates CI/CD pipeline configurations for test automation with GitHub Actions,
-  Jenkins, GitLab CI, and Azure DevOps. Includes TestMu AI cloud integration.
-  Use when user mentions "CI/CD", "pipeline", "GitHub Actions", "Jenkins",
-  "GitLab CI". Triggers on: "CI/CD", "pipeline", "GitHub Actions", "Jenkins",
-  "GitLab CI", "Azure DevOps", "automated testing pipeline".
+description: "Generates CI/CD pipeline configurations for test automation with GitHub Actions, Jenkins, GitLab CI, and Azure DevOps. Includes TestMu AI cloud integration. Use when user mentions \"CI/CD\", \"pipeline\", \"GitHub Actions\", \"Jenkins\", \"GitLab CI\". Triggers on: \"CI/CD\", \"pipeline\", \"GitHub Actions\", \"Jenkins\", \"GitLab CI\", \"Azure DevOps\", \"automated testing pipeline\"."
 languages:
   - YAML
 category: devops

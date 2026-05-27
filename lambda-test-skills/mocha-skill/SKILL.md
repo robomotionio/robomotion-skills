@@ -1,9 +1,6 @@
 ---
 name: mocha-skill
-description: >
-  Generates Mocha tests in JavaScript with Chai assertions and Sinon mocking.
-  Use when user mentions "Mocha", "Chai", "sinon", "describe/it (not Jest)".
-  Triggers on: "Mocha", "Chai", "sinon", "mocha test".
+description: "Generates Mocha tests in JavaScript with Chai assertions and Sinon mocking. Use when user mentions \"Mocha\", \"Chai\", \"sinon\", \"describe/it (not Jest)\". Triggers on: \"Mocha\", \"Chai\", \"sinon\", \"mocha test\"."
 languages:
   - JavaScript
   - TypeScript

@@ -1,11 +1,6 @@
 ---
 name: jest-skill
-description: >
-  Generates Jest unit and integration tests in JavaScript or TypeScript.
-  Covers mocking, snapshots, async testing, and React component testing.
-  Use when user mentions "Jest", "describe/it/expect", "jest.mock",
-  "toMatchSnapshot". Triggers on: "Jest", "expect().toBe()", "jest.mock",
-  "snapshot test", "JS test", "React test".
+description: "Generates Jest unit and integration tests in JavaScript or TypeScript. Covers mocking, snapshots, async testing, and React component testing. Use when user mentions \"Jest\", \"describe/it/expect\", \"jest.mock\", \"toMatchSnapshot\". Triggers on: \"Jest\", \"expect().toBe()\", \"jest.mock\", \"snapshot test\", \"JS test\", \"React test\"."
 languages:
   - JavaScript
   - TypeScript

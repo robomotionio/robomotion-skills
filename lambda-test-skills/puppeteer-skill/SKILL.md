@@ -1,8 +1,6 @@
 ---
 name: puppeteer-skill
-description: >
-  Generates Puppeteer scripts for browser automation, scraping, and PDF generation.
-  Triggers on: "Puppeteer", "headless Chrome", "page.goto", "scrape", "PDF generation".
+description: "Generates Puppeteer scripts for browser automation, scraping, and PDF generation. Triggers on: \"Puppeteer\", \"headless Chrome\", \"page.goto\", \"scrape\", \"PDF generation\"."
 languages:
   - JavaScript
   - TypeScript

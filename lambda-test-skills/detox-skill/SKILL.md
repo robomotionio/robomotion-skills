@@ -1,11 +1,6 @@
 ---
 name: detox-skill
-description: >
-  Generates Detox E2E tests for React Native apps in JavaScript. Gray-box testing
-  framework with automatic synchronization. Supports local simulators/emulators
-  and TestMu AI cloud. Use when user mentions "Detox", "React Native test",
-  "element(by.id())", "device.launchApp". Triggers on: "Detox", "React Native E2E",
-  "React Native test", "element(by.id)", "device.launchApp".
+description: "Generates Detox E2E tests for React Native apps in JavaScript. Gray-box testing framework with automatic synchronization. Supports local simulators/emulators and TestMu AI cloud. Use when user mentions \"Detox\", \"React Native test\", \"element(by.id())\", \"device.launchApp\". Triggers on: \"Detox\", \"React Native E2E\", \"React Native test\", \"element(by.id)\", \"device.launchApp\"."
 languages:
   - JavaScript
   - TypeScript
