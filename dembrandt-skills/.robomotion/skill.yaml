@@ -1,0 +1,10 @@
+schema_version: 1
+name: dembrandt-skills
+title: 'Dembrandt Skills'
+type: group
+version: 0.1.0
+author: 'dembrandt'
+source_url: https://github.com/dembrandt/dembrandt-skills
+license: MIT
+summary: '32 skills — UX and design system skills: hierarchy, typography, accessibility, interactions'
+tags: [development, testing, design]
