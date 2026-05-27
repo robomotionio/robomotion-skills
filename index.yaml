@@ -263,7 +263,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: df161f392f8b
+    content_hash: e0b879cabe29
     files:
     - SKILL.md
     - references/implementation.md
@@ -1084,20 +1084,21 @@ groups:
   - name: hig-components-content
     path: apple-hig-skills/skills/hig-components-content
     title: hig-components-content
-    summary: 'Apple Human Interface Guidelines for content display components. Use this skill when the user asks about "charts
-      component", "collection view", "image view", "web view", "color well", "image well", "activity view", "lockup", "data
-      visualization", "content display", displaying images, rendering web content, color pickers, or presenting collections
-      of items in Apple apps. Also use when the user says "how should I display charts", "what''s the best way to show images",
-      "should I use a web view", "how do I build a grid of items", "what component shows media", or "how do I present a share
-      sheet". Cross-references: hig-foundations for color/typography/accessibility, hig-patterns for data visualization patterns,
-      hig-components-layout for structural containers, hig-platforms for platform-specific component behavior.'
+    summary: 'Apple Human Interface Guidelines for content display components. Use this skill when the user asks about \"charts
+      component\", \"collection view\", \"image view\", \"web view\", \"color well\", \"image well\", \"activity view\", \"lockup\",
+      \"data visualization\", \"content display\", displaying images, rendering web content, color pickers, or presenting
+      collections of items in Apple apps. Also use when the user says \"how should I display charts\", \"what''s the best
+      way to show images\", \"should I use a web view\", \"how do I build a grid of items\", \"what component shows media\",
+      or \"how do I present a share sheet\". Cross-references: hig-foundations for color/typography/accessibility, hig-patterns
+      for data visualization patterns, hig-components-layout for structural containers, hig-platforms for platform-specific
+      component behavior.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 00e9414847d8
+    content_hash: e2df36eab6ad
     files:
     - SKILL.md
     - references/activity-views.md
@@ -1117,17 +1118,17 @@ groups:
     title: hig-components-controls
     summary: 'Apple HIG guidance for selection and input controls including pickers, toggles, sliders, steppers, segmented
       controls, combo boxes, text fields, text views, labels, token fields, virtual keyboards, rating indicators, and gauges.
-      Use this skill when the user says "picker or segmented control," "how should my form look," "what keyboard type should
-      I use," "toggle vs checkbox," or asks about picker design, toggle, switch, slider, stepper, text field, text input,
-      segmented control, combo box, label, token field, virtual keyboard, rating indicator, gauge, form design, input validation,
-      or control state management. Cross-references: hig-components-menus, hig-components-dialogs, hig-components-search.'
+      Use this skill when the user says \"picker or segmented control,\" \"how should my form look,\" \"what keyboard type
+      should I use,\" \"toggle vs checkbox,\" or asks about picker design, toggle, switch, slider, stepper, text field, text
+      input, segmented control, combo box, label, token field, virtual keyboard, rating indicator, gauge, form design, input
+      validation, or control state management. Cross-references: hig-components-menus, hig-components-dialogs, hig-components-search.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 31da71529282
+    content_hash: 01135da941ec
     files:
     - SKILL.md
     - references/combo-boxes.md
@@ -1152,18 +1153,18 @@ groups:
     path: apple-hig-skills/skills/hig-components-dialogs
     title: hig-components-dialogs
     summary: 'Apple HIG guidance for presentation components including alerts, action sheets, popovers, sheets, and digit
-      entry views. Use this skill when the user says "should I use an alert or a sheet," "how do I show a confirmation dialog,"
-      "when should I use a popover," "my modals are annoying users," or asks about alert design, action sheet, popover, sheet,
-      modal, dialog, digit entry, confirmation dialog, warning dialog, modal presentation, non-modal content, destructive
-      action confirmation, or overlay UI patterns. Cross-references: hig-components-menus, hig-components-controls, hig-components-search,
-      hig-patterns.'
+      entry views. Use this skill when the user says \"should I use an alert or a sheet,\" \"how do I show a confirmation
+      dialog,\" \"when should I use a popover,\" \"my modals are annoying users,\" or asks about alert design, action sheet,
+      popover, sheet, modal, dialog, digit entry, confirmation dialog, warning dialog, modal presentation, non-modal content,
+      destructive action confirmation, or overlay UI patterns. Cross-references: hig-components-menus, hig-components-controls,
+      hig-components-search, hig-patterns.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 94de4f4516a1
+    content_hash: a8c4dd903c7d
     files:
     - SKILL.md
     - references/action-sheets.md
@@ -1179,19 +1180,20 @@ groups:
     path: apple-hig-skills/skills/hig-components-layout
     title: hig-components-layout
     summary: 'Apple Human Interface Guidelines for layout and navigation components. Use this skill when the user asks about
-      "sidebar", "split view", "tab bar", "tab view", "scroll view", "window design", "panel", "list view", "table view",
-      "column view", "outline view", "navigation structure", "app layout", "boxes", "ornaments", or organizing content hierarchically
-      in Apple apps. Also use when the user says "how should I organize my app", "what navigation pattern should I use", "my
-      layout breaks on iPad", "how do I build a sidebar", "should I use tabs or a sidebar", or "my app doesn''t adapt to different
-      screen sizes". Cross-references: hig-foundations for layout/spacing principles, hig-platforms for platform-specific
-      navigation, hig-patterns for multitasking and full-screen, hig-components-content for content display.'
+      \"sidebar\", \"split view\", \"tab bar\", \"tab view\", \"scroll view\", \"window design\", \"panel\", \"list view\",
+      \"table view\", \"column view\", \"outline view\", \"navigation structure\", \"app layout\", \"boxes\", \"ornaments\",
+      or organizing content hierarchically in Apple apps. Also use when the user says \"how should I organize my app\", \"what
+      navigation pattern should I use\", \"my layout breaks on iPad\", \"how do I build a sidebar\", \"should I use tabs or
+      a sidebar\", or \"my app doesn''t adapt to different screen sizes\". Cross-references: hig-foundations for layout/spacing
+      principles, hig-platforms for platform-specific navigation, hig-patterns for multitasking and full-screen, hig-components-content
+      for content display.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a11bb64554e3
+    content_hash: b0b5bc0f2c1b
     files:
     - SKILL.md
     - references/boxes.md
@@ -1215,17 +1217,17 @@ groups:
     title: hig-components-menus
     summary: 'Apple HIG guidance for menu and button components including menus, context menus, dock menus, edit menus, the
       menu bar, toolbars, action buttons, pop-up buttons, pull-down buttons, disclosure controls, and standard buttons. Use
-      this skill when the user says "how should my buttons look," "what goes in the menu bar," "should I use a context menu
-      or action sheet," "how do I design a toolbar," or asks about button design, menu design, context menu, toolbar, menu
-      bar, action button, pop-up button, pull-down button, disclosure control, dock menu, edit menu, or any menu/button component
-      layout and behavior. Cross-references: hig-components-search, hig-components-controls, hig-components-dialogs.'
+      this skill when the user says \"how should my buttons look,\" \"what goes in the menu bar,\" \"should I use a context
+      menu or action sheet,\" \"how do I design a toolbar,\" or asks about button design, menu design, context menu, toolbar,
+      menu bar, action button, pop-up button, pull-down button, disclosure control, dock menu, edit menu, or any menu/button
+      component layout and behavior. Cross-references: hig-components-search, hig-components-controls, hig-components-dialogs.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 787d858e22dc
+    content_hash: 26662fda3b9a
     files:
     - SKILL.md
     - references/action-button.md
@@ -1247,17 +1249,17 @@ groups:
     path: apple-hig-skills/skills/hig-components-search
     title: hig-components-search
     summary: 'Apple HIG guidance for navigation-related components including search fields, page controls, and path controls.
-      Use this skill when the user says "how should search work in my app," "I need a breadcrumb," "how do I paginate content,"
-      or asks about search field, search bar, page control, path control, breadcrumb, navigation component, search UX, search
-      suggestions, search scopes, paginated content navigation, or file path hierarchy display. Cross-references: hig-components-menus,
-      hig-components-controls, hig-components-dialogs, hig-patterns.'
+      Use this skill when the user says \"how should search work in my app,\" \"I need a breadcrumb,\" \"how do I paginate
+      content,\" or asks about search field, search bar, page control, path control, breadcrumb, navigation component, search
+      UX, search suggestions, search scopes, paginated content navigation, or file path hierarchy display. Cross-references:
+      hig-components-menus, hig-components-controls, hig-components-dialogs, hig-patterns.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 0f97944fd839
+    content_hash: c8298b2ac3d7
     files:
     - SKILL.md
     - references/page-controls.md
@@ -1271,18 +1273,19 @@ groups:
     path: apple-hig-skills/skills/hig-components-status
     title: hig-components-status
     summary: 'Apple HIG guidance for status and progress UI components including progress indicators, status bars, and activity
-      rings. Use this skill when asked about: "progress indicator", "progress bar", "loading spinner", "status bar", "activity
-      ring", "progress display", determinate vs indeterminate progress, loading states, or fitness tracking rings. Also use
-      when the user says "how do I show loading state," "should I use a spinner or progress bar," "what goes in the status
-      bar," or asks about activity indicators. Cross-references: hig-components-system for widgets and complications, hig-inputs
-      for gesture-driven progress controls, hig-technologies for HealthKit and activity ring data integration.'
+      rings. Use this skill when asked about: \"progress indicator\", \"progress bar\", \"loading spinner\", \"status bar\",
+      \"activity ring\", \"progress display\", determinate vs indeterminate progress, loading states, or fitness tracking
+      rings. Also use when the user says \"how do I show loading state,\" \"should I use a spinner or progress bar,\" \"what
+      goes in the status bar,\" or asks about activity indicators. Cross-references: hig-components-system for widgets and
+      complications, hig-inputs for gesture-driven progress controls, hig-technologies for HealthKit and activity ring data
+      integration.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1671e49bc509
+    content_hash: cd4e4045672c
     files:
     - SKILL.md
     - references/activity-rings.md
@@ -1296,11 +1299,11 @@ groups:
     path: apple-hig-skills/skills/hig-components-system
     title: hig-components-system
     summary: 'Apple HIG guidance for system experience components: widgets, live activities, notifications, complications,
-      home screen quick actions, top shelf, watch faces, app clips, and app shortcuts. Use when asked about: "widget design",
-      "live activity", "notification design", "complication", "home screen quick action", "top shelf", "watch face", "app
-      clip", "app shortcut", "system experience". Also use when the user says "how do I design a widget," "what should my
-      notification look like," "how do Live Activities work," "should I make an App Clip," or asks about surfaces outside
-      the main app. Cross-references: hig-components-status for progress in widgets, hig-inputs for interaction patterns,
+      home screen quick actions, top shelf, watch faces, app clips, and app shortcuts. Use when asked about: \"widget design\",
+      \"live activity\", \"notification design\", \"complication\", \"home screen quick action\", \"top shelf\", \"watch face\",
+      \"app clip\", \"app shortcut\", \"system experience\". Also use when the user says \"how do I design a widget,\" \"what
+      should my notification look like,\" \"how do Live Activities work,\" \"should I make an App Clip,\" or asks about surfaces
+      outside the main app. Cross-references: hig-components-status for progress in widgets, hig-inputs for interaction patterns,
       hig-technologies for Siri and system integration.'
     version: 0.1.0
     tags: []
@@ -1308,7 +1311,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f36e81e355e1
+    content_hash: 06831e5f19a6
     files:
     - SKILL.md
     - references/app-clips.md
@@ -1327,20 +1330,21 @@ groups:
   - name: hig-foundations
     path: apple-hig-skills/skills/hig-foundations
     title: hig-foundations
-    summary: 'Apple Human Interface Guidelines design foundations. Use this skill when the user asks about "HIG color", "Apple
-      typography", "SF Symbols", "dark mode guidelines", "accessible design", "Apple design foundations", "app icon", "layout
-      guidelines", "materials", "motion", "privacy", "right to left", "RTL", "inclusive design", branding, images, spatial
-      layout, or writing style. Also use when the user says "my colors look wrong in dark mode", "what font should I use",
-      "is my app accessible enough", "how do I support Dynamic Type", "what contrast ratio do I need", "how do I pick system
-      colors", or "my icons don''t match the system style". Cross-references: hig-platforms for platform-specific guidance,
-      hig-patterns for interaction patterns, hig-components-layout for structural components, hig-components-content for display.'
+    summary: 'Apple Human Interface Guidelines design foundations. Use this skill when the user asks about \"HIG color\",
+      \"Apple typography\", \"SF Symbols\", \"dark mode guidelines\", \"accessible design\", \"Apple design foundations\",
+      \"app icon\", \"layout guidelines\", \"materials\", \"motion\", \"privacy\", \"right to left\", \"RTL\", \"inclusive
+      design\", branding, images, spatial layout, or writing style. Also use when the user says \"my colors look wrong in
+      dark mode\", \"what font should I use\", \"is my app accessible enough\", \"how do I support Dynamic Type\", \"what
+      contrast ratio do I need\", \"how do I pick system colors\", or \"my icons don''t match the system style\". Cross-references:
+      hig-platforms for platform-specific guidance, hig-patterns for interaction patterns, hig-components-layout for structural
+      components, hig-components-content for display.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 66f960636d1e
+    content_hash: 18e3263be894
     files:
     - SKILL.md
     - references/accessibility.md
@@ -1370,18 +1374,19 @@ groups:
     title: hig-inputs
     summary: 'Apple HIG guidance for input methods and interaction patterns: gestures, Apple Pencil, keyboards, game controllers,
       pointers, Digital Crown, eye tracking, focus system, remotes, spatial interactions, gyroscope, accelerometer, and nearby
-      interactions. Use when asked about: "gesture design", "Apple Pencil", "keyboard shortcuts", "game controller", "pointer
-      support", "mouse support", "trackpad", "Digital Crown", "eye tracking", "visionOS input", "focus system", "remote control",
-      "gyroscope", "spatial interaction". Also use when the user says "what gestures should I support," "how do I add keyboard
-      shortcuts," "how does input work on Apple TV," "should I support Apple Pencil," or asks about input device handling.
-      Cross-references: hig-components-status, hig-components-system, hig-technologies for VoiceOver and Siri.'
+      interactions. Use when asked about: \"gesture design\", \"Apple Pencil\", \"keyboard shortcuts\", \"game controller\",
+      \"pointer support\", \"mouse support\", \"trackpad\", \"Digital Crown\", \"eye tracking\", \"visionOS input\", \"focus
+      system\", \"remote control\", \"gyroscope\", \"spatial interaction\". Also use when the user says \"what gestures should
+      I support,\" \"how do I add keyboard shortcuts,\" \"how does input work on Apple TV,\" \"should I support Apple Pencil,\"
+      or asks about input device handling. Cross-references: hig-components-status, hig-components-system, hig-technologies
+      for VoiceOver and Siri.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8ef7feebd24f
+    content_hash: 036cb84ee529
     files:
     - SKILL.md
     - references/apple-pencil-and-scribble.md
@@ -1404,21 +1409,21 @@ groups:
   - name: hig-patterns
     path: apple-hig-skills/skills/hig-patterns
     title: hig-patterns
-    summary: 'Apple Human Interface Guidelines interaction and UX patterns. Use this skill when the user asks about "onboarding
-      flow", "user onboarding", "app launch", "loading state", "drag and drop", "search pattern", "settings design", "notifications",
-      "modality", "multitasking", "feedback pattern", "haptics", "undo redo", "file management", data entry, sharing, collaboration,
-      full screen, audio, video, haptic feedback, ratings, printing, help, or account management in Apple apps. Also use when
-      the user says "how should onboarding work", "my app takes too long to load", "should I use a modal here", "how do I
-      handle errors", "when should I ask for permissions", "how to show progress", or "what''s the right way to confirm a
-      delete". Cross-references: hig-foundations for underlying principles, hig-platforms for platform specifics, hig-components-layout
-      for navigation, hig-components-content for data display.'
+    summary: 'Apple Human Interface Guidelines interaction and UX patterns. Use this skill when the user asks about \"onboarding
+      flow\", \"user onboarding\", \"app launch\", \"loading state\", \"drag and drop\", \"search pattern\", \"settings design\",
+      \"notifications\", \"modality\", \"multitasking\", \"feedback pattern\", \"haptics\", \"undo redo\", \"file management\",
+      data entry, sharing, collaboration, full screen, audio, video, haptic feedback, ratings, printing, help, or account
+      management in Apple apps. Also use when the user says \"how should onboarding work\", \"my app takes too long to load\",
+      \"should I use a modal here\", \"how do I handle errors\", \"when should I ask for permissions\", \"how to show progress\",
+      or \"what''s the right way to confirm a delete\". Cross-references: hig-foundations for underlying principles, hig-platforms
+      for platform specifics, hig-components-layout for navigation, hig-components-content for data display.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: abf7dc5ac5d8
+    content_hash: b1164fd31418
     files:
     - SKILL.md
     - references/charting-data.md
@@ -1453,20 +1458,20 @@ groups:
   - name: hig-platforms
     path: apple-hig-skills/skills/hig-platforms
     title: hig-platforms
-    summary: 'Apple Human Interface Guidelines for platform-specific design. Use this skill when the user asks about "designing
-      for iOS", "iPad app design", "macOS design", "tvOS", "visionOS", "watchOS", "Apple platform", "which platform", platform
-      differences, platform-specific conventions, or multi-platform app design. Also use when the user says "should I design
-      differently for iPad vs iPhone", "how does my app work on visionOS", "what''s different about macOS apps", "porting
-      my app to another platform", "universal app design", or "what input methods does this platform use". Cross-references:
-      hig-foundations for shared design foundations, hig-patterns for interaction patterns, hig-components-layout for navigation
-      structures, hig-components-content for content display.'
+    summary: 'Apple Human Interface Guidelines for platform-specific design. Use this skill when the user asks about \"designing
+      for iOS\", \"iPad app design\", \"macOS design\", \"tvOS\", \"visionOS\", \"watchOS\", \"Apple platform\", \"which platform\",
+      platform differences, platform-specific conventions, or multi-platform app design. Also use when the user says \"should
+      I design differently for iPad vs iPhone\", \"how does my app work on visionOS\", \"what''s different about macOS apps\",
+      \"porting my app to another platform\", \"universal app design\", or \"what input methods does this platform use\".
+      Cross-references: hig-foundations for shared design foundations, hig-patterns for interaction patterns, hig-components-layout
+      for navigation structures, hig-components-content for content display.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 6ef9e21cdf43
+    content_hash: ca5e0bc8af72
     files:
     - SKILL.md
     - references/designing-for-games.md
@@ -1484,17 +1489,17 @@ groups:
     path: apple-hig-skills/skills/hig-project-context
     title: hig-project-context
     summary: Create or update a shared Apple design context document that other HIG skills use to tailor guidance. Use when
-      the user says "set up my project context," "what platforms am I targeting," "configure HIG settings," or when starting
-      a new Apple platform project. Also activates when other HIG skills need project context but none exists yet. This skill
-      creates .claude/apple-design-context.md so that hig-foundations, hig-platforms, hig-components-*, hig-inputs, and hig-technologies
-      can provide targeted advice without repetitive questions.
+      the user says \"set up my project context,\" \"what platforms am I targeting,\" \"configure HIG settings,\" or when
+      starting a new Apple platform project. Also activates when other HIG skills need project context but none exists yet.
+      This skill creates .claude/apple-design-context.md so that hig-foundations, hig-platforms, hig-components-*, hig-inputs,
+      and hig-technologies can provide targeted advice without repetitive questions.
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 6c7cfe3a6b8d
+    content_hash: 35cf618bb245
     files:
     - SKILL.md
     author: raintree-technology
@@ -1506,19 +1511,19 @@ groups:
     title: hig-technologies
     summary: 'Apple HIG guidance for Apple technology integrations: Siri, Apple Pay, HealthKit, HomeKit, ARKit, machine learning,
       generative AI, iCloud, Sign in with Apple, SharePlay, CarPlay, Game Center, in-app purchase, NFC, Wallet, VoiceOver,
-      Maps, Mac Catalyst, and more. Use when asked about: "Siri integration", "Apple Pay", "HealthKit", "HomeKit", "ARKit",
-      "augmented reality", "machine learning", "generative AI", "iCloud sync", "Sign in with Apple", "SharePlay", "CarPlay",
-      "in-app purchase", "NFC", "VoiceOver", "Maps", "Mac Catalyst". Also use when the user says "how do I integrate Siri,"
-      "what are the Apple Pay guidelines," "how should my AR experience work," "how do I use Sign in with Apple," or asks
-      about any Apple framework or service integration. Cross-references: hig-inputs for input methods, hig-components-system
-      for widgets.'
+      Maps, Mac Catalyst, and more. Use when asked about: \"Siri integration\", \"Apple Pay\", \"HealthKit\", \"HomeKit\",
+      \"ARKit\", \"augmented reality\", \"machine learning\", \"generative AI\", \"iCloud sync\", \"Sign in with Apple\",
+      \"SharePlay\", \"CarPlay\", \"in-app purchase\", \"NFC\", \"VoiceOver\", \"Maps\", \"Mac Catalyst\". Also use when the
+      user says \"how do I integrate Siri,\" \"what are the Apple Pay guidelines,\" \"how should my AR experience work,\"
+      \"how do I use Sign in with Apple,\" or asks about any Apple framework or service integration. Cross-references: hig-inputs
+      for input methods, hig-components-system for widgets.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 5acbc11a3aff
+    content_hash: 61bd9fbd8174
     files:
     - SKILL.md
     - references/airplay.md
@@ -9332,15 +9337,15 @@ groups:
     title: ecom
     summary: 'Claude-powered ecommerce business review toolkit for D2C stores. Single command: review. Analyzes order transaction
       data across multiple time periods (30d/90d/365d), produces KPI trees with health signals, structured findings, and concrete
-      action plans. Triggers on: "ecommerce review", "store review", "store health", "revenue analysis", "customer analysis",
-      "product analysis", "business review".'
+      action plans. Triggers on: \"ecommerce review\", \"store review\", \"store health\", \"revenue analysis\", \"customer
+      analysis\", \"product analysis\", \"business review\".'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 116c89f5fa8f
+    content_hash: d21956cd2c7b
     files:
     - SKILL.md
     - references/benchmarks.md
@@ -10987,16 +10992,16 @@ groups:
     title: seo-cluster
     summary: SERP-based semantic topic clustering for content architecture planning. Groups keywords by actual Google SERP
       overlap (not text similarity), designs hub-and-spoke content clusters with internal link matrices, and generates interactive
-      visualizations. Optionally executes content creation if claude-blog is installed. Use when user says "topic cluster",
-      "content cluster", "semantic clustering", "pillar page", "hub and spoke", "content architecture", "keyword grouping",
-      or "cluster plan".
+      visualizations. Optionally executes content creation if claude-blog is installed. Use when user says \"topic cluster\",
+      \"content cluster\", \"semantic clustering\", \"pillar page\", \"hub and spoke\", \"content architecture\", \"keyword
+      grouping\", or \"cluster plan\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 27e09a371eca
+    content_hash: b08b653ef98e
     files:
     - SKILL.md
     - references/execution-workflow.md
@@ -11009,16 +11014,17 @@ groups:
   - name: seo-competitor-pages
     path: claude-seo/skills/seo-competitor-pages
     title: seo-competitor-pages
-    summary: Generate SEO-optimized competitor comparison and alternatives pages. Covers "X vs Y" layouts, "alternatives to
-      X" pages, feature matrices, schema markup, and conversion optimization. Use when user says "comparison page", "vs page",
-      "alternatives page", "competitor comparison", "X vs Y", "versus", "compare competitors", or "alternative to".
+    summary: Generate SEO-optimized competitor comparison and alternatives pages. Covers \"X vs Y\" layouts, \"alternatives
+      to X\" pages, feature matrices, schema markup, and conversion optimization. Use when user says \"comparison page\",
+      \"vs page\", \"alternatives page\", \"competitor comparison\", \"X vs Y\", \"versus\", \"compare competitors\", or \"alternative
+      to\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 793b54728c37
+    content_hash: 604cecab5c8e
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11029,15 +11035,15 @@ groups:
   - name: seo-content
     path: claude-seo/skills/seo-content
     title: seo-content
-    summary: Content quality and E-E-A-T analysis with AI citation readiness assessment. Use when user says "content quality",
-      "E-E-A-T", "content analysis", "readability check", "thin content", or "content audit".
+    summary: Content quality and E-E-A-T analysis with AI citation readiness assessment. Use when user says \"content quality\",
+      \"E-E-A-T\", \"content analysis\", \"readability check\", \"thin content\", or \"content audit\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3cf6ac9620ca
+    content_hash: 14857e6fc1b9
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11049,16 +11055,16 @@ groups:
     path: claude-seo/skills/seo-content-brief
     title: seo-content-brief
     summary: Generate competitive SEO content briefs with per-section word counts, competitor scoring, keyword density guidance,
-      and page-type templates. Supports both new page briefs and improve-existing-page briefs. Use when user says "content
-      brief", "write a brief", "content outline", "blog brief", "service page brief", "brief for", "writing brief", "content
-      plan", or "outline for".
+      and page-type templates. Supports both new page briefs and improve-existing-page briefs. Use when user says \"content
+      brief\", \"write a brief\", \"content outline\", \"blog brief\", \"service page brief\", \"brief for\", \"writing brief\",
+      \"content plan\", or \"outline for\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 73fee52dd401
+    content_hash: ee65c1c11edb
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11075,16 +11081,16 @@ groups:
     summary: Live SEO data via DataForSEO MCP server. SERP analysis (Google, Bing, Yahoo, YouTube, Google Images), keyword
       research (volume, difficulty, intent, trends), backlink profiles, on-page analysis (Lighthouse, content parsing), competitor
       analysis, content analysis, business listings, AI visibility (ChatGPT scraper, LLM mention tracking), and domain analytics.
-      Requires DataForSEO extension installed. Use when user says "dataforseo", "live SERP", "keyword volume", "backlink data",
-      "competitor data", "AI visibility check", "LLM mentions", "image SERP", "google images", "image rankings", or "real
-      search data".
+      Requires DataForSEO extension installed. Use when user says \"dataforseo\", \"live SERP\", \"keyword volume\", \"backlink
+      data\", \"competitor data\", \"AI visibility check\", \"LLM mentions\", \"image SERP\", \"google images\", \"image rankings\",
+      or \"real search data\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 40fc03ee245c
+    content_hash: 6b3e148a3df9
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11098,16 +11104,16 @@ groups:
     path: claude-seo/skills/seo-drift
     title: seo-drift
     summary: 'SEO drift monitoring: capture baselines of SEO-critical elements, detect changes, and track regressions over
-      time. Git for SEO — baseline, diff, and track changes to your on-page SEO. Use when user says "SEO drift", "baseline",
-      "track changes", "did anything break", "SEO regression", "compare SEO", "before and after", "monitor SEO changes", or
-      "deployment check".'
+      time. Git for SEO — baseline, diff, and track changes to your on-page SEO. Use when user says \"SEO drift\", \"baseline\",
+      \"track changes\", \"did anything break\", \"SEO regression\", \"compare SEO\", \"before and after\", \"monitor SEO
+      changes\", or \"deployment check\".'
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1d8ddb0f49eb
+    content_hash: 9bdd5896bf36
     files:
     - SKILL.md
     - references/comparison-rules.md
@@ -11120,15 +11126,15 @@ groups:
     title: seo-ecommerce
     summary: 'E-commerce SEO analysis: Google Shopping visibility, Amazon marketplace intelligence, product schema validation,
       competitor pricing analysis, and marketplace keyword gaps. Combines on-page product SEO with marketplace data from DataForSEO
-      Merchant API. Use when user says "ecommerce SEO", "product SEO", "Google Shopping", "marketplace SEO", "product schema",
-      "Amazon SEO", "product listings", "shopping ads", or "merchant SEO".'
+      Merchant API. Use when user says \"ecommerce SEO\", \"product SEO\", \"Google Shopping\", \"marketplace SEO\", \"product
+      schema\", \"Amazon SEO\", \"product listings\", \"shopping ads\", or \"merchant SEO\".'
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d5dfb21bcb30
+    content_hash: 7627f47740a4
     files:
     - SKILL.md
     - references/marketplace-endpoints.md
@@ -11141,15 +11147,15 @@ groups:
     path: claude-seo/skills/seo-flow
     title: seo-flow
     summary: FLOW framework integration — evidence-led SEO using the Find → Leverage → Optimize → Win loop. Surfaces stage-specific
-      AI prompts from the FLOW knowledge base (41 prompts, CC BY 4.0). Use when user says "FLOW", "FLOW framework", "seo flow",
-      "evidence-led SEO", "find leverage optimize win", or wants stage-specific SEO prompts.
+      AI prompts from the FLOW knowledge base (41 prompts, CC BY 4.0). Use when user says \"FLOW\", \"FLOW framework\", \"seo
+      flow\", \"evidence-led SEO\", \"find leverage optimize win\", or wants stage-specific SEO prompts.
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2745b9265b70
+    content_hash: cf8b3011bf28
     files:
     - SKILL.md
     - references/bibliography.md
@@ -11206,15 +11212,16 @@ groups:
     title: seo-geo
     summary: Optimize content for AI Overviews (formerly SGE), ChatGPT web search, Perplexity, and other AI-powered search
       experiences. Generative Engine Optimization (GEO) analysis including brand mention signals, AI crawler accessibility,
-      llms.txt compliance, passage-level citability scoring, and platform-specific optimization. Use when user says "AI Overviews",
-      "SGE", "GEO", "AI search", "LLM optimization", "Perplexity", "AI citations", "ChatGPT search", or "AI visibility".
+      llms.txt compliance, passage-level citability scoring, and platform-specific optimization. Use when user says \"AI Overviews\",
+      \"SGE\", \"GEO\", \"AI search\", \"LLM optimization\", \"Perplexity\", \"AI citations\", \"ChatGPT search\", or \"AI
+      visibility\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 31e34e82711f
+    content_hash: c8cedfa18f29
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11229,16 +11236,17 @@ groups:
     title: seo-google
     summary: 'Google SEO APIs: Search Console (Search Analytics, URL Inspection, Sitemaps), PageSpeed Insights v5, CrUX field
       data with 25-week history, Indexing API v3, and GA4 organic traffic. Provides real Google field data for Core Web Vitals,
-      indexation status, search performance, and organic traffic trends. Use when user says "search console", "GSC", "PageSpeed",
-      "CrUX", "field data", "indexing API", "GA4 organic", "URL inspection", "google api setup", "real CWV data", "impressions",
-      "clicks", "CTR", "position data", "LCP", "INP", "CLS", "FCP", "TTFB", or "Lighthouse scores".'
+      indexation status, search performance, and organic traffic trends. Use when user says \"search console\", \"GSC\", \"PageSpeed\",
+      \"CrUX\", \"field data\", \"indexing API\", \"GA4 organic\", \"URL inspection\", \"google api setup\", \"real CWV data\",
+      \"impressions\", \"clicks\", \"CTR\", \"position data\", \"LCP\", \"INP\", \"CLS\", \"FCP\", \"TTFB\", or \"Lighthouse
+      scores\".'
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 29eb6df4f373
+    content_hash: 40e486ea591a
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11264,15 +11272,15 @@ groups:
     path: claude-seo/skills/seo-hreflang
     title: seo-hreflang
     summary: Hreflang and international SEO audit, validation, and generation. Detects common mistakes, validates language/region
-      codes, and generates correct hreflang implementations. Use when user says "hreflang", "i18n SEO", "international SEO",
-      "multi-language", "multi-region", or "language tags".
+      codes, and generates correct hreflang implementations. Use when user says \"hreflang\", \"i18n SEO\", \"international
+      SEO\", \"multi-language\", \"multi-region\", or \"language tags\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: ac6acad24ba1
+    content_hash: 347b981da160
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11318,15 +11326,15 @@ groups:
     title: seo-images
     summary: Image optimization analysis for SEO and performance. Checks alt text, file sizes, formats, responsive images,
       lazy loading, CLS prevention, image SERP rankings (via DataForSEO), and image file optimization (WebP/AVIF conversion,
-      IPTC/XMP metadata injection). Use when user says "image optimization", "alt text", "image SEO", "image size", "image
-      audit", "optimize images", "image metadata", "image SERP", "convert to webp", or "image file optimize".
+      IPTC/XMP metadata injection). Use when user says \"image optimization\", \"alt text\", \"image SEO\", \"image size\",
+      \"image audit\", \"optimize images\", \"image metadata\", \"image SERP\", \"convert to webp\", or \"image file optimize\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: bdce11eb6bc6
+    content_hash: 78202eef2dee
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11340,15 +11348,15 @@ groups:
     summary: Local SEO analysis covering Google Business Profile optimization, NAP consistency, citation health, review signals,
       local schema markup, location page quality, multi-location SEO, and industry-specific recommendations. Detects business
       type (brick-and-mortar, SAB, hybrid) and industry vertical (restaurant, healthcare, legal, home services, real estate,
-      automotive). Use when user says "local SEO", "Google Business Profile", "GBP", "map pack", "local pack", "citations",
-      "NAP consistency", "local rankings", "service area", "multi-location", or "local search".
+      automotive). Use when user says \"local SEO\", \"Google Business Profile\", \"GBP\", \"map pack\", \"local pack\", \"citations\",
+      \"NAP consistency\", \"local rankings\", \"service area\", \"multi-location\", or \"local search\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c88771e86984
+    content_hash: 8c0a62c970c8
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11362,15 +11370,16 @@ groups:
     summary: 'Maps intelligence for local SEO — geo-grid rank tracking, GBP profile auditing via API, review intelligence
       across Google/Tripadvisor/Trustpilot, cross-platform NAP verification (Google/Bing/Apple/OSM), competitor radius mapping,
       and LocalBusiness schema generation from API data. Three-tier capability: free (Overpass + Geoapify), DataForSEO (full
-      intelligence), DataForSEO + Google (maximum coverage). Use when user says "maps", "geo-grid", "rank tracking", "GBP
-      audit", "review velocity", "competitor radius", "maps analysis", "local rank tracking", "Share of Local Voice", or "SoLV".'
+      intelligence), DataForSEO + Google (maximum coverage). Use when user says \"maps\", \"geo-grid\", \"rank tracking\",
+      \"GBP audit\", \"review velocity\", \"competitor radius\", \"maps analysis\", \"local rank tracking\", \"Share of Local
+      Voice\", or \"SoLV\".'
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 5570bb3ff51b
+    content_hash: 76158a48224d
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11382,15 +11391,15 @@ groups:
     path: claude-seo/skills/seo-page
     title: seo-page
     summary: Deep single-page SEO analysis covering on-page elements, content quality, technical meta tags, schema, images,
-      and performance. Use when user says "analyze this page", "check page SEO", "single URL", "check this page", "page analysis",
-      or provides a single URL for review.
+      and performance. Use when user says \"analyze this page\", \"check page SEO\", \"single URL\", \"check this page\",
+      \"page analysis\", or provides a single URL for review.
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 942a84be8348
+    content_hash: 8183a0df5605
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11402,15 +11411,15 @@ groups:
     path: claude-seo/skills/seo-plan
     title: seo-plan
     summary: Strategic SEO planning for new or existing websites. Industry-specific templates, competitive analysis, content
-      strategy, and implementation roadmap. Use when user says "SEO plan", "SEO strategy", "SEO planning", "content strategy",
-      "keyword strategy", "content calendar", "site architecture", or "SEO roadmap".
+      strategy, and implementation roadmap. Use when user says \"SEO plan\", \"SEO strategy\", \"SEO planning\", \"content
+      strategy\", \"keyword strategy\", \"content calendar\", \"site architecture\", or \"SEO roadmap\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2da3280eabe5
+    content_hash: 59d96db00437
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11428,15 +11437,15 @@ groups:
     path: claude-seo/skills/seo-programmatic
     title: seo-programmatic
     summary: Programmatic SEO planning and analysis for pages generated at scale from data sources. Covers template engines,
-      URL patterns, internal linking automation, thin content safeguards, and index bloat prevention. Use when user says "programmatic
-      SEO", "pages at scale", "dynamic pages", "template pages", "generated pages", or "data-driven SEO".
+      URL patterns, internal linking automation, thin content safeguards, and index bloat prevention. Use when user says \"programmatic
+      SEO\", \"pages at scale\", \"dynamic pages\", \"template pages\", \"generated pages\", or \"data-driven SEO\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 94f7ce0a67b5
+    content_hash: 7ea3c7090b68
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11447,15 +11456,15 @@ groups:
   - name: seo-schema
     path: claude-seo/skills/seo-schema
     title: seo-schema
-    summary: Detect, validate, and generate Schema.org structured data. JSON-LD format preferred. Use when user says "schema",
-      "structured data", "rich results", "JSON-LD", or "markup".
+    summary: Detect, validate, and generate Schema.org structured data. JSON-LD format preferred. Use when user says \"schema\",
+      \"structured data\", \"rich results\", \"JSON-LD\", or \"markup\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fad38b9713ca
+    content_hash: 908599afbba3
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11468,14 +11477,14 @@ groups:
     path: claude-seo/skills/seo-sitemap
     title: seo-sitemap
     summary: Analyze existing XML sitemaps or generate new ones with industry templates. Validates format, URLs, and structure.
-      Use when user says "sitemap", "generate sitemap", "sitemap issues", or "XML sitemap".
+      Use when user says \"sitemap\", \"generate sitemap\", \"sitemap issues\", or \"XML sitemap\".
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: dd85d4965c5e
+    content_hash: 3a787e97b972
     files:
     - LICENSE.txt
     - SKILL.md
@@ -11488,16 +11497,16 @@ groups:
     title: seo-sxo
     summary: 'Search Experience Optimization: reads Google SERPs backwards to detect page-type mismatches, derives user stories
       from search intent signals, and scores pages from multiple persona perspectives. Identifies why well-optimized pages
-      fail to rank by analyzing what Google rewards for each keyword. Use when user says "SXO", "search experience", "page
-      type mismatch", "SERP analysis", "user story", "persona scoring", "why isn''t my page ranking", "intent mismatch", or
-      "wireframe".'
+      fail to rank by analyzing what Google rewards for each keyword. Use when user says \"SXO\", \"search experience\", \"page
+      type mismatch\", \"SERP analysis\", \"user story\", \"persona scoring\", \"why isn''t my page ranking\", \"intent mismatch\",
+      or \"wireframe\".'
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 36038ca3d244
+    content_hash: a16525e5ca6a
     files:
     - SKILL.md
     - references/page-type-taxonomy.md
@@ -11512,15 +11521,15 @@ groups:
     path: claude-seo/skills/seo-technical
     title: seo-technical
     summary: 'Technical SEO audit across 9 categories: crawlability, indexability, security, URL structure, mobile, Core Web
-      Vitals, structured data, JavaScript rendering, and IndexNow protocol. Use when user says "technical SEO", "crawl issues",
-      "robots.txt", "Core Web Vitals", "site speed", or "security headers".'
+      Vitals, structured data, JavaScript rendering, and IndexNow protocol. Use when user says \"technical SEO\", \"crawl
+      issues\", \"robots.txt\", \"Core Web Vitals\", \"site speed\", or \"security headers\".'
     version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8a135888e906
+    content_hash: 9e2a424974d5
     files:
     - LICENSE.txt
     - SKILL.md
@@ -26946,7 +26955,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 456f0255ed72
+    content_hash: db6992aa17f8
     files:
     - LICENSE
     - SKILL.md
@@ -29755,7 +29764,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 5a07f666d93c
+    content_hash: 53161aee0a4f
     files:
     - LICENSE
     - SKILL.md
@@ -29956,15 +29965,15 @@ groups:
     title: dembrandt
     summary: 'Orchestrator for the full dembrandt UX pipeline. Routes a UI/UX task through six ordered stages — brand foundation
       → design tokens → layout → components → UX polish → accessibility gate — loading the right sub-skill at each stage.
-      Use when the task spans multiple design concerns: "design review", "build UI", "audit interface", "from brand to UI".
-      For single-concern tasks (e.g. "review my colour palette") go directly to the relevant sub-skill instead.'
+      Use when the task spans multiple design concerns: \"design review\", \"build UI\", \"audit interface\", \"from brand
+      to UI\". For single-concern tasks (e.g. \"review my colour palette\") go directly to the relevant sub-skill instead.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7fdb2d5782f2
+    content_hash: 4088e4e9ffdc
     files:
     - SKILL.md
     author: dembrandt
@@ -36124,8 +36133,8 @@ groups:
       via API, analyze specifications. Sync and maintain a local datasheets directory — extract components from schematics,
       download missing datasheets, keep them up to date. Also supports batch MPN-list seeding (`--mpn-list`) for bulk workflows
       without a KiCad project. Use when the user asks about electronic components, part specs, datasheets, pricing, stock,
-      footprints, or needs to download a datasheet — even without mentioning "DigiKey". Also for "sync datasheets", "download
-      datasheets for my board/project", or mentions a datasheets directory. DigiKey is the default distributor for prototyping.
+      footprints, or needs to download a datasheet — even without mentioning \"DigiKey\". Also for \"sync datasheets\", \"download
+      datasheets for my board/project\", or mentions a datasheets directory. DigiKey is the default distributor for prototyping.
       For BOM workflows, see the bom skill.
     version: 1
     tags: []
@@ -36135,7 +36144,7 @@ groups:
       optional:
       - DIGIKEY_CLIENT_ID
       - DIGIKEY_CLIENT_SECRET
-    content_hash: 521a6b70ff35
+    content_hash: 194d4ae7832d
     files:
     - SKILL.md
     - env.optional
@@ -36182,15 +36191,15 @@ groups:
       risk report with pre-compliance test plan. Supports FCC Part 15, CISPR 32, CISPR 25 (automotive), MIL-STD-461G. SPICE-enhanced
       when available. Use when the user asks about EMC, EMI, radiated/conducted emissions, FCC compliance, CE marking, CISPR,
       ground plane issues, decoupling strategy, clock routing EMC, switching noise, differential pair skew, or whether their
-      board will pass EMC testing. Also for "will this pass FCC?", "check my EMC", "is my ground plane okay?", "check my decoupling",
-      or "generate an EMC test plan".
+      board will pass EMC testing. Also for \"will this pass FCC?\", \"check my EMC\", \"is my ground plane okay?\", \"check
+      my decoupling\", or \"generate an EMC test plan\".
     version: 1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 9618e809c430
+    content_hash: f814769ec880
     files:
     - SKILL.md
     - references/emc-methodology.md
@@ -36234,9 +36243,9 @@ groups:
       trust_summary rollup. Analyzes PDF schematics from dev boards, reference designs, eval kits, and datasheets. Supports
       KiCad 5–10. Use whenever the user mentions .kicad_sch, .kicad_pcb, .kicad_pro, PCB design review, schematic analysis,
       PDF schematics, reference designs, Gerber files, DRC/ERC, netlist issues, BOM extraction, signal tracing, power budget,
-      DFM, or wants to understand, debug, compare, or review any hardware design. Also for "check my board", "review before
-      fab", "what''s wrong with my schematic", "is this ready to order", "check my power supply", "verify this circuit", or
-      any electronics/PCB design question.'
+      DFM, or wants to understand, debug, compare, or review any hardware design. Also for \"check my board\", \"review before
+      fab\", \"what''s wrong with my schematic\", \"is this ready to order\", \"check my power supply\", \"verify this circuit\",
+      or any electronics/PCB design question.'
     version: 1
     tags: []
     mode: container
@@ -36248,7 +36257,7 @@ groups:
       - ELEMENT14_API_KEY
       - MOUSER_PART_API_KEY
       - MOUSER_SEARCH_API_KEY
-    content_hash: c0feb6492d90
+    content_hash: 33abf96a2c37
     files:
     - SKILL.md
     - env.optional
@@ -36313,15 +36322,16 @@ groups:
       schematic, PCB, EMC, and thermal analyses; renders schematic and PCB SVGs with subsystem cropping, focus dimming, net
       highlighting, and pin-net annotation; generates power tree, bus topology, and architecture block diagrams. Produces
       styled PDF with cover pages, TOC, and vector SVG embedding. Markdown source of truth — human-editable, version-controllable.
-      Use for "generate documentation", "create report", "HDD", "CE technical file", "design review package", "ICD", "render
-      schematic", "render layout", "generate block diagram", "manufacturing package", "generate PDF", or "custom report".
+      Use for \"generate documentation\", \"create report\", \"HDD\", \"CE technical file\", \"design review package\", \"ICD\",
+      \"render schematic\", \"render layout\", \"generate block diagram\", \"manufacturing package\", \"generate PDF\", or
+      \"custom report\".
     version: 1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 9c47020ab207
+    content_hash: 2e0160d460a1
     files:
     - SKILL.md
     - references/document-structure.md
@@ -36477,9 +36487,9 @@ groups:
       divider ratios, opamp gains, LC resonance, and crystal load capacitance. Supports ngspice, LTspice, and Xyce (auto-detected).
       Generates testbenches, runs batch mode, produces structured pass/warn/fail report. Use when the user asks to simulate,
       verify, or validate any analog subcircuit — RC filters, LC filters, voltage dividers, opamp circuits, crystal oscillators.
-      Also for "simulate my circuit", "run spice", "verify with simulation", "check my filter cutoff", "does this divider
-      give the right voltage", "what's the bandwidth of this opamp stage". Consider suggesting simulation during design reviews
-      when the schematic analyzer reports simulatable subcircuits and a SPICE simulator is available.
+      Also for \"simulate my circuit\", \"run spice\", \"verify with simulation\", \"check my filter cutoff\", \"does this
+      divider give the right voltage\", \"what's the bandwidth of this opamp stage\". Consider suggesting simulation during
+      design reviews when the schematic analyzer reports simulatable subcircuits and a SPICE simulator is available.
     version: 1
     tags: []
     mode: container
@@ -36497,7 +36507,7 @@ groups:
       - PROGRAMFILES
       - SPICE_SIMULATOR
       - XYCE_PATH
-    content_hash: 3ab94f65c9b1
+    content_hash: 01250862bc1b
     files:
     - SKILL.md
     - env.optional
@@ -39363,7 +39373,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8796c413a0f6
+    content_hash: c5723b1ac1e7
     files:
     - SKILL.md
     - references/kafka-client-config-crd.md
@@ -39449,16 +39459,16 @@ groups:
       not explicitly ask to change (2) Creating new abstraction layers (class, interface, factory, wrapper) without being
       asked (3) Adding comments, documentation, JSDoc, or type annotations without being asked (4) Introducing new dependencies
       without being asked (5) Rewriting entire files instead of making minimal edits (6) Diff scope significantly exceeding
-      the user''s request (7) User signals like "too much", "don''t change that", "only change X", "keep it simple", "stop"
-      (8) Adding error handling, validation, or defensive code for scenarios that cannot occur (9) Generating tests, configuration
-      scaffolding, or documentation without being asked'
+      the user''s request (7) User signals like \"too much\", \"don''t change that\", \"only change X\", \"keep it simple\",
+      \"stop\" (8) Adding error handling, validation, or defensive code for scenarios that cannot occur (9) Generating tests,
+      configuration scaffolding, or documentation without being asked'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9311a482ad30
+    content_hash: 4b5836350760
     files:
     - SKILL.md
     author: uucz
@@ -42102,7 +42112,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2b561f22fb20
+    content_hash: 341f7f7c610e
     files:
     - SKILL.md
     - references/api-keys.md
@@ -46747,15 +46757,15 @@ groups:
     title: tutor
     summary: 'Interactive quiz tutor for Obsidian StudyVault learning. Use when the user wants to: (1) Take a diagnostic assessment
       of their knowledge, (2) Study or review specific sections/topics, (3) Drill weak areas identified in previous sessions,
-      (4) Check their learning progress or dashboard, or says things like "quiz me", "test me", "let''s study", "/tutor",
-      "학습", "퀴즈", "평가".'
+      (4) Check their learning progress or dashboard, or says things like \"quiz me\", \"test me\", \"let''s study\", \"/tutor\",
+      \"학습\", \"퀴즈\", \"평가\".'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9e7c60d48ba2
+    content_hash: eb632c1ddf55
     files:
     - SKILL.md
     - references/quiz-rules.md
@@ -46775,7 +46785,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7a13cd567419
+    content_hash: d07dbc5348af
     files:
     - SKILL.md
     - references/codebase-templates.md
@@ -46975,7 +46985,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b57229295100
+    content_hash: d5dc0deced29
     files:
     - SKILL.md
     author: ibelick
@@ -47996,17 +48006,18 @@ groups:
     path: unslop/skills/unslop
     title: unslop
     summary: 'Humanize LLM output so it reads like a careful human wrote it. Subtracts AI-isms (sycophancy, tricolons, em-dash
-      overuse, "delve"/"tapestry"/"testament", hedging stacks, tidy five-paragraph shapes), engineers burstiness and calibrated
-      uncertainty, and preserves technical accuracy. Supports intensity levels: subtle, balanced (default), full, voice-match,
-      anti-detector. Use when user says "humanize this", "make this sound human", "de-slop this", "rewrite without AI tone",
-      "match my voice", "less robotic", or invokes /unslop. Also auto-triggers when text-quality is requested.'
+      overuse, \"delve\"/\"tapestry\"/\"testament\", hedging stacks, tidy five-paragraph shapes), engineers burstiness and
+      calibrated uncertainty, and preserves technical accuracy. Supports intensity levels: subtle, balanced (default), full,
+      voice-match, anti-detector. Use when user says \"humanize this\", \"make this sound human\", \"de-slop this\", \"rewrite
+      without AI tone\", \"match my voice\", \"less robotic\", or invokes /unslop. Also auto-triggers when text-quality is
+      requested.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f4d020faa12a
+    content_hash: a720567529eb
     files:
     - SKILL.md
     author: MohamedAbdallah-14
@@ -48016,18 +48027,18 @@ groups:
   - name: unslop-commit
     path: unslop/skills/unslop-commit
     title: unslop-commit
-    summary: Rewrites commit messages so they sound like a careful human engineer wrote them. Strips AI/marketing slop ("comprehensive
-      solution", "robust implementation", "leverage", "enhance", "seamlessly", "This commit..."). Keeps Conventional Commits
-      format. Subject ≤72 chars (aim ≤50), imperative mood. Body only when "why" isn't obvious from the subject. Use when
-      user says "humanize commit", "de-slop commit message", "make this commit sound human", "/unslop-commit", "/commit",
-      "write a commit", or pastes a draft commit to clean up. Auto-triggers when staging changes.
+    summary: Rewrites commit messages so they sound like a careful human engineer wrote them. Strips AI/marketing slop (\"comprehensive
+      solution\", \"robust implementation\", \"leverage\", \"enhance\", \"seamlessly\", \"This commit...\"). Keeps Conventional
+      Commits format. Subject ≤72 chars (aim ≤50), imperative mood. Body only when \"why\" isn't obvious from the subject.
+      Use when user says \"humanize commit\", \"de-slop commit message\", \"make this commit sound human\", \"/unslop-commit\",
+      \"/commit\", \"write a commit\", or pastes a draft commit to clean up. Auto-triggers when staging changes.
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 087a7c87e30c
+    content_hash: 51d82b2440a4
     files:
     - SKILL.md
     author: MohamedAbdallah-14
@@ -48040,7 +48051,7 @@ groups:
     summary: 'Humanize natural-language memory files (CLAUDE.md, todos, preferences, docs) by removing AI-isms and adding
       burstiness while preserving every code block, URL, path, command, and heading exactly. Two modes: --deterministic (fast,
       regex-based, no API) and LLM (default, calls Claude for rewrite). Humanized version overwrites the original file. Plain
-      backup saved as FILE.original.md. Trigger: /unslop-file <filepath> or "humanize memory file"'
+      backup saved as FILE.original.md. Trigger: /unslop-file <filepath> or \"humanize memory file\"'
     version: 0.1.0
     tags: []
     mode: container
@@ -48054,7 +48065,7 @@ groups:
       - UNSLOP_SKIP_SURPRISAL
       - UNSLOP_STYLE_MEMORY
       - XDG_CONFIG_HOME
-    content_hash: 90a96e307f17
+    content_hash: 0bc588521c0e
     files:
     - SKILL.md
     - env.optional
@@ -48083,14 +48094,14 @@ groups:
     path: unslop/skills/unslop-help
     title: unslop-help
     summary: 'Quick-reference card for unslop modes, sub-skills, and slash commands. One-shot display, not a persistent mode.
-      Trigger: /unslop-help, "unslop help", "what unslop commands", "how do I use unslop".'
+      Trigger: /unslop-help, \"unslop help\", \"what unslop commands\", \"how do I use unslop\".'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1e9136f3f226
+    content_hash: c9a615dca571
     files:
     - SKILL.md
     author: MohamedAbdallah-14
@@ -48103,15 +48114,15 @@ groups:
     summary: 'Strip AI-slop patterns from reasoning traces (chain-of-thought, extended thinking, agent decomposition) — not
       final prose. Reasoning text has its own slop catalog that regular unslop doesn''t target: over-explaining the question,
       over-hedging, over-decomposing trivial problems into 6-bullet substeps, infinite-loop rationalization. Trigger: /unslop-reasoning,
-      "clean up my reasoning", "fix this chain of thought", "this CoT sounds robotic". Applies to reasoning output; does not
-      override regular /unslop mode.'
+      \"clean up my reasoning\", \"fix this chain of thought\", \"this CoT sounds robotic\". Applies to reasoning output;
+      does not override regular /unslop mode.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8db5933ddc7b
+    content_hash: 4fb77307efa2
     files:
     - SKILL.md
     author: MohamedAbdallah-14
@@ -48122,16 +48133,16 @@ groups:
     path: unslop/skills/unslop-review
     title: unslop-review
     summary: 'Rewrites code review comments so they read like a human teammate wrote them. Cuts corporate-AI throat-clearing
-      ("I noticed...", "I was wondering if perhaps...", "It might be worth considering..."). Each comment is direct: location,
-      the issue, a concrete fix. Use when user says "humanize review", "de-slop PR comment", "make this feedback sound human",
-      "review this PR", "code review", "/review", "/unslop-review". Auto-triggers when reviewing PRs.'
+      (\"I noticed...\", \"I was wondering if perhaps...\", \"It might be worth considering...\"). Each comment is direct:
+      location, the issue, a concrete fix. Use when user says \"humanize review\", \"de-slop PR comment\", \"make this feedback
+      sound human\", \"review this PR\", \"code review\", \"/review\", \"/unslop-review\". Auto-triggers when reviewing PRs.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c91dbe92bcc6
+    content_hash: 687b781a2a54
     files:
     - SKILL.md
     author: MohamedAbdallah-14
@@ -49102,18 +49113,18 @@ groups:
     title: vmware-aiops
     summary: 'Use this skill whenever the user needs to manage VMs in VMware/vSphere/ESXi — it''s the entry point for all
       VM operations. Directly handles: power on/off, clone, snapshot, migrate, deploy from OVA or templates, run commands
-      inside VMs, batch operations, cluster management, and vCenter alarm acknowledgment. Always use this skill for any "power
-      on", "clone", "deploy", "migrate", "batch", "guest exec", "alarm", or VM lifecycle task when the context is explicitly
-      VMware, vSphere, or ESXi. Do NOT use for read-only queries (use vmware-monitor), NSX networking (use vmware-nsx), storage/iSCSI/vSAN
-      (use vmware-storage), or Kubernetes cluster lifecycle (use vmware-vks). For multi-step workflows use vmware-pilot. For
-      load balancing/AVI/AKO use vmware-avi.'
+      inside VMs, batch operations, cluster management, and vCenter alarm acknowledgment. Always use this skill for any \"power
+      on\", \"clone\", \"deploy\", \"migrate\", \"batch\", \"guest exec\", \"alarm\", or VM lifecycle task when the context
+      is explicitly VMware, vSphere, or ESXi. Do NOT use for read-only queries (use vmware-monitor), NSX networking (use vmware-nsx),
+      storage/iSCSI/vSAN (use vmware-storage), or Kubernetes cluster lifecycle (use vmware-vks). For multi-step workflows
+      use vmware-pilot. For load balancing/AVI/AKO use vmware-avi.'
     version: 0.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f6ab618a03c8
+    content_hash: 741dc34d25e3
     files:
     - SKILL.md
     - evals/evals.json
@@ -49904,7 +49915,7 @@ skills:
   env:
     required: []
     optional: []
-  content_hash: 3ab78d65a6a5
+  content_hash: 1b64800e2dc7
   files:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
@@ -50129,7 +50140,7 @@ skills:
   env:
     required: []
     optional: []
-  content_hash: 0b134c12b5f8
+  content_hash: c1f93576155a
   files:
   - .gitignore
   - .robomotion/CHANGELOG.md
@@ -50453,24 +50464,17 @@ skills:
 - name: humanizer
   path: humanizer
   title: humanizer
-  summary: 'Remove signs of AI-generated writing from text. Use when editing or reviewing
-
-    text to make it sound more natural and human-written. Based on Wikipedia''s
-
-    comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
-
-    inflated symbolism, promotional language, superficial -ing analyses, vague
-
-    attributions, em dash overuse, rule of three, AI vocabulary words, passive
-
-    voice, negative parallelisms, and filler phrases.'
+  summary: Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural
+    and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated
+    symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary
+    words, passive\nvoice, negative parallelisms, and filler phrases.
   version: 2.7.0
   tags: []
   mode: host
   env:
     required: []
     optional: []
-  content_hash: f0f3934c14a3
+  content_hash: 31c1cd131967
   files:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
@@ -50573,15 +50577,15 @@ skills:
   title: model-hierarchy
   summary: 'Cost-optimize AI agent operations by routing tasks to appropriate models based on complexity. Use this skill when:
     (1) deciding which model to use for a task, (2) spawning sub-agents, (3) considering cost efficiency, (4) the current
-    model feels like overkill for the task. Triggers: "model routing", "cost optimization", "which model", "too expensive",
-    "spawn agent".'
+    model feels like overkill for the task. Triggers: \"model routing\", \"cost optimization\", \"which model\", \"too expensive\",
+    \"spawn agent\".'
   version: ''
   tags: []
   mode: host
   env:
     required: []
     optional: []
-  content_hash: 0c7e1673662f
+  content_hash: 57f9424bb8dd
   files:
   - .gitignore
   - .robomotion/CHANGELOG.md
@@ -51060,7 +51064,7 @@ skills:
     - WIDTH
     - WITH_TPM
     - YELLOW
-  content_hash: f5c9bcb76f57
+  content_hash: 2713721f2531
   files:
   - .gitattributes
   - .github/workflows/vco-gates.yml
