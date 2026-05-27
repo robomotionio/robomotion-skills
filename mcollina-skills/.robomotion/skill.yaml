@@ -1,0 +1,10 @@
+schema_version: 1
+name: mcollina-skills
+title: 'Mcollina Skills'
+type: group
+version: 0.1.0
+author: 'mcollina'
+source_url: https://github.com/mcollina/skills
+license: MIT
+summary: '11 skills — 11 skills by Matteo Collina: Node.js, Fastify, TypeScript, OAuth, Git/GitHub, ESLint neostandard, documentation (Diataxis), Node.js core internals, skill optimizer, and more'
+tags: [development, testing, node]
