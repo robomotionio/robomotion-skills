@@ -296,21 +296,47 @@ def build_inner_source_url(group: dict, skill_rel: str) -> str:
     return base
 
 
+def _walk_skill_leaves(repo_root: str, base_rel: str) -> list:
+    """Recursively find every directory under ``base_rel`` that contains a
+    SKILL.md. Stops descending the moment SKILL.md is found in a directory
+    (skills don't nest inside other skills). Hidden dirs (``.git``,
+    ``.claude``, ``.robomotion``) are skipped.
+
+    Single-level groups (marketing-skills, engineering-skills, ...) behave
+    identically to the old shallow walker because their skill folders sit
+    directly under ``skills/``. Multi-level upstreams (hermes-skills with
+    ``skills/<category>/<skill>/SKILL.md`` and ``skills/mlops/<sub>/<skill>/
+    SKILL.md``) are handled here so the verbatim rule still holds at the
+    file-system level.
+    """
+    leaves = []
+    base_abs = os.path.join(repo_root, base_rel)
+    if not os.path.isdir(base_abs):
+        return leaves
+    for entry in sorted(os.listdir(base_abs)):
+        if entry.startswith('.'):
+            continue
+        sub_rel = f"{base_rel}/{entry}"
+        sub_abs = os.path.join(repo_root, sub_rel)
+        if not os.path.isdir(sub_abs):
+            continue
+        if os.path.isfile(os.path.join(sub_abs, "SKILL.md")):
+            leaves.append(sub_rel)
+        else:
+            leaves.extend(_walk_skill_leaves(repo_root, sub_rel))
+    return leaves
+
+
 def discover_inner_skills(repo_root: str, group_rel: str) -> list:
     """For a group, walk:
-      <group>/skills/<name>/SKILL.md           (agentskills.io layout)
-      <group>/.claude/skills/<name>/SKILL.md   (Claude Code plugin layout)
+      <group>/skills/**/SKILL.md               (agentskills.io layout, recursive)
+      <group>/.claude/skills/**/SKILL.md       (Claude Code plugin layout, recursive)
       <group>/plugins/<plugin>/skills/<name>/SKILL.md   (Claude Code marketplace meta-group)
     """
     rels = []
     for skills_subpath in ("skills", ".claude/skills"):
-        skills_dir = os.path.join(repo_root, group_rel, skills_subpath)
-        if not os.path.isdir(skills_dir):
-            continue
-        for entry in sorted(os.listdir(skills_dir)):
-            sub = os.path.join(skills_dir, entry)
-            if os.path.isdir(sub) and os.path.isfile(os.path.join(sub, "SKILL.md")):
-                rels.append(f"{group_rel}/{skills_subpath}/{entry}")
+        skills_dir_rel = f"{group_rel}/{skills_subpath}"
+        rels.extend(_walk_skill_leaves(repo_root, skills_dir_rel))
     # Meta-group: a marketplace root with N independent plugins, each having
     # its own skills/. Each <plugin>/skills/<name> becomes an indexable skill,
     # path-prefixed so collisions across plugins stay unique.

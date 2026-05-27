@@ -126,10 +126,14 @@ while IFS= read -r sy; do
     # (plugins/<plugin>/skills/<name>/).
     for skills_subdir in "$unit_dir/skills" "$unit_dir/.claude/skills"; do
       [ -d "$skills_subdir" ] || continue
+      # Walk arbitrarily deep — matches build-index.py's recursive
+      # discover_inner_skills. Hermes nests up to 3 levels
+      # (skills/mlops/inference/<skill>/SKILL.md). Previous -maxdepth 3
+      # silently dropped those 8 skills from the validate count.
       while IFS= read -r md; do
         check_skill_md "$(dirname "$md")" vendored
         inner_skills=$((inner_skills+1))
-      done < <(find "$skills_subdir" -maxdepth 3 -name SKILL.md | sort)
+      done < <(find "$skills_subdir" -name SKILL.md | sort)
     done
     if [ -d "$unit_dir/plugins" ]; then
       while IFS= read -r md; do
