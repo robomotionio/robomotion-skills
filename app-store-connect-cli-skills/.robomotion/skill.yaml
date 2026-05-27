@@ -1,0 +1,10 @@
+schema_version: 1
+name: app-store-connect-cli-skills
+title: 'App Store Connect Cli Skills'
+type: group
+version: 0.1.0
+author: 'rudrankriyam'
+source_url: https://github.com/rudrankriyam/app-store-connect-cli-skills
+license: MIT
+summary: '22 skills — Automate App Store deployments and management using ASC CLI'
+tags: [development, testing]
