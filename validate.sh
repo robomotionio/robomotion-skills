@@ -76,7 +76,11 @@ check_skill_md() {
 
   name="$(printf '%s\n' "$fm" | sed -n 's/^name:[[:space:]]*//p' | head -1 | tr -d '"'"'"' ')"
   if [ -n "$name" ] && [ "$name" != "$skill" ]; then
-    echo "    FAIL: name '$name' != directory '$skill'"; fail=1
+    if [ -n "$vendored" ]; then
+      echo "    WARN: name '$name' != directory '$skill' (vendored — upstream convention)"
+    else
+      echo "    FAIL: name '$name' != directory '$skill'"; fail=1
+    fi
   fi
 
   if ! printf '%s\n' "$fm" | grep -qE '^version:' \
@@ -111,13 +115,15 @@ while IFS= read -r sy; do
   [ -f "$unit_dir/.robomotion/CHANGELOG.md" ] || { echo "    WARN: $unit_rel/.robomotion/CHANGELOG.md missing"; }
 
   if [ "$type" = "group" ]; then
-    # walk inner skills
-    if [ -d "$unit_dir/skills" ]; then
+    # walk inner skills — both the agentskills.io layout (skills/<name>/)
+    # and the Claude Code plugin layout (.claude/skills/<name>/)
+    for skills_subdir in "$unit_dir/skills" "$unit_dir/.claude/skills"; do
+      [ -d "$skills_subdir" ] || continue
       while IFS= read -r md; do
         check_skill_md "$(dirname "$md")" vendored
         inner_skills=$((inner_skills+1))
-      done < <(find "$unit_dir/skills" -maxdepth 3 -name SKILL.md | sort)
-    fi
+      done < <(find "$skills_subdir" -maxdepth 3 -name SKILL.md | sort)
+    done
     # check group's .robomotion/post-install.sh syntactically (best-effort)
     [ -f "$unit_dir/.robomotion/post-install.sh" ] && sh -n "$unit_dir/.robomotion/post-install.sh" \
       || true

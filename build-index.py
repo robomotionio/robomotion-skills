@@ -214,15 +214,17 @@ def build_inner_source_url(group: dict, skill_rel: str) -> str:
 
 
 def discover_inner_skills(repo_root: str, group_rel: str) -> list:
-    """For a group, walk <group>/skills/<name>/SKILL.md."""
-    skills_dir = os.path.join(repo_root, group_rel, "skills")
-    if not os.path.isdir(skills_dir):
-        return []
+    """For a group, walk <group>/skills/<name>/SKILL.md and
+    <group>/.claude/skills/<name>/SKILL.md (Claude Code plugin layout)."""
     rels = []
-    for entry in sorted(os.listdir(skills_dir)):
-        sub = os.path.join(skills_dir, entry)
-        if os.path.isdir(sub) and os.path.isfile(os.path.join(sub, "SKILL.md")):
-            rels.append(f"{group_rel}/skills/{entry}")
+    for skills_subpath in ("skills", ".claude/skills"):
+        skills_dir = os.path.join(repo_root, group_rel, skills_subpath)
+        if not os.path.isdir(skills_dir):
+            continue
+        for entry in sorted(os.listdir(skills_dir)):
+            sub = os.path.join(skills_dir, entry)
+            if os.path.isdir(sub) and os.path.isfile(os.path.join(sub, "SKILL.md")):
+                rels.append(f"{group_rel}/{skills_subpath}/{entry}")
     return rels
 
 

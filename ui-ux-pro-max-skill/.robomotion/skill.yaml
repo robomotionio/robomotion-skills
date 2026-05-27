@@ -1,0 +1,10 @@
+schema_version: 1
+name: ui-ux-pro-max-skill
+title: UI/UX Pro Max
+type: group
+version: 2.5.0
+author: NextLevelBuilder
+source_url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+license: MIT
+summary: AI-powered UI/UX design intelligence — 67 styles, 161 color palettes, 57 font pairings, 99 UX guidelines, 25 chart types across 15+ tech stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, Jetpack Compose).
+tags: [ui, ux, design, design-system, color-palette, typography, accessibility, charts, components, shadcn]
