@@ -1,0 +1,10 @@
+schema_version: 1
+name: claude-win11-speckit-update-skill
+title: 'Claude Win11 Speckit Update Skill'
+type: group
+version: 0.8.0
+author: 'NotMyself'
+source_url: https://github.com/NotMyself/claude-win11-speckit-update-skill
+license: MIT
+summary: 'Windows 11 system management'
+tags: [ai]
