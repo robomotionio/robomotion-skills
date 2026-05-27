@@ -1,0 +1,117 @@
+{
+  "schema_version": "0.1.0",
+  "generated_by": "manual-breakthrough-roadmap-seed",
+  "updated_at": "2026-05-15",
+  "purpose": "Canonical machine-readable map for skills, mechanisms, claims, and activation scenarios.",
+  "skills": [
+    {
+      "name": "advanced-evaluation",
+      "path": "skills/advanced-evaluation/SKILL.md",
+      "activation_scenarios": ["LLM-as-judge design", "pairwise comparison", "judge calibration", "bias mitigation"],
+      "mechanism_ids": ["pairwise-skill-revision"],
+      "claim_ids": ["claim-advanced-evaluation-position-swap"]
+    },
+    {
+      "name": "bdi-mental-states",
+      "path": "skills/bdi-mental-states/SKILL.md",
+      "activation_scenarios": ["belief-desire-intention modeling", "rational agency traces", "neuro-symbolic state transformations"],
+      "mechanism_ids": ["world-state-grounded-bdi-chain"],
+      "claim_ids": []
+    },
+    {
+      "name": "context-compression",
+      "path": "skills/context-compression/SKILL.md",
+      "activation_scenarios": ["conversation summarization", "handoff compression", "tokens-per-task reduction"],
+      "mechanism_ids": ["anchored-iterative-summary"],
+      "claim_ids": ["claim-context-compression-factory-benchmark"]
+    },
+    {
+      "name": "context-degradation",
+      "path": "skills/context-degradation/SKILL.md",
+      "activation_scenarios": ["lost-in-middle diagnosis", "context poisoning", "attention-pattern debugging"],
+      "mechanism_ids": ["context-poisoning-circuit-breaker"],
+      "claim_ids": ["claim-context-degradation-lost-middle-ruler", "claim-context-degradation-distractor-shuffled"]
+    },
+    {
+      "name": "context-fundamentals",
+      "path": "skills/context-fundamentals/SKILL.md",
+      "activation_scenarios": ["context-window mental models", "agent architecture foundations", "context budgeting"],
+      "mechanism_ids": ["progressive-disclosure-loading"],
+      "claim_ids": ["claim-context-degradation-lost-middle-ruler", "claim-context-optimization-tool-output-dominance"]
+    },
+    {
+      "name": "context-optimization",
+      "path": "skills/context-optimization/SKILL.md",
+      "activation_scenarios": ["observation masking", "prefix cache strategy", "context partitioning", "token-budget optimization"],
+      "mechanism_ids": ["retrievable-observation-masking"],
+      "claim_ids": ["claim-context-optimization-tool-output-dominance"]
+    },
+    {
+      "name": "evaluation",
+      "path": "skills/evaluation/SKILL.md",
+      "activation_scenarios": ["deterministic checks", "regression suites", "quality gates", "production monitoring"],
+      "mechanism_ids": ["deterministic-first-validation"],
+      "claim_ids": ["claim-evaluation-browsecomp-variance"]
+    },
+    {
+      "name": "filesystem-context",
+      "path": "skills/filesystem-context/SKILL.md",
+      "activation_scenarios": ["tool-output offloading", "durable scratchpads", "just-in-time file discovery", "cross-agent handoff files"],
+      "mechanism_ids": ["durable-research-thread"],
+      "claim_ids": []
+    },
+    {
+      "name": "harness-engineering",
+      "path": "skills/harness-engineering/SKILL.md",
+      "activation_scenarios": ["autonomous research loops", "locked evaluators", "editable surfaces", "novelty gates", "human approval boundaries"],
+      "mechanism_ids": ["locked-editable-surfaces", "structured-novelty-gate"],
+      "claim_ids": ["claim-harness-locked-evaluator"]
+    },
+    {
+      "name": "hosted-agents",
+      "path": "skills/hosted-agents/SKILL.md",
+      "activation_scenarios": ["background agents", "remote sandboxed execution", "warm pools", "multiplayer agent infrastructure"],
+      "mechanism_ids": ["prebuilt-warm-sandbox-pool"],
+      "claim_ids": []
+    },
+    {
+      "name": "latent-briefing",
+      "path": "skills/latent-briefing/SKILL.md",
+      "activation_scenarios": ["orchestrator-worker KV cache sharing", "Attention Matching compaction", "cross-agent state transfer without summarization", "token explosion in hierarchical agents"],
+      "mechanism_ids": ["task-guided-kv-cache-compaction"],
+      "claim_ids": ["claim-latent-briefing-public-results"]
+    },
+    {
+      "name": "memory-systems",
+      "path": "skills/memory-systems/SKILL.md",
+      "activation_scenarios": ["cross-session memory", "entity tracking", "temporal knowledge graphs", "memory benchmark selection"],
+      "mechanism_ids": ["shallowest-viable-memory-layer"],
+      "claim_ids": ["claim-memory-locomo-filesystem-baseline"]
+    },
+    {
+      "name": "multi-agent-patterns",
+      "path": "skills/multi-agent-patterns/SKILL.md",
+      "activation_scenarios": ["context isolation across agents", "supervisor coordination", "swarm handoffs", "parallel exploration"],
+      "mechanism_ids": ["context-isolation-agent-partitioning"],
+      "claim_ids": ["claim-multi-agent-token-multiplier", "claim-evaluation-browsecomp-variance"]
+    },
+    {
+      "name": "project-development",
+      "path": "skills/project-development/SKILL.md",
+      "activation_scenarios": ["task-model fit analysis", "batch pipeline design", "cost estimation", "staged artifact flows"],
+      "mechanism_ids": ["filesystem-state-machine-pipeline"],
+      "claim_ids": ["claim-project-development-vercel-d0-reduction"]
+    },
+    {
+      "name": "tool-design",
+      "path": "skills/tool-design/SKILL.md",
+      "activation_scenarios": ["agent-tool contracts", "tool schema design", "tool consolidation", "actionable error recovery"],
+      "mechanism_ids": ["tool-contract-description"],
+      "claim_ids": ["claim-tool-design-vercel-d0-reduction"]
+    }
+  ],
+  "mechanism_registry": "researcher/mechanisms/registry.jsonl",
+  "claim_registry": "researcher/claims/index.jsonl",
+  "activation_cases": "researcher/fixtures/activation-cases.jsonl",
+  "benchmark_scenarios": "researcher/benchmarks/scenarios"
+}
