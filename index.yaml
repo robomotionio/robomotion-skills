@@ -658,12 +658,16 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
+      required:
+      - ATLASSIAN_API_TOKEN
+      - ATLASSIAN_EMAIL
+      - ATLASSIAN_URL
       optional: []
-    content_hash: 0725a6f9a9ff
+    content_hash: 38b4b98a8049
     files:
     - .env.example
     - SKILL.md
+    - env.required
     - requirements.txt
     - scripts/api_client.py
     - scripts/auth.py
@@ -718,14 +722,20 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: 3968c5d76ba1
+      required:
+      - GEMINI_API_KEY
+      optional:
+      - DEEP_RESEARCH_CACHE_DIR
+      - DEEP_RESEARCH_POLL_INTERVAL
+      - DEEP_RESEARCH_TIMEOUT
+    content_hash: 00c28fabc277
     files:
     - .env.example
     - .gitignore
     - README.md
     - SKILL.md
+    - env.optional
+    - env.required
     - requirements.txt
     - scripts/research.py
     author: sanjay3290
@@ -741,11 +751,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: bcefa6e0ea73
+      optional:
+      - ELEVENLABS_API_KEY
+    content_hash: ca7bb88e3c92
     files:
     - SKILL.md
     - config.example.json
+    - env.optional
     - requirements.txt
     - scripts/elevenlabs.py
     - scripts/extract.py
@@ -915,11 +927,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a3dd460e03e5
+      optional:
+      - GOOGLE_TTS_API_KEY
+    content_hash: 364baeba6c6d
     files:
     - .gitignore
     - SKILL.md
+    - env.optional
     - scripts/extract.py
     - scripts/google_tts.py
     author: sanjay3290
@@ -934,14 +948,19 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: 54f8b897e8bf
+      required:
+      - GEMINI_API_KEY
+      optional:
+      - GEMINI_MODEL
+      - IMAGE_SIZE
+    content_hash: ac8e0f7089fa
     files:
     - .env.example
     - .gitignore
     - README.md
     - SKILL.md
+    - env.optional
+    - env.required
     - examples.md
     - reference.md
     - scripts/generate_image.py
@@ -1051,11 +1070,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 93f569a8cd28
+      optional:
+      - NOTEBOOKLM_DATA_DIR
+      - NOTEBOOKLM_E2E
+      - NOTEBOOKLM_SMOKE_PROFILE
+    content_hash: ec769152acce
     files:
     - .gitignore
     - SKILL.md
+    - env.optional
     - references/commands.md
     - requirements.txt
     - scripts/ask_question.py
@@ -1081,14 +1104,20 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: 40d629acc430
+      required:
+      - OUTLINE_API_KEY
+      optional:
+      - OUTLINE_API_URL
+      - OUTLINE_TIMEOUT
+      - OUTLINE_VERIFY_SSL
+    content_hash: 7acb17b7f853
     files:
     - .env.example
     - .gitignore
     - README.md
     - SKILL.md
+    - env.optional
+    - env.required
     - requirements.txt
     - scripts/outline.py
     author: sanjay3290
@@ -3324,10 +3353,12 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 9bfbbbfe1167
+      optional:
+      - ARIS_CONDA_HOOK
+    content_hash: 4167d84d30c9
     files:
     - SKILL.md
+    - env.optional
     - scripts/build_manifest.py
     - scripts/queue_manager.py
     author: wanshuiyin
@@ -4643,6 +4674,8 @@ groups:
   - docs/tutorials/vlm_multimodal_tutorial_en.html
   - docs/tutorials/vlm_multimodal_tutorial_en.md
   - docs/wechat_group.jpg
+  - env.shared.optional
+  - env.shared.required
   - mcp-servers/claude-review/README.md
   - mcp-servers/claude-review/run_with_claude_aws.sh
   - mcp-servers/claude-review/server.py
@@ -4942,15 +4975,50 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: efa68d5e7b93
+      required:
+      - GATEWAY_IAM_ROLE_ARN
+      - GATEWAY_NAME
+      - OPENAPI_SCHEMA_S3_URI
+      - TARGET_LAMBDA_ARN
+      optional:
+      - AGENTCORE_RUNTIME_URL
+      - AWS_PROFILE
+      - AWS_REGION
+      - BLUE
+      - CDK_DEFAULT_ACCOUNT
+      - CREDENTIAL_PROVIDER_NAME
+      - ENV_FILE
+      - GATEWAY_DETAIL
+      - GATEWAY_ID
+      - GATEWAY_IDENTIFIER
+      - GREEN
+      - MCP_SERVER_URL
+      - MODEL_ID
+      - NC
+      - POLICIES
+      - RED
+      - ROLE_ARN
+      - ROLE_NAME
+      - STACK_NAME
+      - STACK_PREFIX
+      - STACK_STATUS
+      - STATUS
+      - SYSTEM_PROMPT
+      - TARGETS_JSON
+      - TARGET_COUNT
+      - TARGET_DETAIL
+      - TARGET_ID
+      - TARGET_NAME
+      - YELLOW
+    content_hash: 5d54c0c12fa6
     files:
     - SKILL.md
     - cross-service/agent-persistence-patterns.md
     - cross-service/credential-management.md
     - cross-service/registry-integration.md
     - cross-service/security-resource-policies.md
+    - env.optional
+    - env.required
     - references/agentcore-oauth-integration.md
     - references/agentcore-runtime-core.md
     - references/agentcore-runtime-deploy.md
@@ -4994,10 +5062,23 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 3ee8c34bb477
+      optional:
+      - CDK_LANGUAGE
+      - GREEN
+      - MAX_SIZE
+      - NC
+      - PROJECT_ROOT
+      - RED
+      - RESOURCE_COUNT
+      - SCRIPT_DIR
+      - STACK_NAME
+      - TEMPLATE_SIZE
+      - VALIDATION_PASSED
+      - YELLOW
+    content_hash: aa27948fee18
     files:
     - SKILL.md
+    - env.optional
     - references/cdk-patterns.md
     - scripts/validate-stack.sh
     author: zxkane
@@ -5088,6 +5169,8 @@ groups:
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/cross-service/credential-management.md
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/cross-service/registry-integration.md
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/cross-service/security-resource-policies.md
+  - plugins/aws-agentic-ai/skills/aws-agentic-ai/env.optional
+  - plugins/aws-agentic-ai/skills/aws-agentic-ai/env.required
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/references/agentcore-oauth-integration.md
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/references/agentcore-runtime-core.md
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/references/agentcore-runtime-deploy.md
@@ -5116,6 +5199,7 @@ groups:
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/services/registry/sync-configuration.md
   - plugins/aws-agentic-ai/skills/aws-agentic-ai/services/runtime/README.md
   - plugins/aws-cdk/skills/aws-cdk-development/SKILL.md
+  - plugins/aws-cdk/skills/aws-cdk-development/env.optional
   - plugins/aws-cdk/skills/aws-cdk-development/references/cdk-patterns.md
   - plugins/aws-cdk/skills/aws-cdk-development/scripts/validate-stack.sh
   - plugins/aws-common/skills/aws-mcp-setup/SKILL.md
@@ -5258,6 +5342,7 @@ groups:
   - docs/roadmap-phases.jpg
   - docs/vision-banner.jpg
   - doctor.mjs
+  - env.shared.required
   - examples/README.md
   - examples/article-digest-example.md
   - examples/ats-normalization-test.md
@@ -8153,6 +8238,7 @@ groups:
   - docs/womens-health-implementation-summary.md
   - docs/womens-health-integration.md
   - docs/womens-health-safety-checklist.md
+  - env.shared.optional
   - package.json
   - scripts/README.md
   - scripts/ai_prediction.py
@@ -9612,6 +9698,7 @@ groups:
   - docs/mnemos-implementation.md
   - docs/mwp.md
   - docs/polyphony-spec.md
+  - env.shared.optional
   - evals/README.md
   - evals/agent-teams/scenario-1/criteria.json
   - evals/agent-teams/scenario-1/task.md
@@ -10505,6 +10592,7 @@ groups:
   - claude_ecom/product.py
   - claude_ecom/report.py
   - claude_ecom/review_engine.py
+  - env.shared.optional
   - examples/online-retail-ii/README.md
   - examples/online-retail-ii/REVIEW.md
   - hooks/hooks.json
@@ -12671,6 +12759,7 @@ groups:
   - docs/MIGRATION-v1-to-v2.md
   - docs/TROUBLESHOOTING.md
   - docs/WORKFLOW-public-private.md
+  - env.shared.optional
   - extensions/ahrefs/docs/AHREFS-SETUP.md
   - extensions/ahrefs/install.ps1
   - extensions/ahrefs/install.sh
@@ -14485,11 +14574,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a76855b033aa
+      optional:
+      - AZURE_CLIENT_ID
+      - AZURE_CLIENT_SECRET
+      - AZURE_TENANT_ID
+      - AZURE_WORKSPACE_ID
+    content_hash: 457fd7aa7b0c
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -14707,11 +14801,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: aa864b49e5fb
+      optional:
+      - AUTOPSY_CASE_DIR
+    content_hash: 3d52f0b007de
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -14858,11 +14954,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: c594aabf00bb
+      optional:
+      - ABUSEIPDB_API_KEY
+      - VT_API_KEY
+    content_hash: c18d62f8faaf
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -15079,12 +15178,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: cc6fec5f1796
+      optional:
+      - URLSCAN_API_KEY
+      - VT_API_KEY
+    content_hash: 0af9e0466e5e
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -15104,11 +15206,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 6765fc4e3ceb
+      optional:
+      - CUCKOO_API
+      - CUCKOO_STORAGE
+    content_hash: bdf4f21a0a33
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -15325,11 +15430,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 8eb72ee0bd8c
+      optional:
+      - SURICATA_OUTPUT_DIR
+    content_hash: 7298cb3ee1a0
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -15643,11 +15750,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 1f09fa4a065e
+      optional:
+      - NVD_API_KEY
+    content_hash: b9820a271ad6
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -15664,11 +15773,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 54daa0d000f7
+      optional:
+      - SPLUNK_HOST
+      - SPLUNK_PASSWORD
+      - SPLUNK_PORT
+      - SPLUNK_USERNAME
+    content_hash: 20618f97c7d7
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -15778,11 +15892,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: c9a85a2ed796
+      optional:
+      - TAXII_PASSWORD
+      - TAXII_USER
+    content_hash: c119e4d3403b
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -15946,11 +16063,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 11748e0baf41
+      optional:
+      - SPLUNK_HOST
+      - SPLUNK_PASSWORD
+      - SPLUNK_PORT
+      - SPLUNK_USERNAME
+    content_hash: 6e55671073ca
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16056,11 +16178,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: d42777239a99
+      optional:
+      - AWS_DEFAULT_REGION
+      - AWS_PROFILE
+    content_hash: 64cda9f1f16e
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16077,11 +16202,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: fae6cb482c8c
+      optional:
+      - AZURE_CLIENT_ID
+      - AZURE_CLIENT_SECRET
+      - AZURE_TENANT_ID
+    content_hash: 488b10590a88
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16099,11 +16228,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: e68377d940fe
+      optional:
+      - AWS_DEFAULT_REGION
+      - AWS_PROFILE
+    content_hash: 268bf3e63aba
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16142,11 +16274,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: d02a7b78a192
+      optional:
+      - KUBECONFIG
+    content_hash: 55d08490968f
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16206,11 +16340,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 169f56654732
+      optional:
+      - ABUSEIPDB_KEY
+      - VT_API_KEY
+    content_hash: b2ee1a7d6967
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16270,11 +16407,17 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 828da1e1827a
+      optional:
+      - CUCKOO_URL
+      - SKIP_TLS_VERIFY
+      - SPLUNK_HEC_TOKEN
+      - SPLUNK_HEC_URL
+      - VT_API_KEY
+    content_hash: 0aab41221bdd
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16316,11 +16459,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: dd1348c2b910
+      optional:
+      - AZURE_CLIENT_ID
+      - AZURE_CLIENT_SECRET
+      - AZURE_TENANT_ID
+      - SENTINEL_WORKSPACE_ID
+    content_hash: 0d6c1689159c
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16337,12 +16485,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: e22e13294de3
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 0b31fa61a256
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -16383,12 +16533,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 265fac463263
+      optional:
+      - GITLAB_GROUP_ID
+      - GITLAB_TOKEN
+      - GITLAB_URL
+    content_hash: b9abd2b5066a
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -16434,11 +16588,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 25e2d534bdd7
+      optional:
+      - AZURE_CLIENT_ID
+      - AZURE_CLIENT_SECRET
+      - AZURE_TENANT_ID
+    content_hash: 9c122baace42
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16455,12 +16613,17 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a375df479c68
+      optional:
+      - SPLUNK_HOST
+      - SPLUNK_PASSWORD
+      - SPLUNK_PORT
+      - SPLUNK_USERNAME
+    content_hash: e4eabe3bf180
     files:
     - LICENSE
     - SKILL.es.md
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16477,11 +16640,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 277b78e9c1fe
+      optional:
+      - THEHIVE_API_KEY
+      - THEHIVE_URL
+    content_hash: 57f495746570
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16523,11 +16689,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 7895f5b5698c
+      optional:
+      - ABUSEIPDB_KEY
+      - VT_API_KEY
+    content_hash: 75f3f543e2ac
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16544,12 +16713,19 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a84b7ec73154
+      optional:
+      - ABUSEIPDB_API_KEY
+      - GREYNOISE_API_KEY
+      - OPENCTI_TOKEN
+      - OPENCTI_URL
+      - SHODAN_API_KEY
+      - VIRUSTOTAL_API_KEY
+    content_hash: ef1d33501bbc
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -16741,11 +16917,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: ef46fce8375a
+      optional:
+      - SKIP_TLS_VERIFY
+      - SPLUNK_URL
+    content_hash: dd087b12dfae
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16763,11 +16942,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 63a0a16c6c68
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 3e0ca2ec32a2
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16805,11 +16986,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 73fefe14ef7b
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 60f2ae18d6b3
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16876,11 +17059,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 68cd1fdfc0b6
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 895124525df2
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -16947,12 +17132,17 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 2ebabd38c47e
+      optional:
+      - DD_API_KEY
+      - DD_URL
+      - DEFECTDOJO_API_KEY
+      - DEFECTDOJO_URL
+    content_hash: f11094b3abd7
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -16972,12 +17162,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 92629424a5b3
+      optional:
+      - EXCEPTION_DB_PATH
+    content_hash: eb50480f5901
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -16997,11 +17189,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 8bef5b1228d8
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 83cdce7ca472
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -17081,12 +17275,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 2cf37048640e
+      optional:
+      - MISP_API_KEY
+      - MISP_URL
+    content_hash: fd8e36a4684f
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -17106,12 +17303,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 3b4fb23aac09
+      optional:
+      - USERNAME
+    content_hash: 2fac4e6c3228
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -17316,11 +17515,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 2d2123779f7e
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 7a45d80406b8
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -17663,12 +17864,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 8b2ee6f0849f
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: a7ef22f8ef6e
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -17688,12 +17891,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 6b5ca0ec5f15
+      optional:
+      - SOFTHSM2_LIB
+    content_hash: 59b20e701051
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -17759,12 +17964,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 7e4f5cac9fba
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: f332d0044c1d
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -17855,11 +18062,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 0980afb871c0
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 4fbbde634490
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -17876,11 +18085,17 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 0c876b0cc2e9
+      optional:
+      - SNORT_BIN
+      - SNORT_CONF
+      - SNORT_DAQ_DIR
+      - SNORT_LOG_DIR
+      - SNORT_RULES_DIR
+    content_hash: 1882ef2528f2
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -17898,12 +18113,17 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 256e068e5217
+      optional:
+      - SURICATA_BIN
+      - SURICATA_CONF
+      - SURICATA_EVE_LOG
+      - SURICATA_RULES_DIR
+    content_hash: b2ec488be853
     files:
     - LICENSE
     - SKILL.es.md
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -18042,11 +18262,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 1d7fc24acd88
+      optional:
+      - QRADAR_HOST
+      - QRADAR_TOKEN
+    content_hash: 97af541784f1
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -18063,11 +18286,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 7c1662294d14
+      optional:
+      - MISP_KEY
+      - MISP_URL
+    content_hash: b5eca6c08d37
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -18199,12 +18425,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 55f540decd03
+      optional:
+      - FALCON_BASE_URL
+      - FALCON_CLIENT_ID
+      - FALCON_CLIENT_SECRET
+    content_hash: 9035dc581382
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -18448,11 +18678,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: efa2ba2de0e0
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 496504dd4b63
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -18511,11 +18743,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 1229e85dfa02
+      optional:
+      - GITHUB_TOKEN
+    content_hash: 1136f626005a
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -18624,11 +18858,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 79f3ce964061
+      optional:
+      - AZURE_SUBSCRIPTION_ID
+    content_hash: 249da72e2722
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -19282,11 +19518,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: da7a91033475
+      optional:
+      - ES_HOSTS
+    content_hash: 6500da9e7d83
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -19576,11 +19814,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 7d232a8da232
+      optional:
+      - ZEEK_BIN
+      - ZEEK_LOG_DIR
+      - ZEEK_OUTPUT_DIR
+    content_hash: 735d3324b0f3
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -19709,11 +19951,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 59f3be36033a
+      optional:
+      - AUTH_LOG
+      - FAIL2BAN_CLIENT
+      - FAIL2BAN_LOG
+      - SYSLOG_PATH
+    content_hash: 6ba42fb46fda
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -20303,12 +20550,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 9132edac5571
+      optional:
+      - QUARANTINE_DIR
+    content_hash: f28260d50955
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -20328,11 +20577,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 1f43b055324a
+      optional:
+      - MISP_KEY
+      - MISP_URL
+      - OPENCTI_TOKEN
+      - OPENCTI_URL
+    content_hash: b16213d3966c
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -20684,12 +20938,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a38e20a5b0cc
+      optional:
+      - MOBILE_AUDIT_DIR
+    content_hash: ca407688b5c4
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -21304,12 +21560,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 254ae41b48a6
+      optional:
+      - DOCKER_CONTENT_TRUST
+    content_hash: 997d31d4fa33
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -21329,12 +21587,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: dfd302c9d8bf
+      optional:
+      - DOCKER_DAEMON_JSON
+    content_hash: 2abbc753ee1e
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -22025,11 +22285,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 46b3d79c5849
+      optional:
+      - APPDATA
+      - PROGRAMDATA
+    content_hash: c85448824827
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -22259,11 +22522,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 418277b300ce
+      optional:
+      - COMPUTERNAME
+    content_hash: 3bedc9e117b7
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -22302,11 +22567,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 848729bfed5a
+      optional:
+      - KONG_ADMIN_URL
+    content_hash: b05ba3f33308
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -22476,12 +22743,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 3df49a8b44ab
+      optional:
+      - SCAN_IMAGES
+    content_hash: 05f5bf8fd24c
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -22797,11 +23066,17 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 8839e41ee218
+      optional:
+      - CANARYTOKENS_API_URL
+      - CANARY_EMAIL
+      - CANARY_WEBHOOK
+      - THINKST_API_KEY
+      - THINKST_DOMAIN
+    content_hash: 7a22f578d0e9
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -22955,11 +23230,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 386fc0c06c34
+      optional:
+      - AWS_DEFAULT_REGION
+      - AWS_PROFILE
+    content_hash: 3b7e53b18d68
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -23387,12 +23665,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 7b4fac407e51
+      optional:
+      - PP_SECRET
+      - PP_SERVICE_PRINCIPAL
+    content_hash: 3c177033ce18
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -23437,11 +23718,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 9b85c9e0ef88
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 3b70826f3281
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -23698,12 +23981,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 82f92d1e6ef4
+      optional:
+      - GITHUB_ORG
+      - GITHUB_TOKEN
+    content_hash: 001bc23f0db1
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -23861,11 +24147,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 2bb0673ba13c
+      optional:
+      - CANARY_EMAIL
+      - CANARY_WEBHOOK
+    content_hash: 21877a27e987
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -23996,11 +24285,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a9e63fb8e6a4
+      optional:
+      - RESTIC_PASSWORD
+    content_hash: 815a048bbab1
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -24261,11 +24552,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 1fc9aeb6b2ed
+      optional:
+      - GUARDICORE_API_URL
+    content_hash: 2f30006cc2ba
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -24282,12 +24575,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 5917a6268b8e
+      optional:
+      - MIMECAST_BASE_URL
+    content_hash: fabd10f4c485
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -24462,11 +24757,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 24f1c845628d
+      optional:
+      - SURICATA_EVE_LOG
+      - SURICATA_RULES_DIR
+    content_hash: a465613ca62b
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -24550,11 +24848,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 617aea891338
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 4c7a45d55a7a
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -24823,13 +25123,15 @@ groups:
     - '- kubernetes'
     mode: container
     env:
-      required: []
+      required:
+      - KUBECONFIG
       optional: []
-    content_hash: 3898f27fa4fc
+    content_hash: 8cfc58cf9c57
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -24849,12 +25151,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 5b98e0c431a1
+      optional:
+      - OPA_PATH
+    content_hash: 7b6d77d8b17a
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -24873,13 +25177,17 @@ groups:
     - '- iam'
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: 6d5134814547
+      required:
+      - CYBERARK_PVWA_URL
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: e1993229bc93
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -24941,13 +25249,16 @@ groups:
     - '- email-security'
     mode: container
     env:
-      required: []
+      required:
+      - PROOFPOINT_PRINCIPAL
+      - PROOFPOINT_SECRET
       optional: []
-    content_hash: 045f4ceae9a9
+    content_hash: 762d31ee69c4
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25033,13 +25344,20 @@ groups:
     - '- rapid7'
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: f6ac367f6a63
+      required:
+      - INSIGHTVM_HOST
+      - INSIGHTVM_PASSWORD
+      - INSIGHTVM_USER
+      optional:
+      - INSIGHTVM_PORT
+      - SKIP_TLS_VERIFY
+    content_hash: 4a2d87107d3a
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25058,13 +25376,15 @@ groups:
     - '- kubernetes'
     mode: container
     env:
-      required: []
+      required:
+      - KUBECONFIG
       optional: []
-    content_hash: ea3e1abbf4b2
+    content_hash: 482ceacbd505
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25179,13 +25499,16 @@ groups:
     - '- scim'
     mode: container
     env:
-      required: []
+      required:
+      - OKTA_API_TOKEN
+      - OKTA_ORG_URL
       optional: []
-    content_hash: 473e90f0f6eb
+    content_hash: 4a9f7b62853e
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25205,12 +25528,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 261af0e07d0a
+      optional:
+      - GITLEAKS_PATH
+    content_hash: d9353f7031d5
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25231,11 +25556,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: d778da1a54df
+      optional:
+      - VAULT_ADDR
+      - VAULT_NAMESPACE
+      - VAULT_TOKEN
+    content_hash: d01357c4c9d0
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -25273,11 +25602,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 88a01d0501c9
+      optional:
+      - AWS_DEFAULT_REGION
+      - AWS_PROFILE
+    content_hash: f39a19516b5b
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -25336,11 +25668,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 3e923dd29853
+      optional:
+      - SEMGREP_PATH
+    content_hash: 6c384992cac9
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - scripts/agent.py
@@ -25358,11 +25692,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 1765cb9b5fdb
+      optional:
+      - SKIP_TLS_VERIFY
+      - SPLUNK_URL
+    content_hash: 10e71eb24b00
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -25483,13 +25820,18 @@ groups:
     - '- xsoar'
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: 45ea8c6eb357
+      required:
+      - XSOAR_API_KEY
+      - XSOAR_URL
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 6a0be40a87aa
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25601,11 +25943,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: d33503b06c43
+      optional:
+      - VT_API_KEY
+    content_hash: 60a885895a40
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -25689,13 +26033,17 @@ groups:
     - '- velociraptor'
     mode: container
     env:
-      required: []
+      required:
+      - VELOCIRAPTOR_API_KEY
+      - VELOCIRAPTOR_API_URL
+      - VELOCIRAPTOR_CERT
       optional: []
-    content_hash: 7cb6779a2e36
+    content_hash: 63dff2bfa7e1
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25761,12 +26109,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: d504a010cb23
+      optional:
+      - SLA_DB_PATH
+    content_hash: cd5ce2b01a32
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25831,12 +26181,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 33409dea46eb
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 2ae71d53a63a
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -25945,12 +26297,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: bdbd6f81c7e3
+      optional:
+      - ZPA_BASE_URL
+    content_hash: d8682a3fb3c0
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -26113,11 +26467,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 788a9019f206
+      optional:
+      - URLSCAN_API_KEY
+      - VT_API_KEY
+    content_hash: 721775fa9bb8
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -26134,11 +26491,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: be066d5326d6
+      optional:
+      - VT_API_KEY
+    content_hash: 4e7c90017b90
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -26156,11 +26515,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a9c3b573bd6a
+      optional:
+      - OKTA_API_TOKEN
+      - OKTA_ORG_URL
+    content_hash: a17dbd798c5d
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -26220,11 +26582,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 71d68aa4b8d8
+      optional:
+      - DEHASHED_API_KEY
+      - DEHASHED_EMAIL
+      - HIBP_API_KEY
+    content_hash: 93c00ae2f167
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -26262,12 +26628,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 18a2f6c44ceb
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 6f7ffd59a31b
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -26528,13 +26896,16 @@ groups:
     - '- mobile-security'
     mode: container
     env:
-      required: []
+      required:
+      - MOBSF_API_KEY
+      - MOBSF_URL
       optional: []
-    content_hash: 7754a8d99037
+    content_hash: 9e573ce4db67
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -26710,12 +27081,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 66fc3b56b9b9
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 473de0409de8
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -26734,13 +27107,16 @@ groups:
     - '- cape'
     mode: container
     env:
-      required: []
+      required:
+      - CAPE_API_TOKEN
+      - CAPE_URL
       optional: []
-    content_hash: c892ff5ace49
+    content_hash: 732a47e8b188
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.required
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -26759,12 +27135,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 77a5bd8cdd25
+      optional:
+      - SCOUTSUITE_PATH
+    content_hash: 4703f22243e8
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -26931,12 +27309,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: aa047868536f
+      optional:
+      - NEO4J_PASSWORD
+    content_hash: 37beab97b8d1
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -27044,11 +27424,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: cb3e74474108
+      optional:
+      - FALCO_URL
+    content_hash: 70c73cfa9d9d
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -27222,12 +27604,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: b1e9ee14cadd
+      optional:
+      - APPDATA
+      - LOCALAPPDATA
+      - USERPROFILE
+    content_hash: f19c137f35b9
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -27318,12 +27704,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: e7a28340a6ea
+      optional:
+      - ABUSEIPDB_KEY
+      - HIBP_API_KEY
+    content_hash: f6bdf0217c53
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -27524,11 +27913,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 0b22f168e34b
+      optional:
+      - ANYRUN_API_KEY
+    content_hash: 9be76981f3ef
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -28173,12 +28564,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: cfc89820bc17
+      optional:
+      - ETCD_ENDPOINT
+    content_hash: 08501ceaf9eb
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -28706,12 +29099,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: e57074f9bc1b
+      optional:
+      - SPIDERFOOT_URL
+    content_hash: fd0de7a334ad
     files:
     - LICENSE
     - SKILL.es.md
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -28838,12 +29233,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: f4df419ed7a8
+      optional:
+      - GOPHISH_API_KEY
+      - GOPHISH_API_URL
+      - SKIP_TLS_VERIFY
+    content_hash: 64b98abf7a6a
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -29375,11 +29774,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: a242c45d4f92
+      optional:
+      - SOAP_WSDL_URL
+    content_hash: ddc12d600462
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -29418,12 +29819,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 0be6981bbc93
+      optional:
+      - GITHUB_TOKEN
+    content_hash: fe69affd6e3b
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -29665,12 +30068,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 443bbb6ae029
+      optional:
+      - APPDATA
+      - LOCALAPPDATA
+    content_hash: d40fe50a44c4
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -29711,11 +30117,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 41ab8da716ea
+      optional:
+      - ES_HOSTS
+    content_hash: 70d43153cc39
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -29842,11 +30250,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 83a2365e7688
+      optional:
+      - ES_HOSTS
+    content_hash: 59d04d42154e
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -29884,11 +30294,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 6f652242b4ec
+      optional:
+      - NESSUS_ACCESS_KEY
+      - NESSUS_SECRET_KEY
+      - NESSUS_URL
+    content_hash: 2ab8bb6b42c3
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -29905,11 +30319,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 8465700cb57c
+      optional:
+      - TARGET_URL
+    content_hash: 40b229c433f5
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -29995,11 +30411,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 44b1e6f95663
+      optional:
+      - TARGET_URL
+    content_hash: 9c51978bf54f
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -30108,11 +30526,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: fcd6385e6ca2
+      optional:
+      - KISMET_URL
+    content_hash: 602e3f5b1276
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -30179,11 +30599,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 3b96ce4b9ec7
+      optional:
+      - TAXII_PASSWORD
+      - TAXII_USER
+    content_hash: 894acdab953f
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -30500,12 +30923,15 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 4ea2a580f34a
+      optional:
+      - NESSUS_URL
+      - SKIP_TLS_VERIFY
+    content_hash: 0c7d9f03a58a
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -30926,11 +31352,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 0c30d0cd4dd2
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 231c3e777f61
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -30947,11 +31375,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: df24c640241d
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: a7b9ab494538
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -31199,11 +31629,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 7599db36638c
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: c19fde1e3064
     files:
     - LICENSE
     - SKILL.md
+    - env.optional
     - references/api-reference.md
     - scripts/agent.py
     author: mukul975
@@ -31220,12 +31652,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 6815c82a5fa0
+      optional:
+      - SKIP_TLS_VERIFY
+    content_hash: 8ac35f4c7327
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -31376,12 +31810,18 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 84b9c8d067b3
+      optional:
+      - ABUSEIPDB_KEY
+      - THEHIVE_API_KEY
+      - THEHIVE_URL
+      - USERNAME
+      - VT_API_KEY
+    content_hash: 9a8589a778db
     files:
     - LICENSE
     - SKILL.md
     - assets/template.md
+    - env.optional
     - references/api-reference.md
     - references/standards.md
     - references/workflows.md
@@ -35199,6 +35639,7 @@ groups:
   - docs/roadmap-multiagent-sessions-api.md
   - docs/strategy-and-kpis.md
   - docs/v3.2-opt-ins.md
+  - env.shared.optional
   - gemini-extension.json
   - hooks/hooks-reference.example.json
   - hooks/hooks.json
@@ -35623,6 +36064,8 @@ groups:
   - electron/utils/kanban-generate.ts
   - electron/utils/path-builder.ts
   - electron/utils/statusline.ts
+  - env.shared.optional
+  - env.shared.required
   - eslint.config.mjs
   - generate-icon.js
   - hooks/gemini/notification.sh
@@ -37260,11 +37703,13 @@ groups:
   - LICENSE
   - README.md
   - skills/cloud/agent-platform-deploy/SKILL.md
+  - skills/cloud/agent-platform-deploy/env.optional
   - skills/cloud/agent-platform-deploy/references/copy_deploy_guide.md
   - skills/cloud/agent-platform-deploy/references/usage.md
   - skills/cloud/agent-platform-deploy/scripts/config_gcloud_cli.sh
   - skills/cloud/agent-platform-rag-engine-management/SKILL.md
   - skills/cloud/agent-platform-skill-registry/SKILL.md
+  - skills/cloud/agent-platform-skill-registry/env.optional
   - skills/cloud/agent-platform-skill-registry/references/generate-skill.md
   - skills/cloud/agent-platform-skill-registry/references/manage-skills.md
   - skills/cloud/agent-platform-skill-registry/references/monitor-operations.md
@@ -37663,6 +38108,7 @@ groups:
   - LICENSE
   - README.md
   - assets/logo.svg
+  - env.shared.optional
   - gemini-extension.json
   - hooks/guide-creation.sh
   - hooks/guide-exploration.sh
@@ -37860,10 +38306,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 0552b40a4b98
+      optional:
+      - DIGIKEY_CLIENT_ID
+      - DIGIKEY_CLIENT_SECRET
+    content_hash: 521a6b70ff35
     files:
     - SKILL.md
+    - env.optional
     - scripts/fetch_datasheet_digikey.py
     - scripts/sync_datasheets_digikey.py
     author: aklofas
@@ -37886,10 +38335,12 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 06ef442b501c
+      optional:
+      - ELEMENT14_API_KEY
+    content_hash: b65bb4be5d9c
     files:
     - SKILL.md
+    - env.optional
     - scripts/fetch_datasheet_element14.py
     - scripts/sync_datasheets_element14.py
     author: aklofas
@@ -37950,10 +38401,16 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 61ce75bf78ac
+      optional:
+      - DIGIKEY_CLIENT_ID
+      - DIGIKEY_CLIENT_SECRET
+      - ELEMENT14_API_KEY
+      - MOUSER_PART_API_KEY
+      - MOUSER_SEARCH_API_KEY
+    content_hash: c0feb6492d90
     files:
     - SKILL.md
+    - env.optional
     - references/config-reference.md
     - references/datasheet-verification.md
     - references/design-intent.md
@@ -38133,10 +38590,12 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 1763cfd375d8
+      optional:
+      - MOUSER_SEARCH_API_KEY
+    content_hash: 3f41a3e32392
     files:
     - SKILL.md
+    - env.optional
     - scripts/fetch_datasheet_mouser.py
     - scripts/sync_datasheets_mouser.py
     author: aklofas
@@ -38173,10 +38632,22 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 128092f158a1
+      optional:
+      - DIGIKEY_CLIENT_ID
+      - DIGIKEY_CLIENT_SECRET
+      - ELEMENT14_API_KEY
+      - LOCALAPPDATA
+      - LTSPICE_PATH
+      - MOUSER_PART_API_KEY
+      - MOUSER_SEARCH_API_KEY
+      - NGSPICE_PATH
+      - PROGRAMFILES
+      - SPICE_SIMULATOR
+      - XYCE_PATH
+    content_hash: 3ab94f65c9b1
     files:
     - SKILL.md
+    - env.optional
     - references/simulation-models.md
     - scripts/extract_parasitics.py
     - scripts/simulate_subcircuits.py
@@ -38259,11 +38730,17 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: e6deb06dc38d
+      optional:
+      - HEADLESS
+      - PW_EXTRA_HEADERS
+      - PW_HEADER_NAME
+      - PW_HEADER_VALUE
+      - SLOW_MO
+    content_hash: b23bd75feee1
     files:
     - API_REFERENCE.md
     - SKILL.md
+    - env.optional
     - lib/helpers.js
     - package.json
     - run.js
@@ -38607,9 +39084,53 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
-      optional: []
-    content_hash: a716eaae749c
+      required:
+      - LAST30DAYS_DEBUG
+      - LAST30DAYS_YOUTUBE_SSH_HOST
+      optional:
+      - ACTION
+      - AUTH_TOKEN
+      - BETA_FILE
+      - BIRD_DEBUG_ARTICLE
+      - BIRD_FEATURES_CACHE
+      - BIRD_FEATURES_JSON
+      - BIRD_FEATURES_PATH
+      - BIRD_QUERY_IDS_CACHE
+      - BSKY_SEARCH_HOST
+      - CLAUDE
+      - CODEX_AUTH_FILE
+      - COUNT
+      - CT0
+      - DATE
+      - DIR
+      - GEMINI_API_KEY
+      - GITHUB_TOKEN
+      - GOOGLE_API_KEY
+      - GOOGLE_GENAI_API_KEY
+      - LAST30DAYS_CONFIG_DIR
+      - LAST30DAYS_MEMORY_DIR
+      - LAST30DAYS_SKIP_PREFLIGHT
+      - LAST30DAYS_STORE
+      - LAST30DAYS_TRANSCRIPT_TIMEOUT
+      - OPENAI_API_KEY
+      - OUT
+      - OUT_DIR
+      - PREFIX
+      - RELEASE_FILE
+      - REPLACE
+      - REPO_DIR
+      - REPO_ROOT
+      - SCRAPE_CREATORS_API_KEY
+      - SIZE
+      - SKILL_DIR
+      - SKILL_MD_COUNT
+      - SLUG
+      - SUMMARY
+      - TIMESTAMP
+      - TOPIC
+      - V1_DIR
+      - V2_DIR
+    content_hash: 4e38829c7ad3
     files:
     - SKILL.md
     - agents/openai.yaml
@@ -38618,6 +39139,8 @@ groups:
     - assets/dog-as-human.png
     - assets/dog-original.jpeg
     - assets/swimmom-mockup.jpeg
+    - env.optional
+    - env.required
     - references/save-html-brief.md
     - scripts/briefing.py
     - scripts/build-skill.sh
@@ -40460,6 +40983,7 @@ groups:
   - LICENSE
   - README.md
   - docs/adr/0001-explicit-setup-pointer-only-for-hard-dependencies.md
+  - env.shared.optional
   - scripts/link-skills.sh
   - scripts/list-skills.sh
   - skills/deprecated/README.md
@@ -40469,6 +40993,7 @@ groups:
   - skills/deprecated/ubiquitous-language/SKILL.md
   - skills/engineering/README.md
   - skills/engineering/diagnose/SKILL.md
+  - skills/engineering/diagnose/env.optional
   - skills/engineering/diagnose/scripts/hitl-loop.template.sh
   - skills/engineering/grill-with-docs/ADR-FORMAT.md
   - skills/engineering/grill-with-docs/CONTEXT-FORMAT.md
@@ -40506,6 +41031,7 @@ groups:
   - skills/in-progress/writing-shape/SKILL.md
   - skills/misc/README.md
   - skills/misc/git-guardrails-claude-code/SKILL.md
+  - skills/misc/git-guardrails-claude-code/env.optional
   - skills/misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh
   - skills/misc/migrate-to-shoehorn/SKILL.md
   - skills/misc/scaffold-exercises/SKILL.md
@@ -41716,6 +42242,7 @@ groups:
   - skills/cuopt/cuopt-server-api-python/assets/vrp_basic/client.py
   - skills/cuopt/cuopt-server-api-python/assets/vrp_simple/README.md
   - skills/cuopt/cuopt-server-api-python/assets/vrp_simple/client.py
+  - skills/cuopt/cuopt-server-api-python/env.optional
   - skills/cuopt/cuopt-server-api-python/skill-card.md
   - skills/cuopt/cuopt-server-api-python/skill.oms.sig
   - skills/cuopt/cuopt-server-common/SKILL.md
@@ -41763,11 +42290,13 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: ea7c992b1011
+      optional:
+      - FACTORY_PROJECT_DIR
+    content_hash: 01c160c0b2c5
     files:
     - .factory-plugin/plugin.json
     - SKILL.md
+    - env.optional
     - hooks/hooks.json
     - hooks/load-memory.py
     - references/TEMPLATE.md
@@ -41842,11 +42371,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: cfe239a4ab1e
+      optional:
+      - RECRAFT_API_KEY
+      - REMOVE_BG_API_KEY
+    content_hash: 45c7c117373c
     files:
     - .claude-plugin/plugin.json
     - SKILL.md
+    - env.optional
     - examples/images/logo-01.png
     - examples/images/logo-02.png
     - examples/images/logo-03.png
@@ -41885,11 +42417,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 3cc3e89aa7b0
+      optional:
+      - GEMINI_API_KEY
+      - IMAGE_OUTPUT_DIR
+    content_hash: f5aa8390d45b
     files:
     - .claude-plugin/plugin.json
     - SKILL.md
+    - env.optional
     - references/prompts.md
     - scripts/batch_generate.py
     - scripts/generate.py
@@ -41907,11 +42442,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 5ea3faed68fa
+      optional:
+      - PRODUCTHUNT_ACCESS_TOKEN
+    content_hash: 0be4b824352d
     files:
     - .claude-plugin/plugin.json
     - SKILL.md
+    - env.optional
     - scripts/credential.py
     - scripts/get_collection.py
     - scripts/get_collections.py
@@ -41987,11 +42524,14 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: cc831cc8ee01
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+    content_hash: e1c27236be76
     files:
     - .claude-plugin/plugin.json
     - SKILL.md
+    - env.optional
     - examples/opc-skills-case-study.md
     - references/geo-research.md
     - references/google-docs-summary.md
@@ -42023,11 +42563,13 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: f9d8665353cd
+      optional:
+      - TWITTERAPI_API_KEY
+    content_hash: ff1fa67a6cdf
     files:
     - .claude-plugin/plugin.json
     - SKILL.md
+    - env.optional
     - scripts/batch_get_users.py
     - scripts/check_relationship.py
     - scripts/credential.py
@@ -43256,6 +43798,7 @@ groups:
   - LICENSE
   - README.md
   - build.sh
+  - env.shared.optional
   - evals/evals.json
   - netlify.toml
   - scripts/generate_sitemap.sh
@@ -43630,6 +44173,7 @@ groups:
   - LICENSE
   - README.md
   - assets/redis-logo.png
+  - env.shared.optional
   - package-lock.json
   - package.json
   - packages/redis-development-build/package.json
@@ -43752,10 +44296,12 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 4ddf33c4ba37
+      optional:
+      - RESEND_API_KEY
+    content_hash: 140e9576c5ec
     files:
     - SKILL.md
+    - env.optional
     - references/api-keys.md
     - references/automations.md
     - references/broadcasts.md
@@ -46829,6 +47375,8 @@ groups:
   - docs/zh-CN/user-guide/04-packaging.md
   - docs/zh-CN/user-guide/05-workflows.md
   - docs/zh-CN/user-guide/06-troubleshooting.md
+  - env.shared.optional
+  - env.shared.required
   - example-mcp-config.json
   - examples/chroma-example/1_generate_skill.py
   - examples/chroma-example/2_upload_to_chroma.py
@@ -47406,10 +47954,30 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 4062106c67c3
+      optional:
+      - BIND_HOST
+      - BRAINSTORM_DIR
+      - BRAINSTORM_HOST
+      - BRAINSTORM_OWNER_PID
+      - BRAINSTORM_PORT
+      - BRAINSTORM_URL_HOST
+      - FORCE_BACKGROUND
+      - FOREGROUND
+      - LOG_FILE
+      - OWNER_PID
+      - PID_FILE
+      - PPID
+      - PROJECT_DIR
+      - SCRIPT_DIR
+      - SERVER_PID
+      - SESSION_DIR
+      - SESSION_ID
+      - STATE_DIR
+      - URL_HOST
+    content_hash: 448cf7ae7228
     files:
     - SKILL.md
+    - env.optional
     - scripts/frame-template.html
     - scripts/helper.js
     - scripts/server.cjs
@@ -47538,14 +48106,21 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 81f5e240ad23
+      optional:
+      - COUNT
+      - POLLUTION_CHECK
+      - TEST_FILE
+      - TEST_FILES
+      - TEST_PATTERN
+      - TOTAL
+    content_hash: fb09b3bf4403
     files:
     - CREATION-LOG.md
     - SKILL.md
     - condition-based-waiting-example.ts
     - condition-based-waiting.md
     - defense-in-depth.md
+    - env.optional
     - find-polluter.sh
     - root-cause-tracing.md
     - test-academic.md
@@ -47717,6 +48292,7 @@ groups:
   - docs/superpowers/specs/2026-04-06-worktree-rototill-design.md
   - docs/testing.md
   - docs/windows/polyglot-hooks.md
+  - env.shared.optional
   - gemini-extension.json
   - hooks/hooks-cursor.json
   - hooks/hooks.json
@@ -47805,10 +48381,19 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: f308477d75ff
+      optional:
+      - CATEGORIZED
+      - CONTEXT_LINES
+      - DUPLICATES_DIR
+      - FILE_TYPES
+      - INCLUDE_TESTS
+      - OUTPUT
+      - OUTPUT_DIR
+      - SRC_DIR
+    content_hash: 8b694c77c0a2
     files:
     - SKILL.md
+    - env.optional
     - scripts/categorize-prompt.md
     - scripts/extract-functions.sh
     - scripts/find-duplicates-prompt.md
@@ -47865,10 +48450,15 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 070b51717644
+      optional:
+      - ACTION
+      - ARGS
+      - COMMAND
+      - SESSION_NAME
+    content_hash: 1979cfb9c5f1
     files:
     - SKILL.md
+    - env.optional
     - tmux-wrapper.sh
     author: obra
     source_url: https://github.com/obra/superpowers-lab/tree/main/skills/using-tmux-for-interactive-commands
@@ -48577,6 +49167,7 @@ groups:
   - docs/context7-quickstarts.md
   - docs/discoverability-audit.md
   - docs/openclaw-setup.md
+  - env.shared.optional
   - eslint-plugins.d.ts
   - eslint.config.ts
   - glama.json
@@ -49749,10 +50340,18 @@ groups:
     mode: container
     env:
       required: []
-      optional: []
-    content_hash: 4650ae0a8fda
+      optional:
+      - ANTHROPIC_API_KEY
+      - ANTHROPIC_UNSLOP_SKIP_DETECTOR
+      - APPDATA
+      - UNSLOP_MODEL
+      - UNSLOP_SKIP_SURPRISAL
+      - UNSLOP_STYLE_MEMORY
+      - XDG_CONFIG_HOME
+    content_hash: 90a96e307f17
     files:
     - SKILL.md
+    - env.optional
     - scripts/__init__.py
     - scripts/__main__.py
     - scripts/benchmark.py
@@ -50062,6 +50661,7 @@ groups:
   - docs/research/_STATUS.md
   - docs/research/index.md
   - docs/research/research-updating.md
+  - env.shared.optional
   - evals/README.md
   - evals/llm_run.py
   - evals/measure.py
@@ -50598,6 +51198,7 @@ groups:
   - CONTRIBUTING.md
   - LICENSE
   - README.md
+  - env.shared.optional
   - scripts/README.md
   - scripts/snapshot_models.py
   - scripts/sync_from_swagger.py
@@ -50831,6 +51432,7 @@ groups:
   - docs/integrations/mcp-agent.md
   - docs/integrations/vscode-copilot.md
   - docs/plans/2026-03-09-plan-apply-design.md
+  - env.shared.required
   - examples/deploy.yaml
   - examples/mcp-configs/README.md
   - examples/mcp-configs/claude-code.json
@@ -51725,8 +52327,16 @@ skills:
   mode: host
   env:
     required: []
-    optional: []
-  content_hash: c3c67c48b41b
+    optional:
+    - BIN_DIR
+    - BUILT
+    - MOCK_ERROR_RESPONSE
+    - MOCK_EXIT_EARLY
+    - MODE
+    - REPO_DIR
+    - RUN_INTEGRATION
+    - SKILL_DIR
+  content_hash: 9a093ea437ba
   files:
   - .gitattributes
   - .github/assets/demo-zh.png
@@ -51744,6 +52354,7 @@ skills:
   - README.zh-CN.md
   - SKILL.md
   - bun.lock
+  - env.optional
   - install.ps1
   - install.sh
   - package.json
@@ -51864,8 +52475,40 @@ skills:
   mode: container
   env:
     required: []
-    optional: []
-  content_hash: 6be8309b7c09
+    optional:
+    - BOLD
+    - CLEANUP_TEMP
+    - COMPACT
+    - CYAN
+    - DECK_NAME
+    - DEPLOY_DIR
+    - DEPLOY_OUTPUT
+    - DEPLOY_URL
+    - FILE_SIZE
+    - GREEN
+    - HTML_FILENAME
+    - INPUT
+    - INPUT_HTML
+    - NC
+    - OUTPUT_DIR
+    - OUTPUT_PDF
+    - PARENT_DIR
+    - RED
+    - RENAMED_DIR
+    - SCREENSHOT_DIR
+    - SERVE_DIR
+    - SOURCE_FILE
+    - TARGET_DIR
+    - TEMP_DIR
+    - TEMP_SCRIPT
+    - VERCEL_CMD
+    - VERCEL_USER
+    - VIEWPORT_H
+    - VIEWPORT_W
+    - VP_HEIGHT
+    - VP_WIDTH
+    - YELLOW
+  content_hash: 2f78e00bb24c
   files:
   - .claude-plugin/marketplace.json
   - .gitignore
@@ -51948,6 +52591,7 @@ skills:
   - bold-template-pack/templates/studio/preview.md
   - bold-template-pack/templates/vellum/design.md
   - bold-template-pack/templates/vellum/preview.md
+  - env.optional
   - html-template.md
   - plugins/frontend-slides/.claude-plugin/plugin.json
   - plugins/frontend-slides/skills/frontend-slides/SKILL.md
@@ -52046,8 +52690,14 @@ skills:
   mode: container
   env:
     required: []
-    optional: []
-  content_hash: b9ae2d6fdf94
+    optional:
+    - BASE
+    - LINK
+    - REPO_DIR
+    - SKILL_NAME
+    - UNINSTALLER
+    - USERPROFILE
+  content_hash: 2ec895d76766
   files:
   - .gitattributes
   - .gitignore
@@ -52068,6 +52718,7 @@ skills:
   - docs/animate.html
   - docs/edit.html
   - docs/index.html
+  - env.optional
   - install.cmd
   - install.sh
   - installscripts/install.py
@@ -52155,8 +52806,14 @@ skills:
   mode: container
   env:
     required: []
-    optional: []
-  content_hash: cdfef40c1b29
+    optional:
+    - LINEAR_API_KEY
+    - LINEAR_DEFAULT_INITIATIVE_ID
+    - LINEAR_DISABLE_RETRY
+    - LINEAR_REQUIRE_ACCEPTANCE_CRITERIA
+    - LINEAR_USE_LIN
+    - SCRIPT_DIR
+  content_hash: 6942d4691258
   files:
   - .claude-plugin/plugin.json
   - .env.schema
@@ -52175,6 +52832,7 @@ skills:
   - api.md
   - docs/issue-template.md
   - docs/labels.md
+  - env.optional
   - eslint.config.js
   - hooks/post-edit.sh
   - package-lock.json
@@ -52526,8 +53184,194 @@ skills:
   mode: container
   env:
     required: []
-    optional: []
-  content_hash: 56521189f530
+    optional:
+    - ACCEL
+    - ACTUAL_BYTES
+    - ACTUAL_PART
+    - ACTUAL_SIZE
+    - ADAPTER_BOOTSTRAP_MODE
+    - ADAPTER_CHECK_MODE
+    - ADAPTER_QUERY_PY
+    - APPDATA
+    - ATTEMPT
+    - BASENAME
+    - BLUE
+    - BOOT_KEY
+    - BOOT_KEY_INTERVAL_MS
+    - BOOT_KEY_LOG
+    - BOOT_KEY_ROUNDS
+    - BOOT_KEY_SCRIPT
+    - BRAIN_DIR
+    - BUILDER_DIR
+    - CHECK_INTERVAL
+    - CHECK_SH
+    - CLAIM_URL
+    - CLAUDE_SCAFFOLD_SH
+    - CLEANUP_TEMP
+    - CLI_MAIN
+    - CODEX_HOME
+    - CODEX_SANDBOX
+    - COMPLETE
+    - COMSPEC
+    - CONTENT_DISPOSITION
+    - CONTENT_LENGTH
+    - COUNT
+    - CPUS
+    - CPU_FLAGS_LINE
+    - CPU_MODEL
+    - CPU_VIRT_EXT
+    - DATE
+    - DEEP
+    - DEFAULT_VM_ROOT
+    - DEPLOY_ENDPOINT
+    - DEV_KVM_STATUS
+    - DISK_GB
+    - DISK_IMAGE_PATH
+    - DISK_INFO
+    - DOWNLOAD_DIR
+    - ERROR_MSG
+    - EXPECTED_BYTES
+    - FAIL
+    - FDA_API_KEY
+    - FILENAME
+    - FILE_SIZE
+    - FILE_SIZE_BYTES
+    - FINAL_URL
+    - FIRMWARE_MODE
+    - FONT_OUTPUT
+    - FRAMEWORK
+    - FRED_API_KEY
+    - GH_TOKEN
+    - GITHUB_TOKEN
+    - GREEN
+    - HEADERS
+    - HEIGHT
+    - HF_HOME
+    - HOMEDRIVE
+    - HOMEPATH
+    - HOST_ID
+    - HOST_ID_EXPLICIT
+    - HTML_COUNT
+    - HTML_FILE
+    - HTML_FILES
+    - HTTP_STATUS
+    - HYPERVISOR_VENDOR
+    - IMAGE_COUNT
+    - INPUT_PATH
+    - INSTALL_SH
+    - IN_PROGRESS
+    - ISO_PATH
+    - LOG_FILE
+    - LSCPU_OUTPUT
+    - MACHINE_TYPE
+    - MATERIALIZE_PS1
+    - MAX_ATTEMPTS
+    - MAX_RESTART_ATTEMPTS
+    - MEMORY_MB
+    - MODULE_CACHE
+    - MONITOR_SOCKET
+    - MP_API_KEY
+    - NC
+    - NCBI_API_KEY
+    - NCBI_EMAIL
+    - NON_EMBEDDED
+    - OPENAI_API_KEY
+    - OPENROUTER_API_KEY
+    - OUTPUT_PATH
+    - OVMF_CODE
+    - OVMF_VARS
+    - OVMF_VARS_TEMPLATE
+    - PAGE_COUNT
+    - PAGE_SIZE
+    - PARTIAL_PATH
+    - PART_PATH
+    - PART_WRITER_OPEN
+    - PASS
+    - PATENTSVIEW_API_KEY
+    - PENDING
+    - PERM_SWIFT
+    - PID
+    - PIDFILE
+    - PLAN_FILE
+    - PLAYWRIGHT_CLI_SESSION
+    - POLLUTION_CHECK
+    - PORT_LINES
+    - POSTER_FILE
+    - PREVIEW_URL
+    - PRINT_ONLY
+    - PROFILE
+    - PROJECT_DIR
+    - PROJECT_NAME
+    - PROJECT_PATH
+    - PYTHON_BIN
+    - PYTHON_BIN_FOR_BOOTSTRAP
+    - PYTHON_HELPERS_SH
+    - PYTHON_MIN_MAJOR
+    - PYTHON_MIN_MINOR
+    - QEMU_BIN
+    - QEMU_PID
+    - QMP_SOCKET
+    - REASON
+    - RED
+    - REPO_ROOT
+    - REQUIRE_KVM
+    - RESPONSE
+    - RESTART_COOLDOWN
+    - RUN_IN_FOREGROUND
+    - SAFE_FILENAME
+    - SCRIPT_DIR
+    - SEABIOS_BIN
+    - SENTRY_AUTH_TOKEN
+    - SENTRY_BASE_URL
+    - SENTRY_ORG
+    - SENTRY_PROJECT
+    - SERIAL_LOG
+    - SESSION_TIMEOUT
+    - SKILL_NAME
+    - SKILL_ROOT
+    - SKIP_EXTERNAL_INSTALL
+    - SKIP_RUNTIME_FRESHNESS_GATE
+    - SOURCE_URL
+    - SPECIAL_TEST_ENV
+    - STAGING_DIR
+    - STATE_FILE
+    - STATUS
+    - STRICT_OFFLINE
+    - SUPERVISOR_CONFIG
+    - SYSTEMD_DETECT_VIRT_BIN
+    - SYSTEM_DRIVE_FORMAT
+    - SYSTEM_DRIVE_PATH
+    - SYSTEM_VIRT_KIND
+    - TARBALL
+    - TARGET_DIR
+    - TARGET_ROOT
+    - TEMP_DIR
+    - TEST_FILE
+    - TEST_FILES
+    - TEST_PATTERN
+    - TOTAL
+    - TPM_DIR
+    - TPM_PID
+    - TPM_PIDFILE
+    - TPM_SOCKET
+    - USERPROFILE
+    - USE_LEGACY_IDE
+    - USPTO_API_KEY
+    - VCO_HOST_ID
+    - VECTCUT_API_BASE_URL
+    - VECTCUT_BASE_URL
+    - VGO_OPTIONAL_INSTALL_TIMEOUT_SECONDS
+    - VGO_POWERSHELL_BRIDGE_TIMEOUT_SECONDS
+    - VGO_SUPPRESS_INSTALL_COMPLETION_REPORT
+    - VIBE_MEMORY_BACKEND_DRIVER_MODE
+    - VIRTUALIZATION_TYPE
+    - VM_NAME
+    - VM_ROOT
+    - VNC_DISPLAY
+    - WIDTH
+    - WITH_TPM
+    - YELLOW
+  content_hash: f5c9bcb76f57
   files:
   - .gitattributes
   - .github/workflows/vco-gates.yml
@@ -55117,6 +55961,7 @@ skills:
   - docs/upstream-reaudit-matrix-v2-governance.md
   - docs/upstream-source-alias-governance.md
   - docs/version-packaging-governance.md
+  - env.optional
   - install.ps1
   - install.sh
   - logo.png
@@ -56040,9 +56885,34 @@ skills:
   tags: []
   mode: container
   env:
-    required: []
-    optional: []
-  content_hash: c7b49647b508
+    required:
+    - FFMPEG_PATH
+    - KEEP_TEMP_FILES
+    - LOG_LEVEL
+    - MAX_VIDEO_HEIGHT
+    - OUTPUT_DIR
+    - SUBTITLE_FONT_SIZE
+    - SUBTITLE_MARGIN_V
+    - TARGET_CHAPTER_DURATION
+    - TARGET_LANGUAGE
+    - TEMP_DIR
+    - TRANSLATION_BATCH_SIZE
+    - YT_DLP_PROXY
+    - YT_DLP_RATE_LIMIT
+    optional:
+    - BLUE
+    - FFMPEG_FOUND
+    - FFMPEG_VERSION
+    - GREEN
+    - LIBASS_SUPPORTED
+    - NC
+    - PYTHON_VERSION
+    - RED
+    - SCRIPT_DIR
+    - SKILL_DIR
+    - YELLOW
+    - YT_DLP_VERSION
+  content_hash: c40c4c154799
   files:
   - .env.example
   - .github/REPOSITORY_SETTINGS.md
@@ -56056,6 +56926,8 @@ skills:
   - README.zh-CN.md
   - SKILL.md
   - TECHNICAL_NOTES.md
+  - env.optional
+  - env.required
   - install_as_skill.sh
   - references/ffmpeg-guide.md
   - references/subtitle-formatting.md
