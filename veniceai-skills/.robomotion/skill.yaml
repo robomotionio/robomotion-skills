@@ -1,0 +1,10 @@
+schema_version: 1
+name: veniceai-skills
+title: 'Veniceai Skills'
+type: group
+version: 0.1.0
+author: 'veniceai'
+source_url: https://github.com/veniceai/skills
+license: MIT
+summary: '20 skills — API basics, auth modes, pricing, and versioning'
+tags: [ai]
