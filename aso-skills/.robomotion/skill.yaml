@@ -1,0 +1,10 @@
+schema_version: 1
+name: aso-skills
+title: 'Aso Skills'
+type: group
+version: 0.1.0
+author: 'Eronred'
+source_url: https://github.com/Eronred/aso-skills
+license: MIT
+summary: '40 skills — 30+ App Store Optimization skills for keyword research, metadata optimization, competitor analysis, creative optimization, and mobile growth strategies via Appeeky API'
+tags: [marketing, data]
