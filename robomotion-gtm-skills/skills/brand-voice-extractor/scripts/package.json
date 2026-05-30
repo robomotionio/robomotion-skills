@@ -1,0 +1,10 @@
+{
+  "name": "brand-voice-extractor-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright fallback fetcher for JS-rendered blogs (brand-voice-extractor).",
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}

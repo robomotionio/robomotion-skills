@@ -1,0 +1,64 @@
+{
+  "_comment": "The seven fixed render formats for graphics-studio. Each: {canvas{w,h}, multi_slide, density_rules, content_schema}. The agent authors HTML to canvas size honoring density_rules and filling content_schema; render.mjs screenshots at deviceScaleFactor 2. Map any community/odd size to one of these before rendering. multi_slide formats render a directory of per-slide HTML files to one PNG each.",
+  "formats": {
+    "carousel": {
+      "canvas": { "w": 1080, "h": 1350 },
+      "multi_slide": true,
+      "slides": { "min": 4, "max": 10, "ideal": "6-8" },
+      "use": "LinkedIn/Instagram 4:5 carousel slides",
+      "density_rules": "Cover hook slide; one idea per content slide (max 3-4 list items each); CTA close slide. Keep type large; safe inner margins 96px.",
+      "content_schema": { "slides": [ { "kind": "cover|point|list|quote|stat|cta", "kicker": "string?", "headline": "string", "body": "string?", "items": "string[]?", "stat": "string?", "image": "path?", "page": "n/total" } ] },
+      "aliases": ["instagram-carousel", "linkedin-carousel", "portrait-carousel", "4:5"]
+    },
+    "story": {
+      "canvas": { "w": 1080, "h": 1920 },
+      "multi_slide": false,
+      "use": "Instagram/TikTok vertical story (9:16)",
+      "density_rules": "One bold message, very large type, keep content in the central 1080x1420 safe zone (top/bottom 250px reserved for platform UI).",
+      "content_schema": { "kicker": "string?", "headline": "string", "subhead": "string?", "cta": "string?", "image": "path?" },
+      "aliases": ["instagram-story", "reel-cover", "vertical", "9:16"]
+    },
+    "infographic": {
+      "canvas": { "w": 1080, "h": 2400 },
+      "multi_slide": false,
+      "full_page": true,
+      "use": "Tall infographic / data story (full-page capture; height grows to content)",
+      "density_rules": "Sectioned vertical flow; one stat or step per band; numbered steps; strong hierarchy; consistent section spacing. Height is a hint — full-page capture grows to fit.",
+      "content_schema": { "title": "string", "subtitle": "string?", "sections": [ { "kind": "stat|step|callout|chart", "label": "string", "value": "string?", "body": "string?" } ], "source": "string?" },
+      "aliases": ["data-viz", "pinterest", "tall"]
+    },
+    "slides": {
+      "canvas": { "w": 1920, "h": 1080 },
+      "multi_slide": true,
+      "slides": { "min": 2, "max": 30, "ideal": "5-12" },
+      "use": "16:9 presentation deck",
+      "density_rules": "One idea per slide, max ~6 bullets/cards, single viewport (no scroll), big title + supporting visual.",
+      "content_schema": { "slides": [ { "kind": "title|content|section|quote|chart|closing", "title": "string", "bullets": "string[]?", "body": "string?", "image": "path?", "page": "n/total" } ] },
+      "aliases": ["deck", "presentation", "16:9", "talk"]
+    },
+    "poster": {
+      "canvas": { "w": 1080, "h": 1350 },
+      "multi_slide": false,
+      "use": "Single announcement / quote / hype poster (4:5)",
+      "density_rules": "One headline + supporting line + brand mark. High contrast, oversized type, lots of breathing room.",
+      "content_schema": { "kicker": "string?", "headline": "string", "subhead": "string?", "footer": "string?", "image": "path?" },
+      "aliases": ["announcement", "quote-card", "portrait"]
+    },
+    "chart": {
+      "canvas": { "w": 1080, "h": 1080 },
+      "multi_slide": false,
+      "use": "Single chart / data graphic (square)",
+      "density_rules": "One chart, titled, labeled axes, source line. Legible numbers; one clear takeaway annotated.",
+      "content_schema": { "title": "string", "subtitle": "string?", "chart": { "type": "bar|line|donut|stat", "data": "object" }, "takeaway": "string?", "source": "string?" },
+      "aliases": ["data-card", "metric-card", "square-chart"]
+    },
+    "tweet": {
+      "canvas": { "w": 1080, "h": 1080 },
+      "multi_slide": false,
+      "use": "X inline image (square)",
+      "density_rules": "One punchy statement or code/screenshot mock; legible at small size; strong contrast; signature/handle in a corner.",
+      "content_schema": { "headline": "string", "body": "string?", "handle": "string?", "image": "path?" },
+      "aliases": ["x-image", "x-card", "square-social"]
+    }
+  }
+}

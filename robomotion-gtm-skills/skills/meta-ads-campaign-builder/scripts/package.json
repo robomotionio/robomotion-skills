@@ -1,0 +1,10 @@
+{
+  "name": "meta-ads-campaign-builder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright scraper for the Meta Ad Library (optional competitor pass).",
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

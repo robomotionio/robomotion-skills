@@ -1,0 +1,10 @@
+{
+  "name": "linkedin-commenter-extractor-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Keyless Playwright LinkedIn post-comments scraper (li_at cookie path) — the degrade for the Apify post-comments actor.",
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

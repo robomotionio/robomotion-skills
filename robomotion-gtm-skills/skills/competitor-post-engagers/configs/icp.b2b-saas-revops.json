@@ -1,0 +1,57 @@
+{
+  "_comment": "Example ICP for competitor-post-engagers score_icp.py — RevOps/GTM buyers at mid-market B2B SaaS. Copy to ${WORKSPACE}/icp.json and tune. Components omitted are skipped (not penalized); included components share the FIT weight equally. employee_ranges are [min,max] ints. exclude_keywords hard-zero a lead's fit.",
+  "titles": [
+    "head of sales",
+    "vp of sales",
+    "vp sales",
+    "chief revenue officer",
+    "cro",
+    "head of revenue operations",
+    "revenue operations",
+    "revops",
+    "sales operations",
+    "head of growth",
+    "demand generation",
+    "head of go-to-market"
+  ],
+  "seniorities": [
+    "owner",
+    "founder",
+    "c_suite",
+    "vp",
+    "head",
+    "director"
+  ],
+  "employee_ranges": [
+    [51, 200],
+    [201, 1000]
+  ],
+  "industries": [
+    "software",
+    "saas",
+    "computer software",
+    "information technology",
+    "internet"
+  ],
+  "keywords": [
+    "b2b",
+    "outbound",
+    "pipeline",
+    "go-to-market",
+    "gtm",
+    "sales engagement",
+    "revenue operations",
+    "forecasting",
+    "quota"
+  ],
+  "exclude_keywords": [
+    "intern",
+    "student",
+    "seeking",
+    "open to work",
+    "freelance",
+    "consultant",
+    "coach",
+    "recruiter"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "_comment": "Tier matrix + asset templates for feature-launch-playbook. Pure-reasoning composite: the AGENT generates each asset. This asset gates WHICH assets to produce by launch tier and what each must contain.",
+  "messaging_foundation": {
+    "rule": "Outcome-driven headline (not feature-driven), subhead (what + for whom), proof point, single CTA.",
+    "headline_examples": {
+      "good": "Find your best leads in seconds",
+      "bad": "Introducing Advanced Filtering"
+    },
+    "fields": ["headline", "subhead", "proof_point", "cta"]
+  },
+  "tiers": {
+    "1": {
+      "label": "major",
+      "assets": ["changelog", "email-announcement", "linkedin-x3", "x-thread", "in-app-banner", "sales-enablement-one-pager"]
+    },
+    "2": {
+      "label": "medium",
+      "assets": ["changelog", "email-announcement", "linkedin-x3", "x-thread", "in-app-banner"]
+    },
+    "3": {
+      "label": "minor",
+      "assets": ["changelog"]
+    }
+  },
+  "asset_templates": {
+    "changelog": "Dated entry: what changed, who benefits, one-line how-to or link. All tiers.",
+    "email-announcement": "Subject + preheader + body (outcome-led, one CTA). Tier 1-2.",
+    "linkedin-x3": "3 framings via create-linkedin-content (builder-story / product-launch / problem-first). Tier 1-2.",
+    "x-thread": "Hook tweet + 3-6 mechanism/benefit tweets + CTA tweet via create-x-content. Tier 1-2.",
+    "in-app-banner": "<=12-word headline + CTA button label + dismiss copy. Tier 1-2.",
+    "sales-enablement-one-pager": "Positioning, before/after, objection handles, talk track. Tier 1 only."
+  },
+  "checklist_by_tier": {
+    "1": ["positioning approved", "changelog published", "email scheduled", "social drafts in voice", "in-app banner live", "sales enablement shipped", "support briefed", "metrics dashboard ready"],
+    "2": ["positioning approved", "changelog published", "email scheduled", "social drafts in voice", "in-app banner live", "support briefed"],
+    "3": ["changelog published", "support aware"]
+  }
+}

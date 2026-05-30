@@ -1,0 +1,20 @@
+{
+  "_comment": "ICP fit config consumed by score_icp.py. Edit per client. Title match is the strongest fit signal; exclude_titles and competitors are hard disqualifiers (zero the fit score). company_size_* are headcount bounds. Leave a key empty/absent to make that dimension neutral (a partial 'n/a' credit, not a penalty).",
+  "target_titles": [
+    "operations manager", "head of operations", "revops", "revenue operations",
+    "head of finance", "finance manager", "controller", "fp&a"
+  ],
+  "target_seniorities": ["manager", "director", "vp", "head", "owner", "founder"],
+  "target_industries": [
+    "saas", "software", "financial services", "professional services",
+    "logistics", "ecommerce"
+  ],
+  "company_size_min": 50,
+  "company_size_max": 2000,
+  "exclude_titles": [
+    "consultant", "coach", "founder of", "ceo of", "investor", "advisor",
+    "freelance", "student", "intern", "recruiter", "talent acquisition"
+  ],
+  "competitors": ["uipath", "automation anywhere", "blue prism", "workato"],
+  "geos": ["united states", "canada", "united kingdom"]
+}

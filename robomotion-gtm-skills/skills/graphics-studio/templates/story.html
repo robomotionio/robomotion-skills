@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- graphics-studio template: story (1080x1920, 9:16) -->
+__FONT_LINKS__
+<style>
+__BASE_CSS__
+__STYLE_VARS__
+/* story layout — keep content in central safe zone */
+.slide { justify-content: center; padding: 260px 96px; text-align: left; }
+.slide h1 { font-size: calc(var(--t-5) * 1.15); margin-bottom: calc(var(--space) * 4); }
+.safe-top, .safe-bottom { position: absolute; left: 0; right: 0; height: 250px; }
+.safe-top { top: 0; } .safe-bottom { bottom: 0; }
+</style>
+</head>
+<body>
+<!-- STORY. Canvas 1080x1920. One bold message; very large type. Keep content inside the
+     central 1080x1420 safe zone (top/bottom 250px reserved for platform UI). Adapt:
+       <div class="slide">
+         <div class="kicker">NEW</div>
+         <h1>Big vertical message</h1>
+         <p class="muted">One supporting line.</p>
+         <div class="pill">Swipe up</div>
+       </div>
+-->
+__CONTENT__
+</body>
+</html>

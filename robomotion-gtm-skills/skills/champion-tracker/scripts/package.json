@@ -1,0 +1,10 @@
+{
+  "name": "champion-tracker-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright degrade for champion-tracker LinkedIn profile scraping.",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

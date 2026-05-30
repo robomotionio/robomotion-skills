@@ -1,0 +1,10 @@
+{
+  "name": "visual-brand-extractor-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright renderer that harvests CSS/font/color signals + hero screenshot (visual-brand-extractor).",
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}

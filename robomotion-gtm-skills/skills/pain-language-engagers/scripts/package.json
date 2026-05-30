@@ -1,0 +1,10 @@
+{
+  "name": "pain-language-engagers-scripts",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright degrade for LinkedIn pain-post engager scraping (authors + reactors).",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- graphics-studio template: slides (1920x1080, 16:9, one file per slide) -->
+__FONT_LINKS__
+<style>
+__BASE_CSS__
+__STYLE_VARS__
+/* deck layout — one viewport, no scroll */
+.slide { justify-content: center; padding: 110px 140px; }
+.slide h1 { font-size: var(--t-5); max-width: 1400px; }
+.slide .cols { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--space) * 8); align-items: center; }
+.slide ul { list-style: none; display: flex; flex-direction: column; gap: calc(var(--space) * 3); margin-top: calc(var(--space) * 5); }
+.slide li { display: flex; gap: calc(var(--space) * 2); align-items: baseline; font-size: var(--t-1); }
+.slide li::before { content: "▸"; color: var(--accent); }
+</style>
+</head>
+<body>
+<!-- DECK SLIDE. Canvas 1920x1080. One idea per slide, max ~6 bullets/cards, single
+     viewport (no scroll). Kinds: title|content|section|quote|chart|closing. Adapt:
+       <div class="slide">
+         <div class="kicker">SECTION 2</div>
+         <h1>Slide title</h1>
+         <ul><li>Point one</li><li>Point two</li></ul>
+         <div class="page-no">3 / 10</div>
+       </div>
+-->
+__CONTENT__
+</body>
+</html>

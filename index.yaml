@@ -30,7 +30,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 301e69f3ff03
+  content_hash: dc45e7d0fab1
   skills:
   - id: agent-gtm-skills/ai-cold-outreach
     name: ai-cold-outreach
@@ -6507,7 +6507,7 @@ groups:
   has_env_yaml: true
   has_changelog: true
   has_license: true
-  content_hash: 76a8ddc74fd5
+  content_hash: ac97f43ec2d4
   skills:
   - id: marketing-skills/ab-testing
     name: ab-testing
@@ -8482,6 +8482,3377 @@ groups:
   - scripts/build-codex-skills.sh
   - scripts/build-cursor-rules.sh
   - skills/CLAUDE.md
+- path: robomotion-gtm-skills
+  name: robomotion-gtm-skills
+  title: Robomotion GTM Skills
+  type: group
+  version: 1.0.0
+  author: Robomotion
+  source_url: https://github.com/robomotionio/robomotion-gtm-skills
+  license: MIT
+  summary: 108 Growth & GTM skills — ads, brand, competitive intelligence, content, lead generation, monitoring, outreach,
+    research, and SEO. Keyless-first with optional paid-API enrichment (DataForSEO, Apify, Apollo, …) and an our-solution
+    fallback for every external service.
+  category: ''
+  tags:
+  - gtm
+  - sales
+  - marketing
+  - seo
+  - lead-generation
+  - outreach
+  - competitive-intelligence
+  - content
+  - prospecting
+  has_post_install: true
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: eb29b1b84b1b
+  skills:
+  - id: robomotion-gtm-skills/ad-angle-miner
+    name: ad-angle-miner
+    path: robomotion-gtm-skills/skills/ad-angle-miner
+    title: ad-angle-miner
+    summary: Extract the highest-converting ad angles from real customer-voice data — reviews, Reddit threads, social complaints,
+      and competitor ads — and return a ranked angle bank with verbatim proof quotes and recommended ad formats. For growth/paid-media
+      teams who want ad copy grounded in evidence, not brainstorms.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - HTTPS_PROXY
+    content_hash: ff745a4b94da
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_run.py
+    - scripts/package.json
+    - scripts/scrape_meta_ads.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/ad-angle-miner
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/ad-campaign-analyzer
+    name: ad-campaign-analyzer
+    path: robomotion-gtm-skills/skills/ad-campaign-analyzer
+    title: ad-campaign-analyzer
+    summary: Turn raw ad-campaign performance data (Google, Meta, LinkedIn) into clear cut/scale/test decisions — diagnose
+      waste, identify winners, check statistical significance, and produce a concrete cross-channel budget-reallocation plan
+      with scenario modeling and dollar-amount shifts. For founders/paid-media owners who need a specialist's read, not a
+      dashboard summary.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HUBSPOT_API_KEY
+      - SALESFORCE_ACCESS_TOKEN
+      - PIPEDRIVE_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+    content_hash: 48e2af706e78
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/ab_significance.py
+    - scripts/normalize_campaigns.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/ad-campaign-analyzer
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/ad-to-landing-page-auditor
+    name: ad-to-landing-page-auditor
+    path: robomotion-gtm-skills/skills/ad-to-landing-page-auditor
+    title: ad-to-landing-page-auditor
+    summary: Audit message match between each ad and its landing page — does the ad's promise carry through to the LP headline,
+      body, and CTA? — and flag every disconnect plus conversion friction that kills click-to-convert rates. For teams getting
+      ad clicks but few conversions.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HTTPS_PROXY
+      - APIFY_API_TOKEN
+    content_hash: 68262a357f0d
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_landing_page.py
+    - scripts/parse_ads.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/ad-to-landing-page-auditor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/aeo-visibility
+    name: aeo-visibility
+    path: robomotion-gtm-skills/skills/aeo-visibility
+    title: aeo-visibility
+    summary: Measure a brand's visibility across AI answer engines (Perplexity, ChatGPT/OpenAI, Gemini, Tavily) — how often
+      and how prominently it is mentioned, and where competitors get cited instead — then audit the site's AI-readability
+      and produce prioritized recommendations. Use for a one-shot AEO baseline ("how visible are we in ChatGPT/Perplexity?",
+      "audit our site for AI search"). Requires at least one answer-engine API key (Perplexity is canonical).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - PERPLEXITY_API_KEY
+      optional:
+      - OPENAI_API_KEY
+      - GEMINI_API_KEY
+      - TAVILY_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: dc18912c7af5
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_page.py
+    - scripts/query_engines.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/aeo-visibility
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/aeo-visibility-monitor
+    name: aeo-visibility-monitor
+    path: robomotion-gtm-skills/skills/aeo-visibility-monitor
+    title: aeo-visibility-monitor
+    summary: Keep a brand's AI answer-engine visibility under continuous watch — on a recurring schedule re-run the AEO visibility
+      check across Perplexity/ChatGPT/Gemini over a frozen prompt set, persist each run, diff against history, and alert the
+      team only when mention rate, prominence, or share-of-voice materially moves (a competitor overtakes you, an engine drops
+      you, a new citation source appears). The recurring wrapper around aeo-visibility. Requires one answer-engine key (Perplexity
+      canonical); durable history defaults to a local JSONL ledger, with Supabase as an optional upgrade.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - PERPLEXITY_API_KEY
+      optional:
+      - OPENAI_API_KEY
+      - GEMINI_API_KEY
+      - TAVILY_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - SLACK_BOT_TOKEN
+      - DISCORD_WEBHOOK_URL
+      - TELEGRAM_BOT_TOKEN
+    content_hash: 2b9327a5d705
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/diff_runs.py
+    - scripts/fetch_page.py
+    - scripts/query_engines.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/aeo-visibility-monitor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/apollo-lead-finder
+    name: apollo-lead-finder
+    path: robomotion-gtm-skills/skills/apollo-lead-finder
+    title: apollo-lead-finder
+    summary: Two-phase Apollo.io prospecting — run a free People Search to discover ICP-matching leads, then enrich only the
+      best matches to reveal verified emails/phones. Use to build SDR prospect lists from an ICP (titles, seniority, company
+      size, geo, industry) while spending Apollo credits only on ranked winners.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - DROPCONTACT_API_KEY
+    content_hash: 2da5b788ced7
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apollo_enrich.py
+    - scripts/apollo_search.py
+    - scripts/serp_search.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/apollo-lead-finder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/battlecard-generator
+    name: battlecard-generator
+    path: robomotion-gtm-skills/skills/battlecard-generator
+    title: battlecard-generator
+    summary: Research one competitor from every public angle — website/messaging, G2/Capterra reviews, ads, social chatter,
+      and pricing — and synthesize an opinionated sales battlecard (positioning traps, landmine questions, objection handlers,
+      win/loss themes). Use when prepping reps for competitive deals or building a competitive program. Keyless backbone;
+      the agent does all synthesis.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: a2a195e5fc12
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_pages.py
+    - scripts/package.json
+    - scripts/render_page.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/battlecard-generator
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/blog-feed-monitor
+    name: blog-feed-monitor
+    path: robomotion-gtm-skills/skills/blog-feed-monitor
+    title: blog-feed-monitor
+    summary: Aggregate recent blog posts from one or more sites via RSS/Atom (with an index-scrape fallback) for competitor
+      watch, industry tracking, or keyword-filtered content monitoring — no API key. Returns a normalized, deduped, recency-and-keyword-filtered
+      list of posts. Use to track what vendors are publishing or feed content-brief / campaign-brief skills.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: f98716753f19
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/blog_feed_monitor.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/blog-feed-monitor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/brand-voice-extractor
+    name: brand-voice-extractor
+    path: robomotion-gtm-skills/skills/brand-voice-extractor
+    title: brand-voice-extractor
+    summary: Analyze a company's published content (blog posts, landing pages, case studies) and produce an actionable Brand
+      Voice Profile — tone, vocabulary, sentence structure, formatting habits, and target persona — so later outreach, content,
+      or campaigns sound like the existing brand. Deterministic scripts fetch and measure the corpus; you (the agent) write
+      the voice profile. Keyless fetch.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - SEARCHAPI_API_KEY
+    content_hash: a6ab0d94eb30
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/discover_urls.py
+    - scripts/fetch_content.py
+    - scripts/fetch_content_js.mjs
+    - scripts/package.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/brand-voice-extractor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/buyer-persona-generator
+    name: buyer-persona-generator
+    path: robomotion-gtm-skills/skills/buyer-persona-generator
+    title: buyer-persona-generator
+    summary: Research a company's site and synthesize 4-6 detailed, realistic buyer personas (demographics, motivations, skepticism
+      profile, ranked decision criteria, language patterns). Use to build reusable ICP personas that downstream skills load
+      to evaluate content, messaging, sites, and campaigns through buyer eyes. Keyless research; the agent does the synthesis.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PINECONE_API_KEY
+      - QDRANT_URL
+    content_hash: eb0a231b3460
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/research_company.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/buyer-persona-generator
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/campaign-brief-generator
+    name: campaign-brief-generator
+    path: robomotion-gtm-skills/skills/campaign-brief-generator
+    title: campaign-brief-generator
+    summary: From a campaign goal, ICP, and product context, produce a complete, opinionated, execution-ready campaign brief
+      — channel strategy, 3-tier messaging architecture, a 4-week content calendar, success metrics + north star, explicit
+      scope cuts ("what we're NOT doing"), and a pre-launch asset checklist. A pure-reasoning composite for founders and small
+      GTM teams; the agent synthesizes the brief grounded by a bundled intake/rubric schema. Produces the plan that feature-launch-playbook,
+      content-brief-factory, and social-kit then execute.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 42123c10e8cb
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/intake.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/campaign-brief-generator
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/champion-move-outreach
+    name: champion-move-outreach
+    path: robomotion-gtm-skills/skills/champion-move-outreach
+    title: champion-move-outreach
+    summary: Track known buyers, champions, and power users for job changes; when one moves to a new company, qualify the
+      new company against ICP and draft warm, relationship-led outreach. The highest-conversion outbound signal — these people
+      already trust the product. Composite that hands off to cold-email-outreach or linkedin-outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - DROPCONTACT_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: 3c94f96fa1f6
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/detect_moves.py
+    - scripts/detect_signal.py
+    - scripts/find_contacts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/champion-move-outreach
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/champion-tracker
+    name: champion-tracker
+    path: robomotion-gtm-skills/skills/champion-tracker
+    title: champion-tracker
+    summary: Detect when known product champions change jobs (a high-intent re-sell signal) and qualify their new company
+      against ICP. Baseline each champion's LinkedIn profile, then on a recurring cadence re-scrape and diff company/title
+      to surface movers with an ICP fit verdict, ready for warm outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - PHANTOMBUSTER_API_KEY
+      - APIFY_API_TOKEN
+      - PB_PROFILE_AGENT_ID
+      - LI_AT
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: 991643cf928a
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/package.json
+    - scripts/pb_profiles.py
+    - scripts/pb_profiles_pw.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/champion-tracker
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/churn-risk-detector
+    name: churn-risk-detector
+    path: robomotion-gtm-skills/skills/churn-risk-detector
+    title: churn-risk-detector
+    summary: Aggregate support, communication, usage, and commercial signals per account into a scored churn-risk report with
+      severity tiers, root-cause hypotheses, and specific save plays. Built for seed/Series A teams with no CS platform —
+      a spreadsheet of customers, a Slack channel, and a support inbox. Scoring is deterministic; the agent writes hypotheses
+      and save plays.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HUBSPOT_API_KEY
+      - PIPEDRIVE_API_TOKEN
+      - SALESFORCE_ACCESS_TOKEN
+      - SALESFORCE_INSTANCE_URL
+      - SLACK_BOT_TOKEN
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 49ba15b48bb1
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/detect_signals.py
+    - scripts/fetch_customers.py
+    - scripts/score_accounts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/churn-risk-detector
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/cold-email-outreach
+    name: cold-email-outreach
+    path: robomotion-gtm-skills/skills/cold-email-outreach
+    title: cold-email-outreach
+    summary: The final mile of outbound — take leads from any source, design and write email sequences, verify deliverability,
+      then load the campaign into the user's chosen tool (lemlist/instantly) or send one-off (sendgrid/resend) or export a
+      tool-ready CSV, and launch. The launch target for the signal composites and outbound-prospecting-engine once contacts
+      and drafts exist.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - SENDGRID_FROM_EMAIL
+      - RESEND_FROM_EMAIL
+      - MILLIONVERIFIER_API_KEY
+    content_hash: 74dff1f95764
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/launch_campaign.py
+    - scripts/verify_emails.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/cold-email-outreach
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/company-contact-finder
+    name: company-contact-finder
+    path: robomotion-gtm-skills/skills/company-contact-finder
+    title: company-contact-finder
+    summary: Find the decision-makers at a named company for a given set of target titles using a cheapest-first fallback
+      (Apollo People Search when available, keyless LinkedIn-profile search otherwise). Returns contacts with name, title,
+      LinkedIn URL, and location. Use when you have an ICP-fit company and need the humans to reach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - DROPCONTACT_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: 2174fe5ab01d
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apollo_people.py
+    - scripts/serp_people.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/company-contact-finder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/company-current-gtm-analysis
+    name: company-current-gtm-analysis
+    path: robomotion-gtm-skills/skills/company-current-gtm-analysis
+    title: company-current-gtm-analysis
+    summary: Analyze what a target company is doing across every go-to-market dimension — content, founder thought leadership,
+      SEO/traffic, hiring, social, acquisition channels, podcasts/press, reviews, positioning, partnerships — and grade each
+      A–F to expose white space. Run before designing a GTM strategy so the plan fills real gaps. Keyless backbone; the agent
+      grades and writes the report.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - PHANTOMBUSTER_API_KEY
+      - APIFY_API_TOKEN
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - AIRTABLE_API_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 48ea2999e54e
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_feed.py
+    - scripts/fetch_pages.py
+    - scripts/package.json
+    - scripts/render_page.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/company-current-gtm-analysis
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/competitive-pricing-intel
+    name: competitive-pricing-intel
+    path: robomotion-gtm-skills/skills/competitive-pricing-intel
+    title: competitive-pricing-intel
+    summary: Monitor competitor pricing pages over time — capture current plans/tiers/feature-gating, pull Wayback history,
+      and diff against the last snapshot to detect price changes, tier restructuring, model shifts, and gating moves. Produces
+      a living pricing comparison matrix plus change alerts. Keyless backbone; the agent normalizes and writes the report.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - AIRTABLE_API_KEY
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 844e51483d29
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_pages.py
+    - scripts/package.json
+    - scripts/render_page.mjs
+    - scripts/snapshot_store.py
+    - scripts/wayback_fetch.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitive-pricing-intel
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/competitor-ad-intelligence
+    name: competitor-ad-intelligence
+    path: robomotion-gtm-skills/skills/competitor-ad-intelligence
+    title: competitor-ad-intelligence
+    summary: Scrape competitor ads from the Meta Ad Library and Google Ads Transparency Center, analyze creative patterns
+      (hooks, formats, CTAs), reverse-engineer landing-page funnels, and produce a strategic teardown — positioning bets,
+      vulnerabilities, creative white-space, and counter-plays. For paid/creative teams sizing up the competitive ad landscape
+      before they launch or refresh.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - HTTPS_PROXY
+    content_hash: '185583244029'
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_landing_page.py
+    - scripts/package.json
+    - scripts/scrape_meta_ads.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-ad-intelligence
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/competitor-intel
+    name: competitor-intel
+    path: robomotion-gtm-skills/skills/competitor-intel
+    title: competitor-intel
+    summary: Research 2–5 competitors across web, blogs, reviews, and social; build deep per-competitor profiles (overview,
+      positioning, product, content, customer evidence, signals); and translate competitor moves into positioning/pricing/messaging
+      recommendations. The baseline competitive-intel engine reused by battlecard-generator and competitor-monitoring-system.
+      Keyless backbone; the agent profiles and recommends.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - AIRTABLE_API_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: a8bd88611d6b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_feed.py
+    - scripts/fetch_pages.py
+    - scripts/package.json
+    - scripts/render_page.mjs
+    - scripts/snapshot_store.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-intel
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/competitor-monitoring-system
+    name: competitor-monitoring-system
+    path: robomotion-gtm-skills/skills/competitor-monitoring-system
+    title: competitor-monitoring-system
+    summary: Stand up and run ongoing competitive-intelligence monitoring for a client — maintain a watchlist, establish a
+      baseline, then track competitor content, ads, reviews, social, and product moves on a cadence (content/social/Reddit
+      weekly, ads bi-weekly, reviews monthly, full re-baseline quarterly). Diffs each cycle vs stored snapshots and produces
+      an intelligence report with recommended actions behind human checkpoints.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - AIRTABLE_API_KEY
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - SLACK_BOT_TOKEN
+      - DISCORD_WEBHOOK_URL
+      - TELEGRAM_BOT_TOKEN
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: a206b9cb61bc
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_feed.py
+    - scripts/fetch_pages.py
+    - scripts/hn_fetch.py
+    - scripts/package.json
+    - scripts/render_page.mjs
+    - scripts/snapshot_store.py
+    - scripts/wayback_fetch.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-monitoring-system
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/competitor-post-engagers
+    name: competitor-post-engagers
+    path: robomotion-gtm-skills/skills/competitor-post-engagers
+    title: competitor-post-engagers
+    summary: Turn the people who react to and comment on a COMPETITOR's LinkedIn posts into a tiered, qualified lead list.
+      Engagers of a competitor's content are warm, category-aware buyers already evaluating the space. Discover the competitor's
+      top recent posts, extract reactors/commenters (Apify -> PhantomBuster -> Playwright fallback, with a cost-confirm gate),
+      dedup across runs, enrich the survivors via Apollo, then deterministically score each lead by ICP fit x engagement intent
+      x recency into A/B/C tiers. Each lead is tagged with which competitor and which post they engaged.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - PB_ENGAGERS_AGENT_ID
+      - LI_AT
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - DROPCONTACT_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 87f055d9a5ee
+    files:
+    - SKILL.md
+    - configs/icp.b2b-saas-revops.json
+    - configs/icp.devtools-eng-leaders.json
+    - env.optional
+    - env.required
+    - scripts/dedup_history.py
+    - scripts/enrich_apollo.py
+    - scripts/export_csv.py
+    - scripts/extract_engagers.py
+    - scripts/find_competitor_posts.py
+    - scripts/icp.example.json
+    - scripts/package.json
+    - scripts/pb_engagers_pw.mjs
+    - scripts/score_icp.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-post-engagers
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/conference-speaker-scraper
+    name: conference-speaker-scraper
+    path: robomotion-gtm-skills/skills/conference-speaker-scraper
+    title: conference-speaker-scraper
+    summary: Extract speaker names, titles, companies, and bios from a conference's /speakers page for pre-event research
+      and outreach targeting. Tries multiple keyless extraction strategies (CSS cards, heading+paragraph blocks, JSON-LD,
+      Sched/Sessionize) and falls back to a headless browser for JS-heavy sites.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: d9b63caefd7b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/package.json
+    - scripts/scrape_speakers.py
+    - scripts/scrape_speakers_pw.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/conference-speaker-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/contact-cache
+    name: contact-cache
+    path: robomotion-gtm-skills/skills/contact-cache
+    title: contact-cache
+    summary: A persistent contact database that tracks every person identified or contacted across prospecting strategies,
+      deduplicated by LinkedIn URL or email, so recurring strategies never re-target the same person. Also tracks outreach
+      status through the funnel. The dedup backbone for the event and signal pipelines.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - CONTACT_CACHE_TABLE
+    content_hash: 01beeefaf55d
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/contact_cache.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/contact-cache
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/content-asset-creator
+    name: content-asset-creator
+    path: robomotion-gtm-skills/skills/content-asset-creator
+    title: content-asset-creator
+    summary: Produce branded, self-contained content assets — industry reports, landing pages, comparison sheets, one-pagers
+      — as styled HTML the agent authors, then exported to high-res PNG and/or print-ready PDF for lead magnets and marketing
+      collateral. Use when a campaign or launch needs a polished downloadable deliverable, not just copy.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - LEONARDO_API_KEY
+      - STABILITY_API_KEY
+      - FAL_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 72c5b593ca8b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/asset_types.json
+    - scripts/package.json
+    - scripts/render_asset.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/content-asset-creator
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/content-brief-factory
+    name: content-brief-factory
+    path: robomotion-gtm-skills/skills/content-brief-factory
+    title: content-brief-factory
+    summary: 'Generate detailed, differentiated content briefs at scale (1–50 keywords per run). Each brief carries real SERP
+      analysis, a competing-page breakdown, a unique angle mined from real customer language, an internal-linking plan, and
+      SERP-feature targets — so a writer knows exactly what to create and why it will rank. A composite: the agent runs SERP/customer-voice
+      steps and synthesizes the brief; bundled keyless scripts handle coverage-matching and competing-page stats.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - APIFY_API_TOKEN
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: ec070b019b31
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_pages.py
+    - scripts/load_keywords.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/content-brief-factory
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/create-html-carousel
+    name: create-html-carousel
+    path: robomotion-gtm-skills/skills/create-html-carousel
+    title: create-html-carousel
+    summary: DEPRECATED — superseded by graphics-studio (--format carousel). Generates a LinkedIn/Instagram carousel as square
+      1080×1080 PNG slides. Retained thin for backward compatibility; route new carousel work to graphics-studio, which owns
+      the style catalog and shared render pipeline.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4a396afc2200
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-html-carousel
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/create-html-slides
+    name: create-html-slides
+    path: robomotion-gtm-skills/skills/create-html-slides
+    title: create-html-slides
+    summary: DEPRECATED — superseded by graphics-studio (--format slides). Creates 16:9 (1920×1080) HTML presentations from
+      scratch or by converting a PowerPoint. Retained thin for backward compatibility; route new deck work to graphics-studio,
+      which owns the style catalog and shared render pipeline.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b998bdde645f
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-html-slides
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/create-linkedin-content
+    name: create-linkedin-content
+    path: robomotion-gtm-skills/skills/create-linkedin-content
+    title: create-linkedin-content
+    summary: Draft 2–5 voice-tuned LinkedIn post variants from a free-form brief, each with a distinct framing, applying LinkedIn-native
+      conventions (arrow bullets, a "why this matters" beat, 150–500 words, 0–2 hashtags) and self-checking against a personal
+      voice guide before returning. The agent does the drafting; a bundled deterministic linter enforces banned-phrase / length
+      / arrow-bullet / "why this matters" rules. Invoked standalone or by social-kit.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: d55d3233aa07
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/lint_post.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-linkedin-content
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/create-workflow-diagram
+    name: create-workflow-diagram
+    path: robomotion-gtm-skills/skills/create-workflow-diagram
+    title: create-workflow-diagram
+    summary: Turn a plain-text workflow ("Find leads → Enrich → Qualify → Send") into a FigJam/Miro-style PNG diagram with
+      connected nodes, arrows, emoji icons, and labels — ready for docs, Slack, LinkedIn, or slides. A deterministic parser
+      builds the node/connection model; the agent authors the styled HTML+SVG; the bundled Playwright renderer screenshots
+      it. For process/pipeline/sequence visuals, not org charts or dense flowcharts.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 7a8b0a9949d5
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/package.json
+    - scripts/parse_workflow.py
+    - scripts/render.mjs
+    - scripts/styles.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-workflow-diagram
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/create-x-content
+    name: create-x-content
+    path: robomotion-gtm-skills/skills/create-x-content
+    title: create-x-content
+    summary: Draft 2–5 voice-tuned X post variants from a free-form brief, each with a distinct framing (how-to, mechanism,
+      problem-first, hype, contrarian…), and self-check each against a personal voice guide's banned phrases and format rules
+      before returning — so posts sound like the user, not like an AI. The agent does the drafting; a bundled deterministic
+      linter enforces banned-phrase / length / hashtag rules. Invoked standalone or by social-kit.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: f2e4bc4a59ee
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/lint_post.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-x-content
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/customer-win-back-sequencer
+    name: customer-win-back-sequencer
+    path: robomotion-gtm-skills/skills/customer-win-back-sequencer
+    title: customer-win-back-sequencer
+    summary: For churned accounts, research what has changed since they left (new funding, team growth, competitor dissatisfaction,
+      product updates that address their original pain), assess re-engagement potential, and generate a personalized, timing-aware
+      win-back sequence — no generic "we miss you" emails. Composite that hands off to cold-email-outreach or linkedin-outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: b7a62ac0fffb
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/detect_signal.py
+    - scripts/filter_churn.py
+    - scripts/find_contacts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/customer-win-back-sequencer
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/disqualification-handling
+    name: disqualification-handling
+    path: robomotion-gtm-skills/skills/disqualification-handling
+    title: disqualification-handling
+    summary: Handle disqualified and near-miss inbound leads gracefully — categorize each, draft the right response (polite
+      decline, referral request, or nurture routing), and route to the correct destination so no inbound lead is ghosted and
+      every disqualification preserves the relationship. Composite that reuses email-drafting and routes to a nurture/one-off
+      send tool.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_FROM_EMAIL
+      - RESEND_FROM_EMAIL
+      - HUBSPOT_API_KEY
+      - APOLLO_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+    content_hash: '123115585506'
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/categorize.py
+    - scripts/launch_campaign.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/disqualification-handling
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/email-drafting
+    name: email-drafting
+    path: robomotion-gtm-skills/skills/email-drafting
+    title: email-drafting
+    summary: Write high-converting cold emails — subject lines, single emails, or full sequences — using structured frameworks
+      (PAS, BAB, AIDA, Signal-Proof-Ask), personalization tiers, proven subject-line patterns, and tone guidance. Use whenever
+      you need cold-email copy; auto-loads as the drafting primitive for the signal composites and cold-email-outreach. Pure
+      reasoning plus a deterministic copy linter.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 013170baa783
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/email_lint.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/email-drafting
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/event-prospecting-pipeline
+    name: event-prospecting-pipeline
+    path: robomotion-gtm-skills/skills/event-prospecting-pipeline
+    title: event-prospecting-pipeline
+    summary: End-to-end event-driven prospecting — find attendees/speakers at conferences and events, research and qualify
+      them against ICP, find decision-maker contacts, deduplicate against the contact cache, and hand off a clean qualified
+      list for outreach. Orchestrates the event, qualification, contact-finding, and cache sub-skills.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APOLLO_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - MILLIONVERIFIER_API_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: efa3da970381
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/event-prospecting-pipeline
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/expansion-signal-spotter
+    name: expansion-signal-spotter
+    path: robomotion-gtm-skills/skills/expansion-signal-spotter
+    title: expansion-signal-spotter
+    summary: Find expansion revenue inside the existing customer base by monitoring accounts for upsell/cross-sell signals
+      — team growth, new job postings, funding, champion promotions, usage pressure, public news — and produce a weekly opportunity
+      list with context and talk tracks. Multi-signal accounts rank highest.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: 6e33a6691302
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/account_signals.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/expansion-signal-spotter
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/feature-launch-playbook
+    name: feature-launch-playbook
+    path: robomotion-gtm-skills/skills/feature-launch-playbook
+    title: feature-launch-playbook
+    summary: 'Turn one feature/product-update spec into a complete, launch-ready kit — changelog entry, email announcement,
+      LinkedIn variants, X thread, in-app banner, and (for major launches) a sales-enablement one-pager — plus a tier-appropriate
+      launch checklist. A reasoning composite: the agent authors every asset; a bundled keyless script scaffolds the folder
+      and gates which assets to produce by launch tier.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SENDGRID_API_KEY
+      - BREVO_API_KEY
+      - APIFY_API_TOKEN
+      - UNSPLASH_ACCESS_KEY
+    content_hash: 5b5b9b9673e6
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/init_launch.py
+    - scripts/launch_tiers.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/feature-launch-playbook
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/funding-signal-monitor
+    name: funding-signal-monitor
+    path: robomotion-gtm-skills/skills/funding-signal-monitor
+    title: funding-signal-monitor
+    summary: Detect recently-funded startups (Series A-C) as buying signals — fresh capital, growth mandate, active vendor
+      evaluation. Aggregates funding announcements across tech press, Crunchbase, and Hacker News (keyless), dedups across
+      sources, then (agent) extracts company/stage/amount/date and ranks for outreach in the post-raise buying window.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - ANTHROPIC_API_KEY
+    content_hash: 9a6a29b89e0d
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/funding_search.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/funding-signal-monitor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/funding-signal-outreach
+    name: funding-signal-outreach
+    path: robomotion-gtm-skills/skills/funding-signal-outreach
+    title: funding-signal-outreach
+    summary: Across a list of companies, detect recent funding events, qualify them against the seller's context, find the
+      right people (buyers/champions/users), and draft personalized outreach using fresh capital as the "why now" — the full
+      chain from signal to outreach-ready. Composite that hands off to cold-email-outreach or linkedin-outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - DROPCONTACT_API_KEY
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: 488e735e5c63
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/detect_signal.py
+    - scripts/find_contacts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/funding-signal-outreach
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/generate-voice-guide
+    name: generate-voice-guide
+    path: robomotion-gtm-skills/skills/generate-voice-guide
+    title: generate-voice-guide
+    summary: Build a structured personal voice guide for X and/or LinkedIn by scanning a person's past original posts and
+      refining through sample-and-feedback loops. The guide (persona, dos/don'ts, banned phrases, hook patterns, format rules,
+      annotated real examples) is consumed by create-x-content, create-linkedin-content, and social-kit. The agent authors
+      the guide; a bundled deterministic analyzer supplies corpus stats + absence-derived banned-phrase candidates. For individual
+      social voice, not corporate brand voice.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+    content_hash: 5acf23a7a647
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/analyze_corpus.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/generate-voice-guide
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/get-qualified-leads-from-luma
+    name: get-qualified-leads-from-luma
+    path: robomotion-gtm-skills/skills/get-qualified-leads-from-luma
+    title: get-qualified-leads-from-luma
+    summary: End-to-end Luma-based lead prospecting — search Luma for events by topic+location, extract attendees/hosts, qualify
+      against an ICP prompt, export to a sheet, and send a Slack alert with the top leads. The Luma-only path with built-in
+      alerting.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_LUMA_ACTOR
+      - SLACK_WEBHOOK_URL
+      - SLACK_BOT_TOKEN
+      - ANTHROPIC_API_KEY
+    content_hash: f53db73ee731
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/filter_dedup.py
+    - scripts/luma_scrape_pw.mjs
+    - scripts/luma_search.py
+    - scripts/package.json
+    - scripts/slack_alert.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/get-qualified-leads-from-luma
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/google-ad-scraper
+    name: google-ad-scraper
+    path: robomotion-gtm-skills/skills/google-ad-scraper
+    title: google-ad-scraper
+    summary: Scrape a competitor's active Google ads by domain (or company name) from the Google Ads Transparency Center and
+      return structured creatives — copy, format, variants, destination URL, advertiser id. Keyless via headless Chromium.
+      A reusable primitive for Ads composites (competitor-ad-intelligence, paid-channel-prioritizer, google-search-ads-builder).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - HTTPS_PROXY
+    content_hash: 6defdd5dbde3
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_google_ads.py
+    - scripts/package.json
+    - scripts/scrape_google_ads.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/google-ad-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/google-search-ads-builder
+    name: google-search-ads-builder
+    path: robomotion-gtm-skills/skills/google-search-ads-builder
+    title: google-search-ads-builder
+    summary: Build a complete, import-ready Google Search Ads campaign from scratch — deep keyword research (competitor mining,
+      review/community/HN language, site audit, autocomplete), keyword architecture with funnel + intent classification, ad-group
+      structure, RSA copy (15 headlines / 4 descriptions per group), negative-keyword lists, bid strategy, and a Google Ads
+      Editor import CSV. For early-stage teams who'd otherwise waste their first $5K.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - HTTPS_PROXY
+    content_hash: 4a6411e41530
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/autocomplete_expand.py
+    - scripts/build_import_csv.py
+    - scripts/hn_terms.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/google-search-ads-builder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/graphics-studio
+    name: graphics-studio
+    path: robomotion-gtm-skills/skills/graphics-studio
+    title: graphics-studio
+    summary: The unified visual generator — turn a brief into rendered high-res PNG/PDF graphics across seven fixed formats
+      (carousel, story, infographic, slides, poster, chart, tweet). Resolve a style from a 16-style catalog, extract an ad-hoc
+      style from a reference image, or synthesize a brand style from hex colors + fonts; source imagery (Unsplash or keyless)
+      and ASCII art; the agent authors the HTML content while a deterministic driver binds design tokens to templates, runs
+      a WCAG contrast check, and a Playwright renderer screenshots single files or whole slide directories at deviceScaleFactor
+      2. Supersedes create-html-carousel and create-html-slides. Use for any "make me a graphic / carousel / slides / poster
+      / infographic / story" request and as the visual arm of social-kit.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - UNSPLASH_ACCESS_KEY
+      - LEONARDO_API_KEY
+      - STABILITY_API_KEY
+      - FAL_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 053776935bdb
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/extract_style.py
+    - scripts/formats.json
+    - scripts/graphics.py
+    - scripts/package.json
+    - scripts/render.mjs
+    - scripts/source_images.py
+    - scripts/styles.json
+    - templates/_base.css
+    - templates/carousel.html
+    - templates/chart.html
+    - templates/infographic.html
+    - templates/poster.html
+    - templates/slides.html
+    - templates/story.html
+    - templates/tweet.html
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/graphics-studio
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/hacker-news-scraper
+    name: hacker-news-scraper
+    path: robomotion-gtm-skills/skills/hacker-news-scraper
+    title: hacker-news-scraper
+    summary: Search Hacker News stories and comments for a topic, tool, or brand and return ranked discussions (points, comments,
+      links). Use to track tech-community sentiment, find Show HN / Ask HN launches, and surface buying or competitive signals.
+      Free, no API key.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: c1fc0edc4a6c
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/hn_search.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/hacker-news-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/help-center-article-generator
+    name: help-center-article-generator
+    path: robomotion-gtm-skills/skills/help-center-article-generator
+    title: help-center-article-generator
+    summary: 'Turn support-ticket clusters, FAQ patterns, feature docs, or product walkthroughs into structured help-center
+      articles (steps, screenshot placeholders, troubleshooting, related links). Batch mode clusters a ticket export into
+      ranked topics and generates an article per topic to deflect repetitive support volume. A composite: the agent writes
+      each article; a bundled keyless script clusters and frequency-ranks the ticket export.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - ZENDESK_API_TOKEN
+      - INTERCOM_ACCESS_TOKEN
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 4b65ff532100
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/cluster_tickets.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/help-center-article-generator
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/hiring-signal-outreach
+    name: hiring-signal-outreach
+    path: robomotion-gtm-skills/skills/hiring-signal-outreach
+    title: hiring-signal-outreach
+    summary: Across a list of companies, detect job postings for roles the product augments or replaces, find the right people
+      (hiring manager, budget holder, potential champions), and draft outreach using the open role as the hook — they've already
+      acknowledged and budgeted the problem. Composite that hands off to cold-email-outreach or linkedin-outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - DROPCONTACT_API_KEY
+      - APIFY_API_TOKEN
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: 079c9c36f899
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/detect_signal.py
+    - scripts/find_contacts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/hiring-signal-outreach
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/icp-identification
+    name: icp-identification
+    path: robomotion-gtm-skills/skills/icp-identification
+    title: icp-identification
+    summary: The entry point for any "find me leads / map my market / who should I sell to" request. Researches a company
+      or idea, defines a structured Ideal Customer Profile (explicit inclusion AND exclusion criteria), then routes to the
+      right next step (TAM mapping or direct lead finding) with a handoff context block. Keyless research; the ICP synthesis
+      and routing are the agent's.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - PERPLEXITY_API_KEY
+      - TAVILY_API_KEY
+    content_hash: a3a1bdafadf0
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/research_company.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/icp-identification
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/icp-website-audit
+    name: icp-website-audit
+    path: robomotion-gtm-skills/skills/icp-website-audit
+    title: icp-website-audit
+    summary: End-to-end "how do our buyers experience our site vs the competition?" audit. Builds personas (if absent), runs
+      a persona-by-persona scorecard of the client site, runs head-to-head comparisons against 1-3 competitors, and consolidates
+      into one report with persona feedback, competitive positioning, at-risk segments, and prioritized recommendations. Keyless
+      crawl; persona scoring and consolidation are the agent's.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PINECONE_API_KEY
+      - QDRANT_URL
+    content_hash: 9a844c16c732
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/crawl_sites.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/icp-website-audit
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/inbound-lead-enrichment
+    name: inbound-lead-enrichment
+    path: robomotion-gtm-skills/skills/inbound-lead-enrichment
+    title: inbound-lead-enrichment
+    summary: Fill in missing data on inbound leads — research the company, identify the person's role and seniority, find
+      other buying-committee stakeholders, check the CRM for existing relationships, and update the lead record. Turns a bare
+      email into a full profile. Keyless web research by default; Apollo/CRM keys enrich when present.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - DROPCONTACT_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - HUBSPOT_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: c114bf3f8eab
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/crm_lookup.py
+    - scripts/web_research.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/inbound-lead-enrichment
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/inbound-lead-qualification
+    name: inbound-lead-qualification
+    path: robomotion-gtm-skills/skills/inbound-lead-qualification
+    title: inbound-lead-qualification
+    summary: Thoroughly qualify a batch of inbound leads against full ICP criteria (company size, industry, use-case fit,
+      role/seniority), check CRM/customer base for dupes and existing relationships, and output a scored CSV with verdict,
+      reasoning, and pipeline-overlap flags. The deep qualification step, not fast triage.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HUBSPOT_API_KEY
+      - APOLLO_API_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: 6cbef25906de
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/build_scorecard.py
+    - scripts/crm_lookup.py
+    - scripts/web_research.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/inbound-lead-qualification
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/inbound-lead-triage
+    name: inbound-lead-triage
+    path: robomotion-gtm-skills/skills/inbound-lead-triage
+    title: inbound-lead-triage
+    summary: Pull all inbound leads from a period (demo requests, trial signups, content downloads, webinar regs, chatbot
+      convos), classify by source urgency, qualify against ICP, enrich with context, and produce a prioritized action queue
+      with a recommended response per lead. Turns a messy form-fill inbox into a who-to-call-first list.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HUBSPOT_API_KEY
+      - APOLLO_API_KEY
+      - SLACK_WEBHOOK_URL
+      - SLACK_BOT_TOKEN
+      - ANTHROPIC_API_KEY
+    content_hash: 1e7597bead54
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/triage.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/inbound-lead-triage
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/industry-scanner
+    name: industry-scanner
+    path: robomotion-gtm-skills/skills/industry-scanner
+    title: industry-scanner
+    summary: A daily or weekly industry-intelligence scanner that sweeps web, social, news, blogs, and communities for everything
+      relevant to a client's industry, consolidates and categorizes the signal into nine types, then generates a small set
+      of genuine, actionable GTM opportunities. Outputs a dated intelligence briefing. Keyless collectors; the agent categorizes,
+      rates relevance, and drafts opportunities.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - GMAIL_OAUTH_TOKEN
+      - IMAP_PASSWORD
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 7bd346a33bc0
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_feed.py
+    - scripts/fetch_pages.py
+    - scripts/hn_fetch.py
+    - scripts/package.json
+    - scripts/render_page.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/industry-scanner
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/job-posting-intent
+    name: job-posting-intent
+    path: robomotion-gtm-skills/skills/job-posting-intent
+    title: job-posting-intent
+    summary: Detect buying intent from job postings — when a company posts a role in your problem area they've allocated budget
+      and acknowledged the problem. Finds those companies, aggregates postings into a per-company signal strength, then (agent)
+      qualifies vs. ICP and extracts personalization context + decision-maker suggestions. Outputs leads; does not do outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_LINKEDIN_JOBS_ACTOR
+      - APIFY_INDEED_JOBS_ACTOR
+      - APOLLO_API_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: cf6663ed38ae
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/aggregate_intent.py
+    - scripts/jobs.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/job-posting-intent
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/job-scraper
+    name: job-scraper
+    path: robomotion-gtm-skills/skills/job-scraper
+    title: job-scraper
+    summary: Search job postings across LinkedIn and Indeed by keyword, location, company, or job type — no logins or cookies
+      — returning structured jobs (title, company, location, salary, description, seniority, apply URL) for hiring-signal
+      detection, GTM research, and competitive intel. Apify actors when a token is set; keyless web search otherwise.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_LINKEDIN_JOBS_ACTOR
+      - APIFY_INDEED_JOBS_ACTOR
+    content_hash: 9d4ad5bf663b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/jobs.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/job-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/kol-content-monitor
+    name: kol-content-monitor
+    path: robomotion-gtm-skills/skills/kol-content-monitor
+    title: kol-content-monitor
+    summary: Track what a defined set of Key Opinion Leaders (KOLs) post on LinkedIn and X, cluster posts into topics, and
+      surface trending narratives early (Convergence / Spike / Underdog / Controversy) with a weekly digest and content-action
+      recommendations. Use to ride a breaking wave instead of creating one. Composite — chains linkedin-profile-post-scraper
+      + x-mention-tracker; the agent clusters topics.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - LINKEDIN_COOKIE
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 3950824ce066
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/aggregate_signals.py
+    - scripts/linkedin_posts.mjs
+    - scripts/package.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/kol-content-monitor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/kol-discovery
+    name: kol-discovery
+    path: robomotion-gtm-skills/skills/kol-discovery
+    title: kol-discovery
+    summary: Find Key Opinion Leaders in a domain by searching LinkedIn posts for prolific, high-engagement authors and merging
+      them with web-researched influencers (conference speakers, newsletter authors, podcast hosts) into a ranked, scored
+      KOL list. Use when the goal is authority/thought-leadership voices, not pain-language leads.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: becd8f294cd6
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/post_search.py
+    - scripts/score_kols.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/kol-discovery
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/kol-engager-icp
+    name: kol-engager-icp
+    path: robomotion-gtm-skills/skills/kol-engager-icp
+    title: kol-engager-icp
+    summary: Turn key-opinion-leader (KOL) audiences on LinkedIn into a strictly ICP-qualified, deduplicated lead list. For
+      each KOL, pick their single most topic-relevant high-engagement recent post (a topic-relevance gate keeps off-topic
+      viral audiences out), extract the reactors and commenters via a managed Apify actor (PhantomBuster and keyless Playwright
+      degrades), enrich firmographics through Apollo, then score every engager on a deterministic ICP-fit x intent x recency
+      model into tiers A/B/C and dedup across runs. Surfaces only tier A/B by default, each lead tagged with the KOL and post
+      topic they engaged. Use after KOL discovery or with a manual KOL list.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - LI_AT
+      - PB_ENGAGERS_AGENT_ID
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - DROPCONTACT_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: a47c3eeffb55
+    files:
+    - SKILL.md
+    - configs/icp.b2b-saas-revops.json
+    - configs/icp.devtools-eng-leaders.json
+    - env.optional
+    - env.required
+    - scripts/dedup_history.py
+    - scripts/enrich_apollo.py
+    - scripts/extract_engagers.py
+    - scripts/icp.example.json
+    - scripts/package.json
+    - scripts/pb_engagers_pw.mjs
+    - scripts/score_icp.py
+    - scripts/select_kol_posts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/kol-engager-icp
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/launch-positioning-builder
+    name: launch-positioning-builder
+    path: robomotion-gtm-skills/skills/launch-positioning-builder
+    title: launch-positioning-builder
+    summary: Research the competitive landscape, mine competitor messaging and (optionally) reviews and ad copy, then produce
+      a complete, opinionated positioning document — category definition, competitive alternatives, value propositions, proof-point
+      library, messaging hierarchy, a 2x2 positioning map, and a deployment plan — usable in website copy, sales decks, and
+      investor materials. Deterministic scripts fetch competitor pages and extract positioning signals; you (the agent) build
+      the April-Dunford framework and write the doc.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - SEARCHAPI_API_KEY
+    content_hash: 5936b46b984a
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_competitors.py
+    - scripts/fetch_competitors_js.mjs
+    - scripts/package.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/launch-positioning-builder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/lead-qualification
+    name: lead-qualification
+    path: robomotion-gtm-skills/skills/lead-qualification
+    title: lead-qualification
+    summary: A reusable lead-qualification engine. Conversational intake builds a qualification prompt capturing the ICP,
+      then leads are enriched and scored into qualified/disqualified verdicts with confidence scores and reasoning. Prompts
+      persist for reuse and calibration. The scoring sub-skill inside the event, Luma, and signal pipelines.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - APOLLO_API_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: 6a91bfe1e20d
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/qual_prompt.py
+    - scripts/web_research.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/lead-qualification
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/leadership-change-outreach
+    name: leadership-change-outreach
+    path: robomotion-gtm-skills/skills/leadership-change-outreach
+    title: leadership-change-outreach
+    summary: Across a list of companies, detect recent leadership changes (new VP+/C-suite hires and promotions), evaluate
+      the new leader's relevance to the product, enrich their profile, and draft outreach to their new-role priorities — the
+      most receptive buyers, re-evaluating everything in their first 90 days. Composite that hands off to cold-email-outreach
+      or linkedin-outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: a6ccec0fbb9d
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/detect_signal.py
+    - scripts/leadership_scan.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/leadership-change-outreach
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/linkedin-commenter-extractor
+    name: linkedin-commenter-extractor
+    path: robomotion-gtm-skills/skills/linkedin-commenter-extractor
+    title: linkedin-commenter-extractor
+    summary: Extract everyone who commented on specific LinkedIn posts — name, title, company, profile URL, and comment text
+      — to surface warm leads who actively engaged with a relevant discussion. Apify post-comments actor; degrades to web-automation
+      + session cookie inside a Robomotion flow. Downstream of linkedin-post-research, upstream of message writers.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - LI_AT
+    content_hash: 8da866aa575b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/extract_commenters.py
+    - scripts/li_comments_playwright.mjs
+    - scripts/package.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-commenter-extractor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/linkedin-influencer-discovery
+    name: linkedin-influencer-discovery
+    path: robomotion-gtm-skills/skills/linkedin-influencer-discovery
+    title: linkedin-influencer-discovery
+    summary: Discover top LinkedIn influencers and voices by topic, industry, country, and follower count — to build the top-N
+      voices in a space, assemble influencer lists for outreach, or identify thought leaders to engage. Apify influencer-database
+      actor primary (accurate follower counts + email flags); keyless web-search degrade.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: 8324c0e875f4
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/influencer_discovery.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-influencer-discovery
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/linkedin-job-scraper
+    name: linkedin-job-scraper
+    path: robomotion-gtm-skills/skills/linkedin-job-scraper
+    title: linkedin-job-scraper
+    summary: Find LinkedIn job postings by search term and location, returning structured jobs (title, company, location,
+      salary, job type, description, URL) for GTM research, hiring-signal sourcing, and job-pipeline building. Apify LinkedIn
+      jobs actor when a token is set; keyless site:linkedin.com/jobs search otherwise.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_LINKEDIN_JOBS_ACTOR
+    content_hash: 0e5d1686a9b9
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/linkedin_jobs.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-job-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/linkedin-message-writer
+    name: linkedin-message-writer
+    path: robomotion-gtm-skills/skills/linkedin-message-writer
+    title: linkedin-message-writer
+    summary: Research LinkedIn leads (profile + recent posts) and write personalized messages for any LinkedIn message type
+      — connection request, InMail, DM, message request, post comment, or comment reply — respecting each type's character
+      limit, then export tool-ready CSVs. Use given a list of LinkedIn URLs and a goal/angle. The drafting half of linkedin-outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: f22f17d14420
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/export_csv.py
+    - scripts/linkedin_lint.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-message-writer
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/linkedin-outreach
+    name: linkedin-outreach
+    path: robomotion-gtm-skills/skills/linkedin-outreach
+    title: linkedin-outreach
+    summary: End-to-end LinkedIn outreach campaign builder — take qualified leads, write personalized message sequences (connection
+      request + follow-ups + optional InMail), enforce char limits, export for the user's LinkedIn tool, and log the run.
+      The LinkedIn counterpart to cold-email-outreach; a launch target for the signal composites when the user chooses LinkedIn.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - PHANTOMBUSTER_API_KEY
+      - LINKEDIN_SESSION_COOKIE
+      - APIFY_API_TOKEN
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+    content_hash: 1f108dc7f382
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/export_csv.py
+    - scripts/linkedin_lint.py
+    - scripts/phantombuster_send.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-outreach
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/linkedin-post-research
+    name: linkedin-post-research
+    path: robomotion-gtm-skills/skills/linkedin-post-research
+    title: linkedin-post-research
+    summary: Search LinkedIn posts by keyword, sorted by engagement or date, returning author, post text, reaction/comment/share
+      counts, URL, and date. Use to research what people say about a topic, find high-engagement content, spot thought leaders,
+      or seed a warm-lead pipeline. Apify actor primary with a keyless web-search degrade.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: 1dbd1f7b2279
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/post_search.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-post-research
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/linkedin-profile-post-scraper
+    name: linkedin-profile-post-scraper
+    path: robomotion-gtm-skills/skills/linkedin-profile-post-scraper
+    title: linkedin-profile-post-scraper
+    summary: Scrape recent posts from specific LinkedIn profiles to monitor what founders/execs are posting, track activity,
+      or gather post content for competitive intelligence and outreach personalization. Apify profile-posts actor primary;
+      degrades to web-automation + session cookie in a Robomotion flow. Client-side date and keyword filtering.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - LI_AT
+    content_hash: a5055a722185
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/li_profile_posts_playwright.mjs
+    - scripts/package.json
+    - scripts/profile_posts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-profile-post-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/luma-event-attendees
+    name: luma-event-attendees
+    path: robomotion-gtm-skills/skills/luma-event-attendees
+    title: luma-event-attendees
+    summary: Find speakers, hosts, and guest profiles at Luma events for outreach prospecting. Two modes — a free direct page
+      scrape (event metadata + hosts) and a paid Apify search mode returning full guest profiles with LinkedIn/X/bio. The
+      attendee-sourcing front end of the event-prospecting and Luma lead pipelines.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_LUMA_ACTOR
+    content_hash: f10c770ba8e8
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/luma_scrape_pw.mjs
+    - scripts/luma_search.py
+    - scripts/package.json
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/luma-event-attendees
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/meeting-brief
+    name: meeting-brief
+    path: robomotion-gtm-skills/skills/meeting-brief
+    title: meeting-brief
+    summary: A daily meeting-prep system — reads the calendar, filters out internal team members, deep-researches each external
+      attendee (LinkedIn, company, GitHub, recent news), generates an AI relationship brief per person, and delivers it (email
+      per person, optional Slack), building a lightweight personal CRM over time. This is "who is this person", not "how do
+      I sell to them" (for that, see sales-call-prep). Deterministic fetchers; the brief writing is the agent's.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - GITHUB_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - SLACK_BOT_TOKEN
+    content_hash: 3c0a68ed9e2f
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/fetch_url.py
+    - scripts/github_profile.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/meeting-brief
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/messaging-ab-tester
+    name: messaging-ab-tester
+    path: robomotion-gtm-skills/skills/messaging-ab-tester
+    title: messaging-ab-tester
+    summary: Turn a messaging debate into data — generate 3-5 strategically distinct messaging variants for a value proposition,
+      design a structured A/B test (LinkedIn organic and/or cold email), then normalize and score the returned metrics with
+      a fixed weighting + significance gate to declare a winner and recommend where to deploy it. You (the agent) generate
+      variants and write the narrative; deterministic scripts lay out the test schedule and score the results.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - PHANTOMBUSTER_API_KEY
+      - APIFY_API_TOKEN
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+    content_hash: 055678f26151
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/score_results.py
+    - scripts/test_schedule.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/messaging-ab-tester
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/meta-ads-campaign-builder
+    name: meta-ads-campaign-builder
+    path: robomotion-gtm-skills/skills/meta-ads-campaign-builder
+    title: meta-ads-campaign-builder
+    summary: Build a complete Meta (Facebook/Instagram) Ads campaign structure — objective, audience layering, ad-set architecture,
+      placement-aware copy framework, and budget/bidding plan — from ICP + objective. Focused on the strategic architecture
+      that decides success before a single ad runs, not on creative generation. Produces a plan/brief the user executes in
+      Ads Manager.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - HTTPS_PROXY
+    content_hash: 9256d073827b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/package.json
+    - scripts/scrape_meta_ads.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/meta-ads-campaign-builder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/news-signal-outreach
+    name: news-signal-outreach
+    path: robomotion-gtm-skills/skills/news-signal-outreach
+    title: news-signal-outreach
+    summary: The catch-all signal composite — take any news (article, post, announcement, event, regulation, launch, acquisition,
+      layoff, expansion), evaluate whether the companies/people in it fit ICP, identify the connection to the product, find
+      the right people, and draft outreach using the news as the hook. Handles evaluate-only and full-outreach modes. Hands
+      off to cold-email-outreach or linkedin-outreach.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - DROPCONTACT_API_KEY
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - PHANTOMBUSTER_API_KEY
+    content_hash: 356981f32655
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/find_contacts.py
+    - scripts/ingest_news.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/news-signal-outreach
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/newsletter-monitor
+    name: newsletter-monitor
+    path: robomotion-gtm-skills/skills/newsletter-monitor
+    title: newsletter-monitor
+    summary: Scan a dedicated monitoring inbox (IMAP) for incoming newsletter emails and extract buying signals via configurable
+      keyword campaigns — matched keywords, 200-char context snippets, and mentioned companies. Use to monitor industry newsletters
+      (acquisitions, migrations, staffing, technology adoption) for actionable signals without manual reading.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - IMAP_HOST
+      - IMAP_USER
+      - IMAP_PASSWORD
+      optional:
+      - IMAP_PORT
+      - IMAP_FOLDER
+      - AGENTMAIL_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 8474c3d3e08b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/campaign_match.py
+    - scripts/dedup_history.py
+    - scripts/imap_fetch.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/newsletter-monitor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/newsletter-signal-scanner
+    name: newsletter-signal-scanner
+    path: robomotion-gtm-skills/skills/newsletter-signal-scanner
+    title: newsletter-signal-scanner
+    summary: Turn newsletter subscriptions into an ongoing intelligence feed — monitor a dedicated IMAP inbox, extract signal-relevant
+      content by keyword campaign (competitor mentions, ICP pain language, market shifts, brand mentions), and deliver a weekly
+      themed digest with recommended actions. Use to stop manually reading industry newsletters.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - IMAP_HOST
+      - IMAP_USER
+      - IMAP_PASSWORD
+      optional:
+      - IMAP_PORT
+      - IMAP_FOLDER
+      - AGENTMAIL_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+      - SLACK_BOT_TOKEN
+      - SENDGRID_API_KEY
+      - RESEND_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 095c71eb6af0
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/dedup_history.py
+    - scripts/imap_fetch.py
+    - scripts/signal_scan.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/newsletter-signal-scanner
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/outbound-prospecting-engine
+    name: outbound-prospecting-engine
+    path: robomotion-gtm-skills/skills/outbound-prospecting-engine
+    title: outbound-prospecting-engine
+    summary: Build and run a complete outbound prospecting system end to end — detect intent signals, research companies,
+      find decision-maker contacts, deduplicate, personalize messaging, launch the campaign, and monitor/iterate. The top-level
+      orchestrator that strings the signal, enrichment, and outreach skills into one repeatable engine. Use when the user
+      wants the whole pipeline, not a single signal or send.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - APIFY_API_TOKEN
+      - DROPCONTACT_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - PHANTOMBUSTER_API_KEY
+      - LINKEDIN_SESSION_COOKIE
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - HUBSPOT_API_KEY
+    content_hash: ef82ba8c3e27
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/contact_cache.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/outbound-prospecting-engine
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/paid-channel-prioritizer
+    name: paid-channel-prioritizer
+    path: robomotion-gtm-skills/skills/paid-channel-prioritizer
+    title: paid-channel-prioritizer
+    summary: Answer "where should I run ads?" for early-stage founders — analyze product, ICP, competitor ad presence, and
+      budget to recommend the right 1–2 paid channels to start with and a 90-day ramp plan. Prevents the classic mistake of
+      spreading a small budget too thin across platforms.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - HTTPS_PROXY
+    content_hash: de1c5e8d2cc0
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/package.json
+    - scripts/scrape_meta_ads.mjs
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/paid-channel-prioritizer
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/pain-language-engagers
+    name: pain-language-engagers
+    path: robomotion-gtm-skills/skills/pain-language-engagers
+    title: pain-language-engagers
+    summary: 'Find warm leads by searching LinkedIn for pain-language posts — the frustrations and operational complaints
+      your ICP voices publicly — then capturing the post AUTHOR (highest-intent: they voiced the pain) plus the reactors/commenters,
+      enriching via Apollo, and scoring each with a deterministic pain×ICP×role fit/intent model. Targets people living with
+      the problem, not people selling the solution. Use for "find leads complaining about X" / "LinkedIn pain-based prospecting."'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - PB_ENGAGERS_AGENT_ID
+      - LI_AT
+      - APIFY_POST_SEARCH_ACTOR
+      - APIFY_ENGAGEMENTS_ACTOR
+      - APOLLO_API_KEY
+      - MILLIONVERIFIER_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: 114e90430373
+    files:
+    - SKILL.md
+    - configs/icp.ops-finance-buyers.json
+    - configs/pain.data-quality.json
+    - configs/pain.ops-drudgery.json
+    - configs/pain.support-overwhelm.json
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/dedup_history.py
+    - scripts/enrich_apollo.py
+    - scripts/extract_engagers.py
+    - scripts/icp.example.json
+    - scripts/package.json
+    - scripts/pain_filter.py
+    - scripts/pain_terms.example.json
+    - scripts/pb_engagers_pw.mjs
+    - scripts/score_icp.py
+    - scripts/search_pain_posts.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/pain-language-engagers
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/pipeline-review
+    name: pipeline-review
+    path: robomotion-gtm-skills/skills/pipeline-review
+    title: pipeline-review
+    summary: Pull deals from any CRM (HubSpot/Salesforce/Pipedrive/Close/CSV), compute pipeline metrics across seven dimensions
+      (volume, qualification, source attribution, stage velocity, stuck deals, win/loss, forecast/coverage), and produce a
+      one-page executive summary plus a detailed diagnostic with data-cited, prioritized recommendations. Tool-agnostic; metrics
+      are computed, narrative is the agent's.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HUBSPOT_API_KEY
+      - PIPEDRIVE_API_TOKEN
+      - CLOSE_API_KEY
+      - SALESFORCE_ACCESS_TOKEN
+      - SALESFORCE_INSTANCE_URL
+    content_hash: d8bbf65018e6
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/analyze_pipeline.py
+    - scripts/fetch_deals.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/pipeline-review
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/product-hunt-scraper
+    name: product-hunt-scraper
+    path: robomotion-gtm-skills/skills/product-hunt-scraper
+    title: product-hunt-scraper
+    summary: Scrape trending products from Product Hunt for a daily, weekly, or monthly window — ranked by upvotes. Use to
+      discover new launches, track competitors, and monitor the startup ecosystem in a space. Keyless by default (Playwright
+      over the leaderboard); uses an Apify Product Hunt actor when APIFY_API_TOKEN is set for reliable scale.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_PH_ACTOR
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 69b5664a7279
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/dedup_history.py
+    - scripts/package.json
+    - scripts/ph_scrape.mjs
+    - scripts/ph_scraper.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/product-hunt-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/programmatic-seo-planner
+    name: programmatic-seo-planner
+    path: robomotion-gtm-skills/skills/programmatic-seo-planner
+    title: programmatic-seo-planner
+    summary: Decide which programmatic-SEO page patterns are worth building for a product (/vs/, /integrations/, /for-{industry}/,
+      /alternatives-to/, /use-cases/, /glossary/) and design the template structure, data model, and priority order. Crawls
+      competitor pSEO patterns, expands keyword variations via Google Autocomplete, probes demand, then the agent scores patterns
+      and designs templates. Outputs a full pSEO blueprint + buildout roadmap. Keyless (paid keyword APIs optional).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - KEYWORD_ANALYSIS_API_KEY
+      - SEMRUSH_API_KEY
+      - AHREFS_API_TOKEN
+      - KEYWORDS_EVERYWHERE_API_KEY
+      - APIFY_API_TOKEN
+    content_hash: a69fcce2be98
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/cluster_url_patterns.py
+    - scripts/crawl_sitemap.py
+    - scripts/expand_keywords.py
+    - scripts/fetch_page.py
+    - scripts/paid_seo.py
+    - scripts/serp_probe.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/programmatic-seo-planner
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/programmatic-seo-spy
+    name: programmatic-seo-spy
+    path: robomotion-gtm-skills/skills/programmatic-seo-spy
+    title: programmatic-seo-spy
+    summary: Reverse-engineer competitors' programmatic SEO — crawl their sitemaps, cluster URLs into pattern types (vs/,
+      integrations/, for-{industry}/, use-cases/, glossary/, tools/), estimate page count per pattern, sample template quality,
+      infer which patterns drive traffic, and surface the white-space / variation / quality gaps you can exploit. Recon step
+      before a buildout; feeds programmatic-seo-planner. Keyless (paid traffic APIs optional).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SEMRUSH_API_KEY
+      - AHREFS_API_TOKEN
+      - SIMILARWEB_API_KEY
+      - APIFY_API_TOKEN
+    content_hash: eaa7af30b708
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/cluster_url_patterns.py
+    - scripts/crawl_sitemap.py
+    - scripts/fetch_page.py
+    - scripts/paid_seo.py
+    - scripts/serp_probe.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/programmatic-seo-spy
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/reddit-post-finder
+    name: reddit-post-finder
+    path: robomotion-gtm-skills/skills/reddit-post-finder
+    title: reddit-post-finder
+    summary: Scrape and search Reddit posts from one or more subreddits over a time window — ranked by upvotes with each post's
+      URL preserved. Use to find discussions, track competitor or brand mentions, monitor product feedback, and discover ICP
+      pain points. Keyless by default (public Reddit JSON); uses an Apify Reddit actor when APIFY_API_TOKEN is set for reliable
+      scale.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_REDDIT_ACTOR
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: baac5e63f88e
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/dedup_history.py
+    - scripts/reddit_search.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/reddit-post-finder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/review-intelligence-digest
+    name: review-intelligence-digest
+    path: robomotion-gtm-skills/skills/review-intelligence-digest
+    title: review-intelligence-digest
+    summary: Scrape G2/Capterra/Trustpilot reviews for your product and competitors, then extract the marketing-relevant signal
+      — exact customer language, metric-bearing proof points, recurring objections, competitive-displacement angles, and buyer
+      vocabulary — into a periodic digest that feeds copywriting, positioning, and sales enablement. Apify-backed scrape;
+      the agent does the synthesis.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PINECONE_API_KEY
+      - QDRANT_URL
+    content_hash: fdefb3fa0c12
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/fetch_page.mjs
+    - scripts/package.json
+    - scripts/scrape_reviews.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/review-intelligence-digest
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/review-site-scraper
+    name: review-site-scraper
+    path: robomotion-gtm-skills/skills/review-site-scraper
+    title: review-site-scraper
+    summary: Scrape product reviews from G2, Capterra, or Trustpilot in one skill (platform dispatch), normalized into a common
+      schema with platform extras preserved. Use to monitor competitor reviews, track product sentiment, and gather Voice-of-Customer.
+      Per-platform Apify actors when APIFY_API_TOKEN is set; keyless Playwright degrade otherwise.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_G2_ACTOR
+      - APIFY_CAPTERRA_ACTOR
+      - APIFY_TRUSTPILOT_ACTOR
+      - ANTHROPIC_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 16976809a1df
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/dedup_history.py
+    - scripts/package.json
+    - scripts/review_scrape.mjs
+    - scripts/review_scraper.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/review-site-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/sales-call-prep
+    name: sales-call-prep
+    path: robomotion-gtm-skills/skills/sales-call-prep
+    title: sales-call-prep
+    summary: 'Pre-sales-call intelligence — reconstruct the full prior-interaction timeline (CRM + outreach + notes), deep-dive
+      the company with a sales lens (pain/budget/competitive stack/decision process) and the person (authority, buying style,
+      likely objections), then map your product to their situation to produce a complete call strategy: 30-second brief, talk
+      track, discovery questions, objection prep, landmines. This answers "how do I sell to this person", not "who are they"
+      (see meeting-brief).'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - HUBSPOT_API_KEY
+      - PIPEDRIVE_API_TOKEN
+      - SALESFORCE_ACCESS_TOKEN
+      - SALESFORCE_INSTANCE_URL
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - PHANTOMBUSTER_API_KEY
+      - APIFY_API_TOKEN
+    content_hash: 72d491c2b111
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/brief_scaffold.py
+    - scripts/crm_history.py
+    - scripts/fetch_url.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sales-call-prep
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/sales-coaching
+    name: sales-coaching
+    path: robomotion-gtm-skills/skills/sales-coaching
+    title: sales-coaching
+    summary: An AI sales coach that analyzes a rep's own data — email templates + replies, call transcripts, pipeline outcomes
+      — to find what they do well and where they struggle, then produces a personalized skill scorecard, a winning-pattern
+      playbook reconstructed from their best work, a surprise finding, and a 30-day coaching plan. Coaches the worker. Metrics
+      are computed; the coaching synthesis is the agent's.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - LEMLIST_API_KEY
+      - INSTANTLY_API_KEY
+      - HUBSPOT_API_KEY
+      - PIPEDRIVE_API_TOKEN
+      - SALESFORCE_ACCESS_TOKEN
+      - SALESFORCE_INSTANCE_URL
+    content_hash: 21e9a7012faf
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/analyze_calls.py
+    - scripts/analyze_deals.py
+    - scripts/analyze_emails.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sales-coaching
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/seo-content-audit
+    name: seo-content-audit
+    path: robomotion-gtm-skills/skills/seo-content-audit
+    title: seo-content-audit
+    summary: Produce a company's complete SEO footprint analysis in one report — full content inventory, SEO performance signals,
+      competitor comparison, topic/keyword and content-type gap matrices, an optional brand-voice profile, and prioritized
+      recommendations. Crawls sitemaps, deep-analyzes top pages, and runs SERP rank checks (keyless); backlink/authority precision
+      needs a paid API (no free fallback). Foundational input to seo-content-engine.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - KEYWORD_ANALYSIS_API_KEY
+      - SEMRUSH_API_KEY
+      - AHREFS_API_TOKEN
+      - APIFY_API_TOKEN
+    content_hash: 02ad41c7a704
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/crawl_sitemap.py
+    - scripts/fetch_page.py
+    - scripts/paid_seo.py
+    - scripts/serp_probe.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-content-audit
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/seo-content-engine
+    name: seo-content-engine
+    path: robomotion-gtm-skills/skills/seo-content-engine
+    title: seo-content-engine
+    summary: Build and run a compounding SEO content engine for a client end-to-end — audit current state, identify gaps,
+      build keyword architecture by funnel stage, generate a prioritized content calendar, draft content in the client's brand
+      voice, design internal linking, then publish and monitor on an ongoing cadence. A standing engagement (not a one-off
+      report) that orchestrates the SEO sub-skills with mandatory human checkpoints. Requires an answer-engine key (via the
+      AEO sub-step).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - PERPLEXITY_API_KEY
+      optional:
+      - OPENAI_API_KEY
+      - GEMINI_API_KEY
+      - TAVILY_API_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - KEYWORD_ANALYSIS_API_KEY
+      - SEMRUSH_API_KEY
+      - AHREFS_API_TOKEN
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - SLACK_BOT_TOKEN
+      - DISCORD_WEBHOOK_URL
+      - APIFY_API_TOKEN
+    content_hash: f09d206a5a5a
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/calendar_to_csv.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-content-engine
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/seo-domain-analyzer
+    name: seo-domain-analyzer
+    path: robomotion-gtm-skills/skills/seo-domain-analyzer
+    title: seo-domain-analyzer
+    summary: Build an SEO performance profile for a domain — authority/traffic estimates, organic keyword footprint, top pages,
+      backlink/referring-domain signals, real per-keyword SERP rankings, and auto-discovered competitors from keyword overlap.
+      Leads with keyless serp-derived ground truth; paid Semrush/Ahrefs APIs are optional enrichment. The agent labels estimates
+      and writes the profile.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - APIFY_API_TOKEN
+      - SEMRUSH_API_KEY
+      - AHREFS_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 6ea41ebf2532
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/package.json
+    - scripts/paid_seo.py
+    - scripts/render_page.mjs
+    - scripts/serp_probe.py
+    - scripts/wayback_fetch.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-domain-analyzer
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/seo-opportunity-finder
+    name: seo-opportunity-finder
+    path: robomotion-gtm-skills/skills/seo-opportunity-finder
+    title: seo-opportunity-finder
+    summary: Find the highest-leverage quick-win SEO content opportunities by comparing a site's existing content against
+      competitor topic coverage, then return a prioritized Top 10 list of posts to write or update — filtered for commercial
+      intent against the ICP. A lighter, faster cousin of seo-content-audit focused purely on the gap-to-opportunity list.
+      Keyless (paid SEO APIs optional); feeds seo-content-engine and topical-authority-mapper.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - KEYWORD_ANALYSIS_API_KEY
+      - SEMRUSH_API_KEY
+      - AHREFS_API_TOKEN
+      - SIMILARWEB_API_KEY
+      - APIFY_API_TOKEN
+    content_hash: d2328d2f32af
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/crawl_sitemap.py
+    - scripts/expand_keywords.py
+    - scripts/fetch_page.py
+    - scripts/paid_seo.py
+    - scripts/serp_probe.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-opportunity-finder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/seo-traffic-analyzer
+    name: seo-traffic-analyzer
+    path: robomotion-gtm-skills/skills/seo-traffic-analyzer
+    title: seo-traffic-analyzer
+    summary: 'Analyze a website''s organic-search visibility, keyword rankings, traffic estimates, and competitive positioning
+      using only SERP probes, public pages, SimilarWeb free tier, and site: queries — no paid SEO subscription. Produces a
+      full SEO report with content-gap analysis. The explicitly free counterpart to seo-domain-analyzer; the agent buckets
+      keywords, finds gaps, and writes the report.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - APIFY_API_TOKEN
+      - SEMRUSH_API_KEY
+      - AHREFS_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 1a258954a30e
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/package.json
+    - scripts/paid_seo.py
+    - scripts/render_page.mjs
+    - scripts/serp_probe.py
+    - scripts/wayback_fetch.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-traffic-analyzer
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/sequence-performance
+    name: sequence-performance
+    path: robomotion-gtm-skills/skills/sequence-performance
+    title: sequence-performance
+    summary: Email campaign/sequence diagnostic beyond vanity metrics — pulls sends/opens/replies/bounces by touch and variant,
+      reads the copy you sent and every reply, then produces a prioritized report on what's working, what's not, and what
+      to do. Tool-agnostic (Instantly/Lemlist/CSV). Metrics are computed; reply classification, copy grading, and recommendations
+      are the agent's.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - INSTANTLY_API_KEY
+      - LEMLIST_API_KEY
+    content_hash: 38ea6d73c25c
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/analyze_sequence.py
+    - scripts/fetch_campaign.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sequence-performance
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/signal-detection-pipeline
+    name: signal-detection-pipeline
+    path: robomotion-gtm-skills/skills/signal-detection-pipeline
+    title: signal-detection-pipeline
+    summary: Monitor multiple buying-signal sources in parallel to find companies actively in-market, combine signals for
+      higher-confidence leads, qualify them, and generate outreach context. Orchestrates job-posting, funding, event, Reddit-pain,
+      and LinkedIn-content sources, then dedups and qualifies the combined set.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - APOLLO_API_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: 6b958257e0b5
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/signal-detection-pipeline
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/signal-scanner
+    name: signal-scanner
+    path: robomotion-gtm-skills/skills/signal-scanner
+    title: signal-scanner
+    summary: A scheduled scanner that detects buying signals across a stored TAM and persona watchlist, writes them to a signals
+      store, and sets up downstream activation. Three phases — free diff-based signals, paid scraped signals, then dedup/score/status
+      updates. Always dry-runs before writing.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - ANTHROPIC_API_KEY
+      - SIGNAL_COMPANIES_TABLE
+      - SIGNAL_SIGNALS_TABLE
+      - SIGNAL_LOG_TABLE
+    content_hash: afefa65f7b14
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/signal_scan.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/signal-scanner
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/site-content-catalog
+    name: site-content-catalog
+    path: robomotion-gtm-skills/skills/site-content-catalog
+    title: site-content-catalog
+    summary: Crawl a site's sitemap, sitemap index, and RSS/Atom feeds to build a complete content inventory — every page
+      with URL, title, date, content type, and topic cluster — plus publishing-cadence stats and optional deep per-page analysis
+      (word count, images, internal links, has-CTA). No API key. Foundation for SEO audits, content-gap analysis, and brand-voice
+      extraction.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+      - APIFY_API_TOKEN
+    content_hash: 1ff8c06aff05
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/site_catalog.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/site-content-catalog
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/social-kit
+    name: social-kit
+    path: robomotion-gtm-skills/skills/social-kit
+    title: social-kit
+    summary: One brief → voice-tuned X variants + voice-tuned LinkedIn variants + a matching social graphic. A thin orchestrator
+      over create-x-content, create-linkedin-content, and graphics-studio, with a voice-guide pre-flight check and sensible
+      defaults. Use for the end-to-end content moment when you want copy and a visual together, in the user's voice.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - UNSPLASH_ACCESS_KEY
+      - LEONARDO_API_KEY
+      - STABILITY_API_KEY
+      - FAL_KEY
+    content_hash: 8628850d441c
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/init_run.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/social-kit
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/sponsored-newsletter-finder
+    name: sponsored-newsletter-finder
+    path: robomotion-gtm-skills/skills/sponsored-newsletter-finder
+    title: sponsored-newsletter-finder
+    summary: Discover newsletters a target ICP reads, evaluate each for audience fit / reach / CPM, and produce a ranked,
+      tiered sponsorship shortlist with budget allocation and outreach templates. Use to test paid newsletter distribution
+      faster and cheaper than building your own audience. Keyless discovery; the host agent does scoring and ranking.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - AIRTABLE_API_KEY
+    content_hash: 6a2dde1d03d6
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/cpm_estimate.py
+    - scripts/page_extract.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sponsored-newsletter-finder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/tam-builder
+    name: tam-builder
+    path: robomotion-gtm-skills/skills/tam-builder
+    title: tam-builder
+    summary: Build and maintain a scored Total Addressable Market — discover ICP-matching companies via Apollo Company Search,
+      score fit 0-100, assign tiers (1/2/3), and auto-build a persona watchlist for Tier 1-2 companies via free Apollo People
+      Search. Outputs to a store/CSV. Foundation for signal-scanner.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APOLLO_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_SERVICE_ROLE_KEY
+      - ANTHROPIC_API_KEY
+    content_hash: fa411e76cef5
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apollo_companies.py
+    - scripts/apollo_watchlist.py
+    - scripts/score_tam.py
+    - scripts/serp_companies.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/tam-builder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/tech-stack-teardown
+    name: tech-stack-teardown
+    path: robomotion-gtm-skills/skills/tech-stack-teardown
+    title: tech-stack-teardown
+    summary: 'Reverse-engineer a company''s sales/marketing/outbound tech stack from public signals only — no login, keyless-first.
+      Detects 200+ technologies (CRMs & marketing automation, ad pixels, CDP/ABM, analytics, A/B-testing, chat/support, CMS,
+      ecommerce, payments, consent/CMP, email-capture, reviews, scheduling, forms, video, heatmaps) by fusing FOUR independent
+      signals: HTML source, HTTP headers/cookies, rendered third-party network requests (Playwright), and DNS (MX/SPF/DKIM/DMARC/TXT).
+      Also EXTRACTS account/pixel IDs (GA4 G-, GTM-, Meta Pixel, HubSpot portal, UA-, LinkedIn partner, Marketo Munchkin,
+      Segment, +20 more) into an attribution fingerprint so two teardowns sharing an ID can be linked to the same owner/agency.
+      Merges into one confidence-ranked profile, infers the go-to-market MOTION, assesses email-auth deliverability, supports
+      change-tracking via snapshot/diff. Single company or batch. Optional Apify/BuiltWith key for enrichment only.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - BUILTWITH_API_KEY
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+    content_hash: 3a34501938cd
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_profiler.py
+    - scripts/detect_requests.mjs
+    - scripts/dns_scan.py
+    - scripts/fetch_headers.py
+    - scripts/package.json
+    - scripts/render_page.mjs
+    - scripts/sigdb.py
+    - scripts/signatures.json
+    - scripts/source_inspect.py
+    - scripts/teardown.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/tech-stack-teardown
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/tiktok-influencer-finder
+    name: tiktok-influencer-finder
+    path: robomotion-gtm-skills/skills/tiktok-influencer-finder
+    title: tiktok-influencer-finder
+    summary: Find TikTok influencers/creators matching a specific niche, with follower-range, location, and fit-score filtering
+      — for creator/influencer-marketing outreach lists. Apify TikTok discovery actor primary (built-in fit scoring); keyless
+      web-search degrade where the agent estimates fit. TikTok-only.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: 3ad94264055b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/tiktok_finder.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/tiktok-influencer-finder
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/topical-authority-mapper
+    name: topical-authority-mapper
+    path: robomotion-gtm-skills/skills/topical-authority-mapper
+    title: topical-authority-mapper
+    summary: Map complete topic clusters (pillar pages, spoke articles, supporting glossary/FAQ) and the internal-linking
+      architecture for a subject area, so a site builds the topical depth Google rewards. Catalogs existing + competitor content,
+      expands the subtopic universe via Google Autocomplete, then the agent clusters it into a pillar/cluster tree, gap matrix,
+      and a capacity-bound content calendar. Keyless (no paid SEO API required).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - KEYWORD_ANALYSIS_API_KEY
+      - SEMRUSH_API_KEY
+      - AHREFS_API_TOKEN
+      - KEYWORDS_EVERYWHERE_API_KEY
+      - APIFY_API_TOKEN
+    content_hash: 0463115d089c
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/crawl_sitemap.py
+    - scripts/expand_keywords.py
+    - scripts/paid_seo.py
+    - scripts/serp_probe.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/topical-authority-mapper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/trending-ad-hook-spotter
+    name: trending-ad-hook-spotter
+    path: robomotion-gtm-skills/skills/trending-ad-hook-spotter
+    title: trending-ad-hook-spotter
+    summary: Scan X, Reddit, LinkedIn, and Hacker News for trending narratives, viral posts, and hot-button topics in a given
+      space, score each by recency/velocity/relevance, and translate the actionable ones into concrete ad hooks with timing-urgency
+      windows. Tells a paid team what to run ads about right now while the topic is hot.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - PHANTOMBUSTER_API_KEY
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - SERPER_API_KEY
+      - HTTPS_PROXY
+    content_hash: 14153a0a71ed
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_run.py
+    - scripts/hn_trends.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/trending-ad-hook-spotter
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/visual-brand-extractor
+    name: visual-brand-extractor
+    path: robomotion-gtm-skills/skills/visual-brand-extractor
+    title: visual-brand-extractor
+    summary: 'Extract a client''s visual identity from their website — color palette, typography pairing, and aesthetic/layout
+      patterns — and emit reusable style presets: a slide-style CSS preset and a brand-config JSON for downstream slide/content-asset
+      generators. Deterministic scripts render the site, harvest CSS/font/color signals, capture a hero screenshot, and sample
+      dominant colors; you (the agent) classify color roles, choose fonts, and synthesize the vibe.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+    content_hash: 48ddf8bb91b4
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/extract_brand.mjs
+    - scripts/package.json
+    - scripts/sample_colors.py
+    - scripts/tailwind_map.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/visual-brand-extractor
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/voice-of-customer-synthesizer
+    name: voice-of-customer-synthesizer
+    path: robomotion-gtm-skills/skills/voice-of-customer-synthesizer
+    title: voice-of-customer-synthesizer
+    summary: Aggregate scattered customer feedback (support tickets, NPS/CSAT, Slack, G2/Capterra reviews, call transcripts,
+      churn surveys, feature requests, social mentions) into a single VoC report — theme clustering, sentiment, trend detection
+      vs prior period, and team-specific (product/CS/marketing) action items. Runs on user-provided data; optional review
+      scraping. Normalization is deterministic; the synthesis is the agent's.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - SLACK_BOT_TOKEN
+      - PINECONE_API_KEY
+      - QDRANT_URL
+    content_hash: 588181df1fb8
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/normalize_feedback.py
+    - scripts/scrape_reviews.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/voice-of-customer-synthesizer
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/web-archive-scraper
+    name: web-archive-scraper
+    path: robomotion-gtm-skills/skills/web-archive-scraper
+    title: web-archive-scraper
+    summary: Search the Wayback Machine (Internet Archive) for archived snapshots of a URL or domain and optionally fetch
+      cached page content as readable text. Use to recover removed customer lists, testimonials, case studies, and partner
+      directories, and to track how a competitor's messaging evolved over time. Free, no API key.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 3199463f90d9
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/wayback_scraper.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/web-archive-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/x-mention-tracker
+    name: x-mention-tracker
+    path: robomotion-gtm-skills/skills/x-mention-tracker
+    title: x-mention-tracker
+    summary: Search and scrape X posts for a query with reliable native date filtering (since:/until:) — ranked by likes.
+      Use to find posts, track brand mentions, monitor competitors, and feed the kol-content-monitor (from:<handle> feeds).
+      Apify tweet-scraper when APIFY_API_TOKEN is set (reliable); keyless Playwright degrade otherwise (best-effort behind
+      X's login wall).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_TWITTER_ACTOR
+      - SUPABASE_URL
+      - SUPABASE_KEY
+    content_hash: 9b99ffd74bb2
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/dedup_history.py
+    - scripts/package.json
+    - scripts/x_scrape.mjs
+    - scripts/x_search.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/x-mention-tracker
+    license: MIT
+    group: robomotion-gtm-skills
+  - id: robomotion-gtm-skills/youtube-apify-transcript
+    name: youtube-apify-transcript
+    path: robomotion-gtm-skills/skills/youtube-apify-transcript
+    title: youtube-apify-transcript
+    summary: Fetch a YouTube video's transcript. Keyless by default (reads YouTube's public timedtext caption track via urllib
+      — no key, no cost); if APIFY_API_TOKEN is set it uses Apify's residential-proxy transcript actor instead, which is more
+      reliable from cloud/datacenter IPs that YouTube blocks. Supports single, batch, and timestamped-JSON output with local
+      caching so repeat fetches are free. Use whenever a skill needs a video's text for research, summarization, or content
+      repurposing.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - APIFY_API_TOKEN
+      - APIFY_YT_TRANSCRIPT_ACTOR
+    content_hash: cc984ad1451a
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/youtube_transcript.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/youtube-apify-transcript
+    license: MIT
+    group: robomotion-gtm-skills
+  files:
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/post-install.sh
+  - .robomotion/skill.yaml
+  - tests/.gitignore
+  - tests/README.md
+  - tests/_util.py
+  - tests/secrets.env
+  - tests/secrets.env.example
+  - tests/test_contract_cli_help.py
+  - tests/test_contract_skill_examples.py
+  - tests/test_keyless_fallbacks.py
+  - tests/test_mocked_apify.py
+  - tests/test_mocked_apollo.py
+  - tests/test_mocked_dataforseo.py
+  - tests/test_unit_ab_significance.py
+  - tests/test_unit_apify_cost_gate.py
+  - tests/test_unit_apollo_search.py
+  - tests/test_unit_cluster_url_patterns.py
+  - tests/test_unit_lint_post.py
+  - tests/test_unit_normalize_campaigns.py
+  - tests/test_unit_pain_filter.py
+  - tests/test_unit_score_icp.py
+  - tests/test_unit_score_results.py
+  - tests/test_unit_score_tam.py
+  - validate.sh
 - path: trailofbits-skills
   name: trailofbits-skills
   title: Trail of Bits Skills

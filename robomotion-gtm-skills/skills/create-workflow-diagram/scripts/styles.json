@@ -1,0 +1,36 @@
+{
+  "_comment": "Style presets for create-workflow-diagram. The AGENT injects these CSS tokens into the diagram HTML it authors from the parse_workflow.py node model.",
+  "default": "figjam-classic",
+  "styles": {
+    "figjam-classic": {
+      "bg": "#f7f7f5", "node_bg": "#ffffff", "node_border": "#1a1a1a",
+      "text": "#1a1a1a", "accent": "#ffd23f", "arrow": "#1a1a1a",
+      "font": "'Inter', system-ui, sans-serif", "radius": "16px", "shadow": "2px 3px 0 #1a1a1a",
+      "mood": "playful whiteboard, sticky-note nodes"
+    },
+    "blueprint": {
+      "bg": "#0b2545", "node_bg": "#13315c", "node_border": "#5bc0be",
+      "text": "#eef4ed", "accent": "#5bc0be", "arrow": "#8da9c4",
+      "font": "'Roboto Condensed', sans-serif", "radius": "6px", "shadow": "none",
+      "mood": "engineering blueprint, grid background"
+    },
+    "minimal-white": {
+      "bg": "#ffffff", "node_bg": "#ffffff", "node_border": "#e5e7eb",
+      "text": "#111827", "accent": "#2563eb", "arrow": "#9ca3af",
+      "font": "'Inter', system-ui, sans-serif", "radius": "12px", "shadow": "0 1px 2px rgba(0,0,0,.06)",
+      "mood": "clean docs / slide-ready"
+    },
+    "neon-flow": {
+      "bg": "#0a0a0f", "node_bg": "#16161f", "node_border": "#7c3aed",
+      "text": "#f5f5ff", "accent": "#22d3ee", "arrow": "#7c3aed",
+      "font": "'Space Grotesk', sans-serif", "radius": "14px", "shadow": "0 0 18px rgba(124,58,237,.5)",
+      "mood": "dark, glowing connectors"
+    },
+    "pastel-board": {
+      "bg": "#fdf6f0", "node_bg": "#ffffff", "node_border": "#3a2e39",
+      "text": "#3a2e39", "accent": "#f5a7a0", "arrow": "#9b8a93",
+      "font": "'Nunito Sans', sans-serif", "radius": "18px", "shadow": "3px 4px 0 #f5a7a0",
+      "mood": "soft, warm, friendly"
+    }
+  }
+}

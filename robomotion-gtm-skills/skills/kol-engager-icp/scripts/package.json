@@ -1,0 +1,10 @@
+{
+  "name": "kol-engager-icp-scripts",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Keyless Playwright degrade for LinkedIn KOL post reactors+commenters.",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "_comment": "Two shipped pain-term sets. The agent should generate a fresh set per product/pain intake, but these show the shape + the pain-vs-solution discipline: every phrase is something a frustrated OPERATOR would type, never a solution/category keyword (those attract builders/VCs, not buyers). pain_regex catches the 'still doing X manually' family. Pass a set's pain_terms to search_pain_posts.py / pain_filter.py and the pain_regex via --pain-regex.",
+
+  "ops_automation_drudgery": {
+    "label": "Ops/RevOps living with manual, copy-paste, spreadsheet workflows",
+    "pain_terms": [
+      "manual data entry",
+      "copy paste between systems",
+      "copy pasting between spreadsheets",
+      "spreadsheet hell",
+      "drowning in spreadsheets",
+      "doing this manually every week",
+      "still exporting to excel",
+      "rekeying data",
+      "swivel chair between tools",
+      "no integration between our tools",
+      "wasting hours on reporting",
+      "manual reconciliation",
+      "stitching reports together by hand",
+      "our process is held together with duct tape",
+      "too many disconnected tools"
+    ],
+    "pain_regex": "still (doing|using|running|exporting).*(manually|by hand|in excel|in a spreadsheet)",
+    "exclude_extra": ["automation platform", "rpa vendor", "low-code", "ai agent"]
+  },
+
+  "support_team_overwhelm": {
+    "label": "Support/CX leaders buried in ticket volume and repetitive work",
+    "pain_terms": [
+      "drowning in tickets",
+      "same questions over and over",
+      "answering the same question again",
+      "ticket backlog out of control",
+      "team is burning out on support",
+      "copy pasting canned responses all day",
+      "no time to actually help customers",
+      "manually tagging tickets",
+      "context switching between 5 tools to answer one ticket",
+      "our knowledge base is a mess",
+      "escalations falling through the cracks",
+      "spending all day in the helpdesk"
+    ],
+    "pain_regex": "(still|always) (manually|by hand) (tagging|triaging|routing|answering)",
+    "exclude_extra": ["ai customer support", "support automation tool", "chatbot platform"]
+  }
+}

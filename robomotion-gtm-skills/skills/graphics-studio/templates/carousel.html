@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- graphics-studio template: carousel (1080x1350, one file per slide) -->
+__FONT_LINKS__
+<style>
+__BASE_CSS__
+__STYLE_VARS__
+/* carousel layout */
+.slide { justify-content: center; padding: calc(var(--space) * 12); }
+.slide .kicker { margin-bottom: calc(var(--space) * 3); }
+.slide h1 { margin-bottom: calc(var(--space) * 4); }
+.slide ul { list-style: none; display: flex; flex-direction: column; gap: calc(var(--space) * 3); }
+.slide li { display: flex; gap: calc(var(--space) * 2); align-items: baseline; }
+.slide li::before { content: "—"; color: var(--accent); font-weight: 800; }
+</style>
+</head>
+<body>
+<!-- CAROUSEL SLIDE. Canvas 1080x1350. The agent fills ONE slide of HTML per file.
+     Use .slide as the root. Kinds: cover|point|list|quote|stat|cta. Keep one idea per
+     slide; max 3-4 list items; safe inner margin ~96px (the .pad/padding handles it).
+     Example structure to adapt:
+       <div class="slide">
+         <div class="kicker">SERIES · PART 1</div>
+         <h1>Headline goes here</h1>
+         <p class="muted">Supporting line.</p>
+         <div class="page-no">1 / 7</div>
+       </div>
+-->
+__CONTENT__
+</body>
+</html>

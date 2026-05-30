@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- graphics-studio template: poster (1080x1350, 4:5) -->
+__FONT_LINKS__
+<style>
+__BASE_CSS__
+__STYLE_VARS__
+/* poster layout — one headline, high contrast, lots of air */
+.slide { justify-content: space-between; padding: calc(var(--space) * 14); }
+.slide .poster-mid { display: flex; flex-direction: column; justify-content: center; flex: 1; }
+.slide h1 { font-size: calc(var(--t-5) * 1.25); }
+.slide .footer { color: var(--muted); font-size: calc(var(--t-0) * 0.85); display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<!-- POSTER. Canvas 1080x1350. One headline + supporting line + brand mark. High contrast,
+     oversized type, breathing room. Adapt:
+       <div class="slide">
+         <div class="kicker">ANNOUNCING</div>
+         <div class="poster-mid"><h1>The big line.</h1><p class="muted">Supporting detail.</p></div>
+         <div class="footer"><span>@brand</span><span>2026</span></div>
+       </div>
+-->
+__CONTENT__
+</body>
+</html>

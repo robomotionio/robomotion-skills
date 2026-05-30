@@ -1,0 +1,32 @@
+{
+  "_comment": "Tuned pain set for Ops/RevOps living with manual, copy-paste, spreadsheet workflows. Feed pain_terms to search_pain_posts.py / pain_filter.py (--pain-terms or write one-per-line to a file for --pain-terms-file), pain_regex via --pain-regex, and exclude_extra one-per-line to --exclude-file. Every phrase is something a frustrated OPERATOR would type — never a solution/category keyword (those attract builders/VCs, not buyers).",
+  "label": "Ops/RevOps drowning in manual, copy-paste, spreadsheet work",
+  "pain_terms": [
+    "manual data entry",
+    "copy paste between systems",
+    "copy pasting between spreadsheets",
+    "spreadsheet hell",
+    "drowning in spreadsheets",
+    "doing this manually every week",
+    "still exporting to excel",
+    "rekeying data",
+    "swivel chair between tools",
+    "no integration between our tools",
+    "wasting hours on reporting",
+    "manual reconciliation",
+    "stitching reports together by hand",
+    "held together with duct tape",
+    "too many disconnected tools",
+    "updating the crm by hand"
+  ],
+  "pain_regex": "still (doing|using|running|exporting|updating).*(manually|by hand|in excel|in a spreadsheet)",
+  "exclude_extra": [
+    "automation platform",
+    "rpa vendor",
+    "low-code",
+    "no-code platform",
+    "ai agent",
+    "introducing",
+    "we just shipped"
+  ]
+}

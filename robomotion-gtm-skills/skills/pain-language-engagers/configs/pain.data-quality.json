@@ -1,0 +1,30 @@
+{
+  "_comment": "Tuned pain set for data/analytics/RevOps owners fighting dirty, stale, untrustworthy data. Feed pain_terms to search_pain_posts.py / pain_filter.py, pain_regex via --pain-regex, exclude_extra via --exclude-file. Phrases are operator complaints, not solution/category keywords.",
+  "label": "Data/analytics owners fighting dirty, stale, untrustworthy data",
+  "pain_terms": [
+    "our data is a mess",
+    "garbage in garbage out",
+    "no one trusts the dashboard",
+    "duplicate records everywhere",
+    "the numbers never match",
+    "two reports two different answers",
+    "stale data in the crm",
+    "cleaning data by hand",
+    "deduping leads manually",
+    "data lives in too many places",
+    "no single source of truth",
+    "spending more time fixing data than using it",
+    "broken pipeline again",
+    "fields half filled in",
+    "manually enriching contacts"
+  ],
+  "pain_regex": "(cleaning|deduping|fixing|reconciling) (the )?(data|records|leads|contacts) (manually|by hand|every (week|month))",
+  "exclude_extra": [
+    "data quality platform",
+    "reverse etl",
+    "cdp vendor",
+    "master data management tool",
+    "introducing",
+    "we just shipped"
+  ]
+}
