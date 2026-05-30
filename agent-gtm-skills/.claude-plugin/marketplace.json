@@ -1,0 +1,40 @@
+{
+  "name": "agent-gtm-skills",
+  "owner": {
+    "name": "Chad Boyda",
+    "url": "https://github.com/chadboyda"
+  },
+  "metadata": {
+    "description": "AI-native go-to-market skills for Claude Code - positioning, outbound, inbound, paid, retention, and GTM ops",
+    "version": "1.0.0",
+    "repository": "https://github.com/chadboyda/agent-gtm-skills"
+  },
+  "plugins": [
+    {
+      "name": "agent-gtm-skills",
+      "description": "18 AI-native GTM skills for founders and revenue teams: positioning, AI pricing, cold outreach, AI SDRs, enrichment, video outreach, launches, SEO, social selling, content-to-pipeline, UGC ads, paid creative, retention, partnerships, GTM engineering, and metrics",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/positioning-icp",
+        "./skills/ai-pricing",
+        "./skills/sales-motion-design",
+        "./skills/ai-cold-outreach",
+        "./skills/ai-sdr",
+        "./skills/lead-enrichment",
+        "./skills/video-outreach",
+        "./skills/multi-platform-launch",
+        "./skills/ai-seo",
+        "./skills/social-selling",
+        "./skills/content-to-pipeline",
+        "./skills/ai-ugc-ads",
+        "./skills/paid-creative-ai",
+        "./skills/expansion-retention",
+        "./skills/partner-affiliate",
+        "./skills/gtm-engineering",
+        "./skills/solo-founder-gtm",
+        "./skills/gtm-metrics"
+      ]
+    }
+  ]
+}

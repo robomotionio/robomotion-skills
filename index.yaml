@@ -1,5 +1,441 @@
 schema_version: 1
 groups:
+- path: agent-gtm-skills
+  name: agent-gtm-skills
+  title: Agent GTM Skills
+  type: group
+  version: 1.0.0
+  author: Chad Boyda
+  source_url: https://github.com/chadboyda/agent-gtm-skills
+  license: MIT
+  summary: 18 AI-native go-to-market playbooks across the full revenue surface — positioning & ICP, AI pricing, sales motion
+    design, cold outreach, AI SDRs, lead enrichment, video outreach, launches, AI SEO, social selling, content-to-pipeline,
+    UGC & paid creative, expansion/retention, partnerships, GTM engineering, solo-founder GTM, and metrics. Pure-knowledge,
+    2025-2026 frameworks.
+  category: Marketing
+  tags:
+  - gtm
+  - sales
+  - marketing
+  - outbound
+  - ai-sdr
+  - pricing
+  - positioning
+  - seo
+  - paid-ads
+  - retention
+  - revops
+  - metrics
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 301e69f3ff03
+  skills:
+  - id: agent-gtm-skills/ai-cold-outreach
+    name: ai-cold-outreach
+    path: agent-gtm-skills/skills/ai-cold-outreach
+    title: ai-cold-outreach
+    summary: When the user wants to build an AI-powered outreach system, write cold emails, improve deliverability, or scale
+      personalized outreach. Also use when the user mentions 'cold email,' 'cold outreach,' 'outreach automation,' 'Instantly,'
+      'Smartlead,' 'Clay,' 'email sequences,' 'deliverability,' 'personalization at scale,' 'reply rate,' or 'outreach stack.'
+      This skill covers the complete AI cold outreach system from signal detection through conversion.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b67cdec0728e
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/ai-cold-outreach
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/ai-pricing
+    name: ai-pricing
+    path: agent-gtm-skills/skills/ai-pricing
+    title: ai-pricing
+    summary: When the user wants to price an AI product, choose a charge metric, design pricing tiers, or optimize margins.
+      Also use when the user mentions 'AI pricing,' 'usage-based pricing,' 'consumption pricing,' 'outcome pricing,' 'BYOK,'
+      'bring your own key,' 'per-seat pricing,' 'pricing tiers,' 'AI margins,' 'cost per token,' or 'pricing model.' This
+      skill covers pricing strategy, packaging, and margin management for AI-native products.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9380a7c4a557
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/ai-pricing
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/ai-sdr
+    name: ai-sdr
+    path: agent-gtm-skills/skills/ai-sdr
+    title: ai-sdr
+    summary: When the user wants to deploy AI sales development reps, automate sales qualification, build signal-to-action
+      routing, or design AI agent architecture for sales. Also use when the user mentions 'AI SDR,' 'AI sales agent,' 'automated
+      qualification,' 'signal routing,' 'sales automation,' '11x,' 'Artisan,' 'AiSDR,' 'AI BDR,' or 'autonomous sales.' This
+      skill covers AI SDR deployment, qualification automation, and agent architecture for sales development.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: aeb0e1a8e271
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/ai-sdr
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/ai-seo
+    name: ai-seo
+    path: agent-gtm-skills/skills/ai-seo
+    title: ai-seo
+    summary: When the user wants to build programmatic SEO with AI, create competitor alternative pages, optimize for AI Overviews,
+      or scale content production. Also use when the user mentions 'SEO,' 'programmatic SEO,' 'AI content,' 'competitor alternative
+      pages,' 'AI Overviews,' 'search optimization,' 'DataForSEO,' 'content at scale,' 'keyword strategy,' or 'organic traffic.'
+      This skill covers AI-powered SEO strategy from keyword research through programmatic page generation.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1857ce7d3b49
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/ai-seo
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/ai-ugc-ads
+    name: ai-ugc-ads
+    path: agent-gtm-skills/skills/ai-ugc-ads
+    title: ai-ugc-ads
+    summary: When the user wants to create UGC ad campaigns, recruit UGC creators, generate AI UGC content, or scale with
+      user-generated content. Also use when the user mentions 'UGC,' 'user-generated content,' 'creator ads,' 'Spark Ads,'
+      'whitelisting,' 'AI UGC,' 'Arcads,' 'Creatify,' 'creator brief,' or 'UGC testing.' This skill covers the UGC growth
+      framework from creator recruitment through AI-powered scaling.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: cbf29e5d8dd7
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/ai-ugc-ads
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/content-to-pipeline
+    name: content-to-pipeline
+    path: agent-gtm-skills/skills/content-to-pipeline
+    title: content-to-pipeline
+    summary: When the user wants to turn content into revenue, build a content-led GTM motion, reverse engineer distribution,
+      or repurpose content across platforms. Also use when the user mentions 'content marketing,' 'content-led growth,' 'content
+      to pipeline,' 'distribution,' 'content repurposing,' 'content strategy,' 'thought leadership,' 'newsletter,' 'content
+      flywheel,' 'organic growth.' This skill covers content-to-revenue systems from creation through pipeline attribution.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3cd0f35244e7
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/content-to-pipeline
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/expansion-retention
+    name: expansion-retention
+    path: agent-gtm-skills/skills/expansion-retention
+    title: expansion-retention
+    summary: When the user wants to reduce churn, build expansion revenue, automate customer success, or optimize net revenue
+      retention. Also use when the user mentions 'churn,' 'retention,' 'expansion revenue,' 'upsell,' 'NRR,' 'net revenue
+      retention,' 'customer success,' 'land and expand,' 'closed-lost,' or 'renewal.' This skill covers expansion and retention
+      systems from usage triggers through automated customer success.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e75058de6601
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/expansion-retention
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/gtm-engineering
+    name: gtm-engineering
+    path: agent-gtm-skills/skills/gtm-engineering
+    title: gtm-engineering
+    summary: When the user wants to build GTM automation with code, design workflow architectures, use AI agents for GTM tasks,
+      or implement the 'architecture over tools' principle. Also use when the user mentions 'GTM engineering,' 'GTM automation,'
+      'n8n,' 'Make,' 'Zapier,' 'workflow automation,' 'Clay API,' 'instruction stacks,' 'AI agents for GTM,' or 'revenue automation.'
+      This skill covers technical GTM infrastructure from workflow design through agent orchestration.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c59515e0898e
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/gtm-engineering
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/gtm-metrics
+    name: gtm-metrics
+    path: agent-gtm-skills/skills/gtm-metrics
+    title: gtm-metrics
+    summary: When the user wants to define GTM metrics, build a metrics dashboard, measure pipeline efficiency, or track AI
+      product performance. Also use when the user mentions 'GTM metrics,' 'revenue latency,' 'pipeline metrics,' 'TTFV,' 'time-to-first-value,'
+      'data health,' 'attribution,' 'conversion rate,' 'CAC,' 'LTV,' 'NRR,' 'GTM dashboard,' 'magic number,' 'pipeline velocity,'
+      or 'funnel metrics.' This skill covers GTM measurement from metric selection through dashboard design, including AI-specific
+      cost metrics, attribution models, and weekly review cadences.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: deb450614ca5
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/gtm-metrics
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/lead-enrichment
+    name: lead-enrichment
+    path: agent-gtm-skills/skills/lead-enrichment
+    title: lead-enrichment
+    summary: When the user wants to build data enrichment workflows, score leads against ICP, set up Clay waterfalls, or improve
+      contact data quality. Also use when the user mentions 'enrichment,' 'data enrichment,' 'Clay,' 'waterfall enrichment,'
+      'ICP scoring,' 'lead scoring,' 'intent data,' 'contact verification,' 'Apollo,' 'ZoomInfo,' or 'data quality.' This
+      skill covers lead enrichment waterfalls, ICP scoring frameworks, and contact verification systems.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8cb59fa83992
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/lead-enrichment
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/multi-platform-launch
+    name: multi-platform-launch
+    path: agent-gtm-skills/skills/multi-platform-launch
+    title: multi-platform-launch
+    summary: When the user wants to launch a product across multiple platforms, plan a Product Hunt launch, build a waitlist,
+      or execute a multi-channel launch strategy. Also use when the user mentions 'product launch,' 'Product Hunt,' 'launch
+      strategy,' 'waitlist,' 'beta launch,' 'BetaList,' 'Hacker News,' 'launch day,' 'AppSumo,' 'multi-channel launch.' This
+      skill covers multi-platform launch execution from pre-launch through post-launch optimization.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a9a8127ce0b7
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/multi-platform-launch
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/paid-creative-ai
+    name: paid-creative-ai
+    path: agent-gtm-skills/skills/paid-creative-ai
+    title: paid-creative-ai
+    summary: When the user wants to create AI-generated ad creative, test performance creative, manage creative fatigue, or
+      optimize paid media with AI tools. Also use when the user mentions 'ad creative,' 'performance creative,' 'creative
+      testing,' 'creative fatigue,' 'Meta ads,' 'Google ads,' 'TikTok ads,' 'AI ads,' 'ad budget,' 'ROAS,' 'Advantage+,' or
+      'Performance Max.' This skill covers AI-powered paid creative from generation through performance optimization.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b8e85fe8b308
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/paid-creative-ai
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/partner-affiliate
+    name: partner-affiliate
+    path: agent-gtm-skills/skills/partner-affiliate
+    title: partner-affiliate
+    summary: When the user wants to build a partner program, launch an affiliate program, design integration partnerships,
+      or create distribution partnerships. Also use when the user mentions 'partnerships,' 'affiliate program,' 'referral
+      program,' 'partner ecosystem,' 'integration partner,' 'reseller,' 'co-marketing,' 'PartnerStack,' or 'revenue share.'
+      This skill covers partner and affiliate program design from recruitment through performance optimization.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: be40bc79ed78
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/partner-affiliate
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/positioning-icp
+    name: positioning-icp
+    path: agent-gtm-skills/skills/positioning-icp
+    title: positioning-icp
+    summary: When the user wants to define their ideal customer profile, position an AI product, build messaging architecture,
+      or validate product-market fit. Also use when the user mentions 'ICP,' 'ideal customer profile,' 'positioning,' 'PMF,'
+      'product-market fit,' 'messaging,' 'buyer persona,' 'enrichment signals,' 'market positioning,' or 'competitive positioning.'
+      This skill covers market positioning, ICP definition, messaging architecture, and PMF validation for AI-native products.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3f88e1d997aa
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/positioning-icp
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/sales-motion-design
+    name: sales-motion-design
+    path: agent-gtm-skills/skills/sales-motion-design
+    title: sales-motion-design
+    summary: When the user wants to choose between PLG and sales-led, design a sales motion, optimize time-to-first-value,
+      or build a value-before-purchase experience. Also use when the user mentions 'PLG,' 'product-led growth,' 'sales-led,'
+      'sales motion,' 'free trial,' 'freemium,' 'self-serve,' 'demo-first,' 'time-to-first-value,' 'TTFV,' or 'agent-led sales.'
+      This skill covers sales motion selection, value delivery design, and go-to-market motion architecture.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e6abc6581a60
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/sales-motion-design
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/social-selling
+    name: social-selling
+    path: agent-gtm-skills/skills/social-selling
+    title: social-selling
+    summary: When the user wants to sell through social media, optimize LinkedIn for sales, build DM sequences, or convert
+      content engagement into pipeline. Also use when the user mentions 'social selling,' 'LinkedIn selling,' 'LinkedIn DMs,'
+      'social prospecting,' 'LinkedIn Sales Navigator,' 'DM sequences,' 'LinkedIn outreach,' 'social pipeline,' or 'LinkedIn
+      optimization.' This skill covers social selling strategy from profile optimization through DM-to-deal conversion.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7ed3bdf4d7da
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/social-selling
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/solo-founder-gtm
+    name: solo-founder-gtm
+    path: agent-gtm-skills/skills/solo-founder-gtm
+    title: solo-founder-gtm
+    summary: When the user is a solo founder building their GTM motion, wants to scale without hiring, or needs to design
+      an AI agent team for go-to-market. Also use when the user mentions 'solo founder,' 'one-person startup,' 'solopreneur,'
+      'bootstrapped,' 'no team,' 'AI agents as team,' 'scaling without hiring,' 'founder-led sales,' 'lean GTM,' 'one-person
+      company,' or 'no employees.' This skill covers the complete solo founder GTM playbook from stack selection through agent
+      team design, revenue-stage transitions, time allocation, and when to finally hire.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3d43c1d5cf78
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/solo-founder-gtm
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  - id: agent-gtm-skills/video-outreach
+    name: video-outreach
+    path: agent-gtm-skills/skills/video-outreach
+    title: video-outreach
+    summary: When the user wants to build video-first cold outreach, create personalized video at scale, implement async selling,
+      or use AI demo generation for prospecting. Also use when the user mentions 'video outreach,' 'personalized video,' 'video
+      prospecting,' 'Tavus,' 'Sendspark,' 'HeyGen,' 'video email,' 'async selling,' 'video demo,' or 'made this for you.'
+      This skill covers video-first outreach systems from personalization through conversion optimization.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a709dacc1c60
+    files:
+    - SKILL.md
+    author: Chad Boyda
+    source_url: https://github.com/chadboyda/agent-gtm-skills/tree/main/skills/video-outreach
+    license: MIT
+    group: agent-gtm-skills
+    category: Marketing
+  files:
+  - .claude-plugin/marketplace.json
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
+  - README.md
 - path: claude-seo
   name: claude-seo
   title: Claude SEO

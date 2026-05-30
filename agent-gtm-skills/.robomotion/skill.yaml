@@ -1,0 +1,11 @@
+schema_version: 1
+name: agent-gtm-skills
+title: Agent GTM Skills
+type: group
+version: 1.0.0
+author: Chad Boyda
+source_url: https://github.com/chadboyda/agent-gtm-skills
+license: MIT
+summary: 18 AI-native go-to-market playbooks across the full revenue surface — positioning & ICP, AI pricing, sales motion design, cold outreach, AI SDRs, lead enrichment, video outreach, launches, AI SEO, social selling, content-to-pipeline, UGC & paid creative, expansion/retention, partnerships, GTM engineering, solo-founder GTM, and metrics. Pure-knowledge, 2025-2026 frameworks.
+category: Marketing
+tags: [gtm, sales, marketing, outbound, ai-sdr, pricing, positioning, seo, paid-ads, retention, revops, metrics]
