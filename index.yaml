@@ -6089,10 +6089,24 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: b8c101e50181
+      optional:
+      - ADOBE_ACCESS_TOKEN
+      - ADOBE_CLIENT_ID
+      - ADOBE_COMPANY_ID
+      - AMPLITUDE_API_KEY
+      - AMPLITUDE_SECRET_KEY
+      - GA4_ACCESS_TOKEN
+      - HOTJAR_CLIENT_ID
+      - HOTJAR_CLIENT_SECRET
+      - MIXPANEL_API_KEY
+      - MIXPANEL_SECRET
+      - MIXPANEL_TOKEN
+      - OPTIMIZELY_API_KEY
+      - PENDO_INTEGRATION_KEY
+    content_hash: c0792556cb82
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/sample-size-guide.md
     - references/test-templates.md
@@ -6120,7 +6134,12 @@ groups:
       - GOOGLE_ADS_CUSTOMER_ID
       - GOOGLE_ADS_DEVELOPER_TOKEN
       - GOOGLE_ADS_TOKEN
-    content_hash: 13d48d95e69a
+      - LINKEDIN_ACCESS_TOKEN
+      - META_ACCESS_TOKEN
+      - META_AD_ACCOUNT_ID
+      - TIKTOK_ACCESS_TOKEN
+      - TIKTOK_ADVERTISER_ID
+    content_hash: 58d9b45fc861
     files:
     - SKILL.md
     - env.optional
@@ -6146,10 +6165,28 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 27ce3b4e02f5
+      optional:
+      - ADOBE_ACCESS_TOKEN
+      - ADOBE_CLIENT_ID
+      - ADOBE_COMPANY_ID
+      - COUPLER_API_KEY
+      - GA4_ACCESS_TOKEN
+      - GOOGLE_ADS_CUSTOMER_ID
+      - GOOGLE_ADS_DEVELOPER_TOKEN
+      - GOOGLE_ADS_TOKEN
+      - LINKEDIN_ACCESS_TOKEN
+      - META_ACCESS_TOKEN
+      - META_AD_ACCOUNT_ID
+      - SEGMENT_ACCESS_TOKEN
+      - SEGMENT_WRITE_KEY
+      - SIMILARWEB_API_KEY
+      - SUPERMETRICS_API_KEY
+      - TIKTOK_ACCESS_TOKEN
+      - TIKTOK_ADVERTISER_ID
+    content_hash: f57c8b11c619
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/ad-copy-templates.md
     - references/audience-targeting.md
@@ -6175,10 +6212,15 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 178ce4ee5ecd
+      optional:
+      - AIROPS_API_KEY
+      - AIROPS_WORKSPACE_ID
+      - EXA_API_KEY
+      - RANKPARSE_API_KEY
+    content_hash: f1344f348359
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/content-patterns.md
     - references/content-types.md
@@ -6202,10 +6244,46 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 0be17d8a9a20
+      optional:
+      - ADOBE_ACCESS_TOKEN
+      - ADOBE_CLIENT_ID
+      - ADOBE_COMPANY_ID
+      - AMPLITUDE_API_KEY
+      - AMPLITUDE_SECRET_KEY
+      - COUPLER_API_KEY
+      - CUSTOMERIO_API_KEY
+      - CUSTOMERIO_APP_KEY
+      - CUSTOMERIO_SITE_ID
+      - GA4_ACCESS_TOKEN
+      - GOOGLE_ADS_CUSTOMER_ID
+      - GOOGLE_ADS_DEVELOPER_TOKEN
+      - GOOGLE_ADS_TOKEN
+      - GSC_ACCESS_TOKEN
+      - HOTJAR_CLIENT_ID
+      - HOTJAR_CLIENT_SECRET
+      - LINKEDIN_ACCESS_TOKEN
+      - MAILCHIMP_API_KEY
+      - MENTIONME_API_KEY
+      - META_ACCESS_TOKEN
+      - META_AD_ACCOUNT_ID
+      - MIXPANEL_API_KEY
+      - MIXPANEL_SECRET
+      - MIXPANEL_TOKEN
+      - OPTIMIZELY_API_KEY
+      - PENDO_INTEGRATION_KEY
+      - PLAUSIBLE_API_KEY
+      - PLAUSIBLE_BASE_URL
+      - SEGMENT_ACCESS_TOKEN
+      - SEGMENT_WRITE_KEY
+      - SENDGRID_API_KEY
+      - SUPERMETRICS_API_KEY
+      - TIKTOK_ACCESS_TOKEN
+      - TIKTOK_ADVERTISER_ID
+      - ZAPIER_API_KEY
+    content_hash: d7d47e62c4c8
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/event-library.md
     - references/ga4-implementation.md
@@ -6258,10 +6336,12 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 670da8d3ce39
+      optional:
+      - PENDO_INTEGRATION_KEY
+    content_hash: 66a3aaedec32
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/cancel-flow-patterns.md
     - references/dunning-playbook.md
@@ -6283,10 +6363,14 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: deedf557f302
+      optional:
+      - CROSSBEAM_API_KEY
+      - PARTNERSTACK_PUBLIC_KEY
+      - PARTNERSTACK_SECRET_KEY
+    content_hash: 9293c5e4c7b6
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     author: Corey Haines
     source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/co-marketing
@@ -6308,10 +6392,20 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: ea9dddc434b4
+      optional:
+      - APOLLO_API_KEY
+      - CLAY_API_KEY
+      - CLOSE_API_KEY
+      - EXA_API_KEY
+      - FIREHOSE_API_KEY
+      - OUTREACH_ACCESS_TOKEN
+      - ZOOMINFO_ACCESS_TOKEN
+      - ZOOMINFO_PRIVATE_KEY
+      - ZOOMINFO_USERNAME
+    content_hash: aef4a8ca3a7b
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/benchmarks.md
     - references/follow-up-sequences.md
@@ -6363,10 +6457,13 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 3d3fe54e360e
+      optional:
+      - EXA_API_KEY
+      - RANKPARSE_API_KEY
+    content_hash: 1affc12df5e5
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/templates.md
     - references/tool-reference.md
@@ -6390,10 +6487,27 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 85c4cde0952a
+      optional:
+      - AHREFS_API_KEY
+      - APOLLO_API_KEY
+      - CLAY_API_KEY
+      - CLEARBIT_API_KEY
+      - CROSSBEAM_API_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - FIREHOSE_API_KEY
+      - G2_API_TOKEN
+      - KEYWORDS_EVERYWHERE_API_KEY
+      - RANKPARSE_API_KEY
+      - SEMRUSH_API_KEY
+      - SIMILARWEB_API_KEY
+      - ZOOMINFO_ACCESS_TOKEN
+      - ZOOMINFO_PRIVATE_KEY
+      - ZOOMINFO_USERNAME
+    content_hash: b7115bdfadd2
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/content-architecture.md
     - references/templates.md
@@ -6417,10 +6531,31 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 04e3c6bd33da
+      optional:
+      - AHREFS_API_KEY
+      - AIROPS_API_KEY
+      - AIROPS_WORKSPACE_ID
+      - BEEHIIV_API_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - DEMIO_API_KEY
+      - DEMIO_API_SECRET
+      - EXA_API_KEY
+      - FIREHOSE_API_KEY
+      - KEYWORDS_EVERYWHERE_API_KEY
+      - KIT_API_KEY
+      - KIT_API_SECRET
+      - LIVESTORM_API_TOKEN
+      - PLAUSIBLE_API_KEY
+      - PLAUSIBLE_BASE_URL
+      - RANKPARSE_API_KEY
+      - SEMRUSH_API_KEY
+      - SIMILARWEB_API_KEY
+      - SUPERMETRICS_API_KEY
+    content_hash: 0a59f7acc572
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/headless-cms.md
     author: Corey Haines
@@ -6470,10 +6605,13 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 40d82c8d7069
+      optional:
+      - AIROPS_API_KEY
+      - AIROPS_WORKSPACE_ID
+    content_hash: 2d6417a59c66
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/copy-frameworks.md
     - references/natural-transitions.md
@@ -6497,10 +6635,23 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: a60ba2544f55
+      optional:
+      - GA4_ACCESS_TOKEN
+      - GOOGLE_ADS_CUSTOMER_ID
+      - GOOGLE_ADS_DEVELOPER_TOKEN
+      - GOOGLE_ADS_TOKEN
+      - HOTJAR_CLIENT_ID
+      - HOTJAR_CLIENT_SECRET
+      - META_ACCESS_TOKEN
+      - META_AD_ACCOUNT_ID
+      - OPTIMIZELY_API_KEY
+      - PLAUSIBLE_API_KEY
+      - PLAUSIBLE_BASE_URL
+      - TYPEFORM_API_KEY
+    content_hash: 5e9be8edc42b
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/experiments.md
     - references/form.md
@@ -6525,10 +6676,14 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: a2913fac60ac
+      optional:
+      - EXA_API_KEY
+      - FIREHOSE_API_KEY
+      - TYPEFORM_API_KEY
+    content_hash: d26d004a1dcc
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/source-guides.md
     author: Corey Haines
@@ -6579,10 +6734,29 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 9369451d34b6
+      optional:
+      - ACTIVECAMPAIGN_API_KEY
+      - ACTIVECAMPAIGN_API_URL
+      - BEEHIIV_API_KEY
+      - BREVO_API_KEY
+      - CUSTOMERIO_API_KEY
+      - CUSTOMERIO_APP_KEY
+      - CUSTOMERIO_SITE_ID
+      - KIT_API_KEY
+      - KIT_API_SECRET
+      - KLAVIYO_API_KEY
+      - MAILCHIMP_API_KEY
+      - OUTREACH_ACCESS_TOKEN
+      - POSTMARK_API_KEY
+      - RESEND_API_KEY
+      - SEGMENT_ACCESS_TOKEN
+      - SEGMENT_WRITE_KEY
+      - SENDGRID_API_KEY
+      - ZAPIER_API_KEY
+    content_hash: d9a9e83ff4ce
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/copy-guidelines.md
     - references/email-types.md
@@ -6683,10 +6857,12 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: fc9277f833a7
+      optional:
+      - EXA_API_KEY
+    content_hash: 7e152fa3a8bd
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/benchmarks.md
     - references/format-guide.md
@@ -6709,10 +6885,13 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 18c3f60978a2
+      optional:
+      - EXA_API_KEY
+      - FIREHOSE_API_KEY
+    content_hash: e2867430aea7
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/ideas-by-category.md
     author: Corey Haines
@@ -6760,10 +6939,21 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: e0c4f49aa99c
+      optional:
+      - AMPLITUDE_API_KEY
+      - AMPLITUDE_SECRET_KEY
+      - CUSTOMERIO_API_KEY
+      - CUSTOMERIO_APP_KEY
+      - CUSTOMERIO_SITE_ID
+      - MIXPANEL_API_KEY
+      - MIXPANEL_SECRET
+      - MIXPANEL_TOKEN
+      - PENDO_INTEGRATION_KEY
+      - RESEND_API_KEY
+    content_hash: 20d4655b4819
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/experiments.md
     author: Corey Haines
@@ -6835,10 +7025,14 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: f1938639d8ed
+      optional:
+      - MENTIONME_API_KEY
+      - REWARDFUL_API_KEY
+      - TOLT_API_KEY
+    content_hash: 7fafe55ebaf8
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/research-methods.md
     - references/tier-structure.md
@@ -6885,10 +7079,20 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: cda32945eb69
+      optional:
+      - AIROPS_API_KEY
+      - AIROPS_WORKSPACE_ID
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - GSC_ACCESS_TOKEN
+      - KEYWORDS_EVERYWHERE_API_KEY
+      - PLAUSIBLE_API_KEY
+      - PLAUSIBLE_BASE_URL
+      - SEMRUSH_API_KEY
+    content_hash: 8e529391f0b6
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/playbooks.md
     author: Corey Haines
@@ -6910,10 +7114,20 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 83d448c7b457
+      optional:
+      - BEEHIIV_API_KEY
+      - CROSSBEAM_API_KEY
+      - MAILCHIMP_API_KEY
+      - MENTIONME_API_KEY
+      - PARTNERSTACK_PUBLIC_KEY
+      - PARTNERSTACK_SECRET_KEY
+      - REWARDFUL_API_KEY
+      - TOLT_API_KEY
+      - ZAPIER_API_KEY
+    content_hash: 50dbd53d620e
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/affiliate-programs.md
     - references/program-examples.md
@@ -6937,10 +7151,26 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 4f280978ea87
+      optional:
+      - ACTIVECAMPAIGN_API_KEY
+      - ACTIVECAMPAIGN_API_URL
+      - APOLLO_API_KEY
+      - CALENDLY_API_KEY
+      - CLAY_API_KEY
+      - CLEARBIT_API_KEY
+      - CLOSE_API_KEY
+      - COUPLER_API_KEY
+      - CROSSBEAM_API_KEY
+      - OUTREACH_ACCESS_TOKEN
+      - SAVVYCAL_API_KEY
+      - ZAPIER_API_KEY
+      - ZOOMINFO_ACCESS_TOKEN
+      - ZOOMINFO_PRIVATE_KEY
+      - ZOOMINFO_USERNAME
+    content_hash: aac9c010c53d
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/automation-playbooks.md
     - references/lifecycle-definitions.md
@@ -6966,10 +7196,18 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: c80f7f1ca55f
+      optional:
+      - CLAY_API_KEY
+      - CLOSE_API_KEY
+      - CROSSBEAM_API_KEY
+      - OUTREACH_ACCESS_TOKEN
+      - ZOOMINFO_ACCESS_TOKEN
+      - ZOOMINFO_PRIVATE_KEY
+      - ZOOMINFO_USERNAME
+    content_hash: 6e5dabb1c52f
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/deck-frameworks.md
     - references/demo-scripts.md
@@ -6994,10 +7232,12 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 178e72caadb7
+      optional:
+      - RANKPARSE_API_KEY
+    content_hash: 1399a6773f54
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/schema-examples.md
     author: Corey Haines
@@ -7020,10 +7260,22 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 38b0a8a95b2e
+      optional:
+      - AHREFS_API_KEY
+      - DATAFORSEO_LOGIN
+      - DATAFORSEO_PASSWORD
+      - EXA_API_KEY
+      - GA4_ACCESS_TOKEN
+      - GSC_ACCESS_TOKEN
+      - KEYWORDS_EVERYWHERE_API_KEY
+      - RANKPARSE_API_KEY
+      - SEMRUSH_API_KEY
+      - SIMILARWEB_API_KEY
+      - SUPERMETRICS_API_KEY
+    content_hash: e87e468b62bd
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/ai-writing-detection.md
     - references/international-seo.md
@@ -7047,10 +7299,12 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: e44599b5fae2
+      optional:
+      - TYPEFORM_API_KEY
+    content_hash: 8d9e481108c4
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     author: Corey Haines
     source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/signup
@@ -7072,10 +7326,12 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 1407e9fcdde2
+      optional:
+      - RANKPARSE_API_KEY
+    content_hash: 59ce08cac212
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/mermaid-templates.md
     - references/navigation-patterns.md
@@ -7100,10 +7356,16 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: eb4047c7c8cb
+      optional:
+      - BREVO_API_KEY
+      - CUSTOMERIO_API_KEY
+      - CUSTOMERIO_APP_KEY
+      - CUSTOMERIO_SITE_ID
+      - KLAVIYO_API_KEY
+    content_hash: 0c97fd25e833
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/compliance.md
     - references/platforms.md
@@ -7129,10 +7391,12 @@ groups:
     mode: host
     env:
       required: []
-      optional: []
-    content_hash: 2b21c525bf35
+      optional:
+      - SUPERMETRICS_API_KEY
+    content_hash: 734254fef260
     files:
     - SKILL.md
+    - env.optional
     - evals/evals.json
     - references/platform-limits.md
     - references/platforms.md
@@ -10127,11 +10391,11 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
-      optional:
+      required:
       - GEMINI_API_KEY
+      optional:
       - GOOGLE_API_KEY
-    content_hash: 32920c7c416d
+    content_hash: eca2da45c09c
     files:
     - SKILL.md
     - data/cip/deliverables.csv
@@ -10143,6 +10407,7 @@ groups:
     - data/logo/industries.csv
     - data/logo/styles.csv
     - env.optional
+    - env.required
     - references/banner-sizes-and-styles.md
     - references/cip-deliverable-guide.md
     - references/cip-design.md
