@@ -8,15 +8,38 @@
 > fails at runtime when its script tries to read an unset env var.
 >
 > **You must read every script the skill ships** (`scripts/*.py`, `scripts/*.js`,
-> `tools/clis/*.js`, any bundled binaries' source) and extract every env-var
-> access pattern:
+> `tools/clis/*.js`, any bundled binaries' source) and, for every env var, **trace
+> what happens to its value downstream — the access idiom alone never decides
+> required vs optional.**
 >
-> - `os.environ["X"]` (no default), `os.getenv("X")` followed by an `if not X: raise`,
->   `process.env.X` followed by `?? throw` or `if (!X) ...` → **`env.required`**
-> - `os.environ.get("X", default)`, `os.getenv("X", default)`, `process.env.X || fallback`,
->   `process.env.X ?? default` → **`env.optional`**
-> - Any var listed in upstream `.env.example` / `.env.sample` → **`env.required`**
->   (upstream-curated; trust the author)
+> ### ⛔ The #1 misclassification: trusting the access idiom over the gate
+>
+> `const X = process.env.X || ""` / `os.getenv("X", "")` / `process.env.X ?? default`
+> look optional, but a default is often just **normalization** (undefined→""), and the
+> real decision is the **first hard gate on that value's path**:
+>
+> ```js
+> const SERPAPI_KEY = process.env.SERPAPI_KEY || "";   // ← looks optional…
+> if (!SERPAPI_KEY) { console.error("…required"); process.exit(1); }  // ← …but THIS is the gate → REQUIRED
+> ```
+>
+> The `|| ""` is a decoy. Read forward until you find one of:
+> a **hard gate** (`if (!X) throw/exit/return-error`, `assert X`, `raise`) → **required**;
+> a **real fallback** (an alternate code path that produces a useful result without X,
+> e.g. a free mode) → **optional**; or **neither** (X flows straight into the only
+> request the script makes) → **required** (it just fails later, less visibly).
+>
+> ### Classify each var by its gate
+>
+> - Hard gate present, OR no default and the value is used unconditionally
+>   (`os.environ["X"]`, `process.env.X` passed straight to the only API call),
+>   OR the var is in upstream `.env.example` / `.env.sample` → **`env.required`**
+> - A default *and* a genuine alternate path that still produces a useful result
+>   without it → **`env.optional`**
+> - **Same var, two scripts, different verdicts?** Take the stronger one: if *any*
+>   shipped, user-facing script hard-gates on it, the skill-level classification is
+>   **required** (one of the skill's tools is dead without it). Note the fallback in
+>   the role's hire copy, but the var goes in `env.required`, not `env.optional`.
 >
 > Emit one `env.required` and one `env.optional` per inner skill at
 > `<group>/skills/<skill>/env.required` and `<group>/skills/<skill>/env.optional`
@@ -258,15 +281,40 @@ read every script the skill bundles and classify every env-var access:
    grep -rE '\$\{?[A-Z_][A-Z0-9_]*\}?' --include='*.sh' <group>/skills/<skill>/
    ```
 
-3. **Classify each var.** Walk the matches and decide:
-   - **Required** if:
+3. **Classify each var by tracing it to its first gate — NOT by the access line.**
+   The grep finds where the var is *read*; the classification lives a few lines
+   *later*, where the value is checked. For each match, read forward in the same
+   function until you hit one of:
+   - **A hard gate** → **required**:
      - `os.environ["X"]` (raises KeyError if unset)
-     - `os.getenv("X")` *followed by* `if not x: raise ...` / `assert x` / `sys.exit(...)`
-     - `process.env.X` *followed by* `?? throw`, `|| throw`, `if (!process.env.X) throw`
-     - The var appears in upstream `.env.example` / `.env.sample` without an explicit
-       "(optional)" annotation
-   - **Optional** otherwise (has default, has fallback, only used in conditional path,
-     etc.).
+     - `os.getenv("X")` / `process.env.X || ""` / `?? ""` *followed by*
+       `if not x: raise / sys.exit / return error`, `assert x`,
+       `if (!x) { …; process.exit(1) }`, `if (!x) throw`
+     - The var appears in upstream `.env.example` / `.env.sample` without an
+       explicit "(optional)" annotation
+   - **A real fallback** → **optional**: an alternate branch that still produces a
+     useful result without the var (a "free mode", a cached path, a sensible default
+     that the rest of the script honors).
+   - **Neither** (value flows straight into the only network call / the sole code
+     path) → **required**: it doesn't crash at the top, it fails at the API. Still
+     required.
+
+   > **Worked example — gtm-engineer-skills/research-keywords (the trap that bit us).**
+   > Both bundled scripts start identically:
+   > ```js
+   > const SERPAPI_KEY = process.env.SERPAPI_KEY || "";   // identical line in both
+   > ```
+   > A grep + the access-idiom rule says "optional, has a default" for both. **Wrong.**
+   > Trace forward:
+   > - `scripts/serp-analyzer.mjs`: `if (!SERPAPI_KEY) { console.error("…required"); process.exit(1); }`
+   >   — hard gate, docstring literally says *"Requires SERPAPI_KEY"* → **required**.
+   > - `scripts/keyword-explorer.mjs`: `if (!opts.free && !SERPAPI_KEY) { …; opts.free = true; }`
+   >   — falls back to Google's free autocomplete endpoint → **optional** *for this script*.
+   >
+   > Same var, two verdicts. Stronger wins → the skill ships `env.required` with
+   > `SERPAPI_KEY`. The original port misread the `|| ""` and filed it as
+   > `env.optional`; the hire wizard then never surfaced it as required and the
+   > SERP-analysis half of the skill would silently `exit(1)` at runtime.
 
 4. **Cross-check upstream `.env.example`.** If the repo ships one, it is the
    **author's curated required list**. Default to treating every var in it as
@@ -538,6 +586,76 @@ The **right primitive for team-shared durable docs is the channel attachment.** 
 
 Vendored skills keep their upstream file path references (verbatim rule — no SKILL.md edits). The runtime resolves them under `/workspace` if a per-hire copy exists; otherwise the skill asks the user inline. The clean upgrade is a Robomotion-side overlay that teaches a vendored skill to check the channel first — that mechanism is documented in `docs/agent-files.md`.
 
+### 5.6 Cross-skill references — a role's `optSkills` must be the dependency closure
+
+Skills are not islands. A `SKILL.md` routinely points the agent at **another
+skill** — either by name or by an explicit path:
+
+```
+"For detailed security guidance, see `security-and-hardening`."          # api-and-interface-design → deprecation-and-migration, code-review-and-quality → security/perf
+"Execute tasks following `skills/incremental-implementation/SKILL.md`."  # spec-driven-development → incremental-implementation, test-driven-development, context-engineering
+"see `git-workflow-and-versioning` for atomic commit guidance"           # incremental-implementation → git-workflow-and-versioning
+```
+
+For that pointer to resolve at runtime, the referenced skill's files must be
+**cloned onto disk** — i.e. present in the role's `optSkills`. If they aren't,
+the reference dangles: the skill tells the agent to consult a file that was
+never staged, and the role "can't find the reference file."
+
+This is why a role carries **two** skill lists on its Hermes Agent node, and
+they are **not** the same set:
+
+| Field | Meaning | What it should contain |
+|---|---|---|
+| `optSkills` | Skills **cloned onto disk** (available to read on demand), each `{name, repoUrl, path, version}` | The **transitive closure** of the active skills over their cross-references |
+| `optActiveSkills` | Skills **surfaced into context** (the role's identity / in-context load) | The **curated active list** — unchanged |
+
+**The rule:** `optActiveSkills` is what the role *does*; `optSkills` is everything
+those active skills might *reach*. Expanding only `optSkills` makes every
+reference resolvable without growing the role's identity or its in-context token
+load. A Product Manager stays active on `interview-me` / `spec-driven-development`
+/ `documentation-and-adrs`, but because `spec-driven-development` points into the
+implementation skills, those land in `optSkills` (on disk) so the pointer works.
+
+**How to build the closure:**
+
+1. **Extract the edges.** For each skill in the group, grep its `SKILL.md` for
+   references to other skills:
+   ```sh
+   # backtick-quoted skill names and explicit SKILL.md paths
+   grep -rnoE '`[a-z][a-z0-9-]+`|skills/[a-z0-9-]+/SKILL\.md' <group>/skills/<skill>/SKILL.md
+   ```
+2. **Keep only directive references.** "see / follow / consult / drop into X"
+   creates a real file-resolution need. Relational mentions in
+   *"Interaction with Other Skills"* / *"Quick Reference"* sections merely
+   describe how skills relate — they do **not** require the file present, and
+   counting them balloons the closure toward "load everything."
+3. **Exclude the meta-skill as a source.** A routing/index skill (e.g.
+   `using-agent-skills`) names *every* skill in its decision tree. Treating it
+   as a dependency source pulls the whole library into every role and defeats
+   per-role tailoring. It's the map, not an edge.
+4. **Take the transitive closure** of each role's active list over the directive
+   edges. The edges chain — `spec-driven-development → incremental-implementation
+   → git-workflow-and-versioning → code-review-and-quality → security-and-hardening
+   + performance-optimization` — so a one-hop pass leaves second-order references
+   dangling. Close it fully.
+
+**Reference implementation:** `robomotion-agent-hub/tools/scaffold-engineering-roles.py`
+encodes this as a `SKILL_DEPENDENCIES` map (directive edges only) plus a
+`resolve_loaded_skills()` closure helper. `render_main_ts` feeds the closure to
+`optSkills` and the curated list to `optActiveSkills`. The active list (and thus
+`agent.yaml`, `AGENT.md`, the hire wizard) is untouched — only the on-disk set grows.
+
+> **Separate but related — intra-skill reference files.** Some skills also
+> reference *sibling* files inside their own directory (`references/*.md`,
+> `agents/`) — e.g. `code-review-and-quality` cites `references/security-checklist.md`,
+> `frontend-ui-engineering` cites `references/accessibility-checklist.md`. Those
+> are resolved by **vendoring completeness**, not by `optSkills`: if the upstream
+> ships them, the verbatim copy must include them; if a `SKILL.md` cites a
+> `references/` file that exists nowhere in the vendor, that's a dangling
+> reference to flag at vendor time (§3.1's "self-contained" check). It cannot be
+> fixed by adding skills to a role.
+
 ---
 
 ## 6. Pitfalls
@@ -545,11 +663,13 @@ Vendored skills keep their upstream file path references (verbatim rule — no S
 - **Editing a vendored skill's body.** Collides with the next manual bump (re-copy + diff). The only place we ever add inside the mirror is `<group>/.robomotion/`.
 - **Leaving install prose in `SKILL.md`.** "First, `pip install …`" belongs in `post-install.sh`, not the prompt. The launcher handles installs.
 - **Putting an optional var in `env.required`.** It will block every run that doesn't bind it. Use `env.optional` when there's a fallback or alternative.
+- **Classifying an env var by its access idiom instead of its gate.** `process.env.X || ""` / `os.getenv("X", "")` reads as optional but is frequently just normalization — the deciding `if (!X) exit/throw` sits a few lines down. Trace every var forward to its first gate (§3.5b step 3). This exact miss filed `SERPAPI_KEY` as optional when `serp-analyzer.mjs` hard-exits without it.
 - **Adding `scripts/` to a skill that needs the host filesystem.** `scripts/` forces container mode; a filesystem skill (Obsidian-style) then loses host access. Stay pure-knowledge (no `scripts/`, no `post-install.sh`) if you need host fs.
 - **Forgetting to bump `version` in `.robomotion/skill.yaml`** after editing a `post-install.sh`. The container image hash includes the version + post-install content; without a bump the cache may serve a stale build.
 - **Inventing filesystem paths for cross-skill state.** Producer-writes-a-file / consumer-reads-it is a brittle side-channel. Pick the right durable layer (§5.5): Memory for per-agent state, channel attachments for team-shared docs.
 - **Treating `/workspace` as shared team state.** A hired agent's workspace is per-hire — Copywriter and Lifecycle Manager don't share files there. For state multiple roles or humans need, upload to the team's Agent Teams channel and have other agents `files_download` it. See §5.5.
 - **Reaching for MCP first.** Robomotion is CLI-favored. Use a CLI via the `terminal` tool; reach for MCP only when there's no usable CLI.
+- **Setting a role's `optSkills` equal to its `optActiveSkills`.** When a skill in the active list references another skill ("see `X`", "following `skills/X/SKILL.md`"), the referenced skill must be in `optSkills` (on disk) or the pointer dangles. `optSkills` must be the **transitive closure** of the active skills over their directive cross-references; `optActiveSkills` stays the curated list. See §5.6.
 
 ---
 
@@ -580,4 +700,4 @@ Vendored skills keep their upstream file path references (verbatim rule — no S
 - `components/skills/SkillCard.tsx` — renders `by {author}` + external-link icon to `source_url`.
 - `components/editors/EnvironmentTab.tsx` — surfaces each active skill's `env.required` / `env.optional` (and, once the launcher overlay merge ships, the group's `env.yaml` too).
 
-**Where skills get *used* (other repo — `robomotion-agent-hub`):** hireable agent templates live in `robomotion-agent-hub/<slug>/` — each carries `agent.yaml`, `credentials.yaml`, `assets/<node-guid>/AGENT.md`, `main.ts`, `main.designer.ts`. The flow's Hermes Agent node `optSkills` references skills from this repo by `repoUrl + path + version` (or omits `version` to track `main`). Bumping a role to a newer Hermes Agent package version is a one-line edit in the role's `main.ts`. End-to-end pipeline reference: `<monorepo>/docs/how-skills-work.md`.
+**Where skills get *used* (other repo — `robomotion-agent-hub`):** hireable agent templates live in `robomotion-agent-hub/<slug>/` — each carries `agent.yaml`, `credentials.yaml`, `assets/<node-guid>/AGENT.md`, `main.ts`, `main.designer.ts`. The flow's Hermes Agent node `optSkills` references skills from this repo by `repoUrl + path + version` (or omits `version` to track `main`), while `optActiveSkills` is the curated subset surfaced into context — `optSkills` must be the dependency closure of `optActiveSkills` so cross-skill references resolve (§5.6). Bumping a role to a newer Hermes Agent package version is a one-line edit in the role's `main.ts`. End-to-end pipeline reference: `<monorepo>/docs/how-skills-work.md`.
