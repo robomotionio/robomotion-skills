@@ -9358,52 +9358,6 @@ groups:
     license: MIT
     group: robomotion-gtm-skills
     category: Marketing
-  - id: robomotion-gtm-skills/create-html-carousel
-    name: create-html-carousel
-    path: robomotion-gtm-skills/skills/create-html-carousel
-    title: create-html-carousel
-    summary: DEPRECATED — superseded by graphics-studio (--format carousel). Generates a LinkedIn/Instagram carousel as square
-      1080×1080 PNG slides. Retained thin for backward compatibility; route new carousel work to graphics-studio, which owns
-      the style catalog and shared render pipeline.
-    version: 1.0.0
-    tags: []
-    mode: host
-    env:
-      required: []
-      optional: []
-    content_hash: 4a396afc2200
-    files:
-    - SKILL.md
-    - env.optional
-    - env.required
-    author: Robomotion
-    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-html-carousel
-    license: MIT
-    group: robomotion-gtm-skills
-    category: Marketing
-  - id: robomotion-gtm-skills/create-html-slides
-    name: create-html-slides
-    path: robomotion-gtm-skills/skills/create-html-slides
-    title: create-html-slides
-    summary: DEPRECATED — superseded by graphics-studio (--format slides). Creates 16:9 (1920×1080) HTML presentations from
-      scratch or by converting a PowerPoint. Retained thin for backward compatibility; route new deck work to graphics-studio,
-      which owns the style catalog and shared render pipeline.
-    version: 1.0.0
-    tags: []
-    mode: host
-    env:
-      required: []
-      optional: []
-    content_hash: b998bdde645f
-    files:
-    - SKILL.md
-    - env.optional
-    - env.required
-    author: Robomotion
-    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-html-slides
-    license: MIT
-    group: robomotion-gtm-skills
-    category: Marketing
   - id: robomotion-gtm-skills/create-linkedin-content
     name: create-linkedin-content
     path: robomotion-gtm-skills/skills/create-linkedin-content
@@ -9855,8 +9809,8 @@ groups:
       style from a reference image, or synthesize a brand style from hex colors + fonts; source imagery (Unsplash or keyless)
       and ASCII art; the agent authors the HTML content while a deterministic driver binds design tokens to templates, runs
       a WCAG contrast check, and a Playwright renderer screenshots single files or whole slide directories at deviceScaleFactor
-      2. Supersedes create-html-carousel and create-html-slides. Use for any "make me a graphic / carousel / slides / poster
-      / infographic / story" request and as the visual arm of social-kit.
+      2. Use for any "make me a graphic / carousel / slides / poster / infographic / story" request and as the visual arm
+      of social-kit.
     version: 1.0.0
     tags: []
     mode: container
@@ -9869,7 +9823,7 @@ groups:
       - FAL_KEY
       - ANTHROPIC_API_KEY
       - OPENAI_API_KEY
-    content_hash: 053776935bdb
+    content_hash: 2b0d83c5c624
     files:
     - SKILL.md
     - env.optional
