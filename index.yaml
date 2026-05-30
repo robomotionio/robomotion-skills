@@ -10352,7 +10352,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 4c150737fb2c
+    content_hash: 38c327451849
     files:
     - SKILL.md
     - examples/MAL_Mac_ProtonRAT_Jan25.yar
