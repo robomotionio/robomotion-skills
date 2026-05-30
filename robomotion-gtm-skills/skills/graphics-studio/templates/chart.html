@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- graphics-studio template: chart (1080x1080, square data graphic) -->
+__FONT_LINKS__
+<style>
+__BASE_CSS__
+__STYLE_VARS__
+/* chart layout — title, plot area, takeaway, source */
+.slide { padding: calc(var(--space) * 10); }
+.slide .chart-head h2 { margin-bottom: calc(var(--space) * 1); }
+.slide .plot { flex: 1; display: flex; align-items: flex-end; gap: calc(var(--space) * 3); margin: calc(var(--space) * 6) 0; }
+.slide .bar { background: var(--accent); border-radius: var(--radius) var(--radius) 0 0; flex: 1; position: relative; min-height: 8px; }
+.slide .bar span { position: absolute; top: -28px; left: 0; right: 0; text-align: center; font-weight: 700; font-size: calc(var(--t-0) * 0.8); color: var(--text); }
+.slide .bar small { position: absolute; bottom: -28px; left: 0; right: 0; text-align: center; color: var(--muted); font-size: calc(var(--t-0) * 0.7); }
+.slide .takeaway { font-weight: 700; color: var(--accent); }
+.slide .source { color: var(--muted); font-size: calc(var(--t-0) * 0.7); margin-top: calc(var(--space) * 3); }
+</style>
+</head>
+<body>
+<!-- CHART. Canvas 1080x1080. One chart, titled, labeled, source line, one annotated
+     takeaway. Build bars/lines with divs or inline <svg>. Adapt:
+       <div class="slide">
+         <div class="chart-head"><div class="kicker">METRIC</div><h2>Chart title</h2></div>
+         <div class="plot">
+           <div class="bar" style="height:40%"><span>40</span><small>Q1</small></div>
+           <div class="bar" style="height:75%"><span>75</span><small>Q2</small></div>
+         </div>
+         <p class="takeaway">Key takeaway annotated here.</p>
+         <p class="source">Source: ...</p>
+       </div>
+-->
+__CONTENT__
+</body>
+</html>

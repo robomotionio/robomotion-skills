@@ -1,0 +1,109 @@
+/* _base.css — shared design-token-driven CSS for every graphics-studio format.
+   graphics.py injects the style tokens as :root custom properties (see __STYLE_VARS__),
+   so any style applies to any format. The per-format template adds layout on top. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* token fallbacks; graphics.py overrides via the injected :root block */
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --primary: #111827;
+  --accent: #2563eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --gradient: none;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --scale: 1.25;
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(16,24,40,0.08);
+  --space: 8px;
+  /* derived type scale (modular) */
+  --t-0: 22px;
+  --t-1: calc(var(--t-0) * var(--scale));
+  --t-2: calc(var(--t-1) * var(--scale));
+  --t-3: calc(var(--t-2) * var(--scale));
+  --t-4: calc(var(--t-3) * var(--scale));
+  --t-5: calc(var(--t-4) * var(--scale));
+}
+
+html, body {
+  width: var(--canvas-w);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.slide {
+  position: relative;
+  width: var(--canvas-w);
+  min-height: var(--canvas-h);
+  background: var(--bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+/* Opt-in full-bleed gradient (for gradient-mesh / glassmorphism-style looks).
+   Default slides stay on the solid --bg so text contrast is predictable. */
+.slide.bleed { background: var(--gradient); background-color: var(--bg); }
+/* Gradient-clipped headline accent — usable on any style with a --gradient. */
+.grad-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pad { padding: calc(var(--space) * 12); }
+
+h1, h2, h3, .heading { font-family: var(--font-heading); line-height: 1.04; letter-spacing: -0.02em; }
+h1 { font-size: var(--t-5); font-weight: 800; }
+h2 { font-size: var(--t-3); font-weight: 700; }
+h3 { font-size: var(--t-1); font-weight: 700; }
+p, li { font-size: var(--t-0); line-height: 1.45; }
+
+.kicker {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: calc(var(--t-0) * 0.72);
+  font-weight: 700;
+  color: var(--accent);
+}
+.muted { color: var(--muted); }
+.accent { color: var(--accent); }
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: calc(var(--space) * 5);
+}
+
+.pill {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 999px;
+  padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+  font-weight: 700;
+  font-size: calc(var(--t-0) * 0.85);
+}
+
+.stat-num { font-family: var(--font-heading); font-weight: 800; font-size: var(--t-5); color: var(--accent); line-height: 1; }
+
+.page-no {
+  position: absolute;
+  bottom: calc(var(--space) * 6);
+  right: calc(var(--space) * 8);
+  font-size: calc(var(--t-0) * 0.7);
+  color: var(--muted);
+  font-family: var(--font-body);
+}
+
+.rule { height: 2px; background: var(--accent); width: 64px; border: 0; }
+
+img { display: block; max-width: 100%; }

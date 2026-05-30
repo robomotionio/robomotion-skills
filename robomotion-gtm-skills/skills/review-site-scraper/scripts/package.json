@@ -1,0 +1,9 @@
+{
+  "name": "review-site-scraper-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Keyless Playwright degrade path for review-site-scraper (G2/Capterra/Trustpilot).",
+  "dependencies": {
+    "playwright": "^1.45.0"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "_comment": "Example ICP for competitor-post-engagers score_icp.py — engineering decision-makers who buy developer tooling / platform / DevOps products. Copy to ${WORKSPACE}/icp.json and tune. Components omitted are skipped; included components share the FIT weight equally.",
+  "titles": [
+    "cto",
+    "vp of engineering",
+    "vp engineering",
+    "head of engineering",
+    "head of platform",
+    "head of infrastructure",
+    "head of devops",
+    "head of developer experience",
+    "engineering manager",
+    "director of engineering",
+    "principal engineer",
+    "staff engineer"
+  ],
+  "seniorities": [
+    "owner",
+    "founder",
+    "c_suite",
+    "vp",
+    "head",
+    "director",
+    "manager"
+  ],
+  "employee_ranges": [
+    [51, 200],
+    [201, 1000],
+    [1001, 5000]
+  ],
+  "industries": [
+    "software",
+    "saas",
+    "computer software",
+    "information technology",
+    "internet",
+    "fintech"
+  ],
+  "keywords": [
+    "kubernetes",
+    "devops",
+    "platform engineering",
+    "ci/cd",
+    "observability",
+    "developer experience",
+    "infrastructure",
+    "microservices",
+    "cloud native",
+    "api"
+  ],
+  "exclude_keywords": [
+    "intern",
+    "student",
+    "seeking",
+    "open to work",
+    "bootcamp",
+    "freelance",
+    "recruiter",
+    "looking for"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "paid-channel-prioritizer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright scraper for the Meta Ad Library (competitor presence count).",
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

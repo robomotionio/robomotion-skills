@@ -1,0 +1,46 @@
+{
+  "_comment": "ICP config for score_icp.py. Components you OMIT are skipped (not penalized); components you include share the FIT weight equally. employee_ranges are [min,max] (use null for open-ended). exclude_keywords hard-zero a lead's fit (e.g. students/interns).",
+  "titles": [
+    "founder",
+    "co-founder",
+    "head of sales",
+    "vp of sales",
+    "revops",
+    "revenue operations",
+    "head of growth",
+    "demand generation"
+  ],
+  "seniorities": [
+    "owner",
+    "founder",
+    "c_suite",
+    "vp",
+    "head",
+    "director"
+  ],
+  "employee_ranges": [
+    [51, 200],
+    [201, 1000]
+  ],
+  "industries": [
+    "software",
+    "saas",
+    "information technology",
+    "computer software"
+  ],
+  "keywords": [
+    "b2b",
+    "outbound",
+    "pipeline",
+    "go-to-market",
+    "gtm"
+  ],
+  "exclude_keywords": [
+    "intern",
+    "student",
+    "seeking",
+    "open to work",
+    "freelance",
+    "consultant"
+  ]
+}

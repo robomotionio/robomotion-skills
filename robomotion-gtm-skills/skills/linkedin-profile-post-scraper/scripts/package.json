@@ -1,0 +1,10 @@
+{
+  "name": "linkedin-profile-post-scraper-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Keyless Playwright LinkedIn profile-posts scraper (li_at cookie path) — the degrade for the Apify profile-posts actor.",
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "google-ad-scraper",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright scraper for the Google Ads Transparency Center.",
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

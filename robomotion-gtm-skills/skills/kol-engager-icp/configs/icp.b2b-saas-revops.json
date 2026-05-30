@@ -1,0 +1,32 @@
+{
+  "_comment": "Example ICP for kol-engager-icp score_icp.py — RevOps/GTM buyers at B2B SaaS. KOL audiences are BROAD so keep this STRICT. Lists match case-insensitively as substrings against enriched lead fields. exclude_titles and competitors are HARD gates (force tier C). Empty lists -> neutral.",
+  "target_titles": [
+    "head of sales", "vp of sales", "vp sales", "chief revenue officer", "cro",
+    "head of revenue operations", "revenue operations", "revops",
+    "sales operations", "head of growth", "demand generation",
+    "head of go-to-market"
+  ],
+  "exclude_titles": [
+    "intern", "student", "freelance", "consultant", "recruiter", "coach",
+    "professor", "looking for work", "open to work", "advisor"
+  ],
+  "target_seniorities": [
+    "owner", "founder", "c_suite", "vp", "head", "director"
+  ],
+  "industries": [
+    "software", "saas", "computer software", "information technology", "internet"
+  ],
+  "company_sizes": [
+    "51-200", "201-500", "501-1000", "1001-5000"
+  ],
+  "geos": [
+    "united states", "canada", "united kingdom"
+  ],
+  "competitors": [
+    "outreach", "salesloft", "gong", "clari", "apollo", "6sense"
+  ],
+  "topic_keywords": [
+    "pipeline", "outbound", "go-to-market", "gtm", "revenue operations",
+    "forecasting", "sales engagement", "quota", "sales productivity"
+  ]
+}

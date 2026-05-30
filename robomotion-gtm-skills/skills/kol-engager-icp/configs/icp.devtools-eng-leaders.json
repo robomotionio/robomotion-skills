@@ -1,0 +1,33 @@
+{
+  "_comment": "Example ICP for kol-engager-icp score_icp.py — engineering leaders who buy developer tooling / platform / DevOps. Keep STRICT (KOL audiences are broad). exclude_titles and competitors are HARD gates. Empty lists -> neutral.",
+  "target_titles": [
+    "cto", "vp of engineering", "vp engineering", "head of engineering",
+    "head of platform", "head of infrastructure", "head of devops",
+    "head of developer experience", "director of engineering",
+    "engineering manager", "principal engineer", "staff engineer"
+  ],
+  "exclude_titles": [
+    "intern", "student", "freelance", "recruiter", "bootcamp",
+    "looking for", "open to work", "professor", "teaching assistant"
+  ],
+  "target_seniorities": [
+    "owner", "founder", "c_suite", "vp", "head", "director", "manager"
+  ],
+  "industries": [
+    "software", "saas", "computer software", "information technology",
+    "internet", "fintech"
+  ],
+  "company_sizes": [
+    "51-200", "201-500", "501-1000", "1001-5000"
+  ],
+  "geos": [
+    "united states", "canada", "united kingdom", "germany"
+  ],
+  "competitors": [
+    "gitlab", "github", "circleci", "harness", "datadog", "hashicorp"
+  ],
+  "topic_keywords": [
+    "kubernetes", "devops", "platform engineering", "ci/cd", "observability",
+    "developer experience", "infrastructure", "cloud native", "microservices"
+  ]
+}

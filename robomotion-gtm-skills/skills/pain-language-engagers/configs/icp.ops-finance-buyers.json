@@ -1,0 +1,28 @@
+{
+  "_comment": "Matching ICP for the pain.* sets — Ops/RevOps/Finance/Data buyers who live with the drudgery the pain sets target. Consumed by score_icp.py. Title match is the strongest fit signal; exclude_titles and competitors are HARD disqualifiers (zero the fit). company_size_* are headcount bounds. Empty/absent keys are neutral.",
+  "target_titles": [
+    "operations manager", "head of operations", "vp operations", "coo",
+    "revops", "revenue operations", "sales operations",
+    "head of finance", "finance manager", "controller", "fp&a",
+    "head of data", "data operations", "business operations"
+  ],
+  "target_seniorities": [
+    "manager", "director", "vp", "head", "owner", "founder", "c_suite"
+  ],
+  "target_industries": [
+    "saas", "software", "financial services", "professional services",
+    "logistics", "ecommerce", "information technology"
+  ],
+  "company_size_min": 50,
+  "company_size_max": 2000,
+  "exclude_titles": [
+    "consultant", "coach", "founder of", "ceo of", "investor", "advisor",
+    "freelance", "student", "intern", "recruiter", "talent acquisition"
+  ],
+  "competitors": [
+    "uipath", "automation anywhere", "blue prism", "workato", "zapier"
+  ],
+  "geos": [
+    "united states", "canada", "united kingdom"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "graphics-studio-render",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HTML->PNG/PDF screenshot renderer for the graphics-studio skill (Playwright). Single-file or directory (multi-slide) mode, awaits fonts + image decode, deviceScaleFactor 2.",
+  "bin": { "render": "./render.mjs" },
+  "scripts": {
+    "postinstall-hint": "echo 'run: npx playwright install chromium'"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

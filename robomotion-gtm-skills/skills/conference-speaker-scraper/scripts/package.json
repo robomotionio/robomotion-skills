@@ -1,0 +1,10 @@
+{
+  "name": "conference-speaker-scraper-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright degrade for JS-heavy conference speaker pages.",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

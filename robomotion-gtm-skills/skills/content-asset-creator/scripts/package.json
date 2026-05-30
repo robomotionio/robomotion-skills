@@ -1,0 +1,11 @@
+{
+  "name": "content-asset-creator-render",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HTML->PNG/PDF renderer for the content-asset-creator skill (Playwright).",
+  "bin": { "render-asset": "./render_asset.mjs" },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

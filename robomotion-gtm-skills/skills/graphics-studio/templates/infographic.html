@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- graphics-studio template: infographic (1080 wide, full-page tall capture) -->
+__FONT_LINKS__
+<style>
+__BASE_CSS__
+__STYLE_VARS__
+/* infographic layout — sectioned vertical flow, height grows to content */
+.slide { min-height: var(--canvas-h); }
+.ig-header { padding: calc(var(--space) * 12) calc(var(--space) * 10) calc(var(--space) * 6); }
+.ig-section {
+  padding: calc(var(--space) * 7) calc(var(--space) * 10);
+  border-top: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  display: flex; gap: calc(var(--space) * 5); align-items: flex-start;
+}
+.ig-section .marker { color: var(--accent); font-family: var(--font-heading); font-weight: 800; font-size: var(--t-3); min-width: 72px; }
+.ig-footer { padding: calc(var(--space) * 6) calc(var(--space) * 10); color: var(--muted); font-size: calc(var(--t-0) * 0.8); }
+</style>
+</head>
+<body>
+<!-- INFOGRAPHIC. 1080 wide, FULL-PAGE capture (height grows). Sectioned vertical flow,
+     one stat/step per band, numbered. Adapt:
+       <div class="slide">
+         <div class="ig-header"><div class="kicker">DATA STORY</div><h1>Title</h1><p class="muted">Subtitle</p></div>
+         <div class="ig-section"><div class="marker">01</div><div><h3>Step</h3><p>...</p></div></div>
+         <div class="ig-section"><div class="marker">+240%</div><div><h3>Stat label</h3><p>...</p></div></div>
+         <div class="ig-footer">Source: ...</div>
+       </div>
+-->
+__CONTENT__
+</body>
+</html>

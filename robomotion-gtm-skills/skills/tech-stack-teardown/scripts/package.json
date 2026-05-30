@@ -1,0 +1,10 @@
+{
+  "name": "tech-stack-teardown-scripts",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright rendered-request tech detector + page renderer for tech-stack-teardown.",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "get-qualified-leads-from-luma-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright direct-scrape for Luma event pages.",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

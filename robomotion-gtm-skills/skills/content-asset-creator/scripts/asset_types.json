@@ -1,0 +1,38 @@
+{
+  "_comment": "Asset-type catalog for content-asset-creator. The AGENT authors HTML to these structures + the brand tokens; render_asset.mjs exports PNG/PDF. Each type lists the section blocks the content_data model may carry.",
+  "asset_types": {
+    "report": {
+      "render_width": 1200,
+      "pages": "2-3 (multi-page; lead with the biggest stat, one takeaway per section)",
+      "sections": ["title", "subtitle", "hero-stat", "narrative", "stat-grid", "chart", "comparison-table", "cta", "footer"],
+      "notes": "Industry report / lead magnet. Add Open Graph meta for LinkedIn/X previews. Export PNG per page + assembled PDF."
+    },
+    "landing-page": {
+      "render_width": 1200,
+      "pages": "single tall page",
+      "sections": ["hero", "value-props", "stat-grid", "social-proof", "cta", "footer"],
+      "notes": "Self-contained marketing page asset. Full-page PNG; PDF optional."
+    },
+    "comparison": {
+      "render_width": 1080,
+      "pages": "1",
+      "sections": ["title", "comparison-table", "verdict", "cta"],
+      "notes": "Our product vs competitor sheet. Keep the table scannable; bold the winning cells."
+    },
+    "one-pager": {
+      "render_width": 1080,
+      "pages": "1",
+      "sections": ["title", "hero-stat", "narrative", "stat-grid", "cta", "footer"],
+      "notes": "Single downloadable one-pager. 1080px wide reads well on social + print."
+    }
+  },
+  "section_blocks": {
+    "hero-stat": "one oversized metric + label",
+    "stat-grid": "2-4 stat cards in a grid",
+    "comparison-table": "rows of features x columns of options; bold winning cells",
+    "chart": "a simple bar/line block (author as styled HTML/SVG)",
+    "narrative": "body copy, one key takeaway per section",
+    "cta": "single natural call-to-action",
+    "footer": "brand mark + source/date line"
+  }
+}

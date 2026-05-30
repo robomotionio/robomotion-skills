@@ -1,0 +1,9 @@
+{
+  "name": "x-mention-tracker-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Keyless Playwright degrade path for x-mention-tracker.",
+  "dependencies": {
+    "playwright": "^1.45.0"
+  }
+}

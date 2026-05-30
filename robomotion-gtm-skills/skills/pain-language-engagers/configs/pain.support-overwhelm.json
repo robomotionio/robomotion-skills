@@ -1,0 +1,29 @@
+{
+  "_comment": "Tuned pain set for Support/CX leaders buried in ticket volume and repetitive work. Feed pain_terms to search_pain_posts.py / pain_filter.py, pain_regex via --pain-regex, exclude_extra via --exclude-file. Phrases are operator complaints, not solution/category keywords.",
+  "label": "Support/CX leaders buried in tickets and repetitive work",
+  "pain_terms": [
+    "drowning in tickets",
+    "same questions over and over",
+    "answering the same question again",
+    "ticket backlog out of control",
+    "team is burning out on support",
+    "copy pasting canned responses all day",
+    "no time to actually help customers",
+    "manually tagging tickets",
+    "context switching between 5 tools to answer one ticket",
+    "our knowledge base is a mess",
+    "escalations falling through the cracks",
+    "spending all day in the helpdesk",
+    "first response time keeps slipping",
+    "support queue never gets shorter"
+  ],
+  "pain_regex": "(still|always) (manually|by hand) (tagging|triaging|routing|answering|escalating)",
+  "exclude_extra": [
+    "ai customer support",
+    "support automation tool",
+    "chatbot platform",
+    "deflection platform",
+    "introducing",
+    "we just launched"
+  ]
+}

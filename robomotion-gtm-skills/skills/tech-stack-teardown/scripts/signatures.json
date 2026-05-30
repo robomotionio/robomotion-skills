@@ -1,0 +1,3618 @@
+{
+  "_meta": {
+    "schema": "tech-stack-teardown/signatures v2",
+    "fields": "name, category, detection{script_src_patterns[], html_patterns[], meta_generator[], header_patterns{header:valueRegex}, cookie_patterns[], global_js_vars[], request_domains[], id_pattern{label, patterns[]}}, gtm_implication?",
+    "notes": "All patterns are matched case-insensitively. script_src_patterns/html_patterns are plain substrings (lowercased) found in raw HTML. header_patterns values are regexes. request_domains are matched as hostname suffixes against rendered third-party requests. global_js_vars are window.* names probed by the rendered detector. id_pattern.patterns are case-SENSITIVE regexes (IDs are case-sensitive) run against raw HTML / inline scripts; each pattern has exactly ONE capture group = the account/pixel ID. Used for cross-company attribution fingerprinting."
+  },
+  "technologies": [
+    {
+      "name": "Google Analytics 4",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "gtag/js?id=g-",
+          "googletagmanager.com/gtag"
+        ],
+        "html_patterns": [
+          "gtag('config'",
+          "g-"
+        ],
+        "global_js_vars": [
+          "gtag",
+          "dataLayer"
+        ],
+        "request_domains": [
+          "google-analytics.com",
+          "analytics.google.com",
+          "region1.google-analytics.com"
+        ],
+        "id_pattern": {
+          "label": "GA4 measurement ID",
+          "patterns": [
+            "(G-[A-Z0-9]{6,})"
+          ]
+        }
+      },
+      "gtm_implication": "Standard Google measurement; pairs with Google Ads conversion tracking."
+    },
+    {
+      "name": "Universal Analytics",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "google-analytics.com/analytics.js"
+        ],
+        "global_js_vars": [
+          "ga",
+          "GoogleAnalyticsObject"
+        ],
+        "request_domains": [
+          "google-analytics.com"
+        ],
+        "html_patterns": [
+          "ga('create'",
+          "gtag('config', 'ua-"
+        ],
+        "id_pattern": {
+          "label": "UA property ID",
+          "patterns": [
+            "(UA-\\d{4,}-\\d{1,})"
+          ]
+        }
+      },
+      "gtm_implication": "Legacy GA (sunset) — site may be under-maintained or mid-migration."
+    },
+    {
+      "name": "Segment",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.segment.com/analytics.js",
+          "cdn.segment.io"
+        ],
+        "global_js_vars": [
+          "analytics"
+        ],
+        "request_domains": [
+          "segment.com",
+          "segment.io",
+          "cdn.segment.com",
+          "api.segment.io"
+        ],
+        "id_pattern": {
+          "label": "Segment write key",
+          "patterns": [
+            "analytics\\.load\\(\\s*['\\\"]([A-Za-z0-9]{10,})['\\\"]",
+            "cdn\\.segment\\.com/analytics\\.js/v1/([A-Za-z0-9]{10,})/"
+          ]
+        }
+      },
+      "gtm_implication": "Customer Data Platform — sophisticated product/marketing data routing; likely product-led or data-mature."
+    },
+    {
+      "name": "RudderStack",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.rudderlabs.com",
+          "rudder-analytics"
+        ],
+        "global_js_vars": [
+          "rudderanalytics"
+        ],
+        "request_domains": [
+          "rudderlabs.com",
+          "dataplane.rudderstack.com"
+        ]
+      },
+      "gtm_implication": "Open-source CDP — engineering-led data stack."
+    },
+    {
+      "name": "mParticle",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "jssdkcdns.mparticle.com"
+        ],
+        "global_js_vars": [
+          "mParticle"
+        ],
+        "request_domains": [
+          "mparticle.com"
+        ]
+      },
+      "gtm_implication": "Enterprise CDP — large mobile/omnichannel data operation."
+    },
+    {
+      "name": "Tealium",
+      "category": "tag-managers",
+      "detection": {
+        "script_src_patterns": [
+          "tags.tiqcdn.com",
+          "utag.js"
+        ],
+        "global_js_vars": [
+          "utag"
+        ],
+        "request_domains": [
+          "tiqcdn.com",
+          "tealiumiq.com"
+        ]
+      },
+      "gtm_implication": "Enterprise tag manager + CDP — large marketing-ops team."
+    },
+    {
+      "name": "Mixpanel",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.mxpanel.com",
+          "cdn.mixpanel.com"
+        ],
+        "html_patterns": [
+          "mixpanel.init"
+        ],
+        "global_js_vars": [
+          "mixpanel"
+        ],
+        "request_domains": [
+          "mixpanel.com",
+          "api.mixpanel.com"
+        ],
+        "id_pattern": {
+          "label": "Mixpanel project token",
+          "patterns": [
+            "mixpanel\\.init\\(\\s*['\\\"]([0-9a-f]{32})['\\\"]",
+            "mixpanel\\.init\\(\\s*['\\\"]([A-Za-z0-9]{20,40})['\\\"]"
+          ]
+        }
+      },
+      "gtm_implication": "Product analytics — product-led growth motion."
+    },
+    {
+      "name": "Amplitude",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.amplitude.com",
+          "amplitude.com/libs"
+        ],
+        "global_js_vars": [
+          "amplitude"
+        ],
+        "request_domains": [
+          "amplitude.com",
+          "api2.amplitude.com",
+          "api.amplitude.com"
+        ],
+        "id_pattern": {
+          "label": "Amplitude API key",
+          "patterns": [
+            "amplitude[^()]*\\.init\\(\\s*['\\\"]([0-9a-f]{32})['\\\"]",
+            "['\\\"]([0-9a-f]{32})['\\\"]\\s*\\)\\s*;?\\s*//\\s*amplitude"
+          ]
+        }
+      },
+      "gtm_implication": "Product analytics — strong PLG / product-led signal."
+    },
+    {
+      "name": "Heap",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.heapanalytics.com",
+          "heap-"
+        ],
+        "global_js_vars": [
+          "heap"
+        ],
+        "request_domains": [
+          "heapanalytics.com",
+          "heap.io"
+        ],
+        "id_pattern": {
+          "label": "Heap app/env ID",
+          "patterns": [
+            "heap\\.load\\(\\s*['\\\"](\\d{6,})['\\\"]",
+            "cdn\\.heapanalytics\\.com/h\\.js[^'\\\"]*?[?&]id=(\\d{6,})"
+          ]
+        }
+      },
+      "gtm_implication": "Autocapture product analytics — product-led."
+    },
+    {
+      "name": "PostHog",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "posthog.com/static/array.js",
+          "app.posthog.com"
+        ],
+        "global_js_vars": [
+          "posthog"
+        ],
+        "request_domains": [
+          "posthog.com",
+          "i.posthog.com",
+          "app.posthog.com"
+        ],
+        "id_pattern": {
+          "label": "PostHog project API key",
+          "patterns": [
+            "posthog\\.init\\(\\s*['\\\"](phc_[A-Za-z0-9]{20,})['\\\"]",
+            "(phc_[A-Za-z0-9]{30,})"
+          ]
+        }
+      },
+      "gtm_implication": "Open-source product analytics + feature flags — engineering-led PLG."
+    },
+    {
+      "name": "Pendo",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.pendo.io",
+          "pendo.io/agent"
+        ],
+        "global_js_vars": [
+          "pendo"
+        ],
+        "request_domains": [
+          "pendo.io",
+          "data.pendo.io"
+        ],
+        "id_pattern": {
+          "label": "Pendo API key",
+          "patterns": [
+            "cdn\\.pendo\\.io/agent/static/([0-9a-f-]{36})/pendo\\.js",
+            "pendo\\.initialize[^}]*?apiKey['\\\"]?\\s*:\\s*['\\\"]([0-9a-f-]{36})['\\\"]"
+          ]
+        }
+      },
+      "gtm_implication": "Product analytics + in-app guides — onboarding/PLG and customer-success investment."
+    },
+    {
+      "name": "Plausible",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "plausible.io/js"
+        ],
+        "request_domains": [
+          "plausible.io"
+        ]
+      },
+      "gtm_implication": "Privacy-first lightweight analytics — small/indie or privacy-conscious team."
+    },
+    {
+      "name": "Fathom Analytics",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.usefathom.com"
+        ],
+        "request_domains": [
+          "usefathom.com"
+        ]
+      },
+      "gtm_implication": "Privacy-first analytics — indie/bootstrapped tendency."
+    },
+    {
+      "name": "Matomo",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "matomo.js",
+          "piwik.js",
+          "matomo.php"
+        ],
+        "global_js_vars": [
+          "_paq",
+          "Matomo"
+        ],
+        "request_domains": [
+          "matomo.cloud"
+        ]
+      },
+      "gtm_implication": "Self-hosted/open analytics — privacy or data-sovereignty driven."
+    },
+    {
+      "name": "Hotjar",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "static.hotjar.com",
+          "script.hotjar.com"
+        ],
+        "global_js_vars": [
+          "hj",
+          "_hjSettings"
+        ],
+        "request_domains": [
+          "hotjar.com",
+          "hotjar.io"
+        ],
+        "id_pattern": {
+          "label": "Hotjar site ID",
+          "patterns": [
+            "hjid\\s*[:=]\\s*(\\d{5,})",
+            "static\\.hotjar\\.com/c/hotjar-(\\d{5,})\\.js"
+          ]
+        }
+      },
+      "gtm_implication": "Heatmaps + session recording — CRO/conversion-optimization focus."
+    },
+    {
+      "name": "Microsoft Clarity",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "clarity.ms/tag"
+        ],
+        "global_js_vars": [
+          "clarity"
+        ],
+        "request_domains": [
+          "clarity.ms"
+        ],
+        "id_pattern": {
+          "label": "Microsoft Clarity project ID",
+          "patterns": [
+            "clarity\\.ms/tag/([a-z0-9]{8,12})",
+            "\\\"clarity\\\",\\s*\\\"script\\\",\\s*\\\"([a-z0-9]{8,12})\\\""
+          ]
+        }
+      },
+      "gtm_implication": "Free heatmaps/session replay — CRO interest, cost-conscious."
+    },
+    {
+      "name": "FullStory",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "edge.fullstory.com",
+          "fullstory.com/s/fs.js"
+        ],
+        "global_js_vars": [
+          "FS"
+        ],
+        "request_domains": [
+          "fullstory.com",
+          "fs.com"
+        ],
+        "id_pattern": {
+          "label": "FullStory org ID",
+          "patterns": [
+            "_fs_org\\s*=\\s*['\\\"]([A-Z0-9]{4,8})['\\\"]",
+            "window\\['_fs_org'\\]\\s*=\\s*['\\\"]([A-Z0-9]{4,8})['\\\"]"
+          ]
+        }
+      },
+      "gtm_implication": "Session replay / digital-experience analytics — funded UX/CS investment."
+    },
+    {
+      "name": "LogRocket",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.logrocket.io",
+          "cdn.lr-ingest.io"
+        ],
+        "global_js_vars": [
+          "LogRocket"
+        ],
+        "request_domains": [
+          "logrocket.io",
+          "lr-ingest.io"
+        ]
+      },
+      "gtm_implication": "Session replay for debugging — engineering/product-led."
+    },
+    {
+      "name": "Mouseflow",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.mouseflow.com"
+        ],
+        "global_js_vars": [
+          "_mfq"
+        ],
+        "request_domains": [
+          "mouseflow.com"
+        ]
+      },
+      "gtm_implication": "Heatmaps/recordings — CRO program."
+    },
+    {
+      "name": "Crazy Egg",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "script.crazyegg.com"
+        ],
+        "request_domains": [
+          "crazyegg.com"
+        ],
+        "id_pattern": {
+          "label": "Crazy Egg account ID",
+          "patterns": [
+            "script\\.crazyegg\\.com/pages/scripts/(\\d{4,})/(?:\\d{4,})\\.js"
+          ]
+        }
+      },
+      "gtm_implication": "Heatmaps — CRO/landing-page optimization."
+    },
+    {
+      "name": "Quantcast",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "edge.quantserve.com",
+          "secure.quantserve.com"
+        ],
+        "request_domains": [
+          "quantserve.com",
+          "quantcast.com"
+        ]
+      },
+      "gtm_implication": "Audience measurement — programmatic ad buyer."
+    },
+    {
+      "name": "Cloudflare Web Analytics",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "static.cloudflareinsights.com"
+        ],
+        "request_domains": [
+          "cloudflareinsights.com"
+        ]
+      },
+      "gtm_implication": "Privacy-light free analytics — Cloudflare-centric stack."
+    },
+    {
+      "name": "Meta Pixel",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "connect.facebook.net/en_us/fbevents.js",
+          "connect.facebook.net/signals"
+        ],
+        "html_patterns": [
+          "fbq('init'",
+          "fbq('track'"
+        ],
+        "global_js_vars": [
+          "fbq",
+          "_fbq"
+        ],
+        "request_domains": [
+          "facebook.com/tr",
+          "connect.facebook.net"
+        ],
+        "id_pattern": {
+          "label": "Meta/Facebook Pixel ID",
+          "patterns": [
+            "fbq\\(\\s*['\\\"]init['\\\"]\\s*,\\s*['\\\"](\\d{6,})['\\\"]",
+            "facebook\\.com/tr\\?id=(\\d{6,})"
+          ]
+        }
+      },
+      "gtm_implication": "Active Meta/Instagram paid acquisition."
+    },
+    {
+      "name": "LinkedIn Insight Tag",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "snap.licdn.com/li.lms-analytics"
+        ],
+        "html_patterns": [
+          "_linkedin_partner_id"
+        ],
+        "global_js_vars": [
+          "_linkedin_data_partner_ids"
+        ],
+        "request_domains": [
+          "px.ads.linkedin.com",
+          "snap.licdn.com",
+          "linkedin.com/li.lms-analytics"
+        ],
+        "id_pattern": {
+          "label": "LinkedIn partner ID",
+          "patterns": [
+            "_linkedin_partner_id\\s*=\\s*['\\\"](\\d{4,})['\\\"]",
+            "_linkedin_partner_id\\s*=\\s*(\\d{4,})"
+          ]
+        }
+      },
+      "gtm_implication": "B2B paid social on LinkedIn — classic enterprise/B2B demand-gen signal."
+    },
+    {
+      "name": "Google Ads Conversion",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "googleadservices.com/pagead/conversion",
+          "google_conversion",
+          "googleads.g.doubleclick.net"
+        ],
+        "global_js_vars": [
+          "google_trackConversion"
+        ],
+        "request_domains": [
+          "googleadservices.com",
+          "googleads.g.doubleclick.net",
+          "doubleclick.net"
+        ],
+        "id_pattern": {
+          "label": "Google Ads conversion ID",
+          "patterns": [
+            "(AW-\\d{6,})"
+          ]
+        }
+      },
+      "gtm_implication": "Active Google Ads / search-paid acquisition."
+    },
+    {
+      "name": "Microsoft/Bing Ads (UET)",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "bat.bing.com/bat.js",
+          "bat.bing.com/p/insights"
+        ],
+        "global_js_vars": [
+          "uetq"
+        ],
+        "request_domains": [
+          "bat.bing.com",
+          "clarity.ms"
+        ]
+      },
+      "gtm_implication": "Bing/Microsoft Ads — often paired with LinkedIn for B2B."
+    },
+    {
+      "name": "X Pixel",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "static.ads-twitter.com/uwt.js"
+        ],
+        "global_js_vars": [
+          "twq"
+        ],
+        "request_domains": [
+          "ads-twitter.com",
+          "analytics.twitter.com",
+          "t.co"
+        ],
+        "id_pattern": {
+          "label": "X Pixel ID",
+          "patterns": [
+            "twq\\(\\s*['\\\"]config['\\\"]\\s*,\\s*['\\\"]([a-z0-9]{4,8})['\\\"]",
+            "twq\\(\\s*['\\\"]init['\\\"]\\s*,\\s*['\\\"]([a-z0-9]{4,8})['\\\"]"
+          ]
+        }
+      },
+      "gtm_implication": "Paid acquisition on X."
+    },
+    {
+      "name": "TikTok Pixel",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "analytics.tiktok.com/i18n/pixel",
+          "analytics.tiktok.com/i18n/pixel/events.js"
+        ],
+        "global_js_vars": [
+          "ttq"
+        ],
+        "request_domains": [
+          "analytics.tiktok.com",
+          "tiktok.com"
+        ],
+        "id_pattern": {
+          "label": "TikTok Pixel ID",
+          "patterns": [
+            "ttq\\.load\\(\\s*['\\\"]([A-Z0-9]{16,24})['\\\"]",
+            "analytics\\.tiktok\\.com/i18n/pixel/events\\.js[^'\\\"]*?sdkid=([A-Z0-9]{16,24})"
+          ]
+        }
+      },
+      "gtm_implication": "TikTok paid acquisition — DTC / consumer / younger ICP."
+    },
+    {
+      "name": "Reddit Pixel",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "redditstatic.com/ads",
+          "pixel.rubiconproject.com"
+        ],
+        "global_js_vars": [
+          "rdt"
+        ],
+        "request_domains": [
+          "redditstatic.com",
+          "reddit.com"
+        ]
+      },
+      "gtm_implication": "Reddit paid acquisition — niche/community-targeted."
+    },
+    {
+      "name": "Pinterest Tag",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "s.pinimg.com/ct/core.js"
+        ],
+        "global_js_vars": [
+          "pintrk"
+        ],
+        "request_domains": [
+          "pinimg.com",
+          "pinterest.com"
+        ],
+        "id_pattern": {
+          "label": "Pinterest Tag ID",
+          "patterns": [
+            "pintrk\\(\\s*['\\\"]load['\\\"]\\s*,\\s*['\\\"](\\d{10,})['\\\"]",
+            "ct\\.pinterest\\.com/(?:v3|user)/\\?tid=(\\d{10,})"
+          ]
+        }
+      },
+      "gtm_implication": "Pinterest paid — DTC/consumer/visual."
+    },
+    {
+      "name": "Snap Pixel",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "sc-static.net/scevent.min.js"
+        ],
+        "global_js_vars": [
+          "snaptr"
+        ],
+        "request_domains": [
+          "sc-static.net",
+          "tr.snapchat.com"
+        ]
+      },
+      "gtm_implication": "Snapchat paid — consumer/youth audience."
+    },
+    {
+      "name": "Quora Pixel",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "a.quora.com/qevents.js"
+        ],
+        "global_js_vars": [
+          "qp"
+        ],
+        "request_domains": [
+          "q.quora.com",
+          "quora.com"
+        ]
+      },
+      "gtm_implication": "Quora paid — niche B2B/intent targeting."
+    },
+    {
+      "name": "AdRoll",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "s.adroll.com",
+          "d.adroll.com"
+        ],
+        "global_js_vars": [
+          "adroll",
+          "__adroll"
+        ],
+        "request_domains": [
+          "adroll.com",
+          "adroll.mgr.bidr.io"
+        ]
+      },
+      "gtm_implication": "Retargeting / programmatic display — funded performance marketing."
+    },
+    {
+      "name": "StackAdapt",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "tags.srv.stackadapt.com"
+        ],
+        "request_domains": [
+          "stackadapt.com"
+        ]
+      },
+      "gtm_implication": "Programmatic DSP — agency/mid-market display + native."
+    },
+    {
+      "name": "The Trade Desk",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "js.adsrvr.org"
+        ],
+        "request_domains": [
+          "adsrvr.org"
+        ]
+      },
+      "gtm_implication": "Programmatic DSP — large performance ad budget."
+    },
+    {
+      "name": "Criteo",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "static.criteo.net"
+        ],
+        "request_domains": [
+          "criteo.com",
+          "criteo.net"
+        ]
+      },
+      "gtm_implication": "Retargeting — ecommerce/DTC performance marketing."
+    },
+    {
+      "name": "Outbrain",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "amplify.outbrain.com",
+          "widgets.outbrain.com"
+        ],
+        "global_js_vars": [
+          "obApi"
+        ],
+        "request_domains": [
+          "outbrain.com"
+        ]
+      },
+      "gtm_implication": "Native content advertising — content-distribution play."
+    },
+    {
+      "name": "Taboola",
+      "category": "ads",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.taboola.com"
+        ],
+        "global_js_vars": [
+          "_tfa"
+        ],
+        "request_domains": [
+          "taboola.com"
+        ]
+      },
+      "gtm_implication": "Native content advertising — top-of-funnel content distribution."
+    },
+    {
+      "name": "HubSpot",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "js.hs-scripts.com",
+          "js.hsforms.net",
+          "js.hsadspixel.net",
+          "js.hscollectedforms.net"
+        ],
+        "html_patterns": [
+          "hs-banner",
+          "hbspt.forms",
+          "_hsq"
+        ],
+        "global_js_vars": [
+          "_hsq",
+          "hbspt"
+        ],
+        "cookie_patterns": [
+          "hubspotutk",
+          "__hssc",
+          "__hstc",
+          "__hssrc"
+        ],
+        "request_domains": [
+          "hs-scripts.com",
+          "hsforms.net",
+          "hubspot.com",
+          "hs-analytics.net",
+          "hsadspixel.net",
+          "hscollectedforms.net"
+        ],
+        "id_pattern": {
+          "label": "HubSpot portal/hub ID",
+          "patterns": [
+            "js\\.hs-scripts\\.com/(\\d{4,})",
+            "js\\.hs-analytics\\.net/analytics/[^/]+/(\\d{4,})",
+            "js-na\\d?\\.hs-scripts\\.com/(\\d{4,})",
+            "hsforms\\.(?:com|net)/[^?\\\"']*\\bportalId=(\\d{4,})"
+          ]
+        }
+      },
+      "gtm_implication": "HubSpot CRM + marketing automation — inbound/SMB-to-mid-market motion."
+    },
+    {
+      "name": "Marketo",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "munchkin.marketo.net",
+          "mktoresty"
+        ],
+        "html_patterns": [
+          "mktoforms2",
+          "mktoform"
+        ],
+        "global_js_vars": [
+          "Munchkin",
+          "MktoForms2"
+        ],
+        "cookie_patterns": [
+          "_mkto_trk"
+        ],
+        "request_domains": [
+          "marketo.net",
+          "marketo.com",
+          "mktoresp.com"
+        ],
+        "id_pattern": {
+          "label": "Marketo Munchkin ID",
+          "patterns": [
+            "Munchkin\\.init\\(\\s*['\\\"]([0-9]{3}-[A-Z]{3}-[0-9]{3})['\\\"]",
+            "munchkin\\.marketo\\.net/[^'\\\"]*?/([0-9]{3}-[A-Z]{3}-[0-9]{3})",
+            "//([0-9]{3}-[A-Z]{3}-[0-9]{3})\\.mktoresp\\.com"
+          ]
+        }
+      },
+      "gtm_implication": "Marketo (Adobe) marketing automation — enterprise demand-gen motion."
+    },
+    {
+      "name": "Pardot / Account Engagement",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "pi.pardot.com",
+          "pardot.com/pd.js"
+        ],
+        "html_patterns": [
+          "pardot"
+        ],
+        "global_js_vars": [
+          "piTracker",
+          "piCId"
+        ],
+        "cookie_patterns": [
+          "visitor_id",
+          "pardot"
+        ],
+        "request_domains": [
+          "pardot.com",
+          "pi.pardot.com",
+          "go.pardot.com"
+        ]
+      },
+      "gtm_implication": "Pardot (Salesforce) — Salesforce-centric B2B marketing automation."
+    },
+    {
+      "name": "Salesforce",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "salesforce.com",
+          "force.com",
+          "lightning.force.com"
+        ],
+        "html_patterns": [
+          "web-to-lead",
+          "salesforce"
+        ],
+        "request_domains": [
+          "salesforce.com",
+          "force.com",
+          "salesforceliveagent.com"
+        ]
+      },
+      "gtm_implication": "Salesforce CRM — enterprise/mid-market sales-led motion."
+    },
+    {
+      "name": "Eloqua",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "img.en25.com",
+          "eloqua.com",
+          "elqcfg.min.js"
+        ],
+        "global_js_vars": [
+          "_elqQ"
+        ],
+        "request_domains": [
+          "en25.com",
+          "eloqua.com",
+          "elqtrk.com"
+        ]
+      },
+      "gtm_implication": "Oracle Eloqua — large enterprise marketing automation."
+    },
+    {
+      "name": "ActiveCampaign",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "prum.activehosted.com",
+          "trackcmp.net"
+        ],
+        "global_js_vars": [
+          "vgo"
+        ],
+        "request_domains": [
+          "activehosted.com",
+          "trackcmp.net",
+          "activecampaign.com"
+        ]
+      },
+      "gtm_implication": "ActiveCampaign — SMB email + light CRM/automation."
+    },
+    {
+      "name": "Klaviyo",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "static.klaviyo.com",
+          "static-tracking.klaviyo.com",
+          "klaviyo.js"
+        ],
+        "global_js_vars": [
+          "klaviyo",
+          "_klOnsite"
+        ],
+        "cookie_patterns": [
+          "__kla_id"
+        ],
+        "request_domains": [
+          "klaviyo.com",
+          "a.klaviyo.com"
+        ],
+        "id_pattern": {
+          "label": "Klaviyo public API key (company ID)",
+          "patterns": [
+            "klaviyo\\.com/onsite/js/(?:[^/]*/)?([A-Za-z0-9]{6})(?:[/?]|\\.js)",
+            "static\\.klaviyo\\.com/onsite/js/([A-Za-z0-9]{6})",
+            "klaviyo\\.com/api/[^'\\\"]*?company_id=([A-Za-z0-9]{6})"
+          ]
+        }
+      },
+      "gtm_implication": "Klaviyo email/SMS — DTC ecommerce lifecycle marketing."
+    },
+    {
+      "name": "Mailchimp",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "chimpstatic.com",
+          "list-manage.com",
+          "mailchimp.com"
+        ],
+        "global_js_vars": [
+          "mc4wp"
+        ],
+        "request_domains": [
+          "list-manage.com",
+          "mailchimp.com",
+          "chimpstatic.com"
+        ]
+      },
+      "gtm_implication": "Mailchimp — SMB email marketing."
+    },
+    {
+      "name": "Customer.io",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "track.customer.io",
+          "customer.io/track"
+        ],
+        "global_js_vars": [
+          "_cio"
+        ],
+        "request_domains": [
+          "customer.io",
+          "track.customer.io"
+        ]
+      },
+      "gtm_implication": "Customer.io — product-led lifecycle messaging."
+    },
+    {
+      "name": "Braze",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "js.appboycdn.com",
+          "sdk.iad-01.braze.com"
+        ],
+        "global_js_vars": [
+          "appboy",
+          "braze"
+        ],
+        "request_domains": [
+          "braze.com",
+          "appboycdn.com",
+          "braze.eu"
+        ]
+      },
+      "gtm_implication": "Braze — enterprise mobile/omnichannel engagement."
+    },
+    {
+      "name": "Iterable",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "iterable.com",
+          "links.iterable.com"
+        ],
+        "request_domains": [
+          "iterable.com"
+        ]
+      },
+      "gtm_implication": "Iterable — growth-stage cross-channel lifecycle marketing."
+    },
+    {
+      "name": "Drip",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "tag.getdrip.com"
+        ],
+        "global_js_vars": [
+          "_dcq",
+          "_dcs"
+        ],
+        "request_domains": [
+          "getdrip.com",
+          "drip.com"
+        ]
+      },
+      "gtm_implication": "Drip — DTC/ecommerce email automation."
+    },
+    {
+      "name": "Brevo (Sendinblue)",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "sibautomation.com",
+          "sendinblue.com"
+        ],
+        "global_js_vars": [
+          "sib",
+          "sendinblue"
+        ],
+        "request_domains": [
+          "sibautomation.com",
+          "sendinblue.com",
+          "brevo.com"
+        ]
+      },
+      "gtm_implication": "Brevo — SMB email/CRM, cost-conscious."
+    },
+    {
+      "name": "Keap (Infusionsoft)",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "infusionsoft.com",
+          "keap.com"
+        ],
+        "request_domains": [
+          "infusionsoft.com",
+          "keap.com"
+        ]
+      },
+      "gtm_implication": "Keap — small-business / coach / agency CRM+automation."
+    },
+    {
+      "name": "Salesloft",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "salesloft.com"
+        ],
+        "request_domains": [
+          "salesloft.com"
+        ]
+      },
+      "gtm_implication": "Salesloft sales-engagement — outbound SDR motion."
+    },
+    {
+      "name": "Outreach.io",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "outreach.io"
+        ],
+        "request_domains": [
+          "outreach.io"
+        ]
+      },
+      "gtm_implication": "Outreach sequencing — outbound SDR motion at scale."
+    },
+    {
+      "name": "6sense",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "6sc.co",
+          "j.6sc.co",
+          "6sense.com"
+        ],
+        "global_js_vars": [
+          "_6si"
+        ],
+        "request_domains": [
+          "6sc.co",
+          "6sense.com",
+          "epsilon.6sense.com"
+        ]
+      },
+      "gtm_implication": "6sense ABM/intent — enterprise account-based marketing."
+    },
+    {
+      "name": "Demandbase",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "company-target.com",
+          "demandbase.com",
+          "tag.demandbase.com"
+        ],
+        "global_js_vars": [
+          "Demandbase"
+        ],
+        "request_domains": [
+          "company-target.com",
+          "demandbase.com"
+        ]
+      },
+      "gtm_implication": "Demandbase ABM — enterprise account-based GTM."
+    },
+    {
+      "name": "Mutiny",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "mutinyhq.com",
+          "mutinycdn.com",
+          "client-registry.mutinycdn.com"
+        ],
+        "global_js_vars": [
+          "mutiny"
+        ],
+        "request_domains": [
+          "mutinyhq.com",
+          "mutinycdn.com"
+        ]
+      },
+      "gtm_implication": "Mutiny website personalization — funded ABM/personalization program."
+    },
+    {
+      "name": "Clearbit",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "x.clearbitjs.com",
+          "tag.clearbitscripts.com"
+        ],
+        "request_domains": [
+          "clearbitjs.com",
+          "clearbitscripts.com",
+          "clearbit.com"
+        ]
+      },
+      "gtm_implication": "Clearbit reveal/enrichment — visitor de-anonymization for B2B sales."
+    },
+    {
+      "name": "RB2B",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "b2bjsstore.s3.us-west-2.amazonaws.com",
+          "rb2b.com"
+        ],
+        "request_domains": [
+          "rb2b.com"
+        ]
+      },
+      "gtm_implication": "RB2B person-level deanonymization — aggressive outbound on web visitors."
+    },
+    {
+      "name": "Leadfeeder / Dealfront",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "sc.lfeeder.com",
+          "leadfeeder.com"
+        ],
+        "global_js_vars": [
+          "ldfdr"
+        ],
+        "request_domains": [
+          "lfeeder.com",
+          "leadfeeder.com",
+          "dealfront.com"
+        ]
+      },
+      "gtm_implication": "Leadfeeder visitor ID — account-level web-visitor outbound."
+    },
+    {
+      "name": "Albacross",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "serv.albacross.com",
+          "albacross.com"
+        ],
+        "global_js_vars": [
+          "albacross",
+          "_nQc"
+        ],
+        "request_domains": [
+          "albacross.com"
+        ]
+      },
+      "gtm_implication": "Albacross visitor ID — B2B web-visitor identification."
+    },
+    {
+      "name": "Vector",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "vector.co/api"
+        ],
+        "request_domains": [
+          "vector.co"
+        ]
+      },
+      "gtm_implication": "Vector pipeline-gen / visitor intent — modern outbound stack."
+    },
+    {
+      "name": "Koala",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "getkoala.com",
+          "cdn.getkoala.com"
+        ],
+        "global_js_vars": [
+          "ko"
+        ],
+        "request_domains": [
+          "getkoala.com"
+        ]
+      },
+      "gtm_implication": "Koala intent/identity — PLG sales-assist on product + web signals."
+    },
+    {
+      "name": "Common Room",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "commonroom.io",
+          "cdn.cr-relay.com"
+        ],
+        "request_domains": [
+          "commonroom.io",
+          "cr-relay.com"
+        ]
+      },
+      "gtm_implication": "Common Room community/signal intelligence — community-led + PLG."
+    },
+    {
+      "name": "Apollo",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "assets.apollo.io",
+          "apollo.io/tracker"
+        ],
+        "request_domains": [
+          "apollo.io"
+        ]
+      },
+      "gtm_implication": "Apollo tracking — outbound prospecting + website intent."
+    },
+    {
+      "name": "Warmly",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "warmly.ai",
+          "opps-widget.getwarmly.com"
+        ],
+        "request_domains": [
+          "warmly.ai",
+          "getwarmly.com"
+        ]
+      },
+      "gtm_implication": "Warmly warm-visitor + Slack-alert outbound — modern PLG sales-assist."
+    },
+    {
+      "name": "Intercom",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "widget.intercom.io",
+          "js.intercomcdn.com",
+          "api-iam.intercom.io"
+        ],
+        "html_patterns": [
+          "intercomsettings",
+          "intercom("
+        ],
+        "global_js_vars": [
+          "Intercom",
+          "intercomSettings"
+        ],
+        "cookie_patterns": [
+          "intercom-id",
+          "intercom-session"
+        ],
+        "request_domains": [
+          "intercom.io",
+          "intercomcdn.com",
+          "intercomassets.com"
+        ],
+        "id_pattern": {
+          "label": "Intercom app ID",
+          "patterns": [
+            "app_id\\s*:\\s*['\\\"]([a-z0-9]{6,10})['\\\"]",
+            "widget\\.intercom\\.io/widget/([a-z0-9]{6,10})",
+            "intercomSettings[^}]*?app_id['\\\"]?\\s*:\\s*['\\\"]([a-z0-9]{6,10})['\\\"]"
+          ]
+        }
+      },
+      "gtm_implication": "Intercom — PLG/inbound chat-led support + sales-assist."
+    },
+    {
+      "name": "Drift",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "js.driftt.com",
+          "js.driftapi.com"
+        ],
+        "global_js_vars": [
+          "drift",
+          "driftt"
+        ],
+        "cookie_patterns": [
+          "drift_aid",
+          "driftt_aid"
+        ],
+        "request_domains": [
+          "driftt.com",
+          "drift.com",
+          "driftapi.com"
+        ],
+        "id_pattern": {
+          "label": "Drift embed/app ID",
+          "patterns": [
+            "drift\\.load\\(\\s*['\\\"]([a-z0-9]{8,})['\\\"]",
+            "js\\.driftt\\.com/include/[^/]+/([a-z0-9]{8,})\\.js"
+          ]
+        }
+      },
+      "gtm_implication": "Drift conversational marketing — B2B chat-to-pipeline / ABM sales-assist."
+    },
+    {
+      "name": "Zendesk",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "static.zdassets.com",
+          "zopim.com",
+          "zdassets.com"
+        ],
+        "html_patterns": [
+          "zendesk",
+          "zopim"
+        ],
+        "global_js_vars": [
+          "zE",
+          "$zopim"
+        ],
+        "request_domains": [
+          "zdassets.com",
+          "zendesk.com",
+          "zopim.com"
+        ]
+      },
+      "gtm_implication": "Zendesk support — scaled customer-support operation."
+    },
+    {
+      "name": "HubSpot Chat",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "js.usemessages.com",
+          "js.hs-banner.com"
+        ],
+        "request_domains": [
+          "usemessages.com",
+          "hs-banner.com"
+        ],
+        "id_pattern": {
+          "label": "HubSpot portal/hub ID",
+          "patterns": [
+            "js\\.hs-scripts\\.com/(\\d{4,})"
+          ]
+        }
+      },
+      "gtm_implication": "HubSpot conversations — inbound chat in a HubSpot-centric stack."
+    },
+    {
+      "name": "Crisp",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "client.crisp.chat"
+        ],
+        "global_js_vars": [
+          "$crisp",
+          "CRISP_WEBSITE_ID"
+        ],
+        "request_domains": [
+          "crisp.chat"
+        ]
+      },
+      "gtm_implication": "Crisp — SMB/startup chat support, cost-conscious."
+    },
+    {
+      "name": "Tawk.to",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "embed.tawk.to"
+        ],
+        "global_js_vars": [
+          "Tawk_API"
+        ],
+        "request_domains": [
+          "tawk.to"
+        ]
+      },
+      "gtm_implication": "Tawk.to free chat — bootstrapped/SMB."
+    },
+    {
+      "name": "LiveChat",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.livechatinc.com"
+        ],
+        "global_js_vars": [
+          "LC_API",
+          "__lc"
+        ],
+        "request_domains": [
+          "livechatinc.com",
+          "livechat.com"
+        ]
+      },
+      "gtm_implication": "LiveChat — SMB/mid-market live support + sales."
+    },
+    {
+      "name": "Tidio",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "code.tidio.co"
+        ],
+        "global_js_vars": [
+          "tidioChatApi"
+        ],
+        "request_domains": [
+          "tidio.co",
+          "tidio.com"
+        ]
+      },
+      "gtm_implication": "Tidio chatbot — SMB ecommerce support."
+    },
+    {
+      "name": "Olark",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "static.olark.com"
+        ],
+        "global_js_vars": [
+          "olark"
+        ],
+        "request_domains": [
+          "olark.com"
+        ]
+      },
+      "gtm_implication": "Olark live chat — SMB support."
+    },
+    {
+      "name": "Gorgias",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "config.gorgias.chat",
+          "assets.gorgias.chat"
+        ],
+        "request_domains": [
+          "gorgias.chat",
+          "gorgias.io"
+        ]
+      },
+      "gtm_implication": "Gorgias helpdesk — Shopify/ecommerce support."
+    },
+    {
+      "name": "Front",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "chat.frontapp.com"
+        ],
+        "request_domains": [
+          "frontapp.com",
+          "front.com"
+        ]
+      },
+      "gtm_implication": "Front shared inbox — collaborative support/sales inbox."
+    },
+    {
+      "name": "Help Scout",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "beacon-v2.helpscout.net"
+        ],
+        "global_js_vars": [
+          "Beacon"
+        ],
+        "request_domains": [
+          "helpscout.net",
+          "helpscout.com"
+        ]
+      },
+      "gtm_implication": "Help Scout — SMB/mid-market support."
+    },
+    {
+      "name": "Freshchat / Freshdesk",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "wchat.freshchat.com",
+          "freshdesk.com",
+          "freshworks.com"
+        ],
+        "global_js_vars": [
+          "fcWidget",
+          "FreshworksWidget"
+        ],
+        "request_domains": [
+          "freshchat.com",
+          "freshdesk.com",
+          "freshworks.com"
+        ]
+      },
+      "gtm_implication": "Freshworks support — mid-market, value-oriented."
+    },
+    {
+      "name": "Kustomer",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.kustomerapp.com"
+        ],
+        "global_js_vars": [
+          "Kustomer"
+        ],
+        "request_domains": [
+          "kustomerapp.com",
+          "kustomer.com"
+        ]
+      },
+      "gtm_implication": "Kustomer CRM-support — DTC/ecommerce CX."
+    },
+    {
+      "name": "Ada",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "static.ada.support"
+        ],
+        "global_js_vars": [
+          "adaEmbed"
+        ],
+        "request_domains": [
+          "ada.support"
+        ]
+      },
+      "gtm_implication": "Ada AI support bot — enterprise automated CX."
+    },
+    {
+      "name": "WordPress",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "wp-content/",
+          "wp-includes/",
+          "wp-json"
+        ],
+        "meta_generator": [
+          "wordpress"
+        ],
+        "request_domains": [
+          "s.w.org"
+        ]
+      },
+      "gtm_implication": "WordPress CMS — flexible/agency-built marketing site."
+    },
+    {
+      "name": "Webflow",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "assets.website-files.com",
+          "assets-global.website-files.com",
+          "webflow.js"
+        ],
+        "html_patterns": [
+          "data-wf-page",
+          "data-wf-site"
+        ],
+        "meta_generator": [
+          "webflow"
+        ],
+        "request_domains": [
+          "website-files.com",
+          "webflow.com",
+          "webflow.io"
+        ]
+      },
+      "gtm_implication": "Webflow — design-led, marketing-owned site (common in funded startups)."
+    },
+    {
+      "name": "Framer",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "framerusercontent.com",
+          "events.framer.com"
+        ],
+        "meta_generator": [
+          "framer"
+        ],
+        "request_domains": [
+          "framerusercontent.com",
+          "framer.com",
+          "framer.app"
+        ]
+      },
+      "gtm_implication": "Framer — fast design-led marketing site, early/modern startup."
+    },
+    {
+      "name": "HubSpot CMS",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "hs-sites.com",
+          "hubspotusercontent",
+          "hubspotusercontent-na1"
+        ],
+        "meta_generator": [
+          "hubspot"
+        ],
+        "request_domains": [
+          "hs-sites.com",
+          "hubspotusercontent-na1.net",
+          "hubspotusercontent.net"
+        ],
+        "id_pattern": {
+          "label": "HubSpot portal/hub ID",
+          "patterns": [
+            "js\\.hs-scripts\\.com/(\\d{4,})",
+            "hubspotusercontent-na\\d\\.net/hubfs/(\\d{4,})/"
+          ]
+        }
+      },
+      "gtm_implication": "Site on HubSpot CMS — fully HubSpot-centric inbound stack."
+    },
+    {
+      "name": "Wix",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "static.wixstatic.com",
+          "static.parastorage.com"
+        ],
+        "meta_generator": [
+          "wix.com"
+        ],
+        "request_domains": [
+          "wixstatic.com",
+          "parastorage.com",
+          "wix.com"
+        ]
+      },
+      "gtm_implication": "Wix — SMB/self-built site."
+    },
+    {
+      "name": "Squarespace",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "static1.squarespace.com",
+          "assets.squarespace.com"
+        ],
+        "meta_generator": [
+          "squarespace"
+        ],
+        "request_domains": [
+          "squarespace.com",
+          "squarespace-cdn.com"
+        ]
+      },
+      "gtm_implication": "Squarespace — SMB/creator/brand site."
+    },
+    {
+      "name": "Drupal",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "/sites/default/files",
+          "drupal.js"
+        ],
+        "html_patterns": [
+          "drupal-settings-json"
+        ],
+        "meta_generator": [
+          "drupal"
+        ]
+      },
+      "gtm_implication": "Drupal — enterprise/gov/edu CMS, IT-led."
+    },
+    {
+      "name": "Contentful",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "ctfassets.net",
+          "contentful.com"
+        ],
+        "request_domains": [
+          "ctfassets.net",
+          "contentful.com"
+        ]
+      },
+      "gtm_implication": "Contentful headless CMS — engineering-led composable site."
+    },
+    {
+      "name": "Sanity",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.sanity.io",
+          "apicdn.sanity.io"
+        ],
+        "request_domains": [
+          "sanity.io"
+        ]
+      },
+      "gtm_implication": "Sanity headless CMS — modern engineering-led content."
+    },
+    {
+      "name": "Ghost",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "ghost.io",
+          "/ghost/"
+        ],
+        "meta_generator": [
+          "ghost"
+        ],
+        "request_domains": [
+          "ghost.io"
+        ]
+      },
+      "gtm_implication": "Ghost — publication/newsletter-led content site."
+    },
+    {
+      "name": "Storyblok",
+      "category": "cms",
+      "detection": {
+        "script_src_patterns": [
+          "app.storyblok.com",
+          "a.storyblok.com"
+        ],
+        "request_domains": [
+          "storyblok.com"
+        ]
+      },
+      "gtm_implication": "Storyblok headless CMS — composable, marketing+eng."
+    },
+    {
+      "name": "React",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "react-dom",
+          "react.production.min.js"
+        ],
+        "html_patterns": [
+          "data-reactroot",
+          "data-reactid"
+        ],
+        "global_js_vars": [
+          "React"
+        ]
+      },
+      "gtm_implication": "React SPA — engineering-built app/site."
+    },
+    {
+      "name": "Next.js",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "/_next/static",
+          "/_next/image"
+        ],
+        "html_patterns": [
+          "__next_data__",
+          "id=\"__next\""
+        ],
+        "global_js_vars": [
+          "__NEXT_DATA__"
+        ],
+        "meta_generator": [
+          "next.js"
+        ],
+        "request_domains": [
+          "vercel.app"
+        ]
+      },
+      "gtm_implication": "Next.js — modern React stack, engineering-led."
+    },
+    {
+      "name": "Nuxt",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "/_nuxt/"
+        ],
+        "html_patterns": [
+          "__nuxt",
+          "window.__nuxt__"
+        ],
+        "global_js_vars": [
+          "$nuxt",
+          "__NUXT__"
+        ],
+        "meta_generator": [
+          "nuxt"
+        ]
+      },
+      "gtm_implication": "Nuxt (Vue) — engineering-led Vue stack."
+    },
+    {
+      "name": "Vue.js",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "vue.runtime",
+          "vue.min.js"
+        ],
+        "html_patterns": [
+          "data-v-",
+          "id=\"app\" data-server-rendered"
+        ],
+        "global_js_vars": [
+          "Vue"
+        ]
+      },
+      "gtm_implication": "Vue SPA — engineering-built app."
+    },
+    {
+      "name": "Angular",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "ng-version"
+        ],
+        "html_patterns": [
+          "ng-version=",
+          "_nghost",
+          "_ngcontent"
+        ],
+        "global_js_vars": [
+          "ng"
+        ]
+      },
+      "gtm_implication": "Angular — enterprise-y engineering app."
+    },
+    {
+      "name": "Svelte / SvelteKit",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "/_app/immutable/"
+        ],
+        "html_patterns": [
+          "svelte-",
+          "data-sveltekit"
+        ],
+        "global_js_vars": [
+          "__sveltekit"
+        ]
+      },
+      "gtm_implication": "SvelteKit — modern lean engineering stack."
+    },
+    {
+      "name": "Gatsby",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "/page-data/",
+          "gatsby-"
+        ],
+        "html_patterns": [
+          "___gatsby"
+        ],
+        "global_js_vars": [
+          "___gatsby"
+        ],
+        "meta_generator": [
+          "gatsby"
+        ]
+      },
+      "gtm_implication": "Gatsby — JAMstack marketing site, engineering-led."
+    },
+    {
+      "name": "Astro",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "astro="
+        ],
+        "html_patterns": [
+          "astro-island",
+          "astro-"
+        ],
+        "meta_generator": [
+          "astro"
+        ]
+      },
+      "gtm_implication": "Astro — modern content/marketing site, performance-focused."
+    },
+    {
+      "name": "jQuery",
+      "category": "js-framework",
+      "detection": {
+        "script_src_patterns": [
+          "jquery.min.js",
+          "ajax.googleapis.com/ajax/libs/jquery",
+          "code.jquery.com"
+        ],
+        "global_js_vars": [
+          "jQuery"
+        ]
+      },
+      "gtm_implication": "jQuery present — older or template-built site."
+    },
+    {
+      "name": "Cloudflare",
+      "category": "hosting-cdn",
+      "detection": {
+        "script_src_patterns": [
+          "cdnjs.cloudflare.com",
+          "/cdn-cgi/"
+        ],
+        "header_patterns": {
+          "server": "cloudflare",
+          "cf-ray": ".+",
+          "cf-cache-status": ".+"
+        },
+        "request_domains": [
+          "cloudflare.com",
+          "cloudflareinsights.com"
+        ]
+      },
+      "gtm_implication": "Cloudflare CDN/edge — common, low signal alone."
+    },
+    {
+      "name": "Vercel",
+      "category": "hosting-cdn",
+      "detection": {
+        "html_patterns": [
+          "__vercel"
+        ],
+        "header_patterns": {
+          "server": "vercel",
+          "x-vercel-id": ".+",
+          "x-vercel-cache": ".+"
+        },
+        "request_domains": [
+          "vercel.app",
+          "vercel-insights.com"
+        ]
+      },
+      "gtm_implication": "Vercel hosting — modern Next.js/frontend engineering team."
+    },
+    {
+      "name": "Netlify",
+      "category": "hosting-cdn",
+      "detection": {
+        "header_patterns": {
+          "server": "netlify",
+          "x-nf-request-id": ".+"
+        },
+        "request_domains": [
+          "netlify.app",
+          "netlify.com"
+        ]
+      },
+      "gtm_implication": "Netlify hosting — JAMstack marketing/site, engineering-led."
+    },
+    {
+      "name": "Fastly",
+      "category": "hosting-cdn",
+      "detection": {
+        "header_patterns": {
+          "x-served-by": "cache-.*",
+          "x-fastly-request-id": ".+",
+          "via": ".*varnish.*"
+        },
+        "request_domains": [
+          "fastly.net",
+          "fastly.com"
+        ]
+      },
+      "gtm_implication": "Fastly CDN — scaled/high-traffic site."
+    },
+    {
+      "name": "Amazon CloudFront",
+      "category": "hosting-cdn",
+      "detection": {
+        "header_patterns": {
+          "via": ".*cloudfront.*",
+          "x-amz-cf-id": ".+",
+          "x-amz-cf-pop": ".+"
+        },
+        "request_domains": [
+          "cloudfront.net"
+        ]
+      },
+      "gtm_implication": "AWS CloudFront — AWS-hosted infrastructure."
+    },
+    {
+      "name": "AWS",
+      "category": "hosting-cdn",
+      "detection": {
+        "header_patterns": {
+          "server": "awselb.*|amazons3",
+          "x-amz-request-id": ".+"
+        },
+        "request_domains": [
+          "amazonaws.com",
+          "s3.amazonaws.com"
+        ]
+      },
+      "gtm_implication": "AWS infrastructure — engineering-owned hosting."
+    },
+    {
+      "name": "Google Cloud / Firebase",
+      "category": "hosting-cdn",
+      "detection": {
+        "header_patterns": {
+          "server": "google frontend|gws"
+        },
+        "request_domains": [
+          "firebaseio.com",
+          "firebaseapp.com",
+          "googleusercontent.com",
+          "appspot.com"
+        ]
+      },
+      "gtm_implication": "GCP/Firebase hosting — Google-cloud engineering team."
+    },
+    {
+      "name": "GitHub Pages",
+      "category": "hosting-cdn",
+      "detection": {
+        "header_patterns": {
+          "server": "github.com",
+          "x-github-request-id": ".+"
+        },
+        "request_domains": [
+          "github.io"
+        ]
+      },
+      "gtm_implication": "GitHub Pages — docs/OSS/dev-tools static site."
+    },
+    {
+      "name": "Akamai",
+      "category": "hosting-cdn",
+      "detection": {
+        "header_patterns": {
+          "server": "akamai.*",
+          "x-akamai-.+": ".+"
+        },
+        "request_domains": [
+          "akamaihd.net",
+          "akamaized.net"
+        ]
+      },
+      "gtm_implication": "Akamai CDN — large enterprise."
+    },
+    {
+      "name": "Shopify",
+      "category": "ecommerce",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.shopify.com",
+          "shopify.com/s/",
+          "shopifycloud.com"
+        ],
+        "html_patterns": [
+          "shopify.theme",
+          "/cdn/shop/",
+          "shopify-section"
+        ],
+        "meta_generator": [
+          "shopify"
+        ],
+        "global_js_vars": [
+          "Shopify"
+        ],
+        "header_patterns": {
+          "x-shopify-stage": ".+",
+          "powered-by": "shopify"
+        },
+        "request_domains": [
+          "cdn.shopify.com",
+          "shopify.com",
+          "myshopify.com",
+          "shopifycloud.com"
+        ]
+      },
+      "gtm_implication": "Shopify storefront — DTC/ecommerce GTM."
+    },
+    {
+      "name": "WooCommerce",
+      "category": "ecommerce",
+      "detection": {
+        "script_src_patterns": [
+          "woocommerce",
+          "wc-ajax",
+          "/plugins/woocommerce/"
+        ],
+        "html_patterns": [
+          "woocommerce-page",
+          "wc_add_to_cart"
+        ],
+        "cookie_patterns": [
+          "woocommerce_cart_hash",
+          "woocommerce_items_in_cart"
+        ]
+      },
+      "gtm_implication": "WooCommerce on WordPress — SMB ecommerce."
+    },
+    {
+      "name": "BigCommerce",
+      "category": "ecommerce",
+      "detection": {
+        "script_src_patterns": [
+          "cdn11.bigcommerce.com",
+          "bigcommerce.com"
+        ],
+        "request_domains": [
+          "bigcommerce.com"
+        ]
+      },
+      "gtm_implication": "BigCommerce — mid-market ecommerce."
+    },
+    {
+      "name": "Magento / Adobe Commerce",
+      "category": "ecommerce",
+      "detection": {
+        "script_src_patterns": [
+          "/static/version",
+          "static/frontend/magento"
+        ],
+        "html_patterns": [
+          "mage-init",
+          "magento_version",
+          "data-mage-init"
+        ],
+        "cookie_patterns": [
+          "mage-cache-storage",
+          "x-magento"
+        ]
+      },
+      "gtm_implication": "Magento/Adobe Commerce — enterprise ecommerce."
+    },
+    {
+      "name": "Salesforce Commerce Cloud",
+      "category": "ecommerce",
+      "detection": {
+        "script_src_patterns": [
+          "demandware.static",
+          "demandware.edgesuite.net"
+        ],
+        "request_domains": [
+          "demandware.net"
+        ]
+      },
+      "gtm_implication": "SFCC (Demandware) — enterprise retail."
+    },
+    {
+      "name": "Recharge",
+      "category": "ecommerce",
+      "detection": {
+        "script_src_patterns": [
+          "static.rechargecdn.com",
+          "rechargepayments.com"
+        ],
+        "request_domains": [
+          "rechargecdn.com",
+          "rechargepayments.com"
+        ]
+      },
+      "gtm_implication": "Recharge subscriptions — DTC subscription ecommerce."
+    },
+    {
+      "name": "Bold Commerce",
+      "category": "ecommerce",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.boldapps.net"
+        ],
+        "request_domains": [
+          "boldapps.net"
+        ]
+      },
+      "gtm_implication": "Bold apps — Shopify subscription/upsell ecommerce."
+    },
+    {
+      "name": "Yotpo",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "staticw2.yotpo.com",
+          "cdn-widgetsrepository.yotpo.com"
+        ],
+        "global_js_vars": [
+          "yotpo"
+        ],
+        "request_domains": [
+          "yotpo.com"
+        ]
+      },
+      "gtm_implication": "Yotpo reviews/loyalty — DTC ecommerce social proof."
+    },
+    {
+      "name": "Trustpilot",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "widget.trustpilot.com",
+          "invitejs.trustpilot.com"
+        ],
+        "request_domains": [
+          "trustpilot.com"
+        ]
+      },
+      "gtm_implication": "Trustpilot reviews — consumer trust/social proof program."
+    },
+    {
+      "name": "Okendo",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "okendo.io",
+          "d3hw6dc1ow8pp2.cloudfront.net"
+        ],
+        "request_domains": [
+          "okendo.io"
+        ]
+      },
+      "gtm_implication": "Okendo reviews — DTC Shopify social proof."
+    },
+    {
+      "name": "Stamped.io",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "stamped.io",
+          "cdn1.stamped.io"
+        ],
+        "request_domains": [
+          "stamped.io"
+        ]
+      },
+      "gtm_implication": "Stamped reviews/loyalty — DTC ecommerce."
+    },
+    {
+      "name": "Judge.me",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "judge.me/assets",
+          "cdn.judge.me"
+        ],
+        "request_domains": [
+          "judge.me"
+        ]
+      },
+      "gtm_implication": "Judge.me reviews — Shopify SMB social proof."
+    },
+    {
+      "name": "Bazaarvoice",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "apps.bazaarvoice.com",
+          "display.ugc.bazaarvoice.com"
+        ],
+        "request_domains": [
+          "bazaarvoice.com"
+        ]
+      },
+      "gtm_implication": "Bazaarvoice — enterprise retail ratings/reviews."
+    },
+    {
+      "name": "Stripe",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "js.stripe.com"
+        ],
+        "global_js_vars": [
+          "Stripe"
+        ],
+        "request_domains": [
+          "js.stripe.com",
+          "stripe.com",
+          "m.stripe.network"
+        ],
+        "id_pattern": {
+          "label": "Stripe publishable key (LIVE, public)",
+          "patterns": [
+            "(pk_live_[A-Za-z0-9]{20,})"
+          ]
+        }
+      },
+      "gtm_implication": "Stripe payments — self-serve/PLG checkout or billing."
+    },
+    {
+      "name": "PayPal",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "paypalobjects.com",
+          "paypal.com/sdk/js"
+        ],
+        "request_domains": [
+          "paypal.com",
+          "paypalobjects.com"
+        ]
+      },
+      "gtm_implication": "PayPal — consumer/SMB checkout."
+    },
+    {
+      "name": "Braintree",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "js.braintreegateway.com"
+        ],
+        "request_domains": [
+          "braintreegateway.com"
+        ]
+      },
+      "gtm_implication": "Braintree — mid-market/marketplace payments."
+    },
+    {
+      "name": "Adyen",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "checkoutshopper-live.adyen.com",
+          "live.adyen.com"
+        ],
+        "request_domains": [
+          "adyen.com"
+        ]
+      },
+      "gtm_implication": "Adyen — enterprise/global payments."
+    },
+    {
+      "name": "Chargebee",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "js.chargebee.com"
+        ],
+        "global_js_vars": [
+          "Chargebee"
+        ],
+        "request_domains": [
+          "chargebee.com"
+        ]
+      },
+      "gtm_implication": "Chargebee subscription billing — SaaS recurring revenue."
+    },
+    {
+      "name": "Recurly",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "js.recurly.com"
+        ],
+        "global_js_vars": [
+          "recurly"
+        ],
+        "request_domains": [
+          "recurly.com"
+        ]
+      },
+      "gtm_implication": "Recurly subscription billing — SaaS recurring revenue."
+    },
+    {
+      "name": "Paddle",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.paddle.com"
+        ],
+        "global_js_vars": [
+          "Paddle"
+        ],
+        "request_domains": [
+          "paddle.com"
+        ]
+      },
+      "gtm_implication": "Paddle merchant-of-record — global SaaS self-serve billing."
+    },
+    {
+      "name": "Lemon Squeezy",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "lmsqueezy.com",
+          "app.lemonsqueezy.com"
+        ],
+        "request_domains": [
+          "lemonsqueezy.com"
+        ]
+      },
+      "gtm_implication": "Lemon Squeezy MoR — indie/small SaaS self-serve."
+    },
+    {
+      "name": "Shopify Payments",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "shopifycloud.com/checkout"
+        ],
+        "request_domains": [
+          "shopifycloud.com"
+        ]
+      },
+      "gtm_implication": "Shopify Payments — DTC checkout."
+    },
+    {
+      "name": "Optimizely",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.optimizely.com"
+        ],
+        "global_js_vars": [
+          "optimizely"
+        ],
+        "request_domains": [
+          "optimizely.com"
+        ],
+        "id_pattern": {
+          "label": "Optimizely project/account ID",
+          "patterns": [
+            "cdn\\.optimizely\\.com/(?:js|public)/(\\d{6,})\\.js",
+            "cdn\\.optimizely\\.com/datafiles/([A-Za-z0-9]{8,})\\.json"
+          ]
+        }
+      },
+      "gtm_implication": "Optimizely experimentation — funded CRO/experimentation program."
+    },
+    {
+      "name": "VWO",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "dev.visualwebsiteoptimizer.com"
+        ],
+        "global_js_vars": [
+          "VWO",
+          "_vwo_code"
+        ],
+        "request_domains": [
+          "visualwebsiteoptimizer.com",
+          "vwo.com"
+        ],
+        "id_pattern": {
+          "label": "VWO account ID",
+          "patterns": [
+            "dev\\.visualwebsiteoptimizer\\.com/[^'\\\"]*?account_id=(\\d{4,})",
+            "window\\._vwo_code[^}]*?account_id\\s*[:=]\\s*(\\d{4,})",
+            "/vis_opt[^'\\\"]*?\\baccount=(\\d{4,})"
+          ]
+        }
+      },
+      "gtm_implication": "VWO A/B testing — CRO program."
+    },
+    {
+      "name": "Google Optimize",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "optimize.google.com",
+          "googleoptimize.com"
+        ],
+        "request_domains": [
+          "optimize.google.com"
+        ]
+      },
+      "gtm_implication": "Google Optimize (sunset) — legacy experimentation."
+    },
+    {
+      "name": "LaunchDarkly",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "app.launchdarkly.com",
+          "clientstream.launchdarkly.com"
+        ],
+        "request_domains": [
+          "launchdarkly.com",
+          "ld.catamorphic.com"
+        ]
+      },
+      "gtm_implication": "LaunchDarkly feature flags — engineering-led product, strong PLG signal."
+    },
+    {
+      "name": "Statsig",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "api.statsig.com",
+          "featureassets.org"
+        ],
+        "request_domains": [
+          "statsig.com",
+          "featureassets.org"
+        ]
+      },
+      "gtm_implication": "Statsig experimentation — modern PLG product team."
+    },
+    {
+      "name": "Split.io",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.split.io",
+          "sdk.split.io"
+        ],
+        "request_domains": [
+          "split.io"
+        ]
+      },
+      "gtm_implication": "Split feature flags — engineering-led experimentation."
+    },
+    {
+      "name": "AB Tasty",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "try.abtasty.com"
+        ],
+        "global_js_vars": [
+          "ABTasty"
+        ],
+        "request_domains": [
+          "abtasty.com"
+        ]
+      },
+      "gtm_implication": "AB Tasty — CRO/personalization program."
+    },
+    {
+      "name": "Kameleoon",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "kameleoon.com",
+          ".kameleoon.eu"
+        ],
+        "global_js_vars": [
+          "Kameleoon"
+        ],
+        "request_domains": [
+          "kameleoon.com",
+          "kameleoon.eu"
+        ]
+      },
+      "gtm_implication": "Kameleoon experimentation/personalization — CRO program."
+    },
+    {
+      "name": "Convert.com",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "cdn-3.convertexperiments.com",
+          "cdn-4.convertexperiments.com"
+        ],
+        "request_domains": [
+          "convertexperiments.com",
+          "convert.com"
+        ]
+      },
+      "gtm_implication": "Convert.com A/B testing — CRO program."
+    },
+    {
+      "name": "Google Tag Manager",
+      "category": "tag-managers",
+      "detection": {
+        "script_src_patterns": [
+          "googletagmanager.com/gtm.js",
+          "googletagmanager.com/ns.html"
+        ],
+        "html_patterns": [
+          "gtm-"
+        ],
+        "global_js_vars": [
+          "dataLayer",
+          "google_tag_manager"
+        ],
+        "request_domains": [
+          "googletagmanager.com"
+        ],
+        "id_pattern": {
+          "label": "GTM container ID",
+          "patterns": [
+            "(GTM-[A-Z0-9]{4,})"
+          ]
+        }
+      },
+      "gtm_implication": "GTM present — many tools may be injected client-side; re-check with the rendered detector."
+    },
+    {
+      "name": "Adobe Launch / DTM",
+      "category": "tag-managers",
+      "detection": {
+        "script_src_patterns": [
+          "assets.adobedtm.com"
+        ],
+        "global_js_vars": [
+          "_satellite"
+        ],
+        "request_domains": [
+          "adobedtm.com",
+          "demdex.net",
+          "omtrdc.net"
+        ]
+      },
+      "gtm_implication": "Adobe Experience Cloud tag manager — enterprise Adobe marketing stack."
+    },
+    {
+      "name": "Segment Consent",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.segment.com/consent"
+        ],
+        "request_domains": [
+          "segment.com"
+        ]
+      },
+      "gtm_implication": "Consent layer — privacy-mature org."
+    },
+    {
+      "name": "OneTrust",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.cookielaw.org",
+          "cdn-ukwest.onetrust.com",
+          "otSDKStub.js"
+        ],
+        "global_js_vars": [
+          "OneTrust",
+          "OptanonWrapper"
+        ],
+        "cookie_patterns": [
+          "optanonconsent",
+          "optanonalertboxclosed"
+        ],
+        "request_domains": [
+          "cookielaw.org",
+          "onetrust.com"
+        ]
+      },
+      "gtm_implication": "OneTrust CMP — enterprise privacy/compliance program (GDPR/CCPA)."
+    },
+    {
+      "name": "Cookiebot",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "consent.cookiebot.com"
+        ],
+        "global_js_vars": [
+          "Cookiebot"
+        ],
+        "cookie_patterns": [
+          "cookieconsent"
+        ],
+        "request_domains": [
+          "cookiebot.com"
+        ]
+      },
+      "gtm_implication": "Cookiebot CMP — GDPR compliance, EU-facing."
+    },
+    {
+      "name": "Osano",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "cmp.osano.com"
+        ],
+        "global_js_vars": [
+          "Osano"
+        ],
+        "request_domains": [
+          "osano.com"
+        ]
+      },
+      "gtm_implication": "Osano CMP — privacy compliance program."
+    },
+    {
+      "name": "Usercentrics",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "app.usercentrics.eu",
+          "usercentrics.com"
+        ],
+        "global_js_vars": [
+          "UC_UI",
+          "usercentrics"
+        ],
+        "request_domains": [
+          "usercentrics.eu",
+          "usercentrics.com"
+        ]
+      },
+      "gtm_implication": "Usercentrics CMP — EU/DACH privacy compliance."
+    },
+    {
+      "name": "Termly",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "app.termly.io"
+        ],
+        "request_domains": [
+          "termly.io"
+        ]
+      },
+      "gtm_implication": "Termly CMP — SMB privacy compliance."
+    },
+    {
+      "name": "TrustArc",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "consent.trustarc.com",
+          "consent-pref.trustarc.com"
+        ],
+        "request_domains": [
+          "trustarc.com"
+        ]
+      },
+      "gtm_implication": "TrustArc CMP — enterprise privacy compliance."
+    },
+    {
+      "name": "Quantcast Choice",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "quantcast.mgr.consensu.org"
+        ],
+        "request_domains": [
+          "consensu.org"
+        ]
+      },
+      "gtm_implication": "Quantcast Choice CMP — programmatic-ad + GDPR."
+    },
+    {
+      "name": "Google Fonts",
+      "category": "fonts",
+      "detection": {
+        "script_src_patterns": [
+          "fonts.googleapis.com",
+          "fonts.gstatic.com"
+        ],
+        "html_patterns": [
+          "fonts.googleapis.com"
+        ],
+        "request_domains": [
+          "fonts.googleapis.com",
+          "fonts.gstatic.com"
+        ]
+      },
+      "gtm_implication": "Google Fonts — ubiquitous, low signal."
+    },
+    {
+      "name": "Adobe Fonts (Typekit)",
+      "category": "fonts",
+      "detection": {
+        "script_src_patterns": [
+          "use.typekit.net",
+          "p.typekit.net"
+        ],
+        "request_domains": [
+          "typekit.net",
+          "use.typekit.net"
+        ]
+      },
+      "gtm_implication": "Adobe Fonts — design-conscious brand."
+    },
+    {
+      "name": "Font Awesome",
+      "category": "fonts",
+      "detection": {
+        "script_src_patterns": [
+          "use.fontawesome.com",
+          "kit.fontawesome.com",
+          "cdnjs.cloudflare.com/ajax/libs/font-awesome"
+        ],
+        "request_domains": [
+          "fontawesome.com"
+        ]
+      },
+      "gtm_implication": "Font Awesome icons — common, low signal."
+    },
+    {
+      "name": "Calendly",
+      "category": "scheduling",
+      "detection": {
+        "script_src_patterns": [
+          "assets.calendly.com"
+        ],
+        "global_js_vars": [
+          "Calendly"
+        ],
+        "request_domains": [
+          "calendly.com"
+        ]
+      },
+      "gtm_implication": "Calendly booking — inbound/PLG self-serve meeting booking."
+    },
+    {
+      "name": "Chili Piper",
+      "category": "scheduling",
+      "detection": {
+        "script_src_patterns": [
+          "js.chilipiper.com"
+        ],
+        "global_js_vars": [
+          "ChiliPiper"
+        ],
+        "request_domains": [
+          "chilipiper.com"
+        ]
+      },
+      "gtm_implication": "Chili Piper inbound router — sales-assist speed-to-lead, funded B2B."
+    },
+    {
+      "name": "HubSpot Meetings",
+      "category": "scheduling",
+      "detection": {
+        "script_src_patterns": [
+          "meetings.hubspot.com",
+          "static.hsappstatic.net/MeetingsEmbed"
+        ],
+        "request_domains": [
+          "meetings.hubspot.com"
+        ]
+      },
+      "gtm_implication": "HubSpot Meetings — inbound booking in HubSpot stack."
+    },
+    {
+      "name": "Cal.com",
+      "category": "scheduling",
+      "detection": {
+        "script_src_patterns": [
+          "app.cal.com/embed",
+          "cal.com/embed"
+        ],
+        "global_js_vars": [
+          "Cal"
+        ],
+        "request_domains": [
+          "cal.com"
+        ]
+      },
+      "gtm_implication": "Cal.com open-source scheduling — modern/dev-tools PLG."
+    },
+    {
+      "name": "Default / Qualified routing",
+      "category": "scheduling",
+      "detection": {
+        "script_src_patterns": [
+          "default.com",
+          "withdefault.com"
+        ],
+        "request_domains": [
+          "default.com",
+          "withdefault.com"
+        ]
+      },
+      "gtm_implication": "Default inbound routing — modern PLG sales-assist."
+    },
+    {
+      "name": "Acuity Scheduling",
+      "category": "scheduling",
+      "detection": {
+        "script_src_patterns": [
+          "embed.acuityscheduling.com"
+        ],
+        "request_domains": [
+          "acuityscheduling.com"
+        ]
+      },
+      "gtm_implication": "Acuity — SMB/services appointment booking."
+    },
+    {
+      "name": "Typeform",
+      "category": "forms",
+      "detection": {
+        "script_src_patterns": [
+          "embed.typeform.com",
+          "form.typeform.com"
+        ],
+        "html_patterns": [
+          "data-tf-"
+        ],
+        "request_domains": [
+          "typeform.com"
+        ]
+      },
+      "gtm_implication": "Typeform — conversational lead-capture/surveys."
+    },
+    {
+      "name": "Jotform",
+      "category": "forms",
+      "detection": {
+        "script_src_patterns": [
+          "form.jotform.com",
+          "cdn.jotfor.ms"
+        ],
+        "request_domains": [
+          "jotform.com",
+          "jotfor.ms"
+        ]
+      },
+      "gtm_implication": "Jotform — SMB form builder."
+    },
+    {
+      "name": "Formstack",
+      "category": "forms",
+      "detection": {
+        "script_src_patterns": [
+          "formstack.com/forms/js"
+        ],
+        "request_domains": [
+          "formstack.com"
+        ]
+      },
+      "gtm_implication": "Formstack — mid-market forms/workflows."
+    },
+    {
+      "name": "Google Forms",
+      "category": "forms",
+      "detection": {
+        "script_src_patterns": [
+          "docs.google.com/forms"
+        ],
+        "request_domains": [
+          "docs.google.com"
+        ]
+      },
+      "gtm_implication": "Google Forms — lightweight/internal capture."
+    },
+    {
+      "name": "Tally",
+      "category": "forms",
+      "detection": {
+        "script_src_patterns": [
+          "tally.so/widgets"
+        ],
+        "request_domains": [
+          "tally.so"
+        ]
+      },
+      "gtm_implication": "Tally — indie/startup form builder."
+    },
+    {
+      "name": "Marketo Forms",
+      "category": "forms",
+      "detection": {
+        "script_src_patterns": [
+          "mktoforms2",
+          "forms2.min.js"
+        ],
+        "global_js_vars": [
+          "MktoForms2"
+        ]
+      },
+      "gtm_implication": "Marketo forms — enterprise demand-gen lead capture."
+    },
+    {
+      "name": "OptinMonster",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "a.optnmstr.com",
+          "api.opmnstr.com"
+        ],
+        "request_domains": [
+          "optnmstr.com",
+          "optinmonster.com"
+        ]
+      },
+      "gtm_implication": "OptinMonster popups — aggressive email-capture/CRO."
+    },
+    {
+      "name": "Sumo",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "load.sumo.com",
+          "sumo.com/load"
+        ],
+        "request_domains": [
+          "sumo.com"
+        ]
+      },
+      "gtm_implication": "Sumo email-capture — SMB list-building."
+    },
+    {
+      "name": "Privy",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "widget.privy.com"
+        ],
+        "request_domains": [
+          "privy.com"
+        ]
+      },
+      "gtm_implication": "Privy popups — Shopify/DTC email+SMS capture."
+    },
+    {
+      "name": "Justuno",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.justuno.com"
+        ],
+        "request_domains": [
+          "justuno.com"
+        ]
+      },
+      "gtm_implication": "Justuno — DTC conversion/email capture."
+    },
+    {
+      "name": "Mailmunch",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "d2zv2zh6m3jik2.cloudfront.net",
+          "mailmunch.com"
+        ],
+        "request_domains": [
+          "mailmunch.com"
+        ]
+      },
+      "gtm_implication": "Mailmunch — SMB list building."
+    },
+    {
+      "name": "ConvertKit / Kit",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "f.convertkit.com",
+          "convertkit.com"
+        ],
+        "request_domains": [
+          "convertkit.com",
+          "kit.com"
+        ]
+      },
+      "gtm_implication": "ConvertKit — creator/newsletter email business."
+    },
+    {
+      "name": "Beehiiv",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "beehiiv.com",
+          "subscribe-forms.beehiiv.com"
+        ],
+        "request_domains": [
+          "beehiiv.com"
+        ]
+      },
+      "gtm_implication": "Beehiiv — modern newsletter/media business."
+    },
+    {
+      "name": "Substack",
+      "category": "email-capture",
+      "detection": {
+        "script_src_patterns": [
+          "substackcdn.com",
+          "substack.com/embed"
+        ],
+        "request_domains": [
+          "substack.com",
+          "substackcdn.com"
+        ]
+      },
+      "gtm_implication": "Substack — creator/newsletter-led."
+    },
+    {
+      "name": "Wistia",
+      "category": "video",
+      "detection": {
+        "script_src_patterns": [
+          "fast.wistia.com",
+          "fast.wistia.net"
+        ],
+        "html_patterns": [
+          "wistia_async",
+          "wistia_embed"
+        ],
+        "global_js_vars": [
+          "Wistia"
+        ],
+        "request_domains": [
+          "wistia.com",
+          "wistia.net"
+        ]
+      },
+      "gtm_implication": "Wistia — B2B marketing video with lead-gen/analytics."
+    },
+    {
+      "name": "Vimeo",
+      "category": "video",
+      "detection": {
+        "script_src_patterns": [
+          "player.vimeo.com",
+          "f.vimeocdn.com"
+        ],
+        "request_domains": [
+          "vimeo.com",
+          "vimeocdn.com"
+        ]
+      },
+      "gtm_implication": "Vimeo — brand/marketing video hosting."
+    },
+    {
+      "name": "YouTube Embed",
+      "category": "video",
+      "detection": {
+        "script_src_patterns": [
+          "youtube.com/embed",
+          "youtube-nocookie.com",
+          "youtube.com/iframe_api"
+        ],
+        "request_domains": [
+          "youtube.com",
+          "ytimg.com",
+          "youtube-nocookie.com"
+        ]
+      },
+      "gtm_implication": "YouTube embeds — content/social video distribution."
+    },
+    {
+      "name": "Vidyard",
+      "category": "video",
+      "detection": {
+        "script_src_patterns": [
+          "play.vidyard.com",
+          "embed.vidyard.com"
+        ],
+        "global_js_vars": [
+          "VidyardV4"
+        ],
+        "request_domains": [
+          "vidyard.com"
+        ]
+      },
+      "gtm_implication": "Vidyard — B2B video + sales/marketing video analytics."
+    },
+    {
+      "name": "Loom",
+      "category": "video",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.loom.com",
+          "loom.com/embed"
+        ],
+        "request_domains": [
+          "loom.com"
+        ]
+      },
+      "gtm_implication": "Loom embeds — async video, modern PLG/dev-tools."
+    },
+    {
+      "name": "Mux",
+      "category": "video",
+      "detection": {
+        "script_src_patterns": [
+          "src.litix.io",
+          "stream.mux.com",
+          "image.mux.com"
+        ],
+        "request_domains": [
+          "mux.com",
+          "litix.io"
+        ]
+      },
+      "gtm_implication": "Mux video infra — engineering-led video product."
+    },
+    {
+      "name": "Sentry",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "browser.sentry-cdn.com",
+          "js.sentry-cdn.com"
+        ],
+        "global_js_vars": [
+          "Sentry",
+          "__SENTRY__"
+        ],
+        "request_domains": [
+          "sentry.io",
+          "ingest.sentry.io"
+        ]
+      },
+      "gtm_implication": "Sentry error monitoring — engineering-led product (PLG-adjacent)."
+    },
+    {
+      "name": "Datadog RUM",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "www.datadoghq-browser-agent.com"
+        ],
+        "global_js_vars": [
+          "DD_RUM"
+        ],
+        "request_domains": [
+          "datadoghq.com",
+          "datadoghq-browser-agent.com"
+        ]
+      },
+      "gtm_implication": "Datadog RUM — well-resourced engineering org."
+    },
+    {
+      "name": "New Relic",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "js-agent.newrelic.com",
+          "bam.nr-data.net"
+        ],
+        "global_js_vars": [
+          "NREUM",
+          "newrelic"
+        ],
+        "request_domains": [
+          "newrelic.com",
+          "nr-data.net"
+        ]
+      },
+      "gtm_implication": "New Relic monitoring — established engineering org."
+    },
+    {
+      "name": "Cloudflare Turnstile",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "challenges.cloudflare.com/turnstile"
+        ],
+        "request_domains": [
+          "challenges.cloudflare.com"
+        ]
+      },
+      "gtm_implication": "Cloudflare Turnstile — bot/spam protection on forms."
+    },
+    {
+      "name": "reCAPTCHA",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "www.google.com/recaptcha",
+          "www.gstatic.com/recaptcha"
+        ],
+        "global_js_vars": [
+          "grecaptcha"
+        ],
+        "request_domains": [
+          "recaptcha.net",
+          "gstatic.com"
+        ]
+      },
+      "gtm_implication": "reCAPTCHA — form/bot protection, Google stack."
+    },
+    {
+      "name": "hCaptcha",
+      "category": "consent-cmp",
+      "detection": {
+        "script_src_patterns": [
+          "js.hcaptcha.com",
+          "hcaptcha.com/1/api.js"
+        ],
+        "request_domains": [
+          "hcaptcha.com"
+        ]
+      },
+      "gtm_implication": "hCaptcha — privacy-leaning bot protection."
+    },
+    {
+      "name": "Algolia",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "cdn.jsdelivr.net/npm/algoliasearch",
+          "algolia.net"
+        ],
+        "global_js_vars": [
+          "algoliasearch"
+        ],
+        "request_domains": [
+          "algolia.net",
+          "algolianet.com"
+        ]
+      },
+      "gtm_implication": "Algolia search — content/docs/ecommerce search investment."
+    },
+    {
+      "name": "Zoominfo / WebSights",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "ws.zoominfo.com",
+          "js.zi-scripts.com"
+        ],
+        "request_domains": [
+          "zoominfo.com",
+          "zi-scripts.com"
+        ]
+      },
+      "gtm_implication": "ZoomInfo WebSights — visitor de-anonymization for outbound."
+    },
+    {
+      "name": "G2 Buyer Intent",
+      "category": "cdp",
+      "detection": {
+        "script_src_patterns": [
+          "tracking.g2crowd.com",
+          "g2.com/track"
+        ],
+        "request_domains": [
+          "g2crowd.com",
+          "g2.com"
+        ]
+      },
+      "gtm_implication": "G2 tracking/buyer-intent — review-driven B2B demand-gen."
+    },
+    {
+      "name": "Qualified",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "qualified.com/js",
+          "js.qualified.com"
+        ],
+        "global_js_vars": [
+          "qualified"
+        ],
+        "request_domains": [
+          "qualified.com"
+        ]
+      },
+      "gtm_implication": "Qualified — Salesforce-native conversational ABM/sales-assist."
+    },
+    {
+      "name": "Senja",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "widget.senja.io"
+        ],
+        "request_domains": [
+          "senja.io"
+        ]
+      },
+      "gtm_implication": "Senja testimonials — modern SaaS social proof."
+    },
+    {
+      "name": "Testimonial.to",
+      "category": "reviews",
+      "detection": {
+        "script_src_patterns": [
+          "embed-v2.testimonial.to",
+          "testimonial.to/embed"
+        ],
+        "request_domains": [
+          "testimonial.to"
+        ]
+      },
+      "gtm_implication": "Testimonial.to — startup/SMB social proof."
+    },
+    {
+      "name": "ZoomInfo Chat (Insent)",
+      "category": "chat-support",
+      "detection": {
+        "script_src_patterns": [
+          "insent.ai",
+          "chat.zoominfo.com"
+        ],
+        "request_domains": [
+          "insent.ai"
+        ]
+      },
+      "gtm_implication": "ZoomInfo Chat — B2B conversational sales-assist."
+    },
+    {
+      "name": "Heap/Contentsquare",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "t.contentsquare.net",
+          "contentsquare.net"
+        ],
+        "request_domains": [
+          "contentsquare.net"
+        ]
+      },
+      "gtm_implication": "Contentsquare — enterprise digital-experience analytics."
+    },
+    {
+      "name": "Lucky Orange",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "tools.luckyorange.com",
+          "cdn.luckyorange.com"
+        ],
+        "request_domains": [
+          "luckyorange.com"
+        ]
+      },
+      "gtm_implication": "Lucky Orange — SMB heatmaps/recordings CRO."
+    },
+    {
+      "name": "Smartlook",
+      "category": "heatmaps",
+      "detection": {
+        "script_src_patterns": [
+          "rec.smartlook.com",
+          "web-sdk.smartlook.com"
+        ],
+        "global_js_vars": [
+          "smartlook"
+        ],
+        "request_domains": [
+          "smartlook.com"
+        ]
+      },
+      "gtm_implication": "Smartlook — session replay CRO."
+    },
+    {
+      "name": "Unbounce",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "d9hhrg4mnvzow.cloudfront.net",
+          "unbounce.com"
+        ],
+        "request_domains": [
+          "unbounce.com",
+          "ubembed.com"
+        ]
+      },
+      "gtm_implication": "Unbounce landing pages — paid-acquisition landing-page program."
+    },
+    {
+      "name": "Instapage",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "instapage.com",
+          "secure.instapage.com"
+        ],
+        "request_domains": [
+          "instapage.com"
+        ]
+      },
+      "gtm_implication": "Instapage landing pages — paid-acquisition LP optimization."
+    },
+    {
+      "name": "Leadpages",
+      "category": "ab-testing",
+      "detection": {
+        "script_src_patterns": [
+          "leadpages.com",
+          "lp-cdn.com"
+        ],
+        "request_domains": [
+          "leadpages.com"
+        ]
+      },
+      "gtm_implication": "Leadpages — SMB landing-page / lead-gen."
+    },
+    {
+      "name": "Drift Prospector / Marketo Munchkin pairing",
+      "category": "crm-marketing-automation",
+      "detection": {
+        "script_src_patterns": [
+          "fast.ssqt.io"
+        ],
+        "request_domains": [
+          "ssqt.io"
+        ]
+      },
+      "gtm_implication": "ON24/webinar or engagement tooling — webinar-led demand gen."
+    },
+    {
+      "name": "Zuora",
+      "category": "payments",
+      "detection": {
+        "script_src_patterns": [
+          "static.zuora.com",
+          "js.zuora.com"
+        ],
+        "request_domains": [
+          "zuora.com"
+        ]
+      },
+      "gtm_implication": "Zuora subscription billing — enterprise recurring revenue."
+    },
+    {
+      "name": "Maze",
+      "category": "analytics",
+      "detection": {
+        "script_src_patterns": [
+          "snippet.maze.co",
+          "maze.co"
+        ],
+        "request_domains": [
+          "maze.co"
+        ]
+      },
+      "gtm_implication": "Maze product research/testing — product-led, UX-mature."
+    }
+  ]
+}

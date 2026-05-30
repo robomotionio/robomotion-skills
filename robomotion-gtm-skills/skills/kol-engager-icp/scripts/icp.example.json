@@ -1,0 +1,34 @@
+{
+  "_comment": "ICP config for score_icp.py. KOL audiences are broad — keep this STRICT. All keyword lists are matched case-insensitively as substrings against the enriched lead fields. Empty lists become neutral (partial credit) rather than a hard filter.",
+
+  "target_titles": [
+    "head of operations", "vp operations", "director of operations",
+    "revops", "revenue operations", "head of automation",
+    "process improvement", "transformation lead", "coo"
+  ],
+  "exclude_titles": [
+    "intern", "student", "freelance", "consultant", "recruiter",
+    "professor", "founder of", "looking for work"
+  ],
+  "target_seniorities": [
+    "owner", "founder", "c_suite", "vp", "head", "director", "manager"
+  ],
+  "industries": [
+    "information technology", "financial services", "insurance",
+    "logistics", "business process outsourcing", "healthcare"
+  ],
+  "company_sizes": [
+    "201-500", "501-1000", "1001-5000", "5000+"
+  ],
+  "geos": [
+    "united states", "canada", "united kingdom"
+  ],
+  "competitors": [
+    "uipath", "automation anywhere", "blue prism", "power automate", "workato"
+  ],
+
+  "topic_keywords": [
+    "rpa", "automation", "workflow", "orchestration", "process mining",
+    "hyperautomation", "agentic", "ai agents"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "_comment": "Intake schema + selection rubrics for campaign-brief-generator. This is a pure-reasoning composite: the AGENT does all synthesis. Use this to run one grouped intake pass (don't make it feel like a form) and to ground the channel/messaging/content decisions.",
+  "required_inputs": {
+    "goal": "success definition with a number + timeline",
+    "trigger": "what prompts the campaign",
+    "timeline": "duration + start date",
+    "icp": "title/company/stage/geo + current pain + channels they use",
+    "product": "what's promoted, core value prop, social proof, anti-positioning",
+    "constraints": "team size, budget, existing assets"
+  },
+  "channel_selection": {
+    "rule": "Recommend 2-4 channels for seed/Series A; resist >4 (execution quality beats breadth).",
+    "options": {
+      "linkedin-organic": "best for B2B founders/operators; low cost; needs consistent posting",
+      "x-organic": "best for dev/technical + build-in-public; low cost",
+      "cold-email": "best for defined ICP lists; medium effort; deliverability risk",
+      "content-seo": "best for durable demand; high effort; slow payoff",
+      "community": "best for niche ICPs (Slack/Discord/Reddit); medium effort",
+      "paid-social": "best for fast tests with budget; needs creative + budget",
+      "webinar-event": "best for high-ACV / education-heavy; high effort",
+      "partnerships": "best for shared-ICP leverage; medium effort; relationship-gated"
+    },
+    "per_channel_fields": ["role", "expected_output", "effort", "budget", "owner", "metric"]
+  },
+  "messaging_architecture": {
+    "rule": "One primary message + two secondaries; each with evidence + channel fit.",
+    "fields": ["message", "evidence", "best_channels"]
+  },
+  "content_plan": {
+    "rule": "Concrete pieces with WORKING TITLES (not 'write some posts'), mapped week-by-week with owners + goals.",
+    "weeks": 4,
+    "fields": ["week", "piece_title", "channel", "owner", "goal"]
+  },
+  "success_metrics": {
+    "rule": "KPI table by funnel phase (awareness -> engagement -> conversion) + ONE north-star metric."
+  },
+  "required_sections": [
+    "goal", "icp", "timeline", "channel_plan", "messaging_hierarchy",
+    "content_calendar_weeks_1_4", "success_metrics_table", "north_star",
+    "what_we_are_NOT_doing", "pre_launch_asset_checklist"
+  ]
+}

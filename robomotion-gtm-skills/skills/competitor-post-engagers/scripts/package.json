@@ -1,0 +1,10 @@
+{
+  "name": "competitor-post-engagers-scripts",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Keyless Playwright degrade for the competitor-post-engagers extraction engine.",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

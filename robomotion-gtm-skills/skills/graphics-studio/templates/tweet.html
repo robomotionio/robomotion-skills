@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- graphics-studio template: tweet (1080x1080, square social image) -->
+__FONT_LINKS__
+<style>
+__BASE_CSS__
+__STYLE_VARS__
+/* tweet layout — one punchy statement, legible small, handle in corner */
+.slide { justify-content: center; padding: calc(var(--space) * 14); }
+.slide h1 { font-size: calc(var(--t-4) * 1.1); }
+.slide .handle { position: absolute; bottom: calc(var(--space) * 8); left: calc(var(--space) * 14); color: var(--muted); font-weight: 700; font-size: calc(var(--t-0) * 0.85); }
+.slide pre { background: var(--surface); border-radius: var(--radius); padding: calc(var(--space) * 4); font-family: var(--font-body); font-size: var(--t-0); overflow: hidden; }
+</style>
+</head>
+<body>
+<!-- TWEET IMAGE. Canvas 1080x1080. One punchy statement or code/screenshot mock; legible
+     small; strong contrast; handle in a corner. Adapt:
+       <div class="slide">
+         <h1>One sharp statement that fits.</h1>
+         <div class="handle">@yourhandle</div>
+       </div>
+-->
+__CONTENT__
+</body>
+</html>
