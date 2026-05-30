@@ -1,0 +1,11 @@
+schema_version: 1
+name: gtm-engineer-skills
+title: GTM Engineer Skills
+type: group
+version: 1.0.0
+author: OnVoyage AI
+source_url: https://github.com/onvoyage-ai/gtm-engineer-skills
+license: MIT
+summary: 12 go-to-market engineering skills — a sequential pipeline from brand research through SEO/GEO keyword and content work to AEO/GEO website audits and fixes. Vendored verbatim from upstream.
+category: Marketing
+tags: [marketing, seo, geo, aeo, content, keyword-research, reddit, backlinks, audit]

@@ -103,6 +103,7 @@ Mixing is fine: one install-bearing skill puts the whole agent in container mode
 | `claude-seo/` | 25 | AgriciDaniel | https://github.com/AgriciDaniel/claude-seo |
 | `gws-cli/` | 95 | Google Workspace | https://github.com/googleworkspace/cli |
 | `netlify-skills/` | 14 | Netlify | https://github.com/netlify/context-and-tools |
+| `gtm-engineer-skills/` | 12 | OnVoyage AI | https://github.com/onvoyage-ai/gtm-engineer-skills |
 
 ### Marketing skills (`marketing-skills/`) — vendored verbatim
 

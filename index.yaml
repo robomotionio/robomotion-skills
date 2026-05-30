@@ -1446,6 +1446,352 @@ groups:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
   - .robomotion/skill.yaml
+- path: gtm-engineer-skills
+  name: gtm-engineer-skills
+  title: GTM Engineer Skills
+  type: group
+  version: 1.0.0
+  author: OnVoyage AI
+  source_url: https://github.com/onvoyage-ai/gtm-engineer-skills
+  license: MIT
+  summary: 12 go-to-market engineering skills — a sequential pipeline from brand research through SEO/GEO keyword and content
+    work to AEO/GEO website audits and fixes. Vendored verbatim from upstream.
+  category: Marketing
+  tags:
+  - marketing
+  - seo
+  - geo
+  - aeo
+  - content
+  - keyword-research
+  - reddit
+  - backlinks
+  - audit
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 796bd8f4b2fa
+  skills:
+  - id: gtm-engineer-skills/audit-content
+    name: audit-content
+    path: gtm-engineer-skills/skills/audit-content
+    title: audit-content
+    summary: Verifies truthfulness, accuracy, and link integrity of content before publishing. Catches fabricated statistics,
+      dead URLs, misattributed sources, and company claims that contradict the brand DNA.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1627466fcef0
+    files:
+    - SKILL.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/audit-content
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/audit-website-aeo
+    name: audit-website-aeo
+    path: gtm-engineer-skills/skills/audit-website-aeo
+    title: audit-website-aeo
+    summary: Audits a live website for AI-engine discoverability (AEO/GEO). Crawls the site, runs 16 deterministic checks
+      plus a 6-dimension content evaluation, and produces a scored report (A-F) with prioritized fixes. Use to get a baseline
+      before improve-aeo-geo, or to measure progress after changes.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: bd11b65f2bd4
+    files:
+    - README.md
+    - SKILL.md
+    - examples/anthropic-com-audit.md
+    - scripts/aeo-audit.mjs
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/audit-website-aeo
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/build-backlinks
+    name: build-backlinks
+    path: gtm-engineer-skills/skills/build-backlinks
+    title: build-backlinks
+    summary: Finds free backlink and brand mention opportunities across Hacker News, Quora, GitHub, directories, and niche
+      communities. Outputs a prioritized action plan with draft responses ready to post. Use after brand research and content
+      creation to amplify reach and AI engine citations.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 17e09b768c1c
+    files:
+    - README.md
+    - SKILL.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/build-backlinks
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/build-resource-pages
+    name: build-resource-pages
+    path: gtm-engineer-skills/skills/build-resource-pages
+    title: build-resource-pages
+    summary: Takes existing content markdown files and builds production-final resource center pages on client websites using
+      their existing tech stack and design system. Output is live-ready — no review pass, no placeholder content, no prototype
+      styling. Implements hub pages, section listings, article pages, and cross-linking for Blog, Guides, Learn, and Comparisons
+      sections.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3c937c926176
+    files:
+    - README.md
+    - SKILL.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/build-resource-pages
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/create-geo-charts
+    name: create-geo-charts
+    path: gtm-engineer-skills/skills/create-geo-charts
+    title: create-geo-charts
+    summary: Creates data visualizations (charts, graphs, tables) optimized for AI engine parsing and citation. Produces inline
+      SVG/HTML with text summaries, data tables, and JSON-LD so AI engines can quote the data.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 1c591bf3de20
+    files:
+    - README.md
+    - SKILL.md
+    - examples/ai-referral-traffic-share-v2.html
+    - examples/ai-referral-traffic-share.csv
+    - examples/ai-referral-traffic-share.html
+    - examples/ai-toy-brand-comparison.html
+    - examples/ai-toy-market-growth.html
+    - examples/ai-toy-parent-concerns.html
+    - examples/content-freshness-citations-preview.png
+    - examples/content-freshness-citations-v2.html
+    - examples/content-freshness-citations.csv
+    - examples/content-freshness-citations.html
+    - examples/geo-strategy-impact-v2.html
+    - examples/geo-strategy-impact.csv
+    - examples/geo-strategy-impact.html
+    - examples/scooter-brand-market-share.html
+    - examples/scooter-market-growth.html
+    - examples/scooter-specs-comparison.html
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/create-geo-charts
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/geo-content-planning
+    name: geo-content-planning
+    path: gtm-engineer-skills/skills/geo-content-planning
+    title: geo-content-planning
+    summary: Reads existing brand DNA, keywords.csv, and prompts.csv, then produces a plan.csv — a strictly-schema'd content
+      architecture telling the next pipeline step which pages to create, for which keyword/prompt clusters, and in what build
+      order.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: dcabeb9ab63f
+    files:
+    - SKILL.md
+    - plan.csv.schema.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/geo-content-planning
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/geo-content-research
+    name: geo-content-research
+    path: gtm-engineer-skills/skills/geo-content-research
+    title: geo-content-research
+    summary: Researches what prompts people ask AI engines (ChatGPT, Gemini, Perplexity, Claude) about a product category
+      and produces a prompts.csv artifact — a prioritized, strictly-schema'd list of the queries where the brand should be
+      cited. Feeds the monitor workflow.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 79c353d9524f
+    files:
+    - README.md
+    - SKILL.md
+    - prompts.csv.schema.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/geo-content-research
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/improve-aeo-geo
+    name: improve-aeo-geo
+    path: gtm-engineer-skills/skills/improve-aeo-geo
+    title: improve-aeo-geo
+    summary: Audits a website codebase and makes code changes so AI engines (ChatGPT, Claude, Perplexity, Google AI Overviews)
+      can better discover, parse, quote, and cite the site. Covers structured data, content structure, technical signals,
+      and freshness.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 15177fb2fac4
+    files:
+    - README.md
+    - SKILL.md
+    - examples/nextjs-blog-before-after.md
+    - examples/wordpress-business-before-after.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/improve-aeo-geo
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/reddit-opportunity-research
+    name: reddit-opportunity-research
+    path: gtm-engineer-skills/skills/reddit-opportunity-research
+    title: reddit-opportunity-research
+    summary: Researches Reddit using a brand's Brand DNA to find promotable pain-point discussions, target subreddits, and
+      real user search language. Produces a prioritized Reddit opportunity list for content seeding, helpful replies, and
+      prompt research inspiration.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bed1b259183f
+    files:
+    - README.md
+    - SKILL.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/reddit-opportunity-research
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/research-brand
+    name: research-brand
+    path: gtm-engineer-skills/skills/research-brand
+    title: research-brand
+    summary: Researches a company from its URL and produces a Brand DNA file covering positioning, audience, competitors,
+      voice, and messaging. Use when starting work with a new brand or customer.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c60a4cb741f4
+    files:
+    - README.md
+    - SKILL.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/research-brand
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/research-keywords
+    name: research-keywords
+    path: gtm-engineer-skills/skills/research-keywords
+    title: research-keywords
+    summary: Finds high-value SEO and GEO keywords using web search, AI analysis, and optionally paid tools like Ahrefs or
+      Semrush. Produces a validated keywords.csv file with a fixed schema for downstream pipeline consumption.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SERPAPI_KEY
+    content_hash: 5046cecb1d67
+    files:
+    - README.md
+    - SKILL.md
+    - env.optional
+    - keywords.csv.schema.md
+    - scripts/keyword-explorer.mjs
+    - scripts/serp-analyzer.mjs
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/research-keywords
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  - id: gtm-engineer-skills/write-seo-geo-content
+    name: write-seo-geo-content
+    path: gtm-engineer-skills/skills/write-seo-geo-content
+    title: write-seo-geo-content
+    summary: Writes product-led content pages optimized for both search engines and AI engine citations. Produces markdown
+      files with frontmatter, following page-type frameworks (comparison, guide, use case, learn, trust) with verified sources
+      and no fabricated data.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8bf8cd6e02c8
+    files:
+    - README.md
+    - SKILL.md
+    author: OnVoyage AI
+    source_url: https://github.com/onvoyage-ai/gtm-engineer-skills/tree/main/skills/write-seo-geo-content
+    license: MIT
+    group: gtm-engineer-skills
+    category: Marketing
+  files:
+  - .gitignore
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
+  - AGENT.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - README.md
+  - TESTING.md
+  - assets/aeo-audit-screenshot.jpeg
+  - assets/logo.svg
+  - evals/README.md
+  - evals/fixtures/audit-site/chart.svg
+  - evals/fixtures/audit-site/feed.xml
+  - evals/fixtures/audit-site/guide.html
+  - evals/fixtures/audit-site/index.html
+  - evals/fixtures/audit-site/llms.txt
+  - evals/fixtures/audit-site/product.html
+  - evals/fixtures/audit-site/robots.txt
+  - evals/fixtures/audit-site/sitemap.xml
+  - evals/fixtures/contracts/keywords.invalid.csv
+  - evals/fixtures/contracts/keywords.refs.csv
+  - evals/fixtures/contracts/keywords.valid.csv
+  - evals/fixtures/contracts/plan.invalid.csv
+  - evals/fixtures/contracts/plan.valid.csv
+  - evals/fixtures/contracts/prompts.invalid.csv
+  - evals/fixtures/contracts/prompts.refs.csv
+  - evals/fixtures/contracts/prompts.valid.csv
+  - evals/lib/csv-contracts.mjs
+  - evals/tests/audit-website-aeo.test.mjs
+  - evals/tests/contracts.test.mjs
+  - package.json
 - path: gws-cli
   name: gws-cli
   title: Google Workspace CLI Skills
