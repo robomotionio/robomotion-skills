@@ -1471,7 +1471,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 796bd8f4b2fa
+  content_hash: 79eb1507264a
   skills:
   - id: gtm-engineer-skills/audit-content
     name: audit-content
@@ -1721,14 +1721,14 @@ groups:
     tags: []
     mode: container
     env:
-      required: []
-      optional:
+      required:
       - SERPAPI_KEY
-    content_hash: 5046cecb1d67
+      optional: []
+    content_hash: 1044f4c6ded5
     files:
     - README.md
     - SKILL.md
-    - env.optional
+    - env.required
     - keywords.csv.schema.md
     - scripts/keyword-explorer.mjs
     - scripts/serp-analyzer.mjs

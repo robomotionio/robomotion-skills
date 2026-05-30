@@ -13,8 +13,11 @@
   `assets/`) stay at the group root. A bump re-applies the same root→`skills/` move.
 - Added `.robomotion/skill.yaml`, `.robomotion/LICENSE` (verbatim MIT copy),
   this changelog.
-- Added `skills/research-keywords/env.optional` — `SERPAPI_KEY`, the only env var any
-  bundled script reads (`scripts/keyword-explorer.mjs`, `scripts/serp-analyzer.mjs`,
-  both `process.env.SERPAPI_KEY || ""` → optional, free mode without it). No
-  `env.required` anywhere; every other skill is pure-knowledge or runs a zero-config
-  Node script (`audit-website-aeo/scripts/aeo-audit.mjs`).
+- Added `skills/research-keywords/env.required` — `SERPAPI_KEY`. Classified by tracing
+  the downstream gate, not the access idiom: both scripts read `process.env.SERPAPI_KEY
+  || ""`, but `scripts/serp-analyzer.mjs` then does `if (!SERPAPI_KEY) process.exit(1)`
+  (docstring: "Requires SERPAPI_KEY") → required. `scripts/keyword-explorer.mjs` has a
+  genuine free-autocomplete fallback, so partial keyword research works without it, but
+  the SERP-competition half of the skill is dead → the var is REQUIRED at skill level.
+  Every other skill is pure-knowledge or runs a zero-config Node script
+  (`audit-website-aeo/scripts/aeo-audit.mjs`).
