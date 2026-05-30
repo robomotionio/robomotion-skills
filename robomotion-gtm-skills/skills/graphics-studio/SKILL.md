@@ -1,6 +1,6 @@
 ---
 name: graphics-studio
-description: The unified visual generator — turn a brief into rendered high-res PNG/PDF graphics across seven fixed formats (carousel, story, infographic, slides, poster, chart, tweet). Resolve a style from a 16-style catalog, extract an ad-hoc style from a reference image, or synthesize a brand style from hex colors + fonts; source imagery (Unsplash or keyless) and ASCII art; the agent authors the HTML content while a deterministic driver binds design tokens to templates, runs a WCAG contrast check, and a Playwright renderer screenshots single files or whole slide directories at deviceScaleFactor 2. Supersedes create-html-carousel and create-html-slides. Use for any "make me a graphic / carousel / slides / poster / infographic / story" request and as the visual arm of social-kit.
+description: The unified visual generator — turn a brief into rendered high-res PNG/PDF graphics across seven fixed formats (carousel, story, infographic, slides, poster, chart, tweet). Resolve a style from a 16-style catalog, extract an ad-hoc style from a reference image, or synthesize a brand style from hex colors + fonts; source imagery (Unsplash or keyless) and ASCII art; the agent authors the HTML content while a deterministic driver binds design tokens to templates, runs a WCAG contrast check, and a Playwright renderer screenshots single files or whole slide directories at deviceScaleFactor 2. Use for any "make me a graphic / carousel / slides / poster / infographic / story" request and as the visual arm of social-kit.
 metadata:
   version: 2.0.1
   category: content
@@ -18,8 +18,7 @@ the locked canvas size).
 ## When to use
 
 - Any "make me a graphic / carousel / slides / poster / infographic / story" request.
-- As the visual arm of `social-kit` and the upgrade path for the deprecated
-  `create-html-carousel` / `create-html-slides` skills.
+- As the visual arm of `social-kit` for any carousel, slides, or graphic need.
 
 ## The pipeline (one driver orchestrates it)
 
