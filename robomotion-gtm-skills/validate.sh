@@ -51,6 +51,24 @@ if command -v node >/dev/null 2>&1; then
 fi
 for j in $(find skills -name '*.json'); do python3 -c "import json,sys;json.load(open(sys.argv[1]))" "$j" 2>/dev/null || err "invalid JSON: $j"; done
 
+# --- test suite (unit + CLI-contract + mocked-API + keyless-parser) ---
+# Default run is fully offline; live keyless-endpoint tests run only with GTM_NET_TESTS=1.
+# Skip the whole suite with GTM_SKIP_TESTS=1. Uses pytest if present, else stdlib unittest.
+if [ "${GTM_SKIP_TESTS:-0}" != "1" ] && [ -d tests ]; then
+  if command -v pytest >/dev/null 2>&1; then
+    test_cmd="pytest -q tests"
+  else
+    test_cmd="python3 -m unittest discover -s tests -p test_*.py"
+  fi
+  if $test_cmd >/tmp/gtmtests 2>&1; then
+    ran="$(grep -hE '^(Ran |[0-9]+ (passed|tests))' /tmp/gtmtests | tail -1)"
+    verdict="$(grep -hE '^(OK|PASSED)' /tmp/gtmtests | tail -1)"
+    echo "  ✓ tests: ${ran:-passed}${verdict:+ — $verdict}"
+  else
+    echo "  ✗ test suite FAILED:"; tail -30 /tmp/gtmtests; fail=1
+  fi
+fi
+
 echo "----------------------------------------"
 if [ "$fail" -eq 0 ]; then
   echo "✓ robomotion-gtm-skills OK — $count skills, all checks passed"
