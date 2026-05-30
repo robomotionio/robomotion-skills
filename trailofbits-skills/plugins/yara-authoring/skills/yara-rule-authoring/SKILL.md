@@ -556,8 +556,8 @@ The `examples/` directory contains real, attributed rules demonstrating best pra
 ## Scripts
 
 ```bash
-uv run {baseDir}/scripts/yara_lint.py rule.yar      # Validate style/metadata
-uv run {baseDir}/scripts/atom_analyzer.py rule.yar  # Check string quality
+uv run ${SKILL_DIR}/scripts/yara_lint.py rule.yar      # Validate style/metadata
+uv run ${SKILL_DIR}/scripts/atom_analyzer.py rule.yar  # Check string quality
 ```
 
 See [README.md](../../README.md#scripts) for detailed script documentation.
