@@ -86,7 +86,7 @@ Do you need a full autonomous agent (minimal human involvement)?
   |
   NO --> Do you want to build custom agent workflows?
           |
-          YES --> Relevance AI (or n8n + LLM)
+          YES --> Relevance AI (or Robomotion + LLM)
           NO  --> Do you need enrichment + list building?
                     |
                     YES --> Clay (feed into any sender)
@@ -493,7 +493,7 @@ Three components that determine AI SDR success:
 ```
 +------------------------------------------------------------------+
 |                     ORCHESTRATION LAYER                            |
-|  (n8n / Make / Relevance AI / custom code)                       |
+|  (Robomotion / Relevance AI / custom code)                       |
 +------------------------------------------------------------------+
          |              |              |              |
          v              v              v              v
@@ -747,7 +747,7 @@ outbound automation use case
 BUILD YOUR OWN STACK:
   Clay (enrichment):          $149-800/mo
   Instantly or Smartlead:     $30-97/mo
-  n8n or Make (orchestration): $20-99/mo
+  Robomotion (orchestration): $20-99/mo
   LLM API costs (GPT-4/Claude): $50-200/mo
   Domain + mailbox costs:     $50-100/mo
   ----------------------------------------

@@ -204,7 +204,7 @@ Email is the only owned distribution channel. Social platforms can change algori
 | Audience ownership | Full | Full | Full (with export) |
 | Discovery/network | Beehiiv Boost network | Creator Network | Substack recommendations |
 | Analytics | Strong, built-in | Strong, tag-based | Basic |
-| Pipeline integration | API + Zapier to CRM | Native CRM integrations | Limited |
+| Pipeline integration | API + Robomotion to CRM | Native CRM integrations | Limited |
 
 ### Newsletter Growth Tactics
 
