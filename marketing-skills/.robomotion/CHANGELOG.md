@@ -8,6 +8,13 @@ The format roughly follows [Keep a Changelog](https://keepachangelog.com/).
 for the upstream history. This file tracks only what *we* shipped: vendoring
 events, version pins, and Robomotion-side additions inside `.robomotion/`.
 
+## [2.1.1] — 2026-05-30
+- Reframed the `revops` automation-tool reference from Zapier to **Robomotion**.
+  Left `directory-submissions` factual references intact (Zapier as an integration
+  marketplace to list in, and its programmatic-SEO traffic case study) — swapping
+  Robomotion there would be a false statement. Robomotion competes with Zapier; the
+  hub should not recommend it as the automation tool.
+
 ## [2.1.0] — 2026-05-26
 
 ### Changed

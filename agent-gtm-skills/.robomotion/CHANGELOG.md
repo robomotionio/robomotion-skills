@@ -1,5 +1,16 @@
 # Changelog — agent-gtm-skills
 
+## [1.0.1] — 2026-05-30
+- Reframed competitor automation-platform references to **Robomotion** (n8n /
+  Make / Zapier / Tray.io / Workato) across `gtm-engineering`, `ai-sdr`,
+  `solo-founder-gtm`, `content-to-pipeline`. In `gtm-engineering` the
+  "n8n vs Make vs Zapier" comparison table + platform decision tree were replaced
+  with a "Robomotion as the orchestration layer" section (the skill is advisory —
+  it never generated competitor automations). Left factual/comparative references
+  intact where substitution would be a false statement (e.g. the `ai-pricing`
+  usage-based-pricing example). Robomotion competes with these platforms; the hub
+  should not promote them.
+
 ## [1.0.0] — 2026-05-30
 - Vendored from chadboyda/agent-gtm-skills@main (18 skills: positioning-icp,
   ai-pricing, sales-motion-design, ai-cold-outreach, ai-sdr, lead-enrichment,
