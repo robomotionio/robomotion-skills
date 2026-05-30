@@ -275,7 +275,17 @@ def read_skill(repo_root: str, skill_rel: str, group: dict | None) -> dict:
         # Denormalize the group's curated category onto each inner skill so the
         # Designer's marketplace filter (Marketing / Engineering / Security / ...)
         # can group skills without re-walking the group metadata.
-        if group.get("category"):
+        #
+        # A group may instead provide `category_map`, mapping each inner skill's
+        # own `metadata.category` (SKILL.md) to a display category — so one group
+        # can fan out across several marketplace buckets (e.g. the GTM group's
+        # lead-generation -> "Lead Generation", seo -> "SEO"). `category` remains
+        # the fallback for any sub-category not present in the map.
+        cmap = group.get("category_map") or {}
+        sub = fm_metadata_scalar(fm, "category")
+        if cmap and sub and cmap.get(sub):
+            entry["category"] = cmap[sub]
+        elif group.get("category"):
             entry["category"] = group["category"]
     return entry
 
@@ -378,6 +388,9 @@ def build(repo_root: str) -> dict:
             "license": sy.get("license", ""),
             "summary": sy.get("summary", ""),
             "category": sy.get("category", "") or "",
+            # Optional per-sub-category display mapping (read_skill fans inner
+            # skills across marketplace buckets). Only emitted when a group sets it.
+            **({"category_map": sy["category_map"]} if sy.get("category_map") else {}),
             "tags": sy.get("tags", []) or [],
             "has_post_install": has_file(unit_abs, "post-install.sh"),
             "has_env_yaml": has_file(unit_abs, "env.yaml"),

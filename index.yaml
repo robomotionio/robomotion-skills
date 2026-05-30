@@ -8494,6 +8494,16 @@ groups:
     research, and SEO. Keyless-first with optional paid-API enrichment (DataForSEO, Apify, Apollo, …) and an our-solution
     fallback for every external service.
   category: Marketing
+  category_map:
+    lead-generation: Lead Generation
+    outreach: Outreach
+    content: Content
+    research: Research
+    monitoring: Monitoring
+    competitive-intel: Competitive Intel
+    ads: Ads
+    seo: SEO
+    brand: Brand
   tags:
   - gtm
   - sales
@@ -8508,7 +8518,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 91eb3a039e99
+  content_hash: b0b84748f142
   skills:
   - id: robomotion-gtm-skills/ad-angle-miner
     name: ad-angle-miner
@@ -8540,7 +8550,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/ad-angle-miner
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/ad-campaign-analyzer
     name: ad-campaign-analyzer
     path: robomotion-gtm-skills/skills/ad-campaign-analyzer
@@ -8572,7 +8582,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/ad-campaign-analyzer
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/ad-to-landing-page-auditor
     name: ad-to-landing-page-auditor
     path: robomotion-gtm-skills/skills/ad-to-landing-page-auditor
@@ -8599,7 +8609,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/ad-to-landing-page-auditor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/aeo-visibility
     name: aeo-visibility
     path: robomotion-gtm-skills/skills/aeo-visibility
@@ -8631,7 +8641,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/aeo-visibility
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/aeo-visibility-monitor
     name: aeo-visibility-monitor
     path: robomotion-gtm-skills/skills/aeo-visibility-monitor
@@ -8668,7 +8678,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/aeo-visibility-monitor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/apollo-lead-finder
     name: apollo-lead-finder
     path: robomotion-gtm-skills/skills/apollo-lead-finder
@@ -8697,7 +8707,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/apollo-lead-finder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/battlecard-generator
     name: battlecard-generator
     path: robomotion-gtm-skills/skills/battlecard-generator
@@ -8730,7 +8740,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/battlecard-generator
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/blog-feed-monitor
     name: blog-feed-monitor
     path: robomotion-gtm-skills/skills/blog-feed-monitor
@@ -8755,7 +8765,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/blog-feed-monitor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/brand-voice-extractor
     name: brand-voice-extractor
     path: robomotion-gtm-skills/skills/brand-voice-extractor
@@ -8788,7 +8798,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/brand-voice-extractor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Brand
   - id: robomotion-gtm-skills/buyer-persona-generator
     name: buyer-persona-generator
     path: robomotion-gtm-skills/skills/buyer-persona-generator
@@ -8815,7 +8825,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/buyer-persona-generator
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/campaign-brief-generator
     name: campaign-brief-generator
     path: robomotion-gtm-skills/skills/campaign-brief-generator
@@ -8841,7 +8851,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/campaign-brief-generator
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/champion-move-outreach
     name: champion-move-outreach
     path: robomotion-gtm-skills/skills/champion-move-outreach
@@ -8875,7 +8885,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/champion-move-outreach
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/champion-tracker
     name: champion-tracker
     path: robomotion-gtm-skills/skills/champion-tracker
@@ -8908,7 +8918,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/champion-tracker
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/churn-risk-detector
     name: churn-risk-detector
     path: robomotion-gtm-skills/skills/churn-risk-detector
@@ -8942,7 +8952,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/churn-risk-detector
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/cold-email-outreach
     name: cold-email-outreach
     path: robomotion-gtm-skills/skills/cold-email-outreach
@@ -8975,7 +8985,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/cold-email-outreach
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/company-contact-finder
     name: company-contact-finder
     path: robomotion-gtm-skills/skills/company-contact-finder
@@ -9003,7 +9013,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/company-contact-finder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/company-current-gtm-analysis
     name: company-current-gtm-analysis
     path: robomotion-gtm-skills/skills/company-current-gtm-analysis
@@ -9041,7 +9051,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/company-current-gtm-analysis
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/competitive-pricing-intel
     name: competitive-pricing-intel
     path: robomotion-gtm-skills/skills/competitive-pricing-intel
@@ -9078,7 +9088,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitive-pricing-intel
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/competitor-ad-intelligence
     name: competitor-ad-intelligence
     path: robomotion-gtm-skills/skills/competitor-ad-intelligence
@@ -9112,7 +9122,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-ad-intelligence
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/competitor-intel
     name: competitor-intel
     path: robomotion-gtm-skills/skills/competitor-intel
@@ -9151,7 +9161,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-intel
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/competitor-monitoring-system
     name: competitor-monitoring-system
     path: robomotion-gtm-skills/skills/competitor-monitoring-system
@@ -9195,7 +9205,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-monitoring-system
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/competitor-post-engagers
     name: competitor-post-engagers
     path: robomotion-gtm-skills/skills/competitor-post-engagers
@@ -9240,7 +9250,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/competitor-post-engagers
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/conference-speaker-scraper
     name: conference-speaker-scraper
     path: robomotion-gtm-skills/skills/conference-speaker-scraper
@@ -9267,7 +9277,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/conference-speaker-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/contact-cache
     name: contact-cache
     path: robomotion-gtm-skills/skills/contact-cache
@@ -9294,7 +9304,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/contact-cache
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/content-asset-creator
     name: content-asset-creator
     path: robomotion-gtm-skills/skills/content-asset-creator
@@ -9325,7 +9335,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/content-asset-creator
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/content-brief-factory
     name: content-brief-factory
     path: robomotion-gtm-skills/skills/content-brief-factory
@@ -9357,7 +9367,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/content-brief-factory
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/create-linkedin-content
     name: create-linkedin-content
     path: robomotion-gtm-skills/skills/create-linkedin-content
@@ -9382,7 +9392,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-linkedin-content
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/create-workflow-diagram
     name: create-workflow-diagram
     path: robomotion-gtm-skills/skills/create-workflow-diagram
@@ -9412,7 +9422,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-workflow-diagram
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/create-x-content
     name: create-x-content
     path: robomotion-gtm-skills/skills/create-x-content
@@ -9437,7 +9447,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/create-x-content
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/customer-win-back-sequencer
     name: customer-win-back-sequencer
     path: robomotion-gtm-skills/skills/customer-win-back-sequencer
@@ -9470,7 +9480,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/customer-win-back-sequencer
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/disqualification-handling
     name: disqualification-handling
     path: robomotion-gtm-skills/skills/disqualification-handling
@@ -9506,7 +9516,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/disqualification-handling
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/email-drafting
     name: email-drafting
     path: robomotion-gtm-skills/skills/email-drafting
@@ -9531,7 +9541,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/email-drafting
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/event-prospecting-pipeline
     name: event-prospecting-pipeline
     path: robomotion-gtm-skills/skills/event-prospecting-pipeline
@@ -9560,7 +9570,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/event-prospecting-pipeline
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/expansion-signal-spotter
     name: expansion-signal-spotter
     path: robomotion-gtm-skills/skills/expansion-signal-spotter
@@ -9589,7 +9599,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/expansion-signal-spotter
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/feature-launch-playbook
     name: feature-launch-playbook
     path: robomotion-gtm-skills/skills/feature-launch-playbook
@@ -9619,7 +9629,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/feature-launch-playbook
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/funding-signal-monitor
     name: funding-signal-monitor
     path: robomotion-gtm-skills/skills/funding-signal-monitor
@@ -9645,7 +9655,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/funding-signal-monitor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/funding-signal-outreach
     name: funding-signal-outreach
     path: robomotion-gtm-skills/skills/funding-signal-outreach
@@ -9678,7 +9688,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/funding-signal-outreach
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/generate-voice-guide
     name: generate-voice-guide
     path: robomotion-gtm-skills/skills/generate-voice-guide
@@ -9706,7 +9716,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/generate-voice-guide
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/get-qualified-leads-from-luma
     name: get-qualified-leads-from-luma
     path: robomotion-gtm-skills/skills/get-qualified-leads-from-luma
@@ -9739,7 +9749,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/get-qualified-leads-from-luma
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/google-ad-scraper
     name: google-ad-scraper
     path: robomotion-gtm-skills/skills/google-ad-scraper
@@ -9767,7 +9777,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/google-ad-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/google-search-ads-builder
     name: google-search-ads-builder
     path: robomotion-gtm-skills/skills/google-search-ads-builder
@@ -9799,7 +9809,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/google-search-ads-builder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/graphics-studio
     name: graphics-studio
     path: robomotion-gtm-skills/skills/graphics-studio
@@ -9847,7 +9857,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/graphics-studio
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/hacker-news-scraper
     name: hacker-news-scraper
     path: robomotion-gtm-skills/skills/hacker-news-scraper
@@ -9873,7 +9883,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/hacker-news-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/help-center-article-generator
     name: help-center-article-generator
     path: robomotion-gtm-skills/skills/help-center-article-generator
@@ -9902,7 +9912,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/help-center-article-generator
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/hiring-signal-outreach
     name: hiring-signal-outreach
     path: robomotion-gtm-skills/skills/hiring-signal-outreach
@@ -9936,7 +9946,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/hiring-signal-outreach
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/icp-identification
     name: icp-identification
     path: robomotion-gtm-skills/skills/icp-identification
@@ -9963,7 +9973,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/icp-identification
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/icp-website-audit
     name: icp-website-audit
     path: robomotion-gtm-skills/skills/icp-website-audit
@@ -9991,7 +10001,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/icp-website-audit
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/inbound-lead-enrichment
     name: inbound-lead-enrichment
     path: robomotion-gtm-skills/skills/inbound-lead-enrichment
@@ -10021,7 +10031,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/inbound-lead-enrichment
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/inbound-lead-qualification
     name: inbound-lead-qualification
     path: robomotion-gtm-skills/skills/inbound-lead-qualification
@@ -10050,7 +10060,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/inbound-lead-qualification
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/inbound-lead-triage
     name: inbound-lead-triage
     path: robomotion-gtm-skills/skills/inbound-lead-triage
@@ -10079,7 +10089,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/inbound-lead-triage
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/industry-scanner
     name: industry-scanner
     path: robomotion-gtm-skills/skills/industry-scanner
@@ -10117,7 +10127,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/industry-scanner
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/job-posting-intent
     name: job-posting-intent
     path: robomotion-gtm-skills/skills/job-posting-intent
@@ -10147,7 +10157,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/job-posting-intent
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/job-scraper
     name: job-scraper
     path: robomotion-gtm-skills/skills/job-scraper
@@ -10174,7 +10184,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/job-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/kol-content-monitor
     name: kol-content-monitor
     path: robomotion-gtm-skills/skills/kol-content-monitor
@@ -10211,7 +10221,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/kol-content-monitor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/kol-discovery
     name: kol-discovery
     path: robomotion-gtm-skills/skills/kol-discovery
@@ -10237,7 +10247,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/kol-discovery
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/kol-engager-icp
     name: kol-engager-icp
     path: robomotion-gtm-skills/skills/kol-engager-icp
@@ -10282,7 +10292,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/kol-engager-icp
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/launch-positioning-builder
     name: launch-positioning-builder
     path: robomotion-gtm-skills/skills/launch-positioning-builder
@@ -10315,7 +10325,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/launch-positioning-builder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Brand
   - id: robomotion-gtm-skills/lead-qualification
     name: lead-qualification
     path: robomotion-gtm-skills/skills/lead-qualification
@@ -10344,7 +10354,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/lead-qualification
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/leadership-change-outreach
     name: leadership-change-outreach
     path: robomotion-gtm-skills/skills/leadership-change-outreach
@@ -10377,7 +10387,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/leadership-change-outreach
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/linkedin-commenter-extractor
     name: linkedin-commenter-extractor
     path: robomotion-gtm-skills/skills/linkedin-commenter-extractor
@@ -10405,7 +10415,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-commenter-extractor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/linkedin-influencer-discovery
     name: linkedin-influencer-discovery
     path: robomotion-gtm-skills/skills/linkedin-influencer-discovery
@@ -10430,7 +10440,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-influencer-discovery
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/linkedin-job-scraper
     name: linkedin-job-scraper
     path: robomotion-gtm-skills/skills/linkedin-job-scraper
@@ -10456,7 +10466,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-job-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/linkedin-message-writer
     name: linkedin-message-writer
     path: robomotion-gtm-skills/skills/linkedin-message-writer
@@ -10482,7 +10492,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-message-writer
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/linkedin-outreach
     name: linkedin-outreach
     path: robomotion-gtm-skills/skills/linkedin-outreach
@@ -10513,7 +10523,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-outreach
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/linkedin-post-research
     name: linkedin-post-research
     path: robomotion-gtm-skills/skills/linkedin-post-research
@@ -10538,7 +10548,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-post-research
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/linkedin-profile-post-scraper
     name: linkedin-profile-post-scraper
     path: robomotion-gtm-skills/skills/linkedin-profile-post-scraper
@@ -10566,7 +10576,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/linkedin-profile-post-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/luma-event-attendees
     name: luma-event-attendees
     path: robomotion-gtm-skills/skills/luma-event-attendees
@@ -10594,7 +10604,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/luma-event-attendees
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/meeting-brief
     name: meeting-brief
     path: robomotion-gtm-skills/skills/meeting-brief
@@ -10625,7 +10635,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/meeting-brief
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/messaging-ab-tester
     name: messaging-ab-tester
     path: robomotion-gtm-skills/skills/messaging-ab-tester
@@ -10657,7 +10667,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/messaging-ab-tester
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Brand
   - id: robomotion-gtm-skills/meta-ads-campaign-builder
     name: meta-ads-campaign-builder
     path: robomotion-gtm-skills/skills/meta-ads-campaign-builder
@@ -10688,7 +10698,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/meta-ads-campaign-builder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/news-signal-outreach
     name: news-signal-outreach
     path: robomotion-gtm-skills/skills/news-signal-outreach
@@ -10722,7 +10732,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/news-signal-outreach
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/newsletter-monitor
     name: newsletter-monitor
     path: robomotion-gtm-skills/skills/newsletter-monitor
@@ -10756,7 +10766,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/newsletter-monitor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/newsletter-signal-scanner
     name: newsletter-signal-scanner
     path: robomotion-gtm-skills/skills/newsletter-signal-scanner
@@ -10795,7 +10805,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/newsletter-signal-scanner
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/outbound-prospecting-engine
     name: outbound-prospecting-engine
     path: robomotion-gtm-skills/skills/outbound-prospecting-engine
@@ -10831,7 +10841,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/outbound-prospecting-engine
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/paid-channel-prioritizer
     name: paid-channel-prioritizer
     path: robomotion-gtm-skills/skills/paid-channel-prioritizer
@@ -10861,7 +10871,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/paid-channel-prioritizer
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/pain-language-engagers
     name: pain-language-engagers
     path: robomotion-gtm-skills/skills/pain-language-engagers
@@ -10911,7 +10921,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/pain-language-engagers
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/pipeline-review
     name: pipeline-review
     path: robomotion-gtm-skills/skills/pipeline-review
@@ -10942,7 +10952,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/pipeline-review
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/product-hunt-scraper
     name: product-hunt-scraper
     path: robomotion-gtm-skills/skills/product-hunt-scraper
@@ -10974,7 +10984,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/product-hunt-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/programmatic-seo-planner
     name: programmatic-seo-planner
     path: robomotion-gtm-skills/skills/programmatic-seo-planner
@@ -11011,7 +11021,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/programmatic-seo-planner
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/programmatic-seo-spy
     name: programmatic-seo-spy
     path: robomotion-gtm-skills/skills/programmatic-seo-spy
@@ -11046,7 +11056,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/programmatic-seo-spy
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/reddit-post-finder
     name: reddit-post-finder
     path: robomotion-gtm-skills/skills/reddit-post-finder
@@ -11077,7 +11087,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/reddit-post-finder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/review-intelligence-digest
     name: review-intelligence-digest
     path: robomotion-gtm-skills/skills/review-intelligence-digest
@@ -11108,7 +11118,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/review-intelligence-digest
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/review-site-scraper
     name: review-site-scraper
     path: robomotion-gtm-skills/skills/review-site-scraper
@@ -11143,7 +11153,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/review-site-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/sales-call-prep
     name: sales-call-prep
     path: robomotion-gtm-skills/skills/sales-call-prep
@@ -11179,7 +11189,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sales-call-prep
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/sales-coaching
     name: sales-coaching
     path: robomotion-gtm-skills/skills/sales-coaching
@@ -11212,7 +11222,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sales-coaching
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/seo-content-audit
     name: seo-content-audit
     path: robomotion-gtm-skills/skills/seo-content-audit
@@ -11246,7 +11256,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-content-audit
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/seo-content-engine
     name: seo-content-engine
     path: robomotion-gtm-skills/skills/seo-content-engine
@@ -11286,7 +11296,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-content-engine
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/seo-domain-analyzer
     name: seo-domain-analyzer
     path: robomotion-gtm-skills/skills/seo-domain-analyzer
@@ -11322,7 +11332,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-domain-analyzer
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/seo-opportunity-finder
     name: seo-opportunity-finder
     path: robomotion-gtm-skills/skills/seo-opportunity-finder
@@ -11358,7 +11368,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-opportunity-finder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/seo-traffic-analyzer
     name: seo-traffic-analyzer
     path: robomotion-gtm-skills/skills/seo-traffic-analyzer
@@ -11394,7 +11404,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/seo-traffic-analyzer
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/sequence-performance
     name: sequence-performance
     path: robomotion-gtm-skills/skills/sequence-performance
@@ -11422,7 +11432,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sequence-performance
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/signal-detection-pipeline
     name: signal-detection-pipeline
     path: robomotion-gtm-skills/skills/signal-detection-pipeline
@@ -11451,7 +11461,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/signal-detection-pipeline
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/signal-scanner
     name: signal-scanner
     path: robomotion-gtm-skills/skills/signal-scanner
@@ -11483,7 +11493,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/signal-scanner
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/site-content-catalog
     name: site-content-catalog
     path: robomotion-gtm-skills/skills/site-content-catalog
@@ -11511,7 +11521,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/site-content-catalog
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/social-kit
     name: social-kit
     path: robomotion-gtm-skills/skills/social-kit
@@ -11541,7 +11551,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/social-kit
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Content
   - id: robomotion-gtm-skills/sponsored-newsletter-finder
     name: sponsored-newsletter-finder
     path: robomotion-gtm-skills/skills/sponsored-newsletter-finder
@@ -11574,7 +11584,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/sponsored-newsletter-finder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/tam-builder
     name: tam-builder
     path: robomotion-gtm-skills/skills/tam-builder
@@ -11605,7 +11615,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/tam-builder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Lead Generation
   - id: robomotion-gtm-skills/tech-stack-teardown
     name: tech-stack-teardown
     path: robomotion-gtm-skills/skills/tech-stack-teardown
@@ -11647,7 +11657,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/tech-stack-teardown
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Competitive Intel
   - id: robomotion-gtm-skills/tiktok-influencer-finder
     name: tiktok-influencer-finder
     path: robomotion-gtm-skills/skills/tiktok-influencer-finder
@@ -11672,7 +11682,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/tiktok-influencer-finder
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Outreach
   - id: robomotion-gtm-skills/topical-authority-mapper
     name: topical-authority-mapper
     path: robomotion-gtm-skills/skills/topical-authority-mapper
@@ -11707,7 +11717,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/topical-authority-mapper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: SEO
   - id: robomotion-gtm-skills/trending-ad-hook-spotter
     name: trending-ad-hook-spotter
     path: robomotion-gtm-skills/skills/trending-ad-hook-spotter
@@ -11740,7 +11750,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/trending-ad-hook-spotter
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Ads
   - id: robomotion-gtm-skills/visual-brand-extractor
     name: visual-brand-extractor
     path: robomotion-gtm-skills/skills/visual-brand-extractor
@@ -11769,7 +11779,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/visual-brand-extractor
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Brand
   - id: robomotion-gtm-skills/voice-of-customer-synthesizer
     name: voice-of-customer-synthesizer
     path: robomotion-gtm-skills/skills/voice-of-customer-synthesizer
@@ -11799,7 +11809,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/voice-of-customer-synthesizer
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   - id: robomotion-gtm-skills/web-archive-scraper
     name: web-archive-scraper
     path: robomotion-gtm-skills/skills/web-archive-scraper
@@ -11825,7 +11835,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/web-archive-scraper
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/x-mention-tracker
     name: x-mention-tracker
     path: robomotion-gtm-skills/skills/x-mention-tracker
@@ -11858,7 +11868,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/x-mention-tracker
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Monitoring
   - id: robomotion-gtm-skills/youtube-apify-transcript
     name: youtube-apify-transcript
     path: robomotion-gtm-skills/skills/youtube-apify-transcript
@@ -11887,7 +11897,7 @@ groups:
     source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/youtube-apify-transcript
     license: MIT
     group: robomotion-gtm-skills
-    category: Marketing
+    category: Research
   files:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
