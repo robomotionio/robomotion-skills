@@ -1,0 +1,11 @@
+schema_version: 1
+name: designer-skills
+title: Designer Skills
+type: group
+version: 1.0.0
+author: Robomotion
+source_url: https://github.com/robomotionio/robomotion-skills
+license: MIT
+summary: Graphic-design expertise for AI image generation — composition, color, typography, brand identity, format specs, and model-aware prompt craft. Pure knowledge; renders through the OpenAI / Gemini image toolkits.
+category: Design
+tags: [design, graphic-design, visual, branding, typography, color, image-generation, art-direction]
