@@ -1375,6 +1375,69 @@ groups:
   - tests/test_url_safety.py
   - uninstall.ps1
   - uninstall.sh
+- path: designer-skills
+  name: designer-skills
+  title: Designer Skills
+  type: group
+  version: 1.0.0
+  author: Robomotion
+  source_url: https://github.com/robomotionio/robomotion-skills
+  license: MIT
+  summary: Graphic-design expertise for AI image generation — composition, color, typography, brand identity, format specs,
+    and model-aware prompt craft. Pure knowledge; renders through the OpenAI / Gemini image toolkits.
+  category: Design
+  tags:
+  - design
+  - graphic-design
+  - visual
+  - branding
+  - typography
+  - color
+  - image-generation
+  - art-direction
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 0a02bf810a74
+  skills:
+  - id: designer-skills/graphic-design
+    name: graphic-design
+    path: designer-skills/skills/graphic-design
+    title: graphic-design
+    summary: 'Master graphic-design knowledge for producing real visual assets with AI image models — blog and article covers,
+      hero images, social and OG cards, ad creative, banners, icons, spot illustrations, and brand visuals. Use whenever someone
+      asks you to design, create, generate, or art-direct an image, illustration, cover, banner, logo concept, or a coherent
+      set of visuals; or when they hand you content (a post, a launch, a campaign) to illustrate. Covers composition, color,
+      typography, brand identity, format/aspect specs, design critique, and — critically — how to write prompts and use reference
+      images for the gpt-image and Gemini (Nano Banana) image toolkits so the output looks intentionally designed, not generically
+      AI. Triggers: ''design a cover'', ''make a banner'', ''generate an illustration'', ''create social cards'', ''art direction'',
+      ''image prompt'', ''on-brand visuals'', ''a matching set of images''.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: b3afe610bbac
+    files:
+    - SKILL.md
+    - references/brand-identity.md
+    - references/color-theory.md
+    - references/composition-layout.md
+    - references/design-critique.md
+    - references/format-specs.md
+    - references/image-prompting.md
+    - references/typography.md
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-skills/tree/main/skills/graphic-design
+    license: MIT
+    group: designer-skills
+    category: Design
+  files:
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
 - path: engineering-skills
   name: engineering-skills
   title: Engineering Skills
