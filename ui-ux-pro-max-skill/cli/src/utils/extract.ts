@@ -1,12 +1,15 @@
 import { mkdir, rm, access, cp, mkdtemp, readdir } from 'node:fs/promises';
 import { join, basename } from 'node:path';
-import { exec } from 'node:child_process';
+import { exec, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { tmpdir } from 'node:os';
 import type { AIType } from '../types/index.js';
 import { AI_FOLDERS } from '../types/index.js';
 
 const execAsync = promisify(exec);
+// execFileAsync runs binaries without a shell, so path arguments cannot be
+// interpreted as shell syntax (avoids command injection via file/folder names).
+const execFileAsync = promisify(execFile);
 
 const EXCLUDED_FILES = ['settings.local.json'];
 
@@ -73,9 +76,9 @@ export async function copyFolders(
       // Try shell fallback for older Node versions
       try {
         if (process.platform === 'win32') {
-          await execAsync(`xcopy "${sourcePath}" "${targetPath}" /E /I /Y`);
+          await execFileAsync('xcopy', [sourcePath, targetPath, '/E', '/I', '/Y']);
         } else {
-          await execAsync(`cp -r "${sourcePath}/." "${targetPath}"`);
+          await execFileAsync('cp', ['-r', `${sourcePath}/.`, targetPath]);
         }
         copiedFolders.push(folder);
       } catch {
