@@ -1,20 +1,14 @@
 #!/usr/bin/env python3
-"""x_search.py — Search/scrape X posts for a query with reliable date
-filtering (native since:/until: operators in the search term).
+"""Search public X posts with native since and until operators.
 
 Two paths, auto-selected:
-  * APIFY (when APIFY_API_TOKEN set or --use-apify): a tweet-scraper actor via the managed
-    async run/poll lifecycle in apify_common (start -> poll to terminal with a wall-clock
-    timeout -> fetch dataset items), guarded by a COST GATE. searchTerms / searchMode=live.
-  * KEYLESS degrade: X is login-walled and anti-bot, so the keyless path is the bundled
-    Playwright scraper (scripts/x_scrape.mjs). Best-effort, low reliability.
+  * Apify: a selected Tweet Actor with a managed run and cost gate.
+  * Keyless: a best-effort Playwright scraper behind X's login wall.
 
-The Apify path enforces a cost gate: `--estimate-only` prints the projection and exits 0;
-actual spend requires `--yes`; the run aborts if reported usage exceeds --max-cost-usd or
-the timeout trips. The KEYLESS Playwright degrade is never gated.
+The Apify path requires --yes before spending. It sends a server-side charge cap,
+then aborts on a reported budget breach or timeout. Estimate mode never starts a run.
 
-Both emit one normalized schema. Stdlib only (keyless path needs node + Playwright; see
-SKILL.md). Implements the robomotion-gtm-skills `x-mention-tracker` contract.
+Both paths emit one normalized schema.
 
 Examples:
   x_search.py --query "robomotion" --since 2025-01-01 --until 2025-02-01
@@ -23,7 +17,9 @@ Examples:
   APIFY_API_TOKEN=xxx x_search.py --query "rpa" --use-apify --yes --max-cost-usd 0.50
 """
 import argparse
+from datetime import date
 import json
+import math
 import os
 import subprocess
 import sys
@@ -31,12 +27,40 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import apify_common  # noqa: E402  (vendored async run/poll + cost gate)
 
-APIFY_ACTOR = os.environ.get("APIFY_TWITTER_ACTOR", "apidojo~tweet-scraper")
+DEFAULT_APIFY_ACTOR = "apidojo~tweet-scraper"
+XQUIK_APIFY_ACTOR = "xquik~x-tweet-scraper"
+APIFY_ACTOR = os.environ.get(
+    "APIFY_TWITTER_ACTOR",
+    DEFAULT_APIFY_ACTOR,
+)
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def positive_int(value):
+    parsed = int(value)
+    if parsed < 1:
+        raise argparse.ArgumentTypeError("value must be at least 1")
+    return parsed
+
+
+def positive_amount(value):
+    parsed = float(value)
+    if not math.isfinite(parsed) or parsed <= 0:
+        raise argparse.ArgumentTypeError("value must be a finite positive number")
+    return parsed
+
+
+def iso_date(value):
+    try:
+        return date.fromisoformat(value).isoformat()
+    except ValueError as error:
+        raise argparse.ArgumentTypeError("date must use YYYY-MM-DD") from error
 
 
 def build_term(query, since, until):
     term = query.strip()
+    if not term:
+        raise ValueError("query cannot be empty")
     if since:
         term += f" since:{since}"
     if until:
@@ -48,7 +72,13 @@ def normalize(item):
     author = item.get("author") or {}
     if isinstance(author, str):
         author = {"userName": author}
-    tid = str(item.get("id") or item.get("id_str") or item.get("tweetId") or "")
+    tid = str(
+        item.get("id")
+        or item.get("restId")
+        or item.get("id_str")
+        or item.get("tweetId")
+        or ""
+    )
     url = item.get("twitterUrl") or item.get("url") or item.get("tweetUrl") or ""
     if not url and tid and author.get("userName"):
         url = f"https://x.com/{author['userName']}/status/{tid}"
@@ -69,16 +99,50 @@ def normalize(item):
     }
 
 
-def apify_input(term, max_tweets):
-    return {"searchTerms": [term], "maxTweets": max_tweets, "maxItems": max_tweets,
-            "searchMode": "live"}
+def is_xquik_actor(actor_id):
+    return actor_id.replace("/", "~", 1) == XQUIK_APIFY_ACTOR
+
+
+def apify_input(term, max_tweets, actor_id=APIFY_ACTOR):
+    if not is_xquik_actor(actor_id):
+        return {
+            "searchTerms": [term],
+            "maxTweets": max_tweets,
+            "maxItems": max_tweets,
+            "searchMode": "live",
+        }
+
+    return {
+        "searchTerms": [term],
+        "maxItems": max_tweets,
+        "queryType": "Latest",
+        "outputVariant": "rich",
+        "fieldStyle": "camelCase",
+        "includeSearchTerms": True,
+    }
 
 
 def fetch_apify(term, max_tweets, token, max_cost_usd, timeout_s):
-    body = apify_input(term, max_tweets)
+    body = apify_input(term, max_tweets, APIFY_ACTOR)
     items = apify_common.run_actor(
-        APIFY_ACTOR, body, max_cost_usd=max_cost_usd, timeout_s=timeout_s, tok=token)
-    return [normalize(it) for it in items] if isinstance(items, list) else []
+        APIFY_ACTOR,
+        body,
+        max_cost_usd=max_cost_usd,
+        timeout_s=timeout_s,
+        tok=token,
+    )
+    posts = []
+    for item in items if isinstance(items, list) else []:
+        result_type = item.get("resultType") if isinstance(item, dict) else None
+        if result_type == "diagnostic":
+            status = item.get("status", "unknown")
+            message = item.get("message", "No diagnostic message returned.")
+            print(f"Actor diagnostic ({status}): {message}", file=sys.stderr)
+            continue
+        if result_type == "run-report" or not isinstance(item, dict):
+            continue
+        posts.append(normalize(item))
+    return posts
 
 
 def fetch_keyless(term, max_tweets):
@@ -101,53 +165,107 @@ def fetch_keyless(term, max_tweets):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Search X posts with native date filtering.")
-    ap.add_argument("--query", required=True, help="search query (since:/until: appended automatically)")
-    ap.add_argument("--since", default="", help="start date YYYY-MM-DD (inclusive)")
-    ap.add_argument("--until", default="", help="end date YYYY-MM-DD (exclusive)")
-    ap.add_argument("--max-posts", type=int, default=50)
-    ap.add_argument("--keywords", default="", help="comma-separated OR client-side filter")
-    ap.add_argument("--use-apify", action="store_true", help="force Apify path (auto when token set)")
-    ap.add_argument("--estimate-only", action="store_true",
-                    help="Apify cost gate: print projected cost/limits and exit 0 (no spend)")
-    ap.add_argument("--yes", action="store_true",
-                    help="Apify cost gate: confirm actual spend (required to start a run)")
-    ap.add_argument("--max-cost-usd", type=float, default=1.0,
-                    help="Apify cost gate: abort the run if reported usage exceeds this (default 1.00)")
-    ap.add_argument("--apify-timeout", type=int, default=600,
-                    help="Apify run/poll wall-clock timeout in seconds (default 600)")
+    ap = argparse.ArgumentParser(
+        description="Search X posts with native date filtering."
+    )
+    ap.add_argument(
+        "--query",
+        required=True,
+        help="search query (since:/until: appended automatically)",
+    )
+    ap.add_argument(
+        "--since",
+        type=iso_date,
+        default="",
+        help="start date YYYY-MM-DD (inclusive)",
+    )
+    ap.add_argument(
+        "--until",
+        type=iso_date,
+        default="",
+        help="end date YYYY-MM-DD (exclusive)",
+    )
+    ap.add_argument("--max-posts", type=positive_int, default=50)
+    ap.add_argument(
+        "--keywords",
+        default="",
+        help="comma-separated OR client-side filter",
+    )
+    ap.add_argument(
+        "--use-apify",
+        action="store_true",
+        help="force Apify path (auto when token set)",
+    )
+    ap.add_argument(
+        "--estimate-only",
+        action="store_true",
+        help="Apify cost gate: print projected limits and exit without spending",
+    )
+    ap.add_argument(
+        "--yes",
+        action="store_true",
+        help="Apify cost gate: confirm spend before starting a run",
+    )
+    ap.add_argument(
+        "--max-cost-usd",
+        type=positive_amount,
+        default=1.0,
+        help="Apify cost gate: hard maximum charge (default 1.00)",
+    )
+    ap.add_argument(
+        "--apify-timeout",
+        type=positive_int,
+        default=600,
+        help="Apify run wall-clock timeout in seconds (default 600)",
+    )
     ap.add_argument("--output", default="json", choices=["json", "summary"])
     args = ap.parse_args()
 
     token = os.environ.get("APIFY_API_TOKEN", "").strip()
-    use_apify = args.use_apify or bool(token)
-    if args.use_apify and not token:
+    use_apify = args.use_apify or args.estimate_only or bool(token)
+    if use_apify and not token and not args.estimate_only:
         sys.exit("ERROR: --use-apify requested but APIFY_API_TOKEN is not set.")
 
-    term = build_term(args.query, args.since, args.until)
+    if args.since and args.until and args.since >= args.until:
+        ap.error("--since must be earlier than --until")
+    try:
+        term = build_term(args.query, args.since, args.until)
+    except ValueError as error:
+        ap.error(str(error))
 
     # COST GATE (Apify path only). --estimate-only never spends; spend needs --yes.
     if use_apify and args.estimate_only:
         est = apify_common.estimate(
-            APIFY_ACTOR, apify_input(term, args.max_posts),
-            max_cost_usd=args.max_cost_usd, timeout_s=args.apify_timeout,
-            items_hint=args.max_posts, label="x-mention-tracker")
+            APIFY_ACTOR,
+            apify_input(term, args.max_posts, APIFY_ACTOR),
+            max_cost_usd=args.max_cost_usd,
+            timeout_s=args.apify_timeout,
+            items_hint=args.max_posts,
+            label="x-mention-tracker",
+        )
         json.dump(est, sys.stdout, ensure_ascii=False, indent=2)
         sys.stdout.write("\n")
         return
     if use_apify and not args.yes:
-        sys.exit("ERROR: cost gate — the Apify path spends credits. Re-run with --yes to "
-                 "confirm (and --max-cost-usd to cap), or --estimate-only to preview. The "
-                 "keyless Playwright path runs without --yes when no token is set.")
+        sys.exit(
+            "ERROR: the Apify path spends credits. Re-run with --yes "
+            "and --max-cost-usd, or use --estimate-only. "
+            "The keyless path needs no confirmation."
+        )
 
     if use_apify:
         try:
-            items = fetch_apify(term, args.max_posts, token,
-                                args.max_cost_usd, args.apify_timeout)
-        except apify_common.CostGateError as e:
-            sys.exit(f"ERROR: cost gate: {e}")
-        except apify_common.ApifyError as e:
-            sys.exit(f"ERROR: Apify: {e}")
+            items = fetch_apify(
+                term,
+                args.max_posts,
+                token,
+                args.max_cost_usd,
+                args.apify_timeout,
+            )
+        except apify_common.CostGateError as error:
+            sys.exit(f"ERROR: cost gate: {error}")
+        except apify_common.ApifyError as error:
+            sys.exit(f"ERROR: Apify: {error}")
     else:
         items = fetch_keyless(term, args.max_posts)
 
@@ -174,7 +292,10 @@ def main():
             return
         for it in items:
             a = it["author"]
-            print(f"[{it['likeCount']:>5}♥ {it['retweetCount']:>4}rt] @{a['userName']}: {it['text'][:160]}")
+            print(
+                f"[{it['likeCount']:>5}♥ {it['retweetCount']:>4}rt] "
+                f"@{a['userName']}: {it['text'][:160]}"
+            )
             print(f"        {it['url']}  {it['createdAt']}")
     else:
         json.dump(items, sys.stdout, ensure_ascii=False, indent=2)

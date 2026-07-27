@@ -748,7 +748,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2745b9265b70
+    content_hash: 27dd62f53adf
     files:
     - SKILL.md
     - references/bibliography.md
@@ -845,7 +845,7 @@ groups:
       - GOOGLE_API_KEY
       - GOOGLE_APPLICATION_CREDENTIALS
       - GSC_PROPERTY
-    content_hash: 61776626128a
+    content_hash: 684413d38d47
     files:
     - LICENSE.txt
     - SKILL.md
@@ -4153,7 +4153,6 @@ groups:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
   - .robomotion/skill.yaml
-  - .vscode/extensions.json
   - AGENTS.md
   - CHANGELOG.md
   - CLAUDE.md
@@ -4561,7 +4560,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 817dc5b1a1ca
+    content_hash: 620cdbacdb1c
     files:
     - PORT_NOTES.md
     - SKILL.md
@@ -4614,7 +4613,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ab066a40093e
+    content_hash: b07d5b47b1c4
     files:
     - PORT_NOTES.md
     - SKILL.md
@@ -4667,7 +4666,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b51d3d7d9e16
+    content_hash: 2f15cecf7d6b
     files:
     - PORT_NOTES.md
     - SKILL.md
@@ -4753,7 +4752,7 @@ groups:
       required: []
       optional:
       - COMFY_CLOUD_API_KEY
-    content_hash: cdf6e32c5a6a
+    content_hash: 089c12e69ca9
     files:
     - SKILL.md
     - env.optional
@@ -4923,7 +4922,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a44157a17340
+    content_hash: 652cfbbb0816
     files:
     - README.md
     - SKILL.md
@@ -5960,7 +5959,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d7bb0b2bc74c
+    content_hash: 975ec86caabc
     files:
     - LICENSE.txt
     - SKILL.md
@@ -6164,7 +6163,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: faaf0cdcadbc
+    content_hash: d292ca8037a9
     files:
     - SKILL.md
     - references/autoreason-methodology.md
@@ -8446,7 +8445,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 4557d54c524c
+    content_hash: 3230dc1b7459
     files:
     - LICENSE.txt
     - SKILL.md
@@ -8549,13 +8548,12 @@ groups:
   name: robomotion-gtm-skills
   title: Robomotion GTM Skills
   type: group
-  version: 1.0.0
+  version: 1.1.0
   author: Robomotion
   source_url: https://github.com/robomotionio/robomotion-gtm-skills
   license: MIT
-  summary: 108 Growth & GTM skills — ads, brand, competitive intelligence, content, lead generation, monitoring, outreach,
-    research, and SEO. Keyless-first with optional paid-API enrichment (DataForSEO, Apify, Apollo, …) and an our-solution
-    fallback for every external service.
+  summary: 107 Growth & GTM skills for ads, brand, competitive intelligence, content, lead generation, monitoring, outreach,
+    research, and SEO. Keyless-first where viable, with explicit cost gates for paid-only data sources.
   category: Marketing
   category_map:
     lead-generation: Lead Generation
@@ -8581,7 +8579,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: b0b84748f142
+  content_hash: 21365d31784d
   skills:
   - id: robomotion-gtm-skills/ad-angle-miner
     name: ad-angle-miner
@@ -8590,7 +8588,7 @@ groups:
     summary: Extract the highest-converting ad angles from real customer-voice data — reviews, Reddit threads, social complaints,
       and competitor ads — and return a ranked angle bank with verbatim proof quotes and recommended ad formats. For growth/paid-media
       teams who want ad copy grounded in evidence, not brainstorms.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8622,7 +8620,7 @@ groups:
       waste, identify winners, check statistical significance, and produce a concrete cross-channel budget-reallocation plan
       with scenario modeling and dollar-amount shifts. For founders/paid-media owners who need a specialist's read, not a
       dashboard summary.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8653,7 +8651,7 @@ groups:
     summary: Audit message match between each ad and its landing page — does the ad's promise carry through to the LP headline,
       body, and CTA? — and flag every disconnect plus conversion friction that kills click-to-convert rates. For teams getting
       ad clicks but few conversions.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8681,7 +8679,7 @@ groups:
       and how prominently it is mentioned, and where competitors get cited instead — then audit the site's AI-readability
       and produce prioritized recommendations. Use for a one-shot AEO baseline ("how visible are we in ChatGPT/Perplexity?",
       "audit our site for AI search"). Requires at least one answer-engine API key (Perplexity is canonical).
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8714,7 +8712,7 @@ groups:
       team only when mention rate, prominence, or share-of-voice materially moves (a competitor overtakes you, an engine drops
       you, a new citation source appears). The recurring wrapper around aeo-visibility. Requires one answer-engine key (Perplexity
       canonical); durable history defaults to a local JSONL ledger, with Supabase as an optional upgrade.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8749,7 +8747,7 @@ groups:
     summary: Two-phase Apollo.io prospecting — run a free People Search to discover ICP-matching leads, then enrich only the
       best matches to reveal verified emails/phones. Use to build SDR prospect lists from an ICP (titles, seniority, company
       size, geo, industry) while spending Apollo credits only on ranked winners.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8779,7 +8777,7 @@ groups:
       and pricing — and synthesize an opinionated sales battlecard (positioning traps, landmine questions, objection handlers,
       win/loss themes). Use when prepping reps for competitive deals or building a competitive program. Keyless backbone;
       the agent does all synthesis.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8811,7 +8809,7 @@ groups:
     summary: Aggregate recent blog posts from one or more sites via RSS/Atom (with an index-scrape fallback) for competitor
       watch, industry tracking, or keyword-filtered content monitoring — no API key. Returns a normalized, deduped, recency-and-keyword-filtered
       list of posts. Use to track what vendors are publishing or feed content-brief / campaign-brief skills.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8837,7 +8835,7 @@ groups:
       Voice Profile — tone, vocabulary, sentence structure, formatting habits, and target persona — so later outreach, content,
       or campaigns sound like the existing brand. Deterministic scripts fetch and measure the corpus; you (the agent) write
       the voice profile. Keyless fetch.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8869,7 +8867,7 @@ groups:
     summary: Research a company's site and synthesize 4-6 detailed, realistic buyer personas (demographics, motivations, skepticism
       profile, ranked decision criteria, language patterns). Use to build reusable ICP personas that downstream skills load
       to evaluate content, messaging, sites, and campaigns through buyer eyes. Keyless research; the agent does the synthesis.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8898,7 +8896,7 @@ groups:
       scope cuts ("what we're NOT doing"), and a pre-launch asset checklist. A pure-reasoning composite for founders and small
       GTM teams; the agent synthesizes the brief grounded by a bundled intake/rubric schema. Produces the plan that feature-launch-playbook,
       content-brief-factory, and social-kit then execute.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8922,7 +8920,7 @@ groups:
     summary: Track known buyers, champions, and power users for job changes; when one moves to a new company, qualify the
       new company against ICP and draft warm, relationship-led outreach. The highest-conversion outbound signal — these people
       already trust the product. Composite that hands off to cold-email-outreach or linkedin-outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8956,7 +8954,7 @@ groups:
     summary: Detect when known product champions change jobs (a high-intent re-sell signal) and qualify their new company
       against ICP. Baseline each champion's LinkedIn profile, then on a recurring cadence re-scrape and diff company/title
       to surface movers with an ICP fit verdict, ready for warm outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -8990,7 +8988,7 @@ groups:
       severity tiers, root-cause hypotheses, and specific save plays. Built for seed/Series A teams with no CS platform —
       a spreadsheet of customers, a Slack channel, and a support inbox. Scoring is deterministic; the agent writes hypotheses
       and save plays.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9024,7 +9022,7 @@ groups:
       then load the campaign into the user's chosen tool (lemlist/instantly) or send one-off (sendgrid/resend) or export a
       tool-ready CSV, and launch. The launch target for the signal composites and outbound-prospecting-engine once contacts
       and drafts exist.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9056,7 +9054,7 @@ groups:
     summary: Find the decision-makers at a named company for a given set of target titles using a cheapest-first fallback
       (Apollo People Search when available, keyless LinkedIn-profile search otherwise). Returns contacts with name, title,
       LinkedIn URL, and location. Use when you have an ICP-fit company and need the humans to reach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9085,7 +9083,7 @@ groups:
       SEO/traffic, hiring, social, acquisition channels, podcasts/press, reviews, positioning, partnerships — and grade each
       A–F to expose white space. Run before designing a GTM strategy so the plan fills real gaps. Keyless backbone; the agent
       grades and writes the report.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9122,7 +9120,7 @@ groups:
     summary: Monitor competitor pricing pages over time — capture current plans/tiers/feature-gating, pull Wayback history,
       and diff against the last snapshot to detect price changes, tier restructuring, model shifts, and gating moves. Produces
       a living pricing comparison matrix plus change alerts. Keyless backbone; the agent normalizes and writes the report.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9160,7 +9158,7 @@ groups:
       (hooks, formats, CTAs), reverse-engineer landing-page funnels, and produce a strategic teardown — positioning bets,
       vulnerabilities, creative white-space, and counter-plays. For paid/creative teams sizing up the competitive ad landscape
       before they launch or refresh.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9194,7 +9192,7 @@ groups:
       positioning, product, content, customer evidence, signals); and translate competitor moves into positioning/pricing/messaging
       recommendations. The baseline competitive-intel engine reused by battlecard-generator and competitor-monitoring-system.
       Keyless backbone; the agent profiles and recommends.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9233,7 +9231,7 @@ groups:
       baseline, then track competitor content, ads, reviews, social, and product moves on a cadence (content/social/Reddit
       weekly, ads bi-weekly, reviews monthly, full re-baseline quarterly). Diffs each cycle vs stored snapshots and produces
       an intelligence report with recommended actions behind human checkpoints.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9278,7 +9276,7 @@ groups:
       top recent posts, extract reactors/commenters (Apify -> PhantomBuster -> Playwright fallback, with a cost-confirm gate),
       dedup across runs, enrich the survivors via Apollo, then deterministically score each lead by ICP fit x engagement intent
       x recency into A/B/C tiers. Each lead is tagged with which competitor and which post they engaged.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9321,7 +9319,7 @@ groups:
     summary: Extract speaker names, titles, companies, and bios from a conference's /speakers page for pre-event research
       and outreach targeting. Tries multiple keyless extraction strategies (CSS cards, heading+paragraph blocks, JSON-LD,
       Sched/Sessionize) and falls back to a headless browser for JS-heavy sites.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9348,7 +9346,7 @@ groups:
     summary: A persistent contact database that tracks every person identified or contacted across prospecting strategies,
       deduplicated by LinkedIn URL or email, so recurring strategies never re-target the same person. Also tracks outreach
       status through the funnel. The dedup backbone for the event and signal pipelines.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9375,7 +9373,7 @@ groups:
     summary: Produce branded, self-contained content assets — industry reports, landing pages, comparison sheets, one-pagers
       — as styled HTML the agent authors, then exported to high-res PNG and/or print-ready PDF for lead magnets and marketing
       collateral. Use when a campaign or launch needs a polished downloadable deliverable, not just copy.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9407,7 +9405,7 @@ groups:
       analysis, a competing-page breakdown, a unique angle mined from real customer language, an internal-linking plan, and
       SERP-feature targets — so a writer knows exactly what to create and why it will rank. A composite: the agent runs SERP/customer-voice
       steps and synthesizes the brief; bundled keyless scripts handle coverage-matching and competing-page stats.'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9439,7 +9437,7 @@ groups:
       conventions (arrow bullets, a "why this matters" beat, 150–500 words, 0–2 hashtags) and self-checking against a personal
       voice guide before returning. The agent does the drafting; a bundled deterministic linter enforces banned-phrase / length
       / arrow-bullet / "why this matters" rules. Invoked standalone or by social-kit.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9464,7 +9462,7 @@ groups:
       connected nodes, arrows, emoji icons, and labels — ready for docs, Slack, LinkedIn, or slides. A deterministic parser
       builds the node/connection model; the agent authors the styled HTML+SVG; the bundled Playwright renderer screenshots
       it. For process/pipeline/sequence visuals, not org charts or dense flowcharts.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9494,7 +9492,7 @@ groups:
       problem-first, hype, contrarian…), and self-check each against a personal voice guide's banned phrases and format rules
       before returning — so posts sound like the user, not like an AI. The agent does the drafting; a bundled deterministic
       linter enforces banned-phrase / length / hashtag rules. Invoked standalone or by social-kit.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9518,7 +9516,7 @@ groups:
     summary: For churned accounts, research what has changed since they left (new funding, team growth, competitor dissatisfaction,
       product updates that address their original pain), assess re-engagement potential, and generate a personalized, timing-aware
       win-back sequence — no generic "we miss you" emails. Composite that hands off to cold-email-outreach or linkedin-outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9552,7 +9550,7 @@ groups:
       decline, referral request, or nurture routing), and route to the correct destination so no inbound lead is ghosted and
       every disqualification preserves the relationship. Composite that reuses email-drafting and routes to a nurture/one-off
       send tool.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9588,7 +9586,7 @@ groups:
       (PAS, BAB, AIDA, Signal-Proof-Ask), personalization tiers, proven subject-line patterns, and tone guidance. Use whenever
       you need cold-email copy; auto-loads as the drafting primitive for the signal composites and cold-email-outreach. Pure
       reasoning plus a deterministic copy linter.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9612,7 +9610,7 @@ groups:
     summary: End-to-end event-driven prospecting — find attendees/speakers at conferences and events, research and qualify
       them against ICP, find decision-maker contacts, deduplicate against the contact cache, and hand off a clean qualified
       list for outreach. Orchestrates the event, qualification, contact-finding, and cache sub-skills.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: host
     env:
@@ -9641,7 +9639,7 @@ groups:
     summary: Find expansion revenue inside the existing customer base by monitoring accounts for upsell/cross-sell signals
       — team growth, new job postings, funding, champion promotions, usage pressure, public news — and produce a weekly opportunity
       list with context and talk tracks. Multi-signal accounts rank highest.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9671,7 +9669,7 @@ groups:
       LinkedIn variants, X thread, in-app banner, and (for major launches) a sales-enablement one-pager — plus a tier-appropriate
       launch checklist. A reasoning composite: the agent authors every asset; a bundled keyless script scaffolds the folder
       and gates which assets to produce by launch tier.'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9700,7 +9698,7 @@ groups:
     summary: Detect recently-funded startups (Series A-C) as buying signals — fresh capital, growth mandate, active vendor
       evaluation. Aggregates funding announcements across tech press, Crunchbase, and Hacker News (keyless), dedups across
       sources, then (agent) extracts company/stage/amount/date and ranks for outreach in the post-raise buying window.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9726,7 +9724,7 @@ groups:
     summary: Across a list of companies, detect recent funding events, qualify them against the seller's context, find the
       right people (buyers/champions/users), and draft personalized outreach using fresh capital as the "why now" — the full
       chain from signal to outreach-ready. Composite that hands off to cold-email-outreach or linkedin-outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9761,7 +9759,7 @@ groups:
       annotated real examples) is consumed by create-x-content, create-linkedin-content, and social-kit. The agent authors
       the guide; a bundled deterministic analyzer supplies corpus stats + absence-derived banned-phrase candidates. For individual
       social voice, not corporate brand voice.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9787,7 +9785,7 @@ groups:
     summary: End-to-end Luma-based lead prospecting — search Luma for events by topic+location, extract attendees/hosts, qualify
       against an ICP prompt, export to a sheet, and send a Slack alert with the top leads. The Luma-only path with built-in
       alerting.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9820,7 +9818,7 @@ groups:
     summary: Scrape a competitor's active Google ads by domain (or company name) from the Google Ads Transparency Center and
       return structured creatives — copy, format, variants, destination URL, advertiser id. Keyless via headless Chromium.
       A reusable primitive for Ads composites (competitor-ad-intelligence, paid-channel-prioritizer, google-search-ads-builder).
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9849,7 +9847,7 @@ groups:
       review/community/HN language, site audit, autocomplete), keyword architecture with funnel + intent classification, ad-group
       structure, RSA copy (15 headlines / 4 descriptions per group), negative-keyword lists, bid strategy, and a Google Ads
       Editor import CSV. For early-stage teams who'd otherwise waste their first $5K.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9884,7 +9882,7 @@ groups:
       a WCAG contrast check, and a Playwright renderer screenshots single files or whole slide directories at deviceScaleFactor
       2. Use for any "make me a graphic / carousel / slides / poster / infographic / story" request and as the visual arm
       of social-kit.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9928,7 +9926,7 @@ groups:
     summary: Search Hacker News stories and comments for a topic, tool, or brand and return ranked discussions (points, comments,
       links). Use to track tech-community sentiment, find Show HN / Ask HN launches, and surface buying or competitive signals.
       Free, no API key.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9955,7 +9953,7 @@ groups:
       articles (steps, screenshot placeholders, troubleshooting, related links). Batch mode clusters a ticket export into
       ranked topics and generates an article per topic to deflect repetitive support volume. A composite: the agent writes
       each article; a bundled keyless script clusters and frequency-ranks the ticket export.'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -9983,7 +9981,7 @@ groups:
     summary: Across a list of companies, detect job postings for roles the product augments or replaces, find the right people
       (hiring manager, budget holder, potential champions), and draft outreach using the open role as the hook — they've already
       acknowledged and budgeted the problem. Composite that hands off to cold-email-outreach or linkedin-outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10018,7 +10016,7 @@ groups:
       or idea, defines a structured Ideal Customer Profile (explicit inclusion AND exclusion criteria), then routes to the
       right next step (TAM mapping or direct lead finding) with a handoff context block. Keyless research; the ICP synthesis
       and routing are the agent's.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10045,7 +10043,7 @@ groups:
       a persona-by-persona scorecard of the client site, runs head-to-head comparisons against 1-3 competitors, and consolidates
       into one report with persona feedback, competitive positioning, at-risk segments, and prioritized recommendations. Keyless
       crawl; persona scoring and consolidation are the agent's.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10072,7 +10070,7 @@ groups:
     summary: Fill in missing data on inbound leads — research the company, identify the person's role and seniority, find
       other buying-committee stakeholders, check the CRM for existing relationships, and update the lead record. Turns a bare
       email into a full profile. Keyless web research by default; Apollo/CRM keys enrich when present.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10102,7 +10100,7 @@ groups:
     summary: Thoroughly qualify a batch of inbound leads against full ICP criteria (company size, industry, use-case fit,
       role/seniority), check CRM/customer base for dupes and existing relationships, and output a scored CSV with verdict,
       reasoning, and pipeline-overlap flags. The deep qualification step, not fast triage.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10131,7 +10129,7 @@ groups:
     summary: Pull all inbound leads from a period (demo requests, trial signups, content downloads, webinar regs, chatbot
       convos), classify by source urgency, qualify against ICP, enrich with context, and produce a prioritized action queue
       with a recommended response per lead. Turns a messy form-fill inbox into a who-to-call-first list.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10161,7 +10159,7 @@ groups:
       relevant to a client's industry, consolidates and categorizes the signal into nine types, then generates a small set
       of genuine, actionable GTM opportunities. Outputs a dated intelligence briefing. Keyless collectors; the agent categorizes,
       rates relevance, and drafts opportunities.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10198,7 +10196,7 @@ groups:
     summary: Detect buying intent from job postings — when a company posts a role in your problem area they've allocated budget
       and acknowledged the problem. Finds those companies, aggregates postings into a per-company signal strength, then (agent)
       qualifies vs. ICP and extracts personalization context + decision-maker suggestions. Outputs leads; does not do outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10228,7 +10226,7 @@ groups:
     summary: Search job postings across LinkedIn and Indeed by keyword, location, company, or job type — no logins or cookies
       — returning structured jobs (title, company, location, salary, description, seniority, apply URL) for hiring-signal
       detection, GTM research, and competitive intel. Apify actors when a token is set; keyless web search otherwise.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10256,7 +10254,7 @@ groups:
       surface trending narratives early (Convergence / Spike / Underdog / Controversy) with a weekly digest and content-action
       recommendations. Use to ride a breaking wave instead of creating one. Composite — chains linkedin-profile-post-scraper
       + x-mention-tracker; the agent clusters topics.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10292,7 +10290,7 @@ groups:
     summary: Find Key Opinion Leaders in a domain by searching LinkedIn posts for prolific, high-engagement authors and merging
       them with web-researched influencers (conference speakers, newsletter authors, podcast hosts) into a ranked, scored
       KOL list. Use when the goal is authority/thought-leadership voices, not pain-language leads.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10321,7 +10319,7 @@ groups:
       degrades), enrich firmographics through Apollo, then score every engager on a deterministic ICP-fit x intent x recency
       model into tiers A/B/C and dedup across runs. Surfaces only tier A/B by default, each lead tagged with the KOL and post
       topic they engaged. Use after KOL discovery or with a manual KOL list.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10336,7 +10334,7 @@ groups:
       - DROPCONTACT_API_KEY
       - SUPABASE_URL
       - SUPABASE_KEY
-    content_hash: 2e7df8d7675b
+    content_hash: a47c3eeffb55
     files:
     - SKILL.md
     - configs/icp.b2b-saas-revops.json
@@ -10365,7 +10363,7 @@ groups:
       library, messaging hierarchy, a 2x2 positioning map, and a deployment plan — usable in website copy, sales decks, and
       investor materials. Deterministic scripts fetch competitor pages and extract positioning signals; you (the agent) build
       the April-Dunford framework and write the doc.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10396,7 +10394,7 @@ groups:
     summary: A reusable lead-qualification engine. Conversational intake builds a qualification prompt capturing the ICP,
       then leads are enriched and scored into qualified/disqualified verdicts with confidence scores and reasoning. Prompts
       persist for reuse and calibration. The scoring sub-skill inside the event, Luma, and signal pipelines.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10426,7 +10424,7 @@ groups:
       the new leader's relevance to the product, enrich their profile, and draft outreach to their new-role priorities — the
       most receptive buyers, re-evaluating everything in their first 90 days. Composite that hands off to cold-email-outreach
       or linkedin-outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10458,7 +10456,7 @@ groups:
     summary: Extract everyone who commented on specific LinkedIn posts — name, title, company, profile URL, and comment text
       — to surface warm leads who actively engaged with a relevant discussion. Apify post-comments actor; degrades to web-automation
       + session cookie inside a Robomotion flow. Downstream of linkedin-post-research, upstream of message writers.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10486,7 +10484,7 @@ groups:
     summary: Discover top LinkedIn influencers and voices by topic, industry, country, and follower count — to build the top-N
       voices in a space, assemble influencer lists for outreach, or identify thought leaders to engage. Apify influencer-database
       actor primary (accurate follower counts + email flags); keyless web-search degrade.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10511,7 +10509,7 @@ groups:
     summary: Find LinkedIn job postings by search term and location, returning structured jobs (title, company, location,
       salary, job type, description, URL) for GTM research, hiring-signal sourcing, and job-pipeline building. Apify LinkedIn
       jobs actor when a token is set; keyless site:linkedin.com/jobs search otherwise.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10537,7 +10535,7 @@ groups:
     summary: Research LinkedIn leads (profile + recent posts) and write personalized messages for any LinkedIn message type
       — connection request, InMail, DM, message request, post comment, or comment reply — respecting each type's character
       limit, then export tool-ready CSVs. Use given a list of LinkedIn URLs and a goal/angle. The drafting half of linkedin-outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10563,7 +10561,7 @@ groups:
     summary: End-to-end LinkedIn outreach campaign builder — take qualified leads, write personalized message sequences (connection
       request + follow-ups + optional InMail), enforce char limits, export for the user's LinkedIn tool, and log the run.
       The LinkedIn counterpart to cold-email-outreach; a launch target for the signal composites when the user chooses LinkedIn.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10594,7 +10592,7 @@ groups:
     summary: Search LinkedIn posts by keyword, sorted by engagement or date, returning author, post text, reaction/comment/share
       counts, URL, and date. Use to research what people say about a topic, find high-engagement content, spot thought leaders,
       or seed a warm-lead pipeline. Apify actor primary with a keyless web-search degrade.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10619,7 +10617,7 @@ groups:
     summary: Scrape recent posts from specific LinkedIn profiles to monitor what founders/execs are posting, track activity,
       or gather post content for competitive intelligence and outreach personalization. Apify profile-posts actor primary;
       degrades to web-automation + session cookie in a Robomotion flow. Client-side date and keyword filtering.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10647,7 +10645,7 @@ groups:
     summary: Find speakers, hosts, and guest profiles at Luma events for outreach prospecting. Two modes — a free direct page
       scrape (event metadata + hosts) and a paid Apify search mode returning full guest profiles with LinkedIn/X/bio. The
       attendee-sourcing front end of the event-prospecting and Luma lead pipelines.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10676,7 +10674,7 @@ groups:
       attendee (LinkedIn, company, GitHub, recent news), generates an AI relationship brief per person, and delivers it (email
       per person, optional Slack), building a lightweight personal CRM over time. This is "who is this person", not "how do
       I sell to them" (for that, see sales-call-prep). Deterministic fetchers; the brief writing is the agent's.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10707,7 +10705,7 @@ groups:
       design a structured A/B test (LinkedIn organic and/or cold email), then normalize and score the returned metrics with
       a fixed weighting + significance gate to declare a winner and recommend where to deploy it. You (the agent) generate
       variants and write the narrative; deterministic scripts lay out the test schedule and score the results.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10739,7 +10737,7 @@ groups:
       placement-aware copy framework, and budget/bidding plan — from ICP + objective. Focused on the strategic architecture
       that decides success before a single ad runs, not on creative generation. Produces a plan/brief the user executes in
       Ads Manager.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10770,7 +10768,7 @@ groups:
       layoff, expansion), evaluate whether the companies/people in it fit ICP, identify the connection to the product, find
       the right people, and draft outreach using the news as the hook. Handles evaluate-only and full-outreach modes. Hands
       off to cold-email-outreach or linkedin-outreach.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10803,7 +10801,7 @@ groups:
     summary: Scan a dedicated monitoring inbox (IMAP) for incoming newsletter emails and extract buying signals via configurable
       keyword campaigns — matched keywords, 200-char context snippets, and mentioned companies. Use to monitor industry newsletters
       (acquisitions, migrations, staffing, technology adoption) for actionable signals without manual reading.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10837,7 +10835,7 @@ groups:
     summary: Turn newsletter subscriptions into an ongoing intelligence feed — monitor a dedicated IMAP inbox, extract signal-relevant
       content by keyword campaign (competitor mentions, ICP pain language, market shifts, brand mentions), and deliver a weekly
       themed digest with recommended actions. Use to stop manually reading industry newsletters.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10877,7 +10875,7 @@ groups:
       find decision-maker contacts, deduplicate, personalize messaging, launch the campaign, and monitor/iterate. The top-level
       orchestrator that strings the signal, enrichment, and outreach skills into one repeatable engine. Use when the user
       wants the whole pipeline, not a single signal or send.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10912,7 +10910,7 @@ groups:
     summary: Answer "where should I run ads?" for early-stage founders — analyze product, ICP, competitor ad presence, and
       budget to recommend the right 1–2 paid channels to start with and a 90-day ramp plan. Prevents the classic mistake of
       spreading a small budget too thin across platforms.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10943,7 +10941,7 @@ groups:
       your ICP voices publicly — then capturing the post AUTHOR (highest-intent: they voiced the pain) plus the reactors/commenters,
       enriching via Apollo, and scoring each with a deterministic pain×ICP×role fit/intent model. Targets people living with
       the problem, not people selling the solution. Use for "find leads complaining about X" / "LinkedIn pain-based prospecting."'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -10960,7 +10958,7 @@ groups:
       - SUPABASE_URL
       - SUPABASE_KEY
       - ANTHROPIC_API_KEY
-    content_hash: f2d2b3528c1d
+    content_hash: 114e90430373
     files:
     - SKILL.md
     - configs/icp.ops-finance-buyers.json
@@ -10993,7 +10991,7 @@ groups:
       (volume, qualification, source attribution, stage velocity, stuck deals, win/loss, forecast/coverage), and produce a
       one-page executive summary plus a detailed diagnostic with data-cited, prioritized recommendations. Tool-agnostic; metrics
       are computed, narrative is the agent's.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11023,7 +11021,7 @@ groups:
     summary: Scrape trending products from Product Hunt for a daily, weekly, or monthly window — ranked by upvotes. Use to
       discover new launches, track competitors, and monitor the startup ecosystem in a space. Keyless by default (Playwright
       over the leaderboard); uses an Apify Product Hunt actor when APIFY_API_TOKEN is set for reliable scale.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11056,7 +11054,7 @@ groups:
       /alternatives-to/, /use-cases/, /glossary/) and design the template structure, data model, and priority order. Crawls
       competitor pSEO patterns, expands keyword variations via Google Autocomplete, probes demand, then the agent scores patterns
       and designs templates. Outputs a full pSEO blueprint + buildout roadmap. Keyless (paid keyword APIs optional).
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11093,7 +11091,7 @@ groups:
       integrations/, for-{industry}/, use-cases/, glossary/, tools/), estimate page count per pattern, sample template quality,
       infer which patterns drive traffic, and surface the white-space / variation / quality gaps you can exploit. Recon step
       before a buildout; feeds programmatic-seo-planner. Keyless (paid traffic APIs optional).
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11128,7 +11126,7 @@ groups:
       URL preserved. Use to find discussions, track competitor or brand mentions, monitor product feedback, and discover ICP
       pain points. Keyless by default (public Reddit JSON); uses an Apify Reddit actor when APIFY_API_TOKEN is set for reliable
       scale.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11159,7 +11157,7 @@ groups:
       — exact customer language, metric-bearing proof points, recurring objections, competitive-displacement angles, and buyer
       vocabulary — into a periodic digest that feeds copywriting, positioning, and sales enablement. Apify-backed scrape;
       the agent does the synthesis.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11189,7 +11187,7 @@ groups:
     summary: Scrape product reviews from G2, Capterra, or Trustpilot in one skill (platform dispatch), normalized into a common
       schema with platform extras preserved. Use to monitor competitor reviews, track product sentiment, and gather Voice-of-Customer.
       Per-platform Apify actors when APIFY_API_TOKEN is set; keyless Playwright degrade otherwise.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11226,7 +11224,7 @@ groups:
       likely objections), then map your product to their situation to produce a complete call strategy: 30-second brief, talk
       track, discovery questions, objection prep, landmines. This answers "how do I sell to this person", not "who are they"
       (see meeting-brief).'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11261,7 +11259,7 @@ groups:
       — to find what they do well and where they struggle, then produces a personalized skill scorecard, a winning-pattern
       playbook reconstructed from their best work, a surprise finding, and a 30-day coaching plan. Coaches the worker. Metrics
       are computed; the coaching synthesis is the agent's.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11294,7 +11292,7 @@ groups:
       competitor comparison, topic/keyword and content-type gap matrices, an optional brand-voice profile, and prioritized
       recommendations. Crawls sitemaps, deep-analyzes top pages, and runs SERP rank checks (keyless); backlink/authority precision
       needs a paid API (no free fallback). Foundational input to seo-content-engine.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11329,7 +11327,7 @@ groups:
       voice, design internal linking, then publish and monitor on an ongoing cadence. A standing engagement (not a one-off
       report) that orchestrates the SEO sub-skills with mandatory human checkpoints. Requires an answer-engine key (via the
       AEO sub-step).
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11368,7 +11366,7 @@ groups:
       backlink/referring-domain signals, real per-keyword SERP rankings, and auto-discovered competitors from keyword overlap.
       Leads with keyless serp-derived ground truth; paid Semrush/Ahrefs APIs are optional enrichment. The agent labels estimates
       and writes the profile.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11404,7 +11402,7 @@ groups:
       competitor topic coverage, then return a prioritized Top 10 list of posts to write or update — filtered for commercial
       intent against the ICP. A lighter, faster cousin of seo-content-audit focused purely on the gap-to-opportunity list.
       Keyless (paid SEO APIs optional); feeds seo-content-engine and topical-authority-mapper.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11440,7 +11438,7 @@ groups:
       using only SERP probes, public pages, SimilarWeb free tier, and site: queries — no paid SEO subscription. Produces a
       full SEO report with content-gap analysis. The explicitly free counterpart to seo-domain-analyzer; the agent buckets
       keywords, finds gaps, and writes the report.'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11476,7 +11474,7 @@ groups:
       reads the copy you sent and every reply, then produces a prioritized report on what's working, what's not, and what
       to do. Tool-agnostic (Instantly/Lemlist/CSV). Metrics are computed; reply classification, copy grading, and recommendations
       are the agent's.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11503,7 +11501,7 @@ groups:
     summary: Monitor multiple buying-signal sources in parallel to find companies actively in-market, combine signals for
       higher-confidence leads, qualify them, and generate outreach context. Orchestrates job-posting, funding, event, Reddit-pain,
       and LinkedIn-content sources, then dedups and qualifies the combined set.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: host
     env:
@@ -11532,7 +11530,7 @@ groups:
     summary: A scheduled scanner that detects buying signals across a stored TAM and persona watchlist, writes them to a signals
       store, and sets up downstream activation. Three phases — free diff-based signals, paid scraped signals, then dedup/score/status
       updates. Always dry-runs before writing.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11565,7 +11563,7 @@ groups:
       with URL, title, date, content type, and topic cluster — plus publishing-cadence stats and optional deep per-page analysis
       (word count, images, internal links, has-CTA). No API key. Foundation for SEO audits, content-gap analysis, and brand-voice
       extraction.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11592,7 +11590,7 @@ groups:
     summary: One brief → voice-tuned X variants + voice-tuned LinkedIn variants + a matching social graphic. A thin orchestrator
       over create-x-content, create-linkedin-content, and graphics-studio, with a voice-guide pre-flight check and sensible
       defaults. Use for the end-to-end content moment when you want copy and a visual together, in the user's voice.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11622,7 +11620,7 @@ groups:
     summary: Discover newsletters a target ICP reads, evaluate each for audience fit / reach / CPM, and produce a ranked,
       tiered sponsorship shortlist with budget allocation and outreach templates. Use to test paid newsletter distribution
       faster and cheaper than building your own audience. Keyless discovery; the host agent does scoring and ranking.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11655,7 +11653,7 @@ groups:
     summary: Build and maintain a scored Total Addressable Market — discover ICP-matching companies via Apollo Company Search,
       score fit 0-100, assign tiers (1/2/3), and auto-build a persona watchlist for Tier 1-2 companies via free Apollo People
       Search. Outputs to a store/CSV. Foundation for signal-scanner.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11691,7 +11689,7 @@ groups:
       Segment, +20 more) into an attribution fingerprint so two teardowns sharing an ID can be linked to the same owner/agency.
       Merges into one confidence-ranked profile, infers the go-to-market MOTION, assesses email-auth deliverability, supports
       change-tracking via snapshot/diff. Single company or batch. Optional Apify/BuiltWith key for enrichment only.'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11728,7 +11726,7 @@ groups:
     summary: Find TikTok influencers/creators matching a specific niche, with follower-range, location, and fit-score filtering
       — for creator/influencer-marketing outreach lists. Apify TikTok discovery actor primary (built-in fit scoring); keyless
       web-search degrade where the agent estimates fit. TikTok-only.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11754,7 +11752,7 @@ groups:
       architecture for a subject area, so a site builds the topical depth Google rewards. Catalogs existing + competitor content,
       expands the subtopic universe via Google Autocomplete, then the agent clusters it into a pillar/cluster tree, gap matrix,
       and a capacity-bound content calendar. Keyless (no paid SEO API required).
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11788,7 +11786,7 @@ groups:
     summary: Scan X, Reddit, LinkedIn, and Hacker News for trending narratives, viral posts, and hot-button topics in a given
       space, score each by recency/velocity/relevance, and translate the actionable ones into concrete ad hooks with timing-urgency
       windows. Tells a paid team what to run ads about right now while the topic is hot.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11822,7 +11820,7 @@ groups:
       patterns — and emit reusable style presets: a slide-style CSS preset and a brand-config JSON for downstream slide/content-asset
       generators. Deterministic scripts render the site, harvest CSS/font/color signals, capture a hero screenshot, and sample
       dominant colors; you (the agent) classify color roles, choose fonts, and synthesize the vibe.'
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11851,7 +11849,7 @@ groups:
       churn surveys, feature requests, social mentions) into a single VoC report — theme clustering, sentiment, trend detection
       vs prior period, and team-specific (product/CS/marketing) action items. Runs on user-provided data; optional review
       scraping. Normalization is deterministic; the synthesis is the agent's.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11880,7 +11878,7 @@ groups:
     summary: Search the Wayback Machine (Internet Archive) for archived snapshots of a URL or domain and optionally fetch
       cached page content as readable text. Use to recover removed customer lists, testimonials, case studies, and partner
       directories, and to track how a competitor's messaging evolved over time. Free, no API key.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11899,15 +11897,38 @@ groups:
     license: MIT
     group: robomotion-gtm-skills
     category: Monitoring
+  - id: robomotion-gtm-skills/x-follower-scraper
+    name: x-follower-scraper
+    path: robomotion-gtm-skills/skills/x-follower-scraper
+    title: x-follower-scraper
+    summary: Export public X audiences with Xquik X Follower Scraper on Apify. Compare followers, following, verified users,
+      lists, communities, filters, and audience overlap.
+    version: 1.1.0
+    tags: []
+    mode: container
+    env:
+      required:
+      - APIFY_API_TOKEN
+      optional: []
+    content_hash: 2963947f5c7b
+    files:
+    - SKILL.md
+    - env.optional
+    - env.required
+    - scripts/apify_common.py
+    - scripts/x_followers.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-gtm-skills/tree/main/skills/x-follower-scraper
+    license: MIT
+    group: robomotion-gtm-skills
+    category: Research
   - id: robomotion-gtm-skills/x-mention-tracker
     name: x-mention-tracker
     path: robomotion-gtm-skills/skills/x-mention-tracker
     title: x-mention-tracker
-    summary: Search and scrape X posts for a query with reliable native date filtering (since:/until:) — ranked by likes.
-      Use to find posts, track brand mentions, monitor competitors, and feed the kol-content-monitor (from:<handle> feeds).
-      Apify tweet-scraper when APIFY_API_TOKEN is set (reliable); keyless Playwright degrade otherwise (best-effort behind
-      X's login wall).
-    version: 1.0.0
+    summary: Search public X posts with an existing Apify route or Xquik X Tweet Scraper. Track mentions, competitors, date
+      ranges, engagement, and recurring conversations.
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11917,7 +11938,7 @@ groups:
       - APIFY_TWITTER_ACTOR
       - SUPABASE_URL
       - SUPABASE_KEY
-    content_hash: 9b99ffd74bb2
+    content_hash: 6ae3135f4549
     files:
     - SKILL.md
     - env.optional
@@ -11941,7 +11962,7 @@ groups:
       reliable from cloud/datacenter IPs that YouTube blocks. Supports single, batch, and timestamped-JSON output with local
       caching so repeat fetches are free. Use whenever a skill needs a video's text for research, summarization, or content
       repurposing.
-    version: 1.0.0
+    version: 1.1.0
     tags: []
     mode: container
     env:
@@ -11969,7 +11990,6 @@ groups:
   - tests/.gitignore
   - tests/README.md
   - tests/_util.py
-  - tests/secrets.env
   - tests/secrets.env.example
   - tests/test_contract_cli_help.py
   - tests/test_contract_skill_examples.py
@@ -11987,6 +12007,7 @@ groups:
   - tests/test_unit_score_icp.py
   - tests/test_unit_score_results.py
   - tests/test_unit_score_tam.py
+  - tests/test_unit_xquik_actors.py
   - validate.sh
 - path: trailofbits-skills
   name: trailofbits-skills
@@ -12450,7 +12471,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 54f7916528e0
+    content_hash: 5f1752f4c733
     files:
     - SKILL.md
     - references/anti-patterns.md
@@ -12770,7 +12791,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 69364c414a0c
+    content_hash: b9d66d6b4a41
     files:
     - SKILL.md
     - cards/cups/ace-of-cups.md
@@ -13189,7 +13210,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 40f26d4cc34b
+    content_hash: 0b5f61a2e860
     files:
     - SKILL.md
     - references/rulesets.md
@@ -13568,7 +13589,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: '478853732148'
+    content_hash: 872c4223f49f
     files:
     - SKILL.md
     - examples/simple-handshake/expected-output.md
@@ -13675,7 +13696,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 84aa1cdd2ef8
+    content_hash: 25d907ba648c
     files:
     - SKILL.md
     - examples/simple-handshake/diagram.md
@@ -13796,7 +13817,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: faf4d030a8ea
+    content_hash: 11750138b776
     files:
     - METHODOLOGY.md
     - SKILL.md
@@ -13858,7 +13879,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 38c327451849
+    content_hash: 70aaafb28355
     files:
     - SKILL.md
     - examples/MAL_Mac_ProtonRAT_Jan25.yar
@@ -13894,7 +13915,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f36a42274890
+    content_hash: cf229e72ae0c
     files:
     - SKILL.md
     - configs/c.yaml
@@ -14078,7 +14099,6 @@ groups:
   - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.swift
   - plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.ts
   - plugins/constant-time-analysis/pyproject.toml
-  - plugins/constant-time-analysis/uv.lock
   - plugins/culture-index/.claude-plugin/plugin.json
   - plugins/culture-index/README.md
   - plugins/debug-buttercup/.claude-plugin/plugin.json
@@ -14337,7 +14357,7 @@ groups:
       - GEMINI_API_KEY
       optional:
       - GOOGLE_API_KEY
-    content_hash: eca2da45c09c
+    content_hash: c5ac4385f932
     files:
     - SKILL.md
     - data/cip/deliverables.csv
@@ -14394,7 +14414,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dceaee6577ef
+    content_hash: 31a67c3c7258
     files:
     - SKILL.md
     - data/slide-backgrounds.csv
