@@ -1,5 +1,12 @@
 # Changelog — robomotion-gtm-skills
 
+## [1.1.0] - 2026-07-27
+
+- Added Xquik X Follower Scraper for audience exports and overlap analysis.
+- Updated X mention tracking to use Xquik X Tweet Scraper.
+- Replaced legacy Actor routes and token query strings with current Apify API calls.
+- Added server-side charge limits and complete terminal-state handling.
+
 ## [1.0.0] — 2026-05-30
 - First-party Robomotion GTM skill group: 108 skills across 9 categories
   (ads, brand, competitive-intel, content, lead-generation, monitoring,

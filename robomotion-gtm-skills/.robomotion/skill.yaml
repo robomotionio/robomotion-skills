@@ -2,13 +2,13 @@ schema_version: 1
 name: robomotion-gtm-skills
 title: Robomotion GTM Skills
 type: group
-version: 1.0.0
+version: 1.1.0
 author: Robomotion
 source_url: https://github.com/robomotionio/robomotion-gtm-skills
 license: MIT
-summary: 108 Growth & GTM skills — ads, brand, competitive intelligence, content, lead generation, monitoring, outreach, research, and SEO. Keyless-first with optional paid-API enrichment (DataForSEO, Apify, Apollo, …) and an our-solution fallback for every external service.
+summary: 107 Growth & GTM skills for ads, brand, competitive intelligence, content, lead generation, monitoring, outreach, research, and SEO. Keyless-first where viable, with explicit cost gates for paid-only data sources.
 category: Marketing  # fallback for any sub-category not in category_map
-# Fan the 108 skills across native GTM marketplace buckets, keyed on each
+# Fan the 107 skills across native GTM marketplace buckets, keyed on each
 # skill's SKILL.md metadata.category. Display names shown in Browse Skills.
 category_map:
   lead-generation: Lead Generation
