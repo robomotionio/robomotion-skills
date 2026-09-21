@@ -53,13 +53,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
-
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -71,6 +69,8 @@ def _git(*args: str) -> str:
         check=True,
         capture_output=True,
         text=True,
+        encoding="utf-8",
+        errors="replace",
     )
     return result.stdout.strip()
 

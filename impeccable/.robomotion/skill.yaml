@@ -1,0 +1,16 @@
+schema_version: 1
+name: impeccable
+title: Impeccable
+type: group
+version: 1.0.0
+author: Paul Bakaus
+source_url: https://github.com/pbakaus/impeccable
+license: Apache-2.0
+summary: 'One skill, 24 commands for interface quality: critique, audit, polish, harden, with deterministic detector rules.'
+category: Design
+tags:
+- design
+- ui
+- audit
+- accessibility
+- polish

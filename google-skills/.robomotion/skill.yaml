@@ -1,0 +1,17 @@
+schema_version: 1
+name: google-skills
+title: Google Skills
+type: group
+version: 1.0.0
+author: Google
+source_url: https://github.com/google/skills
+license: Apache-2.0
+summary: Google Cloud, Gemini, GKE, BigQuery, Firebase, Cloud Run, plus Google Ads and Analytics.
+category: Cloud
+tags:
+- google-cloud
+- gemini
+- bigquery
+- firebase
+- ads
+- analytics

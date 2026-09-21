@@ -1,0 +1,15 @@
+schema_version: 1
+name: neon-skills
+title: Neon Skills
+type: group
+version: 1.0.0
+author: Neon
+source_url: https://github.com/neondatabase/agent-skills
+license: Apache-2.0
+summary: 'Neon Postgres: branching, auth, functions, a claimable database with no account.'
+category: Database
+tags:
+- neon
+- postgres
+- database
+- serverless

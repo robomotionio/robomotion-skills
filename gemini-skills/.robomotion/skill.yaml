@@ -1,0 +1,14 @@
+schema_version: 1
+name: gemini-skills
+title: Gemini Skills
+type: group
+version: 1.0.0
+author: Google
+source_url: https://github.com/google-gemini/gemini-skills
+license: Apache-2.0
+summary: Building with the Gemini API and SDKs.
+category: Engineering
+tags:
+- gemini
+- api
+- sdk

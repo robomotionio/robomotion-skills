@@ -1,0 +1,14 @@
+schema_version: 1
+name: lark-skills
+title: Lark Skills
+type: group
+version: 1.0.0
+author: Lark Technologies
+source_url: https://github.com/larksuite/cli
+license: MIT
+summary: 'Lark and Feishu: docs, sheets, calendar, mail, tasks, meetings, approvals, messaging.'
+category: Productivity
+tags:
+- lark
+- feishu
+- productivity

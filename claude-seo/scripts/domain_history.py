@@ -5,7 +5,7 @@ Expired-domain heritage check.
 Compares a domain's registration age against the topical fingerprint
 of its current content. A site that was registered 18 years ago for
 veterinary services and now reads as a high-volume crypto signal hub
-is the canonical "expired-domain abuse" pattern under Jan 2025 QRG
+is the canonical "expired-domain abuse" pattern under current QRG
 §4.6.7.
 
 Approach
@@ -63,6 +63,10 @@ import sys
 from datetime import datetime, timezone
 from typing import Optional
 
+_SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
+from url_safety import URLSafetyError, validate_url_strict  # noqa: E402
 
 _DATE_LABELS = {
     "created": (
@@ -93,6 +97,8 @@ def _shell_whois(domain: str) -> Optional[str]:
             check=False,
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=15,
         )
         if result.returncode == 0 and result.stdout:
@@ -124,8 +130,23 @@ def _socket_whois(domain: str) -> Optional[str]:
         return iana_text
 
     referral = m.group(1).strip()
+
+    # The referral host is attacker-influenceable: WHOIS runs unencrypted on
+    # port 43, so anyone able to tamper with the IANA response can inject a
+    # `refer:` line pointing at an internal address, turning this fallback into
+    # a port-43 probe of the operator's private network. Resolve and validate
+    # it through the same guard every other outbound call uses, then connect to
+    # the pinned address so the answer cannot be re-pointed after the check.
+    # WHOIS is plaintext with no SNI, so dialling the IP directly is lossless.
     try:
-        with socket.create_connection((referral, 43), timeout=10) as sock:
+        _, pinned_ip = validate_url_strict(f"https://{referral}/")
+    except URLSafetyError:
+        # A referral we cannot vouch for is not worth following. IANA's own
+        # answer is still useful, so return that rather than nothing.
+        return iana_text
+
+    try:
+        with socket.create_connection((pinned_ip, 43), timeout=10) as sock:
             sock.sendall(f"{domain}\r\n".encode("ascii"))
             buf = b""
             while True:
@@ -257,7 +278,7 @@ def assess_risk(
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Expired-domain heritage check (Jan 2025 QRG §4.6.7)."
+        description="Expired-domain heritage check (current QRG §4.6.7)."
     )
     parser.add_argument("domain")
     parser.add_argument("--topic", help="Current detected topic (free text).")

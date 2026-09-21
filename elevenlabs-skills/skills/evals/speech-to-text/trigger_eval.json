@@ -1,0 +1,20 @@
+[
+  {"query": "I recorded a team standup meeting and need the full transcript with timestamps, file is at ~/recordings/standup-march.mp3", "should_trigger": true},
+  {"query": "transcribe this mp3 file, it's an interview in Spanish and I need it in the original language", "should_trigger": true},
+  {"query": "I have a bunch of podcast episodes in ~/podcasts/ and want to generate subtitles for each one", "should_trigger": true},
+  {"query": "can you convert this voice memo to text? it's at ~/Downloads/memo.m4a, just need the raw text", "should_trigger": true},
+  {"query": "I need to extract what each speaker said from this conference call recording — there were 4 people on the call", "should_trigger": true},
+  {"query": "help me set up real-time speech to text transcription in my web app using elevenlabs", "should_trigger": true},
+  {"query": "process this lecture recording and give me word-level timestamps so I can build a searchable index", "should_trigger": true},
+  {"query": "I want to add captions to my video — need to transcribe the audio track first, it's in ~/project/video.mp4", "should_trigger": true},
+  {"query": "use elevenlabs scribe to transcribe this customer support call and identify the speakers", "should_trigger": true},
+  {"query": "convert this paragraph of text into a natural sounding audio file with a female voice", "should_trigger": false},
+  {"query": "build a voice agent that handles inbound customer calls and routes them to the right department", "should_trigger": false},
+  {"query": "generate a rain and thunder ambient sound loop for my meditation app", "should_trigger": false},
+  {"query": "compose a short jingle for my company's hold music", "should_trigger": false},
+  {"query": "translate this English text document to Japanese", "should_trigger": false},
+  {"query": "help me write detailed meeting notes from these bullet points I jotted down", "should_trigger": false},
+  {"query": "record audio from my microphone and save it as a WAV file", "should_trigger": false},
+  {"query": "analyze the audio quality of this recording and suggest improvements", "should_trigger": false},
+  {"query": "set up a whisper model locally for offline transcription", "should_trigger": false}
+]

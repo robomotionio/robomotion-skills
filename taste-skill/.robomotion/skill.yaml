@@ -1,0 +1,15 @@
+schema_version: 1
+name: taste-skill
+title: Taste
+type: group
+version: 1.0.0
+author: Leonxlnx
+source_url: https://github.com/Leonxlnx/taste-skill
+license: MIT
+summary: 'Frontend design taste: redesigns, brand kits, minimalist and soft styles, image-to-code.'
+category: Design
+tags:
+- design
+- frontend
+- ui
+- redesign

@@ -1,0 +1,17 @@
+schema_version: 1
+name: openai-skills
+title: OpenAI Skills
+type: group
+version: 1.0.0
+author: OpenAI
+source_url: https://github.com/openai/skills
+license: Apache-2.0
+summary: 'OpenAI''s curated skills: PDF, speech, transcription, screenshots, Playwright, deploys to Netlify, Cloudflare, Render and Vercel, security reviews, GitHub CI fixes. The licensed set only.'
+category: General
+tags:
+- pdf
+- speech
+- playwright
+- deploy
+- security
+- github

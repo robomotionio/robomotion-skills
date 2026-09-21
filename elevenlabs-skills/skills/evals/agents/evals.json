@@ -1,0 +1,94 @@
+{
+  "skill_name": "agents",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Using the ElevenLabs CLI project conventions, scaffold the local project files and agent configuration for a restaurant reservation assistant. It should be able to check availability, book tables, and confirm reservations. Do not authenticate with or call the ElevenLabs API and do not deploy — produce the agents.json and agent config files only, and document the 'elevenlabs agents push' deploy step in a README.",
+      "expected_output": "CLI-convention project files and agent configuration for a restaurant reservation voice agent",
+      "files": [],
+      "expectations": [
+        "Uses 'elevenlabs agents init' or equivalent CLI command to set up the project",
+        "Uses 'elevenlabs agents add' or registers the agent in agents.json with a config under agent_configs",
+        "Defines a persona prompt for the restaurant reservation assistant in the agent config",
+        "Documents 'elevenlabs agents push' as the deploy step",
+        "Configures at least one tool for checking availability or booking"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Show me how to embed an ElevenLabs voice agent widget on my React website. The agent ID is 'abc123'.",
+      "expected_output": "Code showing how to embed the ElevenLabs conversational AI widget",
+      "files": [],
+      "expectations": [
+        "Uses the elevenlabs-convai web component or React wrapper",
+        "Sets abc123 as the agent id value",
+        "Shows proper script tag or npm package import for the widget",
+        "Provides a working HTML or React component example"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create an ElevenLabs agent configuration with a custom webhook tool that calls our inventory API at https://api.example.com/inventory to check product stock levels.",
+      "expected_output": "Agent configuration with webhook tool definition",
+      "files": [],
+      "expectations": [
+        "Defines a tool with type 'webhook' or equivalent",
+        "Configures the request URL as https://api.example.com/inventory",
+        "Includes a description for the tool that the LLM can understand",
+        "Defines appropriate parameters/schema for the tool"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Using the ElevenLabs REST API and curl, show me how to add a structured (deterministic) procedure to agent agent_abc123 on branch agtbranch_xyz789 and get it live. Do not run anything.",
+      "expected_output": "Curl commands covering structured create, compile, and publish",
+      "files": [],
+      "expectations": [
+        "Sets type to deterministic and passes JSON-encoded content rather than a raw object",
+        "Sends the xi-api-key header populated from the ELEVENLABS_API_KEY environment variable, never a literal key",
+        "POSTs to the procedures/compile endpoint after saving the draft and before publishing, and repairs the draft and compiles again rather than publishing when compile returns errors",
+        "PATCHes the agent with branch_id and the compiled workflow"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "On my ElevenLabs agent agent_abc123, branch agtbranch_xyz789, I only edited the wording of one free-form procedure. The branch also has a structured (deterministic) procedure that I did not touch. Do I need to compile before publishing, or can I just PATCH the agent? Do not run anything.",
+      "expected_output": "Explanation that no compile is needed, because compiling only concerns structured procedures",
+      "files": [],
+      "expectations": [
+        "Explains that compilation produces workflow nodes from deterministic procedures, while free-form content is read from its published version instead",
+        "Notes that the unchanged deterministic procedure does not force a compile"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I created a procedure on my ElevenLabs agent a minute ago, but GET /v1/convai/agents/{agent_id}/branches/{branch_id}/procedures/{procedure_id} returns 404. Explain why and show me the curl call that reads what I actually have.",
+      "expected_output": "Explanation of draft versus branch HEAD reads, plus the draft endpoint call",
+      "files": [],
+      "expectations": [
+        "Explains that the plain procedure endpoint reads branch HEAD and a newly created procedure is still an unpublished draft",
+        "Shows a GET against the /draft suffix of the procedure endpoint"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "With the ElevenLabs JavaScript SDK, I want to change only the content of an existing procedure agtprc_abc on agent agent_abc123, branch agtbranch_xyz789. Show me the call. Do not run it.",
+      "expected_output": "A drafts.update call sending the full procedure body",
+      "files": [],
+      "expectations": [
+        "Sends the current name, type, and trigger with the new content to preserve behavior during the replacement update",
+        "Reads the current draft before writing the update"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I'm adding procedures to my ElevenLabs agent over the API. One handles refunds and one handles general account questions, but the agent keeps running the wrong one. How should I write the triggers?",
+      "expected_output": "Trigger-writing guidance emphasizing concrete, non-overlapping triggers",
+      "files": [],
+      "expectations": [
+        "Advises making triggers concrete and non-overlapping, and identifies the broad account-questions trigger as the cause of the misrouting",
+        "Recommends wording each trigger to cover the phrasings a caller would actually use"
+      ]
+    }
+  ]
+}

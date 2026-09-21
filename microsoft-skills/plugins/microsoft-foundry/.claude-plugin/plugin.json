@@ -1,0 +1,30 @@
+{
+  "name": "microsoft-foundry",
+  "description": "Foundry-platform fluency for any language. One orchestrator + 10 sub-skills covering hosted agents, intent-based toolboxes, multi-agent workflows, Foundry IQ knowledge bases, managed skills, long-term memory, observability and evaluations, and governance via the Foundry Control Plane. Bundles Azure MCP, Foundry MCP (mcp.ai.azure.com), and Microsoft Docs MCP for live operations and always-current docs.",
+  "version": "2.0.0",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://www.microsoft.com"
+  },
+  "homepage": "https://github.com/microsoft/skills/tree/main/.github/plugins/microsoft-foundry",
+  "repository": "https://github.com/microsoft/skills",
+  "license": "MIT",
+  "keywords": [
+    "foundry",
+    "azure-ai",
+    "agents",
+    "hosted-agents",
+    "toolbox",
+    "foundry-iq",
+    "knowledge-base",
+    "memory",
+    "workflows",
+    "governance",
+    "observability",
+    "evaluations",
+    "rag",
+    "ai-projects",
+    "azd",
+    "mcp"
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {"query": "I need to generate an audio voiceover for my YouTube video intro, something professional sounding in a deep male voice", "should_trigger": true},
+  {"query": "can you convert this paragraph to speech? I want it in French with a natural accent, save it as voiceover.mp3", "should_trigger": true},
+  {"query": "build me a simple python app that reads out news articles aloud using elevenlabs, needs to handle long text", "should_trigger": true},
+  {"query": "I have a blog post in ~/content/post.md that I want to turn into a podcast episode with natural sounding narration", "should_trigger": true},
+  {"query": "how do i use the elevenlabs tts api to synthesize speech in my node.js app? need streaming support", "should_trigger": true},
+  {"query": "i want to create an audiobook from this markdown file, split by chapters, each chapter a separate mp3", "should_trigger": true},
+  {"query": "generate spoken audio from this text using a warm female voice, output as wav not mp3", "should_trigger": true},
+  {"query": "write a script that takes a CSV of product descriptions and generates voice audio for each one", "should_trigger": true},
+  {"query": "help me add voice narration to my presentation — I'll give you the script for each slide", "should_trigger": true},
+  {"query": "transcribe this audio file to text, it's a recorded interview at ~/Downloads/interview.wav", "should_trigger": false},
+  {"query": "build a voice chatbot that handles inbound customer support calls and can look up order status", "should_trigger": false},
+  {"query": "create a thunder sound effect with light rain for my horror game's intro scene", "should_trigger": false},
+  {"query": "generate a lo-fi beat with some piano and vinyl crackle, about 30 seconds long", "should_trigger": false},
+  {"query": "how do I set up my elevenlabs api key? I just created an account", "should_trigger": false},
+  {"query": "help me edit this WAV file to remove the background noise and normalize the volume", "should_trigger": false},
+  {"query": "write a wedding speech for my best friend's ceremony, she loves hiking and dogs", "should_trigger": false},
+  {"query": "I need to analyze the sentiment of customer call recordings we have in S3", "should_trigger": false},
+  {"query": "set up a whisper model locally to transcribe my meeting recordings", "should_trigger": false}
+]

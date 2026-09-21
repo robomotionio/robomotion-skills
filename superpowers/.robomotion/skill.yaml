@@ -1,0 +1,16 @@
+schema_version: 1
+name: superpowers
+title: Superpowers
+type: group
+version: 1.0.0
+author: Jesse Vincent
+source_url: https://github.com/obra/superpowers
+license: MIT
+summary: 'A structured software-development method: brainstorm, plan, test-first, debug systematically, verify before calling it done.'
+category: Engineering
+tags:
+- engineering
+- planning
+- tdd
+- debugging
+- methodology

@@ -127,6 +127,33 @@ mirrored unchanged, so the collection updates with a plain re-sync
   `docs/agent-files.md`.
 - **Bump:** re-sync `marketing-skills/` from upstream, then run `build-index.py`.
 
+## Third-party groups: `upstreams.yaml`
+
+A third-party group is never copied in or edited by hand. `upstreams.yaml`
+records, per group, the upstream commit it was built from, and
+`sync-upstream.py` is the only thing that writes vendored content:
+
+```
+upstream tree at `commit`  -  exclude  +  .robomotion/patches  =  the group folder
+```
+
+Ours stay ours: `.robomotion/` and the launcher hooks (`post-install.sh`,
+`pre-run.sh`, `env.required`, `env.optional`) are never taken from upstream,
+so a project that learns our folder contract cannot plant one.
+
+```sh
+python3 sync-upstream.py status            # how far behind each group is
+python3 sync-upstream.py sync <group>      # move it to the newest commit that has aged 7 days
+python3 sync-upstream.py verify            # CI: the tree is what the manifest says, or fail
+python3 scan-skills.py --changed           # tripwires on what a change touches
+```
+
+A weekly workflow opens one pull request per group that moved. Its body lists
+the upstream commits, the code that can run, and hosts the group never named
+before. **A person reads the diff; a clean scan is not an approval.** An edit
+to upstream content is a patch file in `.robomotion/patches/`, never an edit
+in place: `verify` fails the build on one.
+
 ## Discovery index (`index.json`)
 
 A generated **`index.json`** at the repo root is the discovery manifest — for each skill: name, path, group, summary, tags, version, mode, env, the nearest `_shared`, a `contentHash`, and the `files` manifest. It serves two consumers, so neither has to walk the repo:

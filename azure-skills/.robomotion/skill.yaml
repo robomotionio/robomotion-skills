@@ -1,0 +1,15 @@
+schema_version: 1
+name: azure-skills
+title: Azure Skills
+type: group
+version: 1.0.0
+author: Microsoft
+source_url: https://github.com/microsoft/azure-skills
+license: MIT
+summary: 'Azure and Microsoft Foundry: deployment, diagnostics, cost, Kubernetes, app onboarding, cloud operations.'
+category: Cloud
+tags:
+- azure
+- cloud
+- deployment
+- diagnostics

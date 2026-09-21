@@ -1,0 +1,116 @@
+# Findings a person has read and accepted. Matched by rule, path and the exact
+# text, so an accepted line that changes is a finding again.
+# A project's own documented installer. Piping it to a shell is still a
+# warning on every scan; listing the host here only stops it failing the run.
+accepted:
+- key: 95fe8fc2321d369e
+  rule: hidden-unicode
+  path: emilkowalski-skills/skills/improve-animations/PLAN-TEMPLATE.md
+  reason: one zero-width space before a code fence, so the template can show a fence inside a fence
+- key: 65b922fbb21146f8
+  rule: env-sweep
+  path: awesome-copilot/skills/poka-yoke/scripts/detect_hazards.py
+  text: negate=r"(config|env|settings)\.(ts|js)"),
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 4c774e3a385b34ae
+  rule: registry-override
+  path: awesome-copilot/skills/python-pypi-package-builder/SKILL.md
+  text: "\u2514\u2500\u2500 Verify: pip install --index-url https://test.pypi.org/simple/ your-package"
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 04b07b53c01fba88
+  rule: registry-override
+  path: awesome-copilot/skills/python-pypi-package-builder/references/ci-publishing.md
+  text: pip install --index-url https://test.pypi.org/simple/ your-package
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 536386fc9ecd0c81
+  rule: registry-override
+  path: awesome-copilot/skills/python-pypi-package-builder/references/versioning-strategy.md
+  text: pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ your-package==1.2.3
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: c8eb9f600b87e6de
+  rule: credential-path
+  path: google-skills/skills/ads/google-ads-api-quickstart/SKILL.md
+  text: Once successful, `gcloud` will output a message indicating where the credentials were saved (typically `~/.config/gcloud
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 191053848ab1795f
+  rule: credential-path
+  path: google-skills/skills/cloud/agent-platform-migrate-from-ai-studio/SKILL.md
+  text: mkdir -p ~/.config/gcloud
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: dac7bcf7a0b8b312
+  rule: credential-path
+  path: google-skills/skills/cloud/agent-platform-migrate-from-ai-studio/SKILL.md
+  text: gcloud iam service-accounts keys create ~/.config/gcloud/application_default_credentials.json --iam-account="${PROJECT_N
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 3fd9422064bb3b72
+  rule: persistence
+  path: google-skills/skills/cloud/developing-genkit-python/references/dev-workflow.md
+  text: echo 'export GEMINI_API_KEY=your-api-key-here' >> ~/.zshrc && source ~/.zshrc
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 57089dca0be6b1c8
+  rule: persistence
+  path: google-skills/skills/cloud/firebase-basics/references/flutter_setup.md
+  text: echo 'export PATH="$PATH:$HOME/development/flutter/bin"' >> ~/.zshrc
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 17e8f0693bb8af27
+  rule: credential-path
+  path: google-skills/skills/cloud/gke-basics/references/client-library-usage.md
+  text: 'config.load_kube_config() # Loads from ~/.kube/config'
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: f14f3219b25c8352
+  rule: drop-site
+  path: microsoft-skills/plugins/microsoft-365-agents-toolkit/skills/teams-app-developer/experts/teams/dev.debug-test-ts.md
+  text: 7. For testing with real Teams clients locally, use a tunneling solution (ngrok, dev tunnels, Cloudflare Tunnel) to expo
+  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
+    a regex in a linter'
+- key: 488e8a4eb7406d21
+  rule: credential-path
+  path: caveman-skills/skills/caveman-compress/scripts/compress.py
+  text: '# by extension, but credentials.md / secrets.txt / ~/.aws/credentials would'
+  reason: 'read 2026-09-21: a comment listing the credential files the script refuses to touch'
+- key: bbc6c25ad7c6000b
+  rule: drop-site
+  path: elevenlabs-skills/skills/speech-engine/SKILL.md
+  text: '`PUBLIC_WS_URL` should look like `wss://example.ngrok.app/ws` locally or your production WebSocket route in deployment.'
+  reason: 'read 2026-09-21: placeholder tunnel and webhook URLs inside documentation examples'
+- key: ad1eaf21b3f4ceb9
+  rule: drop-site
+  path: elevenlabs-skills/skills/speech-engine/references/installation.md
+  text: export PUBLIC_WS_URL="wss://your-ngrok-domain.ngrok.app/ws"
+  reason: 'read 2026-09-21: placeholder tunnel and webhook URLs inside documentation examples'
+- key: e38e92b4e915eb51
+  rule: drop-site
+  path: openai-skills/skills/cloudflare-deploy/references/pages-functions/patterns.md
+  text: 'fetch(''https://webhook.site/...'', { method: ''POST'' })'
+  reason: 'read 2026-09-21: placeholder tunnel and webhook URLs inside documentation examples'
+trusted_installers:
+- aka.ms/
+- aspire.dev/install
+- cli.genkit.dev
+- sdk.cloud.google.com
+- sh.rustup.rs
+- astral.sh/uv
+- get.docker.com
+- bun.sh/install
+- rpm.nodesource.com/
+- deb.nodesource.com/
+- ollama.com/install.sh
+- downloads.slack-edge.com/slack-cli/
+- storage.googleapis.com/cloud-samples-data/
+- raw.githubusercontent.com/OfficeDev/
+- raw.githubusercontent.com/higgsfield-ai/cli/
+- github.com/elevenlabs/cli/releases/
+- raw.githubusercontent.com/render-oss/cli/
+- cli.sentry.dev/install
+- cog.run/install.sh
+- code-server.dev/install.sh

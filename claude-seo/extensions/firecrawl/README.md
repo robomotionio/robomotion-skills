@@ -6,7 +6,7 @@ Full-site crawling, scraping, and site mapping powered by [Firecrawl](https://ww
 
 - [Claude SEO](https://github.com/AgriciDaniel/claude-seo) installed
 - Node.js 20+
-- Firecrawl API key ([sign up](https://www.firecrawl.dev/app/sign-up) -- free tier: 500 credits/month)
+- Firecrawl API key ([sign up](https://www.firecrawl.dev/signup) -- free tier: 500 credits/month)
 
 ## Installation
 
@@ -56,7 +56,7 @@ When installed, other Claude SEO skills automatically leverage Firecrawl:
 ## Troubleshooting
 
 **MCP not connecting?**
-- Check: `cat ~/.claude/settings.json | python3 -m json.tool | grep firecrawl`
+- Check: `cat ~/.claude.json | python3 -m json.tool | grep firecrawl`
 - Manual config: See [FIRECRAWL-SETUP.md](docs/FIRECRAWL-SETUP.md)
 
 **Credits exhausted?**

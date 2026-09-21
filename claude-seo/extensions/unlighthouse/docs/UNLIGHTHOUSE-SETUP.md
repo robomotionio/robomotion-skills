@@ -14,7 +14,7 @@ quota, no credentials, no network egress beyond crawling the target.
 The installer:
 
 1. Verifies Python 3 + Node 18+.
-2. Pre-warms `unlighthouse-cli@^0.13` via `npx --yes`.
+2. Pre-warms `unlighthouse@0.13.5` via `npx --yes`.
 3. Copies the `seo-unlighthouse` skill into `~/.claude/skills/`.
 
 No API keys, no settings.json mutation.

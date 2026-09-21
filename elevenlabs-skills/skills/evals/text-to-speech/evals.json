@@ -1,0 +1,45 @@
+{
+  "skill_name": "text-to-speech",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a Python script that generates speech from 'Hello world, welcome to ElevenLabs!' and saves it as hello.mp3, using the ElevenLabs SDK and a natural sounding voice. Don't run it — I'll run it myself with my own API key.",
+      "expected_output": "A Python script that uses the ElevenLabs SDK to convert text to speech and save as MP3",
+      "files": [],
+      "expectations": [
+        "Uses 'from elevenlabs import ElevenLabs' for the import",
+        "Instantiates the client with ElevenLabs(",
+        "Calls client.text_to_speech.convert() with the text parameter",
+        "Specifies a model_id parameter",
+        "Specifies a voice_id parameter",
+        "Writes output to a file named hello.mp3",
+        "Does NOT use the deprecated 'elevenlabs' v1 API (no 'from elevenlabs import generate')"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Write a Node.js script that uses the ElevenLabs JS SDK (@elevenlabs/elevenlabs-js) to convert the text 'Bonjour le monde, bienvenue chez ElevenLabs' to French speech. Use their multilingual model. Save as bonjour.mp3.",
+      "expected_output": "A JavaScript/TypeScript script using the ElevenLabs JS SDK with multilingual model",
+      "files": [],
+      "expectations": [
+        "Imports from '@elevenlabs/elevenlabs-js' (NOT 'elevenlabs')",
+        "Uses the eleven_multilingual_v2 model or another multilingual model",
+        "Passes the French text 'Bonjour le monde, bienvenue chez ElevenLabs' as the input text",
+        "Saves output to bonjour.mp3",
+        "Handles the audio stream/buffer correctly"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Show me how to do streaming text-to-speech with ElevenLabs in Python — I want to play audio as it's being generated, not wait for the whole thing.",
+      "expected_output": "Python code demonstrating streaming TTS with real-time playback",
+      "files": [],
+      "expectations": [
+        "Uses the ElevenLabs Python SDK",
+        "Uses the text_to_speech.stream() streaming method (or similar streaming approach)",
+        "Demonstrates processing audio chunks as they arrive",
+        "Explains or shows how to play audio in real-time"
+      ]
+    }
+  ]
+}

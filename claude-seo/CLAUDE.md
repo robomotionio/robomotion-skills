@@ -21,16 +21,17 @@ claude-seo/
   CONTRIBUTORS.md                    # Community credits (Pro Hub Challenge)
   AGENTS.md                          # Multi-platform agent instructions (Cursor, Antigravity)
   .claude-plugin/
-    plugin.json                    # Plugin manifest (v1.9.8)
+    plugin.json                    # Plugin manifest (v2.3.1)
     marketplace.json               # Marketplace catalog for distribution
   skills/                            # 25 sub-skills (auto-discovered)
     seo/                           # Main orchestrator skill
       SKILL.md                     # Entry point, routing table, core rules
-      references/                  # On-demand knowledge files (12 files)
+      references/                  # On-demand knowledge files (13 files)
     seo-audit/SKILL.md            # Full site audit with parallel agents
     seo-page/SKILL.md            # Deep single-page analysis
     seo-technical/SKILL.md       # Technical SEO (9 categories)
     seo-content/SKILL.md         # E-E-A-T and content quality
+    seo-content-brief/SKILL.md   # Content brief generation
     seo-schema/SKILL.md          # Schema.org markup detection/generation
     seo-sitemap/SKILL.md         # XML sitemap analysis/generation
     seo-images/SKILL.md          # Image optimization analysis
@@ -38,12 +39,13 @@ claude-seo/
     seo-local/SKILL.md           # Local SEO (GBP, citations, reviews, map pack)
     seo-maps/SKILL.md            # Maps intelligence (geo-grid, GBP audit, reviews, competitors)
     seo-plan/SKILL.md            # Strategic SEO planning
+    seo-flow/SKILL.md            # FLOW framework integration
     seo-programmatic/SKILL.md    # Programmatic SEO at scale
     seo-competitor-pages/SKILL.md # Competitor comparison pages
     seo-hreflang/SKILL.md       # International SEO / hreflang
     seo-google/                  # Google SEO APIs
       SKILL.md
-      references/                # API reference files (10 files)
+      references/                # API reference files (11 files)
     seo-backlinks/SKILL.md      # Backlink profile analysis
     seo-cluster/                 # Semantic topic clustering (v1.9.0, by Lutfiya Miller)
       SKILL.md
@@ -80,13 +82,14 @@ claude-seo/
     seo-sxo.md                   # Search experience optimization
     seo-drift.md                 # SEO drift monitoring
     seo-ecommerce.md             # E-commerce SEO analysis
+    seo-flow.md                  # FLOW framework integration
   hooks/                           # Quality gate hooks
     hooks.json                   # PostToolUse schema validation
-  scripts/                         # Python execution scripts (30 tracked + 2 dev-only)
+  scripts/                         # 54 Python execution scripts
     google_auth.py               # Credential management (OAuth, SA, API key, 4-tier detection)
     backlinks_auth.py            # Backlink API credential management (Moz, Bing)
     moz_api.py                   # Moz Link Explorer API (DA/PA, spam, domains, anchors)
-    bing_webmaster.py            # Bing Webmaster Tools API (links, competitor comparison)
+    bing_webmaster.py            # Bing Webmaster Tools API (registered-site links/comparison)
     commoncrawl_graph.py         # Common Crawl web graph parser (PageRank, in-degree)
     verify_backlinks.py          # Backlink existence verification crawler
     pagespeed_check.py           # PSI v5 + CrUX API
@@ -111,46 +114,79 @@ claude-seo/
     dataforseo_merchant.py       # Google Shopping / Amazon data fetching
     dataforseo_normalize.py      # DataForSEO response normalization utility
     sync_flow.py                 # FLOW prompt library sync (GitHub API, CC BY 4.0 headers, --dry-run, --ref)
+    url_safety.py                # Canonical URL/SSRF safety module (validate, DNS-pin, safe fetch)
+    render_page.py               # Shared headless renderer (SPA-aware, Playwright)
+    lcp_subparts.py              # LCP subparts breakdown via CrUX API
+    preload_check.py             # Speculation Rules / bfcache / prerender / preload detector
+    agent_ux_check.py            # Agent-friendly page auditor
+    content_quality.py           # QRG-aligned content quality detector
+    metadata_template.py         # Templated title/description detector (title echo + stock CTA)
+    content_humanize.py          # AI-pattern remover (rewrites AI-typical phrasing)
+    content_verify.py            # Claim extractor + citation-gap detector
+    schema_generate.py           # JSON-LD generators for high-leverage v2 schema types
+    schema_ecommerce_validate.py # Product schema validator (merchant-listing requirements)
+    iptc_ai_label.py             # IPTC DigitalSourceType audit/injection for AI imagery
+    parasite_risk.py             # Parasite-SEO risk scanner
+    gbp_deprecation_lint.py      # GBP feature-deprecation linter
+    domain_history.py            # Expired-domain heritage check
+    seo_updates.py               # Primary-source Google updates query tool
+    indexnow_submit.py           # IndexNow submitter
+    ucp_check.py                 # UCP (Universal Commerce Protocol) profile auditor
+    unlighthouse_run.py          # Unlighthouse CLI wrapper (site-wide Lighthouse)
+    validate_backlink_report.py  # Backlink report validation
+    portability_check.py         # Cross-platform portability lint for SKILL.md files
+    consistency_check.py         # Reference-graph gate: dead refs, routing, lock, orphans
+    release_sign.py              # SHA-256 manifest generator for release signing
+    verify_release.py            # Verify checkout integrity against a release manifest
     mobile_analysis.py           # Mobile rendering analysis (gitignored, dev-only)
   schema/                          # Schema.org JSON-LD templates
   extensions/                      # Optional add-on install helpers
     dataforseo/                  # DataForSEO MCP install scripts
     firecrawl/                   # Firecrawl MCP install scripts
     banana/                      # Banana MCP install scripts
+    ahrefs/                      # Ahrefs MCP install scripts
+    bing-webmaster/              # Bing Webmaster and IndexNow install scripts
+    profound/                    # Profound MCP install scripts
+    seranking/                   # SE Ranking MCP install scripts
+    unlighthouse/                # Unlighthouse install scripts
   docs/                            # Extended documentation
 ```
 
 ## Commands
 
-| Command | Purpose |
-|---------|---------|
-| `/seo audit <url>` | Full site audit with up to 15 parallel subagents |
-| `/seo page <url>` | Deep single-page analysis |
-| `/seo technical <url>` | Technical SEO audit (9 categories) |
-| `/seo content <url>` | E-E-A-T and content quality analysis |
-| `/seo schema <url>` | Schema.org detection, validation, generation |
-| `/seo sitemap <url>` | XML sitemap analysis or generation |
-| `/seo images <url or optimize>` | Image SEO: on-page audit, SERP analysis, file optimization |
-| `/seo geo <url>` | AI search / Generative Engine Optimization |
-| `/seo plan <type>` | Strategic SEO planning by industry |
-| `/seo programmatic` | Programmatic SEO analysis and planning |
-| `/seo competitor-pages` | Competitor comparison page generation |
-| `/seo local <url>` | Local SEO analysis (GBP, citations, reviews, map pack) |
-| `/seo maps [command] [args]` | Maps intelligence (geo-grid, GBP audit, reviews, competitors) |
-| `/seo hreflang <url>` | International SEO / hreflang audit |
-| `/seo google [command] [url]` | Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4) |
-| `/seo backlinks <url>` | Backlink profile analysis (free: Moz, Bing, CC; premium: DataForSEO) |
-| `/seo backlinks setup` | Setup instructions for free backlink APIs |
-| `/seo backlinks verify <url>` | Verify known backlinks still exist |
-| `/seo cluster <seed-keyword>` | SERP-based semantic clustering and content architecture |
-| `/seo sxo <url>` | Search Experience Optimization: page-type analysis, personas |
-| `/seo drift baseline <url>` | Capture SEO baseline for change monitoring |
-| `/seo drift compare <url>` | Compare current state to stored baseline |
-| `/seo drift history <url>` | Show drift history over time |
-| `/seo ecommerce <url>` | E-commerce SEO: product schema, marketplace intelligence |
-| `/seo firecrawl [command] <url>` | Full-site crawling and site mapping (extension) |
-| `/seo dataforseo [command]` | Live SEO data via DataForSEO MCP (extension) |
-| `/seo image-gen [use-case] <desc>` | AI image generation for SEO assets (extension) |
+| Command | Use Case |
+|---------|----------|
+| `/seo audit <url>` | Full website audit with parallel subagents |
+| `/seo page <url>` | Single page analysis |
+| `/seo technical <url>` | Technical SEO across 9 categories |
+| `/seo content <url>` | E-E-A-T and content quality |
+| `/seo content-brief <topic>` | Detailed content brief: keywords, outline, internal links |
+| `/seo schema <url>` | Schema markup detection, validation, generation |
+| `/seo sitemap <url>` | Sitemap validation |
+| `/seo sitemap generate` | Create new sitemap with industry templates |
+| `/seo images <url>` | Image optimization |
+| `/seo geo <url>` | AI search optimization (GEO) |
+| `/seo local <url>` | Local SEO (GBP, citations, reviews) |
+| `/seo maps [command]` | Maps intelligence (geo-grid, GBP audit, competitors) |
+| `/seo backlinks <url>` | Backlink profile analysis |
+| `/seo cluster <seed>` | SERP-based semantic clustering |
+| `/seo sxo <url>` | Search Experience Optimization |
+| `/seo drift baseline\|compare\|history <url>` | SEO drift monitoring |
+| `/seo ecommerce <url>` | E-commerce SEO |
+| `/seo hreflang [url]` | Hreflang and international SEO |
+| `/seo plan <type>` | Strategic planning by industry |
+| `/seo programmatic [url\|plan]` | Programmatic SEO analysis |
+| `/seo competitor-pages [url\|generate]` | Competitor comparison pages |
+| `/seo flow [stage] [url\|topic]` | FLOW framework prompts |
+| `/seo google [command] [url]` | Google SEO APIs (GSC, PSI, CrUX, GA4) |
+| `/seo dataforseo [command]` | Live SEO data (extension) |
+| `/seo image-gen [use-case] <desc>` | AI image generation (extension) |
+| `/seo firecrawl [command] <url>` | Full-site crawling (extension) |
+| `/seo ahrefs [command] <url>` | Backlinks, organic keywords, and content data via the official Ahrefs MCP (extension) |
+| `/seo seranking [command]` | AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode (extension) |
+| `/seo profound [command]` | LLM citation tracking with time-series data (extension) |
+| `/seo bing [command] <url>` | Bing Webmaster Tools + IndexNow URL submission (extension) |
+| `/seo unlighthouse <url>` | Multi-page Lighthouse runner, runs locally (extension) |
 
 ## Development Rules
 
@@ -159,21 +195,22 @@ claude-seo/
 - Scripts must have docstrings, CLI interface, and JSON output
 - Follow kebab-case naming for all skill directories
 - Agents invoked via Agent tool, never via Bash
-- Python dependencies install into `~/.claude/skills/seo/.venv/`
-- Test with `python -m pytest tests/` after changes (if applicable)
+- Bundled tools run through `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run`; plugin state uses `CLAUDE_PLUGIN_DATA`
+- Manual Python dependencies install into `~/.claude/skills/seo/.venv/`
+- Test with `python3 -m pytest tests/` after changes (if applicable)
 
 ## Security Rules
 
 - **Never commit credentials**: `.env`, `client_secret*.json`, `oauth-token.json`, `service_account*.json` are all in `.gitignore`
-- **URL validation**: All scripts that accept user URLs must call `validate_url()` from `google_auth.py` before making API calls. This blocks private IPs, loopback, and GCP metadata endpoints (SSRF protection).
+- **URL validation**: All scripts that connect to user-supplied URLs must use `scripts/url_safety.py` (`validate_url_strict()` plus the pinned safe request helpers). This blocks private IPs, loopback, metadata endpoints, redirect rebinding, and DNS rebinding.
 - **OAuth tokens**: Never store `client_secret` in the token file. Read it from the client_secret.json file at runtime.
-- **No hardcoded paths**: Use `os.path.dirname(os.path.abspath(__file__))` for relative paths, never `/home/username/...`
+- **No hardcoded paths**: Use `os.path.dirname(os.path.abspath(__file__))` for relative paths, never a user-specific absolute path
 - **Config location**: `~/.config/claude-seo/google-api.json` and `~/.config/claude-seo/backlinks-api.json` (user-space, not in repo)
 
 ## Report Generation Rules
 
 - **All SEO reports must use `scripts/google_report.py`** as the canonical report generator
-- **Dependencies**: `matplotlib>=3.8.0` (charts) + `weasyprint>=61.0` (HTML-to-PDF), both in `requirements.txt`
+- **Dependencies**: `matplotlib>=3.8.0` (charts) + `weasyprint>=70.0` (HTML-to-PDF), both in `requirements.txt`
 - **Format**: A4 PDF via WeasyPrint + matplotlib charts at 200 DPI
 - **Style**: Clean white title page with navy (#1e3a5f) accent, Times New Roman body font
 - **Color palette**: Navy #1e3a5f (headers), dark gold #b8860b (accents), forest green #2d6a4f (pass), warm amber #d4740e (warnings), deep red #c53030 (fail), warm cream #faf9f7 (backgrounds)
@@ -197,13 +234,14 @@ Part of the Claude Code skill family:
 1. **Progressive Disclosure**: Metadata always loaded, instructions on activation, resources on demand
 2. **Industry Detection**: Auto-detect SaaS, e-commerce, local, publisher, agency
 3. **Parallel Execution**: Full audits spawn up to 15 subagents simultaneously
-4. **Extension System**: DataForSEO MCP for live data, Firecrawl MCP for site crawling, Banana MCP for AI image generation
+4. **Extension System**: DataForSEO, Firecrawl, Banana, Ahrefs, SE Ranking, Profound, Bing Webmaster, and Unlighthouse extensions
 
 ## Repository Topology (public + private)
 
-This project is mirrored across two GitHub remotes that share git history.
-Both originate from the same local checkout; neither is a GitHub fork of
-the other (different orgs, no parent/child relationship in the GitHub UI).
+This project is mirrored across two GitHub remotes with shared historical
+ancestry. Reviewed back-ports, private-only research, and marketplace branding
+mean their release commits can have different SHAs. Neither repository is a
+GitHub fork of the other.
 
 | Remote | URL | Visibility | Role |
 |---|---|---|---|
@@ -217,17 +255,15 @@ Daily development:
 - `git push aimh <branch>` to publish work-in-progress to the private repo
   (Dependabot, Actions, and CI run there).
 
-Promoting to public on release:
-1. Merge `v2` into local `main` when ready to release (fast-forward).
-2. Tag the release locally (`git tag -a vX.Y.Z`).
-3. Push the tag and main to **both** remotes in this order:
-   - First: `git push aimh main && git push aimh vX.Y.Z`
-   - Then: `git push origin main && git push origin vX.Y.Z`
-   - The "tag before merge" sequence (see `feedback_push_caution` memory)
-     applies on `origin` to avoid the `curl|bash` outage window where
-     users pull a tag that doesn't yet point at code on `main`.
-4. `gh release create vX.Y.Z --repo AgriciDaniel/claude-seo` (public-only).
-5. `/release-blog` to publish the release post.
+Promoting reviewed release changes:
+1. Use an isolated clean worktree from the target repository branch.
+2. Fast-forward only when ancestry proves it is safe. Otherwise cherry-pick
+   the exact reviewed commits with `-x` and resolve only documented divergence.
+3. Run the full validation suite and compare the private/public release trees.
+4. Create an annotated repository-specific tag after validation.
+5. Push private changes first. Push public changes only with explicit release
+   authorization, with the public tag available before the installer moves.
+6. Create the GitHub Release and release post on the public repository only.
 
 ### Safety rules
 
@@ -235,11 +271,10 @@ Promoting to public on release:
   pushes are user-authorized per-release.
 - **`aimh` accepts day-to-day pushes.** No release-gate ceremony required
   for the private remote.
-- **Tags push to private first.** v2.0.0 is the current example: tag lives
-  on `aimh` (private) but not yet on `origin` (public) — that's intentional
-  until release.
-- **History stays shared.** Never rewrite history on either remote with
-  force-push unless explicitly authorized for that specific operation.
+- **v2.2.5 is tagged on both repositories.** Each tag points to that
+  repository's reviewed release commit.
+- **Never force-sync the histories.** Preserve reviewed divergence and never
+  rewrite either remote without explicit per-operation authorization.
 
 ### Verifying the topology
 
@@ -247,9 +282,10 @@ Promoting to public on release:
 # Both remotes configured
 git remote -v        # expects: origin (public) + aimh (private)
 
-# Both share main HEAD
+# Compare heads and then audit the documented divergence. Equal SHAs are not
+# expected after repository-specific back-ports.
 git ls-remote --heads aimh main
-git ls-remote --heads origin main   # SHAs must match for a clean release
+git ls-remote --heads origin main
 ```
 
 Full workflow reference: `docs/WORKFLOW-public-private.md`.

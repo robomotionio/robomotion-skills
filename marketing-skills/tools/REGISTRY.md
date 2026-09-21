@@ -10,10 +10,34 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 
 ---
 
+## Verified Partners
+
+> **Full rules & boundaries:** [PARTNERS.md](PARTNERS.md) — the canonical governance doc (tool taxonomy, what sponsorship buys and never buys, disclosure, the partner lifecycle, and the `integrations/` spec).
+
+◆ **Verified Partners** are tools whose makers fund Marketing Skills through the [partner program](https://marketing-skills.com/sponsorship). What the marker means — and doesn't:
+
+- **Disclosed + vetted for fit.** Each carries a disclosure header in its integration guide and is marked ◆ in the index below.
+- **Additive, never biasing.** A partner is listed *alongside* the neutral options for the same job, never instead of them. Partner status never removes or demotes another tool and **never changes what any skill recommends** — if a non-partner is the right answer, that's the answer. The badge means "paid, disclosed, vetted for fit," not "best in category."
+
+Anyone — including tool makers and partners — may contribute content that names a tool, as long as it makes an agent *aware* of the right option without manufacturing a recommendation. The bar is the [integrity rubric in CONTRIBUTING.md](../CONTRIBUTING.md#mentioning-tools-the-integrity-rubric) (options not one answer, disclosed, passes the swap test).
+
+<!-- PARTNERS:START -->
+| Partner | Category | Guide |
+|---------|----------|-------|
+| ◆ Converly | Conversion tracking / attribution | [converly.md](integrations/converly.md) |
+| ◆ Ploy | AI website & growth platform | [ploy.md](integrations/ploy.md) |
+<!-- PARTNERS:END -->
+
+<!-- The table above is generated from partners.json — run `node scripts/sync-partners.mjs`. -->
+
+---
+
 ## Tool Index
 
 | Tool | Category | API | MCP | CLI | SDK | Guide |
 |------|----------|:---:|:---:|:---:|:---:|-------|
+| ◆ converly | Conversion Tracking | ✓ | ✓ | ✓ | - | [converly.md](integrations/converly.md) |
+| ◆ ploy | Website | ✓ | ✓ | ✓ | - | [ploy.md](integrations/ploy.md) |
 | ga4 | Analytics | ✓ | ✓ | [✓](clis/ga4.js) | ✓ | [ga4.md](integrations/ga4.md) |
 | mixpanel | Analytics | ✓ | - | [✓](clis/mixpanel.js) | ✓ | [mixpanel.md](integrations/mixpanel.md) |
 | amplitude | Analytics | ✓ | - | [✓](clis/amplitude.js) | ✓ | [amplitude.md](integrations/amplitude.md) |
@@ -47,6 +71,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | customer-io | Email | ✓ | - | [✓](clis/customer-io.js) | ✓ | [customer-io.md](integrations/customer-io.md) |
 | sendgrid | Email | ✓ | - | [✓](clis/sendgrid.js) | ✓ | [sendgrid.md](integrations/sendgrid.md) |
 | resend | Email | ✓ | ✓ | [✓](clis/resend.js) | ✓ | [resend.md](integrations/resend.md) |
+| sequenzy | Email | ✓ | ✓ | ✓ | - | [sequenzy.md](integrations/sequenzy.md) |
 | nitrosend | Email | ✓ | ✓ | - | - | [nitrosend.md](integrations/nitrosend.md) |
 | kit | Email | ✓ | - | [✓](clis/kit.js) | ✓ | [kit.md](integrations/kit.md) |
 | beehiiv | Newsletter | ✓ | - | [✓](clis/beehiiv.js) | - | [beehiiv.md](integrations/beehiiv.md) |
@@ -61,6 +86,10 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | audiencetap | SMS/Email | ✓ | - | - | - | [audiencetap.md](integrations/audiencetap.md) |
 | hunter | Email Outreach | ✓ | - | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
 | snov | Email Outreach | ✓ | - | [✓](clis/snov.js) | - | [snov.md](integrations/snov.md) |
+| truelist | Email Verification | ✓ | ✓ | - | ✓ | [truelist.md](integrations/truelist.md) |
+| github | Developer Intent | ✓ | - | [✓](clis/github-prospects.js) | ✓ | [github.md](integrations/github.md) |
+| firecrawl | Site Scraping | ✓ | ✓ | - | ✓ | [firecrawl.md](integrations/firecrawl.md) |
+| browserbase | Site Scraping | ✓ | ✓ | - | ✓ | [browserbase.md](integrations/browserbase.md) |
 | lemlist | Email Outreach | ✓ | - | [✓](clis/lemlist.js) | - | [lemlist.md](integrations/lemlist.md) |
 | instantly | Email Outreach | ✓ | - | [✓](clis/instantly.js) | - | [instantly.md](integrations/instantly.md) |
 | google-ads | Ads | ✓ | ✓ | [✓](clis/google-ads.js) | ✓ | [google-ads.md](integrations/google-ads.md) |
@@ -185,6 +214,7 @@ Email marketing, transactional email, and automation platforms.
 | **customer-io** | Behavior-based messaging | - |
 | **sendgrid** | Transactional email at scale | - |
 | **resend** | Developer-friendly transactional | ✓ |
+| **sequenzy** | Lifecycle email, sequences, transactional email | ✓ |
 | **kit** | Creator/newsletter focused | - |
 | **beehiiv** | Newsletter platform | - |
 | **klaviyo** | E-commerce email + SMS | - |
@@ -192,7 +222,7 @@ Email marketing, transactional email, and automation platforms.
 | **brevo** | Email + SMS, popular in EU | - |
 | **activecampaign** | Email automation + CRM | - |
 
-**Agent recommendation**: Resend for transactional (dev-friendly). Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
+**Agent recommendation**: Resend for transactional (dev-friendly). Sequenzy for lifecycle email, sequences, and agent-driven email marketing. Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
 
 ### SMS / Messaging
 
@@ -310,6 +340,37 @@ Company and person data enrichment for sales and marketing.
 | **clay** | Waterfall enrichment, outbound | 75+ data providers |
 
 **Agent recommendation**: Clearbit for enrichment. Apollo for prospecting and outbound. ZoomInfo for enterprise B2B data with intent signals. Clay for waterfall enrichment across multiple providers.
+
+### Email Verification
+
+Pre-outreach email deliverability validation.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **truelist** | Bulk + single email deliverability validation | Returns `email_state` (ok / email_invalid / risky / unknown / accept_all) + `email_sub_state`. MCP server + 7-language SDKs available. |
+
+**Agent recommendation**: Truelist for any prospect list before outreach — Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%, validation is non-negotiable to keep sender reputation healthy.
+
+### Developer Intent / GitHub
+
+Discovery channel for dev-tool SaaS prospecting via GitHub stargazers, forkers, and watchers.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **github** | Stargazers / forks / watchers of competitor or adjacent repos | Public API; pair with Apollo/Clay/Hunter for email enrichment |
+
+**Agent recommendation**: Use `github-prospects.js` CLI to pull stargazers/forks of 3–5 anchor repos (competitors, category leaders, complementary tools). Filter to users with `company` field set, then enrich missing emails via Apollo or Hunter, then validate via Truelist before outreach.
+
+### Site Scraping (single-target only)
+
+Programmatic page extraction for **individual public business sites** — not for the platforms hosting prospects (Google Maps, LinkedIn, Yelp, Apollo, etc.).
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **firecrawl** | Page → clean markdown / structured extraction | API + MCP; lower overhead for "just give me the content" |
+| **browserbase** | Real Chromium when rendering, interaction, or session state is required | API + MCP (Stagehand); use when Firecrawl can't handle the page |
+
+**Agent recommendation**: Default to Firecrawl for static-ish pages and structured extraction. Use Browserbase when the site requires JS rendering, form interaction, cookie consent, or auth — and when you want session recordings for debugging. **For both: discovery happens on platforms (manual browser); extraction happens on the prospect's own website URL.** Don't point either tool at LinkedIn, Google Maps, Yelp, or similar.
 
 ### Reviews
 

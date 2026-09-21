@@ -1,0 +1,17 @@
+schema_version: 1
+name: mattpocock-skills
+title: Matt Pocock Skills
+type: group
+version: 1.0.0
+author: Matt Pocock
+source_url: https://github.com/mattpocock/skills
+license: MIT
+summary: 'Engineering and thinking skills Matt Pocock uses daily: code review, bug diagnosis, TDD, specs, tickets, triage, research, domain modeling, plus grilling and handoff.'
+category: Engineering
+tags:
+- engineering
+- code-review
+- tdd
+- debugging
+- specs
+- planning
