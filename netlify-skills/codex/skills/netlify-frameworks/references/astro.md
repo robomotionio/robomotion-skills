@@ -2,6 +2,8 @@
 
 ## Setup
 
+> **Check current versions before pinning.** Knowledge cutoffs lag behind npm, and guessing a version tends to fail (`npm install` rejects it, or worse, installs something incompatible). Before pinning `@astrojs/netlify`, `astro`, or any other package in `package.json`, run `npm view <pkg> version` to get the current `latest`. Or omit explicit pins and let `npm install` pick them up. If that check itself fails (no network, registry unreachable), still don't fall back to a guessed exact pin — install without a version (or with `@latest`) and tell the user live verification wasn't possible so they should confirm the installed versions. Never present an unverified `x.y.z` as the current release.
+
 Install the Netlify adapter:
 
 ```bash
@@ -22,18 +24,19 @@ import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 
 export default defineConfig({
-  output: "server",  // or "hybrid" for mixed static/SSR
+  output: "server",  // on-demand (SSR) by default; or "static" (the default) for prerendered
   adapter: netlify(),
 });
 ```
 
 ## Output Modes
 
+Astro 5 removed the `"hybrid"` mode — there are now two output modes, and per-route control replaces it. Both modes need the adapter once any route renders on demand.
+
 | Mode | Behavior |
 |---|---|
-| `"static"` | Fully pre-rendered at build time (no adapter needed) |
-| `"server"` | All pages rendered on request (SSR) |
-| `"hybrid"` | Static by default, opt-in to SSR per page with `export const prerender = false` |
+| `"static"` (default) | Prerendered (hybrid-by-default): pages are static HTML at build time. Opt individual routes into on-demand rendering with `export const prerender = false`. |
+| `"server"` | On-demand (SSR) by default. Opt individual routes into prerendering with `export const prerender = true`. |
 
 ## What the Adapter Does
 
@@ -64,7 +67,9 @@ export const POST: APIRoute = async ({ request }) => {
 
 ## Forms (HTML Pattern)
 
-Astro renders HTML server-side, so Netlify can detect forms directly:
+> **Form detection only scans prerendered HTML.** Netlify registers a form by parsing the static HTML produced at **deploy time**. A `data-netlify` form that exists only in an **on-demand (SSR) route** — a page with `export const prerender = false`, or any route under `output: "server"` that hasn't opted back into prerendering — is never in the build output, so Netlify never registers it and its submissions 404. Put the detectable form on a **prerendered** page (in `output: "server"`, add `export const prerender = true` to that route), or include a static hidden detection form on a prerendered page and submit via AJAX.
+
+For a **prerendered** Astro page, the form HTML is in the build output, so Netlify detects it directly:
 
 ```astro
 ---

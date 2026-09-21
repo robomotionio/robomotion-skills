@@ -1,0 +1,11 @@
+{
+  "scenarios": "./axis-scenarios",
+  "agents": [
+    "codex",
+    { "agent": "claude-code", "flags": { "strict-mcp-config": true } },
+    "gemini"
+  ],
+  "judging": {
+    "agents": ["codex"]
+  }
+}

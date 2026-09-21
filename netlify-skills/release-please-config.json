@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "include-component-in-tag": false,
+  "changelog-sections": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "docs", "section": "Documentation" },
+    { "type": "refactor", "section": "Refactors" },
+    { "type": "chore", "section": "Chores", "hidden": true },
+    { "type": "test", "section": "Tests", "hidden": true },
+    { "type": "ci", "section": "CI", "hidden": true }
+  ],
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "package-name": "context-and-tools",
+      "extra-files": [
+        { "type": "json", "path": ".claude-plugin/plugin.json", "jsonpath": "$.version" },
+        { "type": "json", "path": ".grok-plugin/plugin.json",   "jsonpath": "$.version" },
+        { "type": "json", "path": ".cursor-plugin/plugin.json", "jsonpath": "$.version" },
+        { "type": "json", "path": "gemini-extension.json",       "jsonpath": "$.version" },
+        { "type": "json", "path": ".github/plugin/plugin.json",  "jsonpath": "$.version" },
+        { "type": "json", "path": "agent-plugin/plugin.json",    "jsonpath": "$.version" }
+      ]
+    }
+  }
+}
