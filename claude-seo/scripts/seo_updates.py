@@ -6,9 +6,8 @@ Reads ``data/google-updates.json`` and surfaces filtered views of the
 confirmed Google ranking / spam / QRG / product / schema updates
 since March 2024. Every entry cites a Google-owned URL.
 
-The companion file lists *unverified* third-party claims separately
-(e.g. the gap-analysis-flagged "March 2026 core update"). Those entries
-are explicitly NOT used to drive recommendations until they are
+The companion file lists *unverified* third-party claims separately. Those
+entries are explicitly NOT used to drive recommendations until they are
 confirmed against ``status.search.google.com``.
 
 Usage::
@@ -29,8 +28,15 @@ from datetime import date
 from pathlib import Path
 from typing import Iterable
 
-
 _DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "google-updates.json"
+
+
+# Every kind the ledger schema accepts. tests/test_content_quality.py asserts the
+# ledger only uses these, and the CLI --kind filter accepts exactly the same set.
+KNOWN_KINDS = (
+    "core", "spam", "core+spam", "policy", "qrg", "product", "schema", "cwv",
+    "discover", "documentation",
+)
 
 
 def _load() -> dict:
@@ -72,7 +78,7 @@ def main() -> int:
     parser.add_argument(
         "--kind",
         action="append",
-        choices=("core", "spam", "core+spam", "policy", "qrg", "product", "schema", "cwv"),
+        choices=KNOWN_KINDS,
         help="Filter to one or more kinds (repeatable).",
     )
     parser.add_argument(

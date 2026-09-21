@@ -2,7 +2,7 @@
 
 ## 1. Get Your API Key
 
-1. Go to [firecrawl.dev/app/sign-up](https://www.firecrawl.dev/app/sign-up)
+1. Go to [firecrawl.dev/app/sign-up](https://www.firecrawl.dev/signup)
 2. Create a free account (500 credits/month included)
 3. Navigate to **API Keys** in the dashboard
 4. Copy your API key (starts with `fc-`)
@@ -19,7 +19,7 @@ It will prompt for your API key and configure the MCP server.
 
 ## 3. Manual MCP Configuration
 
-If the installer fails, add this to `~/.claude/settings.json` manually:
+If the installer fails, add this to `~/.claude.json` manually:
 
 ```json
 {

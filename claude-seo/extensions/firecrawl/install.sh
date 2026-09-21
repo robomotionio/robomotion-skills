@@ -8,7 +8,10 @@ main() {
     SKILL_DIR="${HOME}/.claude/skills/seo-firecrawl"
     AGENT_DIR="${HOME}/.claude/agents"
     SEO_SKILL_DIR="${HOME}/.claude/skills/seo"
-    SETTINGS_FILE="${HOME}/.claude/settings.json"
+    # MCP servers live in ~/.claude.json (the file `claude mcp add` writes).
+    # NOT ~/.claude/settings.json - `mcpServers` is not a key Claude Code reads
+    # there, so entries written to settings.json silently never load.
+    MCP_CONFIG_FILE="${HOME}/.claude.json"
 
     echo "════════════════════════════════════════"
     echo "║   Firecrawl Extension - Installer    ║"
@@ -78,46 +81,52 @@ main() {
     mkdir -p "${SKILL_DIR}"
     cp "${SOURCE_DIR}/skills/seo-firecrawl/SKILL.md" "${SKILL_DIR}/SKILL.md"
 
-    # Merge MCP config into settings.json
+    # Merge MCP config into ~/.claude.json
     echo "-> Configuring MCP server..."
 
-    python3 -c "
-import json, os, sys
+    # Credentials are passed as argv (never interpolated into the source string)
+    # and the settings file is written atomically with 0600 permissions.
+    python3 - "${MCP_CONFIG_FILE}" "${FIRECRAWL_API_KEY}" <<'PY'
+import json, os, sys, tempfile
 
-settings_path = '${SETTINGS_FILE}'
-api_key = '''${FIRECRAWL_API_KEY}'''
+settings_path, api_key = sys.argv[1:3]
 
-# Read existing settings or create new
 if os.path.exists(settings_path):
-    with open(settings_path, 'r') as f:
-        settings = json.load(f)
+    try:
+        with open(settings_path) as f:
+            settings = json.load(f)
+    except json.JSONDecodeError:
+        settings = {}
 else:
     settings = {}
 
-# Ensure mcpServers key exists
-if 'mcpServers' not in settings:
-    settings['mcpServers'] = {}
-
-# Add Firecrawl server config
-settings['mcpServers']['firecrawl-mcp'] = {
+settings.setdefault('mcpServers', {})['firecrawl-mcp'] = {
     'command': 'npx',
     'args': ['-y', 'firecrawl-mcp@3.11.0'],
     'env': {
-        'FIRECRAWL_API_KEY': api_key
-    }
+        'FIRECRAWL_API_KEY': api_key,
+    },
 }
 
-# Write back
-os.makedirs(os.path.dirname(settings_path), exist_ok=True)
-with open(settings_path, 'w') as f:
-    json.dump(settings, f, indent=2)
+os.makedirs(os.path.dirname(settings_path) or '.', exist_ok=True)
+fd, tmp = tempfile.mkstemp(dir=os.path.dirname(settings_path) or '.', prefix='.settings.', suffix='.json')
+try:
+    with os.fdopen(fd, 'w') as f:
+        json.dump(settings, f, indent=2)
+    os.chmod(tmp, 0o600)
+    os.replace(tmp, settings_path)
+except Exception:
+    if os.path.exists(tmp):
+        os.unlink(tmp)
+    raise
 
-print('  v MCP server configured in settings.json')
-" || {
+print('  v MCP server configured in ~/.claude.json')
+PY
+    if [ $? -ne 0 ]; then
         echo "  Warning: Could not auto-configure MCP server."
-        echo "  Add the firecrawl-mcp server manually to ~/.claude/settings.json"
+        echo "  Add the firecrawl-mcp server manually to ~/.claude.json"
         echo "  See: extensions/firecrawl/docs/FIRECRAWL-SETUP.md"
-    }
+    fi
 
     # Pre-warm npm package without starting the MCP server binary.
     echo "-> Pre-downloading firecrawl-mcp..."

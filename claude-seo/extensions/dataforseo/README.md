@@ -1,6 +1,6 @@
 # DataForSEO Extension for Claude SEO
 
-Live SEO data via the [DataForSEO MCP server](https://github.com/dataforseo/mcp-server-typescript). Adds 22 commands across 9 API modules: SERP analysis, keyword research, backlinks, on-page analysis, competitor analysis, content analysis, business listings, AI visibility checking, and LLM mention tracking.
+Live SEO data via the [DataForSEO MCP server](https://github.com/dataforseo/mcp-server-typescript). Adds 23 data commands across 9 API modules: SERP analysis, keyword research, backlinks, on-page analysis, competitor analysis, content analysis, business listings, AI visibility checking, and LLM mention tracking.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ cd claude-seo
 The installer will:
 1. Prompt for your DataForSEO username and password
 2. Install the skill and agent files
-3. Configure the MCP server in `~/.claude/settings.json`
+3. Configure the MCP server in `~/.claude.json`
 4. Pre-download the `dataforseo-mcp-server` npm package
 
 ## Commands
@@ -39,6 +39,7 @@ The installer will:
 | Command | Description |
 |---------|-------------|
 | `/seo dataforseo serp <keyword>` | Google organic SERP results (also supports Bing/Yahoo via `se` parameter) |
+| `/seo dataforseo serp-images <keyword>` | Google Images SERP results |
 | `/seo dataforseo serp-youtube <keyword>` | YouTube search results |
 | `/seo dataforseo youtube <video_id>` | YouTube video deep analysis (info, comments, subtitles) |
 
@@ -110,7 +111,7 @@ DataForSEO charges per API call. Credit costs vary by endpoint:
 - **Keyword** research: ~0.0005-0.002 per keyword
 - **Backlinks**: ~0.002-0.01 per request
 - **On-page** analysis: ~0.01-0.05 per page
-- **AI optimization**: ~0.01 per request
+- **AI optimization**: ~0.05 per request
 
 New accounts include a free trial balance. See [DataForSEO pricing](https://dataforseo.com/pricing) for current rates.
 
@@ -132,19 +133,19 @@ When installed, other Claude SEO skills automatically detect DataForSEO availabi
 
 ### MCP server not connecting
 
-1. Check credentials: `cat ~/.claude/settings.json | grep DATAFORSEO`
+1. Check credentials: `cat ~/.claude.json | grep DATAFORSEO`
 2. Test manually: `npx -y dataforseo-mcp-server`
 3. Re-run installer: `./extensions/dataforseo/install.sh`
 
 ### API errors
 
-- **401 Unauthorized**: Check username/password in settings.json
+- **401 Unauthorized**: Check username/password in ~/.claude.json
 - **402 Payment Required**: Add credits at [app.dataforseo.com](https://app.dataforseo.com)
 - **429 Rate Limited**: Wait and retry (DataForSEO has per-second limits)
 
 ### Module not available
 
-If a specific command fails, check that the module is in `ENABLED_MODULES` in your settings.json. All 9 modules should be listed.
+If a specific command fails, check that the module is in `ENABLED_MODULES` in your ~/.claude.json. All 9 modules should be listed.
 
 ## Uninstall
 
@@ -160,7 +161,7 @@ If a specific command fails, check that the module is in `ENABLED_MODULES` in yo
 .\extensions\dataforseo\uninstall.ps1
 ```
 
-This removes the skill, agent, field config, and MCP server entry from settings.json.
+This removes the skill, agent, field config, and MCP server entry from ~/.claude.json.
 
 ## Links
 

@@ -2,33 +2,33 @@
 # `commit` is the only field an update changes. Read the script's docstring.
 schema_version: 1
 upstreams:
-- group: agent-gtm-skills
-  repo: https://github.com/chadboyda/agent-gtm-skills
-  track: main
-  commit: 44f6a3d4daf65c8b82bf11e3a39edb1fbff40f1d
-  subdir: ''
-  mode: mirror
-  license: MIT
-  license_file: LICENSE
-  license_sha256: ''
-  exclude:
-  - site
-  local_paths: []
 - group: claude-seo
   repo: https://github.com/AgriciDaniel/claude-seo
   track: main
-  commit: 18459c3cd01c7fea301b36ca4fbe4bf36d6de517
+  commit: 92795530b4cc92c6bf7a2435b82c15b003e71181
   subdir: ''
   mode: mirror
   license: MIT
   license_file: LICENSE
   license_sha256: a42b3b0253cecea9af810c5207a67b0be8c9a0cfbf52b9302c3d26b063e7a86b
-  exclude: []
+  exclude:
+  - .github
+  - CHANGELOG.md
+  - CONTRIBUTING.md
+  - README.md
+  - assets
+  - docs
+  - install.ps1
+  - install.sh
+  - screenshots
+  - tests
+  - uninstall.ps1
+  - uninstall.sh
   local_paths: []
 - group: engineering-skills
   repo: https://github.com/addyosmani/agent-skills
   track: main
-  commit: 2a62238edd41ccd9a5a4d16269a4d87808e3e9c1
+  commit: a1a80d56d1f88a4c2ffcbbb0877570a3eb8e7a3a
   subdir: ''
   mode: mirror
   license: MIT
@@ -38,29 +38,6 @@ upstreams:
   local_paths: []
   include:
   - skills
-- group: gtm-engineer-skills
-  repo: https://github.com/onvoyage-ai/gtm-engineer-skills
-  track: main
-  commit: 25ee0df8c1fec0f1fbd66c92063ce91f465c199e
-  subdir: ''
-  mode: ported
-  license: MIT
-  license_file: LICENSE
-  license_sha256: 03b1065a1f6a99272a5c36677f795423071ab060bdff1593b0ea3b3956635b0e
-  exclude:
-  - audit-content
-  - audit-website-aeo
-  - build-backlinks
-  - build-resource-pages
-  - create-geo-charts
-  - geo-content-planning
-  - geo-content-research
-  - improve-aeo-geo
-  - reddit-opportunity-research
-  - research-brand
-  - research-keywords
-  - write-seo-geo-content
-  local_paths: []
 - group: gws-cli
   repo: https://github.com/googleworkspace/cli
   track: main
@@ -73,28 +50,34 @@ upstreams:
   exclude:
   - .vscode
   local_paths: []
-- group: hermes-skills
-  repo: https://github.com/NousResearch/hermes-agent
-  track: main
-  commit: e223503b0303b6e257f6e264bcb0815dde8528b0
-  subdir: ''
-  mode: mirror
-  license: MIT
-  license_file: LICENSE
-  license_sha256: 821556e6336796450ab852d375117b48a4887e71d255794fd6318d99982a5ab6
-  exclude: []
-  local_paths: []
-  include:
-  - skills
 - group: marketing-skills
   repo: https://github.com/coreyhaines31/marketingskills
   track: main
-  commit: 0f39e12b76457c3463a7eba1d22c658de5886b8b
+  commit: 5b2c0007766c6a1cf1d53fd8fc73e979e0821022
   subdir: ''
   mode: mirror
   license: MIT
   license_file: LICENSE
   license_sha256: b70d71e24e40fce5da8f4b6f9cd862096a048e433db7f3c8cac5e348e6d34591
+  exclude:
+  - .github
+  - CONTRIBUTING.md
+  - README.md
+  - scripts
+  local_paths: []
+- group: mattpocock-skills
+  repo: https://github.com/mattpocock/skills
+  track: main
+  commit: 3cca18b368ae95cdbdebbff572ccafa662551015
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5
+  include:
+  - skills/engineering
+  - skills/productivity
+  - LICENSE
   exclude: []
   local_paths: []
 - group: netlify-skills
@@ -108,17 +91,19 @@ upstreams:
   license_sha256: a0a3cabb18cf4b1593f8f7556dbb102b935354241ecc9165198786e7bfd5532e
   exclude: []
   local_paths: []
-- group: trailofbits-skills
-  repo: https://github.com/trailofbits/skills
+- group: superpowers
+  repo: https://github.com/obra/superpowers
   track: main
-  commit: a56045e9ae00b3506cacefea0f672aab0a1a6e3c
+  commit: b36e0829c6d0140e93cfef2ca599b1b07d4a7797
   subdir: ''
   mode: mirror
-  license: CC-BY-SA-4.0
+  license: MIT
   license_file: LICENSE
-  license_sha256: 7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297
-  exclude:
-  - plugins/constant-time-analysis/uv.lock
+  license_sha256: a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400
+  include:
+  - skills
+  - LICENSE
+  exclude: []
   local_paths: []
 - group: ui-ux-pro-max-skill
   repo: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill

@@ -52,7 +52,7 @@ if ([string]::IsNullOrEmpty($DfseUsername)) {
 }
 
 $DfsePasswordSecure = Read-Host "DataForSEO password" -AsSecureString
-$DfsePassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+$DfsePassword = [Runtime.InteropServices.Marshal]::PtrToStringBSTR(
     [Runtime.InteropServices.Marshal]::SecureStringToBSTR($DfsePasswordSecure)
 )
 if ([string]::IsNullOrEmpty($DfsePassword)) {
@@ -75,7 +75,10 @@ if (Test-Path "$ScriptDir\skills\seo-dataforseo\SKILL.md") {
 # Set paths
 $SkillDir = "$env:USERPROFILE\.claude\skills\seo-dataforseo"
 $AgentDir = "$env:USERPROFILE\.claude\agents"
-$SettingsFile = "$env:USERPROFILE\.claude\settings.json"
+# MCP servers live in ~/.claude.json (the file `claude mcp add` writes).
+# NOT ~/.claude/settings.json - `mcpServers` is not a key Claude Code reads
+# there, so entries written to settings.json silently never load.
+$McpConfigFile = "$env:USERPROFILE\.claude.json"
 $FieldConfigPath = "$SeoSkillDir\dataforseo-field-config.json"
 
 # Install skill
@@ -93,58 +96,44 @@ Copy-Item -Force "$SourceDir\agents\seo-dataforseo.md" "$AgentDir\seo-dataforseo
 Write-Host "→ Installing field config..." -ForegroundColor Yellow
 Copy-Item -Force "$SourceDir\field-config.json" $FieldConfigPath
 
-# Merge MCP config into settings.json
+# Merge MCP config into ~/.claude.json
 Write-Host "→ Configuring MCP server..." -ForegroundColor Yellow
 
-$python = Get-Command -Name python -ErrorAction SilentlyContinue
-if ($null -eq $python) {
-    $python = Get-Command -Name py -ErrorAction SilentlyContinue
-}
-
-if ($null -ne $python) {
-    $pyExe = $python.Source
-    $pyScript = @"
-import json, os
-settings_path = r'$SettingsFile'
-if os.path.exists(settings_path):
-    with open(settings_path, 'r') as f:
-        settings = json.load(f)
-else:
-    settings = {}
-if 'mcpServers' not in settings:
-    settings['mcpServers'] = {}
-settings['mcpServers']['dataforseo'] = {
-    'command': 'npx',
-    'args': ['-y', 'dataforseo-mcp-server'],
-    'env': {
-        'DATAFORSEO_USERNAME': '$DfseUsername',
-        'DATAFORSEO_PASSWORD': '$DfsePassword',
-        'ENABLED_MODULES': 'SERP,KEYWORDS_DATA,ONPAGE,DATAFORSEO_LABS,BACKLINKS,DOMAIN_ANALYTICS,BUSINESS_DATA,CONTENT_ANALYSIS,AI_OPTIMIZATION',
-        'FIELD_CONFIG_PATH': r'$FieldConfigPath'
+$settingsContent = if (Test-Path $McpConfigFile) { Get-Content $McpConfigFile -Raw | ConvertFrom-Json } else { [pscustomobject]@{} }
+if (-not $settingsContent.mcpServers) { $settingsContent | Add-Member -NotePropertyName mcpServers -NotePropertyValue ([pscustomobject]@{}) -Force }
+$settingsContent.mcpServers | Add-Member -NotePropertyName 'dataforseo' -NotePropertyValue @{
+    command = 'npx'
+    args = @('-y', 'dataforseo-mcp-server@2.8.10')
+    env = @{
+        DATAFORSEO_USERNAME = $DfseUsername
+        DATAFORSEO_PASSWORD = $DfsePassword
+        ENABLED_MODULES = 'SERP,KEYWORDS_DATA,ONPAGE,DATAFORSEO_LABS,BACKLINKS,DOMAIN_ANALYTICS,BUSINESS_DATA,CONTENT_ANALYSIS,AI_OPTIMIZATION'
+        FIELD_CONFIG_PATH = $FieldConfigPath
     }
+} -Force
+# Write atomically: stage to a temp file in the same directory, then swap
+# it into place, so a crash mid-write never leaves ~/.claude.json truncated
+# or half-written (it is shared with Claude Code and other installers).
+# -Depth 100 (not the ConvertTo-Json default of 2) so an existing
+# ~/.claude.json with deeply nested config round-trips intact.
+$TempConfigFile = Join-Path (Split-Path -Parent $McpConfigFile) ".claude.json.$([guid]::NewGuid().ToString('N')).tmp"
+$jsonText = $settingsContent | ConvertTo-Json -Depth 100
+# Write without a byte-order mark: on Windows PowerShell 5.1, Set-Content -Encoding UTF8
+# emits a BOM and Node's JSON.parse rejects it, which would make ~/.claude.json unreadable.
+[System.IO.File]::WriteAllText($TempConfigFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
+Move-Item -Path $TempConfigFile -Destination $McpConfigFile -Force
+# Restrict the credential-bearing settings file to the current user only.
+try {
+    icacls $McpConfigFile /inheritance:r /grant:r "${env:USERNAME}:F" | Out-Null
+} catch {
+    Write-Host "  Note: could not restrict ~/.claude.json ACL; review manually." -ForegroundColor Yellow
 }
-os.makedirs(os.path.dirname(settings_path), exist_ok=True)
-with open(settings_path, 'w') as f:
-    json.dump(settings, f, indent=2)
-print('  ok')
-"@
-
-    $result = & $pyExe -c $pyScript 2>&1
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "  ✓ MCP server configured in settings.json" -ForegroundColor Green
-    } else {
-        Write-Host "  ⚠  Could not auto-configure MCP server." -ForegroundColor Yellow
-        Write-Host "  Add the dataforseo server manually to ~\.claude\settings.json"
-    }
-} else {
-    Write-Host "  ⚠  Python not found. Configure MCP server manually." -ForegroundColor Yellow
-    Write-Host "  See: extensions\dataforseo\docs\DATAFORSEO-SETUP.md"
-}
+Write-Host "  ✓ MCP server configured in ~/.claude.json" -ForegroundColor Green
 
 # Pre-warm npx package
 Write-Host "→ Pre-downloading dataforseo-mcp-server..." -ForegroundColor Yellow
 try {
-    & npx -y dataforseo-mcp-server --help 2>&1 | Out-Null
+    & npx -y dataforseo-mcp-server@2.8.10 --help 2>&1 | Out-Null
 } catch {
     # Ignore errors from pre-warm
 }
@@ -160,5 +149,5 @@ Write-Host "     /seo dataforseo keywords seo tools"
 Write-Host "     /seo dataforseo backlinks example.com"
 Write-Host "     /seo dataforseo ai-mentions your brand"
 Write-Host ""
-Write-Host "All 22 commands: see extensions\dataforseo\README.md"
+Write-Host "All 23 commands: see extensions\dataforseo\README.md"
 Write-Host "To uninstall: .\extensions\dataforseo\uninstall.ps1"

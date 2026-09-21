@@ -128,6 +128,7 @@ indexnow-submit.sh
 
 # Generated cluster maps
 cluster-map.html
+!skills/seo-cluster/templates/cluster-map.html
 CLUSTER-REPORT*.md
 
 # Generated SXO reports
@@ -162,3 +163,19 @@ presentations/
 
 # Internal implementation plans / specs (working notes, not user docs)
 docs/superpowers/
+
+# Internal project-management records (private; must not ship to public origin)
+MEMORY.md
+docs/BACKLOG-COMPLETION-REPORT-v2.md
+docs/*COMPLETION-REPORT*.md
+docs/VERIFICATION-AUDIT*.md
+
+# Additional credential/key formats (defense in depth)
+**/*credentials*.json
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*

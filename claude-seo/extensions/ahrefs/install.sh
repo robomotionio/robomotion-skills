@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Claude SEO — Ahrefs extension installer.
 #
-# Wires the official @ahrefs/mcp server into ~/.claude/settings.json and
+# Wires the official @ahrefs/mcp server into ~/.claude.json and
 # copies the seo-ahrefs mirror skill into ~/.claude/skills/.
 #
 # Prereq: an Ahrefs API token. Get one at https://ahrefs.com/api.
@@ -9,7 +9,10 @@ set -euo pipefail
 
 main() {
     SKILL_DIR="${HOME}/.claude/skills"
-    SETTINGS_JSON="${HOME}/.claude/settings.json"
+    # MCP servers live in ~/.claude.json (the file `claude mcp add` writes).
+    # NOT ~/.claude/settings.json - `mcpServers` is not a key Claude Code reads
+    # there, so entries written to settings.json silently never load.
+    MCP_CONFIG_JSON="${HOME}/.claude.json"
 
     echo "════════════════════════════════════════"
     echo "║   Claude SEO — Ahrefs extension      ║"
@@ -40,15 +43,15 @@ main() {
 
     # Pre-warm the package so the first MCP invocation isn't slow.
     echo "→ Pre-warming @ahrefs/mcp..."
-    npx --yes --package=@ahrefs/mcp ahrefs-mcp --help >/dev/null 2>&1 || true
+    npx --yes --package=@ahrefs/mcp@0.0.11 mcp --help >/dev/null 2>&1 || true
 
     mkdir -p "${SKILL_DIR}/seo-ahrefs"
     cp "${SOURCE_DIR}/skills/seo-ahrefs/SKILL.md" "${SKILL_DIR}/seo-ahrefs/SKILL.md"
     echo "✓ Installed skill: ${SKILL_DIR}/seo-ahrefs/SKILL.md"
 
-    # Merge MCP config into ~/.claude/settings.json atomically.
-    mkdir -p "$(dirname "${SETTINGS_JSON}")"
-    python3 - "${SETTINGS_JSON}" "${AHREFS_TOKEN}" <<'PY'
+    # Merge MCP config into ~/.claude.json atomically.
+    mkdir -p "$(dirname "${MCP_CONFIG_JSON}")"
+    python3 - "${MCP_CONFIG_JSON}" "${AHREFS_TOKEN}" <<'PY'
 import json
 import os
 import sys
@@ -64,7 +67,7 @@ if os.path.exists(path):
         data = {}
 data.setdefault("mcpServers", {})["ahrefs"] = {
     "command": "npx",
-    "args": ["--yes", "--package=@ahrefs/mcp", "ahrefs-mcp"],
+    "args": ["--yes", "--package=@ahrefs/mcp@0.0.11", "mcp"],
     "env": {"AHREFS_API_TOKEN": token},
 }
 fd, tmp = tempfile.mkstemp(dir=os.path.dirname(path) or ".",

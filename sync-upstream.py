@@ -21,6 +21,7 @@ copy records nothing and hides edits; see `adopt` for what that cost us).
 Commands::
 
     sync-upstream.py status                 where every group stands
+    sync-upstream.py add <group> <repo> ... a new third-party group
     sync-upstream.py adopt [group ...]      record what a hand-vendored group
                                             was really built from
     sync-upstream.py sync <group>           move a group to a newer commit
@@ -434,6 +435,40 @@ def cmd_adopt(args):
     save_manifest(m)
 
 
+def cmd_add(args):
+    """A new third-party group: write our metadata, pin it, build it. The
+    same path every later update takes, so a group is never born by hand."""
+    m = load_manifest()
+    if any(u["group"] == args.group for u in m["upstreams"]) or (ROOT / args.group).exists():
+        sys.exit(f"{args.group} already exists")
+    u = {"group": args.group, "repo": args.repo.rstrip("/"), "track": "", "commit": "", "subdir": "",
+         "mode": "mirror", "license": args.license, "license_file": "LICENSE", "license_sha256": "",
+         "include": args.include or [], "exclude": args.exclude or [], "local_paths": []}
+    bare = bare_repo(u)
+    u["track"] = sh("git", "symbolic-ref", "--short", "HEAD", cwd=bare).strip()
+    fetch(u)
+    target = pick_target(bare, u, args.min_age_days)
+    ours = ROOT / args.group / OURS
+    ours.mkdir(parents=True)
+    (ours / "skill.yaml").write_text(yaml.safe_dump({
+        "schema_version": 1, "name": args.group, "title": args.title, "type": "group", "version": "1.0.0",
+        "author": args.author, "source_url": u["repo"], "license": args.license,
+        "summary": args.summary, "category": args.category, "tags": args.tags or [],
+    }, sort_keys=False, width=200))
+    lic = subprocess.run(["git", "cat-file", "blob", f"{target}:LICENSE"], cwd=bare, capture_output=True).stdout
+    if not lic:
+        sys.exit(f"{args.group}: upstream has no LICENSE file; a group without one cannot be redistributed")
+    (ours / "LICENSE").write_bytes(lic)
+    (ours / "CHANGELOG.md").write_text(f"# {args.title}\n\nVendored by sync-upstream.py; upstream history is the changelog.\n")
+    notes = materialize(u, target, ROOT / args.group)
+    u["commit"], u["license_sha256"] = target, license_sha(bare, u, target)
+    m["upstreams"].append(u)
+    save_manifest(m)
+    print(f"{args.group}: added at {target[:12]}")
+    for n in notes:
+        print(f"  note: {n}")
+
+
 def pick_target(bare: Path, u: dict, min_age: int) -> str:
     before = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=min_age)).isoformat()
     out = sh("git", "log", "-1", "--format=%H", f"--before={before}", f"refs/heads/{u['track']}", cwd=bare).strip()
@@ -450,9 +485,8 @@ def cmd_sync(args):
     if not target:
         sys.exit(f"{args.group}: no commit on {u['track']} is older than {args.min_age_days} days")
     target = sh("git", "rev-parse", target, cwd=bare).strip()
-    if target == u.get("commit"):
-        print(f"{args.group}: already at {target[:12]}")
-        return
+    # Same commit is still a rebuild: the manifest (include, exclude, patches)
+    # may have changed, and the tree must follow it.
     new_license = license_sha(bare, u, target)
     if u.get("license_sha256") and new_license != u["license_sha256"] and not args.accept_license:
         sys.exit(f"{args.group}: the upstream licence file changed. Read it, then re-run with --accept-license")
@@ -465,13 +499,13 @@ def cmd_sync(args):
                 out = ROOT / u["group"] / p.relative_to(tmp)
                 out.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(p, out, follow_symlinks=False)
-    for d, dirs, files in os.walk(ROOT / u["group"], topdown=False):
-        if not dirs and not files and OURS not in Path(d).parts:
+    for d, _dirs, _files in os.walk(ROOT / u["group"], topdown=False):
+        if OURS not in Path(d).parts and not os.listdir(d):
             os.rmdir(d)
     old = u.get("commit", "")
     u["commit"], u["license_sha256"] = target, new_license
     save_manifest(m)
-    print(f"{args.group}: {old[:12]} -> {target[:12]}")
+    print(f"{args.group}: rebuilt at {target[:12]}" if old == target else f"{args.group}: {old[:12]} -> {target[:12]}")
     for n in notes:
         print(f"  note: {n}")
     print("now: python3 build-index.py && python3 scan-skills.py --changed")
@@ -563,6 +597,16 @@ def main():
     a = sub.add_parser("adopt")
     a.add_argument("groups", nargs="*")
     a.set_defaults(fn=cmd_adopt)
+    n = sub.add_parser("add")
+    n.add_argument("group")
+    n.add_argument("repo")
+    for flag in ("--title", "--author", "--license", "--category", "--summary"):
+        n.add_argument(flag, required=True)
+    n.add_argument("--tags", nargs="*")
+    n.add_argument("--include", nargs="*")
+    n.add_argument("--exclude", nargs="*")
+    n.add_argument("--min-age-days", type=int, default=DEFAULT_MIN_AGE_DAYS)
+    n.set_defaults(fn=cmd_add)
     s = sub.add_parser("sync")
     s.add_argument("group")
     s.add_argument("--to", help="upstream commit (default: newest older than --min-age-days)")

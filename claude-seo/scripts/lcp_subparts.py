@@ -2,7 +2,7 @@
 """
 LCP subparts breakdown via CrUX API.
 
-Since 2024 CrUX has exposed the four LCP sub-metrics:
+Since January 2025 CrUX has exposed the four LCP sub-metrics:
   - largest_contentful_paint_image_time_to_first_byte
   - largest_contentful_paint_image_resource_load_delay
   - largest_contentful_paint_image_resource_load_duration
@@ -28,16 +28,14 @@ import argparse
 import json
 import os
 import sys
-
-import urllib.request
 import urllib.error
+import urllib.request
 
 _SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
+from google_auth import get_api_key, google_api_key_headers, redact_google_api_key  # noqa: E402
 from url_safety import URLSafetyError, validate_url_strict  # noqa: E402
-from google_auth import get_api_key  # noqa: E402
-
 
 CRUX_ENDPOINT = "https://chromeuxreport.googleapis.com/v1/records:queryRecord"
 
@@ -57,20 +55,24 @@ def _query_crux(url: str, form_factor: str, api_key: str) -> dict:
         "metrics": _LCP_SUBPART_METRICS + ["largest_contentful_paint"],
     }
     body = json.dumps(payload).encode("utf-8")
+    headers = {"Content-Type": "application/json", **google_api_key_headers(api_key)}
     request = urllib.request.Request(
-        f"{CRUX_ENDPOINT}?key={api_key}",
+        CRUX_ENDPOINT,
         data=body,
-        headers={"Content-Type": "application/json"},
+        headers=headers,
     )
     try:
         with urllib.request.urlopen(request, timeout=30) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         return {
-            "error": f"CrUX HTTP {exc.code}: {exc.read().decode('utf-8', 'replace')}"
+            "error": (
+                f"CrUX HTTP {exc.code}: "
+                f"{redact_google_api_key(exc.read().decode('utf-8', 'replace'))}"
+            )
         }
     except urllib.error.URLError as exc:
-        return {"error": f"CrUX request failed: {exc.reason}"}
+        return {"error": f"CrUX request failed: {redact_google_api_key(exc.reason)}"}
 
 
 def _percentile(metric: dict) -> float | None:

@@ -18,6 +18,7 @@ Usage:
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from typing import Optional
@@ -59,6 +60,33 @@ SERVICE_NAMES = {
     "indexing": "Google Indexing API v3",
     "ga4": "GA4 Data API v1beta",
 }
+
+_GOOGLE_API_KEY_PREFIX = "AI" + "za"
+_GOOGLE_API_KEY_RE = re.compile(_GOOGLE_API_KEY_PREFIX + r"[0-9A-Za-z_-]+")
+_GOOGLE_KEY_QUERY_RE = re.compile(r"([?&])key=[^&\s'\"<>)]*(&?)")
+_GOOGLE_KEY_BARE_RE = re.compile(r"\bkey=[^&\s'\"<>)]*")
+
+
+def google_api_key_headers(api_key: str) -> dict:
+    """Return the canonical header form for Google API key auth."""
+    return {"X-Goog-Api-Key": api_key}
+
+
+def redact_google_api_key(value: object) -> str:
+    """Remove Google API keys from exception/output strings."""
+    text = str(value)
+    def drop_query_key(match: re.Match) -> str:
+        separator, trailing_amp = match.groups()
+        if separator == "?" and trailing_amp:
+            return "?"
+        if separator == "&" and trailing_amp:
+            return "&"
+        return ""
+
+    text = _GOOGLE_KEY_QUERY_RE.sub(drop_query_key, text)
+    text = text.replace("?&", "?")
+    text = _GOOGLE_KEY_BARE_RE.sub("google_api_key_redacted", text)
+    return _GOOGLE_API_KEY_RE.sub("GOOGLE_API_KEY_REDACTED", text)
 
 
 def load_config() -> dict:
@@ -210,7 +238,9 @@ def _save_oauth_token(token_data: dict):
     # os.fdopen takes ownership of fd — it closes the fd whether the
     # write succeeds or raises, so there is no fd-leak path here.
     try:
-        os.fchmod(fd, 0o600)
+        fchmod = getattr(os, "fchmod", None)
+        if fchmod is not None:
+            fchmod(fd, 0o600)
     except OSError:
         pass  # FS may not support fchmod (e.g. some Windows filesystems)
     with os.fdopen(fd, "w") as f:
@@ -627,13 +657,10 @@ def detect_tier() -> dict:
     has_api_key = bool(config.get("api_key"))
     has_authenticated = False
     has_ga4 = False
-    auth_method = None
-
     # Check OAuth token
     token_data = _load_oauth_token()
     if token_data and token_data.get("access_token"):
         has_authenticated = True
-        auth_method = "oauth_token"
 
     # Check service account
     if not has_authenticated:
@@ -646,7 +673,6 @@ def detect_tier() -> dict:
                         sa_data = json.load(f)
                     if "client_email" in sa_data and "private_key" in sa_data:
                         has_authenticated = True
-                        auth_method = "service_account"
                 except (json.JSONDecodeError, IOError):
                     pass
 
@@ -735,7 +761,7 @@ Google SEO API Setup Instructions
 
    {
      "service_account_path": "/path/to/service_account.json",
-     "api_key": "AIzaSy...",
+     "api_key": "<GOOGLE_API_KEY>",
      "default_property": "sc-domain:example.com",
      "ga4_property_id": "properties/123456789"
    }
@@ -871,7 +897,7 @@ def main():
     else:
         print(f"Credential Tier: {tier_info['tier']} -- {tier_info['description']}")
         if tier_info["missing"]:
-            print(f"Run --setup for configuration instructions.")
+            print("Run --setup for configuration instructions.")
 
 
 if __name__ == "__main__":

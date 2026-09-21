@@ -8,12 +8,12 @@ description: >
   platform-specific optimization. Use when user says "AI Overviews", "SGE",
   "GEO", "AI search", "LLM optimization", "Perplexity", "AI citations",
   "ChatGPT search", or "AI visibility".
-user-invokable: true
+user-invocable: true
 argument-hint: "[url]"
 license: MIT
 metadata:
   author: AgriciDaniel
-  version: "2.0.0"
+  version: "2.3.1"
   category: seo
 ---
 
@@ -27,7 +27,7 @@ Google's official position, published under Search Central docs:
 > perspective. AEO and GEO are rebranded labels for the same work."
 
 Read `references/google-ai-optimization-guide.md` for the full synthesis,
-myth-busting list (`llms.txt`, chunking, AI-rephrasing, mention-farming —
+myth-busting list (`llms.txt`, chunking, AI-rephrasing, mention-farming,
 all rejected by Google as ineffective), and the Who/How/Why test for
 content quality.
 
@@ -40,8 +40,10 @@ the contradiction in the report.
 
 | Metric | Value | Source |
 |--------|-------|--------|
-| AI Overviews reach | 1.5 billion users/month across 200+ countries | Google |
-| AI Overviews query coverage | 50%+ of all queries | Industry data |
+| AI Overviews reach | 2.5 billion+ monthly active users, reported from Google I/O 2026 keynote coverage; not confirmed on a Google-owned source; 200+ countries | Third-party I/O reporting |
+| AI Overviews query coverage | ~50% of queries (third-party measurement; varies by country) | Industry data |
+| AI Mode monthly users | 1B+, reported from Google I/O 2026 keynote coverage; not confirmed on a Google-owned source | Third-party I/O reporting |
+| AI Mode model | custom version of Gemini 2.5 | Google |
 | AI-referred sessions growth | 527% (Jan-May 2025) | SparkToro |
 | ChatGPT weekly active users | 900 million | OpenAI |
 | Perplexity monthly queries | 500+ million | Perplexity |
@@ -67,7 +69,9 @@ the contradiction in the report.
 
 ### 1. Citability Score (25%)
 
-**Optimal passage length: 134-167 words** for AI citation.
+**Optimal passage length: 134-167 words** for AI citation. And **~44% of AI
+citations come from the first 30% of a page** (SE Ranking study), front-load
+your most citable, self-contained answer rather than burying it below the fold.
 
 **Strong signals:**
 - Clear, quotable sentences with specific facts/statistics
@@ -117,6 +121,7 @@ Content with multi-modal elements sees **156% higher selection rates**.
 **Strong signals:**
 - Author byline with credentials
 - Publication date and last-updated date
+- **Recency**, content under 3 months old is ~3x more likely to be cited in AI answers; pages left stale 6+ months lose citation eligibility (SE Ranking, 1.3M-citation study). A scheduled refresh program is one of the highest-leverage GEO plays.
 - Citations to primary sources (studies, official docs, data)
 - Organization credentials and affiliations
 - Expert quotes with attribution
@@ -145,25 +150,91 @@ Content with multi-modal elements sees **156% higher selection rates**.
 
 Check `robots.txt` for these AI crawlers:
 
-| Crawler | Owner | Purpose |
-|---------|-------|---------|
-| GPTBot | OpenAI | ChatGPT web search |
-| OAI-SearchBot | OpenAI | OpenAI search features |
-| ChatGPT-User | OpenAI | ChatGPT browsing |
-| ClaudeBot | Anthropic | Claude web features |
-| PerplexityBot | Perplexity | Perplexity AI search |
-| CCBot | Common Crawl | Training data (often blocked) |
-| anthropic-ai | Anthropic | Claude training |
-| Bytespider | ByteDance | TikTok/Douyin AI |
-| cohere-ai | Cohere | Cohere models |
+| Crawler | Owner | Purpose | Obeys robots.txt? |
+|---------|-------|---------|---|
+| GPTBot | OpenAI | **Model training only** (NOT ChatGPT Search) | yes |
+| OAI-SearchBot | OpenAI | **ChatGPT Search citability** (the crawler that decides it) | yes |
+| ChatGPT-User | OpenAI | ChatGPT browsing (user-triggered) | no (user-triggered) |
+| ClaudeBot | Anthropic | **Model training only** (NOT Claude's search features) | yes |
+| Claude-SearchBot | Anthropic | **Claude/Claude.ai search-result citability** (the crawler that decides it) | yes |
+| Claude-User | Anthropic | Claude browsing on a user's behalf (user-triggered) | no (user-triggered) |
+| PerplexityBot | Perplexity | Perplexity AI search | yes |
+| CCBot | Common Crawl | Training data (often blocked) | yes |
+| Bytespider | ByteDance | TikTok/Douyin AI | yes |
+| cohere-ai | Cohere | Cohere models | yes |
+| Google-Extended | Google | **Gemini/Vertex training & grounding only** (NOT Google Search) | yes |
+| Google-CloudVertexBot | Google | Site-owner-requested Vertex AI Agent crawls | yes |
+| Google-Agent | Google | Agentic browsing (Project Mariner), acts for a user | **no (user-triggered)** |
+| Google-NotebookLM | Google | Fetches individual user-added source URLs | **no (user-triggered)** |
+| Google Messages | Google | User-triggered fetch | **no (user-triggered)** |
+| Applebot-Extended | Apple | **Apple Intelligence / generative-AI training data opt-out only** (NOT Siri, Spotlight, or Safari search; does not itself crawl, it labels content already fetched by Applebot) | yes |
 
-**Recommendation:** Allow GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot for AI search visibility. Block CCBot and training crawlers if desired.
+Sources: [OpenAI crawlers](https://platform.openai.com/docs/bots),
+[Google crawlers overview](https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers),
+[Anthropic crawler support article](https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler),
+[Apple Applebot-Extended support article](https://support.apple.com/en-us/119829).
+Anthropic's current crawler support article documents only ClaudeBot, Claude-User,
+and Claude-SearchBot; it does not list `anthropic-ai`, so the previously-unverified
+`anthropic-ai` row has been removed rather than kept as a guess.
+
+**Recommendation:** Allow OAI-SearchBot, Claude-SearchBot, and PerplexityBot for AI
+search visibility. GPTBot, ClaudeBot, CCBot, and Applebot-Extended are training-only
+signals -- allow or block them on licensing preference, not on search-visibility
+grounds.
+
+### Check the right bot for the claim you are making
+
+Two pairs are routinely conflated. **Each claim below may only be supported by its own
+bot's robots.txt status** -- check them separately and report them separately.
+
+| Claim you want to make | Bot to check | Bot that does NOT support this claim |
+|---|---|---|
+| "Content is citable in ChatGPT Search" | `OAI-SearchBot` | `GPTBot` |
+| "Content is available for OpenAI model training" | `GPTBot` | `OAI-SearchBot` |
+| "Content can be used for Gemini/Vertex training & grounding" | `Google-Extended` | `Googlebot` |
+| "Content is eligible for Google Search / AI Overviews" | `Googlebot` | `Google-Extended` |
+| "Content is citable in Claude's search features" | `Claude-SearchBot` | `ClaudeBot` |
+| "Content is available for Anthropic model training" | `ClaudeBot` | `Claude-SearchBot` |
+| "Content can be used for Apple Intelligence training" | `Applebot-Extended` | `Applebot` |
+| "Content is discoverable via Siri, Spotlight, or Safari search" | `Applebot` | `Applebot-Extended` |
+
+- **`Google-Extended` governs Gemini and Vertex AI training and grounding use only.
+  It does not affect inclusion in ordinary Google Search, or in AI Overviews and AI
+  Mode, both of which are served from the `Googlebot` index.** Never score
+  `Google-Extended` as a "Google Search readiness" signal, and never cite a blocked
+  `Google-Extended` as evidence that a site is missing from Google Search.
+- **`OAI-SearchBot` is the crawler that determines ChatGPT Search citability.
+  `GPTBot` is OpenAI's separate training crawler.** Checking `GPTBot` access tells
+  you nothing about whether ChatGPT Search can cite the page. A site that blocks
+  `GPTBot` and allows `OAI-SearchBot` is fully citable in ChatGPT Search.
+- **`Claude-SearchBot` is the crawler that determines citability in Claude's own
+  search features. `ClaudeBot` is Anthropic's separate training crawler** (per
+  Anthropic's crawler support article). Checking `ClaudeBot` access tells you
+  nothing about Claude search citability, and vice versa; report each separately.
+- **`Applebot-Extended` is a training-data opt-out signal, not a crawler that
+  fetches pages itself.** Per Apple's support article, disallowing
+  `Applebot-Extended` opts a site out of Apple Intelligence / generative-model
+  training use, but the page remains discoverable through Siri, Spotlight, and
+  Safari as long as `Applebot` itself is allowed. Never cite a blocked
+  `Applebot-Extended` as evidence a site is missing from Apple's search surfaces.
+
+Do not use these names interchangeably in report prose. When reporting crawler access,
+name the specific user-agent that was checked and the specific capability it governs.
+
+> **User-triggered fetchers ignore robots.txt by design** (Google-Agent, Google-NotebookLM, Google Messages, ChatGPT-User). robots.txt cannot block them, use server-side access controls. Google's canonical crawling/robots reference moved to **developers.google.com/crawling** (migrated 2025-11-20); IP-range files now live at `/crawling/ipranges/` and `googlebot.json` was renamed `common-crawlers.json`. Emerging: **Web Bot Auth** (RFC 9421) lets bots authenticate via a `Signature-Agent` header + key directory (used by Google-Agent); reverse-DNS verification remains the fallback.
 
 ---
 
 ## llms.txt Standard
 
 Read `references/llmstxt-evidence.md` for the primary-source evidence (Mueller, Illyes, SE Ranking 300k-domain study, OtterlyAI server-log audit) on why `/llms.txt` is not currently a citation lever for major AI search systems. claude-seo reports presence but assigns no citation-ranking weight.
+
+> **Google now states this explicitly.** Google's AI optimization guide, introduced
+> 2026-05-15 and clarified 2026-06-15, says `llms.txt` and other AI-text files are
+> not needed for Google Search and do not help or hurt visibility or rankings.
+> They may still serve non-Google systems. Never recommend `llms.txt` as a Google
+> ranking or citation lever. Source:
+> developers.google.com/search/docs/fundamentals/ai-optimization-guide
 
 The emerging **llms.txt** standard provides AI crawlers with structured content guidance.
 
@@ -205,10 +276,48 @@ New standard (December 2025) for machine-readable AI licensing terms.
 
 | Platform | Key Citation Sources | Optimization Focus |
 |----------|---------------------|-------------------|
-| **Google AI Overviews** | Top-10 ranking pages (92%) | Traditional SEO + passage optimization |
+| **Google AI Overviews** | Strongly ranking-correlated, cites pages that already rank well | Traditional SEO + passage optimization |
+| **Google AI Mode** (custom version of Gemini 2.5) | Weakly ranking-correlated; broader pool (~9 domains cited/query, Ahrefs) | Distinct surface: freshness, entity authority, citable passages beyond position 5 |
 | **ChatGPT** | Wikipedia (47.9%), Reddit (11.3%) | Entity presence, authoritative sources |
 | **Perplexity** | Reddit (46.7%), Wikipedia | Community validation, discussions |
 | **Bing Copilot** | Bing index, authoritative sites | Bing SEO, IndexNow |
+
+> **Two Google citation engines, not one.** AI Mode and AI Overviews reach the
+> same conclusion ~86% of the time but cite the same URLs only **13.7%** of the
+> time (Ahrefs study, 540K query pairs). Treat them as separate surfaces: ranking
+> well in classic Search feeds AI Overviews, but AI Mode draws from a broader pool
+> where freshness and entity authority outweigh raw position. Score both.
+>
+> **AI Mode is also a booking surface (2026-08-27).** Flight price tracking
+> with email alerts (180+ countries and territories), hotel booking through
+> integrated partners, and fares shown in points or miles now happen inside
+> AI Mode. Travel and hospitality clients should check partner eligibility;
+> nothing here is a documented ranking change.
+>
+> **UX is now unified, surfaces still distinct.** At Google I/O 2026 (2026-05-19)
+> Google merged AI Overviews and AI Mode into "one seamless AI Search experience"
+> (question → AI Overview → follow-up in AI Mode) with a new intelligent Search
+> box. The *experience* is one flow, but the two citation engines remain
+> technically distinct (different models/link sets), keep scoring both.
+
+### Citation surfaces & controls in AI Search (2026)
+
+Google added many AI citation/source surfaces across AI Overviews **and** AI Mode (May 2026):
+
+- **Preferred Sources**, an eligible domain or subdomain can be selected by a
+  user, making its content more likely to appear in that user's Top Stories and
+  eligible for a preferred badge in AI Mode or AI Overviews. This is a
+  **per-user preference**, not a documented general ranking signal. Publishers
+  may offer Google's interactive button or a deeplink, but should not promise a
+  site-wide ranking lift. Source:
+  developers.google.com/search/docs/appearance/preferred-sources
+- **"Highly Cited" badges**, earned via original primary reporting that other articles cite.
+- **Community Perspectives**, elevates Reddit/forum/firsthand content.
+- Inline links, desktop hover **Link Previews**, and prominent link carousels.
+
+**Controlling AI-feature appearance:** there is **no AI-specific opt-out file**. Appearance in AI Overviews and AI Mode is governed by standard preview/index directives, `nosnippet`, `data-nosnippet`, `max-snippet`, `noindex` (distinct from the third-party AI-crawler robots controls above). Source: developers.google.com/search/docs/appearance/ai-features
+
+**Search agents (live, not just WebMCP):** Google's "Information Agents" run in the background to monitor topics, plus agentic booking/calling for select categories (rolling out to US users, summer 2026), so agent-friendly-page optimization (real interactive elements, accessibility tree, layout stability) now matters for actions, not only citations.
 
 ---
 
@@ -218,7 +327,11 @@ Generate `GEO-ANALYSIS.md` with:
 
 1. **GEO Readiness Score: XX/100**
 2. **Platform breakdown** (Google AIO, ChatGPT, Perplexity scores)
-3. **AI Crawler Access Status** (which crawlers allowed/blocked)
+3. **AI Crawler Access Status** -- report each crawler separately with the
+   capability it governs. Training access (`GPTBot`, `Google-Extended`, `CCBot`,
+   `ClaudeBot`, `Applebot-Extended`) and search citability (`OAI-SearchBot`,
+   `Googlebot`, `PerplexityBot`, `Claude-SearchBot`, `Applebot`) are distinct
+   findings and must never be merged into one line.
 4. **llms.txt Status** (present, missing, recommendations)
 5. **Brand Mention Analysis** (presence on Wikipedia, Reddit, YouTube, LinkedIn)
 6. **Passage-Level Citability** (optimal 134-167 word blocks identified)
@@ -241,7 +354,7 @@ Generate `GEO-ANALYSIS.md` with:
 
 ## Medium Effort
 
-1. Create `/llms.txt` file
+1. Create `/llms.txt` file (optional: ignored by Google Search; may help other AI crawlers)
 2. Add author bio with credentials + Wikipedia/LinkedIn links
 3. Ensure server-side rendering for key content
 4. Build entity presence on Reddit, YouTube
@@ -266,9 +379,9 @@ If DataForSEO MCP tools are available, use `ai_optimization_chat_gpt_scraper` to
 |----------|--------|
 | URL unreachable (DNS failure, connection refused) | Report the error clearly. Do not guess site content. Suggest the user verify the URL and try again. |
 | AI crawlers blocked by robots.txt | Report exactly which crawlers are blocked and which are allowed. Provide specific robots.txt directives to add for enabling AI search visibility. |
-| No llms.txt found | Note the absence and provide a ready-to-use llms.txt template based on the site's content structure. |
+| No llms.txt found | Note the absence (optional file; Google Search ignores it) and provide a ready-to-use llms.txt template for non-Google AI crawlers. |
 | No structured data detected | Report the gap and provide specific schema recommendations (Article, Organization, Person) for improving AI discoverability. |
 
 ## FLOW Framework Integration
 
-For prompt-guided AI content optimization, use `/seo flow optimize <url>` — FLOW's 21 optimize-stage prompts complement GEO's citability and structure analysis with evidence-led AI prompts.
+For prompt-guided AI content optimization, use `/seo flow optimize <url>`, FLOW's 21 optimize-stage prompts complement GEO's citability and structure analysis with evidence-led AI prompts.

@@ -8,5 +8,5 @@ $SkillTarget = Join-Path $SkillDir "seo-unlighthouse"
 New-Item -ItemType Directory -Path $SkillTarget -Force | Out-Null
 Copy-Item (Join-Path $SourceDir "skills/seo-unlighthouse/SKILL.md") `
           (Join-Path $SkillTarget "SKILL.md") -Force
-& npx --yes --package=unlighthouse-cli@^0.13 unlighthouse-ci --help *> $null
+& npx --yes --package=unlighthouse@0.13.5 unlighthouse-ci --help *> $null
 Write-Host "Done."

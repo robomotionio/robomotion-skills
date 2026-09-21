@@ -42,8 +42,8 @@ Output JSON::
 
 The script is *advisory*: it does not check whether a citation actually
 exists. The signal is whether the author bothered to anchor each
-claim. A high uncited ratio in long-form content is the same red flag
-Google's QRG raters use.
+claim. The uncited_ratio field is this tool's internal heuristic,
+inspired by QRG trust expectations, not a Google rater metric.
 """
 
 from __future__ import annotations
@@ -53,7 +53,6 @@ import json
 import re
 import sys
 from pathlib import Path
-
 
 # Claim patterns. Each is (regex, label). Order matters — first match
 # wins per substring so a "47% of users" doesn't double-count as both

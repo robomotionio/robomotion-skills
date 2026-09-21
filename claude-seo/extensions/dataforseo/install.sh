@@ -8,7 +8,10 @@ main() {
     SKILL_DIR="${HOME}/.claude/skills/seo-dataforseo"
     AGENT_DIR="${HOME}/.claude/agents"
     SEO_SKILL_DIR="${HOME}/.claude/skills/seo"
-    SETTINGS_FILE="${HOME}/.claude/settings.json"
+    # MCP servers live in ~/.claude.json (the file `claude mcp add` writes).
+    # NOT ~/.claude/settings.json - `mcpServers` is not a key Claude Code reads
+    # there, so entries written to settings.json silently never load.
+    MCP_CONFIG_FILE="${HOME}/.claude.json"
 
     echo "════════════════════════════════════════"
     echo "║   DataForSEO Extension - Installer   ║"
@@ -25,7 +28,7 @@ main() {
         SEO_SKILL_DIR="${_PLUGIN_SEO_DIR}"
     fi
     if [ ! -d "${SEO_SKILL_DIR}" ]; then
-        _GLOB_MATCH=$(ls -d "${HOME}/.claude/plugins/cache/agricidaniel-seo/claude-seo/"*/skills/seo 2>/dev/null | tail -n1 || true)
+        _GLOB_MATCH=$(ls -d "${HOME}/.claude/plugins/cache/*/claude-seo/"*/skills/seo 2>/dev/null | tail -n1 || true)
         [ -n "${_GLOB_MATCH}" ] && [ -d "${_GLOB_MATCH}" ] && SEO_SKILL_DIR="${_GLOB_MATCH}"
     fi
 
@@ -105,52 +108,56 @@ main() {
     echo "→ Installing field config..."
     cp "${SOURCE_DIR}/field-config.json" "${SEO_SKILL_DIR}/dataforseo-field-config.json"
 
-    # Merge MCP config into settings.json
+    # Merge MCP config into ~/.claude.json
     echo "→ Configuring MCP server..."
     FIELD_CONFIG_PATH="${SEO_SKILL_DIR}/dataforseo-field-config.json"
 
-    python3 -c "
-import json, os, sys
+    # Credentials are passed as argv (never interpolated into the source string)
+    # and the settings file is written atomically with 0600 permissions.
+    python3 - "${MCP_CONFIG_FILE}" "${DFSE_USERNAME}" "${DFSE_PASSWORD}" "${FIELD_CONFIG_PATH}" <<'PY'
+import json, os, sys, tempfile
 
-settings_path = '${SETTINGS_FILE}'
-username = '''${DFSE_USERNAME}'''
-password = '''${DFSE_PASSWORD}'''
-field_config = '${FIELD_CONFIG_PATH}'
+settings_path, username, password, field_config = sys.argv[1:5]
 
-# Read existing settings or create new
 if os.path.exists(settings_path):
-    with open(settings_path, 'r') as f:
-        settings = json.load(f)
+    try:
+        with open(settings_path) as f:
+            settings = json.load(f)
+    except json.JSONDecodeError:
+        settings = {}
 else:
     settings = {}
 
-# Ensure mcpServers key exists
-if 'mcpServers' not in settings:
-    settings['mcpServers'] = {}
-
-# Add DataForSEO server config
-settings['mcpServers']['dataforseo'] = {
+settings.setdefault('mcpServers', {})['dataforseo'] = {
     'command': 'npx',
     'args': ['-y', 'dataforseo-mcp-server@2.8.10'],
     'env': {
         'DATAFORSEO_USERNAME': username,
         'DATAFORSEO_PASSWORD': password,
         'ENABLED_MODULES': 'SERP,KEYWORDS_DATA,ONPAGE,DATAFORSEO_LABS,BACKLINKS,DOMAIN_ANALYTICS,BUSINESS_DATA,CONTENT_ANALYSIS,AI_OPTIMIZATION',
-        'FIELD_CONFIG_PATH': field_config
-    }
+        'FIELD_CONFIG_PATH': field_config,
+    },
 }
 
-# Write back
-os.makedirs(os.path.dirname(settings_path), exist_ok=True)
-with open(settings_path, 'w') as f:
-    json.dump(settings, f, indent=2)
+os.makedirs(os.path.dirname(settings_path) or '.', exist_ok=True)
+fd, tmp = tempfile.mkstemp(dir=os.path.dirname(settings_path) or '.', prefix='.settings.', suffix='.json')
+try:
+    with os.fdopen(fd, 'w') as f:
+        json.dump(settings, f, indent=2)
+    os.chmod(tmp, 0o600)
+    os.replace(tmp, settings_path)
+except Exception:
+    if os.path.exists(tmp):
+        os.unlink(tmp)
+    raise
 
-print('  ✓ MCP server configured in settings.json')
-" || {
+print('  ✓ MCP server configured in ~/.claude.json')
+PY
+    if [ $? -ne 0 ]; then
         echo "  ⚠  Could not auto-configure MCP server."
-        echo "  Add the dataforseo server manually to ~/.claude/settings.json"
+        echo "  Add the dataforseo server manually to ~/.claude.json"
         echo "  See: extensions/dataforseo/docs/DATAFORSEO-SETUP.md"
-    }
+    fi
 
     # Pre-warm npm package without starting the MCP server binary.
     echo "→ Pre-downloading dataforseo-mcp-server..."
@@ -167,7 +174,7 @@ print('  ✓ MCP server configured in settings.json')
     echo "     /seo dataforseo backlinks example.com"
     echo "     /seo dataforseo ai-mentions your brand"
     echo ""
-    echo "All 22 commands: see extensions/dataforseo/README.md"
+    echo "All 23 commands: see extensions/dataforseo/README.md"
     echo "To uninstall: ./extensions/dataforseo/uninstall.sh"
 }
 
