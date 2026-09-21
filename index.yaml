@@ -12393,7 +12393,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: b2e080e7c718
+  content_hash: 08bc371e5b25
   skills:
   - id: claude-seo/seo
     name: seo
@@ -13097,6 +13097,7 @@ groups:
   - .gitignore
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
+  - .robomotion/patches/001-prepared-by-robomotion.patch
   - .robomotion/post-install.sh
   - .robomotion/skill.yaml
   - AGENTS.md
