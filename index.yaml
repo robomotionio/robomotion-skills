@@ -20782,11 +20782,11 @@ groups:
   - motion-graphics
   - captions
   - mp4
-  has_post_install: false
+  has_post_install: true
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 57f2bfb00fb9
+  content_hash: 1131fb784ea1
   skills:
   - id: hyperframes/embedded-captions
     name: embedded-captions
@@ -22138,6 +22138,7 @@ groups:
   files:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
+  - .robomotion/post-install.sh
   - .robomotion/skill.yaml
   - LICENSE
   - skills/python-encoding.test.mjs
