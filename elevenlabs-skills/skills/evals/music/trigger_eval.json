@@ -1,0 +1,20 @@
+[
+  {"query": "generate a 30-second lo-fi hip hop beat for my YouTube video background, chill vibes with vinyl crackle", "should_trigger": true},
+  {"query": "compose a jingle for my startup's landing page, something catchy and modern, about 15 seconds", "should_trigger": true},
+  {"query": "I want to create an instrumental track, something upbeat and electronic for a product demo video", "should_trigger": true},
+  {"query": "write lyrics about my dog and generate an actual song from them using AI", "should_trigger": true},
+  {"query": "make me some background music for a corporate presentation, keep it professional and subtle", "should_trigger": true},
+  {"query": "create a composition plan for a rock song with verse-chorus-bridge structure using elevenlabs", "should_trigger": true},
+  {"query": "generate a chill acoustic guitar piece, about 45 seconds, for my podcast outro", "should_trigger": true},
+  {"query": "I need some royalty-free music for my podcast intro, upbeat and energetic, 10-15 seconds", "should_trigger": true},
+  {"query": "compose an orchestral piece with strings and piano for a film trailer", "should_trigger": true},
+  {"query": "generate a thunder sound effect with light rain", "should_trigger": false},
+  {"query": "convert this text into spoken audio with a natural voice", "should_trigger": false},
+  {"query": "transcribe this song's lyrics from the audio recording", "should_trigger": false},
+  {"query": "build a voice assistant that helps users book appointments", "should_trigger": false},
+  {"query": "help me learn music theory — explain chord progressions in the key of C", "should_trigger": false},
+  {"query": "recommend me a Spotify playlist for working out", "should_trigger": false},
+  {"query": "analyze the BPM and key of this audio file", "should_trigger": false},
+  {"query": "help me set up a MIDI controller with my DAW", "should_trigger": false},
+  {"query": "create a UI notification sound for my app", "should_trigger": false}
+]

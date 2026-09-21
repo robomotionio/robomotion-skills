@@ -1,0 +1,23 @@
+[
+  {"query": "I want to build a voice AI assistant that can answer questions about our product documentation and handle customer inquiries", "should_trigger": true},
+  {"query": "create a customer service bot that talks to users on the phone, needs to access our CRM via API", "should_trigger": true},
+  {"query": "set up a voice agent with the elevenlabs CLI for a restaurant reservation system that can check table availability", "should_trigger": true},
+  {"query": "help me build an interactive voice character for my RPG game that responds to player questions in character", "should_trigger": true},
+  {"query": "I need a voice assistant that can look up order status from our database and talk to customers about shipping", "should_trigger": true},
+  {"query": "configure a voice agent with gpt-4o as the LLM and add a webhook tool that calls our inventory API", "should_trigger": true},
+  {"query": "embed a voice chat widget on my website so visitors can talk to our AI assistant — using elevenlabs", "should_trigger": true},
+  {"query": "make outbound calls to sales leads using an AI voice agent, need to integrate with our HubSpot", "should_trigger": true},
+  {"query": "how do I add client-side tools to my elevenlabs agent so it can control the browser UI during a call", "should_trigger": true},
+  {"query": "list the procedures on my elevenlabs agent's main branch and show which ones have unpublished draft changes", "should_trigger": true},
+  {"query": "compile the structured procedures on my elevenlabs agent branch and publish the compiled workflow", "should_trigger": true},
+  {"query": "create an agent procedure with the elevenlabs python sdk and publish it to the branch", "should_trigger": true},
+  {"query": "generate speech from this text paragraph and save as an mp3 file", "should_trigger": false},
+  {"query": "transcribe this recorded phone call to text with speaker labels", "should_trigger": false},
+  {"query": "create an explosion sound effect for my game", "should_trigger": false},
+  {"query": "compose some hold music for our phone system, something calming", "should_trigger": false},
+  {"query": "build me a chatbot using the claude API that responds to slack messages", "should_trigger": false},
+  {"query": "set up a discord bot that moderates messages and bans spammers automatically", "should_trigger": false},
+  {"query": "help me deploy a flask REST API to AWS with auto-scaling", "should_trigger": false},
+  {"query": "create a twilio IVR phone tree for our support line using python", "should_trigger": false},
+  {"query": "build a text-based chatbot widget for my website using react and openai", "should_trigger": false}
+]

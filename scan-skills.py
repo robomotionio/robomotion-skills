@@ -77,10 +77,10 @@ RULES = [
      r"|interact\.sh|oast\.(fun|pro|live|site|online|me)|transfer\.sh|paste\.ee|0x0\.st|termbin\.com)\b",
      "a throwaway endpoint used to receive stolen data"),
     ("credential-path", "BLOCK", "code",
-     r"(~|\$HOME|\$\{HOME\}|/root|/home/[^/\s]+)/\.(ssh/|aws/|kube/|docker/config|netrc\b|npmrc\b|pypirc\b|git-credentials\b"
+     r"(~|\$HOME|\$\{HOME\}|/root|/home/[^/\s]+)/\.(ssh/(?!\S*\.pub\b)|aws/|kube/|docker/config|netrc\b|npmrc\b|pypirc\b|git-credentials\b"
      r"|config/gcloud|azure/|gnupg/)"
      r"|/\.(hermes|clawdbot|openclaw|codex|claude)/(\.env|auth|credentials)\b"
-     r"|\bid_(rsa|ed25519|ecdsa)\b|/etc/shadow\b|Login Data\b|\bsecurity\s+find-(generic|internet)-password\b",
+     r"|\bid_(rsa|ed25519|ecdsa)\b(?!\.pub)|/etc/shadow\b|Login Data\b|\bsecurity\s+find-(generic|internet)-password\b",
      "reads where credentials live on the machine that runs it"),
     ("env-sweep", "BLOCK", "code",
      r"(^|[;&|(]\s*)(printenv|env)\s*(\||>)|\bos\.environ\b(?!\s*(\.get\s*\(|\[))[^\n]{0,60}\b(post|put|send|dumps|urlopen|request)"
@@ -88,7 +88,7 @@ RULES = [
      "collects the whole environment, which is where bound secrets are"),
     ("registry-override", "BLOCK", "any",
      r"--(extra-)?index-url\s+(?!https://(pypi\.org|download\.pytorch\.org)/)\S+|npm\s+config\s+set\s+registry\b"
-     r"|--registry[= ]\s*(?!https://registry\.npmjs\.org)\S+|PIP_(EXTRA_)?INDEX_URL=",
+     r"|\b(npm|npx|yarn|pnpm|bun)\b[^\n|;&]{0,120}--registry[= ]\s*(?!https://registry\.npmjs\.org)\S+|PIP_(EXTRA_)?INDEX_URL=",
      "installs packages from somewhere other than the official registry"),
     ("persistence", "BLOCK", "code",
      r"\bcrontab\s+-|/etc/cron\.|systemctl\s+(--user\s+)?enable\b|\.config/systemd/user|LaunchAgents/"
@@ -234,14 +234,18 @@ def main():
     ap.add_argument("--changed", nargs="?", const="", default=None, metavar="BASE")
     ap.add_argument("--summary", action="store_true", help="counts per rule and group only")
     ap.add_argument("--markdown", action="store_true", help="a section for a PR body")
+    ap.add_argument("--accept", metavar="REASON",
+                    help="record every blocking finding of this scan as read and accepted, with this reason")
     args = ap.parse_args()
     if not (args.all or args.changed is not None or args.paths):
         ap.error("say what to scan: --changed, --all, or paths")
 
-    accepted = {}
+    accepted, trusted = {}, []
     if ACCEPTED.exists():
-        for a in (yaml.safe_load(ACCEPTED.read_text()) or {}).get("accepted", []):
+        doc = yaml.safe_load(ACCEPTED.read_text()) or {}
+        for a in doc.get("accepted", []):
             accepted[a["key"]] = a
+        trusted = doc.get("trusted_installers", [])
     own = {ROOT / "scan-skills.py", ACCEPTED}
     findings, waived = [], 0
     for f in gather(args):
@@ -252,6 +256,10 @@ def main():
         if args.changed is not None and (h := launcher_hooks(rel)):
             found.append(h)
         for x in found:
+            # A vendor's own documented installer still runs unreviewed code,
+            # so it stays on the reviewer's list, but it does not fail the run.
+            if x.rule == "pipe-to-shell" and any(h in x.text for h in trusted):
+                x.sev, x.why = "WARN", "pipe to shell from a host listed in trusted_installers"
             if x.key in accepted:
                 waived += 1
             else:
@@ -259,6 +267,14 @@ def main():
 
     blocks = [f for f in findings if f.sev == "BLOCK"]
     warns = [f for f in findings if f.sev == "WARN"]
+    if args.accept and blocks:
+        doc = (yaml.safe_load(ACCEPTED.read_text()) if ACCEPTED.exists() else None) or {}
+        doc.setdefault("accepted", []).extend(
+            {"key": f.key, "rule": f.rule, "path": f.path, "text": f.text[:120], "reason": args.accept} for f in blocks)
+        head = "".join(l for l in ACCEPTED.read_text().splitlines(True) if l.startswith("#")) if ACCEPTED.exists() else ""
+        ACCEPTED.write_text(head + yaml.safe_dump(doc, sort_keys=False, width=160))
+        print(f"accepted {len(blocks)} findings", file=sys.stderr)
+        blocks = []
     if args.summary:
         tally: dict[tuple, int] = {}
         for f in findings:

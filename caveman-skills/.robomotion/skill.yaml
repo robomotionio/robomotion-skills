@@ -1,0 +1,14 @@
+schema_version: 1
+name: caveman-skills
+title: Caveman Skills
+type: group
+version: 1.0.0
+author: Julius Brussee
+source_url: https://github.com/JuliusBrussee/caveman
+license: MIT
+summary: 'Coding workflows: review, compression, investigation, refactoring. The MIT-licensed skills only.'
+category: Engineering
+tags:
+- coding
+- review
+- refactoring

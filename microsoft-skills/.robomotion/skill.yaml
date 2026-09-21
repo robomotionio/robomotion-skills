@@ -1,0 +1,15 @@
+schema_version: 1
+name: microsoft-skills
+title: Microsoft Skills
+type: group
+version: 1.0.0
+author: Microsoft
+source_url: https://github.com/microsoft/skills
+license: MIT
+summary: Azure SDKs by language, Microsoft Foundry, MCP building, cloud architecture.
+category: Cloud
+tags:
+- azure
+- sdk
+- mcp
+- microsoft

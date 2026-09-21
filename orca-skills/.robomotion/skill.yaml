@@ -1,0 +1,14 @@
+schema_version: 1
+name: orca-skills
+title: Orca Skills
+type: group
+version: 1.0.0
+author: Stably
+source_url: https://github.com/stablyai/orca
+license: MIT
+summary: Agent orchestration and the Orca command line.
+category: Engineering
+tags:
+- orchestration
+- agents
+- cli

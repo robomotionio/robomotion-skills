@@ -1,0 +1,15 @@
+schema_version: 1
+name: emilkowalski-skills
+title: Emil Kowalski Skills
+type: group
+version: 1.0.0
+author: Emil Kowalski
+source_url: https://github.com/emilkowalski/skills
+license: MIT
+summary: 'Design engineering: animation review, interaction polish, mobile-native feel, picking a UI library.'
+category: Design
+tags:
+- design
+- animation
+- frontend
+- interaction

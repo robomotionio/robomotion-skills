@@ -1,0 +1,15 @@
+schema_version: 1
+name: prisma-skills
+title: Prisma Skills
+type: group
+version: 1.0.0
+author: Prisma
+source_url: https://github.com/prisma/skills
+license: MIT
+summary: 'Prisma ORM and Prisma Postgres: setup, client API, CLI, migrations, upgrades.'
+category: Database
+tags:
+- prisma
+- postgres
+- database
+- orm

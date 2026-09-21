@@ -1,0 +1,16 @@
+schema_version: 1
+name: anthropic-skills
+title: Anthropic Skills
+type: group
+version: 1.0.0
+author: Anthropic
+source_url: https://github.com/anthropics/skills
+license: Apache-2.0
+summary: 'Anthropic''s reference skills: frontend design, canvas design, themes, MCP building, skill creation, web app testing, internal comms. The Apache-licensed set only.'
+category: General
+tags:
+- design
+- frontend
+- mcp
+- testing
+- skills

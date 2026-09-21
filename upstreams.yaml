@@ -2,6 +2,87 @@
 # `commit` is the only field an update changes. Read the script's docstring.
 schema_version: 1
 upstreams:
+- group: agent-browser
+  repo: https://github.com/vercel-labs/agent-browser
+  track: main
+  commit: 8c15ff9f71ae60c7e99e66afe1e2d4b9bf414fe2
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: 014bb31e83d5c2e76aea1cc6e82217346ab41362f32cb355ad0f5c10aa0aeaff
+  include:
+  - skills
+  - skill-data
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: anthropic-skills
+  repo: https://github.com/anthropics/skills
+  track: main
+  commit: 34040c9c568585f6929bedeaad110ad08f079624
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: skills/frontend-design/LICENSE.txt
+  license_sha256: 0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594
+  include:
+  - skills
+  exclude:
+  - skills/doc-coauthoring
+  - skills/docx
+  - skills/pdf
+  - skills/pptx
+  - skills/web-artifacts-builder
+  - skills/xlsx
+  local_paths: []
+  into: ''
+- group: awesome-copilot
+  repo: https://github.com/github/awesome-copilot
+  track: main
+  commit: 1899b18da3fa5183652f86165917d553cba1850a
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: e32449d23085399adc1222f7a17408b730550258e51627c153cb108ca9955823
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: azure-skills
+  repo: https://github.com/microsoft/azure-skills
+  track: main
+  commit: 9d46511c1828eee052d6d0ef4652dcd548565e27
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 8a5d8efb70942e65032f930c761d097feeb41a7517ebd04c9d2e4ec3764071c5
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: caveman-skills
+  repo: https://github.com/JuliusBrussee/caveman
+  track: main
+  commit: 8bc01d6753146e864cc4b97ef187c4badef146cb
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 94fe75d355887f84ee7eefca68e06d8d082a23dad47a8e1f58a94d98900edf5b
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
 - group: claude-seo
   repo: https://github.com/AgriciDaniel/claude-seo
   track: main
@@ -16,8 +97,13 @@ upstreams:
   - CHANGELOG.md
   - CONTRIBUTING.md
   - README.md
+  - SECURITY.md
   - assets
   - docs
+  - extensions/*/install.ps1
+  - extensions/*/install.sh
+  - extensions/*/uninstall.ps1
+  - extensions/*/uninstall.sh
   - install.ps1
   - install.sh
   - screenshots
@@ -25,6 +111,39 @@ upstreams:
   - uninstall.ps1
   - uninstall.sh
   local_paths: []
+- group: elevenlabs-skills
+  repo: https://github.com/elevenlabs/skills
+  track: main
+  commit: 9edcbd4b80ed57b8e07a3f86ea520333969fbc3c
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 4ab5e9af2296f748eefa6c0696667f83aa9c0edda7b6972785966b60644b3da6
+  include: []
+  exclude:
+  - .github
+  - README.md
+  - .gitignore
+  - package.json
+  - LICENSE
+  local_paths: []
+  into: skills
+- group: emilkowalski-skills
+  repo: https://github.com/emilkowalski/skills
+  track: main
+  commit: d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
 - group: engineering-skills
   repo: https://github.com/addyosmani/agent-skills
   track: main
@@ -38,6 +157,67 @@ upstreams:
   local_paths: []
   include:
   - skills
+- group: find-skills
+  repo: https://github.com/vercel-labs/skills
+  track: main
+  commit: d6b37f62ae23c3825b0ed16c73e123eee0a41fdc
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 661142e53c313d2bb5e1b055f5c0a39001450ff1b5e27b89dc4bc7de9a6352ca
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: gemini-skills
+  repo: https://github.com/google-gemini/gemini-skills
+  track: main
+  commit: 80dd31dda25bbe1410207df0adb3e0d591c2c634
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: google-agents-cli
+  repo: https://github.com/google/agents-cli
+  track: main
+  commit: 5597738f14b5d4a490dfdefa282bc229003b7bbe
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: google-skills
+  repo: https://github.com/google/skills
+  track: main
+  commit: 5d9d07bb1ce6e97b45b2b3ab302b2c61322f0f29
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+  include:
+  - skills
+  - LICENSE
+  exclude:
+  - skills/cloud/google-cloud-filestore-nfs-browser
+  local_paths: []
+  into: ''
 - group: gws-cli
   repo: https://github.com/googleworkspace/cli
   track: main
@@ -47,9 +227,83 @@ upstreams:
   license: Apache-2.0
   license_file: LICENSE
   license_sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
-  exclude:
-  - .vscode
+  exclude: []
   local_paths: []
+  include:
+  - skills
+  - LICENSE
+- group: higgsfield-skills
+  repo: https://github.com/higgsfield-ai/skills
+  track: main
+  commit: d071406147a37b835bed09543d85ab3e9bd85c7d
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 9da656d6226936542be59478dbf775057dfdeade2629d35e0832108c2b7aecc0
+  include:
+  - higgsfield-*
+  exclude: []
+  local_paths: []
+  into: skills
+- group: hyperframes
+  repo: https://github.com/heygen-com/hyperframes
+  track: main
+  commit: d13a89b6707203a2efe2cfcd4e996e0ad0aa4573
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: 4259155fb06f127687ee7b0a8a3682d45132db0f2da26cbc0b7a2d1e796436b8
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: impeccable
+  repo: https://github.com/pbakaus/impeccable
+  track: main
+  commit: cb56ed6c19a07329a9fa0cd4e657bee040156593
+  subdir: plugin
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: 02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812
+  include: []
+  exclude: []
+  local_paths: []
+  into: ''
+- group: just-scrape
+  repo: https://github.com/ScrapeGraphAI/just-scrape
+  track: main
+  commit: a3d179ffe2695c5bb7aacffec2c6018d3d9f056e
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 7d794872f07421330bf8f822b869995fa112209c389cffe31e187d5edb9fcba4
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: lark-skills
+  repo: https://github.com/larksuite/cli
+  track: main
+  commit: 1bd78144e890c685726bd251ef8ee7710750e538
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: c969fc7e3af68e6bf40b0d8dd9c3dcc377eb685a2139535b203b39fdcad739ee
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
 - group: marketing-skills
   repo: https://github.com/coreyhaines31/marketingskills
   track: main
@@ -80,6 +334,35 @@ upstreams:
   - LICENSE
   exclude: []
   local_paths: []
+- group: microsoft-skills
+  repo: https://github.com/microsoft/skills
+  track: main
+  commit: cb45219a2c794cf2cca72e2ea39af87de1c21767
+  subdir: .github
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: d9a1b1e30d633d5732ea18e3cba9538d293ebc53e1a9e4e96ab739e0c5c4f1cb
+  include:
+  - plugins
+  exclude: []
+  local_paths: []
+  into: ''
+- group: neon-skills
+  repo: https://github.com/neondatabase/agent-skills
+  track: main
+  commit: 2e0da3a1653bcdd227565ac14bb3e9e453a8b854
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
 - group: netlify-skills
   repo: https://github.com/netlify/context-and-tools
   track: main
@@ -91,6 +374,134 @@ upstreams:
   license_sha256: a0a3cabb18cf4b1593f8f7556dbb102b935354241ecc9165198786e7bfd5532e
   exclude: []
   local_paths: []
+- group: openai-skills
+  repo: https://github.com/openai/skills
+  track: main
+  commit: 49f948faa9258a0c61caceaf225e179651397431
+  subdir: skills/.curated
+  mode: mirror
+  license: Apache-2.0
+  license_file: skills/.curated/pdf/LICENSE.txt
+  license_sha256: 4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9
+  include: []
+  exclude:
+  - figma*
+  - notion-*
+  local_paths: []
+  into: skills
+- group: orca-skills
+  repo: https://github.com/stablyai/orca
+  track: main
+  commit: e53f1557e1b5a6e26e85cfca390b34f7f8a7d26c
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: ff1b611f80580d49f4b97e93a97b24eb050b0671b26b8afe16341fab699112f3
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: prisma-skills
+  repo: https://github.com/prisma/skills
+  track: main
+  commit: 1123817e60d15ca0f3af91878923241dee7e3b09
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 03b4d243884e832289d7306e3bcc725ce5095834cc91e0be2b46f178eaafd973
+  include:
+  - prisma-*
+  exclude: []
+  local_paths: []
+  into: skills
+- group: replicate-skills
+  repo: https://github.com/replicate/skills
+  track: main
+  commit: 2f36e415965ae63baa1c9f6635888092bcd771d3
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: f7fe9e559ee33341e61df0bc9c31b7bcf967a4350feeb9d8cbb48bf3ea5f8a6a
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: rigorpilot-skills
+  repo: https://github.com/lllllllama/RigorPilot-Skills
+  track: main
+  commit: bd91195ad73199b95e24532b581ff12c07dcce09
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 3925c988925b998884eba71d1237b6b20d7add53295605f65abf2e85b58202e9
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: runcomfy-skills
+  repo: https://github.com/runcomfy-com/skills
+  track: main
+  commit: 65ba8b913ec92afd327661cb845b160a96e480e7
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: da9c8da48d4cd81ad349524956e5a5bd2f8c639c1cf581d639023255d62f74f4
+  include: []
+  exclude:
+  - .github
+  - .claude-plugin
+  - README.md
+  - docs
+  - scripts
+  - .gitignore
+  - package.json
+  - package-lock.json
+  - CHANGELOG.md
+  - CONTRIBUTING.md
+  - plugins
+  - LICENSE
+  local_paths: []
+  into: skills
+- group: shadcn-skills
+  repo: https://github.com/shadcn-ui/ui
+  track: main
+  commit: 2b3e6d4f8d9161fe5c19340dc383aade392012dd
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE.md
+  license_sha256: 1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f
+  include:
+  - skills
+  exclude: []
+  local_paths: []
+  into: ''
+- group: supabase-skills
+  repo: https://github.com/supabase/agent-skills
+  track: main
+  commit: 8331f910845103c08d51f6ca1d86ebb7d1f745e3
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: b65e575eb4f04a13c187d64e958321298e2ab84d67aa8428819f362056ba292c
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
 - group: superpowers
   repo: https://github.com/obra/superpowers
   track: main
@@ -105,6 +516,21 @@ upstreams:
   - LICENSE
   exclude: []
   local_paths: []
+- group: taste-skill
+  repo: https://github.com/Leonxlnx/taste-skill
+  track: main
+  commit: ccbc15639c97057cbfcf32ecebc38ef716e4bb37
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
 - group: ui-ux-pro-max-skill
   repo: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
   track: main
@@ -114,5 +540,6 @@ upstreams:
   license: MIT
   license_file: LICENSE
   license_sha256: 738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014
-  exclude: []
+  exclude:
+  - '**/.coverage'
   local_paths: []

@@ -1,0 +1,44 @@
+{
+  "skill_name": "music",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a Python script that uses the ElevenLabs Python SDK (from elevenlabs import ElevenLabs) to generate a 30-second lo-fi hip hop beat and saves it as lofi.mp3. Don't run it — I'll run it myself with my own API key; just write the complete script.",
+      "expected_output": "Python script using ElevenLabs SDK to generate music",
+      "files": [],
+      "expectations": [
+        "Uses 'from elevenlabs import ElevenLabs' for the import",
+        "Instantiates the client with ElevenLabs(",
+        "Calls client.music.compose() with a prompt parameter",
+        "Sets music_length_ms to 30000 or equivalent",
+        "Writes output to lofi.mp3",
+        "Uses a descriptive prompt mentioning lo-fi or hip hop"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Write a Python script that uses the ElevenLabs Music API to create a 60-second song with custom lyrics about coding late at night, saving the audio to a file. Don't run it — I'll run it myself with my own API key; just write the complete script.",
+      "expected_output": "Python script generating a song with lyrics",
+      "files": [],
+      "expectations": [
+        "Uses client.music.compose() or equivalent",
+        "Includes lyrics in the prompt or as a separate parameter",
+        "The lyrics reference coding or programming",
+        "Saves the output audio to a file"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Show me how to generate music with a composition plan using ElevenLabs in Python. I want a verse-chorus structure with specific instruments.",
+      "expected_output": "Python code demonstrating composition plan usage",
+      "files": [],
+      "expectations": [
+        "Uses the ElevenLabs Python SDK",
+        "Demonstrates the composition plan feature or structured composition approach",
+        "Defines sections like verse and chorus",
+        "Specifies instruments or musical elements",
+        "Saves the generated audio"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+schema_version: 1
+name: replicate-skills
+title: Replicate Skills
+type: group
+version: 1.0.0
+author: Replicate
+source_url: https://github.com/replicate/skills
+license: Apache-2.0
+summary: Running models on Replicate, and prompting image and video models well.
+category: Media
+tags:
+- replicate
+- image
+- video
+- models

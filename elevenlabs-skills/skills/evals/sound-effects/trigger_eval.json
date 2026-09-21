@@ -1,0 +1,20 @@
+[
+  {"query": "I need a sound effect of a door creaking open slowly for my horror game's intro scene", "should_trigger": true},
+  {"query": "generate some rain and thunder ambient audio for my meditation app, needs to loop seamlessly", "should_trigger": true},
+  {"query": "create a satisfying UI click sound for button presses in my mobile app", "should_trigger": true},
+  {"query": "I want a cinematic boom impact sound for video transitions in my YouTube channel", "should_trigger": true},
+  {"query": "make me a looping ambient forest soundscape with birds and a gentle stream, about 10 seconds", "should_trigger": true},
+  {"query": "generate explosion and debris sounds for my game's battle scene, something dramatic", "should_trigger": true},
+  {"query": "I need some futuristic sci-fi beeps and boops for my app's loading screen", "should_trigger": true},
+  {"query": "create a notification chime sound, something pleasant but attention-getting, using elevenlabs", "should_trigger": true},
+  {"query": "generate a whoosh transition sound effect for my podcast", "should_trigger": true},
+  {"query": "convert this text to speech using a professional narrator voice", "should_trigger": false},
+  {"query": "transcribe this audio recording of my lecture to text", "should_trigger": false},
+  {"query": "build a voice chatbot for our customer support line", "should_trigger": false},
+  {"query": "compose a jazz track with piano and saxophone for my cafe's background music", "should_trigger": false},
+  {"query": "help me edit this WAV file to trim the first 5 seconds and add a fade out", "should_trigger": false},
+  {"query": "generate a 30-second podcast intro song with upbeat energy", "should_trigger": false},
+  {"query": "play this mp3 file through the system speakers", "should_trigger": false},
+  {"query": "write background music with lyrics about summer for my video", "should_trigger": false},
+  {"query": "record audio from my microphone for 30 seconds and save it", "should_trigger": false}
+]

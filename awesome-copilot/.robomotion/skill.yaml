@@ -1,0 +1,15 @@
+schema_version: 1
+name: awesome-copilot
+title: Awesome Copilot
+type: group
+version: 1.0.0
+author: GitHub and community
+source_url: https://github.com/github/awesome-copilot
+license: MIT
+summary: 'GitHub''s community collection: coding, documentation, repository analysis, GitHub CLI and review workflows.'
+category: Engineering
+tags:
+- github
+- coding
+- documentation
+- review

@@ -1,0 +1,14 @@
+schema_version: 1
+name: rigorpilot-skills
+title: RigorPilot Skills
+type: group
+version: 1.0.0
+author: Chengkun Rao
+source_url: https://github.com/lllllllama/RigorPilot-Skills
+license: MIT
+summary: 'Research-first skills for deep-learning experiments: paper context, repo intake, reproduction, training audits.'
+category: Research
+tags:
+- research
+- ml
+- reproduction

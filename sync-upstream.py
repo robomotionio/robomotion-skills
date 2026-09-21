@@ -214,6 +214,11 @@ def wanted(u: dict, tree: dict[str, tuple[str, str]]) -> tuple[dict[str, tuple[s
                 notes.append(f"refused upstream launcher hook {path} (name it in hooks_allow to take it)")
             continue
         keep[path] = (mode, blob)
+    # `into` puts the upstream tree under a folder of the group. The index
+    # looks for skills under skills/, and some projects keep them at the root.
+    into = (u.get("into") or "").strip("/")
+    if into:
+        keep = {f"{into}/{path}": v for path, v in keep.items()}
     return keep, notes
 
 
@@ -307,7 +312,7 @@ def compare(u: dict, built: Path) -> list[str]:
 def license_sha(bare: Path, u: dict, sha: str) -> str:
     pre = u.get("subdir", "").strip("/")
     name = u.get("license_file") or "LICENSE"
-    for cand in ([f"{pre}/{name}"] if pre else []) + [name]:
+    for cand in [name] + ([f"{pre}/{name}"] if pre else []):
         p = subprocess.run(["git", "cat-file", "blob", f"{sha}:{cand}"], cwd=bare, capture_output=True)
         if p.returncode == 0:
             return hashlib.sha256(p.stdout).hexdigest()
@@ -444,6 +449,7 @@ def cmd_add(args):
     u = {"group": args.group, "repo": args.repo.rstrip("/"), "track": "", "commit": "", "subdir": "",
          "mode": "mirror", "license": args.license, "license_file": "LICENSE", "license_sha256": "",
          "include": args.include or [], "exclude": args.exclude or [], "local_paths": []}
+    u["subdir"], u["into"], u["license_file"] = args.subdir or "", args.into or "", args.license_file
     bare = bare_repo(u)
     u["track"] = sh("git", "symbolic-ref", "--short", "HEAD", cwd=bare).strip()
     fetch(u)
@@ -455,7 +461,7 @@ def cmd_add(args):
         "author": args.author, "source_url": u["repo"], "license": args.license,
         "summary": args.summary, "category": args.category, "tags": args.tags or [],
     }, sort_keys=False, width=200))
-    lic = subprocess.run(["git", "cat-file", "blob", f"{target}:LICENSE"], cwd=bare, capture_output=True).stdout
+    lic = subprocess.run(["git", "cat-file", "blob", f"{target}:{args.license_file}"], cwd=bare, capture_output=True).stdout
     if not lic:
         sys.exit(f"{args.group}: upstream has no LICENSE file; a group without one cannot be redistributed")
     (ours / "LICENSE").write_bytes(lic)
@@ -605,6 +611,9 @@ def main():
     n.add_argument("--tags", nargs="*")
     n.add_argument("--include", nargs="*")
     n.add_argument("--exclude", nargs="*")
+    n.add_argument("--subdir", help="upstream folder that becomes the group root")
+    n.add_argument("--into", help="folder of the group the upstream tree lands in (e.g. skills)")
+    n.add_argument("--license-file", default="LICENSE", help="path in the upstream repo")
     n.add_argument("--min-age-days", type=int, default=DEFAULT_MIN_AGE_DAYS)
     n.set_defaults(fn=cmd_add)
     s = sub.add_parser("sync")

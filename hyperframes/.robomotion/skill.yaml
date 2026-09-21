@@ -1,0 +1,15 @@
+schema_version: 1
+name: hyperframes
+title: HyperFrames
+type: group
+version: 1.0.0
+author: HeyGen
+source_url: https://github.com/heygen-com/hyperframes
+license: Apache-2.0
+summary: 'Video made from HTML: product launch videos from a URL, faceless explainers, motion graphics, captions, slideshows, rendered to mp4 on CPU.'
+category: Media
+tags:
+- video
+- motion-graphics
+- captions
+- mp4
