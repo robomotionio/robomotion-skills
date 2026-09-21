@@ -389,21 +389,6 @@ upstreams:
   - notion-*
   local_paths: []
   into: skills
-- group: orca-skills
-  repo: https://github.com/stablyai/orca
-  track: main
-  commit: e53f1557e1b5a6e26e85cfca390b34f7f8a7d26c
-  subdir: ''
-  mode: mirror
-  license: MIT
-  license_file: LICENSE
-  license_sha256: ff1b611f80580d49f4b97e93a97b24eb050b0671b26b8afe16341fab699112f3
-  include:
-  - skills
-  - LICENSE
-  exclude: []
-  local_paths: []
-  into: ''
 - group: prisma-skills
   repo: https://github.com/prisma/skills
   track: main
