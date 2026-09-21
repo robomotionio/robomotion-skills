@@ -12393,7 +12393,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: e106a4232273
+  content_hash: b360ebff62d6
   skills:
   - id: claude-seo/seo
     name: seo
