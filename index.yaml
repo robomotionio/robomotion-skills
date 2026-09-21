@@ -23499,7 +23499,7 @@ groups:
       - META_AD_ACCOUNT_ID
       - TIKTOK_ACCESS_TOKEN
       - TIKTOK_ADVERTISER_ID
-    content_hash: aab93577a4d6
+    content_hash: d268808324e9
     files:
     - SKILL.md
     - assets/creative-review-template.html
