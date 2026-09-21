@@ -1,0 +1,79 @@
+name: sync-upstreams
+
+# Once a week, look at every vendored group's upstream. Where it has moved,
+# rebuild the group from the newer commit and open ONE pull request per group,
+# so a reviewer reads one project's changes at a time. Nothing merges itself.
+
+on:
+  schedule:
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      group:
+        description: 'one group (default: all mirrors)'
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  groups:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.l.outputs.list }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: l
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os, yaml
+          only = os.environ.get("ONLY", "").strip()
+          m = yaml.safe_load(open("upstreams.yaml"))["upstreams"]
+          g = [u["group"] for u in m if u.get("mode", "mirror") == "mirror" and (not only or u["group"] == only)]
+          print("list=" + json.dumps(g))
+          PY
+        env:
+          ONLY: ${{ github.event.inputs.group }}
+
+  sync:
+    needs: groups
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ${{ fromJson(needs.groups.outputs.list) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      - name: Rebuild the group from the newest commit that has aged a week
+        id: s
+        run: |
+          old=$(python3 -c "import yaml;print([u['commit'] for u in yaml.safe_load(open('upstreams.yaml'))['upstreams'] if u['group']=='${{ matrix.group }}'][0])")
+          python3 sync-upstream.py sync "${{ matrix.group }}"
+          new=$(python3 -c "import yaml;print([u['commit'] for u in yaml.safe_load(open('upstreams.yaml'))['upstreams'] if u['group']=='${{ matrix.group }}'][0])")
+          echo "old=$old" >> "$GITHUB_OUTPUT"; echo "new=$new" >> "$GITHUB_OUTPUT"
+      - name: Open the pull request
+        if: steps.s.outputs.old != steps.s.outputs.new
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 build-index.py
+          branch="sync/${{ matrix.group }}"
+          {
+            python3 sync-upstream.py pr-body "${{ matrix.group }}" "${{ steps.s.outputs.old }}" "${{ steps.s.outputs.new }}"
+            echo
+            python3 scan-skills.py --changed HEAD --markdown || true
+          } > /tmp/body.md
+          git config user.name  "robomotion-skills-sync"
+          git config user.email "skills-sync@users.noreply.github.com"
+          git switch -C "$branch"
+          git add -A
+          git commit -q -m "${{ matrix.group }}: upstream ${{ steps.s.outputs.old }} -> ${{ steps.s.outputs.new }}"
+          git push -f origin "$branch"
+          gh pr view "$branch" >/dev/null 2>&1 \
+            && gh pr edit "$branch" --body-file /tmp/body.md \
+            || gh pr create --head "$branch" --base main --title "${{ matrix.group }}: upstream update" --body-file /tmp/body.md
