@@ -28,7 +28,22 @@ bash scripts/claude-seo setup
 rm -rf /var/lib/apt/lists/*
 chmod -R a+rX "$CLAUDE_SEO_DATA_DIR"
 
+# Every Python start (a .pth line imports this module) finds the runtime in
+# /opt/claude-seo. The pack's own runtime process also drops the sandbox's
+# HTTP proxy: that proxy is the robot's credential proxy on a private
+# address, and the pack's SSRF guard (scripts/url_safety.py) refuses any
+# proxy that is not public, so every fetch failed with "Refusing configured
+# HTTP proxy". Its pages are public and need no secret; other Python
+# processes keep the proxy.
 site=$(python3 -c 'import site; print(site.getsitepackages()[0])')
-echo 'import os; os.environ.setdefault("CLAUDE_SEO_DATA_DIR", "/opt/claude-seo")' > "$site/robomotion-claude-seo.pth"
+cat > "$site/robomotion_claude_seo.py" <<'PY'
+import os, sys
+os.environ.setdefault("CLAUDE_SEO_DATA_DIR", "/opt/claude-seo")
+_argv0 = (sys.argv[0] if getattr(sys, "argv", None) else "") or ""
+if _argv0.replace("\\", "/").endswith("/scripts/runtime.py") and "claude-seo" in _argv0:
+    for _key in ("HTTPS_PROXY", "HTTP_PROXY", "ALL_PROXY", "https_proxy", "http_proxy", "all_proxy"):
+        os.environ.pop(_key, None)
+PY
+echo 'import robomotion_claude_seo' > "$site/robomotion-claude-seo.pth"
 
 bash scripts/claude-seo doctor
