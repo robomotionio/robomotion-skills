@@ -21,4 +21,12 @@ rm -rf /var/lib/apt/lists/*
 pip install --no-cache-dir --break-system-packages -r requirements.txt
 
 # Pages that build themselves in the browser audit as empty without this.
+# The browser goes where every user can read it: the image is built as root,
+# and the agent's terminal runs as the host user, whose home is elsewhere and
+# may not exist. A .pth line runs at every Python start and points Playwright
+# there (sitecustomize would not: Ubuntu's own one comes first on the path).
+export PLAYWRIGHT_BROWSERS_PATH=/opt/ms-playwright
 python3 -m playwright install --with-deps chromium
+chmod -R a+rX /opt/ms-playwright
+site=$(python3 -c 'import site; print(site.getsitepackages()[0])')
+echo 'import os; os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", "/opt/ms-playwright")' > "$site/robomotion-playwright.pth"
