@@ -12389,11 +12389,11 @@ groups:
   - geo
   - e-commerce
   - hreflang
-  has_post_install: false
+  has_post_install: true
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: d2aa1fb81fef
+  content_hash: b9e2730559cc
   skills:
   - id: claude-seo/seo
     name: seo
@@ -13097,6 +13097,7 @@ groups:
   - .gitignore
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
+  - .robomotion/post-install.sh
   - .robomotion/skill.yaml
   - AGENTS.md
   - CITATION.cff
