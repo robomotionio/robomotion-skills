@@ -32491,7 +32491,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 17f60031b4e1
+    content_hash: 52f9eccd529b
     files:
     - LICENSE.txt
     - SKILL.md

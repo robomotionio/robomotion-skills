@@ -180,6 +180,10 @@ def dir_content_hash(d: str) -> str:
     h = hashlib.sha256()
     for root, dirs, files in os.walk(d):
         _prune(dirs)
+        # os.walk visits folders in the filesystem's order, which differs
+        # between machines (btrfs here, ext4 in CI): the same tree hashed
+        # differently and CI called a fresh index stale. Walk them sorted.
+        dirs.sort()
         for f in sorted(files):
             if _is_artifact(f):
                 continue
