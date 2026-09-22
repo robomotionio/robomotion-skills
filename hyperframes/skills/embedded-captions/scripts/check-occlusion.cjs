@@ -12,6 +12,7 @@ const cp = require("child_process");
 function hfResolve(pkg) {
   const roots = [
     process.env.HYPERFRAMES_ROOT,
+    "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
     path.resolve(__dirname, "..", "..", ".."),
     path.join(os.homedir(), "Downloads", "hyperframes"),
   ].filter(Boolean);

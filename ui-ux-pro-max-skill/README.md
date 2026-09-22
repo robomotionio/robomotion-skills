@@ -154,7 +154,7 @@ Each rule includes:
 - **161 Color Palettes** - Industry-specific palettes aligned 1:1 with the 161 product types
 - **57 Font Pairings** - Curated typography combinations with Google Fonts imports
 - **25 Chart Types** - Recommendations for dashboards and analytics
-- **15 Tech Stacks** - React, Next.js, Astro, Vue, Nuxt.js, Nuxt UI, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui, Jetpack Compose, Angular, Laravel
+- **16 Tech Stacks** - React, Next.js, Astro, Vue, Nuxt.js, Nuxt UI, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui, Jetpack Compose, Angular, Laravel, JavaFX
 - **99 UX Guidelines** - Best practices, anti-patterns, and accessibility rules
 - **161 Reasoning Rules** - Industry-specific design system generation (NEW in v2.0)
 
@@ -387,6 +387,7 @@ The skill provides stack-specific guidelines for:
 | **Angular** | Angular |
 | **PHP** | Laravel (Blade, Livewire, Inertia.js) |
 | **Other Web** | Svelte, Astro |
+| **Desktop** | JavaFX |
 | **iOS** | SwiftUI |
 | **Android** | Jetpack Compose |
 | **Cross-Platform** | React Native, Flutter |
@@ -414,6 +415,9 @@ python3 .claude/skills/ui-ux-pro-max/scripts/search.py "dashboard" --domain char
 # Stack-specific guidelines
 python3 .claude/skills/ui-ux-pro-max/scripts/search.py "form validation" --stack react
 python3 .claude/skills/ui-ux-pro-max/scripts/search.py "responsive layout" --stack html-tailwind
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "tableview binding" --stack javafx
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "atlantafx primer enterprise theme" --stack javafx
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "enterprise tableview density permission" --stack javafx
 ```
 
 ### Persist Design System (Master + Overrides Pattern)
@@ -503,6 +507,96 @@ gh pr create
 ```
 
 See [CLAUDE.md](CLAUDE.md) for detailed development guidelines.
+
+
+## Automated Releases
+
+This repository uses semantic-release with Conventional Commits to create GitHub releases automatically:
+
+- `dev` branch creates beta GitHub prereleases such as `2.6.0-beta.1`.
+- `main` branch creates official stable GitHub releases such as `2.6.0`.
+
+Release notes and `CHANGELOG.md` are generated from Conventional Commit messages. Version numbers are synchronized across `skill.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `cli/package.json`, and `cli/package-lock.json` during release preparation.
+
+Use these commit types for correct version bumps:
+
+- `fix:` -> patch release
+- `feat:` -> minor release
+- `feat!:` or `BREAKING CHANGE:` -> major release
+
+The release workflow only needs the default `GITHUB_TOKEN`; it does not publish to npm.
+
+## Troubleshooting
+
+### `uipro: unknown command 'uninstall'` or `unknown command 'update'`
+
+Your installed version of `uipro-cli` is outdated. Update it and retry:
+
+```bash
+npm install -g uipro-cli@latest
+uipro uninstall
+```
+
+### `uipro uninstall` says "No installed AI skill directories detected"
+
+The skill was installed in a different directory than where you're running the command. Either:
+
+```bash
+# Option A — run from the project root where you originally installed it
+cd /path/to/your/project
+uipro uninstall
+
+# Option B — remove the global install
+uipro uninstall --global
+
+# Option C — remove manually
+rm -rf .claude/skills/ui-ux-pro-max   # Claude Code
+rm -rf .cursor/skills/ui-ux-pro-max   # Cursor
+rm -rf .windsurf/skills/ui-ux-pro-max # Windsurf
+rm -rf .agents/skills/ui-ux-pro-max   # Antigravity
+```
+
+### Claude Marketplace install fails with "Zip file contains a symbolic link"
+
+This is a known issue with versions prior to v2.5.1. The repository used symlinks internally which some installation tools can't handle. **Fix:** use the CLI installer instead:
+
+```bash
+npm install -g uipro-cli
+uipro init --ai claude
+```
+
+Or wait for the next release where this is resolved.
+
+### `npm install -g uipro-cli` fails with permission error
+
+```bash
+# macOS/Linux — use a Node version manager (recommended) or sudo
+sudo npm install -g uipro-cli
+
+# Or use npx without installing globally
+npx uipro-cli init --ai claude
+```
+
+### Python not found when running design system commands
+
+The search scripts require Python 3.x. Install it for your OS:
+
+```bash
+brew install python3        # macOS
+sudo apt install python3    # Ubuntu/Debian
+winget install Python.Python.3.12  # Windows
+```
+
+### Design system output is cut off / fields truncated
+
+Use the `--max-length` flag to increase (or remove) the truncation limit:
+
+```bash
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "SaaS" --domain style --max-length 0
+#                                                                               ^ 0 = unlimited
+```
+
+---
 
 ## Star History
 

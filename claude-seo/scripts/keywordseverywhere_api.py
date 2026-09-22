@@ -2,9 +2,9 @@
 """
 Keywords Everywhere (formerly OpenPageRank) API client for Claude SEO.
 
-Queries the Keywords Everywhere Open PageRank API for a single domain-level
-rank metric (0-10 scale). Cheap, single-endpoint fallback source -- does not
-provide referring domains, anchors, or top pages like Moz.
+Queries the Keywords Everywhere Open PageRank API for a domain-level rank
+metric (0-10 scale) and a referring-domain count. Cheap, single-endpoint
+fallback source -- does not provide anchors or top pages like Moz.
 
 Usage:
     python keywordseverywhere_api.py rank example.com --json
@@ -29,12 +29,14 @@ _SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPTS_DIR)
 try:
     from backlinks_auth import get_keywordseverywhere_api_key
-    from url_safety import URLSafetyError, normalize_hostname, safe_requests_get, validate_url
+    from url_safety import URLSafetyError, normalize_hostname, safe_requests_session, validate_url
 except ImportError:
     print("Error: backlinks_auth.py and url_safety.py required in scripts/", file=sys.stderr)
     sys.exit(1)
 
-KWE_BASE = "https://openpagerank.keywordseverywhere.com/api/v1.0/getPageRank"
+# The legacy DomCop path (/api/v1.0/getPageRank with an API-OPR header) now
+# answers 404; the service moved to POST /v1/domains/bulk with Bearer auth.
+KWE_BASE = "https://openpagerank.keywordseverywhere.com/v1/domains/bulk"
 MAX_DOMAINS = 100
 
 
@@ -67,11 +69,11 @@ def get_rank(domains: list, api_key: str) -> dict:
     Returns:
         Standard response dict with rank data per domain.
     """
-    headers = {"API-OPR": api_key}
-    params = [("domains[]", d) for d in domains]
+    headers = {"Authorization": f"Bearer {api_key}", "Accept": "application/json"}
 
     try:
-        response = safe_requests_get(KWE_BASE, headers=headers, params=params, timeout=30)
+        with safe_requests_session(KWE_BASE) as session:
+            response = session.post(KWE_BASE, headers=headers, json={"domains": domains}, timeout=30)
 
         if response.status_code == 401 or response.status_code == 403:
             return {
@@ -92,7 +94,8 @@ def get_rank(domains: list, api_key: str) -> dict:
         if response.status_code >= 400:
             try:
                 err_body = response.json()
-                err_msg = err_body.get("message") or err_body.get("error") or response.text
+                err = err_body.get("error")
+                err_msg = err_body.get("message") or (err.get("message") if isinstance(err, dict) else err) or response.text
             except ValueError:
                 err_msg = response.text or f"HTTP {response.status_code}"
             # Never echo the key back through an upstream error body.
@@ -105,16 +108,20 @@ def get_rank(domains: list, api_key: str) -> dict:
             }
 
         body = response.json()
-        results = body.get("response") or []
-        ranks = [
-            {
-                "domain": item.get("domain"),
-                "page_rank_decimal": item.get("page_rank_decimal"),
-                "page_rank_integer": item.get("page_rank_integer"),
-                "rank": item.get("rank"),
-            }
-            for item in results
-        ]
+        results = body.get("results") or []
+        ranks = []
+        for item in results:
+            opr = item.get("open_page_rank")
+            ranks.append(
+                {
+                    "domain": item.get("domain"),
+                    "found": item.get("found"),
+                    "page_rank_decimal": opr,
+                    "page_rank_integer": int(opr) if isinstance(opr, (int, float)) else None,
+                    "rank": item.get("rank"),
+                    "referring_domains": item.get("referring_domains"),
+                }
+            )
 
         return {
             "status": "success",

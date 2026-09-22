@@ -109,7 +109,7 @@ Use `_shared/` instead of vendoring the same CLI into many skills. (No group in 
 ## Classification
 
 - **Pure-knowledge** (no `post-install.sh`, no non-empty `scripts/`) → host mode. No Podman dependency.
-- **Install-bearing** (any active skill has install scripts or non-empty `scripts/`) → container mode.
+- **Install-bearing** (any active skill has install scripts or non-empty `scripts/`, or its group ships `.robomotion/post-install.sh` or `bin/`) → container mode. `build-index.py` classifies the same way as the launcher's `needsSandbox`, so every skill of such a group is indexed `container`.
 
 Mixing is fine: one install-bearing skill puts the whole agent in container mode; pure-knowledge skills work in either mode. `index.yaml` records each skill's `mode`.
 
@@ -173,16 +173,18 @@ the folder. Use `--exclude` for skills we can't redistribute or run, and
 |---|---|
 | `anthropic-skills/` | Apache-licensed skills only; `docx`, `pdf`, `pptx` and `xlsx` are rights-reserved |
 | `caveman-skills/` | MIT-licensed skills only |
-| `openai-skills/` | `skills/.curated` only, minus the unlicensed Figma and Notion skills |
+| `openai-skills/` | `skills/.curated` only, minus the unlicensed Figma and Notion skills. Upstream is deprecated and the pin is its last commit; its successor, `openai/plugins`, carries none of these skills and has no repository licence, so the group stays here as it is |
 | `mattpocock-skills/` | `engineering` and `productivity` folders only |
 | `google-skills/` | One skill excluded: it executes base64-decoded code |
 | `gws-cli/` | Skills only, not the CLI source |
 | `runcomfy-skills/` | Built from the official `runcomfy-com/skills`; the list's `prime-skills/runcomfy-agent-skills` and `genmedia-labs/skills` are copies of it |
 | `marketing-skills/` | Patched; `.robomotion/post-install.sh` wraps `tools/clis/*.js` as short-name commands on `$PATH` |
-| `claude-seo/` | Patched (reports say Robomotion); its Python runtime and Chromium are built at image build |
-| `ui-ux-pro-max-skill/` | Patched |
-| `hyperframes/` | Chrome, FFmpeg and local voice and caption models installed at image build |
-| `higgsfield-skills/` | CLI installed at a pinned version at image build, so the skills never pipe an unpinned installer |
+| `claude-seo/` | Patched: reports say Robomotion; `seo-drift` keeps its baselines in `$CLAUDE_SEO_DRIFT_DIR`, which the image points at `/workspace` so they survive between runs; the Keywords Everywhere client calls the current API (upstream #312). Its Python runtime and Chromium are built at image build |
+| `ui-ux-pro-max-skill/` | Patched. Pinned at the commit that fixes the slide generator's stored XSS (upstream #274, with #275 and #283) |
+| `hyperframes/` | Chrome, FFmpeg and local voice, caption and matting models installed at image build. `embedded-captions` is patched to find `/opt/hyperframes/root`, a source-checkout-shaped folder the hook builds, since its scripts expect one |
+| `higgsfield-skills/` | CLI installed at a pinned version at image build, so the skills never pipe an unpinned installer; its telemetry and update check off. Sign-in is browser OAuth only (no API key), so an agent cannot sign in by itself |
+| `impeccable/` | Engine binary and a headless Chrome installed at pinned versions at image build and checked by hash, so the launcher never downloads the engine on first use |
+| `elevenlabs-skills/` | `env.required` added per skill: upstream declares `ELEVENLABS_API_KEY` only in frontmatter (`metadata.openclaw.requires.env`), which `detect-env.py` now reads |
 
 ### Popular, but not here
 

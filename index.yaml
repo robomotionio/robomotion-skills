@@ -12390,7 +12390,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 1db3e40876cc
+  content_hash: 799ecf11464b
   skills:
   - id: claude-seo/seo
     name: seo
@@ -12403,7 +12403,7 @@ groups:
       quality, page speed.'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -12445,7 +12445,7 @@ groups:
       analyze my site, or website health check.
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -12474,13 +12474,13 @@ groups:
       link profile, referring domains, anchor text, toxic links, link gap, link building, disavow, or backlink audit.'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
       - BING_WEBMASTER_API_KEY
       - MOZ_API_KEY
-    content_hash: 1685777774f6
+    content_hash: 13e75b524a8c
     files:
     - LICENSE.txt
     - SKILL.md
@@ -12501,7 +12501,7 @@ groups:
       or "cluster plan".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12526,7 +12526,7 @@ groups:
       "alternatives page", "competitor comparison", "X vs Y", "versus", "compare competitors", or "alternative to".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12549,7 +12549,7 @@ groups:
       characters".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12572,7 +12572,7 @@ groups:
       plan", or "outline for".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12598,7 +12598,7 @@ groups:
       "keyword volume", "backlink data", "AI visibility check", or "real search data".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12623,11 +12623,11 @@ groups:
       "deployment check".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 596c2d67a2f1
+    content_hash: f34a320604c5
     files:
     - SKILL.md
     - references/comparison-rules.md
@@ -12646,7 +12646,7 @@ groups:
       "Amazon SEO", "product listings", "shopping ads", or "merchant SEO".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -12672,7 +12672,7 @@ groups:
       "evidence-led SEO", "find leverage optimize win", or wants stage-specific SEO prompts.'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12739,7 +12739,7 @@ groups:
       "SGE", "GEO", "AI search", "LLM optimization", "Perplexity", "AI citations", "ChatGPT search", or "AI visibility".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12764,7 +12764,7 @@ groups:
       "CrUX", "field data", "indexing API", "GA4 organic", "URL inspection", or "real CWV data".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -12805,7 +12805,7 @@ groups:
       "multi-language", "multi-region", or "language tags".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12832,7 +12832,7 @@ groups:
       visual", "image-gen", "favicon", "schema image", "pinterest pin", "generate visual", "banner", or "thumbnail".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12862,7 +12862,7 @@ groups:
       audit", "optimize images", "image metadata", "image SERP", "convert to webp", or "image file optimize".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12885,7 +12885,7 @@ groups:
       "GBP", "map pack", "local pack", "citations", "NAP consistency", "service area", or "multi-location".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12908,7 +12908,7 @@ groups:
       "geo-grid", "rank tracking", "GBP audit", "review velocity", "competitor radius", or "SoLV".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12930,7 +12930,7 @@ groups:
       or provides a single URL for review.
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12952,7 +12952,7 @@ groups:
       "keyword strategy", "content calendar", "site architecture", or "SEO roadmap".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -12980,7 +12980,7 @@ groups:
       SEO", "pages at scale", "dynamic pages", "template pages", "generated pages", or "data-driven SEO".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -13001,7 +13001,7 @@ groups:
       "structured data", "rich results", "JSON-LD", or "markup".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -13023,7 +13023,7 @@ groups:
       Use when user says "sitemap", "generate sitemap", "sitemap issues", or "XML sitemap".
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -13047,7 +13047,7 @@ groups:
       "wireframe".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -13072,7 +13072,7 @@ groups:
       "robots.txt", "Core Web Vitals", "site speed", or "security headers".'
     version: 2.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -13094,6 +13094,8 @@ groups:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
   - .robomotion/patches/001-prepared-by-robomotion.patch
+  - .robomotion/patches/002-drift-dir.patch
+  - .robomotion/patches/003-keywordseverywhere-v1.patch
   - .robomotion/post-install.sh
   - .robomotion/skill.yaml
   - AGENTS.md
@@ -13324,11 +13326,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: ae76eeb50718
+    content_hash: 4c3f2985c821
     files:
     - SKILL.md
+    - env.required
     - references/agent-configuration.md
     - references/client-tools.md
     - references/installation.md
@@ -13352,11 +13356,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 4e74bdc8a488
+    content_hash: d196e3d609e1
     files:
     - SKILL.md
+    - env.required
     - references/api-reference.md
     - references/installation.md
     author: ElevenLabs
@@ -13375,11 +13381,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 0412cce77891
+    content_hash: 216f58e52185
     files:
     - SKILL.md
+    - env.required
     - references/api_reference.md
     - references/installation.md
     author: ElevenLabs
@@ -13419,11 +13427,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: b39c46a44848
+    content_hash: 3504e31cc6c8
     files:
     - SKILL.md
+    - env.required
     - references/installation.md
     author: ElevenLabs
     source_url: https://github.com/elevenlabs/skills/tree/main/skills/sound-effects
@@ -13442,11 +13452,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: c4f593f681e6
+    content_hash: c4a56994f2ef
     files:
     - SKILL.md
+    - env.required
     - references/installation.md
     - references/javascript-sdk-reference.md
     - references/python-sdk-reference.md
@@ -13465,11 +13477,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 4464e0334f47
+    content_hash: 11e64f5a40b4
     files:
     - SKILL.md
+    - env.required
     - references/installation.md
     - references/realtime-client-side.md
     - references/realtime-commit-strategies.md
@@ -13491,11 +13505,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: b7e1abd1c20d
+    content_hash: f9d49a0be576
     files:
     - SKILL.md
+    - env.required
     - references/installation.md
     - references/streaming.md
     - references/voice-settings.md
@@ -13520,11 +13536,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: f55d96f5dd0b
+    content_hash: 40045be5a36c
     files:
     - SKILL.md
+    - env.required
     - references/installation.md
     author: ElevenLabs
     source_url: https://github.com/elevenlabs/skills/tree/main/skills/voice-changer
@@ -13543,11 +13561,13 @@ groups:
     tags: []
     mode: host
     env:
-      required: []
+      required:
+      - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 5b42db157589
+    content_hash: bea0dcbab992
     files:
     - SKILL.md
+    - env.required
     - references/installation.md
     author: ElevenLabs
     source_url: https://github.com/elevenlabs/skills/tree/main/skills/voice-isolator
@@ -20368,7 +20388,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 24df000c9b9a
+  content_hash: c681b1a3b444
   skills:
   - id: higgsfield-skills/higgsfield-brandkit
     name: higgsfield-brandkit
@@ -20465,7 +20485,7 @@ groups:
       higgsfield-game-generation), or TTS.'
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -20514,7 +20534,7 @@ groups:
       higgsfield-generate), or Soul Character training (use higgsfield-soul-id).'
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -20563,7 +20583,7 @@ groups:
       higgsfield-soul-id).'
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -20600,7 +20620,7 @@ groups:
       named-character / non-photo avatars (use higgsfield-generate with prompt).'
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -20639,7 +20659,7 @@ groups:
       one-off clips without narration, or editing a finished video.'
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -20742,7 +20762,7 @@ groups:
       product catalog photos (use higgsfield-product-photoshoot), or marketplace cards (use higgsfield-marketplace-cards).'
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -20782,7 +20802,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: a3b163ad8990
+  content_hash: f052520caeb2
   skills:
   - id: hyperframes/embedded-captions
     name: embedded-captions
@@ -20799,7 +20819,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 59c78809e851
+    content_hash: 1d41c75e2dc4
     files:
     - .gitignore
     - CATALOG.md
@@ -21276,7 +21296,7 @@ groups:
       Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.'
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -21307,7 +21327,7 @@ groups:
       rules, and validation. Read before writing composition HTML.
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -21437,7 +21457,7 @@ groups:
       strategy, brand design, media sourcing, captions, or general video planning.
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -21465,7 +21485,7 @@ groups:
       or component to contribute upstream (idea → scaffold → validate → PR).
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -21680,7 +21700,7 @@ groups:
       to MP4 or transparent overlay. Longer / narrated / multi-scene → /general-video. Unclear → /hyperframes.
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -22069,7 +22089,7 @@ groups:
       before authoring. Unclear → /hyperframes.
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -22092,7 +22112,7 @@ groups:
       "package / dress up my video". Not plain subtitles (/embedded-captions). Unclear → /hyperframes.
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -22134,6 +22154,7 @@ groups:
   files:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
+  - .robomotion/patches/0001-embedded-captions-image-root.patch
   - .robomotion/post-install.sh
   - .robomotion/skill.yaml
   - LICENSE
@@ -22154,11 +22175,11 @@ groups:
   - audit
   - accessibility
   - polish
-  has_post_install: false
+  has_post_install: true
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 52b6acd9d04c
+  content_hash: 25922735e96b
   skills:
   - id: impeccable/impeccable
     name: impeccable
@@ -22241,6 +22262,7 @@ groups:
   - .grok-plugin/plugin.json
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
+  - .robomotion/post-install.sh
   - .robomotion/skill.yaml
   - agents/impeccable-asset-producer.md
   - agents/impeccable-documenter.md
@@ -23439,7 +23461,7 @@ groups:
       implementation, see analytics. For page-level conversion optimization, see cro.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23483,7 +23505,7 @@ groups:
       see ads. For landing page copy, see copywriting.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23529,7 +23551,7 @@ groups:
       cro.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23588,7 +23610,7 @@ groups:
       technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23626,7 +23648,7 @@ groups:
       reconciling conflicting numbers across tools, see attribution. For A/B test measurement, see ab-testing.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23688,7 +23710,7 @@ groups:
       'compare my app to competitors.' Use when the user shares an App Store or Google Play URL and wants to improve it.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -23721,7 +23743,7 @@ groups:
       attribution blind spot, see ai-seo.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -23750,7 +23772,7 @@ groups:
       emails. For in-app upgrade paywalls, see paywalls.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23777,7 +23799,7 @@ groups:
       referral programs, see referrals. For launch-specific partnerships, see launch.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23807,7 +23829,7 @@ groups:
       For sales collateral beyond emails, see sales-enablement.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23847,7 +23869,7 @@ groups:
       "community flywheel."'
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -23873,7 +23895,7 @@ groups:
       battle cards, see sales-enablement.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23903,7 +23925,7 @@ groups:
       docs, see sales-enablement.'
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23947,7 +23969,7 @@ groups:
       see seo-audit. For social media content specifically, see social.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -23994,7 +24016,7 @@ groups:
       has copy and wants it improved or refreshed rather than rewritten from scratch. For writing new copy, see copywriting.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24023,7 +24045,7 @@ groups:
       guarantees, value framing), see offers.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24053,7 +24075,7 @@ groups:
       activation, see onboarding. For popups/modals, see popups.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24095,7 +24117,7 @@ groups:
       For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24127,7 +24149,7 @@ groups:
       live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24154,7 +24176,7 @@ groups:
       flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24203,7 +24225,7 @@ groups:
       see public-relations. For the email sequences themselves, see emails.'
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24232,7 +24254,7 @@ groups:
       templates), see lead-magnets.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24260,7 +24282,7 @@ groups:
       paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24287,7 +24309,7 @@ groups:
       advocacy, see community-marketing. For turning creator content into paid ads, see ad-creative.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24312,7 +24334,7 @@ groups:
       For the offer being launched (bonuses, guarantees, scarcity, naming), see offers.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24337,7 +24359,7 @@ groups:
       copywriting. For the email sequence after capture, see emails.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24367,7 +24389,7 @@ groups:
       For executing the winning direction, hand off to positioning, offers, copywriting, ads, or the relevant skill.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24404,7 +24426,7 @@ groups:
       how to grow. For specific channel execution, see the relevant skill (ads, social, emails, etc.).
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24434,7 +24456,7 @@ groups:
       marketing skills. For one-off marketing ideas, see marketing-ideas. For the experimentation loop specifically, see ab-testing.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24466,7 +24488,7 @@ groups:
       before planning, see product-marketing. For stage-specific deep work, see onboarding, signup, emails, referrals, pricing.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24504,7 +24526,7 @@ groups:
       copywriting.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24532,7 +24554,7 @@ groups:
       sales-enablement.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24565,7 +24587,7 @@ groups:
       email sequences, see emails.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24604,7 +24626,7 @@ groups:
       upgrade moments where the user has already experienced value. For pricing decisions, see pricing.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24629,7 +24651,7 @@ groups:
       see cro. For general page conversion optimization, see cro.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24656,7 +24678,7 @@ groups:
       B2B, see offers.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24688,7 +24710,7 @@ groups:
       all other skills reference for product, audience, and positioning context.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24712,7 +24734,7 @@ groups:
       or locations. For auditing existing SEO issues, see seo-audit. For content strategy planning, see content-strategy.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24749,7 +24771,7 @@ groups:
       the list is built, see cold-email. For deep competitive research on specific accounts, see competitor-profiling.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24783,7 +24805,7 @@ groups:
       cold-email outreach to prospects, see cold-email.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -24813,7 +24835,7 @@ groups:
       see launch.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24851,7 +24873,7 @@ groups:
       campaigns, see emails. For pricing decisions, see pricing.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24897,7 +24919,7 @@ groups:
       see offers.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24933,7 +24955,7 @@ groups:
       For AI search optimization, see ai-seo.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -24961,7 +24983,7 @@ groups:
       For adding structured data, see schema. For AI search optimization, see ai-seo.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -25000,7 +25022,7 @@ groups:
       (not account creation), see cro.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -25027,7 +25049,7 @@ groups:
       — see seo-audit). For SEO audits, see seo-audit. For structured data, see schema.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -25057,7 +25079,7 @@ groups:
       popups that capture phone numbers, see popups.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -25094,7 +25116,7 @@ groups:
       see ad-creative. For earned media, see public-relations.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional:
@@ -25130,7 +25152,7 @@ groups:
       see social. For paid video ad creative, see ad-creative.
     version: 2.1.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -35694,7 +35716,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 999d5bafc9b9
+    content_hash: e4ed63e71dd5
     files:
     - SKILL.md
     - references/banner-sizes-and-styles.md
@@ -35715,7 +35737,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 94fd3fdb1b14
+    content_hash: 68dfbfbd576f
     files:
     - SKILL.md
     - references/approval-checklist.md
@@ -35757,7 +35779,7 @@ groups:
       - GEMINI_API_KEY
       optional:
       - GOOGLE_API_KEY
-    content_hash: eca2da45c09c
+    content_hash: e18f0968bbe0
     files:
     - SKILL.md
     - data/cip/deliverables.csv
@@ -35814,7 +35836,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dceaee6577ef
+    content_hash: 234305ee2984
     files:
     - SKILL.md
     - data/slide-backgrounds.csv
@@ -35859,7 +35881,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 983d6876e8e4
+    content_hash: 324d00ecb4b8
     files:
     - SKILL.md
     - references/copywriting-formulas.md
@@ -35887,7 +35909,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 365d531e9488
+    content_hash: 7b0922b753b0
     files:
     - LICENSE.txt
     - SKILL.md
@@ -36009,7 +36031,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9614a279bf7a
+    content_hash: b1a6da05bf4a
     files:
     - SKILL.md
     author: NextLevelBuilder
@@ -36020,10 +36042,9 @@ groups:
   files:
   - .claude-plugin/marketplace.json
   - .claude-plugin/plugin.json
-  - .github/workflows/claude-code-review.yml
-  - .github/workflows/claude.yml
-  - .github/workflows/python-package-conda.yml
+  - .github/workflows/release.yml
   - .gitignore
+  - .releaserc.json
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
   - .robomotion/patches/0001-local-edits.patch
@@ -36049,6 +36070,7 @@ groups:
   - cli/assets/data/stacks/astro.csv
   - cli/assets/data/stacks/flutter.csv
   - cli/assets/data/stacks/html-tailwind.csv
+  - cli/assets/data/stacks/javafx.csv
   - cli/assets/data/stacks/jetpack-compose.csv
   - cli/assets/data/stacks/laravel.csv
   - cli/assets/data/stacks/nextjs.csv
@@ -36106,6 +36128,7 @@ groups:
   - docs/三个 data-scripts-templates 的区别.md
   - preview/xiaomaomi-app.html
   - screenshots/website.png
+  - scripts/sync-release-version.mjs
   - skill.json
   - src/ui-ux-pro-max/data/_sync_all.py
   - src/ui-ux-pro-max/data/app-interface.csv
@@ -36122,6 +36145,7 @@ groups:
   - src/ui-ux-pro-max/data/stacks/astro.csv
   - src/ui-ux-pro-max/data/stacks/flutter.csv
   - src/ui-ux-pro-max/data/stacks/html-tailwind.csv
+  - src/ui-ux-pro-max/data/stacks/javafx.csv
   - src/ui-ux-pro-max/data/stacks/jetpack-compose.csv
   - src/ui-ux-pro-max/data/stacks/laravel.csv
   - src/ui-ux-pro-max/data/stacks/nextjs.csv

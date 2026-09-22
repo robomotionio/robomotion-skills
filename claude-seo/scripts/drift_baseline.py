@@ -9,7 +9,7 @@ Usage:
     python drift_baseline.py <url> [--skip-cwv]
 
 Output: JSON with baseline ID, timestamp, and captured elements.
-Storage: ~/.cache/claude-seo/drift/baselines.db
+Storage: $CLAUDE_SEO_DRIFT_DIR/baselines.db, default ~/.cache/claude-seo/drift/baselines.db
 """
 
 import argparse
@@ -32,7 +32,7 @@ sys.path.insert(0, SCRIPTS_DIR)
 
 from google_auth import validate_url  # noqa: E402
 
-DB_DIR = os.path.expanduser("~/.cache/claude-seo/drift")
+DB_DIR = os.environ.get("CLAUDE_SEO_DRIFT_DIR") or os.path.expanduser("~/.cache/claude-seo/drift")
 DB_PATH = os.path.join(DB_DIR, "baselines.db")
 
 # UTM parameters to strip during URL normalization

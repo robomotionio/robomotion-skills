@@ -17,7 +17,7 @@ PROJECT="$(cd "$PROJECT" && pwd)"
 #   hyperframes repo (skills/embedded-captions/scripts → ../../..)   4. ~/Downloads/hyperframes
 SKILL_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HF=""
-for cand in "${2:-}" "${HYPERFRAMES_ROOT:-}" "$(cd "$SKILL_SCRIPT_DIR/../../.." 2>/dev/null && pwd)" "$HOME/Downloads/hyperframes"; do
+for cand in "${2:-}" "${HYPERFRAMES_ROOT:-}" "/opt/hyperframes/root" "$(cd "$SKILL_SCRIPT_DIR/../../.." 2>/dev/null && pwd)" "$HOME/Downloads/hyperframes"; do
   if [[ -n "$cand" && -f "$cand/packages/cli/dist/cli.js" ]]; then HF="$cand"; break; fi
 done
 if [[ -z "$HF" ]]; then

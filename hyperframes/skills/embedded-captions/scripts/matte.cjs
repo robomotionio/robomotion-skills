@@ -33,6 +33,7 @@ const cp = require("child_process");
 function hfCli() {
   const roots = [
     process.env.HYPERFRAMES_ROOT,
+    "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
     path.resolve(__dirname, "..", "..", ".."), // skills/embedded-captions/scripts → repo root if in-repo
     path.join(os.homedir(), "Downloads", "hyperframes"),
   ].filter(Boolean);
