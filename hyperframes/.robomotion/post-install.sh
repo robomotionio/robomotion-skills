@@ -42,11 +42,12 @@ export HYPERFRAMES_NO_UPDATE_CHECK=1 HYPERFRAMES_NO_AUTO_INSTALL=1 \
 
 # FFmpeg encodes. The libraries are what the headless Chrome links against on
 # Ubuntu 24.04 (the list `hyperframes doctor` asks for); the fonts are what
-# text renders in when a composition names none it can load. The compiler is
-# for whisper.cpp and leaves again below.
+# text renders in when a composition names none it can load. certutil
+# (libnss3-tools) is for the wrapper below, which teaches Chrome the
+# sandbox's proxy CA. The compiler is for whisper.cpp and leaves again below.
 apt-get update -qq
 apt-get install -y -qq --no-install-recommends \
-  ffmpeg \
+  ffmpeg libnss3-tools \
   libnss3 libnspr4 libatk1.0-0t64 libatk-bridge2.0-0t64 libcups2t64 libdrm2 \
   libxkbcommon0 libatspi2.0-0t64 libxcomposite1 libxdamage1 libxfixes3 \
   libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2t64 \
@@ -114,6 +115,20 @@ export HOME="$HF_HOME_DIR"
 export HYPERFRAMES_BROWSER_PATH="$chrome"
 export HYPERFRAMES_NO_UPDATE_CHECK=1 HYPERFRAMES_NO_AUTO_INSTALL=1 \\
   HYPERFRAMES_SKIP_SKILLS=1 HYPERFRAMES_NO_TELEMETRY=1 DO_NOT_TRACK=1
+
+# The agent's sandbox sends every https request through a credential proxy
+# that re-signs the traffic, and names the proxy's CA in SSL_CERT_FILE. curl,
+# Python and Node read that variable; Chrome does not. It trusts its own
+# roots plus \$HOME/.pki/nssdb, so without the CA there, every page a
+# composition loads fails with ERR_CERT_AUTHORITY_INVALID. The db is made
+# here, per run, because the CA is the machine's, not the image's.
+if [ -n "\${SSL_CERT_FILE:-}" ] && [ -r "\$SSL_CERT_FILE" ]; then
+  db="\$HOME/.pki/nssdb"
+  [ -f "\$db/cert9.db" ] || { mkdir -p "\$db" && certutil -d "sql:\$db" -N --empty-password; }
+  certutil -d "sql:\$db" -L -n robomotion-proxy-ca >/dev/null 2>&1 \\
+    || certutil -d "sql:\$db" -A -t "C,," -n robomotion-proxy-ca -i "\$SSL_CERT_FILE"
+fi
+
 exec "$real" "\$@"
 EOF
 chmod 755 /usr/local/bin/hyperframes
