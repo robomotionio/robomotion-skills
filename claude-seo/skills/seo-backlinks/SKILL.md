@@ -51,7 +51,7 @@ Produce all 7 sections below. Each section lists data sources in preference orde
 
 **Moz API:** `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run moz_api.py metrics <url> --json` → Domain Authority, Page Authority, Spam Score, linking root domains, external links.
 
-**Keywords Everywhere:** `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run keywordseverywhere_api.py rank <domain> --json` → 0-10 domain rank only (no link counts). Use as a fallback when Moz isn't configured; do not use in place of Moz when both are available.
+**Keywords Everywhere:** `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run keywordseverywhere_api.py rank <domain> --json` → 0-10 domain rank and a referring-domain count (no anchors or top pages). Use as a fallback when Moz isn't configured; do not use in place of Moz when both are available.
 
 **Common Crawl:** `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run commoncrawl_graph.py <domain> --json` → PageRank, harmonic centrality, and low-confidence rank/presence data.
 

@@ -1,0 +1,109 @@
+diff --git i/skills/embedded-captions/scripts/check-occlusion.cjs w/skills/embedded-captions/scripts/check-occlusion.cjs
+index ae1c6eed..6d54fa21 100644
+--- i/skills/embedded-captions/scripts/check-occlusion.cjs
++++ w/skills/embedded-captions/scripts/check-occlusion.cjs
+@@ -12,6 +12,7 @@ const cp = require("child_process");
+ function hfResolve(pkg) {
+   const roots = [
+     process.env.HYPERFRAMES_ROOT,
++    "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+     path.resolve(__dirname, "..", "..", ".."),
+     path.join(os.homedir(), "Downloads", "hyperframes"),
+   ].filter(Boolean);
+diff --git i/skills/embedded-captions/scripts/check-overflow.cjs w/skills/embedded-captions/scripts/check-overflow.cjs
+index d29fe0e7..c9c01999 100644
+--- i/skills/embedded-captions/scripts/check-overflow.cjs
++++ w/skills/embedded-captions/scripts/check-overflow.cjs
+@@ -19,6 +19,7 @@ const os = require("os");
+ 
+ const HF_ROOTS = [
+   process.env.HYPERFRAMES_ROOT,
++  "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+   path.resolve(__dirname, "../../.."),
+   path.join(os.homedir(), "Downloads", "hyperframes"),
+ ].filter(Boolean);
+diff --git i/skills/embedded-captions/scripts/check-rail-climax.cjs w/skills/embedded-captions/scripts/check-rail-climax.cjs
+index 5cc47389..d70698c4 100644
+--- i/skills/embedded-captions/scripts/check-rail-climax.cjs
++++ w/skills/embedded-captions/scripts/check-rail-climax.cjs
+@@ -21,6 +21,7 @@ const os = require("os");
+ 
+ const HF_ROOTS = [
+   process.env.HYPERFRAMES_ROOT,
++  "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+   path.resolve(__dirname, "../../.."),
+   path.join(os.homedir(), "Downloads", "hyperframes"),
+ ].filter(Boolean);
+diff --git i/skills/embedded-captions/scripts/matte.cjs w/skills/embedded-captions/scripts/matte.cjs
+index 315c2289..d1a24622 100644
+--- i/skills/embedded-captions/scripts/matte.cjs
++++ w/skills/embedded-captions/scripts/matte.cjs
+@@ -33,6 +33,7 @@ const cp = require("child_process");
+ function hfCli() {
+   const roots = [
+     process.env.HYPERFRAMES_ROOT,
++    "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+     path.resolve(__dirname, "..", "..", ".."), // skills/embedded-captions/scripts → repo root if in-repo
+     path.join(os.homedir(), "Downloads", "hyperframes"),
+   ].filter(Boolean);
+diff --git i/skills/embedded-captions/scripts/measure-layout.cjs w/skills/embedded-captions/scripts/measure-layout.cjs
+index b0720a58..9dbfae39 100644
+--- i/skills/embedded-captions/scripts/measure-layout.cjs
++++ w/skills/embedded-captions/scripts/measure-layout.cjs
+@@ -23,6 +23,7 @@ const os = require("os");
+ // accept ANY puppeteer@* the bun store holds (not a pinned version).
+ const HF_ROOTS = [
+   process.env.HYPERFRAMES_ROOT,
++  "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+   path.resolve(__dirname, "../../.."), // skills/embedded-captions/scripts → repo root if in-repo
+   path.join(os.homedir(), "Downloads", "hyperframes"),
+ ].filter(Boolean);
+diff --git i/skills/embedded-captions/scripts/preview-frames.cjs w/skills/embedded-captions/scripts/preview-frames.cjs
+index 5e46f170..74c6f02d 100644
+--- i/skills/embedded-captions/scripts/preview-frames.cjs
++++ w/skills/embedded-captions/scripts/preview-frames.cjs
+@@ -41,6 +41,7 @@ function withPreviewGsapSri(html, gsapSource) {
+ 
+ const HF_ROOTS = [
+   process.env.HYPERFRAMES_ROOT,
++  "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+   path.resolve(__dirname, "../../.."),
+   path.join(os.homedir(), "Downloads", "hyperframes"),
+ ].filter(Boolean);
+diff --git i/skills/embedded-captions/scripts/render-and-composite.sh w/skills/embedded-captions/scripts/render-and-composite.sh
+index 2c9d04e9..b531d5fc 100755
+--- i/skills/embedded-captions/scripts/render-and-composite.sh
++++ w/skills/embedded-captions/scripts/render-and-composite.sh
+@@ -17,7 +17,7 @@ PROJECT="$(cd "$PROJECT" && pwd)"
+ #   hyperframes repo (skills/embedded-captions/scripts → ../../..)   4. ~/Downloads/hyperframes
+ SKILL_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ HF=""
+-for cand in "${2:-}" "${HYPERFRAMES_ROOT:-}" "$(cd "$SKILL_SCRIPT_DIR/../../.." 2>/dev/null && pwd)" "$HOME/Downloads/hyperframes"; do
++for cand in "${2:-}" "${HYPERFRAMES_ROOT:-}" "/opt/hyperframes/root" "$(cd "$SKILL_SCRIPT_DIR/../../.." 2>/dev/null && pwd)" "$HOME/Downloads/hyperframes"; do
+   if [[ -n "$cand" && -f "$cand/packages/cli/dist/cli.js" ]]; then HF="$cand"; break; fi
+ done
+ if [[ -z "$HF" ]]; then
+diff --git i/skills/embedded-captions/scripts/safe-zones.cjs w/skills/embedded-captions/scripts/safe-zones.cjs
+index d055619e..013b8bf4 100644
+--- i/skills/embedded-captions/scripts/safe-zones.cjs
++++ w/skills/embedded-captions/scripts/safe-zones.cjs
+@@ -23,6 +23,7 @@ const SAMPLES = 48; // frames cached across the clip (windows aggregate the cach
+ 
+ const HF_ROOTS = [
+   process.env.HYPERFRAMES_ROOT,
++  "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+   path.resolve(__dirname, "../../.."),
+   path.join(os.homedir(), "Downloads", "hyperframes"),
+ ].filter(Boolean);
+diff --git i/skills/embedded-captions/scripts/transcribe.cjs w/skills/embedded-captions/scripts/transcribe.cjs
+index 5775d2b8..c5178aa5 100644
+--- i/skills/embedded-captions/scripts/transcribe.cjs
++++ w/skills/embedded-captions/scripts/transcribe.cjs
+@@ -15,6 +15,7 @@ const cp = require("child_process");
+ function hfRoot() {
+   const roots = [
+     process.env.HYPERFRAMES_ROOT,
++    "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
+     path.resolve(__dirname, "..", "..", ".."),
+     path.join(os.homedir(), "Downloads", "hyperframes"),
+   ].filter(Boolean);

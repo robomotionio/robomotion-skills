@@ -188,7 +188,8 @@ async function copyDataAndScripts(targetSkillDir: string): Promise<void> {
 export async function generatePlatformFiles(
   targetDir: string,
   aiType: string,
-  isGlobal = false
+  isGlobal = false,
+  force = false
 ): Promise<string[]> {
   const config = await loadPlatformConfig(aiType);
   const createdFolders: string[] = [];
@@ -209,6 +210,13 @@ export async function generatePlatformFiles(
   // Render and write skill file (pass isGlobal to adjust paths)
   const skillContent = await renderSkillFile(config, isGlobal);
   const skillFilePath = join(skillDir, config.folderStructure.filename);
+
+  const fileAlreadyExists = await exists(skillFilePath);
+  if (fileAlreadyExists && !force) {
+    console.log(`  Skipped (already exists): ${skillFilePath} — use --force to overwrite`);
+    return [];
+  }
+
   await writeFile(skillFilePath, skillContent, 'utf-8');
   createdFolders.push(config.folderStructure.root);
 
@@ -221,12 +229,12 @@ export async function generatePlatformFiles(
 /**
  * Generate files for all AI types
  */
-export async function generateAllPlatformFiles(targetDir: string, isGlobal = false): Promise<string[]> {
+export async function generateAllPlatformFiles(targetDir: string, isGlobal = false, force = false): Promise<string[]> {
   const allFolders = new Set<string>();
 
   for (const aiType of Object.keys(AI_TO_PLATFORM)) {
     try {
-      const folders = await generatePlatformFiles(targetDir, aiType, isGlobal);
+      const folders = await generatePlatformFiles(targetDir, aiType, isGlobal, force);
       folders.forEach(f => allFolders.add(f));
     } catch {
       // Skip if generation fails for a platform
