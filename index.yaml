@@ -1025,7 +1025,7 @@ groups:
     name: anti-ui-slop
     path: awesome-copilot/skills/anti-ui-slop
     title: anti-ui-slop
-    summary: Stop coding agents from shipping generic UI. Use UIZZE''s 800,000+ real web and iOS screens to build product-specific
+    summary: Stop coding agents from shipping generic UI. Use UIZZE's 800,000+ real web and iOS screens to build product-specific
       interfaces, define a design contract, cover required states, and run a hard finish gate. Use when designing, implementing,
       redesigning, critiquing, or pre-ship reviewing a web or iOS interface in Codex, Claude Code, Cursor, Copilot, or another
       coding agent. Trigger with "anti-ui-slop", "stop UI slop", "ground this UI in real screens", or "run the UI finish gate".
@@ -1482,10 +1482,10 @@ groups:
     title: autoresearch
     summary: 'Autonomous iterative experimentation loop for any programming task. Guides the user through defining goals,
       measurable metrics, and scope constraints, then runs an autonomous loop of code changes, testing, measuring, and keeping/discarding
-      results. Inspired by Karpathy''''s autoresearch. USE FOR: autonomous improvement, iterative optimization, experiment
-      loop, auto research, performance tuning, automated experimentation, hill climbing, try things automatically, optimize
-      code, run experiments, autonomous coding loop. DO NOT USE FOR: one-shot tasks, simple bug fixes, code review, or tasks
-      without a measurable metric.'
+      results. Inspired by Karpathy''s autoresearch. USE FOR: autonomous improvement, iterative optimization, experiment loop,
+      auto research, performance tuning, automated experimentation, hill climbing, try things automatically, optimize code,
+      run experiments, autonomous coding loop. DO NOT USE FOR: one-shot tasks, simple bug fixes, code review, or tasks without
+      a measurable metric.'
     version: 1.0.0
     tags: []
     mode: host
@@ -2491,9 +2491,9 @@ groups:
     name: competitor-ad-intelligence
     path: awesome-copilot/skills/competitor-ad-intelligence
     title: competitor-ad-intelligence
-    summary: Use this skill when the user asks to analyze, tear down, or reverse-engineer a competitor''s paid ads. Trigger
+    summary: Use this skill when the user asks to analyze, tear down, or reverse-engineer a competitor's paid ads. Trigger
       for prompts like "what ads is [competitor] running", "tear down their ad strategy", "competitor ad analysis", "find
-      ad angles we haven''t tried", or "reverse-engineer their paid funnel". Do not trigger for organic/SEO competitor research
+      ad angles we haven't tried", or "reverse-engineer their paid funnel". Do not trigger for organic/SEO competitor research
       or website positioning analysis.
     version: 1.0.0
     tags: []
@@ -2636,7 +2636,7 @@ groups:
     path: awesome-copilot/skills/convert-excel-to-md
     title: convert-excel-to-md
     summary: 'Converts Excel (.xlsx) workbooks into Markdown so their contents can be accurately analyzed, summarized, searched,
-      or extracted from. Use this skill whenever the user shares, references, or asks about a .xlsx file — even if they don''''t
+      or extracted from. Use this skill whenever the user shares, references, or asks about a .xlsx file — even if they don''t
       say "convert" or "markdown" explicitly. This includes requests to "read", "summarize", "review", "extract data from",
       "compare", "chart", or "analyze" a spreadsheet, workbook, budget, data export, or tracker. Always run the bundled conversion
       script to produce Markdown first; do not attempt to parse .xlsx content directly or write ad-hoc extraction code. Also
@@ -2665,7 +2665,7 @@ groups:
     path: awesome-copilot/skills/convert-pdf-to-md
     title: convert-pdf-to-md
     summary: 'Converts PDF (.pdf) documents into Markdown so their contents can be accurately analyzed, summarized, searched,
-      or extracted from. Use this skill whenever the user shares, references, or asks about a .pdf file — even if they don''''t
+      or extracted from. Use this skill whenever the user shares, references, or asks about a .pdf file — even if they don''t
       say "convert" or "markdown" explicitly. This includes requests to "read", "summarize", "review", "extract data from",
       "compare", or "analyze" a PDF report, paper, invoice, form, contract, or scanned document. Always run the bundled conversion
       script to produce Markdown first; do not attempt to parse PDF content directly or write ad-hoc extraction code. Also
@@ -2714,7 +2714,7 @@ groups:
     path: awesome-copilot/skills/convert-word-to-md
     title: convert-word-to-md
     summary: 'Converts Word (.docx) documents into Markdown so their contents can be accurately analyzed, summarized, searched,
-      or extracted from. Use this skill whenever the user shares, references, or asks about a .docx file — even if they don''''t
+      or extracted from. Use this skill whenever the user shares, references, or asks about a .docx file — even if they don''t
       say "convert" or "markdown" explicitly. This includes requests to "read", "summarize", "review", "extract data from",
       "compare", or "analyze" a Word document, resume, report, contract, or proposal. Always run the bundled conversion script
       to produce Markdown first; do not attempt to parse .docx content directly or write ad-hoc conversion code. Also use
@@ -2788,7 +2788,7 @@ groups:
       each round lands MORE comments. This skill runs loop engineering: auto-triggers Copilot Code Review via GraphQL (no
       @copilot mention), triages every open thread (Copilot, humans, advanced-security) with a fix / decline / escalate rubric,
       dispatches parallel fix sub-agents that obey the repo build/test/lint conventions, commits per iteration, replies+resolves
-      citing the pushed SHA, then re-triggers until HEAD is reviewed with zero threads awaiting the agent''''s reply (remaining
+      citing the pushed SHA, then re-triggers until HEAD is reviewed with zero threads awaiting the agent''s reply (remaining
       open threads are explicit hand-offs to the human — escalated declines, design tradeoffs). You merge a clean PR; the
       bot runs it. Trigger phrases: "address copilot comments", "run a copilot review loop", "fix this PR", "iterate on copilot
       feedback". Repo-agnostic, gh CLI + PowerShell. Full autopilot needs repo Triage/Write; external PR authors get single-iteration
@@ -3398,7 +3398,7 @@ groups:
     title: daily-focus-board
     summary: 'Spin up a personal, motivating daily focus board that renders in a browser canvas and that the user drives by
       talking to their AI partner. Tasks track status (to-do → in progress → done) with timestamped progress notes and roll
-      up into a "today''''s momentum" feed; numeric-goal tasks (pages, pomodoros, reps) render as progress-bar counters. Executive-function
+      up into a "today''s momentum" feed; numeric-goal tasks (pages, pomodoros, reps) render as progress-bar counters. Executive-function
       / neurodivergent-friendly by design: Focus mode, kind "not today" carryover (no overdue-shaming), a brain-dump box,
       reduced-motion, and gentle deadline countdowns. Add, reorder, and relabel tasks live, assign Eisenhower priority (Do
       first / Schedule / Delegate / Later), open with an above/below-the-line check-in and a daily mantra, and save an end-of-day
@@ -3428,7 +3428,7 @@ groups:
     name: daily-prep
     path: awesome-copilot/skills/daily-prep
     title: daily-prep
-    summary: Prepare for tomorrow''s meetings and tasks. Pulls calendar from Outlook via WorkIQ, cross-references open tasks
+    summary: Prepare for tomorrow's meetings and tasks. Pulls calendar from Outlook via WorkIQ, cross-references open tasks
       and workspace context, classifies meetings, detects conflicts and day-fit issues, finds learning and deep-work slots,
       and generates a structured HTML prep file with productivity recommendations.
     version: 1.0.0
@@ -6285,14 +6285,14 @@ groups:
     path: awesome-copilot/skills/mentoring-juniors
     title: mentoring-juniors
     summary: 'Socratic mentoring for junior developers and AI newcomers. Guides through questions, never answers. Triggers:
-      "help me understand", "explain this code", "I''''m stuck", "Im stuck", "I''''m confused", "Im confused", "I don''''t
-      understand", "I dont understand", "can you teach me", "teach me", "mentor me", "guide me", "what does this error mean",
-      "why doesn''''t this work", "why does not this work", "I''''m a beginner", "Im a beginner", "I''''m learning", "Im learning",
-      "I''''m new to this", "Im new to this", "walk me through", "how does this work", "what''''s wrong with my code", "what''''s
-      wrong", "can you break this down", "ELI5", "step by step", "where do I start", "what am I missing", "newbie here", "junior
-      dev", "first time using", "how do I", "what is", "is this right", "not sure", "need help", "struggling", "show me",
-      "help me debug", "best practice", "too complex", "overwhelmed", "lost", "debug this", "/socratic", "/hint", "/concept",
-      "/pseudocode". Progressive clue systems, teaching techniques, and success metrics.'
+      "help me understand", "explain this code", "I''m stuck", "Im stuck", "I''m confused", "Im confused", "I don''t understand",
+      "I dont understand", "can you teach me", "teach me", "mentor me", "guide me", "what does this error mean", "why doesn''t
+      this work", "why does not this work", "I''m a beginner", "Im a beginner", "I''m learning", "Im learning", "I''m new
+      to this", "Im new to this", "walk me through", "how does this work", "what''s wrong with my code", "what''s wrong",
+      "can you break this down", "ELI5", "step by step", "where do I start", "what am I missing", "newbie here", "junior dev",
+      "first time using", "how do I", "what is", "is this right", "not sure", "need help", "struggling", "show me", "help
+      me debug", "best practice", "too complex", "overwhelmed", "lost", "debug this", "/socratic", "/hint", "/concept", "/pseudocode".
+      Progressive clue systems, teaching techniques, and success metrics.'
     version: 1.0.0
     tags: []
     mode: host
@@ -9722,9 +9722,9 @@ groups:
     title: tugboat
     summary: Anxiety-aware, evidence-driven collaboration for stalled or high-stakes work when a user says uncertainty, repeated
       setbacks, or lack of visible progress is causing significant anxiety or distress. Use immediately when explicitly invoked;
-      when this fit is only inferred from the user''s own account, ask permission before applying it. Preserve the user''s
-      ideal and turn grounded perspective-taking into persistent, bounded problem solving. Do not use to diagnose, provide
-      therapy, manufacture certainty, or lower goals for reassurance.
+      when this fit is only inferred from the user's own account, ask permission before applying it. Preserve the user's ideal
+      and turn grounded perspective-taking into persistent, bounded problem solving. Do not use to diagnose, provide therapy,
+      manufacture certainty, or lower goals for reassurance.
     version: 1.0.0
     tags: []
     mode: host
@@ -10351,9 +10351,9 @@ groups:
     path: azure-skills/skills/airunway-aks-setup
     title: airunway-aks-setup
     summary: 'Set up AI Runway on AKS — from bare cluster to running model. Covers cluster verification, controller install,
-      GPU assessment, provider setup, and first deployment. WHEN: \"setup AI Runway\", \"onboard AKS cluster\", \"install
-      AI Runway\", \"airunway setup\", \"deploy model to AKS\", \"GPU inference on AKS\", \"KAITO setup on AKS\", \"run LLM
-      on AKS\", \"vLLM on AKS\", \"set up model serving on AKS\", \"AI Runway controller\".'
+      GPU assessment, provider setup, and first deployment. WHEN: "setup AI Runway", "onboard AKS cluster", "install AI Runway",
+      "airunway setup", "deploy model to AKS", "GPU inference on AKS", "KAITO setup on AKS", "run LLM on AKS", "vLLM on AKS",
+      "set up model serving on AKS", "AI Runway controller".'
     version: 1.0.0
     tags: []
     mode: host
@@ -10577,12 +10577,11 @@ groups:
     summary: 'Assess whether source code is ready to deploy to Azure — the check BEFORE infrastructure work. Evaluates build
       health, app completeness, dependencies and local services, stack compatibility, and deployment feasibility. Answers
       questions about what your app needs before it can be deployed — frameworks, dependencies, and configuration. Checks
-      whether dependencies are compatible and identifies deployment blockers and unsupported frameworks. WHEN: \"evaluate
-      my repo\", \"is my app ready to deploy\", \"what does my app need to deploy\", \"what do I need before deploying\",
-      \"does my app need\", \"can I ship this to Azure\", \"scan my repo for issues\", \"is this app deployable\", \"check
-      if my app is ready for Azure\", \"do I need a Dockerfile\", \"what''s blocking my deployment\", \"are there any blockers\",
-      \"are my dependencies compatible\", \"does Azure support my framework\", \"what needs to change before deploying\",
-      \"check my app configuration\".'
+      whether dependencies are compatible and identifies deployment blockers and unsupported frameworks. WHEN: "evaluate my
+      repo", "is my app ready to deploy", "what does my app need to deploy", "what do I need before deploying", "does my app
+      need", "can I ship this to Azure", "scan my repo for issues", "is this app deployable", "check if my app is ready for
+      Azure", "do I need a Dockerfile", "what''s blocking my deployment", "are there any blockers", "are my dependencies compatible",
+      "does Azure support my framework", "what needs to change before deploying", "check my app configuration".'
     version: 1.0.0
     tags: []
     mode: host
@@ -10769,10 +10768,10 @@ groups:
     name: azure-cost
     path: azure-skills/skills/azure-cost
     title: azure-cost
-    summary: 'Azure cost management: query costs, forecast spending, optimize to reduce waste. WHEN: \"Azure costs\", \"Azure
-      bill\", \"cost breakdown\", \"how much am I spending\", \"forecast spending\", \"optimize costs\", \"reduce spending\",
-      \"orphaned resources\", \"rightsize VMs\", \"cost spike\", \"reduce storage costs\", \"AKS cost\". DO NOT USE FOR: deploying
-      resources, provisioning, diagnostics, or security audits.'
+    summary: 'Azure cost management: query costs, forecast spending, optimize to reduce waste. WHEN: "Azure costs", "Azure
+      bill", "cost breakdown", "how much am I spending", "forecast spending", "optimize costs", "reduce spending", "orphaned
+      resources", "rightsize VMs", "cost spike", "reduce storage costs", "AKS cost". DO NOT USE FOR: deploying resources,
+      provisioning, diagnostics, or security audits.'
     version: 1.0.0
     tags: []
     mode: host
@@ -10816,11 +10815,10 @@ groups:
     summary: 'Execute Azure deployments for ALREADY-PREPARED applications that have existing .azure/deployment-plan.md and
       infrastructure files. DO NOT use this skill when the user asks to CREATE a new application — use azure-prepare instead.
       This skill runs azd up, azd deploy, terraform apply, and az deployment commands with built-in error recovery. Requires
-      .azure/deployment-plan.md from azure-prepare and validated status from azure-validate. WHEN: \"run azd up\", \"run azd
-      deploy\", \"execute deployment\", \"push to production\", \"push to cloud\", \"go live\", \"ship it\", \"bicep deploy\",
-      \"terraform apply\", \"publish to Azure\", \"launch on Azure\". DO NOT USE WHEN: \"create and deploy\", \"build and
-      deploy\", \"create a new app\", \"set up infrastructure\", \"create and deploy to Azure using Terraform\" — use azure-prepare
-      for these.'
+      .azure/deployment-plan.md from azure-prepare and validated status from azure-validate. WHEN: "run azd up", "run azd
+      deploy", "execute deployment", "push to production", "push to cloud", "go live", "ship it", "bicep deploy", "terraform
+      apply", "publish to Azure", "launch on Azure". DO NOT USE WHEN: "create and deploy", "build and deploy", "create a new
+      app", "set up infrastructure", "create and deploy to Azure using Terraform" — use azure-prepare for these.'
     version: 1.0.0
     tags: []
     mode: host
@@ -11331,8 +11329,8 @@ groups:
     path: azure-skills/skills/azure-quotas
     title: azure-quotas
     summary: 'Check/manage Azure quotas and usage across providers. For deployment planning, capacity validation, region selection.
-      WHEN: \"check quotas\", \"service limits\", \"current usage\", \"request quota increase\", \"quota exceeded\", \"validate
-      capacity\", \"regional availability\", \"provisioning limits\", \"vCPU limit\", \"how many vCPUs available in my subscription\".'
+      WHEN: "check quotas", "service limits", "current usage", "request quota increase", "quota exceeded", "validate capacity",
+      "regional availability", "provisioning limits", "vCPU limit", "how many vCPUs available in my subscription".'
     version: 1.0.0
     tags: []
     mode: container
@@ -11357,9 +11355,9 @@ groups:
     title: azure-reliability
     summary: 'Assess and improve the reliability posture of PaaS Applications (Azure Functions and Azure App Service). Scans
       deployed resources for zone redundancy, ZRS storage, health probes, and multi-region failover. Presents a feature-pivoted
-      checklist, then drives staged remediation (CLI or IaC patches) end-to-end with user confirmation. WHEN: \"assess reliability\",
-      \"check reliability\", \"zone redundant\", \"multi-region failover\", \"high availability\", \"disaster recovery\",
-      \"single points of failure\", \"reliability posture\", \"resiliency\".'
+      checklist, then drives staged remediation (CLI or IaC patches) end-to-end with user confirmation. WHEN: "assess reliability",
+      "check reliability", "zone redundant", "multi-region failover", "high availability", "disaster recovery", "single points
+      of failure", "reliability posture", "resiliency".'
     version: 1.0.0
     tags: []
     mode: host
@@ -11390,13 +11388,13 @@ groups:
     name: azure-resource-lookup
     path: azure-skills/skills/azure-resource-lookup
     title: azure-resource-lookup
-    summary: 'List, find, and show Azure resources across subscriptions or resource groups. Handles prompts like \"list the
-      websites in my subscription\", \"list my web apps\", \"show my app services\", \"list virtual machines\", \"list my
-      VMs\", \"show storage accounts\", \"find container apps\", and \"what resources do I have\". USE FOR: list websites,
-      list web apps, list app services, show websites in subscription, resource inventory, find resources by tag, tag analysis,
-      orphaned resource discovery (not for cost analysis), unattached disks, count resources by type, cross-subscription lookup,
-      and Azure Resource Graph queries. DO NOT USE FOR: deploying/changing resources (use azure-deploy), cost optimization
-      (use azure-cost), or non-Azure clouds.'
+    summary: 'List, find, and show Azure resources across subscriptions or resource groups. Handles prompts like "list the
+      websites in my subscription", "list my web apps", "show my app services", "list virtual machines", "list my VMs", "show
+      storage accounts", "find container apps", and "what resources do I have". USE FOR: list websites, list web apps, list
+      app services, show websites in subscription, resource inventory, find resources by tag, tag analysis, orphaned resource
+      discovery (not for cost analysis), unattached disks, count resources by type, cross-subscription lookup, and Azure Resource
+      Graph queries. DO NOT USE FOR: deploying/changing resources (use azure-deploy), cost optimization (use azure-cost),
+      or non-Azure clouds.'
     version: 1.0.0
     tags: []
     mode: host
@@ -11868,9 +11866,9 @@ groups:
     name: python-appservice-deploy
     path: azure-skills/skills/python-appservice-deploy
     title: python-appservice-deploy
-    summary: 'Deploy Python (Flask/Django/FastAPI) code to Azure App Service Linux. WHEN: \"Flask App Service\", \"Django
-      App Service\", \"FastAPI App Service\", \"deploy Python to App Service\". DO NOT USE FOR: Container Apps, Functions,
-      non-Python, Terraform/Bicep/IaC, full infra — use azure-prepare.'
+    summary: 'Deploy Python (Flask/Django/FastAPI) code to Azure App Service Linux. WHEN: "Flask App Service", "Django App
+      Service", "FastAPI App Service", "deploy Python to App Service". DO NOT USE FOR: Container Apps, Functions, non-Python,
+      Terraform/Bicep/IaC, full infra — use azure-prepare.'
     version: 1.0.0
     tags: []
     mode: container
@@ -12374,9 +12372,8 @@ groups:
   author: AgriciDaniel
   source_url: https://github.com/AgriciDaniel/claude-seo
   license: MIT
-  summary: Universal SEO analysis — 25 sub-skills (technical, content, schema, sitemap, images, AI search/GEO, local, maps,
-    hreflang, e-commerce, drift, backlinks) backed by 18 sub-agents and 30+ Python scripts for Google APIs, DataForSEO, Moz,
-    Bing, Common Crawl, and shared headless rendering.
+  summary: 'SEO audits and analysis: technical SEO, content, schema, sitemaps, images, local and maps, hreflang, backlinks,
+    AI search. Runs its own Python scripts against Google APIs, DataForSEO and others.'
   category: Marketing
   tags:
   - seo
@@ -12393,7 +12390,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 08bc371e5b25
+  content_hash: 1db3e40876cc
   skills:
   - id: claude-seo/seo
     name: seo
@@ -12830,10 +12827,9 @@ groups:
     path: claude-seo/skills/seo-image-gen
     title: seo-image-gen
     summary: 'AI image generation for SEO assets: OG/social preview images, blog hero images, schema images, product photography,
-      infographics. Powered by Gemini via nanobanana-mcp. Requires banana extension installed. Use when user says \"generate
-      image\", \"OG image\", \"social preview\", \"hero image\", \"blog image\", \"product photo\", \"infographic\", \"seo
-      image\", \"create visual\", \"image-gen\", \"favicon\", \"schema image\", \"pinterest pin\", \"generate visual\", \"banner\",
-      or \"thumbnail\".'
+      infographics. Powered by Gemini via nanobanana-mcp. Requires banana extension installed. Use when user says "generate
+      image", "OG image", "social preview", "hero image", "blog image", "product photo", "infographic", "seo image", "create
+      visual", "image-gen", "favicon", "schema image", "pinterest pin", "generate visual", "banner", or "thumbnail".'
     version: 2.0.0
     tags: []
     mode: host
@@ -13239,8 +13235,8 @@ groups:
   author: Robomotion
   source_url: https://github.com/robomotionio/robomotion-skills
   license: MIT
-  summary: Graphic-design expertise for AI image generation — composition, color, typography, brand identity, format specs,
-    and model-aware prompt craft. Pure knowledge; renders through the OpenAI / Gemini image toolkits.
+  summary: 'Graphic-design know-how for AI image generation: composition, color, typography, brand identity, format specs
+    and prompt craft.'
   category: Design
   tags:
   - design
@@ -13255,7 +13251,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 0a02bf810a74
+  content_hash: d02b9e87cc0f
   skills:
   - id: designer-skills/graphic-design
     name: graphic-design
@@ -13888,8 +13884,8 @@ groups:
   author: Addy Osmani
   source_url: https://github.com/addyosmani/agent-skills
   license: MIT
-  summary: 23 production-grade engineering skills covering the full SDLC — define, plan, build, verify, review, ship. Vendored
-    verbatim from upstream.
+  summary: 'Engineering practice across the whole lifecycle: specs, planning, TDD, code review, debugging, security, performance,
+    CI/CD and shipping.'
   category: Engineering
   tags:
   - engineering
@@ -13906,7 +13902,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 0d4cf9cf8d5d
+  content_hash: ab6b7b1be523
   skills:
   - id: engineering-skills/api-and-interface-design
     name: api-and-interface-design
@@ -18522,9 +18518,8 @@ groups:
   author: Google Workspace
   source_url: https://github.com/googleworkspace/cli
   license: Apache-2.0
-  summary: Official Google Workspace agent skills wrapping the `gws` CLI — Drive, Sheets, Gmail, Calendar, Docs, Slides, Tasks,
-    People, Chat, Classroom, Forms, Keep, Events, Admin Reports, Model Armor, and cross-service workflow recipes. 17 service
-    skills, 50 action sub-skills, 28 recipe workflows.
+  summary: 'Google Workspace through the gws CLI: Gmail, Drive, Calendar, Sheets, Docs, Slides, Chat, Meet, Tasks, Forms and
+    more, with ready-made recipes and role personas.'
   category: Productivity
   tags:
   - google-workspace
@@ -18541,7 +18536,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: f34f20451c7e
+  content_hash: ca2eaeb3c1d0
   skills:
   - id: gws-cli/gws-admin-reports
     name: gws-admin-reports
@@ -21978,7 +21973,7 @@ groups:
     name: remotion-to-hyperframes
     path: hyperframes/skills/remotion-to-hyperframes
     title: remotion-to-hyperframes
-    summary: Port an existing Remotion (React) composition''s source to HyperFrames HTML. Use ONLY on an explicit ask to port/convert/migrate/translate
+    summary: Port an existing Remotion (React) composition's source to HyperFrames HTML. Use ONLY on an explicit ask to port/convert/migrate/translate
       a Remotion source — one-way, Remotion-only. A passing Remotion mention, reference-only code, or "make something like
       my Remotion video" is a fresh build (/general-video). Unclear → /hyperframes.
     version: 1.0.0
@@ -23413,7 +23408,8 @@ groups:
   author: Corey Haines
   source_url: https://github.com/coreyhaines31/marketingskills
   license: MIT
-  summary: 41 marketing skills — copywriting, SEO, paid ads, growth, lifecycle, CRO, and more. Vendored verbatim from upstream.
+  summary: 'Marketing: copywriting, SEO, CRO, paid ads, email, pricing, launches, customer research, competitors, RevOps and
+    sales enablement.'
   category: Marketing
   tags:
   - marketing
@@ -23428,7 +23424,7 @@ groups:
   has_env_yaml: true
   has_changelog: true
   has_license: true
-  content_hash: 301950d2711c
+  content_hash: c5968492376c
   skills:
   - id: marketing-skills/ab-testing
     name: ab-testing
@@ -23846,9 +23842,9 @@ groups:
     summary: 'Build and leverage online communities to drive product growth and brand loyalty. Use when the user wants to
       create a community strategy, grow a Discord or Slack community, manage a forum or subreddit, build brand advocates,
       increase word-of-mouth, drive community-led growth, engage users post-signup, or turn customers into evangelists. Trigger
-      phrases: \"build a community,\" \"community strategy,\" \"Discord community,\" \"Slack community,\" \"community-led
-      growth,\" \"brand advocates,\" \"user community,\" \"forum strategy,\" \"community engagement,\" \"grow our community,\"
-      \"ambassador program,\" \"community flywheel.\"'
+      phrases: "build a community," "community strategy," "Discord community," "Slack community," "community-led growth,"
+      "brand advocates," "user community," "forum strategy," "community engagement," "grow our community," "ambassador program,"
+      "community flywheel."'
     version: 2.1.0
     tags: []
     mode: host
@@ -25382,7 +25378,7 @@ groups:
     summary: 'Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does
       the code follow this repo''s documented coding standards?) and Spec (does the code match what the originating issue/spec
       asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review
-      a branch, a PR, work-in-progress changes, or asks to \"review since X\".'
+      a branch, a PR, work-in-progress changes, or asks to "review since X".'
     version: 1.0.0
     tags: []
     mode: host
@@ -26271,9 +26267,10 @@ groups:
     name: azure-mgmt-arizeaiobservabilityeval-dotnet
     path: microsoft-skills/plugins/azure-sdk-dotnet/skills/azure-mgmt-arizeaiobservabilityeval-dotnet
     title: azure-mgmt-arizeaiobservabilityeval-dotnet
-    summary: 'Azure Resource Manager SDK for Arize AI Observability and Evaluation (.NET). Use when managing Arize AI organizations
-      \non Azure via Azure Marketplace, creating/updating/deleting Arize resources, or integrating Arize ML observability
-      \ninto .NET applications. Triggers: \"Arize AI\", \"ML observability\", \"ArizeAIObservabilityEval\", \"Arize organization\".\n'
+    summary: "Azure Resource Manager SDK for Arize AI Observability and Evaluation (.NET). Use when managing Arize AI organizations\
+      \ \non Azure via Azure Marketplace, creating/updating/deleting Arize resources, or integrating Arize ML observability\
+      \ \ninto .NET applications. Triggers: \"Arize AI\", \"ML observability\", \"ArizeAIObservabilityEval\", \"Arize organization\"\
+      ."
     version: 1.0.0
     tags: []
     mode: host
@@ -28930,9 +28927,9 @@ groups:
     path: microsoft-skills/plugins/azure-skills/skills/airunway-aks-setup
     title: airunway-aks-setup
     summary: 'Set up AI Runway on AKS — from bare cluster to running model. Covers cluster verification, controller install,
-      GPU assessment, provider setup, and first deployment. WHEN: \"setup AI Runway\", \"onboard AKS cluster\", \"install
-      AI Runway\", \"airunway setup\", \"deploy model to AKS\", \"GPU inference on AKS\", \"KAITO setup on AKS\", \"run LLM
-      on AKS\", \"vLLM on AKS\", \"set up model serving on AKS\", \"AI Runway controller\".'
+      GPU assessment, provider setup, and first deployment. WHEN: "setup AI Runway", "onboard AKS cluster", "install AI Runway",
+      "airunway setup", "deploy model to AKS", "GPU inference on AKS", "KAITO setup on AKS", "run LLM on AKS", "vLLM on AKS",
+      "set up model serving on AKS", "AI Runway controller".'
     version: 1.0.0
     tags: []
     mode: host
@@ -29156,12 +29153,11 @@ groups:
     summary: 'Assess whether source code is ready to deploy to Azure — the check BEFORE infrastructure work. Evaluates build
       health, app completeness, dependencies and local services, stack compatibility, and deployment feasibility. Answers
       questions about what your app needs before it can be deployed — frameworks, dependencies, and configuration. Checks
-      whether dependencies are compatible and identifies deployment blockers and unsupported frameworks. WHEN: \"evaluate
-      my repo\", \"is my app ready to deploy\", \"what does my app need to deploy\", \"what do I need before deploying\",
-      \"does my app need\", \"can I ship this to Azure\", \"scan my repo for issues\", \"is this app deployable\", \"check
-      if my app is ready for Azure\", \"do I need a Dockerfile\", \"what''s blocking my deployment\", \"are there any blockers\",
-      \"are my dependencies compatible\", \"does Azure support my framework\", \"what needs to change before deploying\",
-      \"check my app configuration\".'
+      whether dependencies are compatible and identifies deployment blockers and unsupported frameworks. WHEN: "evaluate my
+      repo", "is my app ready to deploy", "what does my app need to deploy", "what do I need before deploying", "does my app
+      need", "can I ship this to Azure", "scan my repo for issues", "is this app deployable", "check if my app is ready for
+      Azure", "do I need a Dockerfile", "what''s blocking my deployment", "are there any blockers", "are my dependencies compatible",
+      "does Azure support my framework", "what needs to change before deploying", "check my app configuration".'
     version: 1.0.0
     tags: []
     mode: host
@@ -29348,10 +29344,10 @@ groups:
     name: azure-cost
     path: microsoft-skills/plugins/azure-skills/skills/azure-cost
     title: azure-cost
-    summary: 'Azure cost management: query costs, forecast spending, optimize to reduce waste. WHEN: \"Azure costs\", \"Azure
-      bill\", \"cost breakdown\", \"how much am I spending\", \"forecast spending\", \"optimize costs\", \"reduce spending\",
-      \"orphaned resources\", \"rightsize VMs\", \"cost spike\", \"reduce storage costs\", \"AKS cost\". DO NOT USE FOR: deploying
-      resources, provisioning, diagnostics, or security audits.'
+    summary: 'Azure cost management: query costs, forecast spending, optimize to reduce waste. WHEN: "Azure costs", "Azure
+      bill", "cost breakdown", "how much am I spending", "forecast spending", "optimize costs", "reduce spending", "orphaned
+      resources", "rightsize VMs", "cost spike", "reduce storage costs", "AKS cost". DO NOT USE FOR: deploying resources,
+      provisioning, diagnostics, or security audits.'
     version: 1.0.0
     tags: []
     mode: host
@@ -29395,11 +29391,10 @@ groups:
     summary: 'Execute Azure deployments for ALREADY-PREPARED applications that have existing .azure/deployment-plan.md and
       infrastructure files. DO NOT use this skill when the user asks to CREATE a new application — use azure-prepare instead.
       This skill runs azd up, azd deploy, terraform apply, and az deployment commands with built-in error recovery. Requires
-      .azure/deployment-plan.md from azure-prepare and validated status from azure-validate. WHEN: \"run azd up\", \"run azd
-      deploy\", \"execute deployment\", \"push to production\", \"push to cloud\", \"go live\", \"ship it\", \"bicep deploy\",
-      \"terraform apply\", \"publish to Azure\", \"launch on Azure\". DO NOT USE WHEN: \"create and deploy\", \"build and
-      deploy\", \"create a new app\", \"set up infrastructure\", \"create and deploy to Azure using Terraform\" — use azure-prepare
-      for these.'
+      .azure/deployment-plan.md from azure-prepare and validated status from azure-validate. WHEN: "run azd up", "run azd
+      deploy", "execute deployment", "push to production", "push to cloud", "go live", "ship it", "bicep deploy", "terraform
+      apply", "publish to Azure", "launch on Azure". DO NOT USE WHEN: "create and deploy", "build and deploy", "create a new
+      app", "set up infrastructure", "create and deploy to Azure using Terraform" — use azure-prepare for these.'
     version: 1.0.0
     tags: []
     mode: host
@@ -29910,8 +29905,8 @@ groups:
     path: microsoft-skills/plugins/azure-skills/skills/azure-quotas
     title: azure-quotas
     summary: 'Check/manage Azure quotas and usage across providers. For deployment planning, capacity validation, region selection.
-      WHEN: \"check quotas\", \"service limits\", \"current usage\", \"request quota increase\", \"quota exceeded\", \"validate
-      capacity\", \"regional availability\", \"provisioning limits\", \"vCPU limit\", \"how many vCPUs available in my subscription\".'
+      WHEN: "check quotas", "service limits", "current usage", "request quota increase", "quota exceeded", "validate capacity",
+      "regional availability", "provisioning limits", "vCPU limit", "how many vCPUs available in my subscription".'
     version: 1.0.0
     tags: []
     mode: container
@@ -29936,9 +29931,9 @@ groups:
     title: azure-reliability
     summary: 'Assess and improve the reliability posture of PaaS Applications (Azure Functions and Azure App Service). Scans
       deployed resources for zone redundancy, ZRS storage, health probes, and multi-region failover. Presents a feature-pivoted
-      checklist, then drives staged remediation (CLI or IaC patches) end-to-end with user confirmation. WHEN: \"assess reliability\",
-      \"check reliability\", \"zone redundant\", \"multi-region failover\", \"high availability\", \"disaster recovery\",
-      \"single points of failure\", \"reliability posture\", \"resiliency\".'
+      checklist, then drives staged remediation (CLI or IaC patches) end-to-end with user confirmation. WHEN: "assess reliability",
+      "check reliability", "zone redundant", "multi-region failover", "high availability", "disaster recovery", "single points
+      of failure", "reliability posture", "resiliency".'
     version: 1.0.0
     tags: []
     mode: host
@@ -29969,13 +29964,13 @@ groups:
     name: azure-resource-lookup
     path: microsoft-skills/plugins/azure-skills/skills/azure-resource-lookup
     title: azure-resource-lookup
-    summary: 'List, find, and show Azure resources across subscriptions or resource groups. Handles prompts like \"list the
-      websites in my subscription\", \"list my web apps\", \"show my app services\", \"list virtual machines\", \"list my
-      VMs\", \"show storage accounts\", \"find container apps\", and \"what resources do I have\". USE FOR: list websites,
-      list web apps, list app services, show websites in subscription, resource inventory, find resources by tag, tag analysis,
-      orphaned resource discovery (not for cost analysis), unattached disks, count resources by type, cross-subscription lookup,
-      and Azure Resource Graph queries. DO NOT USE FOR: deploying/changing resources (use azure-deploy), cost optimization
-      (use azure-cost), or non-Azure clouds.'
+    summary: 'List, find, and show Azure resources across subscriptions or resource groups. Handles prompts like "list the
+      websites in my subscription", "list my web apps", "show my app services", "list virtual machines", "list my VMs", "show
+      storage accounts", "find container apps", and "what resources do I have". USE FOR: list websites, list web apps, list
+      app services, show websites in subscription, resource inventory, find resources by tag, tag analysis, orphaned resource
+      discovery (not for cost analysis), unattached disks, count resources by type, cross-subscription lookup, and Azure Resource
+      Graph queries. DO NOT USE FOR: deploying/changing resources (use azure-deploy), cost optimization (use azure-cost),
+      or non-Azure clouds.'
     version: 1.0.0
     tags: []
     mode: host
@@ -30447,9 +30442,9 @@ groups:
     name: python-appservice-deploy
     path: microsoft-skills/plugins/azure-skills/skills/python-appservice-deploy
     title: python-appservice-deploy
-    summary: 'Deploy Python (Flask/Django/FastAPI) code to Azure App Service Linux. WHEN: \"Flask App Service\", \"Django
-      App Service\", \"FastAPI App Service\", \"deploy Python to App Service\". DO NOT USE FOR: Container Apps, Functions,
-      non-Python, Terraform/Bicep/IaC, full infra — use azure-prepare.'
+    summary: 'Deploy Python (Flask/Django/FastAPI) code to Azure App Service Linux. WHEN: "Flask App Service", "Django App
+      Service", "FastAPI App Service", "deploy Python to App Service". DO NOT USE FOR: Container Apps, Functions, non-Python,
+      Terraform/Bicep/IaC, full infra — use azure-prepare.'
     version: 1.0.0
     tags: []
     mode: container
@@ -31504,8 +31499,8 @@ groups:
   author: Netlify
   source_url: https://github.com/netlify/context-and-tools
   license: MIT
-  summary: Official Netlify agent skills — Functions, Edge Functions, Blobs, Database, Image CDN, Forms, Frameworks, Caching,
-    Config, CLI & Deploy, AI Gateway, Identity. 13 skills covering site config, deployment, serverless, and platform features.
+  summary: 'Netlify: functions, edge functions, blobs, database, image CDN, forms, caching, identity, AI gateway, config and
+    deploys.'
   category: DevOps
   tags:
   - netlify
@@ -31522,7 +31517,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 8b1f28e112ed
+  content_hash: 43985e541eb0
   skills:
   - id: netlify-skills/netlify-access-control
     name: netlify-access-control
@@ -35964,9 +35959,8 @@ groups:
   author: NextLevelBuilder
   source_url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
   license: MIT
-  summary: AI-powered UI/UX design intelligence — 67 styles, 161 color palettes, 57 font pairings, 99 UX guidelines, 25 chart
-    types across 15+ tech stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, Jetpack
-    Compose).
+  summary: 'UI/UX design intelligence: styles, color palettes, font pairings, UX guidelines and chart types for 15+ stacks,
+    plus brand, banner and slide design.'
   category: Design
   tags:
   - ui
@@ -35983,7 +35977,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: e7662d0a2b12
+  content_hash: 35721eb2a645
   skills:
   - id: ui-ux-pro-max-skill/ckm:banner-design
     name: ckm:banner-design

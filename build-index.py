@@ -116,9 +116,13 @@ def fm_scalar(fm: str, key: str) -> str:
         rest = m.group(1)
         if _BLOCK_MARKER_RE.match(rest):
             return _read_block_scalar(lines, idx + 1, rest)
-        # Inline value: strip surrounding quotes if balanced
+        # Inline value: a quoted scalar is unquoted by YAML itself, so its
+        # escapes ('' in single quotes, \" in double) come out as one quote.
         if len(rest) >= 2 and rest[0] == rest[-1] and rest[0] in ("'", '"'):
-            return rest[1:-1].strip()
+            try:
+                return str(yaml.safe_load(rest)).strip()
+            except yaml.YAMLError:
+                return rest[1:-1].strip()
         return rest.strip()
     return ""
 
