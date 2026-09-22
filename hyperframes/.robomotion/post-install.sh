@@ -105,11 +105,14 @@ fetch https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.en.bi
 chmod -R a+rX /opt/hyperframes
 find "$HF_HOME_DIR" -type d -exec chmod 1777 {} +
 
-# /usr/local/bin comes before npm's /usr/bin on PATH, so both `hyperframes`
-# and `npx hyperframes` (npx runs an installed package's command by name)
-# land here.
-real=$(command -v hyperframes)
-cat > /usr/local/bin/hyperframes <<EOF
+# The wrapper takes the place of npm's own link to the CLI and also sits in
+# /usr/local/bin. Both are needed: `npx hyperframes` runs npm's link with
+# npm's bin dir first on PATH, so a wrapper only in /usr/local/bin is skipped
+# and Chrome never gets the proxy CA. Both exec the CLI itself.
+link="$(npm prefix -g)/bin/hyperframes"
+[ -L "$link" ] || { echo "hyperframes: $link is not npm's link to the CLI" >&2; exit 1; }
+real=$(readlink -f "$link")
+cat > /tmp/hyperframes-wrapper <<EOF
 #!/bin/sh
 export HOME="$HF_HOME_DIR"
 export HYPERFRAMES_BROWSER_PATH="$chrome"
@@ -131,6 +134,9 @@ fi
 
 exec "$real" "\$@"
 EOF
-chmod 755 /usr/local/bin/hyperframes
+install -m 755 /tmp/hyperframes-wrapper /usr/local/bin/hyperframes
+rm -f "$link"
+install -m 755 /tmp/hyperframes-wrapper "$link"
+rm -f /tmp/hyperframes-wrapper
 
 hyperframes --version
