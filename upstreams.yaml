@@ -48,9 +48,73 @@ upstreams:
   license_file: LICENSE
   license_sha256: e32449d23085399adc1222f7a17408b730550258e51627c153cb108ca9955823
   include:
-  - skills
+  - skills/agentic-eval
+  - skills/ai-prompt-engineering-safety-review
+  - skills/architecture-blueprint-generator
+  - skills/azure-devops-cli
+  - skills/breakdown-feature-prd
+  - skills/chrome-devtools
+  - skills/conventional-commit
+  - skills/create-agentsmd
+  - skills/create-architectural-decision-record
+  - skills/create-github-action-workflow-specification
+  - skills/create-implementation-plan
+  - skills/create-readme
+  - skills/create-specification
+  - skills/csharp-async
+  - skills/csharp-xunit
+  - skills/documentation-writer
+  - skills/dotnet-best-practices
+  - skills/dotnet-design-pattern-review
+  - skills/editorconfig
+  - skills/excalidraw-diagram-generator
+  - skills/git-commit
+  - skills/github-issues
+  - skills/java-docs
+  - skills/java-junit
+  - skills/java-springboot
+  - skills/javascript-typescript-jest
+  - skills/make-repo-contribution
+  - skills/multi-stage-dockerfile
+  - skills/pdftk-server
+  - skills/playwright-automation-fill-in-form
+  - skills/playwright-explore-website
+  - skills/playwright-generate-test
+  - skills/postgresql-code-review
+  - skills/postgresql-optimization
+  - skills/prd
+  - skills/pytest-coverage
+  - skills/python-mcp-server-generator
+  - skills/refactor
+  - skills/refactor-method-complexity-reduce
+  - skills/refactor-plan
+  - skills/review-and-refactor
+  - skills/sql-code-review
+  - skills/sql-optimization
+  - skills/typescript-mcp-server-generator
+  - skills/update-implementation-plan
+  - skills/web-design-reviewer
+  - skills/webapp-testing
   - LICENSE
   exclude: []
+  local_paths: []
+  into: ''
+- group: aws-skills
+  repo: https://github.com/aws/agent-toolkit-for-aws
+  track: main
+  commit: 7fcb1da17abba610d7becc973c2141b40412e02c
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: 09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b
+  include:
+  - skills
+  - LICENSE
+  - NOTICE
+  exclude:
+  - skills/specialized-skills/migration-and-modernization-skills/aws-transform
+  - skills/specialized-skills/database-skills/rds-db2
   local_paths: []
   into: ''
 - group: azure-skills
@@ -80,7 +144,16 @@ upstreams:
   include:
   - skills
   - LICENSE
-  exclude: []
+  exclude:
+  - skills/cavecrew
+  - skills/caveman-stats
+  - skills/caveman-setup
+  - skills/caveman-discover
+  - skills/caveman-evidence-review
+  - skills/caveman-manage
+  - skills/caveman-optimize
+  - skills/caveman-learn
+  - skills/generated
   local_paths: []
   into: ''
 - group: claude-seo
@@ -111,6 +184,21 @@ upstreams:
   - uninstall.ps1
   - uninstall.sh
   local_paths: []
+- group: cloudflare-skills
+  repo: https://github.com/cloudflare/skills
+  track: main
+  commit: b052c32bab7dd493513260228a36c88294f343f1
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: 58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
 - group: elevenlabs-skills
   repo: https://github.com/elevenlabs/skills
   track: main
@@ -157,17 +245,38 @@ upstreams:
   local_paths: []
   include:
   - skills
-- group: find-skills
-  repo: https://github.com/vercel-labs/skills
+- group: financial-services
+  repo: https://github.com/anthropics/financial-services
   track: main
-  commit: d6b37f62ae23c3825b0ed16c73e123eee0a41fdc
+  commit: 90912d92c73e6fec9176de510976bbdf35e92fa6
+  subdir: plugins/vertical-plugins
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+  include: []
+  exclude:
+  - '*/.mcp.json'
+  - '*/.claude-plugin'
+  - '*/.claude'
+  - '*/hooks'
+  - '*/commands'
+  - '*/.gitignore'
+  - financial-analysis/skills/skill-creator
+  local_paths: []
+  into: plugins
+- group: firecrawl-skills
+  repo: https://github.com/firecrawl/skills
+  track: main
+  commit: bab52f95ea1c95293fc4f551802c285d525bf654
   subdir: ''
   mode: mirror
-  license: MIT
+  license: ISC
   license_file: LICENSE
-  license_sha256: 661142e53c313d2bb5e1b055f5c0a39001450ff1b5e27b89dc4bc7de9a6352ca
+  license_sha256: 8db975b9d59274cd37f19d3f7fec9ce0f2d96daf71e0c69d48dc5358f55dd691
   include:
-  - skills
+  - skills/core
+  - skills/workflows
   - LICENSE
   exclude: []
   local_paths: []
@@ -274,21 +383,36 @@ upstreams:
   exclude: []
   local_paths: []
   into: ''
-- group: just-scrape
-  repo: https://github.com/ScrapeGraphAI/just-scrape
+- group: knowledge-work-plugins
+  repo: https://github.com/anthropics/knowledge-work-plugins
   track: main
-  commit: a3d179ffe2695c5bb7aacffec2c6018d3d9f056e
+  commit: e92b5a0236482ba652bc170b2ded239127cc9861
   subdir: ''
   mode: mirror
-  license: MIT
+  license: Apache-2.0
   license_file: LICENSE
-  license_sha256: 7d794872f07421330bf8f822b869995fa112209c389cffe31e187d5edb9fcba4
+  license_sha256: a6946284993aeec75c7d75906064b66210c46051e562077efb30eb6dcfe72e26
   include:
-  - skills
-  - LICENSE
-  exclude: []
+  - customer-support
+  - data
+  - design
+  - engineering
+  - enterprise-search
+  - finance
+  - human-resources
+  - legal
+  - marketing
+  - operations
+  - product-management
+  - productivity
+  - sales
+  exclude:
+  - '*/.mcp.json'
+  - '*/.claude-plugin'
+  - '*/commands'
+  - product-management/skills/competitive-brief
   local_paths: []
-  into: ''
+  into: plugins
 - group: lark-skills
   repo: https://github.com/larksuite/cli
   track: main
@@ -334,20 +458,6 @@ upstreams:
   - LICENSE
   exclude: []
   local_paths: []
-- group: microsoft-skills
-  repo: https://github.com/microsoft/skills
-  track: main
-  commit: cb45219a2c794cf2cca72e2ea39af87de1c21767
-  subdir: .github
-  mode: mirror
-  license: MIT
-  license_file: LICENSE
-  license_sha256: d9a1b1e30d633d5732ea18e3cba9538d293ebc53e1a9e4e96ab739e0c5c4f1cb
-  include:
-  - plugins
-  exclude: []
-  local_paths: []
-  into: ''
 - group: neon-skills
   repo: https://github.com/neondatabase/agent-skills
   track: main
@@ -377,6 +487,22 @@ upstreams:
   - axis-scenarios
   - axis.config.json
   local_paths: []
+- group: officecli
+  repo: https://github.com/iOfficeAI/OfficeCLI
+  track: main
+  commit: 5a938d2d111ba1873452575c6e3fadb3dd0caae8
+  subdir: ''
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: 7e282402a5a6db33995fe638bb3fe79013f9884d8f7d15a42e481c1e86aadda1
+  include:
+  - skills
+  - LICENSE
+  exclude:
+  - '**/*.pptx'
+  local_paths: []
+  into: ''
 - group: openai-skills
   repo: https://github.com/openai/skills
   track: main
@@ -389,7 +515,10 @@ upstreams:
   include: []
   exclude:
   - figma*
-  - notion-*
+  - hatch-pet
+  - migrate-to-codex
+  - chatgpt-apps
+  - winui-app
   local_paths: []
   into: skills
 - group: prisma-skills
@@ -421,46 +550,6 @@ upstreams:
   exclude: []
   local_paths: []
   into: ''
-- group: rigorpilot-skills
-  repo: https://github.com/lllllllama/RigorPilot-Skills
-  track: main
-  commit: bd91195ad73199b95e24532b581ff12c07dcce09
-  subdir: ''
-  mode: mirror
-  license: MIT
-  license_file: LICENSE
-  license_sha256: 3925c988925b998884eba71d1237b6b20d7add53295605f65abf2e85b58202e9
-  include:
-  - skills
-  - LICENSE
-  exclude: []
-  local_paths: []
-  into: ''
-- group: runcomfy-skills
-  repo: https://github.com/runcomfy-com/skills
-  track: main
-  commit: 65ba8b913ec92afd327661cb845b160a96e480e7
-  subdir: ''
-  mode: mirror
-  license: MIT
-  license_file: LICENSE
-  license_sha256: da9c8da48d4cd81ad349524956e5a5bd2f8c639c1cf581d639023255d62f74f4
-  include: []
-  exclude:
-  - .github
-  - .claude-plugin
-  - README.md
-  - docs
-  - scripts
-  - .gitignore
-  - package.json
-  - package-lock.json
-  - CHANGELOG.md
-  - CONTRIBUTING.md
-  - plugins
-  - LICENSE
-  local_paths: []
-  into: skills
 - group: shadcn-skills
   repo: https://github.com/shadcn-ui/ui
   track: main
@@ -473,6 +562,24 @@ upstreams:
   include:
   - skills
   exclude: []
+  local_paths: []
+  into: ''
+- group: small-business-skills
+  repo: https://github.com/anthropics/knowledge-work-plugins
+  track: main
+  commit: e92b5a0236482ba652bc170b2ded239127cc9861
+  subdir: small-business
+  mode: mirror
+  license: Apache-2.0
+  license_file: LICENSE
+  license_sha256: a6946284993aeec75c7d75906064b66210c46051e562077efb30eb6dcfe72e26
+  include:
+  - skills
+  - shared
+  exclude:
+  - '*/.mcp.json'
+  - '*/.claude-plugin'
+  - '*/commands'
   local_paths: []
   into: ''
 - group: supabase-skills
@@ -513,6 +620,21 @@ upstreams:
   license: MIT
   license_file: LICENSE
   license_sha256: 4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df
+  include:
+  - skills
+  - LICENSE
+  exclude: []
+  local_paths: []
+  into: ''
+- group: tavily-skills
+  repo: https://github.com/tavily-ai/skills
+  track: main
+  commit: 778122e5f9c680f541eeceda5a5b36405eb7980c
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 3a6f01d3dc3c51e09a15c9fd63fa965688c8b549bf2dce183116d9c5528c596e
   include:
   - skills
   - LICENSE

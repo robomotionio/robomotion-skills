@@ -1,0 +1,18 @@
+schema_version: 1
+name: officecli
+title: OfficeCLI
+type: group
+version: 1.0.0
+author: iOfficeAI
+source_url: https://github.com/iOfficeAI/OfficeCLI
+license: Apache-2.0
+summary: 'Word, Excel and PowerPoint files without Office: create, read, edit and check .docx, .xlsx and .pptx with the officecli command line, plus decks, financial models, dashboards, forms and papers.'
+category: Productivity
+tags:
+- docx
+- xlsx
+- pptx
+- word
+- excel
+- powerpoint
+- documents

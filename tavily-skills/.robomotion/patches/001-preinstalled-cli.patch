@@ -1,0 +1,51 @@
+diff --git a/skills/tavily-cli/SKILL.md b/skills/tavily-cli/SKILL.md
+index 97a4b43..8d7c61a 100644
+--- a/skills/tavily-cli/SKILL.md
++++ b/skills/tavily-cli/SKILL.md
+@@ -16,40 +16,13 @@ Run `tvly --help` or `tvly <command> --help` for full option details.
+ 
+ ## Setup
+ 
+-If `tvly` is not installed:
++`tvly` is already installed, at a pinned version, with the Tavily skills
++you are reading. Do not reinstall it, run `tvly update`, or run `tvly init`:
++each one replaces the reviewed CLI or skills with whatever is newest.
+ 
+-```bash
+-curl -fsSL https://cli.tavily.com/install.sh | bash
+-```
+-
+-Or manually: `uv tool install tavily-cli` / `pip install tavily-cli`
+-
+-For agent setup, start keyless unless the user asks to sign in or the requested
+-task needs map, crawl, or research. If the installer did not already complete
+-setup, run:
+-
+-```bash
+-tvly init --skip-auth
+-```
+-
+-This installs or updates the Tavily skills and verifies a live keyless search.
+-Do not look for an API key or authenticate before the first search or extract
+-request.
+-
+-When authentication is requested or required, use guided setup:
+-
+-```bash
+-tvly init
+-
+-# Prefer to open the sign-in link yourself
+-tvly init --no-browser
+-```
+-
+-`tvly init` reuses an existing credential, installs or updates the Tavily
+-skills bundled with that CLI release, and verifies a live search. Run `tvly
+-update` first when refreshing bundled skills. Use `tvly init --skip-skills`
+-when the skills are already installed and only authentication or verification
+-is needed.
++Authentication comes from a `TAVILY_API_KEY` set in the agent's environment.
++The agent runs unattended: if a command needs a key and none is set, report
++that and stop instead of starting `tvly login`.
+ 
+ Search and extract can run immediately without authentication, subject to a
+ keyless rate-limit cap. If either command reaches that cap in an interactive

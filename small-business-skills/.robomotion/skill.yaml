@@ -1,0 +1,18 @@
+schema_version: 1
+name: small-business-skills
+title: Small Business
+type: group
+version: 1.0.0
+author: Anthropic
+source_url: https://github.com/anthropics/knowledge-work-plugins
+license: Apache-2.0
+summary: 'Anthropic''s small-business operator kit: bills and invoices, payroll prep, month-end close, cash flow, leads and follow-ups, hiring, contracts, reviews and marketing, with a router that picks
+  the right skill.'
+category: Business
+tags:
+- business
+- small-business
+- accounting
+- invoices
+- payroll
+- crm

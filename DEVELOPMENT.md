@@ -172,17 +172,24 @@ the folder. Use `--exclude` for skills we can't redistribute or run, and
 | Group | Difference |
 |---|---|
 | `anthropic-skills/` | Apache-licensed skills only; `docx`, `pdf`, `pptx` and `xlsx` are rights-reserved |
-| `caveman-skills/` | MIT-licensed skills only |
-| `openai-skills/` | `skills/.curated` only, minus the unlicensed Figma and Notion skills |
+| `caveman-skills/` | MIT-licensed skills only, minus the eight that need Caveman Cloud (its gateway sees a repo's LLM traffic), the `caveman` CLI, or Claude Code's hooks and sub-agents |
+| `openai-skills/` | `skills/.curated` only, minus the Figma skills (under Figma's developer terms, not a licence) and four for Codex or Windows apps: `hatch-pet`, `migrate-to-codex`, `chatgpt-apps`, `winui-app`. The Notion skills are MIT and need a Notion MCP server |
 | `mattpocock-skills/` | `engineering` and `productivity` folders only |
 | `google-skills/` | One skill excluded: it executes base64-decoded code |
 | `gws-cli/` | Skills only, not the CLI source |
-| `runcomfy-skills/` | Built from the official `runcomfy-com/skills`; the list's `prime-skills/runcomfy-agent-skills` and `genmedia-labs/skills` are copies of it |
+| `awesome-copilot/` | 47 of 456 skills: those above 10K skills.sh installs (installing the whole pack gives every skill about 9K), minus ten that need a tool, account or IDE the sandbox lacks |
 | `marketing-skills/` | Patched; `.robomotion/post-install.sh` wraps `tools/clis/*.js` as short-name commands on `$PATH` |
 | `claude-seo/` | Patched (reports say Robomotion); its Python runtime and Chromium are built at image build |
 | `ui-ux-pro-max-skill/` | Patched |
 | `hyperframes/` | Chrome, FFmpeg and local voice and caption models installed at image build |
 | `higgsfield-skills/` | CLI installed at a pinned version at image build, so the skills never pipe an unpinned installer |
+| `knowledge-work-plugins/` | 13 plugins; not `partner-built`, `bio-research`, `cowork-plugin-management`, `pdf-viewer`, or `small-business` (its own group). Product management's `competitive-brief` is left out: marketing's has the same name. No MCP config, plugin manifests or slash commands |
+| `small-business-skills/` | The `small-business` plugin of `anthropics/knowledge-work-plugins` as a group of its own, so its `lead-triage` and the sales plugin's keep their own ids |
+| `financial-services/` | `plugins/vertical-plugins` only; no hooks, slash commands, MCP config, or the copied `skill-creator`. Patched: `dcf-model` weights WACC on gross debt and its validator checks the WACC band (upstream #340, #337); `ib-check-deck` compares figures within a fiscal period, so a multi-year deck is no longer flagged against itself (#339) |
+| `aws-skills/` | `skills/` only, minus `aws-transform` (pipes its CLI installer, runs jobs from `~/.aws`) and `rds-db2` (pipes a bit.ly link into bash) |
+| `firecrawl-skills/` | `core` and `workflows` only (`build` is for apps that call Firecrawl); CLI installed at a pinned version at image build, its update check and telemetry off |
+| `tavily-skills/` | Patched (setup says the CLI is installed); CLI installed at a pinned version at image build |
+| `officecli/` | Patched (setup says the CLI is installed); the release binary is installed at a pinned version and checked by hash, its self-update and self-install off; style-sample `.pptx` files left out |
 
 ### Popular, but not here
 
@@ -193,6 +200,13 @@ the folder. Use `--exclude` for skills we can't redistribute or run, and
 | [101-skills/superpowers](https://github.com/101-skills/superpowers) | Unlicensed copy of an unlicensed repo |
 | [flowkit-labs/skills](https://github.com/flowkit-labs/skills) | New anonymous repo whose own README installs from a different org |
 | [stablyai/orca](https://github.com/stablyai/orca) | Its skills drive the Orca desktop IDE through its own CLI, which no sandbox has. Added, then removed |
+| [vercel-labs/skills](https://github.com/vercel-labs/skills) (`find-skills`) | Tells the agent to install any skill from skills.sh at run time (`npx skills add … -g -y`), past this review. Added, then removed |
+| [microsoft/skills](https://github.com/microsoft/skills) | About 1.3K skills.sh installs across 213 skills; `azure-skills` covers Azure. Added, then removed |
+| [lllllllama/RigorPilot-Skills](https://github.com/lllllllama/RigorPilot-Skills) | Deep-learning paper reproduction; its install count was a four-week spike, then about 50 a week. Added, then removed |
+| [ScrapeGraphAI/just-scrape](https://github.com/ScrapeGraphAI/just-scrape) | Single-digit weekly installs; `firecrawl-skills` covers scraping. Added, then removed |
+| [runcomfy-com/skills](https://github.com/runcomfy-com/skills) | 364 installs; the popular listings were copies of it. Replicate, Higgsfield and ElevenLabs cover generation. Added, then removed |
+| [firecrawl/cli](https://github.com/firecrawl/cli) | No licence file; `firecrawl/skills` carries the same skills under ISC |
+| [apify/agent-skills](https://github.com/apify/agent-skills), [browserbase/skills](https://github.com/browserbase/skills) | No licence file |
 
 ## Discovery index (`index.yaml`)
 

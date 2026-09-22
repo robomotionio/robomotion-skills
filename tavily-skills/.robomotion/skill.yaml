@@ -1,0 +1,15 @@
+schema_version: 1
+name: tavily-skills
+title: Tavily Skills
+type: group
+version: 1.0.0
+author: Tavily
+source_url: https://github.com/tavily-ai/skills
+license: MIT
+summary: 'Web search for agents through the Tavily CLI: search, extract, crawl and map sites, and run deep research with cited reports.'
+category: Research
+tags:
+- web-search
+- research
+- extract
+- crawl

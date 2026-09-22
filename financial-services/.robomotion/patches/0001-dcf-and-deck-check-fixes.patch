@@ -1,0 +1,191 @@
+diff --git i/plugins/financial-analysis/skills/dcf-model/SKILL.md w/plugins/financial-analysis/skills/dcf-model/SKILL.md
+index cc17fc0..64fd2f4 100644
+--- i/plugins/financial-analysis/skills/dcf-model/SKILL.md
++++ w/plugins/financial-analysis/skills/dcf-model/SKILL.md
+@@ -224,21 +224,26 @@ Determine Pre-Tax Cost of Debt from:
+ **Capital Structure Weights:**
+ 
+ ```
+-Market Value Equity = Current Stock Price × Shares Outstanding
+-Net Debt = Total Debt - Cash & Equivalents
+-Enterprise Value = Market Cap + Net Debt
++Market Value of Equity = Current Stock Price × Diluted Shares Outstanding
++Market Value of Debt   = Total (gross) Debt   (book value is an accepted proxy)
++Total Capital          = Market Value of Equity + Market Value of Debt
+ 
+-Equity Weight = Market Cap / Enterprise Value
+-Debt Weight = Net Debt / Enterprise Value
++Equity Weight = Market Value of Equity / Total Capital
++Debt Weight   = Market Value of Debt   / Total Capital
+ 
+ WACC = (Cost of Equity × Equity Weight) + (After-Tax Cost of Debt × Debt Weight)
+ ```
+ 
++Weight on **gross** debt, never net debt: both weights then sit in [0, 1] and
++sum to 1. Cash belongs in the equity bridge (Equity Value = Enterprise Value −
++Net Debt), not in the capital-structure weights.
++
+ **Special Cases:**
+-- **Net Cash Position**: If Cash > Debt, Net Debt is NEGATIVE
+-  - Debt Weight may be negative
+-  - WACC calculation adjusts accordingly
++- **Net Cash Position** (Cash > Debt): the weights are unchanged, still on
++  gross debt; the cash is added back in the equity bridge
+ - **No Debt**: WACC = Cost of Equity
++- **Guard**: if a Debt Weight comes out below 0 or above 1, the inputs are
++  wrong; stop and fix them rather than report a WACC
+ 
+ **Typical WACC Ranges:**
+ - Large Cap, Stable: 7-9%
+@@ -1053,10 +1058,9 @@ WEIGHTED AVERAGE COST OF CAPITAL,X.XX%,[Green output]
+ **Key WACC Formulas:**
+ ```
+ Market Cap = Price × Shares
+-Net Debt = Total Debt - Cash
+-Enterprise Value = Market Cap + Net Debt
+-Equity Weight = Market Cap / EV
+-Debt Weight = Net Debt / EV
++Total Capital = Market Cap + Total Debt
++Equity Weight = Market Cap / Total Capital
++Debt Weight = Total Debt / Total Capital
+ WACC = (Cost of Equity × Equity Weight) + (After-tax Cost of Debt × Debt Weight)
+ ```
+ 
+diff --git i/plugins/financial-analysis/skills/dcf-model/scripts/validate_dcf.py w/plugins/financial-analysis/skills/dcf-model/scripts/validate_dcf.py
+index 6c8172c..aad491a 100755
+--- i/plugins/financial-analysis/skills/dcf-model/scripts/validate_dcf.py
++++ w/plugins/financial-analysis/skills/dcf-model/scripts/validate_dcf.py
+@@ -160,18 +160,25 @@ class DCFModelValidator:
+     def _check_wacc_range(self):
+         """Check if WACC is in reasonable range"""
+         try:
+-            wacc_sheet = self.workbook_values.get('WACC') or self.workbook_values['DCF']
++            # An openpyxl Workbook has no .get(): the old lookup raised on every
++            # call and the except below turned that into a warning, so the WACC
++            # band was never checked. Look on the WACC sheet first, then DCF.
++            wb = self.workbook_values
+             wacc = None
+ 
+-            for row in wacc_sheet.iter_rows(max_row=100, max_col=20):
+-                for cell in row:
+-                    if cell.value and isinstance(cell.value, str):
+-                        if 'wacc' in cell.value.lower():
+-                            for offset in range(1, 5):
+-                                adjacent = wacc_sheet.cell(cell.row, cell.column + offset).value
+-                                if isinstance(adjacent, (int, float)) and 0 < adjacent < 1:
+-                                    wacc = adjacent
+-                                    break
++            for name in [s for s in ('WACC', 'DCF') if s in wb.sheetnames]:
++                wacc_sheet = wb[name]
++                for row in wacc_sheet.iter_rows(max_row=100, max_col=20):
++                    for cell in row:
++                        if cell.value and isinstance(cell.value, str):
++                            if 'wacc' in cell.value.lower():
++                                for offset in range(1, 5):
++                                    adjacent = wacc_sheet.cell(cell.row, cell.column + offset).value
++                                    if isinstance(adjacent, (int, float)) and 0 < adjacent < 1:
++                                        wacc = adjacent
++                                        break
++                if wacc is not None:
++                    break
+ 
+             if wacc is not None:
+                 if wacc < 0.05 or wacc > 0.20:
+diff --git i/plugins/financial-analysis/skills/ib-check-deck/scripts/extract_numbers.py w/plugins/financial-analysis/skills/ib-check-deck/scripts/extract_numbers.py
+index e4c490a..c6c7982 100644
+--- i/plugins/financial-analysis/skills/ib-check-deck/scripts/extract_numbers.py
++++ w/plugins/financial-analysis/skills/ib-check-deck/scripts/extract_numbers.py
+@@ -30,6 +30,39 @@ class NumberInstance:
+     context: str        # Surrounding text for context
+     line_number: int    # Line number in source file
+     category: str       # Detected category (revenue, margin, multiple, etc.)
++    period: str = ''    # Fiscal period the figure belongs to (e.g. 2024, 2025E); '' if none
++
++
++# A period marker: FY2024, FY24, FY 2024, CY2023, 2025E, 2023A, or a bare 20xx
++# year. A (actual) is the same period as the bare year; E/B/P (estimate,
++# budget, projection) stay distinct from it.
++PERIOD_PATTERN = re.compile(
++    r"\b(?:(?:FY|CY)\s?'?(?P<fy>\d{4}|\d{2})|(?P<yr>(?:19|20)\d{2}))(?P<sfx>[AEBP])?\b",
++    re.IGNORECASE,
++)
++
++
++def period_markers(line: str) -> list[tuple[int, int, str]]:
++    """(start, end, period) for every period marker in a line, in order."""
++    markers = []
++    for m in PERIOD_PATTERN.finditer(line):
++        year = m.group('fy') or m.group('yr')
++        if len(year) == 2:
++            year = f"20{year}"
++        sfx = (m.group('sfx') or '').upper()
++        markers.append((m.start(), m.end(), year + ('' if sfx in ('', 'A') else sfx)))
++    return markers
++
++
++def attribute_period(start: int, end: int, next_start: int, markers) -> str:
++    """The period a figure belongs to: the first marker after it and before the
++    next figure, else the last marker before it. Distance alone is wrong on
++    "EBITDA was $20m in FY2023 and $25m in FY2024": $25m sits nearer FY2023."""
++    for m_start, _m_end, period in markers:
++        if end <= m_start < next_start:
++            return period
++    before = [p for m_start, m_end, p in markers if m_end <= start]
++    return before[-1] if before else ''
+ 
+ 
+ def normalize_number(value_str: str, unit: str) -> float:
+@@ -135,7 +168,14 @@ def extract_numbers(content: str) -> list[NumberInstance]:
+             continue
+ 
+         # Find all numbers in the line
+-        for match in number_pattern.finditer(line):
++        markers = period_markers(line)
++        matches = [
++            m for m in number_pattern.finditer(line)
++            # a number inside a period marker (the 24 of FY24) is not a figure
++            if not any(s <= m.start() < e for s, e, _p in markers)
++        ]
++        for i, match in enumerate(matches):
++            next_start = matches[i + 1].start() if i + 1 < len(matches) else len(line)
+             value_str = match.group('number')
+             currency = match.group('currency') or ''
+             unit = match.group('unit') or ''
+@@ -177,7 +217,8 @@ def extract_numbers(content: str) -> list[NumberInstance]:
+                 slide=current_slide,
+                 context=context,
+                 line_number=line_num,
+-                category=category
++                category=category,
++                period=attribute_period(match.start(), match.end(), next_start, markers),
+             ))
+ 
+     return numbers
+@@ -187,14 +228,16 @@ def find_inconsistencies(numbers: list[NumberInstance]) -> list[dict]:
+     """Find potential inconsistencies in extracted numbers."""
+     inconsistencies = []
+ 
+-    # Group numbers by category
++    # Group numbers by category and period: FY2023 and FY2024 revenue are
++    # different figures, not a contradiction. Figures with no period marker
++    # are compared with each other, as before, but never with dated ones.
+     by_category = defaultdict(list)
+     for num in numbers:
+         if num.category != 'other':
+-            by_category[num.category].append(num)
++            by_category[(num.category, num.period)].append(num)
+ 
+     # Check each category for mismatches
+-    for category, instances in by_category.items():
++    for (category, period), instances in by_category.items():
+         if len(instances) < 2:
+             continue
+ 
+@@ -223,6 +266,7 @@ def find_inconsistencies(numbers: list[NumberInstance]) -> list[dict]:
+             for other_group in value_groups[1:]:
+                 inconsistencies.append({
+                     'category': category,
++                    'period': period or None,
+                     'expected': {
+                         'value': main_group[0].value,
+                         'slides': sorted(set(n.slide for n in main_group)),

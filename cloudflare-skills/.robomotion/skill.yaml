@@ -1,0 +1,16 @@
+schema_version: 1
+name: cloudflare-skills
+title: Cloudflare Skills
+type: group
+version: 1.0.0
+author: Cloudflare
+source_url: https://github.com/cloudflare/skills
+license: Apache-2.0
+summary: 'Cloudflare''s official skills: Workers, Wrangler, Durable Objects, the Agents SDK, sandboxes, email, Turnstile, Zero Trust and web performance.'
+category: DevOps
+tags:
+- cloudflare
+- workers
+- wrangler
+- edge
+- deploy

@@ -1,0 +1,17 @@
+schema_version: 1
+name: firecrawl-skills
+title: Firecrawl Skills
+type: group
+version: 1.0.0
+author: Firecrawl
+source_url: https://github.com/firecrawl/skills
+license: ISC
+summary: 'Web data through the Firecrawl CLI: search, scrape, crawl, map and download sites, parse documents, plus ready-made flows for lead generation, market and competitor research, SEO audits and knowledge
+  bases.'
+category: Automation
+tags:
+- scraping
+- crawling
+- web-search
+- research
+- lead-generation

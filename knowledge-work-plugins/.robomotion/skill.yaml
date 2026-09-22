@@ -1,0 +1,19 @@
+schema_version: 1
+name: knowledge-work-plugins
+title: Knowledge Work Plugins
+type: group
+version: 1.0.0
+author: Anthropic
+source_url: https://github.com/anthropics/knowledge-work-plugins
+license: Apache-2.0
+summary: 'Anthropic''s skills for business teams: finance close and reconciliation, sales pipeline, customer support, HR, legal review, operations, data analysis, product and marketing work.'
+category: Business
+tags:
+- business
+- finance
+- sales
+- support
+- hr
+- legal
+- operations
+- data
