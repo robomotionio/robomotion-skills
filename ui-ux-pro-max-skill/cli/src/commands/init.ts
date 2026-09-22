@@ -101,17 +101,18 @@ async function templateInstall(
   targetDir: string,
   aiType: AIType,
   spinner: ReturnType<typeof ora>,
-  isGlobal = false
+  isGlobal = false,
+  force = false
 ): Promise<string[]> {
   spinner.text = isGlobal
     ? 'Generating skill files globally...'
     : 'Generating skill files from templates...';
 
   if (aiType === 'all') {
-    return generateAllPlatformFiles(targetDir, isGlobal);
+    return generateAllPlatformFiles(targetDir, isGlobal, force);
   }
 
-  return generatePlatformFiles(targetDir, aiType, isGlobal);
+  return generatePlatformFiles(targetDir, aiType, isGlobal, force);
 }
 
 export async function initCommand(options: InitOptions): Promise<void> {
@@ -178,7 +179,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
       }
     } else {
       // Use new template-based generation (default)
-      copiedFolders = await templateInstall(cwd, aiType, spinner, isGlobal);
+      copiedFolders = await templateInstall(cwd, aiType, spinner, isGlobal, options.force);
       installMethod = 'template';
     }
 

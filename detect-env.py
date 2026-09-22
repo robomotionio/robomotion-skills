@@ -294,6 +294,41 @@ def build_script_catalog(unit_dir: Path):
     return shared
 
 
+def frontmatter_required_env(md_text: str) -> set:
+    """Env vars a SKILL.md declares as required in its frontmatter.
+
+    Reads the OpenClaw convention, `metadata.openclaw.requires.env`, which
+    upstream packs such as elevenlabs/skills use to say "this skill needs
+    ELEVENLABS_API_KEY". `metadata` may be a YAML mapping or an inline JSON
+    string, as elevenlabs writes it.
+    """
+    if not md_text.startswith("---"):
+        return set()
+    parts = md_text.split("---", 2)
+    if len(parts) < 3:
+        return set()
+    try:
+        import yaml
+        fm = yaml.safe_load(parts[1]) or {}
+    except Exception:
+        return set()
+    meta = fm.get("metadata") if isinstance(fm, dict) else None
+    if isinstance(meta, str):
+        try:
+            import json
+            meta = json.loads(meta)
+        except ValueError:
+            return set()
+    if not isinstance(meta, dict):
+        return set()
+    openclaw = meta.get("openclaw")
+    requires = openclaw.get("requires") if isinstance(openclaw, dict) else None
+    env = requires.get("env") if isinstance(requires, dict) else None
+    if not isinstance(env, list):
+        return set()
+    return {v for v in env if isinstance(v, str) and re.fullmatch(r"[A-Z_][A-Z0-9_]*", v)}
+
+
 def detect_for_skill(skill_dir: Path, shared, env_example_required):
     """
     Returns expected (required:set, optional:set) for the skill.
@@ -312,6 +347,11 @@ def detect_for_skill(skill_dir: Path, shared, env_example_required):
         req, opt = scan_file(path)
         required |= req
         optional |= opt
+
+    # 1b. Vars the skill declares in its own frontmatter. API-only skills
+    #     (elevenlabs) ship no scripts, only a declaration, so without this the
+    #     key the skill cannot run without never reaches env.required.
+    required |= frontmatter_required_env(md_text)
 
     # 2. Group-shared scripts referenced by name in SKILL.md.
     for name, (req, opt) in shared.items():

@@ -78,6 +78,9 @@ All data is stored locally in SQLite:
 ~/.cache/claude-seo/drift/baselines.db
 ```
 
+Set `CLAUDE_SEO_DRIFT_DIR` to keep the database somewhere else, such as a folder
+that survives between runs; `baselines.db` is created inside it.
+
 ### Tables
 
 - **baselines**: Captured snapshots with all SEO elements

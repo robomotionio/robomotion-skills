@@ -100,6 +100,66 @@ fetch https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.en.bi
   c6138d6d58ecc8322097e0f987c32f1be8bb0a18532a3f88f734d1bbf9c41e5d \
   "$CACHE/whisper/models/ggml-small.en.bin"
 
+# remove-background's subject-matting model, which embedded-captions mattes
+# every clip with; the CLI would otherwise fetch it unpinned on first use.
+fetch https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_human_seg.onnx \
+  01eb6a29a5c4d8edb30b56adad9bb3a2a0535338e480724a213e0acfd2d1c73c \
+  "$CACHE/background-removal/models/u2net_human_seg.onnx"
+
+# embedded-captions' scripts were written against a built hyperframes source
+# checkout: they look for <root>/packages/cli/dist/cli.js and require
+# puppeteer, sharp and gsap from <root>/node_modules. The npm package has
+# none of that layout, so every script exited 3. This builds a root of that
+# shape from the installed CLI, and a patch in .robomotion/patches puts it
+# first on the scripts' search list.
+#   cli.js    runs the wrapper below, so HOME, the pinned Chrome and the proxy
+#             CA apply exactly as for `hyperframes` itself.
+#   puppeteer is the CLI's own puppeteer-core, launching the pinned Chrome the
+#             way the CLI does (the scripts ask for "the" Chrome, and
+#             puppeteer-core ships none).
+#   sharp     is the CLI's own.
+#   gsap      is the version the CLI's templates load from a CDN; the layout
+#             checks inject it so they never wait on the network.
+HF_ROOT=/opt/hyperframes/root
+hf_pkg="$(npm root -g)/hyperframes"
+GSAP_VERSION=$(sed -n 's/.*GSAP_CDN_VERSION = "\([0-9.]*\)".*/\1/p' "$hf_pkg/dist/cli.js" | head -n 1)
+[ -n "$GSAP_VERSION" ] || { echo "hyperframes: no GSAP_CDN_VERSION in the CLI" >&2; exit 1; }
+mkdir -p "$HF_ROOT/packages/cli/dist"
+npm install --prefix "$HF_ROOT" --no-fund --no-audit --no-save "gsap@${GSAP_VERSION}"
+# The folder a dependency of the CLI is installed in, found the way Node finds
+# it from the CLI (require.resolve on "<pkg>/package.json" fails for packages
+# whose "exports" leave package.json out, sharp among them).
+pkgdir() {
+  (cd "$hf_pkg" && node -e '
+    const [fs, path, name] = [require("fs"), require("path"), process.argv[1]];
+    const dir = require.resolve.paths(name).map((d) => path.join(d, name))
+      .find((d) => fs.existsSync(path.join(d, "package.json")));
+    if (!dir) { console.error("hyperframes: no " + name + " beside the CLI"); process.exit(1); }
+    console.log(dir);' "$1")
+}
+core=$(pkgdir puppeteer-core)
+sharp=$(pkgdir sharp)
+ln -sfn "$sharp" "$HF_ROOT/node_modules/sharp"
+mkdir -p "$HF_ROOT/node_modules/puppeteer"
+echo '{ "name": "puppeteer", "main": "index.js" }' > "$HF_ROOT/node_modules/puppeteer/package.json"
+cat > "$HF_ROOT/node_modules/puppeteer/index.js" <<EOF
+const core = require("$core");
+module.exports = {
+  ...core,
+  launch: (opts = {}) =>
+    core.launch({
+      ...opts,
+      executablePath: "$chrome",
+      headless: true,
+      env: { ...process.env, ...(opts.env || {}), HOME: "$HF_HOME_DIR" },
+    }),
+};
+EOF
+cat > "$HF_ROOT/packages/cli/dist/cli.js" <<'EOF'
+const r = require("child_process").spawnSync("/usr/local/bin/hyperframes", process.argv.slice(2), { stdio: "inherit" });
+process.exit(r.status === null ? 1 : r.status);
+EOF
+
 # Any uid writes its own files into the CLI's home; nobody removes another's.
 # (The CLI makes its folders 0700, parents included, so /opt/hyperframes too.)
 chmod -R a+rX /opt/hyperframes

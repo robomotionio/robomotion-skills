@@ -23,6 +23,7 @@ const os = require("os");
 // accept ANY puppeteer@* the bun store holds (not a pinned version).
 const HF_ROOTS = [
   process.env.HYPERFRAMES_ROOT,
+  "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
   path.resolve(__dirname, "../../.."), // skills/embedded-captions/scripts → repo root if in-repo
   path.join(os.homedir(), "Downloads", "hyperframes"),
 ].filter(Boolean);

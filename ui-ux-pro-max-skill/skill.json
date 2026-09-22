@@ -35,7 +35,8 @@
     "droid",
     "warp",
     "augment",
-    "antigravity"
+    "antigravity",
+    "openclaw"
   ],
   "install": "npx uipro-cli init --ai {{platform}}"
 }

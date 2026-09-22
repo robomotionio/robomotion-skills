@@ -41,6 +41,7 @@ function withPreviewGsapSri(html, gsapSource) {
 
 const HF_ROOTS = [
   process.env.HYPERFRAMES_ROOT,
+  "/opt/hyperframes/root", // Robomotion image: .robomotion/post-install.sh
   path.resolve(__dirname, "../../.."),
   path.join(os.homedir(), "Downloads", "hyperframes"),
 ].filter(Boolean);

@@ -220,10 +220,19 @@ def find_units(repo_root: str) -> list:
     return sorted(units)
 
 
-def needs_sandbox(skill_dir: str) -> str:
+def needs_sandbox(skill_dir: str, group_dir: str | None = None) -> str:
+    # Mirrors the launcher's launchplan.go needsSandbox: a skill runs in a
+    # container when it ships scripts/ or a post-install.sh, and so does every
+    # skill in a group whose .robomotion/post-install.sh or bin/ installs the
+    # tools the skills call (officecli, claude-seo, hyperframes ...).
     scripts = os.path.join(skill_dir, "scripts")
     has_scripts = os.path.isdir(scripts) and any(os.scandir(scripts))
     if has_scripts or os.path.isfile(os.path.join(skill_dir, "post-install.sh")):
+        return "container"
+    if group_dir and (
+        os.path.isfile(os.path.join(group_dir, ROBOMOTION_DIR, "post-install.sh"))
+        or os.path.isdir(os.path.join(group_dir, "bin"))
+    ):
         return "container"
     return "host"
 
@@ -266,7 +275,7 @@ def read_skill(repo_root: str, skill_rel: str, group: dict | None) -> dict:
         "summary": summary,
         "version": version,
         "tags": fm_tags(fm),
-        "mode": needs_sandbox(skill_abs),
+        "mode": needs_sandbox(skill_abs, os.path.join(repo_root, group["path"]) if group is not None else None),
         "env": {
             "required": env_names(os.path.join(skill_abs, "env.required")),
             "optional": env_names(os.path.join(skill_abs, "env.optional")),

@@ -1,0 +1,36 @@
+diff --git i/scripts/drift_baseline.py w/scripts/drift_baseline.py
+index cd5dd269..00775b72 100644
+--- i/scripts/drift_baseline.py
++++ w/scripts/drift_baseline.py
+@@ -9,7 +9,7 @@ Usage:
+     python drift_baseline.py <url> [--skip-cwv]
+ 
+ Output: JSON with baseline ID, timestamp, and captured elements.
+-Storage: ~/.cache/claude-seo/drift/baselines.db
++Storage: $CLAUDE_SEO_DRIFT_DIR/baselines.db, default ~/.cache/claude-seo/drift/baselines.db
+ """
+ 
+ import argparse
+@@ -32,7 +32,7 @@ sys.path.insert(0, SCRIPTS_DIR)
+ 
+ from google_auth import validate_url  # noqa: E402
+ 
+-DB_DIR = os.path.expanduser("~/.cache/claude-seo/drift")
++DB_DIR = os.environ.get("CLAUDE_SEO_DRIFT_DIR") or os.path.expanduser("~/.cache/claude-seo/drift")
+ DB_PATH = os.path.join(DB_DIR, "baselines.db")
+ 
+ # UTM parameters to strip during URL normalization
+diff --git i/skills/seo-drift/SKILL.md w/skills/seo-drift/SKILL.md
+index c13c593a..588864db 100644
+--- i/skills/seo-drift/SKILL.md
++++ w/skills/seo-drift/SKILL.md
+@@ -78,6 +78,9 @@ All data is stored locally in SQLite:
+ ~/.cache/claude-seo/drift/baselines.db
+ ```
+ 
++Set `CLAUDE_SEO_DRIFT_DIR` to keep the database somewhere else, such as a folder
++that survives between runs; `baselines.db` is created inside it.
++
+ ### Tables
+ 
+ - **baselines**: Captured snapshots with all SEO elements

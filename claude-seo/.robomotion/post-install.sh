@@ -39,6 +39,12 @@ site=$(python3 -c 'import site; print(site.getsitepackages()[0])')
 cat > "$site/robomotion_claude_seo.py" <<'PY'
 import os, sys
 os.environ.setdefault("CLAUDE_SEO_DATA_DIR", "/opt/claude-seo")
+# seo-drift compares a page with the baseline it saved on an earlier run, so
+# the baselines must outlive the container. Upstream keeps them under the
+# user's home, which here is the host user's and may not exist; the agent's
+# own folder, /workspace, is what survives between runs.
+if os.path.isdir("/workspace") and os.access("/workspace", os.W_OK):
+    os.environ.setdefault("CLAUDE_SEO_DRIFT_DIR", "/workspace/.claude-seo/drift")
 _argv0 = (sys.argv[0] if getattr(sys, "argv", None) else "") or ""
 if _argv0.replace("\\", "/").endswith("/scripts/runtime.py") and "claude-seo" in _argv0:
     for _key in ("HTTPS_PROXY", "HTTP_PROXY", "ALL_PROXY", "https_proxy", "http_proxy", "all_proxy"):
