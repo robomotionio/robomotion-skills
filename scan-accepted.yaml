@@ -7,30 +7,6 @@ accepted:
   rule: hidden-unicode
   path: emilkowalski-skills/skills/improve-animations/PLAN-TEMPLATE.md
   reason: one zero-width space before a code fence, so the template can show a fence inside a fence
-- key: 65b922fbb21146f8
-  rule: env-sweep
-  path: awesome-copilot/skills/poka-yoke/scripts/detect_hazards.py
-  text: negate=r"(config|env|settings)\.(ts|js)"),
-  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
-    a regex in a linter'
-- key: 4c774e3a385b34ae
-  rule: registry-override
-  path: awesome-copilot/skills/python-pypi-package-builder/SKILL.md
-  text: "\u2514\u2500\u2500 Verify: pip install --index-url https://test.pypi.org/simple/ your-package"
-  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
-    a regex in a linter'
-- key: 04b07b53c01fba88
-  rule: registry-override
-  path: awesome-copilot/skills/python-pypi-package-builder/references/ci-publishing.md
-  text: pip install --index-url https://test.pypi.org/simple/ your-package
-  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
-    a regex in a linter'
-- key: 536386fc9ecd0c81
-  rule: registry-override
-  path: awesome-copilot/skills/python-pypi-package-builder/references/versioning-strategy.md
-  text: pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ your-package==1.2.3
-  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
-    a regex in a linter'
 - key: c8eb9f600b87e6de
   rule: credential-path
   path: google-skills/skills/ads/google-ads-api-quickstart/SKILL.md
@@ -67,12 +43,6 @@ accepted:
   text: 'config.load_kube_config() # Loads from ~/.kube/config'
   reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
     a regex in a linter'
-- key: f14f3219b25c8352
-  rule: drop-site
-  path: microsoft-skills/plugins/microsoft-365-agents-toolkit/skills/teams-app-developer/experts/teams/dev.debug-test-ts.md
-  text: 7. For testing with real Teams clients locally, use a tunneling solution (ngrok, dev tunnels, Cloudflare Tunnel) to expo
-  reason: 'vendor documentation read on 2026-09-21: where a CLI stores its own credentials, a shell profile PATH line, TestPyPI, a tunnelling tool named in prose,
-    a regex in a linter'
 - key: 488e8a4eb7406d21
   rule: credential-path
   path: caveman-skills/skills/caveman-compress/scripts/compress.py
@@ -93,6 +63,82 @@ accepted:
   path: openai-skills/skills/cloudflare-deploy/references/pages-functions/patterns.md
   text: 'fetch(''https://webhook.site/...'', { method: ''POST'' })'
   reason: 'read 2026-09-21: placeholder tunnel and webhook URLs inside documentation examples'
+- key: b5750cdf28bf3a95
+  rule: pipe-to-shell
+  path: officecli/.robomotion/patches/001-preinstalled-cli.patch
+  text: '-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`'
+  reason: 'read 2026-09-22: lines our patch removes, the vendor installer it replaces with a pinned install at image build'
+- key: b5ccdea51830e272
+  rule: pipe-to-shell
+  path: officecli/.robomotion/patches/001-preinstalled-cli.patch
+  text: -curl -fsSL https://d.officecli.ai/install.sh | bash
+  reason: 'read 2026-09-22: lines our patch removes, the vendor installer it replaces with a pinned install at image build'
+- key: 22681cd4710d0da1
+  rule: pipe-to-shell
+  path: officecli/.robomotion/patches/001-preinstalled-cli.patch
+  text: '- curl -fsSL https://d.officecli.ai/install.sh | bash'
+  reason: 'read 2026-09-22: lines our patch removes, the vendor installer it replaces with a pinned install at image build'
+- key: 785d22eac19f8d23
+  rule: pipe-to-shell
+  path: tavily-skills/.robomotion/patches/001-preinstalled-cli.patch
+  text: -curl -fsSL https://cli.tavily.com/install.sh | bash
+  reason: 'read 2026-09-22: lines our patch removes, the vendor installer it replaces with a pinned install at image build'
+- key: a8fca3d3a7250f07
+  rule: persistence
+  path: aws-skills/skills/specialized-skills/ec2-skills/launching-ec2-instance-with-best-practices/references/launch-ec2-instance-with-best-practices.md
+  text: sudo systemctl enable nginx
+  reason: 'read 2026-09-22: EC2 user-data examples; they run on the customer''s instance, not in the sandbox'
+- key: a123b1cf2094aacc
+  rule: persistence
+  path: aws-skills/skills/specialized-skills/ec2-skills/launching-ec2-instance-with-best-practices/references/launch-ec2-instance-with-best-practices.md
+  text: sudo systemctl enable httpd
+  reason: 'read 2026-09-22: EC2 user-data examples; they run on the customer''s instance, not in the sandbox'
+- key: bea4d5db444377ac
+  rule: persistence
+  path: aws-skills/skills/specialized-skills/ec2-skills/launching-ec2-instance-with-best-practices/references/launch-ec2-instance-with-best-practices.md
+  text: sudo systemctl enable --now dnf-automatic.timer
+  reason: 'read 2026-09-22: EC2 user-data examples; they run on the customer''s instance, not in the sandbox'
+- key: 6e06d91fe91d2420
+  rule: persistence
+  path: aws-skills/skills/specialized-skills/ec2-skills/launching-ec2-instance-with-best-practices/references/launch-ec2-instance-with-best-practices.md
+  text: sudo systemctl enable --now fail2ban
+  reason: 'read 2026-09-22: EC2 user-data examples; they run on the customer''s instance, not in the sandbox'
+- key: 26152d9dcff97677
+  rule: credential-path
+  path: aws-skills/skills/core-skills/amazon-bedrock/scripts/fetch_bedrock_agent.py
+  text: keys in ~/.aws/credentials.
+  reason: 'read 2026-09-22: where the AWS SDK looks for credentials, named in docs and error messages; the CLI''s service-model folder; archive.py lists SSH key names
+    it refuses to pack'
+- key: 80a9b9bb570bea8d
+  rule: credential-path
+  path: aws-skills/skills/core-skills/aws-sdk-python-usage/references/credentials.md
+  text: '# Use a profile from ~/.aws/credentials or ~/.aws/config'
+  reason: 'read 2026-09-22: where the AWS SDK looks for credentials, named in docs and error messages; the CLI''s service-model folder; archive.py lists SSH key names
+    it refuses to pack'
+- key: 0352267ef73f0e1c
+  rule: credential-path
+  path: aws-skills/skills/core-skills/launch-with-aws/scripts/archive.py
+  text: _SKIP_NAME_PREFIXES = ("id_rsa", "id_ed25519", "id_ecdsa", "id_dsa")
+  reason: 'read 2026-09-22: where the AWS SDK looks for credentials, named in docs and error messages; the CLI''s service-model folder; archive.py lists SSH key names
+    it refuses to pack'
+- key: 32e162ba13bfc00f
+  rule: credential-path
+  path: aws-skills/skills/specialized-skills/database-skills/amazon-elasticache/scripts/security_audit.py
+  text: '"variables, ~/.aws/credentials, or an IAM role)."'
+  reason: 'read 2026-09-22: where the AWS SDK looks for credentials, named in docs and error messages; the CLI''s service-model folder; archive.py lists SSH key names
+    it refuses to pack'
+- key: 270bc1077bdcd45c
+  rule: credential-path
+  path: aws-skills/skills/specialized-skills/database-skills/amazon-elasticache/scripts/test_connection.py
+  text: '"variables, ~/.aws/credentials, or an IAM role).",'
+  reason: 'read 2026-09-22: where the AWS SDK looks for credentials, named in docs and error messages; the CLI''s service-model folder; archive.py lists SSH key names
+    it refuses to pack'
+- key: d42513b09dbe9995
+  rule: credential-path
+  path: aws-skills/skills/specialized-skills/messaging-and-streaming-skills/aws-sms-voice/references/hello-rcs-test-agent.md
+  text: ls ~/.aws/models/pinpoint-sms-voice-v2/
+  reason: 'read 2026-09-22: where the AWS SDK looks for credentials, named in docs and error messages; the CLI''s service-model folder; archive.py lists SSH key names
+    it refuses to pack'
 trusted_installers:
 - aka.ms/
 - aspire.dev/install

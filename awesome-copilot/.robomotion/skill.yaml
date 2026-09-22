@@ -6,7 +6,7 @@ version: 1.0.0
 author: GitHub and community
 source_url: https://github.com/github/awesome-copilot
 license: MIT
-summary: 'GitHub''s community collection: coding, documentation, repository analysis, GitHub CLI and review workflows.'
+summary: 'The most-installed skills of GitHub''s community collection: commits, READMEs and docs, PRDs and specs, refactoring, SQL and Postgres tuning, Playwright tests, Dockerfiles, MCP servers and GitHub issues.'
 category: Engineering
 tags:
 - github

@@ -1,0 +1,220 @@
+diff --git a/skills/morph-ppt/SKILL.md b/skills/morph-ppt/SKILL.md
+index 2b06753..a25b266 100644
+--- a/skills/morph-ppt/SKILL.md
++++ b/skills/morph-ppt/SKILL.md
+@@ -11,12 +11,7 @@ When the pptx base rules cover it, the text here says `→ see pptx v2 §X`. Rea
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## ⚠️ Help-First Rule
+ 
+diff --git a/skills/morph-ppt-3d/SKILL.md b/skills/morph-ppt-3d/SKILL.md
+index eb1d59c..22f8db7 100644
+--- a/skills/morph-ppt-3d/SKILL.md
++++ b/skills/morph-ppt-3d/SKILL.md
+@@ -12,12 +12,7 @@ This file covers **3D-specific additions** and an **enriched design system** com
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## Use when
+ 
+diff --git a/skills/officecli/SKILL.md b/skills/officecli/SKILL.md
+index 6c299f3..6e82a2f 100644
+--- a/skills/officecli/SKILL.md
++++ b/skills/officecli/SKILL.md
+@@ -9,17 +9,7 @@ AI-friendly CLI for .docx, .xlsx, .pptx. Single binary, no dependencies, no Offi
+ 
+ ## Install
+ 
+-If `officecli` is not installed:
+-
+-```bash
+-# macOS / Linux
+-curl -fsSL https://d.officecli.ai/install.sh | bash
+-
+-# Windows (PowerShell)
+-irm https://d.officecli.ai/install.ps1 | iex
+-```
+-
+-Verify with `officecli --version`. If still not found after install, open a new terminal.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ---
+ 
+diff --git a/skills/officecli-academic-paper/SKILL.md b/skills/officecli-academic-paper/SKILL.md
+index ac82aba..e1ca8b1 100644
+--- a/skills/officecli-academic-paper/SKILL.md
++++ b/skills/officecli-academic-paper/SKILL.md
+@@ -11,12 +11,7 @@ When the docx base rules cover it, the text here says `→ see docx v2 §X`. Rea
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## ⚠️ Help-First Rule
+ 
+diff --git a/skills/officecli-data-dashboard/SKILL.md b/skills/officecli-data-dashboard/SKILL.md
+index b2e14f1..8fc87ab 100644
+--- a/skills/officecli-data-dashboard/SKILL.md
++++ b/skills/officecli-data-dashboard/SKILL.md
+@@ -9,12 +9,7 @@ A dashboard is not "a spreadsheet with charts". It is a composition: **one Dashb
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## ⚠️ Help-First Rule
+ 
+diff --git a/skills/officecli-docx/SKILL.md b/skills/officecli-docx/SKILL.md
+index 86b91e1..1ca0d32 100644
+--- a/skills/officecli-docx/SKILL.md
++++ b/skills/officecli-docx/SKILL.md
+@@ -7,12 +7,7 @@ description: "Use this skill any time a .docx file is involved -- as input, outp
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## ⚠️ Help-First Rule
+ 
+diff --git a/skills/officecli-financial-model/SKILL.md b/skills/officecli-financial-model/SKILL.md
+index ccf49ca..afb278e 100644
+--- a/skills/officecli-financial-model/SKILL.md
++++ b/skills/officecli-financial-model/SKILL.md
+@@ -11,12 +11,7 @@ When the xlsx base rules cover it, the text here says `→ see xlsx v2 §X`. Rea
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## Help-First Rule
+ 
+diff --git a/skills/officecli-pitch-deck/SKILL.md b/skills/officecli-pitch-deck/SKILL.md
+index 56b8add..c553d6f 100644
+--- a/skills/officecli-pitch-deck/SKILL.md
++++ b/skills/officecli-pitch-deck/SKILL.md
+@@ -11,12 +11,7 @@ When the pptx base rules cover it, the text here says `→ see pptx v2 §X`. Rea
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## ⚠️ Help-First Rule
+ 
+diff --git a/skills/officecli-pptx/SKILL.md b/skills/officecli-pptx/SKILL.md
+index a33eac5..957edba 100644
+--- a/skills/officecli-pptx/SKILL.md
++++ b/skills/officecli-pptx/SKILL.md
+@@ -7,12 +7,7 @@ description: "Use this skill any time a .pptx file is involved -- as input, outp
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## ⚠️ Help-First Rule
+ 
+diff --git a/skills/officecli-word-form/SKILL.md b/skills/officecli-word-form/SKILL.md
+index 1b6e859..0201532 100644
+--- a/skills/officecli-word-form/SKILL.md
++++ b/skills/officecli-word-form/SKILL.md
+@@ -9,29 +9,7 @@ description: "Use this skill to create fillable Word forms (.docx) with real Con
+ 
+ ## BEFORE YOU START (CRITICAL)
+ 
+-**If `officecli` is not installed:**
+-
+-`macOS / Linux`
+-
+-```bash
+-if ! command -v officecli >/dev/null 2>&1; then
+-    curl -fsSL https://d.officecli.ai/install.sh | bash
+-fi
+-```
+-
+-`Windows (PowerShell)`
+-
+-```powershell
+-if (-not (Get-Command officecli -ErrorAction SilentlyContinue)) {
+-    irm https://d.officecli.ai/install.ps1 | iex
+-}
+-```
+-
+-Verify: `officecli --version`
+-
+-If `officecli` is still not found after first install, open a new terminal and run the verify command again.
+-
+-If the install command above fails (e.g. blocked by security policy, no network access, or insufficient permissions), install manually — download the binary for your platform from https://github.com/iOfficeAI/OfficeCLI/releases — then re-run the verify command.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## Help-First Rule
+ 
+diff --git a/skills/officecli-xlsx/SKILL.md b/skills/officecli-xlsx/SKILL.md
+index 0cc7d9b..698b5e4 100644
+--- a/skills/officecli-xlsx/SKILL.md
++++ b/skills/officecli-xlsx/SKILL.md
+@@ -7,12 +7,7 @@ description: "Use this skill any time a .xlsx file is involved -- as input, outp
+ 
+ ## Setup
+ 
+-If `officecli` is missing:
+-
+-- **macOS / Linux**: `curl -fsSL https://d.officecli.ai/install.sh | bash`
+-- **Windows (PowerShell)**: `irm https://d.officecli.ai/install.ps1 | iex`
+-
+-Verify with `officecli --version` (open a new terminal if PATH hasn't picked up). If install fails, download a binary from https://github.com/iOfficeAI/OfficeCLI/releases.
++`officecli` is already installed, at a pinned version. Do not install, reinstall or update it (no install script, no `officecli install`, no downloaded binary): the installed one is the reviewed one. Verify with `officecli --version`.
+ 
+ ## ⚠️ Help-First Rule
+ 

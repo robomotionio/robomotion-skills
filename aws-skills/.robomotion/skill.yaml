@@ -1,0 +1,17 @@
+schema_version: 1
+name: aws-skills
+title: AWS Skills
+type: group
+version: 1.0.0
+author: Amazon Web Services
+source_url: https://github.com/aws/agent-toolkit-for-aws
+license: Apache-2.0
+summary: 'AWS''s official skills: Lambda and serverless, containers, databases, IAM, networking, CDK and CloudFormation, observability, cost, security, Bedrock and data lakes.'
+category: Cloud
+tags:
+- aws
+- cloud
+- serverless
+- iam
+- cdk
+- bedrock

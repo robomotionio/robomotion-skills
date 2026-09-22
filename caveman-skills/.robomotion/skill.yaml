@@ -6,7 +6,7 @@ version: 1.0.0
 author: Julius Brussee
 source_url: https://github.com/JuliusBrussee/caveman
 license: MIT
-summary: 'Coding workflows: review, compression, investigation, refactoring. The MIT-licensed skills only.'
+summary: 'Terse coding workflows: compressed replies, commits and reviews, investigation, safe refactors and surgical patches. The MIT-licensed skills, without the Caveman Cloud ones.'
 category: Engineering
 tags:
 - coding
