@@ -372,7 +372,10 @@ upstreams:
   license: MIT
   license_file: LICENSE
   license_sha256: a0a3cabb18cf4b1593f8f7556dbb102b935354241ecc9165198786e7bfd5532e
-  exclude: []
+  exclude:
+  - axis-fixtures
+  - axis-scenarios
+  - axis.config.json
   local_paths: []
 - group: openai-skills
   repo: https://github.com/openai/skills
