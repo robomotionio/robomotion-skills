@@ -23260,7 +23260,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: c0100a267b16
+  content_hash: 5e3dc020aa7b
   skills:
   - id: last30days-skill/last30days
     name: last30days
@@ -23276,7 +23276,7 @@ groups:
       required: []
       optional:
       - SCRAPEDO_TOKEN
-    content_hash: 637da8e04367
+    content_hash: 7842786269b6
     files:
     - .skillignore
     - SKILL.md

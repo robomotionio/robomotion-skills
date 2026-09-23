@@ -29,6 +29,8 @@ from lib import http  # noqa: E402
 
 _YT_ID = re.compile(r"(?:v=|youtu\.be/|/shorts/|/embed/)([A-Za-z0-9_-]{11})")
 _IMAGE_HOSTS = ("i.ytimg.com", "i.redd.it", "preview.redd.it", "external-preview.redd.it")
+_YOUTUBE_HOSTS = frozenset({"youtube.com", "www.youtube.com", "m.youtube.com", "youtu.be"})
+_REDDIT_HOSTS = frozenset({"reddit.com", "www.reddit.com", "old.reddit.com", "new.reddit.com", "redd.it"})
 _MAX_BYTES = 15 * 1024 * 1024
 
 
@@ -113,9 +115,9 @@ def main(argv=None) -> int:
     found = 0
     for url in args.urls:
         host = (urlsplit(url).hostname or "").lower()
-        if "youtube.com" in host or host == "youtu.be":
+        if host in _YOUTUBE_HOSTS:
             rows = youtube(url, out)
-        elif host.endswith("reddit.com") or host == "redd.it":
+        elif host in _REDDIT_HOSTS:
             rows = reddit(url, out, args.per_post)
         else:
             rows = []
