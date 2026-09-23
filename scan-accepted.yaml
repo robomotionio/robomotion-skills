@@ -139,6 +139,57 @@ accepted:
   text: ls ~/.aws/models/pinpoint-sms-voice-v2/
   reason: 'read 2026-09-22: where the AWS SDK looks for credentials, named in docs and error messages; the CLI''s service-model folder; archive.py lists SSH key names
     it refuses to pack'
+- key: c913c03f65dafb96
+  rule: pipe-to-shell
+  path: last30days-skill/skills/last30days/SKILL.md
+  text: '- **Grok CLI (no X credential):** install with `curl -fsSL https://x.ai/cli/install.sh | bash`, then `grok login`. No X '
+  reason: Grok CLI install hint shown to a desktop user; the grok backend only runs when a signed-in grok binary is on PATH, the sandbox has none, and the Robomotion
+    section of SKILL.md forbids installs (read 2026-09-23)
+- key: 4768b26240197b2b
+  rule: pipe-to-shell
+  path: last30days-skill/skills/last30days/scripts/lib/backends.py
+  text: '"install the Grok CLI: curl -fsSL https://x.ai/cli/install.sh | bash, "'
+  reason: Grok CLI install hint shown to a desktop user; the grok backend only runs when a signed-in grok binary is on PATH, the sandbox has none, and the Robomotion
+    section of SKILL.md forbids installs (read 2026-09-23)
+- key: 91f141ae1079ec00
+  rule: pipe-to-shell
+  path: last30days-skill/skills/last30days/scripts/lib/grok_x.py
+  text: 'Install: curl -fsSL https://x.ai/cli/install.sh | bash (or npm i -g @xai-official/grok)'
+  reason: Grok CLI install hint shown to a desktop user; the grok backend only runs when a signed-in grok binary is on PATH, the sandbox has none, and the Robomotion
+    section of SKILL.md forbids installs (read 2026-09-23)
+- key: 0f19996974ef0d7f
+  rule: pipe-to-shell
+  path: last30days-skill/skills/last30days/scripts/lib/health.py
+  text: '"install the Grok CLI: curl -fsSL https://x.ai/cli/install.sh | bash, then run `grok login`",'
+  reason: Grok CLI install hint shown to a desktop user; the grok backend only runs when a signed-in grok binary is on PATH, the sandbox has none, and the Robomotion
+    section of SKILL.md forbids installs (read 2026-09-23)
+- key: a2d02d73f75fa622
+  rule: pipe-to-shell
+  path: last30days-skill/skills/last30days/scripts/lib/health.py
+  text: '"reinstall the Grok CLI: curl -fsSL https://x.ai/cli/install.sh | bash; the current binary won''t run",'
+  reason: Grok CLI install hint shown to a desktop user; the grok backend only runs when a signed-in grok binary is on PATH, the sandbox has none, and the Robomotion
+    section of SKILL.md forbids installs (read 2026-09-23)
+- key: 6b1e9d30ea5d641d
+  rule: pipe-to-shell
+  path: last30days-skill/skills/last30days/scripts/lib/prescriptions.py
+  text: '"install the Grok CLI (curl -fsSL https://x.ai/cli/install.sh | bash) "'
+  reason: Grok CLI install hint shown to a desktop user; the grok backend only runs when a signed-in grok binary is on PATH, the sandbox has none, and the Robomotion
+    section of SKILL.md forbids installs (read 2026-09-23)
+- key: 1b3bf72db5617ac0
+  rule: credential-path
+  path: last30days-skill/skills/last30days/scripts/lib/chrome_cookies.py
+  text: Calls `security find-generic-password` which may trigger a system dialog
+  reason: macOS Keychain lookup for Chromium cookie decryption; only on macOS with FROM_BROWSER set, never in a Linux sandbox (read 2026-09-23)
+- key: 14666c57742a9354
+  rule: credential-path
+  path: last30days-skill/skills/last30days/scripts/lib/x_envelope.py
+  text: '"~/.netrc",'
+  reason: 'a deny-list: paths the X envelope loader refuses to read (read 2026-09-23)'
+- key: 346681a8f6cefad3
+  rule: credential-path
+  path: last30days-skill/skills/last30days/scripts/lib/youtube_yt.py
+  text: SSH alias (configured in ~/.ssh/config). On macOS hosts with Homebrew,
+  reason: docstring for the optional LAST30DAYS_YOUTUBE_SSH_HOST, which names an alias in ~/.ssh/config; unset in the sandbox (read 2026-09-23)
 trusted_installers:
 - aka.ms/
 - aspire.dev/install

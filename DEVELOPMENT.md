@@ -192,6 +192,7 @@ the folder. Use `--exclude` for skills we can't redistribute or run, and
 | `officecli/` | Patched (setup says the CLI is installed); the release binary is installed at a pinned version and checked by hash, its self-update and self-install off; style-sample `.pptx` files left out |
 | `impeccable/` | Engine binary and a headless Chrome installed at pinned versions at image build and checked by hash, so the launcher never downloads the engine on first use |
 | `elevenlabs-skills/` | `env.required` added per skill: upstream declares `ELEVENLABS_API_KEY` only in frontmatter (`metadata.openclaw.requires.env`), which `detect-env.py` now reads |
+| `last30days-skill/` | The engine's media (`assets/`, `agents/`) and its macOS Keychain and browser sign-in scripts left out. Patched: with `SCRAPEDO_TOKEN` set, Reddit and YouTube go through Scrape.do (`SCRAPEDO_GEO` picks the country), plus `google-trends` (Scrape.do's Google Trends) and `fetch-covers` (video thumbnails and post images); the first-run wizard is skipped in the sandbox. yt-dlp installed at a pinned version at image build (the zipapp, so it trusts the proxy CA) |
 
 ### Popular, but not here
 

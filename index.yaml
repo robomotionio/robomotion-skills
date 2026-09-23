@@ -23239,6 +23239,186 @@ groups:
   - .robomotion/LICENSE
   - .robomotion/skill.yaml
   - LICENSE
+- path: last30days-skill
+  name: last30days-skill
+  title: Last 30 Days
+  type: group
+  version: 1.0.0
+  author: Matt Van Horn
+  source_url: https://github.com/mvanhorn/last30days-skill
+  license: MIT
+  summary: Research any topic across Reddit, YouTube, Hacker News, Polymarket, GitHub and the web from the last 30 days, and
+    rank what the community is upvoting, discussing and watching.
+  category: Research
+  tags:
+  - research
+  - trends
+  - reddit
+  - youtube
+  - hacker-news
+  has_post_install: true
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 5e3dc020aa7b
+  skills:
+  - id: last30days-skill/last30days
+    name: last30days
+    path: last30days-skill/skills/last30days
+    title: last30days
+    summary: Research what people actually say about any topic in the last 30 days. Pulls posts and engagement from Reddit,
+      X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web. Includes a doctor health check to diagnose broken
+      or missing sources.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SCRAPEDO_TOKEN
+    content_hash: 7842786269b6
+    files:
+    - .skillignore
+    - SKILL.md
+    - env.optional
+    - references/save-html-brief.md
+    - scripts/briefing.py
+    - scripts/build-skill.sh
+    - scripts/compare.sh
+    - scripts/evaluate_search_quality.py
+    - scripts/fetch_covers.py
+    - scripts/google_trends.py
+    - scripts/last30days.py
+    - scripts/lib/__init__.py
+    - scripts/lib/agentcookie.py
+    - scripts/lib/amazon.py
+    - scripts/lib/arxiv.py
+    - scripts/lib/backends.py
+    - scripts/lib/bird_x.py
+    - scripts/lib/bluesky.py
+    - scripts/lib/brightdata.py
+    - scripts/lib/categories.py
+    - scripts/lib/chrome_cdp.py
+    - scripts/lib/chrome_cookies.py
+    - scripts/lib/cjk.py
+    - scripts/lib/cluster.py
+    - scripts/lib/competitors.py
+    - scripts/lib/cookie_extract.py
+    - scripts/lib/corpus.py
+    - scripts/lib/dates.py
+    - scripts/lib/dedupe.py
+    - scripts/lib/digg.py
+    - scripts/lib/discovery_handoff.py
+    - scripts/lib/doctor.py
+    - scripts/lib/dripstack.py
+    - scripts/lib/entity_extract.py
+    - scripts/lib/env.py
+    - scripts/lib/fanout.py
+    - scripts/lib/feed.py
+    - scripts/lib/freshness.py
+    - scripts/lib/fusion.py
+    - scripts/lib/github.py
+    - scripts/lib/grok_x.py
+    - scripts/lib/grounding.py
+    - scripts/lib/hackernews.py
+    - scripts/lib/health.py
+    - scripts/lib/hiring_signals.py
+    - scripts/lib/hosted.py
+    - scripts/lib/html_publish.py
+    - scripts/lib/html_render.py
+    - scripts/lib/http.py
+    - scripts/lib/instagram.py
+    - scripts/lib/jobs.py
+    - scripts/lib/library.py
+    - scripts/lib/library_index.py
+    - scripts/lib/linkedin.py
+    - scripts/lib/log.py
+    - scripts/lib/meta_ads.py
+    - scripts/lib/normalize.py
+    - scripts/lib/parallel_mcp.py
+    - scripts/lib/permission_preflight.py
+    - scripts/lib/perplexity.py
+    - scripts/lib/pinterest.py
+    - scripts/lib/pipeline.py
+    - scripts/lib/planner.py
+    - scripts/lib/polymarket.py
+    - scripts/lib/preflight.py
+    - scripts/lib/prescriptions.py
+    - scripts/lib/providers.py
+    - scripts/lib/quality_nudge.py
+    - scripts/lib/query.py
+    - scripts/lib/reddit.py
+    - scripts/lib/reddit_arctic.py
+    - scripts/lib/reddit_enrich.py
+    - scripts/lib/reddit_keyless.py
+    - scripts/lib/reddit_listing.py
+    - scripts/lib/reddit_public.py
+    - scripts/lib/reddit_rss.py
+    - scripts/lib/reddit_shreddit.py
+    - scripts/lib/registers.py
+    - scripts/lib/relevance.py
+    - scripts/lib/render.py
+    - scripts/lib/rerank.py
+    - scripts/lib/resolve.py
+    - scripts/lib/safari_cookies.py
+    - scripts/lib/schema.py
+    - scripts/lib/scrapedo.py
+    - scripts/lib/setup_wizard.py
+    - scripts/lib/signals.py
+    - scripts/lib/skill_meta.py
+    - scripts/lib/snippet.py
+    - scripts/lib/stocktwits.py
+    - scripts/lib/subproc.py
+    - scripts/lib/techmeme.py
+    - scripts/lib/telegram.py
+    - scripts/lib/threads.py
+    - scripts/lib/tiktok.py
+    - scripts/lib/topic_shape.py
+    - scripts/lib/transcribe.py
+    - scripts/lib/trustpilot.py
+    - scripts/lib/truthsocial.py
+    - scripts/lib/ui.py
+    - scripts/lib/vendor/bird-search/LICENSE
+    - scripts/lib/vendor/bird-search/bird-search.mjs
+    - scripts/lib/vendor/bird-search/lib/cookies.js
+    - scripts/lib/vendor/bird-search/lib/features.json
+    - scripts/lib/vendor/bird-search/lib/paginate-cursor.js
+    - scripts/lib/vendor/bird-search/lib/query-ids.json
+    - scripts/lib/vendor/bird-search/lib/runtime-features.js
+    - scripts/lib/vendor/bird-search/lib/runtime-query-ids.js
+    - scripts/lib/vendor/bird-search/lib/twitter-client-base.js
+    - scripts/lib/vendor/bird-search/lib/twitter-client-constants.js
+    - scripts/lib/vendor/bird-search/lib/twitter-client-features.js
+    - scripts/lib/vendor/bird-search/lib/twitter-client-search.js
+    - scripts/lib/vendor/bird-search/lib/twitter-client-types.js
+    - scripts/lib/vendor/bird-search/lib/twitter-client-utils.js
+    - scripts/lib/vendor/bird-search/package.json
+    - scripts/lib/web_fetch_keyless.py
+    - scripts/lib/web_search_keyless.py
+    - scripts/lib/x_api.py
+    - scripts/lib/x_envelope.py
+    - scripts/lib/x_judge.py
+    - scripts/lib/xai_x.py
+    - scripts/lib/xiaohongshu_api.py
+    - scripts/lib/xquik.py
+    - scripts/lib/xurl_x.py
+    - scripts/lib/youtube_yt.py
+    - scripts/store.py
+    - scripts/test-v1-vs-v2.sh
+    - scripts/verify_v3.py
+    - scripts/watchlist.py
+    author: Matt Van Horn
+    source_url: https://github.com/mvanhorn/last30days-skill/tree/main/skills/last30days
+    license: MIT
+    group: last30days-skill
+    category: Research
+  files:
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/patches/001-robomotion-sandbox-scrapedo.patch
+  - .robomotion/post-install.sh
+  - .robomotion/skill.yaml
+  - LICENSE
 - path: marketing-skills
   name: marketing-skills
   title: Marketing Skills

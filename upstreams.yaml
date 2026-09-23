@@ -428,6 +428,27 @@ upstreams:
   exclude: []
   local_paths: []
   into: ''
+- group: last30days-skill
+  repo: https://github.com/mvanhorn/last30days-skill
+  track: main
+  commit: 4909c2efb2d90b81004a70c6890f7e7402db3fd9
+  subdir: ''
+  mode: mirror
+  license: MIT
+  license_file: LICENSE
+  license_sha256: 31803213a789825dc419de43542381e1d570b4408cf2bcf2e8a9947a6d3fd2ab
+  include:
+  - skills
+  - LICENSE
+  exclude:
+  - skills/last30days/assets
+  - skills/last30days/agents
+  - skills/last30days/scripts/box_chrome_login.py
+  - skills/last30days/scripts/setup-keychain.sh
+  - skills/last30days/scripts/setup-pass.sh
+  - skills/last30days/scripts/test_device_auth.py
+  local_paths: []
+  into: ''
 - group: marketing-skills
   repo: https://github.com/coreyhaines31/marketingskills
   track: main

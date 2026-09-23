@@ -1,0 +1,16 @@
+schema_version: 1
+name: last30days-skill
+title: Last 30 Days
+type: group
+version: 1.0.0
+author: Matt Van Horn
+source_url: https://github.com/mvanhorn/last30days-skill
+license: MIT
+summary: Research any topic across Reddit, YouTube, Hacker News, Polymarket, GitHub and the web from the last 30 days, and rank what the community is upvoting, discussing and watching.
+category: Research
+tags:
+- research
+- trends
+- reddit
+- youtube
+- hacker-news
