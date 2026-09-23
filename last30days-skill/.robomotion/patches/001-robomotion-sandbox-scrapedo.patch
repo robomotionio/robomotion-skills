@@ -1,8 +1,8 @@
 diff --git i/skills/last30days/SKILL.md w/skills/last30days/SKILL.md
-index f4db7b34..0043cd43 100644
+index f4db7b34..3268110c 100644
 --- i/skills/last30days/SKILL.md
 +++ w/skills/last30days/SKILL.md
-@@ -67,6 +67,22 @@ metadata:
+@@ -67,6 +67,23 @@ metadata:
        - clawhub
  ---
  
@@ -10,6 +10,7 @@ index f4db7b34..0043cd43 100644
 +
 +In a Robomotion agent sandbox (`/etc/last30days/robomotion-ready` exists) these rules replace the matching steps below:
 +
++- **The agent's own format comes first.** When the agent's instructions (its AGENT.md) say what a reply looks like, the engine output is evidence for that reply: the badge, the `What I learned:` template and the output LAWs below apply only when a person asks for a `/last30days` report itself.
 +- **Setup is done.** The image installed yt-dlp and the engine. Never run the first-run wizard, `setup`, `brew`, `pip`, `npx`, `uv`, browser-cookie extraction or Keychain steps. The first-run gate prints `1`.
 +- **Run the engine as `last30days`** (a wrapper for `python3 "$SKILL_DIR/scripts/last30days.py"`). Wherever this file shows `"${LAST30DAYS_PYTHON}" "${SKILL_DIR}/scripts/last30days.py"`, use `last30days`.
 +- **Save to the agent's folder:** `--save-dir=/workspace/last30days` (it survives between runs; `~/Documents` does not).
@@ -25,7 +26,7 @@ index f4db7b34..0043cd43 100644
  # STEP 0: STALE-CLONE SELF-CHECK — RUN BEFORE READING BELOW
  
  Before reading anything else in this file, check whether you loaded SKILL.md from the one known stale-clone location: Claude Code's marketplaces directory.
-@@ -300,7 +316,7 @@ After resolving host web search, run the first-run gate below before anything el
+@@ -300,7 +317,7 @@ After resolving host web search, run the first-run gate below before anything el
  **FIRST-RUN GATE — run this Bash command immediately after resolving host web search, before reading the topic or doing any research:**
  
  ```bash

@@ -71,6 +71,7 @@ metadata:
 
 In a Robomotion agent sandbox (`/etc/last30days/robomotion-ready` exists) these rules replace the matching steps below:
 
+- **The agent's own format comes first.** When the agent's instructions (its AGENT.md) say what a reply looks like, the engine output is evidence for that reply: the badge, the `What I learned:` template and the output LAWs below apply only when a person asks for a `/last30days` report itself.
 - **Setup is done.** The image installed yt-dlp and the engine. Never run the first-run wizard, `setup`, `brew`, `pip`, `npx`, `uv`, browser-cookie extraction or Keychain steps. The first-run gate prints `1`.
 - **Run the engine as `last30days`** (a wrapper for `python3 "$SKILL_DIR/scripts/last30days.py"`). Wherever this file shows `"${LAST30DAYS_PYTHON}" "${SKILL_DIR}/scripts/last30days.py"`, use `last30days`.
 - **Save to the agent's folder:** `--save-dir=/workspace/last30days` (it survives between runs; `~/Documents` does not).
