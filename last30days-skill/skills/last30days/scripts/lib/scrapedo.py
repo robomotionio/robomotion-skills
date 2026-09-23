@@ -39,8 +39,14 @@ ROUTED_HOSTS = frozenset({
 })
 
 
+# Variable names, read through os.environ like env.py reads its keys.
+TOKEN_ENV = "SCRAPEDO_TOKEN"
+GEO_ENV = "SCRAPEDO_GEO"
+SUPER_ENV = "SCRAPEDO_SUPER"
+
+
 def token() -> str:
-    return (os.environ.get("SCRAPEDO_TOKEN") or "").strip()
+    return (os.environ.get(TOKEN_ENV) or "").strip()
 
 
 def enabled() -> bool:
@@ -49,12 +55,12 @@ def enabled() -> bool:
 
 def geo() -> str:
     """Lower-case two-letter country code, or '' when unset or malformed."""
-    value = (os.environ.get("SCRAPEDO_GEO") or "").strip().lower()
+    value = (os.environ.get(GEO_ENV) or "").strip().lower()
     return value if re.fullmatch(r"[a-z]{2}", value) else ""
 
 
 def super_on() -> bool:
-    value = (os.environ.get("SCRAPEDO_SUPER") or "1").strip().lower()
+    value = (os.environ.get(SUPER_ENV) or "1").strip().lower()
     return value not in {"0", "false", "no", "off"}
 
 

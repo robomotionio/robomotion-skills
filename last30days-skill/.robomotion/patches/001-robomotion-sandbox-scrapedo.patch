@@ -431,10 +431,10 @@ index f4298c4e..b22eca92 100644
          try:
 diff --git i/skills/last30days/scripts/lib/scrapedo.py w/skills/last30days/scripts/lib/scrapedo.py
 new file mode 100644
-index 00000000..c1fa4951
+index 00000000..30581302
 --- /dev/null
 +++ w/skills/last30days/scripts/lib/scrapedo.py
-@@ -0,0 +1,179 @@
+@@ -0,0 +1,185 @@
 +"""Optional Scrape.do routing (added by Robomotion).
 +
 +Reddit answers most server and cloud addresses with 403, and YouTube search
@@ -476,8 +476,14 @@ index 00000000..c1fa4951
 +})
 +
 +
++# Variable names, read through os.environ like env.py reads its keys.
++TOKEN_ENV = "SCRAPEDO_TOKEN"
++GEO_ENV = "SCRAPEDO_GEO"
++SUPER_ENV = "SCRAPEDO_SUPER"
++
++
 +def token() -> str:
-+    return (os.environ.get("SCRAPEDO_TOKEN") or "").strip()
++    return (os.environ.get(TOKEN_ENV) or "").strip()
 +
 +
 +def enabled() -> bool:
@@ -486,12 +492,12 @@ index 00000000..c1fa4951
 +
 +def geo() -> str:
 +    """Lower-case two-letter country code, or '' when unset or malformed."""
-+    value = (os.environ.get("SCRAPEDO_GEO") or "").strip().lower()
++    value = (os.environ.get(GEO_ENV) or "").strip().lower()
 +    return value if re.fullmatch(r"[a-z]{2}", value) else ""
 +
 +
 +def super_on() -> bool:
-+    value = (os.environ.get("SCRAPEDO_SUPER") or "1").strip().lower()
++    value = (os.environ.get(SUPER_ENV) or "1").strip().lower()
 +    return value not in {"0", "false", "no", "off"}
 +
 +
