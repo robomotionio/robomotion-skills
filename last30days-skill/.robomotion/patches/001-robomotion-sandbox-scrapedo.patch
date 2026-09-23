@@ -1,0 +1,689 @@
+diff --git i/skills/last30days/SKILL.md w/skills/last30days/SKILL.md
+index f4db7b34..0043cd43 100644
+--- i/skills/last30days/SKILL.md
++++ w/skills/last30days/SKILL.md
+@@ -67,6 +67,22 @@ metadata:
+       - clawhub
+ ---
+ 
++# ROBOMOTION SANDBOX — READ FIRST (added by Robomotion)
++
++In a Robomotion agent sandbox (`/etc/last30days/robomotion-ready` exists) these rules replace the matching steps below:
++
++- **Setup is done.** The image installed yt-dlp and the engine. Never run the first-run wizard, `setup`, `brew`, `pip`, `npx`, `uv`, browser-cookie extraction or Keychain steps. The first-run gate prints `1`.
++- **Run the engine as `last30days`** (a wrapper for `python3 "$SKILL_DIR/scripts/last30days.py"`). Wherever this file shows `"${LAST30DAYS_PYTHON}" "${SKILL_DIR}/scripts/last30days.py"`, use `last30days`.
++- **Save to the agent's folder:** `--save-dir=/workspace/last30days` (it survives between runs; `~/Documents` does not).
++- **No host web search here:** skip Steps 0.55 and 0.75 and add `--auto-resolve`, as the capability rule says for hosts without web search. Name subreddits yourself with `--subreddits` when you know the communities.
++- **Sources:** Reddit, YouTube and Hacker News need no key. X, TikTok, Instagram, Bluesky and Threads need keys this sandbox does not have; leave them out (`--search reddit,youtube,hackernews`) and do not suggest signing up for anything.
++- **Scrape.do (optional, `SCRAPEDO_TOKEN`).** When set, Reddit and YouTube are fetched through Scrape.do from residential addresses: Reddit keeps working where it blocks servers, and YouTube search returns this month's uploads. `SCRAPEDO_GEO=<two-letter country>` in front of the command picks the country (for example `SCRAPEDO_GEO=tr last30days ...`). Each fetch costs Scrape.do credits. Never print, echo or save the token; it is a placeholder the sandbox swaps on the way out.
++- **Google Trends (needs `SCRAPEDO_TOKEN`):** `google-trends rising "<topic>" --geo <cc>` (queries and topics growing fastest, "Breakout" = over 5000%), `google-trends interest "<topic>" --geo <cc>` (is it rising or fading), `google-trends trending --geo <cc>` (what the whole country searches right now). Add `--gprop youtube` or `--gprop news` for YouTube or news searches.
++- **Cover images:** `fetch-covers --out <folder> <youtube or reddit URL> ...` saves each video's thumbnail and each Reddit post's own images, one JSON line per file.
++- **Transcripts:** the engine often gets no YouTube transcripts here and prints "Degraded: YouTube" with advice to update yt-dlp. The ranking uses titles, views, dates and comments, which still arrive; if it matters, say transcripts were unavailable. yt-dlp is pinned in the image, so updating it is not something the user can do.
++
++---
++
+ # STEP 0: STALE-CLONE SELF-CHECK — RUN BEFORE READING BELOW
+ 
+ Before reading anything else in this file, check whether you loaded SKILL.md from the one known stale-clone location: Claude Code's marketplaces directory.
+@@ -300,7 +316,7 @@ After resolving host web search, run the first-run gate below before anything el
+ **FIRST-RUN GATE — run this Bash command immediately after resolving host web search, before reading the topic or doing any research:**
+ 
+ ```bash
+-grep -q "SETUP_COMPLETE=true" ~/.config/last30days/.env 2>/dev/null && echo "1" || echo "FIRST_RUN_DETECTED"
++{ [ -f /etc/last30days/robomotion-ready ] || grep -q "SETUP_COMPLETE=true" ~/.config/last30days/.env 2>/dev/null; } && echo "1" || echo "FIRST_RUN_DETECTED"
+ ```
+ 
+ This emits exactly one token: `1` or `FIRST_RUN_DETECTED`, never both.
+diff --git i/skills/last30days/scripts/fetch_covers.py w/skills/last30days/scripts/fetch_covers.py
+new file mode 100644
+index 00000000..d1f40531
+--- /dev/null
++++ w/skills/last30days/scripts/fetch_covers.py
+@@ -0,0 +1,131 @@
++#!/usr/bin/env python3
++"""Download the cover image of YouTube videos and Reddit posts (added by Robomotion).
++
++    fetch_covers.py --out DIR URL [URL ...]
++
++YouTube: the video's thumbnail (maxres, else hq) from i.ytimg.com, which
++needs no key. Reddit: the post's own image(s): a gallery's images, an
++i.redd.it upload, or the preview Reddit made of a linked page. The post is
++read through Scrape.do when SCRAPEDO_TOKEN is set; image hosts are fetched
++directly. Text posts have no cover and are skipped.
++
++Prints one JSON line per saved file: {"source": URL, "file": PATH, "kind": ...}.
++"""
++
++from __future__ import annotations
++
++import argparse
++import html
++import json
++import re
++import sys
++import urllib.request
++from pathlib import Path
++from urllib.parse import urlsplit
++
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++
++from lib import http  # noqa: E402
++
++_YT_ID = re.compile(r"(?:v=|youtu\.be/|/shorts/|/embed/)([A-Za-z0-9_-]{11})")
++_IMAGE_HOSTS = ("i.ytimg.com", "i.redd.it", "preview.redd.it", "external-preview.redd.it")
++_MAX_BYTES = 15 * 1024 * 1024
++
++
++def _download(url: str, dest: Path) -> bool:
++    host = (urlsplit(url).hostname or "").lower()
++    if host not in _IMAGE_HOSTS:
++        return False
++    req = urllib.request.Request(url, headers={"User-Agent": http.BROWSER_USER_AGENT})
++    try:
++        with urllib.request.urlopen(req, timeout=30) as resp:
++            if resp.status != 200 or not resp.headers.get("Content-Type", "").startswith("image/"):
++                return False
++            data = resp.read(_MAX_BYTES + 1)
++    except Exception:
++        return False
++    if len(data) > _MAX_BYTES or len(data) < 2048:
++        return False
++    dest.write_bytes(data)
++    return True
++
++
++def youtube(url: str, out: Path) -> list[dict]:
++    m = _YT_ID.search(url)
++    if not m:
++        return []
++    vid = m.group(1)
++    for size in ("maxresdefault", "hqdefault"):
++        dest = out / f"youtube-{vid}.jpg"
++        if _download(f"https://i.ytimg.com/vi/{vid}/{size}.jpg", dest):
++            return [{"source": url, "file": str(dest), "kind": f"youtube thumbnail ({size})"}]
++    return []
++
++
++def _reddit_images(post: dict) -> list[str]:
++    urls = []
++    for item in (post.get("gallery_data") or {}).get("items", []):
++        meta = (post.get("media_metadata") or {}).get(item.get("media_id"), {})
++        src = (meta.get("s") or {}).get("u")
++        if src:
++            urls.append(html.unescape(src))
++    direct = post.get("url_overridden_by_dest") or post.get("url") or ""
++    if not urls and (urlsplit(direct).hostname or "") == "i.redd.it":
++        urls.append(direct)
++    if not urls:
++        for image in (post.get("preview") or {}).get("images", [])[:1]:
++            src = (image.get("source") or {}).get("url")
++            if src:
++                urls.append(html.unescape(src))
++    return urls
++
++
++def reddit(url: str, out: Path, limit: int) -> list[dict]:
++    m = re.search(r"/comments/([a-z0-9]+)", url)
++    if not m:
++        return []
++    post_id = m.group(1)
++    try:
++        data = http.request("GET", f"https://www.reddit.com/comments/{post_id}.json?raw_json=1&limit=1",
++                            headers={"User-Agent": http.BROWSER_USER_AGENT}, timeout=60, retries=2)
++        post = data[0]["data"]["children"][0]["data"]
++    except Exception as exc:  # noqa: BLE001 - report and move on
++        print(json.dumps({"source": url, "error": f"could not read post: {exc}"}), file=sys.stderr)
++        return []
++    saved = []
++    for i, src in enumerate(_reddit_images(post)[:limit], 1):
++        ext = ".png" if ".png" in src.split("?")[0] else ".jpg"
++        dest = out / f"reddit-{post_id}-{i}{ext}"
++        if _download(src, dest):
++            saved.append({"source": url, "file": str(dest), "kind": "reddit image",
++                          "title": post.get("title", "")})
++    return saved
++
++
++def main(argv=None) -> int:
++    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    parser.add_argument("--out", required=True, help="folder to save images in")
++    parser.add_argument("--per-post", type=int, default=2, help="images per Reddit gallery (default 2)")
++    parser.add_argument("urls", nargs="+")
++    args = parser.parse_args(argv)
++    out = Path(args.out)
++    out.mkdir(parents=True, exist_ok=True)
++    found = 0
++    for url in args.urls:
++        host = (urlsplit(url).hostname or "").lower()
++        if "youtube.com" in host or host == "youtu.be":
++            rows = youtube(url, out)
++        elif host.endswith("reddit.com") or host == "redd.it":
++            rows = reddit(url, out, args.per_post)
++        else:
++            rows = []
++        for row in rows:
++            print(json.dumps(row, ensure_ascii=False))
++        found += len(rows)
++        if not rows:
++            print(json.dumps({"source": url, "file": None, "kind": "no cover image"}))
++    return 0 if found else 1
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git i/skills/last30days/scripts/google_trends.py w/skills/last30days/scripts/google_trends.py
+new file mode 100644
+index 00000000..6f0bb965
+--- /dev/null
++++ w/skills/last30days/scripts/google_trends.py
+@@ -0,0 +1,150 @@
++#!/usr/bin/env python3
++"""Google Trends through Scrape.do (added by Robomotion).
++
++Needs SCRAPEDO_TOKEN. SCRAPEDO_GEO (or --geo) picks the country; each call
++costs Scrape.do credits (10 at the time of writing).
++
++    google_trends.py rising "sourdough" [--geo us] [--date "today 1-m"] [--gprop youtube|news]
++    google_trends.py interest "sourdough" [--geo us] [--date "today 3-m"]
++    google_trends.py trending [--geo tr] [--hours 24|48|168|4] [--cat 18]
++
++rising    queries and topics searched more than before, "Breakout" first:
++          the growth signal for a topic.
++interest  searches over time (0-100) and whether the latest week is above
++          the window's average.
++trending  what the whole country is searching for right now.
++
++Prints markdown; --json prints the raw response instead.
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++
++from lib import http, scrapedo  # noqa: E402
++
++
++def _geo(args) -> str:
++    value = (args.geo or scrapedo.geo() or "us").strip().upper()
++    return value
++
++
++def _get(name: str, params: dict) -> dict:
++    try:
++        return http.request("GET", scrapedo.plugin_url(name, params), timeout=60, retries=2)
++    except http.HTTPError as exc:
++        body = getattr(exc, "body", "") or ""
++        raise SystemExit(f"Scrape.do {name} failed: {exc} {body[:200]}")
++
++
++def cmd_rising(args) -> str:
++    params = {"q": args.query, "geo": _geo(args), "date": args.date, "gprop": args.gprop}
++    queries = _get("trends", {**params, "data_type": "RELATED_QUERIES"})
++    topics = _get("trends", {**params, "data_type": "RELATED_TOPICS"})
++    if args.json:
++        return json.dumps({"related_queries": queries.get("related_queries"),
++                           "related_topics": topics.get("related_topics")}, indent=1)
++    where = f"{_geo(args)}, {args.date}" + (f", {args.gprop}" if args.gprop else "")
++    lines = [f"## Google Trends: rising around \"{args.query}\" ({where})", ""]
++    rq = (queries.get("related_queries") or {}).get("rising") or []
++    rt = (topics.get("related_topics") or {}).get("rising") or []
++    if not rq and not rt:
++        lines.append("No rising queries or topics: search interest here is too low or flat.")
++    if rq:
++        lines.append("Rising searches:")
++        for row in rq[: args.limit]:
++            lines.append(f"- {row.get('query')}: {row.get('value')}")
++    if rt:
++        lines.append("")
++        lines.append("Rising topics:")
++        for row in rt[: args.limit]:
++            topic = row.get("topic") or {}
++            kind = f" ({topic.get('type')})" if topic.get("type") else ""
++            lines.append(f"- {topic.get('title')}{kind}: {row.get('value')}")
++    lines.append("")
++    lines.append("\"Breakout\" means growth above 5000%. Percentages compare with the previous period of the same length.")
++    return "\n".join(lines)
++
++
++def cmd_interest(args) -> str:
++    data = _get("trends", {"q": args.query, "geo": _geo(args), "date": args.date,
++                           "gprop": args.gprop, "data_type": "TIMESERIES"})
++    if args.json:
++        return json.dumps(data.get("interest_over_time"), indent=1)
++    rows = ((data.get("interest_over_time") or {}).get("timeline_data")) or []
++    points = []
++    for row in rows:
++        values = row.get("values") or [{}]
++        points.append((row.get("date"), int(values[0].get("extracted_value") or 0)))
++    lines = [f"## Google Trends: interest in \"{args.query}\" ({_geo(args)}, {args.date})", ""]
++    if not points:
++        lines.append("No data.")
++        return "\n".join(lines)
++    avg = sum(v for _, v in points) / len(points)
++    last = points[-7:]
++    last_avg = sum(v for _, v in last) / len(last)
++    peak = max(points, key=lambda p: p[1])
++    direction = "above" if last_avg > avg * 1.1 else "below" if last_avg < avg * 0.9 else "about level with"
++    lines.append(f"Latest {len(last)} points average {last_avg:.0f}, {direction} the window average of {avg:.0f}. Peak {peak[1]} on {peak[0]}.")
++    lines.append("")
++    lines.append(" ".join(f"{d}: {v}" for d, v in points[-14:]))
++    return "\n".join(lines)
++
++
++def cmd_trending(args) -> str:
++    data = _get("trending", {"geo": _geo(args), "hours": args.hours, "cat": args.cat, "hl": args.hl})
++    if args.json:
++        return json.dumps(data.get("trends"), indent=1)
++    trends = data.get("trends") or []
++    lines = [f"## Trending searches now ({_geo(args)}, last {args.hours}h)", ""]
++    for row in trends[: args.limit]:
++        volume = row.get("search_volume")
++        growth = row.get("growth_percentage")
++        extra = ", ".join(x for x in (
++            f"{volume:,}+ searches" if isinstance(volume, int) else "",
++            f"+{growth}%" if growth else "",
++            row.get("status") or "",
++        ) if x)
++        related = ", ".join((row.get("related_queries") or [])[:4])
++        lines.append(f"- {row.get('title')} ({extra})" + (f": {related}" if related else ""))
++    if not trends:
++        lines.append("Nothing returned.")
++    return "\n".join(lines)
++
++
++def main(argv=None) -> int:
++    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    sub = parser.add_subparsers(dest="cmd", required=True)
++
++    def common(p):
++        p.add_argument("--geo", help="two-letter country (default SCRAPEDO_GEO, else US)")
++        p.add_argument("--limit", type=int, default=15)
++        p.add_argument("--json", action="store_true")
++
++    p = sub.add_parser("rising"); p.add_argument("query"); common(p)
++    p.add_argument("--date", default="today 1-m"); p.add_argument("--gprop", choices=["youtube", "news", "images", "froogle"])
++    p.set_defaults(func=cmd_rising)
++    p = sub.add_parser("interest"); p.add_argument("query"); common(p)
++    p.add_argument("--date", default="today 3-m"); p.add_argument("--gprop", choices=["youtube", "news", "images", "froogle"])
++    p.set_defaults(func=cmd_interest)
++    p = sub.add_parser("trending"); common(p)
++    p.add_argument("--hours", type=int, choices=[4, 24, 48, 168], default=24)
++    p.add_argument("--cat", type=int, help="Google Trends category id (e.g. 18 technology, 17 sports)")
++    p.add_argument("--hl", default="en")
++    p.set_defaults(func=cmd_trending)
++
++    args = parser.parse_args(argv)
++    if not scrapedo.enabled():
++        print("Google Trends needs SCRAPEDO_TOKEN (a Scrape.do API token). Without it, use last30days.py alone.", file=sys.stderr)
++        return 2
++    print(args.func(args))
++    return 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git i/skills/last30days/scripts/lib/http.py w/skills/last30days/scripts/lib/http.py
+index 7c1b5ce3..a4140ddc 100644
+--- i/skills/last30days/scripts/lib/http.py
++++ w/skills/last30days/scripts/lib/http.py
+@@ -21,6 +21,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit, quote
+ 
+ from . import health
+ from . import log as _log
++from . import scrapedo
+ 
+ DEFAULT_TIMEOUT = 30
+ 
+@@ -792,7 +793,10 @@ def request(
+         data = json.dumps(json_data).encode('utf-8')
+         headers.setdefault("Content-Type", "application/json")
+ 
+-    req = urllib.request.Request(url, data=data, headers=headers, method=method)
++    # Robomotion: with SCRAPEDO_TOKEN set, Reddit and YouTube are fetched
++    # through Scrape.do. Logs, errors and fixtures keep the original URL.
++    wire_url = scrapedo.wrap(url) if scrapedo.routes(url) else url
++    req = urllib.request.Request(wire_url, data=data, headers=headers, method=method)
+ 
+     safe_url = re.sub(r'([?&])(key|api_key|token|secret)=[^&]*', r'\1\2=***', url)
+     log(f"{method} {safe_url}")
+diff --git i/skills/last30days/scripts/lib/pipeline.py w/skills/last30days/scripts/lib/pipeline.py
+index 15f991eb..4fe19553 100644
+--- i/skills/last30days/scripts/lib/pipeline.py
++++ w/skills/last30days/scripts/lib/pipeline.py
+@@ -55,6 +55,7 @@ from . import (
+     providers,
+     query,
+     reddit,
++    scrapedo,
+     reddit_listing,
+     reddit_public,
+     relevance,
+@@ -323,7 +324,7 @@ def available_sources(
+             x_pending = env.x_pending_browser_auth(config)
+         if x_pending:
+             available.append("x")
+-    if which("yt-dlp") or env.is_youtube_sc_available(config):
++    if which("yt-dlp") or env.is_youtube_sc_available(config) or scrapedo.enabled():
+         available.append("youtube")
+     available.extend(["hackernews", "polymarket"])
+     # StockTwits is gated to ticker/crypto topics only (flag set in run()).
+@@ -5074,8 +5075,22 @@ def _retrieve_stream_impl(
+             config.get("SCRAPECREATORS_API_KEY", "")
+             if env.is_youtube_sc_available(config) else None
+         )
++        # Scrape.do first when a token is set (Robomotion): yt-dlp from a
++        # server address is often throttled, and Scrape.do searches from the
++        # chosen country. yt-dlp and ScrapeCreators remain the fallbacks.
++        scrapedo_failure: str | None = None
++        if scrapedo.enabled():
++            try:
++                result = youtube_yt.search_youtube_scrapedo(
++                    yt_query, from_date, to_date, depth=depth,
++                )
++                if result.get("error"):
++                    scrapedo_failure = str(result["error"])
++            except Exception as exc:
++                scrapedo_failure = str(exc)
++                result = None
+         # Try yt-dlp first; the SC transcript fallback covers per-video failures.
+-        if which("yt-dlp"):
++        if (result is None or not result.get("items")) and which("yt-dlp"):
+             try:
+                 result = youtube_yt.search_and_transcribe(
+                     yt_query, from_date, to_date, depth=depth, token=sc_token,
+@@ -5098,6 +5113,8 @@ def _retrieve_stream_impl(
+                 result = None
+         if result is None:
+             result = {"items": []}
++        if not result.get("items") and scrapedo_failure and not youtube_failure:
++            youtube_failure = scrapedo_failure
+         # Enrich top videos with comments (default-on when a key is present).
+         items = youtube_yt.parse_youtube_response(result)
+         if items and env.is_youtube_comments_available(config):
+diff --git i/skills/last30days/scripts/lib/reddit_public.py w/skills/last30days/scripts/lib/reddit_public.py
+index f4298c4e..b22eca92 100644
+--- i/skills/last30days/scripts/lib/reddit_public.py
++++ w/skills/last30days/scripts/lib/reddit_public.py
+@@ -27,7 +27,7 @@ import urllib.parse
+ import urllib.request
+ from typing import Any, Dict, List, Optional
+ 
+-from lib import http
++from lib import http, scrapedo
+ 
+ 
+ USER_AGENT = (
+@@ -70,7 +70,9 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
+         "Accept-Encoding": "gzip, deflate",
+         "Connection": "keep-alive",
+     }
+-    req = urllib.request.Request(url, headers=headers)
++    # Robomotion: through Scrape.do when SCRAPEDO_TOKEN is set (see scrapedo.py).
++    wire_url = scrapedo.wrap(url) if scrapedo.routes(url) else url
++    req = urllib.request.Request(wire_url, headers=headers)
+ 
+     for attempt in range(MAX_RETRIES):
+         try:
+diff --git i/skills/last30days/scripts/lib/scrapedo.py w/skills/last30days/scripts/lib/scrapedo.py
+new file mode 100644
+index 00000000..c1fa4951
+--- /dev/null
++++ w/skills/last30days/scripts/lib/scrapedo.py
+@@ -0,0 +1,179 @@
++"""Optional Scrape.do routing (added by Robomotion).
++
++Reddit answers most server and cloud addresses with 403, and YouTube search
++from them is throttled. When ``SCRAPEDO_TOKEN`` is set, requests to those
++hosts go through Scrape.do's API (https://api.scrape.do/?token=...&url=...),
++which fetches them from residential addresses in a chosen country. With no
++token nothing changes: the keyless paths run exactly as upstream wrote them.
++
++Environment:
++    SCRAPEDO_TOKEN  Scrape.do API token. Unset = off.
++    SCRAPEDO_GEO    Two-letter country code (us, tr, de, ...) for Scrape.do's
++                    geoCode, YouTube's gl and Google Trends' geo. Unset = no
++                    country for Scrape.do and US for Google Trends.
++    SCRAPEDO_SUPER  "0" turns off residential routing (super=true), which
++                    Reddit needs. On by default.
++
++Scrape.do takes its token only as a query parameter. Inside a Robomotion
++sandbox the variable holds a vault placeholder that the robot's credential
++proxy swaps for the real token on the way out, so the token itself never
++appears in this process, its logs or its saved reports.
++"""
++
++from __future__ import annotations
++
++import datetime as _dt
++import json
++import os
++import re
++from typing import Any, Dict, List, Optional
++from urllib.parse import quote, urlencode, urlsplit
++
++API = "https://api.scrape.do/"
++PLUGIN = "https://api.scrape.do/plugin/google/"
++
++# Hosts whose requests are routed when a token is set.
++ROUTED_HOSTS = frozenset({
++    "reddit.com", "www.reddit.com", "old.reddit.com", "new.reddit.com",
++    "youtube.com", "www.youtube.com", "m.youtube.com",
++})
++
++
++def token() -> str:
++    return (os.environ.get("SCRAPEDO_TOKEN") or "").strip()
++
++
++def enabled() -> bool:
++    return bool(token())
++
++
++def geo() -> str:
++    """Lower-case two-letter country code, or '' when unset or malformed."""
++    value = (os.environ.get("SCRAPEDO_GEO") or "").strip().lower()
++    return value if re.fullmatch(r"[a-z]{2}", value) else ""
++
++
++def super_on() -> bool:
++    value = (os.environ.get("SCRAPEDO_SUPER") or "1").strip().lower()
++    return value not in {"0", "false", "no", "off"}
++
++
++def routes(url: str) -> bool:
++    """True when ``url`` should be fetched through Scrape.do."""
++    if not enabled():
++        return False
++    try:
++        host = (urlsplit(url).hostname or "").lower()
++    except ValueError:
++        return False
++    return host in ROUTED_HOSTS
++
++
++def wrap(url: str) -> str:
++    """The Scrape.do API URL that fetches ``url``."""
++    params = [("token", token())]
++    if super_on():
++        params.append(("super", "true"))
++    if geo():
++        params.append(("geoCode", geo()))
++    # The token is a vault placeholder or a plain key: letters, digits and _.
++    query = urlencode(params) + "&url=" + quote(url, safe="")
++    return API + "?" + query
++
++
++def plugin_url(name: str, params: Dict[str, Any]) -> str:
++    """A Scrape.do Google plugin URL (trends, trending) with the token."""
++    clean = {k: str(v) for k, v in params.items() if v not in (None, "")}
++    return PLUGIN + name + "?" + urlencode([("token", token())] + sorted(clean.items()))
++
++
++# ---------------------------------------------------------------------------
++# YouTube search through Scrape.do
++# ---------------------------------------------------------------------------
++
++# YouTube search filters: type video, uploaded this month / this week.
++_SP_THIS_MONTH = "EgQIBBAB"
++_SP_THIS_WEEK = "EgQIAxAB"
++
++_REL_UNITS = {
++    "second": 0, "minute": 0, "hour": 0,
++    "day": 1, "week": 7, "month": 30, "year": 365,
++}
++
++
++def _relative_to_date(text: str, today: Optional[_dt.date] = None) -> Optional[str]:
++    """'3 days ago' / '3d ago' / 'Streamed 2 weeks ago' -> YYYY-MM-DD."""
++    today = today or _dt.date.today()
++    m = re.search(r"(\d+)\s*(second|minute|hour|day|week|month|year|s|m|h|d|w|mo|y)\w*\s+ago", text or "", re.I)
++    if not m:
++        return None
++    n = int(m.group(1))
++    unit = m.group(2).lower()
++    short = {"s": "second", "m": "minute", "h": "hour", "d": "day", "w": "week", "mo": "month", "y": "year"}
++    unit = short.get(unit, unit)
++    days = _REL_UNITS.get(unit, 0) * n
++    return (today - _dt.timedelta(days=days)).isoformat()
++
++
++def _count(text: str) -> int:
++    """'95,137 views' / '1.2M views' / 'No views' -> int."""
++    t = (text or "").replace(",", "").strip()
++    m = re.search(r"([\d.]+)\s*([KMB]?)", t, re.I)
++    if not m:
++        return 0
++    value = float(m.group(1))
++    value *= {"": 1, "K": 1e3, "M": 1e6, "B": 1e9}[m.group(2).upper()]
++    return int(value)
++
++
++def _text(node: Any) -> str:
++    if not isinstance(node, dict):
++        return ""
++    if "simpleText" in node:
++        return str(node["simpleText"])
++    return "".join(str(r.get("text", "")) for r in node.get("runs", []) if isinstance(r, dict))
++
++
++def parse_youtube_results(html: str, today: Optional[_dt.date] = None) -> List[Dict[str, Any]]:
++    """Video rows from a YouTube results page (its ytInitialData)."""
++    m = re.search(r"var ytInitialData\s*=\s*(\{.*?\});\s*</script>", html or "", re.S)
++    if not m:
++        return []
++    try:
++        data = json.loads(m.group(1))
++    except ValueError:
++        return []
++    rows: List[Dict[str, Any]] = []
++    seen = set()
++    stack = [data]
++    while stack:
++        node = stack.pop()
++        if isinstance(node, dict):
++            video = node.get("videoRenderer")
++            if isinstance(video, dict) and video.get("videoId") and video["videoId"] not in seen:
++                seen.add(video["videoId"])
++                rows.append({
++                    "video_id": video["videoId"],
++                    "title": _text(video.get("title")),
++                    "channel_name": _text(video.get("ownerText")),
++                    "views": _count(_text(video.get("viewCountText"))),
++                    "date": _relative_to_date(_text(video.get("publishedTimeText")), today),
++                    "duration": _text(video.get("lengthText")) or None,
++                    "description": "".join(
++                        _text(s.get("snippetText")) for s in video.get("detailedMetadataSnippets", []) if isinstance(s, dict)
++                    ) or _text(video.get("descriptionSnippet")),
++                })
++            stack.extend(node.values())
++        elif isinstance(node, list):
++            stack.extend(node)
++    # ytInitialData lists results in page order; the stack walk reverses it.
++    rows.reverse()
++    return rows
++
++
++def youtube_search_url(query: str, window_days: int = 30) -> str:
++    sp = _SP_THIS_WEEK if window_days <= 7 else _SP_THIS_MONTH
++    params = {"search_query": query, "sp": sp, "hl": "en"}
++    if geo():
++        params["gl"] = geo().upper()
++    return "https://www.youtube.com/results?" + urlencode(params)
+diff --git i/skills/last30days/scripts/lib/youtube_yt.py w/skills/last30days/scripts/lib/youtube_yt.py
+index 3234d7d1..573d0979 100644
+--- i/skills/last30days/scripts/lib/youtube_yt.py
++++ w/skills/last30days/scripts/lib/youtube_yt.py
+@@ -58,7 +58,7 @@ def reset_transcript_fetch_stats() -> None:
+ # Max words to keep from each transcript
+ TRANSCRIPT_MAX_WORDS = 5000
+ 
+-from . import dates, health, http, log, subproc
++from . import dates, health, http, log, scrapedo, subproc
+ from .query import infer_query_intent
+ 
+ from .relevance import token_overlap_relevance as _compute_relevance
+@@ -1322,6 +1322,59 @@ def parse_youtube_response(response: Dict[str, Any]) -> List[Dict[str, Any]]:
+     return response.get("items", [])
+ 
+ 
++def search_youtube_scrapedo(
++    topic: str,
++    from_date: str,
++    to_date: str,
++    depth: str = "default",
++) -> Dict[str, Any]:
++    """Search YouTube's results page through Scrape.do (added by Robomotion).
++
++    Used before yt-dlp when SCRAPEDO_TOKEN is set: the page is fetched from a
++    residential address in SCRAPEDO_GEO's country, filtered to videos uploaded
++    in the window. Each row has views and the upload date YouTube shows ("3
++    days ago"), so views per day can be ranked; likes and comments are not on
++    the results page and stay 0.
++    """
++    if not scrapedo.enabled():
++        return {"items": [], "error": "SCRAPEDO_TOKEN not set"}
++    count = DEPTH_CONFIG.get(depth, DEPTH_CONFIG["default"])
++    core_topic = _extract_core_subject(topic)
++    try:
++        window = (dates.parse_date(to_date) - dates.parse_date(from_date)).days
++    except Exception:
++        window = 30
++    url = scrapedo.youtube_search_url(core_topic, window_days=window)
++    _log(f"Searching YouTube via Scrape.do for '{core_topic}' (geo={scrapedo.geo() or 'any'})")
++    html = http.get_text(url, timeout=60, retries=2, accept="text/html")
++    if not html:
++        return {"items": [], "error": "Scrape.do YouTube search failed"}
++    items = []
++    for row in scrapedo.parse_youtube_results(html)[: max(count, 20)]:
++        title = row["title"]
++        description = str(row.get("description") or "")[:500]
++        items.append({
++            "video_id": row["video_id"],
++            "title": title,
++            "url": f"https://www.youtube.com/watch?v={row['video_id']}",
++            "channel_name": row["channel_name"],
++            "date": row["date"],
++            "engagement": {"views": row["views"], "likes": 0, "comments": 0},
++            "duration": row.get("duration"),
++            "relevance": _compute_relevance(core_topic, f"{title} {description}"),
++            "why_relevant": f"YouTube: {title[:60]}" if title else f"YouTube: {core_topic}",
++            "description": description,
++            "transcript_snippet": "",
++            "transcript_highlights": [],
++        })
++    recent = [i for i in items if i["date"] and i["date"] >= from_date]
++    if len(recent) >= 3:
++        items = recent
++    items.sort(key=lambda x: x["engagement"]["views"], reverse=True)
++    _log(f"Scrape.do YouTube: {len(items)} videos")
++    return {"items": items[:count]}
++
++
+ # ---------------------------------------------------------------------------
+ # ScrapeCreators YouTube API support
+ # ---------------------------------------------------------------------------

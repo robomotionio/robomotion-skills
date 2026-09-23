@@ -58,7 +58,7 @@ def reset_transcript_fetch_stats() -> None:
 # Max words to keep from each transcript
 TRANSCRIPT_MAX_WORDS = 5000
 
-from . import dates, health, http, log, subproc
+from . import dates, health, http, log, scrapedo, subproc
 from .query import infer_query_intent
 
 from .relevance import token_overlap_relevance as _compute_relevance
@@ -1320,6 +1320,59 @@ def parse_youtube_response(response: Dict[str, Any]) -> List[Dict[str, Any]]:
         List of item dicts ready for normalization.
     """
     return response.get("items", [])
+
+
+def search_youtube_scrapedo(
+    topic: str,
+    from_date: str,
+    to_date: str,
+    depth: str = "default",
+) -> Dict[str, Any]:
+    """Search YouTube's results page through Scrape.do (added by Robomotion).
+
+    Used before yt-dlp when SCRAPEDO_TOKEN is set: the page is fetched from a
+    residential address in SCRAPEDO_GEO's country, filtered to videos uploaded
+    in the window. Each row has views and the upload date YouTube shows ("3
+    days ago"), so views per day can be ranked; likes and comments are not on
+    the results page and stay 0.
+    """
+    if not scrapedo.enabled():
+        return {"items": [], "error": "SCRAPEDO_TOKEN not set"}
+    count = DEPTH_CONFIG.get(depth, DEPTH_CONFIG["default"])
+    core_topic = _extract_core_subject(topic)
+    try:
+        window = (dates.parse_date(to_date) - dates.parse_date(from_date)).days
+    except Exception:
+        window = 30
+    url = scrapedo.youtube_search_url(core_topic, window_days=window)
+    _log(f"Searching YouTube via Scrape.do for '{core_topic}' (geo={scrapedo.geo() or 'any'})")
+    html = http.get_text(url, timeout=60, retries=2, accept="text/html")
+    if not html:
+        return {"items": [], "error": "Scrape.do YouTube search failed"}
+    items = []
+    for row in scrapedo.parse_youtube_results(html)[: max(count, 20)]:
+        title = row["title"]
+        description = str(row.get("description") or "")[:500]
+        items.append({
+            "video_id": row["video_id"],
+            "title": title,
+            "url": f"https://www.youtube.com/watch?v={row['video_id']}",
+            "channel_name": row["channel_name"],
+            "date": row["date"],
+            "engagement": {"views": row["views"], "likes": 0, "comments": 0},
+            "duration": row.get("duration"),
+            "relevance": _compute_relevance(core_topic, f"{title} {description}"),
+            "why_relevant": f"YouTube: {title[:60]}" if title else f"YouTube: {core_topic}",
+            "description": description,
+            "transcript_snippet": "",
+            "transcript_highlights": [],
+        })
+    recent = [i for i in items if i["date"] and i["date"] >= from_date]
+    if len(recent) >= 3:
+        items = recent
+    items.sort(key=lambda x: x["engagement"]["views"], reverse=True)
+    _log(f"Scrape.do YouTube: {len(items)} videos")
+    return {"items": items[:count]}
 
 
 # ---------------------------------------------------------------------------

@@ -27,7 +27,7 @@ import urllib.parse
 import urllib.request
 from typing import Any, Dict, List, Optional
 
-from lib import http
+from lib import http, scrapedo
 
 
 USER_AGENT = (
@@ -70,7 +70,9 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
         "Accept-Encoding": "gzip, deflate",
         "Connection": "keep-alive",
     }
-    req = urllib.request.Request(url, headers=headers)
+    # Robomotion: through Scrape.do when SCRAPEDO_TOKEN is set (see scrapedo.py).
+    wire_url = scrapedo.wrap(url) if scrapedo.routes(url) else url
+    req = urllib.request.Request(wire_url, headers=headers)
 
     for attempt in range(MAX_RETRIES):
         try:

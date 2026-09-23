@@ -21,6 +21,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit, quote
 
 from . import health
 from . import log as _log
+from . import scrapedo
 
 DEFAULT_TIMEOUT = 30
 
@@ -792,7 +793,10 @@ def request(
         data = json.dumps(json_data).encode('utf-8')
         headers.setdefault("Content-Type", "application/json")
 
-    req = urllib.request.Request(url, data=data, headers=headers, method=method)
+    # Robomotion: with SCRAPEDO_TOKEN set, Reddit and YouTube are fetched
+    # through Scrape.do. Logs, errors and fixtures keep the original URL.
+    wire_url = scrapedo.wrap(url) if scrapedo.routes(url) else url
+    req = urllib.request.Request(wire_url, data=data, headers=headers, method=method)
 
     safe_url = re.sub(r'([?&])(key|api_key|token|secret)=[^&]*', r'\1\2=***', url)
     log(f"{method} {safe_url}")

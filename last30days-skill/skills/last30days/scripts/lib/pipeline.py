@@ -55,6 +55,7 @@ from . import (
     providers,
     query,
     reddit,
+    scrapedo,
     reddit_listing,
     reddit_public,
     relevance,
@@ -323,7 +324,7 @@ def available_sources(
             x_pending = env.x_pending_browser_auth(config)
         if x_pending:
             available.append("x")
-    if which("yt-dlp") or env.is_youtube_sc_available(config):
+    if which("yt-dlp") or env.is_youtube_sc_available(config) or scrapedo.enabled():
         available.append("youtube")
     available.extend(["hackernews", "polymarket"])
     # StockTwits is gated to ticker/crypto topics only (flag set in run()).
@@ -5074,8 +5075,22 @@ def _retrieve_stream_impl(
             config.get("SCRAPECREATORS_API_KEY", "")
             if env.is_youtube_sc_available(config) else None
         )
+        # Scrape.do first when a token is set (Robomotion): yt-dlp from a
+        # server address is often throttled, and Scrape.do searches from the
+        # chosen country. yt-dlp and ScrapeCreators remain the fallbacks.
+        scrapedo_failure: str | None = None
+        if scrapedo.enabled():
+            try:
+                result = youtube_yt.search_youtube_scrapedo(
+                    yt_query, from_date, to_date, depth=depth,
+                )
+                if result.get("error"):
+                    scrapedo_failure = str(result["error"])
+            except Exception as exc:
+                scrapedo_failure = str(exc)
+                result = None
         # Try yt-dlp first; the SC transcript fallback covers per-video failures.
-        if which("yt-dlp"):
+        if (result is None or not result.get("items")) and which("yt-dlp"):
             try:
                 result = youtube_yt.search_and_transcribe(
                     yt_query, from_date, to_date, depth=depth, token=sc_token,
@@ -5098,6 +5113,8 @@ def _retrieve_stream_impl(
                 result = None
         if result is None:
             result = {"items": []}
+        if not result.get("items") and scrapedo_failure and not youtube_failure:
+            youtube_failure = scrapedo_failure
         # Enrich top videos with comments (default-on when a key is present).
         items = youtube_yt.parse_youtube_response(result)
         if items and env.is_youtube_comments_available(config):

@@ -67,6 +67,22 @@ metadata:
       - clawhub
 ---
 
+# ROBOMOTION SANDBOX — READ FIRST (added by Robomotion)
+
+In a Robomotion agent sandbox (`/etc/last30days/robomotion-ready` exists) these rules replace the matching steps below:
+
+- **Setup is done.** The image installed yt-dlp and the engine. Never run the first-run wizard, `setup`, `brew`, `pip`, `npx`, `uv`, browser-cookie extraction or Keychain steps. The first-run gate prints `1`.
+- **Run the engine as `last30days`** (a wrapper for `python3 "$SKILL_DIR/scripts/last30days.py"`). Wherever this file shows `"${LAST30DAYS_PYTHON}" "${SKILL_DIR}/scripts/last30days.py"`, use `last30days`.
+- **Save to the agent's folder:** `--save-dir=/workspace/last30days` (it survives between runs; `~/Documents` does not).
+- **No host web search here:** skip Steps 0.55 and 0.75 and add `--auto-resolve`, as the capability rule says for hosts without web search. Name subreddits yourself with `--subreddits` when you know the communities.
+- **Sources:** Reddit, YouTube and Hacker News need no key. X, TikTok, Instagram, Bluesky and Threads need keys this sandbox does not have; leave them out (`--search reddit,youtube,hackernews`) and do not suggest signing up for anything.
+- **Scrape.do (optional, `SCRAPEDO_TOKEN`).** When set, Reddit and YouTube are fetched through Scrape.do from residential addresses: Reddit keeps working where it blocks servers, and YouTube search returns this month's uploads. `SCRAPEDO_GEO=<two-letter country>` in front of the command picks the country (for example `SCRAPEDO_GEO=tr last30days ...`). Each fetch costs Scrape.do credits. Never print, echo or save the token; it is a placeholder the sandbox swaps on the way out.
+- **Google Trends (needs `SCRAPEDO_TOKEN`):** `google-trends rising "<topic>" --geo <cc>` (queries and topics growing fastest, "Breakout" = over 5000%), `google-trends interest "<topic>" --geo <cc>` (is it rising or fading), `google-trends trending --geo <cc>` (what the whole country searches right now). Add `--gprop youtube` or `--gprop news` for YouTube or news searches.
+- **Cover images:** `fetch-covers --out <folder> <youtube or reddit URL> ...` saves each video's thumbnail and each Reddit post's own images, one JSON line per file.
+- **Transcripts:** the engine often gets no YouTube transcripts here and prints "Degraded: YouTube" with advice to update yt-dlp. The ranking uses titles, views, dates and comments, which still arrive; if it matters, say transcripts were unavailable. yt-dlp is pinned in the image, so updating it is not something the user can do.
+
+---
+
 # STEP 0: STALE-CLONE SELF-CHECK — RUN BEFORE READING BELOW
 
 Before reading anything else in this file, check whether you loaded SKILL.md from the one known stale-clone location: Claude Code's marketplaces directory.
@@ -300,7 +316,7 @@ After resolving host web search, run the first-run gate below before anything el
 **FIRST-RUN GATE — run this Bash command immediately after resolving host web search, before reading the topic or doing any research:**
 
 ```bash
-grep -q "SETUP_COMPLETE=true" ~/.config/last30days/.env 2>/dev/null && echo "1" || echo "FIRST_RUN_DETECTED"
+{ [ -f /etc/last30days/robomotion-ready ] || grep -q "SETUP_COMPLETE=true" ~/.config/last30days/.env 2>/dev/null; } && echo "1" || echo "FIRST_RUN_DETECTED"
 ```
 
 This emits exactly one token: `1` or `FIRST_RUN_DETECTED`, never both.
