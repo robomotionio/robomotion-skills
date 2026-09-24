@@ -43,7 +43,7 @@ Pick the skills an agent needs in the Agent Editor of a flow in the Designer; th
 | [`elevenlabs-skills`](elevenlabs-skills/) | Media | 10 | [elevenlabs/skills](https://github.com/elevenlabs/skills) | Voice and audio: text to speech, speech to text, music, sound effects, dubbing, voice isolation. |
 | [`higgsfield-skills`](higgsfield-skills/) | Media | 8 | [higgsfield-ai/skills](https://github.com/higgsfield-ai/skills) | Product photoshoots, brand kits, marketplace cards, YouTube thumbnails, UGC ads and video explainers on Higgsfield. |
 | [`replicate-skills`](replicate-skills/) | Media | 7 | [replicate/skills](https://github.com/replicate/skills) | Running models on Replicate, and prompting image and video models well. |
-| [`video-skills`](video-skills/) | Media | 1 | Robomotion | Illustrated, hand-made-looking videos cut to their sound: music and lyric videos, product demos with a voiceover, explainers. A print-ink drawing kit for HyperFrames, a timing spine from beats and words, and a fal.ai playbook for generated casts and lip-synced performances. |
+| [`video-skills`](video-skills/) | Media | 1 | Robomotion | The illustrated look for any video: hand-made-looking videos cut to their sound, or silent: music and lyric videos, product demos with a voiceover, explainers, recipes and how-tos. A print-ink drawing kit for HyperFrames, a timing spine from beats and words, and a fal.ai playbook for generated casts and lip-synced performances. |
 | [`gws-cli`](gws-cli/) | Productivity | 95 | [googleworkspace/cli](https://github.com/googleworkspace/cli) | Google Workspace through the gws CLI: Gmail, Drive, Calendar, Sheets, Docs, Slides, Chat, Meet, Tasks, Forms and more, with ready-made recipes and role personas. |
 | [`lark-skills`](lark-skills/) | Productivity | 28 | [larksuite/cli](https://github.com/larksuite/cli) | Lark and Feishu: docs, sheets, calendar, mail, tasks, meetings, approvals, messaging. |
 | [`officecli`](officecli/) | Productivity | 11 | [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) | Word, Excel and PowerPoint files without Office: create, read, edit and check .docx, .xlsx and .pptx with the officecli command line, plus decks, financial models, dashboards, forms and papers. |
@@ -1142,7 +1142,7 @@ Every skill, by pack. Click a pack to open its list; a skill's name links to its
 
 | Skill | What it does |
 |---|---|
-| [`illustrated-video`](video-skills/skills/illustrated-video/) | Make a hand-made-looking, illustrated video that is cut and animated to its sound: a music video or lyric video from a song, a product demo or promo with a… |
+| [`illustrated-video`](video-skills/skills/illustrated-video/) | The illustrated look for any kind of video: drawn and printed on paper in a few spot inks (halftone, grain, boiling linework), big kinetic type, paper inserts… |
 
 </details>
 

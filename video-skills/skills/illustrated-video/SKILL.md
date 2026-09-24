@@ -1,17 +1,19 @@
 ---
 name: illustrated-video
-description: "Make a hand-made-looking, illustrated video that is cut and animated to its sound: a music video or lyric video from a song, a product demo or promo with a voiceover, an explainer, or a brand piece over a music bed. Everything is printed in a few spot inks on paper (halftone, grain, boiling linework), with big kinetic type, a subtitle chip that follows the words, diegetic paper inserts (labels, cards, stamps, sticky notes, charts), generated characters and sets laid in with multiply, and optional lip-synced performance shots from fal.ai (MiniMax H3 lip-sync, Seedance 2.5). Renders with HyperFrames on a CPU. Use when someone wants a video that looks designed and alive rather than a template: 'music video', 'lyric video', 'animated promo', 'make it look hand-made', 'a character that sings/speaks', 'product demo with a voice', 'explainer with a mascot', 'K-pop style', 'riso / print / zine look'. Also the fal.ai playbook for any image, video, lip-sync or audio generation."
+description: "The illustrated look for any kind of video: drawn and printed on paper in a few spot inks (halftone, grain, boiling linework), big kinetic type, paper inserts, a generated cast laid in with multiply, and optional lip-synced performances from fal.ai (MiniMax H3 lip-sync, Seedance 2.5). Use it when the look is asked for or shown, whatever the video is: a hand-drawn, illustrated, sketch, cartoon, riso, print, zine, comic, storybook or anime look; a reference image or video that is drawn rather than photographed (match it); a character, mascot or presenter, or anyone singing or talking on screen. It then builds the whole video for that kind: a song or lyric video, a promo or product demo, an explainer, a recipe or how-to (a step-by-step kit), a piece over a music bed, or a silent one. Not for a clean, photographic or UI-led video with no look asked for. Also the fal.ai playbook for any image, video, lip-sync or audio generation."
 metadata:
-  version: 1.0.0
+  version: 1.2.0
 ---
 
 # Illustrated video
 
 You make short videos that look drawn and printed, not assembled from a
-template, and that move exactly with their sound. The same method makes a
-music video, a lyric video, a product demo with a voiceover, an explainer
-with a mascot, or a promo over a music bed. What changes is the **spine**:
-the timing everything is cut and animated to.
+template, and that move exactly with their sound, or with a steady pace when
+there is none. This skill is a **look**: once the look is chosen it builds
+any kind of video, a music or lyric video, a product demo with a voiceover,
+an explainer with a mascot, a recipe or how-to, a promo over a music bed.
+What changes with the kind is the **spine**, the timing everything is cut
+and animated to, and the parts it is built from (`references/kinds.md`).
 
 The look is one medium held all the way through: a paper stock, three to
 five spot inks, halftone for tone, grain over everything, linework that
@@ -48,6 +50,15 @@ plan. Never raise it without their yes.
 Post the plan (step 3) as one short message and go on; ask only when you
 cannot tell what the video is for.
 
+### 0. A reference: match it
+
+When the person sent an image or a video to show the look, match it before
+you invent anything. Read `references/match-reference.md`: take the palette,
+the paper, the line, the type and the layout from it, write them down as the
+video's look, and check your frames against it side by side. A reference
+that shows a recipe, a step list or a product card also tells you the
+parts: build those (`references/kinds.md`).
+
 ### 1. The spine: what the video is timed to
 
 Put the audio at `assets/track.mp3` (a song, a voiceover, or a voiceover
@@ -65,6 +76,11 @@ python3 $SKILL_DIR/scripts/spine.py --audio assets/track.mp3 \
   times. Always pass it when you have it.
 - Speech only, no music: add `--no-beats`. Music with no words: omit
   `--transcript`.
+- **No sound at all** (a silent recipe, a loop, nothing was asked for):
+  `python3 $SKILL_DIR/scripts/spine.py --silent 30 -o spine.json` gives a
+  steady pacing grid of that length, and `scaffold.sh <dir> - spine.json`
+  builds the project with no soundtrack. Do not add a voice or music the
+  person did not ask for.
 - **Read spine.py's output.** It lists every line whose words were not
   heard as `GUESSED`. Sung vocals are often missed. For each guessed stretch
   cut that section, transcribe it again with `--model medium.en`, and pass it
@@ -119,7 +135,10 @@ sh $SKILL_DIR/scripts/scaffold.sh . assets/track.mp3 spine.json
 
 That writes `index.html` (the layers: back canvas → performance clips →
 front canvas → soundtrack), `scenes.js` (your shots), `spine.js` and copies
-the kit and fonts into `assets/`. Write the shots in `scenes.js` with the
+the kit, the how-to parts (`howto.js`) and the fonts into `assets/`. For a
+recipe or how-to, start from `templates/recipe-scenes.js` instead
+(`cp $SKILL_DIR/templates/recipe-scenes.js scenes.js`): edit its recipe data
+and colours, and it builds the steps. Write the shots in `scenes.js` with the
 kit (`references/paperkit.md`). Each shot is a pure function of time and
 paints the whole frame. Build and check one shot at a time.
 
@@ -168,6 +187,7 @@ you could not verify (a guessed line, a lip-sync shot that only just passed).
 | `scripts/spine.py` | Beats, bars, sections, and script-corrected word/line timings |
 | `scripts/scaffold.sh` | Layered HyperFrames project from the templates |
 | `scripts/paperkit.js` | The drawing kit (copied into `assets/`) |
+| `scripts/howto.js` | Recipe and how-to parts: step rail and card, a vessel that fills, pours, stir, twist (copied into `assets/`) |
 | `scripts/fal.mjs` | fal.ai: search, schema, run, batch, upload, spend, budget |
 | `scripts/slice.py` | Audio slices sized for a lip-sync or video model |
 | `scripts/inkify.sh` | Print an image or clip in the video's inks |
@@ -179,11 +199,12 @@ you could not verify (a guessed line, a lip-sync shot that only just passed).
 
 | Read | When |
 |---|---|
+| `references/match-reference.md` | Step 0: when the person sent a picture or video of the look |
 | `references/art-direction.md` | Step 2: the look, the hook, attention, what to avoid |
 | `references/storyboard.md` | Step 3: the shot list format and its checks |
 | `references/cast-and-plates.md` | Step 4: style sheet, character sheet, variants, sets |
 | `references/fal.md` | Before any fal call: models, prices, budget, batches |
 | `references/performance.md` | Step 4: lip-sync and dance shots, and their sync loop |
 | `references/paperkit.md` | Step 5: the kit's API |
-| `references/kinds.md` | Step 2: what changes for a song, a voiceover demo, a music bed |
+| `references/kinds.md` | Step 2: what changes for a song, a voiceover demo, an explainer, a recipe or how-to, a music bed, no sound |
 | `references/review.md` | Step 6: how to look at your own video |
