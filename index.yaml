@@ -31547,7 +31547,7 @@ groups:
   name: video-skills
   title: Video Skills
   type: group
-  version: 1.1.0
+  version: 1.2.0
   author: Robomotion
   source_url: https://github.com/robomotionio/robomotion-skills/tree/main/video-skills
   license: MIT
@@ -31572,7 +31572,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 03e3eeab6f82
+  content_hash: f7f9a2215b0b
   skills:
   - id: video-skills/illustrated-video
     name: illustrated-video
@@ -31586,14 +31586,14 @@ groups:
       or talking on screen. It then builds the whole video for that kind: a song or lyric video, a promo or product demo,
       an explainer, a recipe or how-to (a step-by-step kit), a piece over a music bed, or a silent one. Not for a clean, photographic
       or UI-led video with no look asked for. Also the fal.ai playbook for any image, video, lip-sync or audio generation.'
-    version: 1.1.0
+    version: 1.2.0
     tags: []
     mode: container
     env:
       required: []
       optional:
       - FAL_KEY
-    content_hash: f30d76c115dd
+    content_hash: 9d82e4800299
     files:
     - SKILL.md
     - assets/fonts/Anton-Regular.ttf

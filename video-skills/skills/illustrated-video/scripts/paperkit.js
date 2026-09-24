@@ -99,6 +99,7 @@
     const inks = Object.assign({}, INKSETS.riso, o.inks || {});
     const bpm = o.bpm || 120, BEAT = 60 / bpm, OFF = o.offset || 0, AT = o.at || 0;
     const BOIL = o.boil ?? 8;  // boil drawings per second; 0 turns the boil off
+    const TEX = clamp(o.texture ?? 1, 0, 1);  // paper texture: 1 = mottled stock, 0 = clean sheet
     const words = o.words || [];  // [{w, s, e}] in video seconds, from the timing spine
     let T = 0, ctx = bgC.getContext('2d'), rnd = Math.random, boilFrame = 0;
 
@@ -112,18 +113,18 @@
     (function makePaper() {
       const c = paper.getContext('2d'), r = mulberry(1103);
       c.fillStyle = inks.paper; c.fillRect(0, 0, W, H);
-      const gw = 48, gh = 27, g = surface(gw, gh);
+      const gw = 48, gh = Math.max(8, Math.round(48 * H / W)), g = surface(gw, gh);
       const gc = g.getContext('2d'), gd = gc.createImageData(gw, gh);
-      for (let i = 0; i < gw * gh; i++) { const v = r(); gd.data[i * 4] = 110; gd.data[i * 4 + 1] = 92; gd.data[i * 4 + 2] = 64; gd.data[i * 4 + 3] = Math.round(v * v * 26); }
+      for (let i = 0; i < gw * gh; i++) { const v = r(); gd.data[i * 4] = 110; gd.data[i * 4 + 1] = 92; gd.data[i * 4 + 2] = 64; gd.data[i * 4 + 3] = Math.round(v * v * 26 * TEX); }
       gc.putImageData(gd, 0, 0);
       c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high'; c.drawImage(g, 0, 0, W, H);
-      for (let i = 0; i < 1100; i++) {
+      for (let i = 0; i < 1100 * TEX; i++) {
         const x = r() * W, y = r() * H, len = 6 + r() * 26, ang = r() * TAU, bend = (r() - .5) * len * .6;
         c.strokeStyle = `rgba(95,80,60,${.025 + r() * .045})`; c.lineWidth = .6 + r() * .8;
         c.beginPath(); c.moveTo(x, y);
         c.quadraticCurveTo(x + Math.cos(ang) * len / 2 - Math.sin(ang) * bend, y + Math.sin(ang) * len / 2 + Math.cos(ang) * bend, x + Math.cos(ang) * len, y + Math.sin(ang) * len); c.stroke();
       }
-      for (let i = 0; i < 260; i++) { c.fillStyle = `rgba(70,58,44,${.05 + r() * .08})`; c.fillRect(r() * W, r() * H, 1 + r() * 1.5, 1 + r() * 1.5); }
+      for (let i = 0; i < 260 * TEX; i++) { c.fillStyle = `rgba(70,58,44,${.05 + r() * .08})`; c.fillRect(r() * W, r() * H, 1 + r() * 1.5, 1 + r() * 1.5); }
     })();
     // Grain: fine and coarse noise together, and edges that darken toward the
     // frame border (a rounded falloff), multiplied over every frame.

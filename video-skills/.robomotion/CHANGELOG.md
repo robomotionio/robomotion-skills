@@ -2,6 +2,13 @@
 
 All notable changes to the Robomotion-authored `video-skills/` group.
 
+## [1.2.0] — 2026-09-24
+- `paperkit.js`: a `texture` option on `PaperKit.create` (0..1) sets how much
+  mottling the paper carries, so a clean, flat reference can get clean paper;
+  the mottling now follows the canvas's aspect, so square and vertical
+  videos get round blotches, not stretched ones. Documented in
+  `references/paperkit.md`.
+
 ## [1.1.0] — 2026-09-24
 - `illustrated-video` is now described as a look for any kind of video, so
   an agent chooses it when the illustrated look is asked for or shown, not

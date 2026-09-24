@@ -2,7 +2,7 @@ schema_version: 1
 name: video-skills
 title: Video Skills
 type: group
-version: 1.1.0
+version: 1.2.0
 author: Robomotion
 source_url: https://github.com/robomotionio/robomotion-skills/tree/main/video-skills
 license: MIT

@@ -2,7 +2,7 @@
 name: illustrated-video
 description: "The illustrated look for any kind of video: drawn and printed on paper in a few spot inks (halftone, grain, boiling linework), big kinetic type, paper inserts, a generated cast laid in with multiply, and optional lip-synced performances from fal.ai (MiniMax H3 lip-sync, Seedance 2.5). Use it when the look is asked for or shown, whatever the video is: a hand-drawn, illustrated, sketch, cartoon, riso, print, zine, comic, storybook or anime look; a reference image or video that is drawn rather than photographed (match it); a character, mascot or presenter, or anyone singing or talking on screen. It then builds the whole video for that kind: a song or lyric video, a promo or product demo, an explainer, a recipe or how-to (a step-by-step kit), a piece over a music bed, or a silent one. Not for a clean, photographic or UI-led video with no look asked for. Also the fal.ai playbook for any image, video, lip-sync or audio generation."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Illustrated video
