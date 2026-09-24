@@ -31543,4 +31543,98 @@ groups:
   - src/ui-ux-pro-max/templates/platforms/trae.json
   - src/ui-ux-pro-max/templates/platforms/warp.json
   - src/ui-ux-pro-max/templates/platforms/windsurf.json
+- path: video-skills
+  name: video-skills
+  title: Video Skills
+  type: group
+  version: 1.0.0
+  author: Robomotion
+  source_url: https://github.com/robomotionio/robomotion-skills/tree/main/video-skills
+  license: MIT
+  summary: 'Illustrated, hand-made-looking videos cut to their sound: music and lyric videos, product demos with a voiceover,
+    explainers. A print-ink drawing kit for HyperFrames, a timing spine from beats and words, and a fal.ai playbook for generated
+    casts and lip-synced performances.'
+  category: Media
+  tags:
+  - video
+  - music-video
+  - lyric-video
+  - animation
+  - motion-graphics
+  - hyperframes
+  - fal
+  - lip-sync
+  - seedance
+  - product-demo
+  has_post_install: true
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: b38938aa17b9
+  skills:
+  - id: video-skills/illustrated-video
+    name: illustrated-video
+    path: video-skills/skills/illustrated-video
+    title: illustrated-video
+    summary: 'Make a hand-made-looking, illustrated video that is cut and animated to its sound: a music video or lyric video
+      from a song, a product demo or promo with a voiceover, an explainer, or a brand piece over a music bed. Everything is
+      printed in a few spot inks on paper (halftone, grain, boiling linework), with big kinetic type, a subtitle chip that
+      follows the words, diegetic paper inserts (labels, cards, stamps, sticky notes, charts), generated characters and sets
+      laid in with multiply, and optional lip-synced performance shots from fal.ai (MiniMax H3 lip-sync, Seedance 2.5). Renders
+      with HyperFrames on a CPU. Use when someone wants a video that looks designed and alive rather than a template: ''music
+      video'', ''lyric video'', ''animated promo'', ''make it look hand-made'', ''a character that sings/speaks'', ''product
+      demo with a voice'', ''explainer with a mascot'', ''K-pop style'', ''riso / print / zine look''. Also the fal.ai playbook
+      for any image, video, lip-sync or audio generation.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - FAL_KEY
+    content_hash: 0e9891f44ea6
+    files:
+    - SKILL.md
+    - assets/fonts/Anton-Regular.ttf
+    - assets/fonts/ArchivoBlack-Regular.ttf
+    - assets/fonts/DMSans-Variable.ttf
+    - assets/fonts/FONTS.md
+    - assets/fonts/InstrumentSerif-Italic.ttf
+    - assets/fonts/InstrumentSerif-Regular.ttf
+    - assets/fonts/LICENSE-Apache-2.0.txt
+    - assets/fonts/OFL.txt
+    - assets/fonts/PermanentMarker-Regular.ttf
+    - assets/fonts/SpaceMono-Bold.ttf
+    - assets/fonts/SpaceMono-Regular.ttf
+    - env.optional
+    - references/art-direction.md
+    - references/cast-and-plates.md
+    - references/fal.md
+    - references/kinds.md
+    - references/paperkit.md
+    - references/performance.md
+    - references/review.md
+    - references/storyboard.md
+    - scripts/envelope.py
+    - scripts/fal.mjs
+    - scripts/inkify.sh
+    - scripts/paperkit.js
+    - scripts/scaffold.sh
+    - scripts/sheet.py
+    - scripts/slice.py
+    - scripts/spine.py
+    - scripts/sync_check.py
+    - templates/index.html
+    - templates/scenes.js
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-skills/tree/main/video-skills/tree/main/skills/illustrated-video
+    license: MIT
+    group: video-skills
+    category: Media
+  files:
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/THIRD_PARTY_NOTICES.md
+  - .robomotion/post-install.sh
+  - .robomotion/skill.yaml
 skills: []

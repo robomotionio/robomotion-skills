@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Illustrated video</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Anton"; src: url("assets/fonts/Anton-Regular.ttf"); }
+      @font-face { font-family: "Archivo Black"; src: url("assets/fonts/ArchivoBlack-Regular.ttf"); }
+      @font-face { font-family: "Instrument Serif"; src: url("assets/fonts/InstrumentSerif-Regular.ttf"); }
+      @font-face { font-family: "Instrument Serif"; font-style: italic; src: url("assets/fonts/InstrumentSerif-Italic.ttf"); }
+      @font-face { font-family: "DM Sans"; font-weight: 100 1000; src: url("assets/fonts/DMSans-Variable.ttf"); }
+      @font-face { font-family: "Space Mono"; src: url("assets/fonts/SpaceMono-Regular.ttf"); }
+      @font-face { font-family: "Space Mono"; font-weight: 700; src: url("assets/fonts/SpaceMono-Bold.ttf"); }
+      @font-face { font-family: "Permanent Marker"; src: url("assets/fonts/PermanentMarker-Regular.ttf"); }
+      body { margin: 0; background: #EEE6D6; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #EEE6D6; }
+      /* Layers, back to front: drawn world, performance clips (ink on paper,
+         multiplied so the paper vanishes), type and HUD. */
+      #bg, #fg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+      #bg { z-index: 1; }
+      .perf { position: absolute; z-index: 2; mix-blend-mode: multiply; object-fit: cover; }
+      #fg { z-index: 3; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="__DURATION__">
+      <canvas id="bg"></canvas>
+
+      <!-- One <video> per performance clip (inkified, from fal). data-start is
+           when it appears in the video, data-media-start where in the clip it
+           starts (the slice's `lead`, plus any sync_check SHIFT). Size and
+           place it with style; keep it muted: the soundtrack is the audio. -->
+      <!--
+      <video id="perf-s04" class="perf clip" src="assets/perf/s04.mp4" muted playsinline
+             data-start="23.0" data-duration="3.4" data-media-start="1.35" data-track-index="2"
+             style="left: 820px; top: 0; width: 1100px; height: 1080px;"></video>
+      -->
+
+      <canvas id="fg"></canvas>
+      <audio id="track" src="assets/track.mp3" data-start="0" data-duration="__DURATION__" data-track-index="10"></audio>
+    </div>
+
+    <script src="assets/paperkit.js"></script>
+    <script src="spine.js"></script>
+    <script src="scenes.js"></script>
+    <script>
+      // scenes.js resolves SCENES_READY with its draw(t) once fonts and images are decoded.
+      window.SCENES_READY.then(draw => { window.__timelines["main"] = PaperKit.timeline(__DURATION__, draw); });
+    </script>
+  </body>
+</html>
