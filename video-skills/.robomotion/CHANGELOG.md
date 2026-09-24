@@ -2,6 +2,20 @@
 
 All notable changes to the Robomotion-authored `video-skills/` group.
 
+## [1.1.0] — 2026-09-24
+- `illustrated-video` is now described as a look for any kind of video, so
+  an agent chooses it when the illustrated look is asked for or shown, not
+  whenever a request says "explainer" or "demo".
+- Step 0, matching a reference: `references/match-reference.md` (read the
+  paper, inks, line, type and layout off the picture, map them onto the
+  kit, check side by side).
+- Recipes and how-tos: `scripts/howto.js` (step rail and card, extruded
+  type, a vessel that fills and mixes, items that drop and float, pours,
+  level marks, stir, twist, burst) and `templates/recipe-scenes.js`, a
+  data-driven recipe video.
+- Videos with no sound: `spine.py --silent <seconds>` makes a pacing grid,
+  and `scaffold.sh <dir> - spine.json` builds a project with no soundtrack.
+
 ## [1.0.0] — 2026-09-24
 - Initial release. New `illustrated-video` skill: a method for videos that
   look drawn and printed and move with their sound, for a song, a
