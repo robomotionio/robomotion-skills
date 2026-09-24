@@ -1,0 +1,189 @@
+---
+name: illustrated-video
+description: "Make a hand-made-looking, illustrated video that is cut and animated to its sound: a music video or lyric video from a song, a product demo or promo with a voiceover, an explainer, or a brand piece over a music bed. Everything is printed in a few spot inks on paper (halftone, grain, boiling linework), with big kinetic type, a subtitle chip that follows the words, diegetic paper inserts (labels, cards, stamps, sticky notes, charts), generated characters and sets laid in with multiply, and optional lip-synced performance shots from fal.ai (MiniMax H3 lip-sync, Seedance 2.5). Renders with HyperFrames on a CPU. Use when someone wants a video that looks designed and alive rather than a template: 'music video', 'lyric video', 'animated promo', 'make it look hand-made', 'a character that sings/speaks', 'product demo with a voice', 'explainer with a mascot', 'K-pop style', 'riso / print / zine look'. Also the fal.ai playbook for any image, video, lip-sync or audio generation."
+metadata:
+  version: 1.0.0
+---
+
+# Illustrated video
+
+You make short videos that look drawn and printed, not assembled from a
+template, and that move exactly with their sound. The same method makes a
+music video, a lyric video, a product demo with a voiceover, an explainer
+with a mascot, or a promo over a music bed. What changes is the **spine**:
+the timing everything is cut and animated to.
+
+The look is one medium held all the way through: a paper stock, three to
+five spot inks, halftone for tone, grain over everything, linework that
+boils a few times a second. Generated pictures and generated performance
+footage are printed in the same inks and laid in with multiply, so they sit
+on the page like everything else. Type is part of the picture: the key
+words are big and land on the syllable, the rest follows in a small chip.
+
+`SKILL_DIR` is this skill's folder. Work inside a HyperFrames project,
+`/workspace/videos/<project>/` (create it with `hyperframes init`, see
+`/hyperframes-cli`). Everything below is run from the project folder.
+
+## What you need, and the three tiers
+
+| Tier | What it adds | Needs |
+|---|---|---|
+| **Drawn** (always) | Paper, inks, sets, charts, kinetic type, chip, inserts, screenshots and logos the person gave you, printed in the inks | nothing |
+| **Generated stills** | A cast (a character sheet with poses, expressions and mouth shapes), set plates, props | an image tool: `generate_image` (OpenRouter toolkit, Robomotion credits) or fal image models (`FAL_KEY`) |
+| **Performance** | Real singing or talking with lip sync, dance and camera moves | `FAL_KEY` (fal.ai): MiniMax H3 lip-sync, Seedance 2.5 |
+
+Pick the highest tier you have and say which in the plan. Every tier makes a
+complete video; a drawn-only video is a real deliverable, not a fallback. If
+`FAL_KEY` is missing, do not ask for one mid-run: make the video without
+performance shots, and mention once, at the end, what a fal key would add.
+
+Before the first fal call, read `references/fal.md` (models, prices, the
+budget rule). **Money:** fal jobs cost real money. Set a budget before the
+first job (`fal.mjs budget <usd>`): the amount the person gave, or $5 for a
+short piece and $20 for a full song when they gave none, and say so in the
+plan. Never raise it without their yes.
+
+## The workflow
+
+Post the plan (step 3) as one short message and go on; ask only when you
+cannot tell what the video is for.
+
+### 1. The spine: what the video is timed to
+
+Put the audio at `assets/track.mp3` (a song, a voiceover, or a voiceover
+mixed over a music bed; `hyperframes tts` makes a voiceover, `/media-use`
+covers voices and music). Then:
+
+```bash
+npx hyperframes transcribe assets/track.mp3 --model small.en --json      # word timings → transcript.json
+python3 $SKILL_DIR/scripts/spine.py --audio assets/track.mp3 \
+    --transcript transcript.json --script script.txt -o spine.json     # + beats, bars, sections
+```
+
+- `--script` is the text the person gave you (lyrics, the voiceover
+  script), one line per line. It fixes the words; the transcript gives the
+  times. Always pass it when you have it.
+- Speech only, no music: add `--no-beats`. Music with no words: omit
+  `--transcript`.
+- **Read spine.py's output.** It lists every line whose words were not
+  heard as `GUESSED`. Sung vocals are often missed. For each guessed stretch
+  cut that section, transcribe it again with `--model medium.en`, and pass it
+  back: `--transcript transcript.json --transcript part.json@<start>`. Repeat
+  until no line the video depends on is guessed.
+
+`spine.json` has `bpm`, `offset`, `beats`, `bars`, `sections` (with an
+energy label), `words` and `lines`, all in track seconds.
+
+### 2. Direction: one idea, one world
+
+Read `references/art-direction.md`. Decide, in writing, before any code:
+
+- **The idea**: one sentence. What the video is about underneath the words.
+- **The world**: ink set (from `PaperKit.INKSETS` or your own), paper, the
+  recurring set pieces, a colour arc across the sections.
+- **The cast** (tiers 2 and 3): the protagonist and any ensemble, designed
+  for the medium. See `references/cast-and-plates.md`.
+- **The clock**: one running device that shows the story advancing (a date
+  that races forward, a counter, a meter, a version number).
+- **The hook**: the first two seconds. Biggest type of the video, the
+  protagonist's face or the product's promise, on the first word.
+- **Receipts**: the real, specific things the piece refers to (a paper's
+  title, a headline, a product's actual numbers, a quote). They become cards,
+  labels and stamps. Real ones only: never invent a citation or a number.
+
+### 3. Storyboard
+
+Write `STORYBOARD.md` in the format in `references/storyboard.md`: one row
+per shot with its time span (snapped to the spine), what is seen, the event,
+the type tier and where the text sits, the layers it uses, and the
+transition. Check it against the rules there (timing reads, one focal
+action, text never fighting the picture, every seam a transition). Post a
+short summary of it as the plan: length, the idea, the look, the tier, the
+fal budget if any.
+
+### 4. Cast, plates and performances (tiers 2 and 3)
+
+- Stills: follow `references/cast-and-plates.md`. Style sheet first, then the
+  character sheet, then every pose, expression and mouth variant made **from
+  the sheet as a reference image**, then set plates. All on flat paper
+  colour, so multiply removes the background.
+- Performances: follow `references/performance.md`. Slice the audio per shot
+  (`slice.py`), generate (`fal.mjs`), print in the inks (`inkify.sh`), check
+  sync (`sync_check.py`), place.
+
+### 5. Build
+
+```bash
+sh $SKILL_DIR/scripts/scaffold.sh . assets/track.mp3 spine.json
+```
+
+That writes `index.html` (the layers: back canvas → performance clips →
+front canvas → soundtrack), `scenes.js` (your shots), `spine.js` and copies
+the kit and fonts into `assets/`. Write the shots in `scenes.js` with the
+kit (`references/paperkit.md`). Each shot is a pure function of time and
+paints the whole frame. Build and check one shot at a time.
+
+### 6. Look, fix, look again
+
+Follow `references/review.md`. At minimum: `npx hyperframes check .`
+passes; a whole-video sheet; a strip (every 0.1 s) across every hook, hit
+and transition; a close look at every face and every piece of text. Fix,
+re-render the part, look again. Two full passes minimum.
+
+### 7. Render and hand over
+
+```bash
+npx hyperframes render . -q standard -o renders/video.mp4 --fps 30
+python3 $SKILL_DIR/scripts/sheet.py renders/video.mp4 --every 2 -o renders/contact-sheet.jpg
+ffprobe -v error -show_entries format=duration:stream=codec_type -of compact renders/video.mp4
+```
+
+Hand over the MP4 and the contact sheet. Say what tier it used, what fal
+spent (`fal.mjs spend`), what you would do with another pass, and anything
+you could not verify (a guessed line, a lip-sync shot that only just passed).
+
+## Rules that make it look designed
+
+- **One medium.** Everything is ink on paper: no gradients, glows, drop
+  shadows in grey, or photos left in their own colours. Photos,
+  screenshots, generated stills and clips all go through `inkify`.
+- **Type is picture.** Three tiers, never more on screen at once than the
+  eye can read: `hero` (one to three words, huge, on the syllable), `mid`
+  (a serif aside), `sub` (the chip). When hero type is up, the background
+  goes quiet and the character moves to the other side.
+- **The first two seconds are the most designed** frames of the video.
+- **Everything lands on the spine.** Cuts on bars or line starts, type on
+  its word, hits on beats, stamps on the stressed syllable.
+- **Something happens in every shot**, and each shot has one thing to look at.
+- **Receipts over decoration.** A real paper title on a clipping says more
+  than an abstract shape.
+- **Keep the bottom band clear** for the chip (y > 960) and keep faces and
+  key type above it.
+- **Never publish** anything anywhere, and never spend past the fal budget.
+
+## Scripts
+
+| Script | Does |
+|---|---|
+| `scripts/spine.py` | Beats, bars, sections, and script-corrected word/line timings |
+| `scripts/scaffold.sh` | Layered HyperFrames project from the templates |
+| `scripts/paperkit.js` | The drawing kit (copied into `assets/`) |
+| `scripts/fal.mjs` | fal.ai: search, schema, run, batch, upload, spend, budget |
+| `scripts/slice.py` | Audio slices sized for a lip-sync or video model |
+| `scripts/inkify.sh` | Print an image or clip in the video's inks |
+| `scripts/sync_check.py` | Is a performance clip really in sync? PASS / SHIFT / REDO |
+| `scripts/envelope.py` | Mouth openness per frame, for drawn lip flaps |
+| `scripts/sheet.py` | Contact sheets and strips of a render, with the words |
+
+## References
+
+| Read | When |
+|---|---|
+| `references/art-direction.md` | Step 2: the look, the hook, attention, what to avoid |
+| `references/storyboard.md` | Step 3: the shot list format and its checks |
+| `references/cast-and-plates.md` | Step 4: style sheet, character sheet, variants, sets |
+| `references/fal.md` | Before any fal call: models, prices, budget, batches |
+| `references/performance.md` | Step 4: lip-sync and dance shots, and their sync loop |
+| `references/paperkit.md` | Step 5: the kit's API |
+| `references/kinds.md` | Step 2: what changes for a song, a voiceover demo, a music bed |
+| `references/review.md` | Step 6: how to look at your own video |
