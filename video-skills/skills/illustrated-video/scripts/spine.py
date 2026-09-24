@@ -5,10 +5,13 @@ One file, spine.json, whatever drives the video:
   - a song:        beats + bars + energy sections, and the sung words if there are vocals
   - a voiceover:   the spoken words and lines (no beat grid unless there is music under it)
   - a music bed:   beats + sections only
+  - no sound:      a steady pacing grid of the length you give (a silent
+                   recipe, a loop, a piece that gets its music later)
 
 Usage:
   python3 spine.py --audio assets/track.mp3 [--transcript transcript.json]
                    [--script lyrics_or_script.txt] [--no-beats] -o spine.json
+  python3 spine.py --silent 30 [--bpm 100] -o spine.json
 
 --transcript is word timings from `hyperframes transcribe <audio> --json`
 (or any JSON list of {text|word, start|s, end|e}). Repeat it to patch: every
@@ -158,14 +161,33 @@ def beat_grid(path):
     return {"bpm": round(tempo, 2), "offset": round(offset, 3), "beats": beats, "bars": bars, "sections": sections}
 
 
+def pacing_grid(duration, bpm):
+    """A beat grid for a video with no sound: steady beats, 4-beat bars, 8-bar sections."""
+    step = 60 / bpm
+    beats = [round(i * step, 3) for i in range(int(duration / step) + 1)]
+    bars = beats[::4]
+    edges = bars[::8] + [round(duration, 3)]
+    sections = [{"s": a, "e": b, "energy": 0.5, "label": "mid"} for a, b in zip(edges, edges[1:]) if b > a]
+    return {"bpm": bpm, "offset": 0, "beats": beats, "bars": bars, "sections": sections}
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--audio", required=True)
+    ap.add_argument("--audio")
+    ap.add_argument("--silent", type=float, metavar="SECONDS", help="no sound: a pacing grid this long instead of audio")
+    ap.add_argument("--bpm", type=float, default=100, help="with --silent: the pacing grid's tempo")
     ap.add_argument("--transcript", action="append", default=[], help="path or path@offset; repeat to patch sections")
     ap.add_argument("--script")
     ap.add_argument("--no-beats", action="store_true", help="speech only: skip the beat grid")
     ap.add_argument("-o", "--out", default="spine.json")
     a = ap.parse_args()
+    if a.silent:
+        spine = {"audio": None, "duration": round(a.silent, 3), "words": [], "lines": [], **pacing_grid(a.silent, a.bpm)}
+        json.dump(spine, open(a.out, "w"), indent=1)
+        print(f"spine: silent {spine['duration']}s, pacing grid at {a.bpm:g} bpm, {len(spine['bars'])} bars → {a.out}")
+        return
+    if not a.audio:
+        ap.error("--audio is required (or --silent SECONDS for a video with no sound)")
     spine = {"audio": a.audio, "duration": round(duration_of(a.audio), 3), "bpm": None, "offset": 0,
              "beats": [], "bars": [], "sections": [], "words": [], "lines": []}
     if not a.no_beats:

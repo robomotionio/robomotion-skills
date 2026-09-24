@@ -2,10 +2,10 @@ schema_version: 1
 name: video-skills
 title: Video Skills
 type: group
-version: 1.0.0
+version: 1.1.0
 author: Robomotion
 source_url: https://github.com/robomotionio/robomotion-skills/tree/main/video-skills
 license: MIT
-summary: "Illustrated, hand-made-looking videos cut to their sound: music and lyric videos, product demos with a voiceover, explainers. A print-ink drawing kit for HyperFrames, a timing spine from beats and words, and a fal.ai playbook for generated casts and lip-synced performances."
+summary: "The illustrated look for any video: hand-made-looking videos cut to their sound, or silent: music and lyric videos, product demos with a voiceover, explainers, recipes and how-tos. A print-ink drawing kit for HyperFrames, a timing spine from beats and words, and a fal.ai playbook for generated casts and lip-synced performances."
 category: Media
-tags: [video, music-video, lyric-video, animation, motion-graphics, hyperframes, fal, lip-sync, seedance, product-demo]
+tags: [video, music-video, lyric-video, animation, motion-graphics, hyperframes, fal, lip-sync, seedance, product-demo, recipe, how-to]

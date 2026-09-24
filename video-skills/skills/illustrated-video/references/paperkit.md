@@ -102,6 +102,29 @@ the first half at the end of the outgoing shot and the second half at the
 start of the incoming one, e.g. `kit.wipe(seg(t, cut - .3, cut + .3))` in
 both.
 
+## How-to parts (`howto.js`)
+
+`assets/howto.js` (copied in by `scaffold.sh`) builds on the kit for recipes
+and how-tos. Same contract: pure functions of time, drawn on the current
+layer. `templates/recipe-scenes.js` uses all of it.
+
+```js
+const how = HowTo.create(kit, { ink: INK.ink, accent: INK.a });   // + accentDark, muted, glass, display, hand fonts
+```
+
+| | |
+|---|---|
+| `titleDrop(t, word, x, y, size, {start, stagger, bob})` | letters bounce in one after another |
+| `chunky(text, x, y, size, {align, face, side, scale})` | extruded display type |
+| `rail(t, steps, {x, y, gap, appear})` | the step rail; `steps: [{name, start, done}]`; returns the current index |
+| `stepCard(t, {x, y, w, h, start, eyebrow, big, name, sub, progress, label})` | the step card, popping in at `start`, with a progress bar |
+| `vessel({cx, top, bot, topW, botW, base, unit})` | a glass, jar or bowl; `unit` px per unit of amount |
+| `drawVessel(t, V, {fills, items, stir, cold, oy})` | the vessel and its contents; fills rise and mix colour by `weight`; items drop and float; returns `{amount, level, liquid, prog}` |
+| `marks(t, V, st, [{amount, label, show, until}])` | level marks with a dashed target line |
+| `pourTimes(start, flow)`, `pour(t, {times, bottle, V, st})` | a bottle that slides in, tilts, pours on a curved stream, and leaves |
+| `spoon(t, V, start, end)`, `twist(t, x, y, start)`, `burst(t, cx, cy, start)` | stir, citrus twist, the done beat |
+| `sketch(pts, {fill, line, lw})`, `rr`, `ell`, `text`, `measure` | the hand-drawn outline and helpers the parts use |
+
 ## Speed
 
 Most shots render at 20–60 ms a frame on a CPU. What costs: `inkify` of a

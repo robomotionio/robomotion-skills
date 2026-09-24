@@ -31547,13 +31547,13 @@ groups:
   name: video-skills
   title: Video Skills
   type: group
-  version: 1.0.0
+  version: 1.1.0
   author: Robomotion
   source_url: https://github.com/robomotionio/robomotion-skills/tree/main/video-skills
   license: MIT
-  summary: 'Illustrated, hand-made-looking videos cut to their sound: music and lyric videos, product demos with a voiceover,
-    explainers. A print-ink drawing kit for HyperFrames, a timing spine from beats and words, and a fal.ai playbook for generated
-    casts and lip-synced performances.'
+  summary: 'The illustrated look for any video: hand-made-looking videos cut to their sound, or silent: music and lyric videos,
+    product demos with a voiceover, explainers, recipes and how-tos. A print-ink drawing kit for HyperFrames, a timing spine
+    from beats and words, and a fal.ai playbook for generated casts and lip-synced performances.'
   category: Media
   tags:
   - video
@@ -31566,33 +31566,34 @@ groups:
   - lip-sync
   - seedance
   - product-demo
+  - recipe
+  - how-to
   has_post_install: true
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: b38938aa17b9
+  content_hash: 03e3eeab6f82
   skills:
   - id: video-skills/illustrated-video
     name: illustrated-video
     path: video-skills/skills/illustrated-video
     title: illustrated-video
-    summary: 'Make a hand-made-looking, illustrated video that is cut and animated to its sound: a music video or lyric video
-      from a song, a product demo or promo with a voiceover, an explainer, or a brand piece over a music bed. Everything is
-      printed in a few spot inks on paper (halftone, grain, boiling linework), with big kinetic type, a subtitle chip that
-      follows the words, diegetic paper inserts (labels, cards, stamps, sticky notes, charts), generated characters and sets
-      laid in with multiply, and optional lip-synced performance shots from fal.ai (MiniMax H3 lip-sync, Seedance 2.5). Renders
-      with HyperFrames on a CPU. Use when someone wants a video that looks designed and alive rather than a template: ''music
-      video'', ''lyric video'', ''animated promo'', ''make it look hand-made'', ''a character that sings/speaks'', ''product
-      demo with a voice'', ''explainer with a mascot'', ''K-pop style'', ''riso / print / zine look''. Also the fal.ai playbook
-      for any image, video, lip-sync or audio generation.'
-    version: 1.0.0
+    summary: 'The illustrated look for any kind of video: drawn and printed on paper in a few spot inks (halftone, grain,
+      boiling linework), big kinetic type, paper inserts, a generated cast laid in with multiply, and optional lip-synced
+      performances from fal.ai (MiniMax H3 lip-sync, Seedance 2.5). Use it when the look is asked for or shown, whatever the
+      video is: a hand-drawn, illustrated, sketch, cartoon, riso, print, zine, comic, storybook or anime look; a reference
+      image or video that is drawn rather than photographed (match it); a character, mascot or presenter, or anyone singing
+      or talking on screen. It then builds the whole video for that kind: a song or lyric video, a promo or product demo,
+      an explainer, a recipe or how-to (a step-by-step kit), a piece over a music bed, or a silent one. Not for a clean, photographic
+      or UI-led video with no look asked for. Also the fal.ai playbook for any image, video, lip-sync or audio generation.'
+    version: 1.1.0
     tags: []
     mode: container
     env:
       required: []
       optional:
       - FAL_KEY
-    content_hash: 0e9891f44ea6
+    content_hash: f30d76c115dd
     files:
     - SKILL.md
     - assets/fonts/Anton-Regular.ttf
@@ -31611,12 +31612,14 @@ groups:
     - references/cast-and-plates.md
     - references/fal.md
     - references/kinds.md
+    - references/match-reference.md
     - references/paperkit.md
     - references/performance.md
     - references/review.md
     - references/storyboard.md
     - scripts/envelope.py
     - scripts/fal.mjs
+    - scripts/howto.js
     - scripts/inkify.sh
     - scripts/paperkit.js
     - scripts/scaffold.sh
@@ -31625,6 +31628,7 @@ groups:
     - scripts/spine.py
     - scripts/sync_check.py
     - templates/index.html
+    - templates/recipe-scenes.js
     - templates/scenes.js
     author: Robomotion
     source_url: https://github.com/robomotionio/robomotion-skills/tree/main/video-skills/tree/main/skills/illustrated-video
