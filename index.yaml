@@ -31592,7 +31592,7 @@ groups:
       required: []
       optional:
       - FAL_KEY
-    content_hash: 0e9891f44ea6
+    content_hash: 77c94cf40a24
     files:
     - SKILL.md
     - assets/fonts/Anton-Regular.ttf

@@ -22,6 +22,11 @@ const kit = PaperKit.create({ bg: 'bg', fg: 'fg', inks: PaperKit.INKSETS.riso,
   bpm: SPINE.bpm, offset: SPINE.offset, words: SPINE.words, boil: 8 });
 ```
 
+Options: `width`/`height` (default 1920×1080; 1080×1080 or 1080×1920 for
+social), `texture` (paper stock: 1 mottled print paper, 0 a clean sheet for
+a crisp editorial or doodle look; pair 0 with `finish({ grain: .3 })`),
+`boil` (drawings per second, 0 for none).
+
 ## Time
 
 | | |
