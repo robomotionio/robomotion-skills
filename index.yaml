@@ -17907,7 +17907,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: f052520caeb2
+  content_hash: 5cd19a4f149c
   skills:
   - id: hyperframes/embedded-captions
     name: embedded-captions
