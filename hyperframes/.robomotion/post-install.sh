@@ -23,6 +23,13 @@ WHISPER_COMMIT=927cfce34f31707e17f2bff35c349632fb9e2c3a
 KOKORO_ONNX_VERSION=0.6.1
 SOUNDFILE_VERSION=0.14.0
 
+# Chrome for Testing has no linux-arm64 build of the Chrome the CLI pins
+# (152); arm64 builds start at 153. On arm64 (a Mac's Podman machine, say)
+# this one is installed instead, the version and hash impeccable's hook
+# pins. Renders on arm64 can differ from x64 by a pixel or two.
+CHROME_ARM64_VERSION=154.0.8037.57
+CHROME_ARM64_SHA256=2213770a541c7ea17c900c631bdb6a3cda97ecf5194a34a575f32e54a8f5ab70
+
 HF_HOME_DIR=/opt/hyperframes/home
 CACHE=$HF_HOME_DIR/.cache/hyperframes
 
@@ -47,7 +54,7 @@ export HYPERFRAMES_NO_UPDATE_CHECK=1 HYPERFRAMES_NO_AUTO_INSTALL=1 \
 # sandbox's proxy CA. The compiler is for whisper.cpp and leaves again below.
 apt-get update -qq
 apt-get install -y -qq --no-install-recommends \
-  ffmpeg libnss3-tools \
+  ffmpeg libnss3-tools unzip \
   libnss3 libnspr4 libatk1.0-0t64 libatk-bridge2.0-0t64 libcups2t64 libdrm2 \
   libxkbcommon0 libatspi2.0-0t64 libxcomposite1 libxdamage1 libxfixes3 \
   libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2t64 \
@@ -83,8 +90,20 @@ find "$ort/linux" -mindepth 1 -maxdepth 1 ! -name "$arch" -exec rm -rf {} +
 rm -f "$ort/linux/$arch/libonnxruntime_providers_cuda.so" \
   "$ort/linux/$arch/libonnxruntime_providers_tensorrt.so"
 
-# The CLI's own pinned Chrome (pixels drift between Chrome versions).
-HOME="$HF_HOME_DIR" hyperframes browser ensure
+# The CLI's own pinned Chrome (pixels drift between Chrome versions). On
+# arm64 the CLI has none to fetch (it tries apt's chromium-browser, which
+# Ubuntu 24.04 does not have, and fails), so the pinned arm64 build above;
+# the wrapper points the CLI at it either way (HYPERFRAMES_BROWSER_PATH).
+case "$(uname -m)" in
+  aarch64|arm64)
+    fetch "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_ARM64_VERSION}/linux-arm64/chrome-headless-shell-linux-arm64.zip" \
+      "$CHROME_ARM64_SHA256" /tmp/hyperframes-chrome.zip
+    mkdir -p "$CACHE/chrome/linux-arm64-$CHROME_ARM64_VERSION"
+    unzip -q /tmp/hyperframes-chrome.zip -d "$CACHE/chrome/linux-arm64-$CHROME_ARM64_VERSION"
+    rm -f /tmp/hyperframes-chrome.zip ;;
+  *)
+    HOME="$HF_HOME_DIR" hyperframes browser ensure ;;
+esac
 chrome=$(find "$CACHE/chrome" -type f -name chrome-headless-shell | head -n 1)
 [ -n "$chrome" ] || { echo "hyperframes: no chrome-headless-shell after browser ensure" >&2; exit 1; }
 
