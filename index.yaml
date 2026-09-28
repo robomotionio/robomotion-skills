@@ -17924,7 +17924,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1d41c75e2dc4
+    content_hash: 8c3ed7024a6b
     files:
     - .gitignore
     - CATALOG.md
@@ -18087,7 +18087,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: bc23f771d815
+    content_hash: 60459d5d2efb
     files:
     - SKILL.md
     - references/cut-catalog.md
@@ -18155,7 +18155,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ab15530f09be
+    content_hash: 079d3479295e
     files:
     - SKILL.md
     - scripts/frame-packets.mjs
@@ -18183,7 +18183,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3c14befa944c
+    content_hash: f97600bb83e5
     files:
     - SKILL.md
     - references/brief-contract.md
@@ -18232,7 +18232,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d1fd64018675
+    content_hash: '324940947613'
     files:
     - SKILL.md
     - adapters/animate-text.md
@@ -18283,6 +18283,7 @@ groups:
     - examples/proof-logo-chain.html
     - examples/takeover-ticker-displace.html
     - examples/workflow-approve-press.html
+    - references/motion-blur.md
     - rules-index.md
     - rules/3d-camera-flight.md
     - rules/3d-page-scroll.md
@@ -18376,7 +18377,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b39bac771e87
+    content_hash: 7e9a13aba714
     files:
     - SKILL.md
     - references/attributes.md
@@ -18396,7 +18397,7 @@ groups:
     title: hyperframes-cli
     summary: 'Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare,
       preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor,
-      browser, info, upgrade, skills, compositions, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background.
+      browser, info, upgrade, skills, compositions, timeline, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background.
       Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check.
       Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.'
     version: 1.0.0
@@ -18405,7 +18406,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: bafd44ef2c17
+    content_hash: 986414090bf6
     files:
     - SKILL.md
     - references/beats.md
@@ -18436,7 +18437,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dffc4485ca8c
+    content_hash: b4d9c7b3d0e5
     files:
     - SKILL.md
     - references/composition-patterns.md
@@ -18467,7 +18468,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dc46dea9aab7
+    content_hash: 6e8ef31d6a52
     files:
     - SKILL.md
     - frame-presets/biennale-yellow/FRAME.md
@@ -18539,6 +18540,7 @@ groups:
     - references/narration.md
     - references/prompt-expansion.md
     - references/story-spine.md
+    - references/storyboard-recipe.md
     - references/typography.md
     - references/video-composition.md
     - references/visual-styles.md
@@ -18566,7 +18568,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 6bc62531ecea
+    content_hash: 16a7da9819e7
     files:
     - SKILL.md
     - agents/openai.yaml
@@ -18613,6 +18615,28 @@ groups:
     license: Apache-2.0
     group: hyperframes
     category: Media
+  - id: hyperframes/hyperframes-studio
+    name: hyperframes-studio
+    path: hyperframes/skills/hyperframes-studio
+    title: hyperframes-studio
+    summary: 'Use when building or editing a HyperFrames project that people open in Studio: how the timeline should be laid
+      out so it reads well (one caption track, one element kind per track, every scene a sub-composition) and where captions
+      and key content may sit (safe zones). Don''t use for how to perform an individual edit (split, trim, retime, volume,
+      copy, swap): that is `creator-editing-recipes.md` in `/hyperframes-core`.'
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: b063eaa9eb1e
+    files:
+    - SKILL.md
+    author: HeyGen
+    source_url: https://github.com/heygen-com/hyperframes/tree/main/skills/hyperframes-studio
+    license: Apache-2.0
+    group: hyperframes
+    category: Media
   - id: hyperframes/media-use
     name: media-use
     path: hyperframes/skills/media-use
@@ -18629,7 +18653,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d2f5eecb4fbf
+    content_hash: 57ae2640bf21
     files:
     - .gitignore
     - SKILL.md
@@ -18853,51 +18877,88 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 86c603f46dce
+    content_hash: 02409edc84aa
     files:
     - SKILL.md
     - references/frame-skeleton.md
     - references/montage.md
     - references/motion-primitive-catalog.md
     - references/motion-primitives/3d-card-flip/index.html
+    - references/motion-primitives/3d-card-flip/scene.html
     - references/motion-primitives/assets/gsap.min.js
     - references/motion-primitives/bg-flow-field/index.html
+    - references/motion-primitives/bg-flow-field/scene.html
     - references/motion-primitives/binary-decrypt/index.html
+    - references/motion-primitives/binary-decrypt/scene.html
     - references/motion-primitives/blur-resolve/index.html
+    - references/motion-primitives/blur-resolve/scene.html
     - references/motion-primitives/braam-punch/index.html
+    - references/motion-primitives/braam-punch/scene.html
     - references/motion-primitives/chromatic-split/index.html
+    - references/motion-primitives/chromatic-split/scene.html
     - references/motion-primitives/chrome-sweep/index.html
+    - references/motion-primitives/chrome-sweep/scene.html
     - references/motion-primitives/counting-punch/index.html
+    - references/motion-primitives/counting-punch/scene.html
     - references/motion-primitives/crash-zoom-in/index.html
+    - references/motion-primitives/crash-zoom-in/scene.html
     - references/motion-primitives/datamosh-smear/index.html
+    - references/motion-primitives/datamosh-smear/scene.html
     - references/motion-primitives/directional-fill/index.html
+    - references/motion-primitives/directional-fill/scene.html
     - references/motion-primitives/dolly-zoom/index.html
+    - references/motion-primitives/dolly-zoom/scene.html
     - references/motion-primitives/electric-arc/index.html
+    - references/motion-primitives/electric-arc/scene.html
     - references/motion-primitives/flash-cut/index.html
+    - references/motion-primitives/flash-cut/scene.html
     - references/motion-primitives/gooey-metaball/index.html
+    - references/motion-primitives/gooey-metaball/scene.html
     - references/motion-primitives/hard-cut/index.html
+    - references/motion-primitives/hard-cut/scene.html
     - references/motion-primitives/hypercut-whip/index.html
+    - references/motion-primitives/hypercut-whip/scene.html
     - references/motion-primitives/iris-open/index.html
+    - references/motion-primitives/iris-open/scene.html
     - references/motion-primitives/kinetic-letter-in/index.html
+    - references/motion-primitives/kinetic-letter-in/scene.html
     - references/motion-primitives/liquid-morph/index.html
+    - references/motion-primitives/liquid-morph/scene.html
     - references/motion-primitives/mask-reveal/index.html
+    - references/motion-primitives/mask-reveal/scene.html
     - references/motion-primitives/mosaic-pack/index.html
+    - references/motion-primitives/mosaic-pack/scene.html
     - references/motion-primitives/neon-flicker/index.html
+    - references/motion-primitives/neon-flicker/scene.html
     - references/motion-primitives/outline-to-fill/index.html
+    - references/motion-primitives/outline-to-fill/scene.html
     - references/motion-primitives/palette-flip/index.html
+    - references/motion-primitives/palette-flip/scene.html
     - references/motion-primitives/particle-burst/index.html
+    - references/motion-primitives/particle-burst/scene.html
     - references/motion-primitives/pixel-dissolve/index.html
+    - references/motion-primitives/pixel-dissolve/scene.html
     - references/motion-primitives/radial-burst-lines/index.html
+    - references/motion-primitives/radial-burst-lines/scene.html
     - references/motion-primitives/screen-shake/index.html
+    - references/motion-primitives/screen-shake/scene.html
     - references/motion-primitives/slot-machine-reveal/index.html
+    - references/motion-primitives/slot-machine-reveal/scene.html
     - references/motion-primitives/spotlight-sweep/index.html
+    - references/motion-primitives/spotlight-sweep/scene.html
     - references/motion-primitives/staggered-exit/index.html
+    - references/motion-primitives/staggered-exit/scene.html
     - references/motion-primitives/text-spectral-rays/USAGE.md
     - references/motion-primitives/text-spectral-rays/index.html
+    - references/motion-primitives/text-spectral-rays/scene.html
     - references/motion-primitives/text-wave-distort/index.html
+    - references/motion-primitives/text-wave-distort/scene.html
     - references/motion-primitives/tile-mosaic/index.html
+    - references/motion-primitives/tile-mosaic/scene.html
     - references/motion-primitives/typewriter-reveal/index.html
+    - references/motion-primitives/typewriter-reveal/scene.html
     - references/motion-primitives/word-grid-burst/index.html
+    - references/motion-primitives/word-grid-burst/scene.html
     - references/planning.md
     - references/storyboard-format.md
     - references/template-catalog.md
@@ -19006,7 +19067,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1c1bb0c1deaf
+    content_hash: e48583c28c56
     files:
     - SKILL.md
     - references/code-vocabulary.md
@@ -19057,7 +19118,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8fae7e8ccb27
+    content_hash: 453e4a569718
     files:
     - SKILL.md
     - references/cut-catalog.md
@@ -19107,7 +19168,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 67b73c9484af
+    content_hash: 3f03223688b0
     files:
     - SKILL.md
     - assets/.gitkeep
@@ -19116,6 +19177,7 @@ groups:
     - assets/test-corpus/tier-1-title-card/.gitignore
     - assets/test-corpus/tier-1-title-card/README.md
     - assets/test-corpus/tier-1-title-card/expected.json
+    - assets/test-corpus/tier-1-title-card/hf-src/compositions/title.html
     - assets/test-corpus/tier-1-title-card/hf-src/index.html
     - assets/test-corpus/tier-1-title-card/remotion-src/package.json
     - assets/test-corpus/tier-1-title-card/remotion-src/remotion.config.ts
@@ -19126,6 +19188,9 @@ groups:
     - assets/test-corpus/tier-2-multi-scene/.gitignore
     - assets/test-corpus/tier-2-multi-scene/README.md
     - assets/test-corpus/tier-2-multi-scene/expected.json
+    - assets/test-corpus/tier-2-multi-scene/hf-src/compositions/scene-1.html
+    - assets/test-corpus/tier-2-multi-scene/hf-src/compositions/scene-2.html
+    - assets/test-corpus/tier-2-multi-scene/hf-src/compositions/scene-3.html
     - assets/test-corpus/tier-2-multi-scene/hf-src/index.html
     - assets/test-corpus/tier-2-multi-scene/remotion-src/package.json
     - assets/test-corpus/tier-2-multi-scene/remotion-src/remotion.config.ts
@@ -19137,6 +19202,9 @@ groups:
     - assets/test-corpus/tier-3-data-driven/.gitignore
     - assets/test-corpus/tier-3-data-driven/README.md
     - assets/test-corpus/tier-3-data-driven/expected.json
+    - assets/test-corpus/tier-3-data-driven/hf-src/compositions/scene-1.html
+    - assets/test-corpus/tier-3-data-driven/hf-src/compositions/scene-2.html
+    - assets/test-corpus/tier-3-data-driven/hf-src/compositions/scene-3.html
     - assets/test-corpus/tier-3-data-driven/hf-src/index.html
     - assets/test-corpus/tier-3-data-driven/remotion-src/package.json
     - assets/test-corpus/tier-3-data-driven/remotion-src/remotion.config.ts
