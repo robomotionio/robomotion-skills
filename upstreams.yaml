@@ -358,7 +358,7 @@ upstreams:
 - group: hyperframes
   repo: https://github.com/heygen-com/hyperframes
   track: main
-  commit: d13a89b6707203a2efe2cfcd4e996e0ad0aa4573
+  commit: c797f545424dc278edf348e812349b3804ca6ff2
   subdir: ''
   mode: mirror
   license: Apache-2.0
