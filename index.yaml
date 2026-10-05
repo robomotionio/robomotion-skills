@@ -299,7 +299,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ac69800fc8da
+    content_hash: 240b763c7ea2
     files:
     - LICENSE.txt
     - SKILL.md
