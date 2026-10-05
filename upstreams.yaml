@@ -21,7 +21,7 @@ upstreams:
 - group: anthropic-skills
   repo: https://github.com/anthropics/skills
   track: main
-  commit: 34040c9c568585f6929bedeaad110ad08f079624
+  commit: 33375500bcea98d610eb30ce10ac4e59b89c390d
   subdir: ''
   mode: mirror
   license: Apache-2.0
