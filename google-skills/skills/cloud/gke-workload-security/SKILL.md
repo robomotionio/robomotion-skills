@@ -13,6 +13,7 @@ description: >-
   control plane security, RBAC hardening, Binary Authorization, Shielded Nodes,
   or enabling platform-level GKE add-ons (use gke-platform-security instead).
 metadata:
+  version: "1.0.0"
   category: Security
 ---
 

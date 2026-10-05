@@ -7,6 +7,7 @@ description: >-
   use for disaster recovery setup or full cluster backups (use gke-backup-dr
   instead).
 metadata:
+  version: "1.0.0"
   category: Containers
 ---
 

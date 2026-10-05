@@ -16,7 +16,7 @@ description: >-
   changes, or reconfiguring existing buckets, use google-cloud-storage-basics.
 license: Apache-2.0
 metadata:
-  version: v1
+  version: "1.0.0"
   publisher: google
   tags: "gcs, storage, architect, bucket-creation"
   category: Storage

@@ -1,6 +1,7 @@
 ---
 name: dbt-sf-to-bq-translator
 metadata:
+  version: "1.0.0"
   category: BigDataAndAnalytics
 description: >-
   Translates Snowflake dbt SQL models to Standardized BigQuery SQL. Handles SQL

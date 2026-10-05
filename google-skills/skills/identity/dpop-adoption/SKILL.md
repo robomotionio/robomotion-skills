@@ -1,6 +1,7 @@
 ---
 name: dpop-adoption
 metadata:
+  version: "1.0.0"
   category: Identity
 description: >-
   Implement and debug OAuth 2.0 DPoP (RFC 9449) refresh token sender-constraining

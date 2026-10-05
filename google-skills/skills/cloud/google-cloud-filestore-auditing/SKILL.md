@@ -1,6 +1,7 @@
 ---
 name: google-cloud-filestore-auditing
 metadata:
+  version: "1.0.0"
   category: Storage
 description: >-
   Audits Google Cloud Filestore instances across projects for disaster recovery

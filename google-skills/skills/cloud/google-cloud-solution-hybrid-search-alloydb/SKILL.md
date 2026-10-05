@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-hybrid-search-alloydb
 metadata:
+  version: "1.0.0"
   category: MultiProductSolutions
 description: >-
   Discovers requirements and generates architectural, design, and deployment

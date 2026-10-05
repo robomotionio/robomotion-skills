@@ -11,6 +11,7 @@ description: >-
   for workload-level security (Workload Identity, SecretProviderClass, PSS, NetPol,
   gVisor pod runtimeClassName; use gke-workload-security instead).
 metadata:
+  version: "1.0.0"
   category: Security
 ---
 

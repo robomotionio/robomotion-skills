@@ -6,6 +6,7 @@ description: >-
   or configuring Prometheus metrics collection. Don't use to configure local
   application logging frameworks or external APMs outside GKE.
 metadata:
+  version: "1.0.0"
   category: CloudObservabilityAndMonitoring
 ---
 

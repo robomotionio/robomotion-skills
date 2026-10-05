@@ -1,6 +1,7 @@
 ---
 name: gke-workload-identity
 metadata:
+  version: "1.0.0"
   category: Security
 description: >-
   Diagnoses Workload Identity Federation for GKE authentication failures for Pods

@@ -16,7 +16,7 @@ description: >-
   systems (Filestore, Managed Lustre).
 license: Apache-2.0
 metadata:
-  version: v1
+  version: "1.0.0"
   publisher: google
   tags: "gcs, gcsfuse, fuse, mount, file-system"
   category: Storage

@@ -1,6 +1,7 @@
 ---
 name: google-cloud-filestore-autoscale
 metadata:
+  version: "1.0.0"
   category: Storage
 description: >-
   Inspects Google Cloud Filestore capacity and utilization, evaluates storage
