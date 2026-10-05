@@ -5,7 +5,8 @@ A data analyst plugin primarily designed for [Cowork](https://claude.com/product
 ## Installation
 
 ```
-claude plugins add knowledge-work-plugins/data
+claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install data@knowledge-work-plugins
 ```
 
 ## What It Does
