@@ -606,7 +606,7 @@ upstreams:
 - group: supabase-skills
   repo: https://github.com/supabase/agent-skills
   track: main
-  commit: 8331f910845103c08d51f6ca1d86ebb7d1f745e3
+  commit: 551274ed2fe97c8fea1325f7ceb05803a542f8df
   subdir: ''
   mode: mirror
   license: MIT
