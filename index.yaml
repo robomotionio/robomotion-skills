@@ -19304,7 +19304,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3bd520f068f9
+    content_hash: 8c761bc679fa
     files:
     - SKILL.md
     - reference/adapt.md
@@ -19316,6 +19316,7 @@ groups:
     - reference/bolder.md
     - reference/clarify.md
     - reference/colorize.md
+    - reference/component-review.md
     - reference/craft-floor.md
     - reference/craft.md
     - reference/critique.md
@@ -19328,6 +19329,7 @@ groups:
     - reference/doctor.md
     - reference/document.md
     - reference/extract.md
+    - reference/generate.md
     - reference/harden.md
     - reference/hooks.md
     - reference/init.md
@@ -19342,6 +19344,7 @@ groups:
     - reference/overdrive.md
     - reference/polish.md
     - reference/quieter.md
+    - reference/region-map.md
     - reference/routing.md
     - reference/shape.md
     - reference/typeset.md
