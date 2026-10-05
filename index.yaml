@@ -28229,16 +28229,16 @@ groups:
     name: prisma-cli
     path: prisma-skills/skills/prisma-cli
     title: prisma-cli
-    summary: Prisma ORM CLI commands reference covering init, generate, migrate, db, dev, complete, studio, validate, format,
-      debug, and mcp. Use for ORM/database CLI workflows, not the Prisma Platform CLI. Triggers on "prisma init", "prisma
-      generate", "prisma migrate", "prisma db", "prisma complete", "prisma studio", "prisma mcp".
+    summary: Prisma ORM 7 CLI reference for existing Prisma 7 applications or explicitly selected Prisma 7 workflows. Covers
+      prisma init, generate, migrate, db, dev, studio, and mcp. For default new setup or Prisma 8, use prisma-orm-setup; not
+      the Prisma Platform CLI.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 78c7f7e4263d
+    content_hash: c29f6ad6868d
     files:
     - SKILL.md
     - references/agent-safety.md
@@ -28328,16 +28328,16 @@ groups:
     name: prisma-database-setup
     path: prisma-skills/skills/prisma-database-setup
     title: prisma-database-setup
-    summary: Guides for configuring Prisma with different database providers (PostgreSQL, MySQL, SQLite, MongoDB, etc.). Use
-      when setting up a new project, changing databases, or troubleshooting connection issues. Triggers on "configure postgres",
-      "connect to mysql", "setup mongodb", "sqlite setup".
+    summary: Configure databases and troubleshoot connections in existing Prisma 6 or 7 applications, or set up a database
+      with an explicitly selected earlier ORM version. Covers Prisma 7 SQL providers and Prisma 6 MongoDB. For default new
+      Prisma 8 setup, use prisma-orm-setup.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: b5f3855fc850
+    content_hash: 3f2f5c305be7
     files:
     - SKILL.md
     - references/cockroachdb.md
@@ -28388,7 +28388,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 69f625ac4e36
+    content_hash: ea31050b19ff
     files:
     - SKILL.md
     - references/client-api-mapping.md
@@ -28401,26 +28401,41 @@ groups:
     license: MIT
     group: prisma-skills
     category: Database
-  - id: prisma-skills/prisma-postgres
-    name: prisma-postgres
-    path: prisma-skills/skills/prisma-postgres
-    title: prisma-postgres
-    summary: Prisma Postgres setup and operations guidance across Console, create-db CLI, Management API, and Management API
-      SDK. Use when creating Prisma Postgres databases, working in Prisma Console, provisioning with create-db/create-pg/create-postgres,
-      or integrating programmatic provisioning with service tokens or OAuth.
+  - id: prisma-skills/prisma-orm-setup
+    name: prisma-orm-setup
+    path: prisma-skills/skills/prisma-orm-setup
+    title: prisma-orm-setup
+    summary: Set up a new Prisma ORM 8 application or finish an existing Prisma 8 setup, connect its database, and load the
+      matching package-owned prisma-8 skill. Existing Prisma 6/7 connection repairs belong to prisma-database-setup.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 02dcc42c0bcc
+    content_hash: d9f8b360fad2
     files:
     - SKILL.md
-    - references/console-and-connections.md
-    - references/create-db-cli.md
-    - references/management-api-sdk.md
-    - references/management-api.md
+    author: Prisma
+    source_url: https://github.com/prisma/skills/tree/main/skills/prisma-orm-setup
+    license: MIT
+    group: prisma-skills
+    category: Database
+  - id: prisma-skills/prisma-postgres
+    name: prisma-postgres
+    path: prisma-skills/skills/prisma-postgres
+    title: prisma-postgres
+    summary: Deprecated compatibility name for prisma-postgres-setup. Use only when a user or existing integration explicitly
+      invokes prisma-postgres; otherwise select prisma-postgres-setup.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5b5cecb2b059
+    files:
+    - SKILL.md
     author: Prisma
     source_url: https://github.com/prisma/skills/tree/main/skills/prisma-postgres
     license: MIT
@@ -28430,22 +28445,21 @@ groups:
     name: prisma-postgres-setup
     path: prisma-skills/skills/prisma-postgres-setup
     title: prisma-postgres-setup
-    summary: Set up a new Prisma Postgres database and connect it to a local project using the Management API. Use when asked
-      to "set up a database", "create a Prisma Postgres project", "get a connection string", "connect my app to Prisma Postgres",
-      or "provision a database".
+    summary: Obtain or reuse a Prisma Postgres database and connect an application. Use for "set up Prisma Postgres", "connect
+      my app to Prisma Postgres", or Prisma Postgres setup in v0 and Vercel Marketplace. Defaults new ORM setups to Prisma
+      ORM 8; preserves an existing application or an explicit ORM, driver, or database-only choice.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 4fa2c5208b82
+    content_hash: dfd26eeb65c8
     files:
     - SKILL.md
-    - references/api-basics.md
-    - references/auth.md
-    - references/endpoints.md
-    - references/prisma7-client.md
+    - references/operations.md
+    - references/provisioning.md
+    - references/vercel-marketplace.md
     author: Prisma
     source_url: https://github.com/prisma/skills/tree/main/skills/prisma-postgres-setup
     license: MIT
@@ -28464,7 +28478,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c78ab85873ee
+    content_hash: 2c25ffdbebcb
     files:
     - SKILL.md
     - references/accelerate-users.md
