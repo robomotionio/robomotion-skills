@@ -8971,7 +8971,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ab6889bad893
+    content_hash: 7e2be075000b
     files:
     - RECIPES.md
     - SKILL.md
@@ -8995,7 +8995,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3703425c78e2
+    content_hash: 83879713a792
     files:
     - RECIPES.md
     - SKILL.md
@@ -9018,7 +9018,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 16bfb5a10b42
+    content_hash: 6ac7c5c1cc9a
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9040,7 +9040,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8d5d6949abe1
+    content_hash: 79b75afd2538
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9062,7 +9062,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 923a4588f0b2
+    content_hash: 3b0a56217f25
     files:
     - API.md
     - SKILL.md
@@ -9083,7 +9083,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3e4c7e2b34a2
+    content_hash: a993a1e593a9
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9105,7 +9105,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 83a8d4767cad
+    content_hash: 423427212a66
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9127,13 +9127,38 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2a3713966448
+    content_hash: a2195202b982
     files:
     - AUDIT.md
     - PLAN-TEMPLATE.md
     - SKILL.md
     author: Emil Kowalski
     source_url: https://github.com/emilkowalski/skills/tree/main/skills/improve-animations
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
+  - id: emilkowalski-skills/mobile-native
+    name: mobile-native
+    path: emilkowalski-skills/skills/mobile-native
+    title: mobile-native
+    summary: Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate "a website in a browser"
+      from something that feels installed. Covers sticky hover states, tap highlight flashes, the 100vh bug, inputs that zoom
+      the page, laggy taps, pull-to-refresh hijacking scroll, content under the notch, long-press selecting button text, carousels
+      that scroll the wrong way, mismatched status bars, and the rule that you test on real hardware. Use when a web app is
+      being built for or reviewed on mobile, when something "works in Chrome but feels wrong on my phone", when building a
+      PWA, a bottom sheet, a carousel, a full-screen layout, or any touch interaction. For motion itself use animate; for
+      React Native use animate-expo.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 952dad47a2f9
+    files:
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/mobile-native
     license: MIT
     group: emilkowalski-skills
     category: Design
@@ -9150,7 +9175,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 033f55aab3e6
+    content_hash: 2fadb0aa9dc8
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9171,7 +9196,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 58eca2dad19a
+    content_hash: 3787e7b2e94c
     files:
     - PICKER.md
     - SKILL.md
@@ -9192,7 +9217,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: abe6b4b12653
+    content_hash: 50ba5cd273ab
     files:
     - SKILL.md
     - STANDARDS.md
@@ -9216,7 +9241,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a31211b82a1b
+    content_hash: 0a46a8bf742e
     files:
     - SKILL.md
     author: Emil Kowalski
