@@ -30195,7 +30195,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3a59b10c026d
+    content_hash: 364bb3309b1c
     files:
     - SKILL.md
     - scripts/frame-template.html
@@ -30207,6 +30207,47 @@ groups:
     - visual-companion.md
     author: Jesse Vincent
     source_url: https://github.com/obra/superpowers/tree/main/skills/brainstorming
+    license: MIT
+    group: superpowers
+    category: Engineering
+  - id: superpowers/diagnosing-superpowers
+    name: diagnosing-superpowers
+    path: superpowers/skills/diagnosing-superpowers
+    title: diagnosing-superpowers
+    summary: Use when a superpowers session went wrong and your human partner wants to know why — repeated work, ignored plans,
+      stumbles, poor results, a skill that didn't fire, "it took too long", "why is it so expensive", "what is it doing" —
+      or wants to build a bug report for the superpowers maintainers, for the current session or a past one identified by
+      id or path, on any harness.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 4fc900055484
+    files:
+    - SKILL.md
+    - prompts/analyst-common.md
+    - prompts/cost-and-time.md
+    - prompts/plan-adherence.md
+    - prompts/quality-evidence.md
+    - prompts/repeated-work.md
+    - prompts/request-conflicts.md
+    - prompts/scrub-audit.md
+    - prompts/scrub.md
+    - prompts/similar-session.md
+    - prompts/skill-timeline.md
+    - prompts/stumbles.md
+    - references/context-safety.md
+    - references/github-issues.md
+    - references/redaction-policy.md
+    - references/session-discovery.md
+    - templates/bundle-README.md
+    - templates/case.md
+    - templates/issue.md
+    - templates/report.md
+    author: Jesse Vincent
+    source_url: https://github.com/obra/superpowers/tree/main/skills/diagnosing-superpowers
     license: MIT
     group: superpowers
     category: Engineering
@@ -30233,16 +30274,19 @@ groups:
     name: executing-plans
     path: superpowers/skills/executing-plans
     title: executing-plans
-    summary: Use when you have a written implementation plan to execute in a separate session with review checkpoints
+    summary: Use when executing an implementation plan in the current session as the implementer yourself — your human partner
+      chose inline execution, or no subagent tool is available
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 5036191743cb
+    content_hash: 6929a96d5c1a
     files:
     - SKILL.md
+    - scripts/task-done
+    - scripts/task-start
     author: Jesse Vincent
     source_url: https://github.com/obra/superpowers/tree/main/skills/executing-plans
     license: MIT
@@ -30298,7 +30342,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f6b7bba1eac5
+    content_hash: e70a585c7a12
     files:
     - SKILL.md
     - code-reviewer.md
@@ -30318,7 +30362,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: e798f5990cd6
+    content_hash: 653aba0168c8
     files:
     - SKILL.md
     - implementer-prompt.md
@@ -30343,7 +30387,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: e4263f70f52d
+    content_hash: 37fd06e80f29
     files:
     - CREATION-LOG.md
     - SKILL.md
@@ -30372,7 +30416,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 0ff8639af929
+    content_hash: 8e8772822d25
     files:
     - SKILL.md
     - writing-good-tests.md
@@ -30413,13 +30457,15 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8e951150631a
+    content_hash: bcdbc241f63b
     files:
     - SKILL.md
     - references/antigravity-tools.md
+    - references/claude-code-tools.md
     - references/codex-tools.md
     - references/gemini-tools.md
     - references/hermes-tools.md
+    - references/muse-tools.md
     - references/pi-tools.md
     author: Jesse Vincent
     source_url: https://github.com/obra/superpowers/tree/main/skills/using-superpowers
@@ -30457,10 +30503,9 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: e0dd3fe342b2
+    content_hash: b96f84fcdd4f
     files:
     - SKILL.md
-    - plan-document-reviewer-prompt.md
     author: Jesse Vincent
     source_url: https://github.com/obra/superpowers/tree/main/skills/writing-plans
     license: MIT
@@ -30477,7 +30522,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 69a4064b55bb
+    content_hash: eebe835f35a2
     files:
     - SKILL.md
     - anthropic-best-practices.md
