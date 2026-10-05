@@ -25380,7 +25380,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2573e1b4a992
+    content_hash: 4d7a383efe16
     files:
     - PHASE-BOUNDARIES.md
     - SKILL.md
@@ -25426,7 +25426,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 826e65f8d718
+    content_hash: e91e18258598
     files:
     - DEEPENING.md
     - DESIGN-IT-TWICE.md
@@ -25449,7 +25449,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3eaddfa5b028
+    content_hash: 79cca571387c
     files:
     - SKILL.md
     - agents/openai.yaml
@@ -25463,7 +25463,7 @@ groups:
     name: domain-modeling
     path: mattpocock-skills/skills/engineering/domain-modeling
     title: domain-modeling
-    summary: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md,
+    summary: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md,
       or recording or editing an ADR.
     version: 1.0.0
     tags: []
@@ -25471,10 +25471,10 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2cc88b237a47
+    content_hash: 18a9314d338b
     files:
     - ADR-FORMAT.md
-    - CONTEXT-FORMAT.md
+    - GLOSSARY-FORMAT.md
     - SKILL.md
     - agents/openai.yaml
     author: Matt Pocock
@@ -25522,6 +25522,26 @@ groups:
     license: MIT
     group: mattpocock-skills
     category: Engineering
+  - id: mattpocock-skills/implement-spec
+    name: implement-spec
+    path: mattpocock-skills/skills/engineering/implement-spec
+    title: implement-spec
+    summary: Implement the result of /to-spec and /to-tickets in code.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3e613d4c4ad1
+    files:
+    - SKILL.md
+    - agents/openai.yaml
+    author: Matt Pocock
+    source_url: https://github.com/mattpocock/skills/tree/main/skills/engineering/implement-spec
+    license: MIT
+    group: mattpocock-skills
+    category: Engineering
   - id: mattpocock-skills/improve-codebase-architecture
     name: improve-codebase-architecture
     path: mattpocock-skills/skills/engineering/improve-codebase-architecture
@@ -25534,13 +25554,34 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 86096700ab48
+    content_hash: 21e81aed6d25
     files:
     - HTML-REPORT.md
     - SKILL.md
     - agents/openai.yaml
     author: Matt Pocock
     source_url: https://github.com/mattpocock/skills/tree/main/skills/engineering/improve-codebase-architecture
+    license: MIT
+    group: mattpocock-skills
+    category: Engineering
+  - id: mattpocock-skills/pr
+    name: pr
+    path: mattpocock-skills/skills/engineering/pr
+    title: pr
+    summary: Use when writing a PR body.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fd6364a4c671
+    files:
+    - CREDITS.md
+    - SKILL.md
+    - agents/openai.yaml
+    author: Matt Pocock
+    source_url: https://github.com/mattpocock/skills/tree/main/skills/engineering/pr
     license: MIT
     group: mattpocock-skills
     category: Engineering
@@ -25589,23 +25630,23 @@ groups:
     license: MIT
     group: mattpocock-skills
     category: Engineering
-  - id: mattpocock-skills/resolving-merge-conflicts
-    name: resolving-merge-conflicts
-    path: mattpocock-skills/skills/engineering/resolving-merge-conflicts
-    title: resolving-merge-conflicts
-    summary: Use when you need to resolve an in-progress git merge/rebase conflict.
+  - id: mattpocock-skills/retro
+    name: retro
+    path: mattpocock-skills/skills/engineering/retro
+    title: retro
+    summary: Conduct a retrospective on a coding session.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9072fa5a5600
+    content_hash: 09c4f9fe72fc
     files:
     - SKILL.md
     - agents/openai.yaml
     author: Matt Pocock
-    source_url: https://github.com/mattpocock/skills/tree/main/skills/engineering/resolving-merge-conflicts
+    source_url: https://github.com/mattpocock/skills/tree/main/skills/engineering/retro
     license: MIT
     group: mattpocock-skills
     category: Engineering
@@ -25621,7 +25662,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 84751ced3afc
+    content_hash: 36c98eb881ec
     files:
     - SKILL.md
     - agents/openai.yaml
@@ -25647,7 +25688,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c81dcca38b9e
+    content_hash: c5094f4642cb
     files:
     - SKILL.md
     - agents/openai.yaml
@@ -25713,7 +25754,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 69a9c3283988
+    content_hash: 9c6b69d13831
     files:
     - AGENT-BRIEF.md
     - OUT-OF-SCOPE.md
@@ -25884,7 +25925,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d8c5157780c8
+    content_hash: 7eb4f8dd850b
     files:
     - SKILL.md
     - agents/openai.yaml
