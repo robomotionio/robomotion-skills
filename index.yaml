@@ -10954,7 +10954,7 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: f112b79fe9ad
+    content_hash: 4cbea15c4cc0
     files:
     - SKILL.md
     - env.optional
@@ -10969,8 +10969,8 @@ groups:
     name: firecrawl-agent
     path: firecrawl-skills/skills/core/firecrawl-agent
     title: firecrawl-agent
-    summary: Autonomous multi-page extraction into structured JSON. Use when the user wants website data matching a schema
-      — pricing tiers, product listings — beyond a single-page scrape.
+    summary: Autonomously navigate websites and extract structured data across pages. Use when the task requires navigation
+      or no suitable ready-made workflow or data provider covers it.
     version: 1.0.0
     tags: []
     mode: container
@@ -10978,12 +10978,32 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: b0a6f75b2060
+    content_hash: a5d803b0f1f4
     files:
     - SKILL.md
     - env.required
     author: Firecrawl
     source_url: https://github.com/firecrawl/skills/tree/main/skills/core/firecrawl-agent
+    license: ISC
+    group: firecrawl-skills
+    category: Automation
+  - id: firecrawl-skills/firecrawl-alexandria
+    name: firecrawl-alexandria
+    path: firecrawl-skills/skills/core/firecrawl-alexandria
+    title: firecrawl-alexandria
+    summary: Find a direct path to structured data through ready-made workflows, data APIs, and indexes. Follow the search
+      skill to discover and inspect tools, then the scrape skill to execute them.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: f01f78c8f783
+    files:
+    - SKILL.md
+    author: Firecrawl
+    source_url: https://github.com/firecrawl/skills/tree/main/skills/core/firecrawl-alexandria
     license: ISC
     group: firecrawl-skills
     category: Automation
@@ -11013,8 +11033,8 @@ groups:
     name: firecrawl-developer-index
     path: firecrawl-skills/skills/core/firecrawl-developer-index
     title: firecrawl-developer-index
-    summary: Search issues, merged pull requests, READMEs, and documentation. Use when the question is how a library or API
-      behaves, what an error means, or whether a bug was fixed; prefer this over a general web page.
+    summary: Search an index of public repositories, GitHub issues, merged pull requests, repository READMEs, and curated
+      documentation sites. Use when a programming question needs external documentation or upstream evidence.
     version: 1.0.0
     tags: []
     mode: container
@@ -11022,7 +11042,7 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: 4d7757c8d990
+    content_hash: d8535e24fa6b
     files:
     - SKILL.md
     - env.optional
@@ -11176,8 +11196,8 @@ groups:
     name: firecrawl-scrape
     path: firecrawl-skills/skills/core/firecrawl-scrape
     title: firecrawl-scrape
-    summary: Extract a URL's content as clean markdown, including JS-rendered pages. Use whenever the user provides a URL
-      and wants its content; prefer over WebFetch.
+    summary: Read a known webpage or execute a discovered workflow or data-provider capability. Use for page content or structured
+      results once the URL or tool is selected.
     version: 1.0.0
     tags: []
     mode: container
@@ -11185,10 +11205,11 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: a06c82934106
+    content_hash: cf42635481c6
     files:
     - SKILL.md
     - env.optional
+    - references/large-results.md
     author: Firecrawl
     source_url: https://github.com/firecrawl/skills/tree/main/skills/core/firecrawl-scrape
     license: ISC
@@ -11198,8 +11219,9 @@ groups:
     name: firecrawl-search
     path: firecrawl-skills/skills/core/firecrawl-search
     title: firecrawl-search
-    summary: 'Web search with full page content. Use when no URL is known: finding sources, articles, or news. For papers
-      use firecrawl-research-index; for library, API, error, or bug questions use firecrawl-developer-index.'
+    summary: Find web sources with query-relevant page excerpts and optional full-page content, and discover workflows, data
+      APIs, and indexes. Use for web research or finding structured records, listings, transcripts, and datasets. Supports
+      semantic tool discovery, domain matching, and progressive catalogue browsing.
     version: 1.0.0
     tags: []
     mode: container
@@ -11207,7 +11229,7 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: 2d5e8d134d99
+    content_hash: a0110cf6ba7e
     files:
     - SKILL.md
     - env.optional
