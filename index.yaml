@@ -31059,22 +31059,21 @@ groups:
   has_license: true
   content_hash: 35721eb2a645
   skills:
-  - id: ui-ux-pro-max-skill/ckm:banner-design
-    name: ckm:banner-design
+  - id: ui-ux-pro-max-skill/banner-design
+    name: banner-design
     path: ui-ux-pro-max-skill/.claude/skills/banner-design
-    title: ckm:banner-design
+    title: banner-design
     summary: 'Design banners for social media, ads, website heroes, creative assets, and print. Multiple art direction options
-      with AI-generated visuals. Actions: design, create, generate banner. Platforms: Facebook, Twitter/X, LinkedIn, YouTube,
-      Instagram, Google Display, website hero, print. Styles: minimalist, gradient, bold typography, photo-based, illustrated,
-      geometric, retro, glassmorphism, 3D, neon, duotone, editorial, collage. Uses ui-ux-pro-max, frontend-design, ai-artist,
-      ai-multimodal skills.'
+      with optional generated or supplied visuals. Actions: design, create, generate banner. Platforms: Facebook, Twitter/X,
+      LinkedIn, YouTube, Instagram, Google Display, website hero, print. Styles: minimalist, gradient, bold typography, photo-based,
+      illustrated, geometric, retro, glassmorphism, 3D, neon, duotone, editorial, collage.'
     version: 2.5.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: e4ed63e71dd5
+    content_hash: f3fed58fd30b
     files:
     - SKILL.md
     - references/banner-sizes-and-styles.md
@@ -31083,10 +31082,10 @@ groups:
     license: MIT
     group: ui-ux-pro-max-skill
     category: Design
-  - id: ui-ux-pro-max-skill/ckm:brand
-    name: ckm:brand
+  - id: ui-ux-pro-max-skill/brand
+    name: brand
     path: ui-ux-pro-max-skill/.claude/skills/brand
-    title: ckm:brand
+    title: brand
     summary: Brand voice, visual identity, messaging frameworks, asset management, brand consistency. Activate for branded
       content, tone of voice, marketing assets, brand compliance, style guides.
     version: 2.5.0
@@ -31095,7 +31094,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 68dfbfbd576f
+    content_hash: 6afe16de770e
     files:
     - SKILL.md
     - references/approval-checklist.md
@@ -31112,6 +31111,7 @@ groups:
     - scripts/extract-colors.cjs
     - scripts/inject-brand-context.cjs
     - scripts/sync-brand-to-tokens.cjs
+    - scripts/tests/test_sync_brand_to_tokens.py
     - scripts/validate-asset.cjs
     - templates/brand-guidelines-starter.md
     author: NextLevelBuilder
@@ -31119,16 +31119,16 @@ groups:
     license: MIT
     group: ui-ux-pro-max-skill
     category: Design
-  - id: ui-ux-pro-max-skill/ckm:design
-    name: ckm:design
+  - id: ui-ux-pro-max-skill/design
+    name: design
     path: ui-ux-pro-max-skill/.claude/skills/design
-    title: ckm:design
-    summary: 'Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles, Gemini AI),
-      corporate identity program (50 deliverables, CIP mockups), HTML presentations (Chart.js), banner design (22 styles,
-      social/ads/web/print), icon design (15 styles, SVG, Gemini 3.1 Pro), social photos (HTML→screenshot, multi-platform).
-      Actions: design logo, create CIP, generate mockups, build slides, design banner, generate icon, create social photos,
-      social media images, brand identity, design system. Platforms: Facebook, Twitter, LinkedIn, YouTube, Instagram, Pinterest,
-      TikTok, Threads, Google Ads.'
+    title: design
+    summary: 'Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles, Gemini, Atlas
+      Cloud, or MuAPI AI), corporate identity program (50 deliverables, CIP mockups), HTML presentations (Chart.js), banner
+      design (22 styles, social/ads/web/print), icon design (15 styles, SVG, Gemini 3.1 Pro), social photos (HTML→screenshot,
+      multi-platform). Actions: design logo, create CIP, generate mockups, build slides, design banner, generate icon, create
+      social photos, social media images, brand identity, design system. Platforms: Facebook, Twitter, LinkedIn, YouTube,
+      Instagram, Pinterest, TikTok, Threads, Google Ads.'
     version: 2.5.0
     tags: []
     mode: container
@@ -31137,7 +31137,7 @@ groups:
       - GEMINI_API_KEY
       optional:
       - GOOGLE_API_KEY
-    content_hash: e18f0968bbe0
+    content_hash: 407ddbea4b52
     files:
     - SKILL.md
     - data/cip/deliverables.csv
@@ -31176,15 +31176,16 @@ groups:
     - scripts/logo/core.py
     - scripts/logo/generate.py
     - scripts/logo/search.py
+    - scripts/logo/tests/test_generate.py
     author: NextLevelBuilder
     source_url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/main/.claude/skills/design
     license: MIT
     group: ui-ux-pro-max-skill
     category: Design
-  - id: ui-ux-pro-max-skill/ckm:design-system
-    name: ckm:design-system
+  - id: ui-ux-pro-max-skill/design-system
+    name: design-system
     path: ui-ux-pro-max-skill/.claude/skills/design-system
-    title: ckm:design-system
+    title: design-system
     summary: Token architecture, component specifications, and slide generation. Three-layer tokens (primitive→semantic→component),
       CSS variables, spacing/typography scales, component specs, strategic slide creation. Use for design tokens, systematic
       design, brand-compliant presentations.
@@ -31194,7 +31195,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 234305ee2984
+    content_hash: 0abd5b0b3dc9
     files:
     - SKILL.md
     - data/slide-backgrounds.csv
@@ -31220,6 +31221,7 @@ groups:
     - scripts/search-slides.py
     - scripts/slide-token-validator.py
     - scripts/slide_search_core.py
+    - scripts/tests/test_validate_tokens.py
     - scripts/validate-tokens.cjs
     - templates/design-tokens-starter.json
     author: NextLevelBuilder
@@ -31227,10 +31229,10 @@ groups:
     license: MIT
     group: ui-ux-pro-max-skill
     category: Design
-  - id: ui-ux-pro-max-skill/ckm:slides
-    name: ckm:slides
+  - id: ui-ux-pro-max-skill/slides
+    name: slides
     path: ui-ux-pro-max-skill/.claude/skills/slides
-    title: ckm:slides
+    title: slides
     summary: Create strategic HTML presentations with Chart.js, design tokens, responsive layouts, copywriting formulas, and
       contextual slide strategies.
     version: 2.5.0
@@ -31239,7 +31241,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 324d00ecb4b8
+    content_hash: 8f63bd381819
     files:
     - SKILL.md
     - references/copywriting-formulas.md
@@ -31252,10 +31254,10 @@ groups:
     license: MIT
     group: ui-ux-pro-max-skill
     category: Design
-  - id: ui-ux-pro-max-skill/ckm:ui-styling
-    name: ckm:ui-styling
+  - id: ui-ux-pro-max-skill/ui-styling
+    name: ui-styling
     path: ui-ux-pro-max-skill/.claude/skills/ui-styling
-    title: ckm:ui-styling
+    title: ui-styling
     summary: Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind
       CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems,
       creating responsive layouts, adding accessible components (dialogs, dropdowns, forms, tables), customizing themes and
@@ -31267,7 +31269,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7b0922b753b0
+    content_hash: 91c71de97ff2
     files:
     - LICENSE.txt
     - SKILL.md
@@ -31375,23 +31377,92 @@ groups:
     name: ui-ux-pro-max
     path: ui-ux-pro-max-skill/.claude/skills/ui-ux-pro-max
     title: ui-ux-pro-max
-    summary: 'UI/UX design intelligence for web and mobile. Includes 50+ styles, 161 color palettes, 57 font pairings, 161
-      product types, 99 UX guidelines, and 25 chart types across 10 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native,
-      Flutter, Tailwind, shadcn/ui, and HTML/CSS). Actions: plan, build, create, design, implement, review, fix, improve,
-      optimize, enhance, refactor, and check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce,
-      SaaS, portfolio, blog, and mobile app. Elements: button, modal, navbar, sidebar, card, table, form, and chart. Styles:
-      glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, and
-      flat design. Topics: color systems, accessibility, animation, layout, typography, font pairing, spacing, interaction
-      states, shadow, and gradient. Integrations: shadcn/ui MCP for component search and examples.'
+    summary: 'UI/UX design intelligence for web, mobile, and desktop. This skill should be used when designing, building,
+      reviewing, or fixing interfaces, including pages, components, design systems, accessibility, interaction, responsive
+      layout, typography, color, charts, and stack-specific UI implementation. Searchable local data: 79 searchable styles
+      (50 active), 192 product palettes and reasoning profiles, 74 font pairings, 119 UX guidelines, 105 icons, 17 GSAP presets,
+      25 chart types, and 22 stacks.'
     version: 2.5.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: b1a6da05bf4a
+    content_hash: 288b717b6ab5
     files:
     - SKILL.md
+    - data/app-interface.csv
+    - data/catalog-summary.json
+    - data/charts.csv
+    - data/colors.csv
+    - data/data-provenance.json
+    - data/google-font-licenses.json
+    - data/google-fonts.csv
+    - data/icons.csv
+    - data/landing.csv
+    - data/motion.csv
+    - data/phosphor-icons-upstream.json
+    - data/products.csv
+    - data/react-performance.csv
+    - data/stacks/angular.csv
+    - data/stacks/astro.csv
+    - data/stacks/avalonia.csv
+    - data/stacks/flutter.csv
+    - data/stacks/html-tailwind.csv
+    - data/stacks/javafx.csv
+    - data/stacks/jetpack-compose.csv
+    - data/stacks/laravel.csv
+    - data/stacks/nextjs.csv
+    - data/stacks/nuxt-ui.csv
+    - data/stacks/nuxtjs.csv
+    - data/stacks/react-native.csv
+    - data/stacks/react.csv
+    - data/stacks/shadcn.csv
+    - data/stacks/svelte.csv
+    - data/stacks/swiftui.csv
+    - data/stacks/threejs.csv
+    - data/stacks/uno.csv
+    - data/stacks/uwp.csv
+    - data/stacks/vue.csv
+    - data/stacks/winui.csv
+    - data/stacks/wpf.csv
+    - data/styles.csv
+    - data/typography.csv
+    - data/ui-reasoning.csv
+    - data/ux-guidelines.csv
+    - references/pro-rules.md
+    - references/quick-reference.md
+    - scripts/core.py
+    - scripts/design_system.py
+    - scripts/reasoning_contract.py
+    - scripts/search.py
+    - scripts/tests/fixtures/catalogs/google-api.json
+    - scripts/tests/fixtures/catalogs/google-catalog.json
+    - scripts/tests/fixtures/catalogs/google-existing.csv
+    - scripts/tests/fixtures/catalogs/google-metadata.json
+    - scripts/tests/fixtures/catalogs/google-overrides.json
+    - scripts/tests/fixtures/catalogs/icons-curated.csv
+    - scripts/tests/fixtures/catalogs/phosphor-core.json
+    - scripts/tests/fixtures/catalogs/phosphor-package.json
+    - scripts/tests/fixtures/catalogs/phosphor-react-exports.json
+    - scripts/tests/fixtures/catalogs/phosphor-react-package.json
+    - scripts/tests/fixtures/relevance-baseline.json
+    - scripts/tests/fixtures/relevance-cases.json
+    - scripts/tests/fixtures/relevance-thresholds.json
+    - scripts/tests/test_catalog_refresh.py
+    - scripts/tests/test_catalog_summary_line_endings.py
+    - scripts/tests/test_core.py
+    - scripts/tests/test_core_data_quality.py
+    - scripts/tests/test_data_contracts.py
+    - scripts/tests/test_design_system_mode.py
+    - scripts/tests/test_design_system_stack.py
+    - scripts/tests/test_native_desktop_stack_freshness.py
+    - scripts/tests/test_relevance_evaluator.py
+    - scripts/tests/test_skill_script_paths.py
+    - scripts/tests/test_style_taxonomy.py
+    - scripts/tests/test_text_layout_resilience.py
+    - scripts/tests/test_web_stack_freshness.py
+    - scripts/validate_data.py
     author: NextLevelBuilder
     source_url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/main/.claude/skills/ui-ux-pro-max
     license: MIT
@@ -31400,7 +31471,16 @@ groups:
   files:
   - .claude-plugin/marketplace.json
   - .claude-plugin/plugin.json
+  - .gitattributes
+  - .github/ISSUE_TEMPLATE/bug_report.yml
+  - .github/ISSUE_TEMPLATE/feature_request.yml
+  - .github/PULL_REQUEST_TEMPLATE.md
+  - .github/workflows/bump-versions.yml
+  - .github/workflows/check-asset-sync.yml
+  - .github/workflows/refresh-catalogs.yml
   - .github/workflows/release.yml
+  - .github/workflows/smoke-stacks.yml
+  - .github/workflows/tests.yml
   - .gitignore
   - .releaserc.json
   - .robomotion/CHANGELOG.md
@@ -31408,24 +31488,34 @@ groups:
   - .robomotion/patches/0001-local-edits.patch
   - .robomotion/skill.yaml
   - CLAUDE.md
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
   - LICENSE
+  - README.id.md
+  - README.ko.md
   - README.md
+  - README.vi.md
+  - README.zh.md
+  - SECURITY.md
   - cli/.gitignore
   - cli/.npmignore
   - cli/README.md
-  - cli/assets/data/_sync_all.py
   - cli/assets/data/app-interface.csv
+  - cli/assets/data/catalog-summary.json
   - cli/assets/data/charts.csv
   - cli/assets/data/colors.csv
-  - cli/assets/data/design.csv
-  - cli/assets/data/draft.csv
+  - cli/assets/data/data-provenance.json
+  - cli/assets/data/google-font-licenses.json
   - cli/assets/data/google-fonts.csv
   - cli/assets/data/icons.csv
   - cli/assets/data/landing.csv
+  - cli/assets/data/motion.csv
+  - cli/assets/data/phosphor-icons-upstream.json
   - cli/assets/data/products.csv
   - cli/assets/data/react-performance.csv
   - cli/assets/data/stacks/angular.csv
   - cli/assets/data/stacks/astro.csv
+  - cli/assets/data/stacks/avalonia.csv
   - cli/assets/data/stacks/flutter.csv
   - cli/assets/data/stacks/html-tailwind.csv
   - cli/assets/data/stacks/javafx.csv
@@ -31440,20 +31530,158 @@ groups:
   - cli/assets/data/stacks/svelte.csv
   - cli/assets/data/stacks/swiftui.csv
   - cli/assets/data/stacks/threejs.csv
+  - cli/assets/data/stacks/uno.csv
+  - cli/assets/data/stacks/uwp.csv
   - cli/assets/data/stacks/vue.csv
+  - cli/assets/data/stacks/winui.csv
+  - cli/assets/data/stacks/wpf.csv
   - cli/assets/data/styles.csv
   - cli/assets/data/typography.csv
   - cli/assets/data/ui-reasoning.csv
   - cli/assets/data/ux-guidelines.csv
   - cli/assets/scripts/core.py
   - cli/assets/scripts/design_system.py
+  - cli/assets/scripts/reasoning_contract.py
   - cli/assets/scripts/search.py
+  - cli/assets/scripts/tests/fixtures/catalogs/google-api.json
+  - cli/assets/scripts/tests/fixtures/catalogs/google-catalog.json
+  - cli/assets/scripts/tests/fixtures/catalogs/google-existing.csv
+  - cli/assets/scripts/tests/fixtures/catalogs/google-metadata.json
+  - cli/assets/scripts/tests/fixtures/catalogs/google-overrides.json
+  - cli/assets/scripts/tests/fixtures/catalogs/icons-curated.csv
+  - cli/assets/scripts/tests/fixtures/catalogs/phosphor-core.json
+  - cli/assets/scripts/tests/fixtures/catalogs/phosphor-package.json
+  - cli/assets/scripts/tests/fixtures/catalogs/phosphor-react-exports.json
+  - cli/assets/scripts/tests/fixtures/catalogs/phosphor-react-package.json
+  - cli/assets/scripts/tests/fixtures/relevance-baseline.json
+  - cli/assets/scripts/tests/fixtures/relevance-cases.json
+  - cli/assets/scripts/tests/fixtures/relevance-thresholds.json
+  - cli/assets/scripts/tests/test_catalog_refresh.py
+  - cli/assets/scripts/tests/test_catalog_summary_line_endings.py
+  - cli/assets/scripts/tests/test_core.py
+  - cli/assets/scripts/tests/test_core_data_quality.py
+  - cli/assets/scripts/tests/test_data_contracts.py
+  - cli/assets/scripts/tests/test_design_system_mode.py
+  - cli/assets/scripts/tests/test_design_system_stack.py
+  - cli/assets/scripts/tests/test_native_desktop_stack_freshness.py
+  - cli/assets/scripts/tests/test_relevance_evaluator.py
+  - cli/assets/scripts/tests/test_skill_script_paths.py
+  - cli/assets/scripts/tests/test_style_taxonomy.py
+  - cli/assets/scripts/tests/test_text_layout_resilience.py
+  - cli/assets/scripts/tests/test_web_stack_freshness.py
+  - cli/assets/scripts/validate_data.py
+  - cli/assets/skills/banner-design/SKILL.md
+  - cli/assets/skills/banner-design/references/banner-sizes-and-styles.md
+  - cli/assets/skills/brand/SKILL.md
+  - cli/assets/skills/brand/references/approval-checklist.md
+  - cli/assets/skills/brand/references/asset-organization.md
+  - cli/assets/skills/brand/references/brand-guideline-template.md
+  - cli/assets/skills/brand/references/color-palette-management.md
+  - cli/assets/skills/brand/references/consistency-checklist.md
+  - cli/assets/skills/brand/references/logo-usage-rules.md
+  - cli/assets/skills/brand/references/messaging-framework.md
+  - cli/assets/skills/brand/references/typography-specifications.md
+  - cli/assets/skills/brand/references/update.md
+  - cli/assets/skills/brand/references/visual-identity.md
+  - cli/assets/skills/brand/references/voice-framework.md
+  - cli/assets/skills/brand/scripts/extract-colors.cjs
+  - cli/assets/skills/brand/scripts/inject-brand-context.cjs
+  - cli/assets/skills/brand/scripts/sync-brand-to-tokens.cjs
+  - cli/assets/skills/brand/scripts/tests/test_sync_brand_to_tokens.py
+  - cli/assets/skills/brand/scripts/validate-asset.cjs
+  - cli/assets/skills/brand/templates/brand-guidelines-starter.md
+  - cli/assets/skills/design-system/SKILL.md
+  - cli/assets/skills/design-system/data/slide-backgrounds.csv
+  - cli/assets/skills/design-system/data/slide-charts.csv
+  - cli/assets/skills/design-system/data/slide-color-logic.csv
+  - cli/assets/skills/design-system/data/slide-copy.csv
+  - cli/assets/skills/design-system/data/slide-layout-logic.csv
+  - cli/assets/skills/design-system/data/slide-layouts.csv
+  - cli/assets/skills/design-system/data/slide-strategies.csv
+  - cli/assets/skills/design-system/data/slide-typography.csv
+  - cli/assets/skills/design-system/references/component-specs.md
+  - cli/assets/skills/design-system/references/component-tokens.md
+  - cli/assets/skills/design-system/references/primitive-tokens.md
+  - cli/assets/skills/design-system/references/semantic-tokens.md
+  - cli/assets/skills/design-system/references/states-and-variants.md
+  - cli/assets/skills/design-system/references/tailwind-integration.md
+  - cli/assets/skills/design-system/references/token-architecture.md
+  - cli/assets/skills/design-system/scripts/embed-tokens.cjs
+  - cli/assets/skills/design-system/scripts/fetch-background.py
+  - cli/assets/skills/design-system/scripts/generate-slide.py
+  - cli/assets/skills/design-system/scripts/generate-tokens.cjs
+  - cli/assets/skills/design-system/scripts/html-token-validator.py
+  - cli/assets/skills/design-system/scripts/search-slides.py
+  - cli/assets/skills/design-system/scripts/slide-token-validator.py
+  - cli/assets/skills/design-system/scripts/slide_search_core.py
+  - cli/assets/skills/design-system/scripts/tests/test_validate_tokens.py
+  - cli/assets/skills/design-system/scripts/validate-tokens.cjs
+  - cli/assets/skills/design-system/templates/design-tokens-starter.json
+  - cli/assets/skills/design/SKILL.md
+  - cli/assets/skills/design/data/cip/deliverables.csv
+  - cli/assets/skills/design/data/cip/industries.csv
+  - cli/assets/skills/design/data/cip/mockup-contexts.csv
+  - cli/assets/skills/design/data/cip/styles.csv
+  - cli/assets/skills/design/data/icon/styles.csv
+  - cli/assets/skills/design/data/logo/colors.csv
+  - cli/assets/skills/design/data/logo/industries.csv
+  - cli/assets/skills/design/data/logo/styles.csv
+  - cli/assets/skills/design/references/banner-sizes-and-styles.md
+  - cli/assets/skills/design/references/cip-deliverable-guide.md
+  - cli/assets/skills/design/references/cip-design.md
+  - cli/assets/skills/design/references/cip-prompt-engineering.md
+  - cli/assets/skills/design/references/cip-style-guide.md
+  - cli/assets/skills/design/references/design-routing.md
+  - cli/assets/skills/design/references/icon-design.md
+  - cli/assets/skills/design/references/logo-color-psychology.md
+  - cli/assets/skills/design/references/logo-design.md
+  - cli/assets/skills/design/references/logo-prompt-engineering.md
+  - cli/assets/skills/design/references/logo-style-guide.md
+  - cli/assets/skills/design/references/slides-copywriting-formulas.md
+  - cli/assets/skills/design/references/slides-create.md
+  - cli/assets/skills/design/references/slides-html-template.md
+  - cli/assets/skills/design/references/slides-layout-patterns.md
+  - cli/assets/skills/design/references/slides-strategies.md
+  - cli/assets/skills/design/references/slides.md
+  - cli/assets/skills/design/references/social-photos-design.md
+  - cli/assets/skills/design/scripts/cip/core.py
+  - cli/assets/skills/design/scripts/cip/generate.py
+  - cli/assets/skills/design/scripts/cip/render-html.py
+  - cli/assets/skills/design/scripts/cip/search.py
+  - cli/assets/skills/design/scripts/icon/generate.py
+  - cli/assets/skills/design/scripts/logo/core.py
+  - cli/assets/skills/design/scripts/logo/generate.py
+  - cli/assets/skills/design/scripts/logo/search.py
+  - cli/assets/skills/design/scripts/logo/tests/test_generate.py
+  - cli/assets/skills/slides/SKILL.md
+  - cli/assets/skills/slides/references/copywriting-formulas.md
+  - cli/assets/skills/slides/references/create.md
+  - cli/assets/skills/slides/references/html-template.md
+  - cli/assets/skills/slides/references/layout-patterns.md
+  - cli/assets/skills/slides/references/slide-strategies.md
+  - cli/assets/skills/ui-styling/LICENSE.txt
+  - cli/assets/skills/ui-styling/SKILL.md
+  - cli/assets/skills/ui-styling/references/canvas-design-system.md
+  - cli/assets/skills/ui-styling/references/shadcn-accessibility.md
+  - cli/assets/skills/ui-styling/references/shadcn-components.md
+  - cli/assets/skills/ui-styling/references/shadcn-theming.md
+  - cli/assets/skills/ui-styling/references/tailwind-customization.md
+  - cli/assets/skills/ui-styling/references/tailwind-responsive.md
+  - cli/assets/skills/ui-styling/references/tailwind-utilities.md
+  - cli/assets/skills/ui-styling/scripts/requirements.txt
+  - cli/assets/skills/ui-styling/scripts/shadcn_add.py
+  - cli/assets/skills/ui-styling/scripts/tailwind_config_gen.py
+  - cli/assets/skills/ui-styling/scripts/tests/coverage-ui.json
+  - cli/assets/skills/ui-styling/scripts/tests/requirements.txt
+  - cli/assets/skills/ui-styling/scripts/tests/test_shadcn_add.py
+  - cli/assets/skills/ui-styling/scripts/tests/test_tailwind_config_gen.py
   - cli/assets/templates/base/quick-reference.md
   - cli/assets/templates/base/skill-content.md
   - cli/assets/templates/platforms/agent.json
   - cli/assets/templates/platforms/augment.json
   - cli/assets/templates/platforms/claude.json
   - cli/assets/templates/platforms/codebuddy.json
+  - cli/assets/templates/platforms/codewhale.json
   - cli/assets/templates/platforms/codex.json
   - cli/assets/templates/platforms/continue.json
   - cli/assets/templates/platforms/copilot.json
@@ -31466,11 +31694,17 @@ groups:
   - cli/assets/templates/platforms/qoder.json
   - cli/assets/templates/platforms/roocode.json
   - cli/assets/templates/platforms/trae.json
+  - cli/assets/templates/platforms/universal.json
   - cli/assets/templates/platforms/warp.json
   - cli/assets/templates/platforms/windsurf.json
+  - cli/assets/templates/platforms/zcode.json
   - cli/bun.lock
   - cli/package-lock.json
   - cli/package.json
+  - cli/playwright.config.ts
+  - cli/scripts/build.mjs
+  - cli/scripts/run-python.mjs
+  - cli/scripts/sync-assets.mjs
   - cli/src/commands/init.ts
   - cli/src/commands/uninstall.ts
   - cli/src/commands/update.ts
@@ -31482,25 +31716,84 @@ groups:
   - cli/src/utils/github.ts
   - cli/src/utils/logger.ts
   - cli/src/utils/template.ts
+  - cli/tests/e2e/agent-query-contract.spec.ts
+  - cli/tests/e2e/banner-design-path-contract.spec.ts
+  - cli/tests/e2e/dry-run.spec.ts
+  - cli/tests/e2e/preview.spec.ts
+  - cli/tests/e2e/template-script-paths.spec.ts
   - cli/tsconfig.json
+  - docs/journals/260812-1844-search-data-quality-planning.md
+  - docs/journals/260813-0816-phase-6-accessibility-refresh.md
+  - docs/journals/260813-1622-phase-7-web-stack-freshness.md
+  - docs/journals/260813-1800-search-data-overhaul-completion.md
   - docs/三个 data-scripts-templates 的区别.md
+  - gallery/.gitignore
+  - gallery/app/globals.css
+  - gallery/app/layout.tsx
+  - gallery/app/page.tsx
+  - gallery/app/providers.tsx
+  - gallery/components/CodeSnippet.tsx
+  - gallery/components/ColorPalette.tsx
+  - gallery/components/DarkModeToggle.tsx
+  - gallery/components/ExpandableSection.tsx
+  - gallery/components/FilterBar.tsx
+  - gallery/components/GalleryGrid.tsx
+  - gallery/components/InteractiveChecklist.tsx
+  - gallery/components/MetadataBadges.tsx
+  - gallery/components/PhoneMockup.tsx
+  - gallery/components/SearchInput.tsx
+  - gallery/components/StyleCard.tsx
+  - gallery/components/StyleDetailModal.tsx
+  - gallery/components/StylePreview.tsx
+  - gallery/components/UIControlsShowcase.tsx
+  - gallery/components/metadata-badges.test.tsx
+  - gallery/data/styles.csv
+  - gallery/lib/colorExtractor.ts
+  - gallery/lib/cssGenerator.ts
+  - gallery/lib/filterStyles.ts
+  - gallery/lib/parseStyles.test.ts
+  - gallery/lib/parseStyles.ts
+  - gallery/lib/types.ts
+  - gallery/next-env.d.ts
+  - gallery/next.config.js
+  - gallery/package-lock.json
+  - gallery/package.json
+  - gallery/postcss.config.js
+  - gallery/tailwind.config.ts
+  - gallery/tsconfig.json
+  - gallery/tsconfig.test.json
   - preview/xiaomaomi-app.html
+  - projects/healthcare-dashboard/index.html
+  - projects/portfolio-dark/index.html
+  - projects/saas-landing/index.html
   - screenshots/website.png
+  - scripts/evaluate-relevance.py
+  - scripts/generate-catalog-summary.py
+  - scripts/refresh-google-fonts.py
+  - scripts/refresh-icon-catalog.py
+  - scripts/relevance_metrics.py
+  - scripts/smoke-domains.sh
+  - scripts/smoke-stacks.sh
   - scripts/sync-release-version.mjs
+  - scripts/validate-agent-guide.py
+  - scripts/validate-csv.py
   - skill.json
-  - src/ui-ux-pro-max/data/_sync_all.py
   - src/ui-ux-pro-max/data/app-interface.csv
+  - src/ui-ux-pro-max/data/catalog-summary.json
   - src/ui-ux-pro-max/data/charts.csv
   - src/ui-ux-pro-max/data/colors.csv
-  - src/ui-ux-pro-max/data/design.csv
-  - src/ui-ux-pro-max/data/draft.csv
+  - src/ui-ux-pro-max/data/data-provenance.json
+  - src/ui-ux-pro-max/data/google-font-licenses.json
   - src/ui-ux-pro-max/data/google-fonts.csv
   - src/ui-ux-pro-max/data/icons.csv
   - src/ui-ux-pro-max/data/landing.csv
+  - src/ui-ux-pro-max/data/motion.csv
+  - src/ui-ux-pro-max/data/phosphor-icons-upstream.json
   - src/ui-ux-pro-max/data/products.csv
   - src/ui-ux-pro-max/data/react-performance.csv
   - src/ui-ux-pro-max/data/stacks/angular.csv
   - src/ui-ux-pro-max/data/stacks/astro.csv
+  - src/ui-ux-pro-max/data/stacks/avalonia.csv
   - src/ui-ux-pro-max/data/stacks/flutter.csv
   - src/ui-ux-pro-max/data/stacks/html-tailwind.csv
   - src/ui-ux-pro-max/data/stacks/javafx.csv
@@ -31515,20 +31808,53 @@ groups:
   - src/ui-ux-pro-max/data/stacks/svelte.csv
   - src/ui-ux-pro-max/data/stacks/swiftui.csv
   - src/ui-ux-pro-max/data/stacks/threejs.csv
+  - src/ui-ux-pro-max/data/stacks/uno.csv
+  - src/ui-ux-pro-max/data/stacks/uwp.csv
   - src/ui-ux-pro-max/data/stacks/vue.csv
+  - src/ui-ux-pro-max/data/stacks/winui.csv
+  - src/ui-ux-pro-max/data/stacks/wpf.csv
   - src/ui-ux-pro-max/data/styles.csv
   - src/ui-ux-pro-max/data/typography.csv
   - src/ui-ux-pro-max/data/ui-reasoning.csv
   - src/ui-ux-pro-max/data/ux-guidelines.csv
   - src/ui-ux-pro-max/scripts/core.py
   - src/ui-ux-pro-max/scripts/design_system.py
+  - src/ui-ux-pro-max/scripts/reasoning_contract.py
   - src/ui-ux-pro-max/scripts/search.py
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/relevance-baseline.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json
+  - src/ui-ux-pro-max/scripts/tests/fixtures/relevance-thresholds.json
+  - src/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py
+  - src/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py
+  - src/ui-ux-pro-max/scripts/tests/test_core.py
+  - src/ui-ux-pro-max/scripts/tests/test_core_data_quality.py
+  - src/ui-ux-pro-max/scripts/tests/test_data_contracts.py
+  - src/ui-ux-pro-max/scripts/tests/test_design_system_mode.py
+  - src/ui-ux-pro-max/scripts/tests/test_design_system_stack.py
+  - src/ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py
+  - src/ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py
+  - src/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py
+  - src/ui-ux-pro-max/scripts/tests/test_style_taxonomy.py
+  - src/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py
+  - src/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py
+  - src/ui-ux-pro-max/scripts/validate_data.py
   - src/ui-ux-pro-max/templates/base/quick-reference.md
   - src/ui-ux-pro-max/templates/base/skill-content.md
   - src/ui-ux-pro-max/templates/platforms/agent.json
   - src/ui-ux-pro-max/templates/platforms/augment.json
   - src/ui-ux-pro-max/templates/platforms/claude.json
   - src/ui-ux-pro-max/templates/platforms/codebuddy.json
+  - src/ui-ux-pro-max/templates/platforms/codewhale.json
   - src/ui-ux-pro-max/templates/platforms/codex.json
   - src/ui-ux-pro-max/templates/platforms/continue.json
   - src/ui-ux-pro-max/templates/platforms/copilot.json
@@ -31541,8 +31867,34 @@ groups:
   - src/ui-ux-pro-max/templates/platforms/qoder.json
   - src/ui-ux-pro-max/templates/platforms/roocode.json
   - src/ui-ux-pro-max/templates/platforms/trae.json
+  - src/ui-ux-pro-max/templates/platforms/universal.json
   - src/ui-ux-pro-max/templates/platforms/warp.json
   - src/ui-ux-pro-max/templates/platforms/windsurf.json
+  - src/ui-ux-pro-max/templates/platforms/zcode.json
+  - stack/.claude/agents/design-review.md
+  - stack/.claude/commands/design-plan.md
+  - stack/.claude/commands/design-review.md
+  - stack/.claude/settings.json
+  - stack/.github/workflows/design-review.yml
+  - stack/.gitignore
+  - stack/.mcp.json
+  - stack/CLAUDE.md
+  - stack/README.md
+  - stack/docs/SETUP.md
+  - stack/docs/STACK.md
+  - stack/docs/WORKFLOW.md
+  - stack/examples/juniper-audit/README.md
+  - stack/examples/juniper-audit/report.json
+  - stack/examples/juniper-audit/report.md
+  - stack/examples/juniper-audit/screenshots/desktop-1440.png
+  - stack/examples/juniper-audit/screenshots/laptop-1024.png
+  - stack/examples/juniper-audit/screenshots/mobile-360.png
+  - stack/examples/juniper-audit/screenshots/mobile-390.png
+  - stack/examples/juniper-audit/screenshots/tablet-768.png
+  - stack/examples/juniper-audit/screenshots/wide-1920.png
+  - stack/package.json
+  - stack/scripts/design-audit.mjs
+  - stack/scripts/setup.sh
 - path: video-skills
   name: video-skills
   title: Video Skills
