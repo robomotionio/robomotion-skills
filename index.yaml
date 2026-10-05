@@ -26931,7 +26931,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1b5eae96da53
+    content_hash: da022e63af8d
     files:
     - SKILL.md
     author: iOfficeAI
@@ -27030,7 +27030,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d8a64c3e8209
+    content_hash: bf61bd168eb5
     files:
     - SKILL.md
     author: iOfficeAI
@@ -27053,7 +27053,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: df23fef05709
+    content_hash: b3e2f7e50328
     files:
     - SKILL.md
     author: iOfficeAI
