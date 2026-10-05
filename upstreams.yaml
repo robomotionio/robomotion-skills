@@ -452,7 +452,7 @@ upstreams:
 - group: marketing-skills
   repo: https://github.com/coreyhaines31/marketingskills
   track: main
-  commit: 5b2c0007766c6a1cf1d53fd8fc73e979e0821022
+  commit: e6ad8e30d9a1ad362a7e318fee38edc34b3fb676
   subdir: ''
   mode: mirror
   license: MIT
