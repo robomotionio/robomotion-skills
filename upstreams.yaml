@@ -220,7 +220,7 @@ upstreams:
 - group: emilkowalski-skills
   repo: https://github.com/emilkowalski/skills
   track: main
-  commit: d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7
+  commit: d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128
   subdir: ''
   mode: mirror
   license: MIT
