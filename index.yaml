@@ -11642,16 +11642,16 @@ groups:
     path: gemini-skills/skills/gemini-api-dev
     title: gemini-api-dev
     summary: Use this skill when writing code that calls the Gemini API for text generation, multi-turn chat, multimodal understanding,
-      image generation, video generation, streaming responses, background research tasks, function calling, structured output,
-      or migrating from the old generateContent API. Covers SDK usage and best practices for Gemini models and agents in Python
-      and TypeScript.
+      image generation, video generation, speech generation (TTS), voice design, voice replication, streaming responses, background
+      research tasks, function calling, structured output, or migrating from the old generateContent API. Covers SDK usage
+      and best practices for Gemini models and agents in Python and TypeScript.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a93179c6973e
+    content_hash: 5d784df0aba2
     files:
     - SKILL.md
     - references/migration.md
@@ -11664,19 +11664,20 @@ groups:
     name: gemini-live-api-dev
     path: gemini-skills/skills/gemini-live-api-dev
     title: gemini-live-api-dev
-    summary: Use this skill when building real-time, bidirectional streaming applications with the Gemini Live API. Covers
-      WebSocket-based audio/video/text streaming, voice activity detection (VAD), native audio features, function calling,
-      session management, ephemeral tokens for client-side auth, live translation, and all Live API configuration options.
-      SDKs covered - google-genai (Python), @google/genai (JavaScript/TypeScript).
+    summary: Use this skill when building real-time, bidirectional streaming applications with the Gemini Live API, or migrating
+      legacy Live models (2.0/2.5/3.1) to Gemini 3.8 Live. Covers WebSocket-based audio/video/text streaming, voice activity
+      detection (VAD), background reasoning (extended thinking), asynchronous function calling, session management, ephemeral
+      tokens, live transcription, and live translation. SDKs covered - google-genai (Python), @google/genai (JavaScript/TypeScript).
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 4c4a926ce954
+    content_hash: 48b24c477af1
     files:
     - SKILL.md
+    - references/migration.md
     author: Google
     source_url: https://github.com/google-gemini/gemini-skills/tree/main/skills/gemini-live-api-dev
     license: Apache-2.0
