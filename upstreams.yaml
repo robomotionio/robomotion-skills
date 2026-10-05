@@ -467,7 +467,7 @@ upstreams:
 - group: mattpocock-skills
   repo: https://github.com/mattpocock/skills
   track: main
-  commit: 3cca18b368ae95cdbdebbff572ccafa662551015
+  commit: 2aecca12ea9ff047f76c8178cb64dfeafd192abe
   subdir: ''
   mode: mirror
   license: MIT
