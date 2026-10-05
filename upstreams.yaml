@@ -665,7 +665,7 @@ upstreams:
 - group: ui-ux-pro-max-skill
   repo: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
   track: main
-  commit: d457006301be21d51dc8722ba2a6d143047d4122
+  commit: 09170eec67eefd46a7ae85de61b40c194020f997
   subdir: ''
   mode: mirror
   license: MIT
