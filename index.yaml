@@ -17513,7 +17513,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: eabdb4fc218c
+    content_hash: a4780e79be99
     files:
     - SKILL.md
     - agents/openai.yaml
@@ -17557,9 +17557,9 @@ groups:
 
       GPT Image 2.5 for image/design/text, Seedance 2.5 for
 
-      video, Nano Banana 2/Lite/Pro for character/reference
+      video, Nano Banana 2 for cartoon characters, Marketing
 
-      images, Marketing Studio for ads, Seed Audio 1.0 for audio.
+      Studio for ads, Seed Audio 1.0 for audio.
 
       Use when: "generate an image", "make a video", "animate
 
@@ -17587,14 +17587,14 @@ groups:
 
       higgsfield-video-explainer), playable games/assets (use
 
-      higgsfield-game-generation), or TTS.'
+      higgsfield-websites), or TTS.'
     version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 55dc904cf3e2
+    content_hash: 48c7b7f92133
     files:
     - SKILL.md
     - references/marketing-ad-references.md
@@ -17643,7 +17643,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3730ac2b12b2
+    content_hash: 3b785ba28ca0
     files:
     - SKILL.md
     author: Higgsfield AI
@@ -17692,7 +17692,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 617f25d1a913
+    content_hash: 77dbd9bffd46
     files:
     - SKILL.md
     author: Higgsfield AI
@@ -17718,7 +17718,7 @@ groups:
 
       higgsfield-generate via `--soul-id <id>` with models like
 
-      `text2image_soul_v2` or `soul_cinema_studio`.
+      `text2image_soul_v2` or `soul_cinematic`.
 
       NOT for: one-shot face swaps (use higgsfield-generate with --image),
 
@@ -17729,7 +17729,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 33ec802b44df
+    content_hash: 4f167cbba7ac
     files:
     - SKILL.md
     - references/photo-guide.md
@@ -17768,7 +17768,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 5af385f6766a
+    content_hash: 39cfbfaf5b27
     files:
     - SKILL.md
     - references/prompts.md
@@ -17799,7 +17799,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 6b0dc7972e0c
+    content_hash: 4ebd3973b936
     files:
     - SKILL.md
     - references/app-cover.md
@@ -17871,7 +17871,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d5ed66af8c96
+    content_hash: 0604a5f018d8
     files:
     - SKILL.md
     - agents/openai.yaml
