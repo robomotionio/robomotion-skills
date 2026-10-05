@@ -5350,14 +5350,14 @@ groups:
       app to the cloud, deploy all my services, what Azure services do I need, plan my Azure deployment, deploy my new app
       to Azure, one-click deploy, I have an app and want it on Azure, migrate my app to Azure, help me get started, build
       an app, no code yet, starter project. DO NOT USE FOR: use azd for deployment(use azure-deploy), optimizing existing
-      costs (use azure-cost), code readiness checks only (use azure-app-onboard-prereq).'
+      costs (use cost-optimization), code readiness checks only (use azure-app-onboard-prereq).'
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d950fb149463
+    content_hash: 73d75ff8a3d1
     files:
     - SKILL.md
     - deploy/SKILL.md
@@ -5623,50 +5623,6 @@ groups:
     - workflows/vm-recommender/vm-recommender.md
     author: Microsoft
     source_url: https://github.com/microsoft/azure-skills/tree/main/skills/azure-compute
-    license: MIT
-    group: azure-skills
-    category: Cloud
-  - id: azure-skills/azure-cost
-    name: azure-cost
-    path: azure-skills/skills/azure-cost
-    title: azure-cost
-    summary: 'Azure cost management: query costs, forecast spending, optimize to reduce waste. WHEN: "Azure costs", "Azure
-      bill", "cost breakdown", "how much am I spending", "forecast spending", "optimize costs", "reduce spending", "orphaned
-      resources", "rightsize VMs", "cost spike", "reduce storage costs", "AKS cost". DO NOT USE FOR: deploying resources,
-      provisioning, diagnostics, or security audits.'
-    version: 1.0.0
-    tags: []
-    mode: host
-    env:
-      required: []
-      optional: []
-    content_hash: 48ddefd6ecb7
-    files:
-    - SKILL.md
-    - cost-forecast/error-handling.md
-    - cost-forecast/examples.md
-    - cost-forecast/guardrails.md
-    - cost-forecast/request-body-schema.md
-    - cost-forecast/workflow.md
-    - cost-optimization/auth-best-practices.md
-    - cost-optimization/azure-aks-anomalies.md
-    - cost-optimization/azure-aks-cost-addon.md
-    - cost-optimization/azure-quick-review.md
-    - cost-optimization/azure-resource-graph.md
-    - cost-optimization/report-template.md
-    - cost-optimization/sdk/azure-resource-manager-redis-dotnet.md
-    - cost-optimization/services/redis/azure-cache-for-redis.md
-    - cost-optimization/services/storage/azure-storage.md
-    - cost-optimization/workflow.md
-    - cost-query/dimensions-by-scope.md
-    - cost-query/error-handling.md
-    - cost-query/examples.md
-    - cost-query/guardrails.md
-    - cost-query/request-body-schema.md
-    - cost-query/workflow.md
-    - references/tools-and-best-practices.md
-    author: Microsoft
-    source_url: https://github.com/microsoft/azure-skills/tree/main/skills/azure-cost
     license: MIT
     group: azure-skills
     category: Cloud
@@ -6013,7 +5969,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ab345072af9a
+    content_hash: 1c5f54d4395d
     files:
     - SKILL.md
     - references/analyze.md
@@ -6255,15 +6211,15 @@ groups:
       storage accounts", "find container apps", and "what resources do I have". USE FOR: list websites, list web apps, list
       app services, show websites in subscription, resource inventory, find resources by tag, tag analysis, orphaned resource
       discovery (not for cost analysis), unattached disks, count resources by type, cross-subscription lookup, and Azure Resource
-      Graph queries. DO NOT USE FOR: deploying/changing resources (use azure-deploy), cost optimization (use azure-cost),
-      or non-Azure clouds.'
+      Graph queries. DO NOT USE FOR: deploying/changing resources (use azure-deploy), cost optimization (use cost-optimization
+      from the optional azure-cost plugin), or non-Azure clouds.'
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 551197ff1144
+    content_hash: a2624ddb76c0
     files:
     - SKILL.md
     - references/azure-resource-graph.md
@@ -6437,6 +6393,30 @@ groups:
     license: MIT
     group: azure-skills
     category: Cloud
+  - id: azure-skills/discover-azure-skills
+    name: discover-azure-skills
+    path: azure-skills/skills/discover-azure-skills
+    title: discover-azure-skills
+    summary: 'Searches the Azure skills catalog and recommends installable agent skills by matching an Azure task to skill
+      metadata and plugin installation guidance. WHEN: before starting any task that involves an Azure or Microsoft-cloud
+      service, product, or data source, when no currently loaded skill or tool already covers it.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 858c20861d24
+    files:
+    - SKILL.md
+    - references/install/claude-code.md
+    - references/install/copilot-cli.md
+    - references/install/other.md
+    author: Microsoft
+    source_url: https://github.com/microsoft/azure-skills/tree/main/skills/discover-azure-skills
+    license: MIT
+    group: azure-skills
+    category: Cloud
   - id: azure-skills/entra-agent-id
     name: entra-agent-id
     path: azure-skills/skills/entra-agent-id
@@ -6510,20 +6490,20 @@ groups:
     title: microsoft-foundry
     summary: 'Build, deploy, evaluate, optimize, fine-tune, and manage Microsoft Foundry agents, models, and resources end
       to end. USE FOR: foundry, azd ai agent, azd provision/deploy, hosted agent scaffold/develop/run/deploy/troubleshoot,
-      prompt agent create, create agent, update agent, add tool to agent, invoke agent, agent.yaml, evaluate agent, batch
-      eval, continuous eval, continuous monitoring, agent CI/CD, optimize prompt, improve prompt, prompt optimizer, optimize
-      agent instructions, Agent Optimizer scaffold, dataset curation from traces, deploy model, model fine-tuning (SFT/DPO/RFT),
-      Foundry project, RBAC, role assignment, permissions, quota, capacity, region, deployment failure, AI Services, create
-      Foundry resource, knowledge index, customize deployment, onboard, availability, training-data, grader, distillation,
-      large file upload. DO NOT USE FOR: Azure Functions, App Service, general Azure deploy (use azure-deploy), general Azure
-      prep (use azure-prepare).'
+      prompt agent create, create agent, update agent, add tool to agent, invoke agent, agent.yaml, agent insights, pull agent
+      insights, evaluate agent, batch eval, continuous eval, continuous monitoring, agent CI/CD, optimize prompt, improve
+      prompt, prompt optimizer, optimize agent instructions, Agent Optimizer scaffold, dataset curation from traces, deploy
+      model, model fine-tuning (SFT/DPO/RFT), Foundry project, RBAC, role assignment, permissions, quota, capacity, region,
+      deployment failure, AI Services, create Foundry resource, knowledge index, customize deployment, onboard, availability,
+      training-data, grader, distillation, large file upload. DO NOT USE FOR: Azure Functions, App Service, general Azure
+      deploy (use azure-deploy), general Azure prep (use azure-prepare).'
     version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 96b445b24487
+    content_hash: 3294efd99d66
     files:
     - .gitignore
     - SKILL.md
@@ -6618,6 +6598,8 @@ groups:
     - foundry-agent/eval-datasets/references/eval-trending.md
     - foundry-agent/eval-datasets/references/generate-seed-dataset.md
     - foundry-agent/eval-datasets/references/trace-to-dataset.md
+    - foundry-agent/insights/insights.md
+    - foundry-agent/insights/references/tool-contract.md
     - foundry-agent/invocations-ws/invocations-ws.md
     - foundry-agent/invocations-ws/references/invocations-ws-protocol.md
     - foundry-agent/invoke/invoke.md
@@ -6665,12 +6647,11 @@ groups:
     - foundry-agent/trace/references/eval-correlation.md
     - foundry-agent/trace/references/kql-templates.md
     - foundry-agent/trace/references/search-traces.md
-    - foundry-agent/trace/references/tracing-insights-api.md
     - foundry-agent/trace/trace.md
     - foundry-agent/troubleshoot/troubleshoot.md
     - foundry-agent/validate/references/default-rules.yaml
     - foundry-agent/validate/references/report-schema.json
-    - foundry-agent/validate/references/report-template.md
+    - foundry-agent/validate/references/report-template.md.tpl
     - foundry-agent/validate/references/rules-schema.json
     - foundry-agent/validate/validate.md
     - models/deploy-model/SKILL.md
