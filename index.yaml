@@ -23514,7 +23514,7 @@ groups:
       - META_AD_ACCOUNT_ID
       - TIKTOK_ACCESS_TOKEN
       - TIKTOK_ADVERTISER_ID
-    content_hash: d268808324e9
+    content_hash: 386854aa5741
     files:
     - SKILL.md
     - assets/creative-review-template.html
@@ -24283,7 +24283,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dd204199a710
+    content_hash: 590be147646e
     files:
     - SKILL.md
     - evals/evals.json
@@ -25153,7 +25153,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d99a383f4eb0
+    content_hash: 2916a5154104
     files:
     - SKILL.md
     - evals/evals.json
