@@ -22201,7 +22201,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f05fc82817b5
+    content_hash: fa7efcdc92c1
     files:
     - SKILL.md
     - creative-design/agents/assets/vision-probe.png
@@ -22295,7 +22295,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9b55412ef515
+    content_hash: 30d0f2174565
     files:
     - SKILL.md
     - references/lark-base-advanced-permission-and-role.md
@@ -22341,7 +22341,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 922215decc32
+    content_hash: 29fb96570963
     files:
     - SKILL.md
     - references/lark-calendar-create.md
@@ -22398,7 +22398,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2f94c626341d
+    content_hash: 50c1830faf0f
     files:
     - SKILL.md
     - references/genres/business-analysis.md
@@ -22463,7 +22463,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 4715e90773a5
+    content_hash: 156c7edb2323
     files:
     - SKILL.md
     - references/lark-drive-add-comment.md
@@ -22573,7 +22573,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7a89454ca6af
+    content_hash: 90cf172278b6
     files:
     - SKILL.md
     - references/card/card-2.0-schema.md
@@ -22653,7 +22653,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d9fd47a722a7
+    content_hash: b779bdea485f
     files:
     - SKILL.md
     - assets/templates/job-application--resume.html
@@ -22708,7 +22708,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c53a906918c9
+    content_hash: a915d63d8e31
     files:
     - SKILL.md
     - references/lark-markdown-create.md
@@ -22733,7 +22733,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 603ebd952d95
+    content_hash: 5d9d5afb01be
     files:
     - SKILL.md
     - references/lark-minutes-apply-permission.md
@@ -22902,16 +22902,17 @@ groups:
     name: lark-sheets
     path: lark-skills/skills/lark-sheets
     title: lark-sheets
-    summary: 飞书电子表格：创建和操作电子表格。支持创建表格、管理工作表与行列结构（增删/合并/调整尺寸/隐藏/冻结）、读写单元格（值/公式/样式/批注/单元格图片）、查找替换、多操作批量更新，以及图表、透视表、条件格式、筛选器、迷你图、浮动图片等对象的创建与维护。当用户需要创建电子表格、管理工作表、批量读写或编辑数据、统计汇总与可视化、表格美化、公式计算（含
-      Excel 公式迁移）、金融/财务建模（DCF、三张表、预算、Sensitivity 等）等任务时使用。若用户是想按名称或关键词搜索云空间（云盘/云存储）里的表格文件，请改用 lark-drive 的 drive +search 先定位资源。当用户给出
-      doubao.com 的 /sheets/ URL/token 时，也应直接使用本 skill，不要因为域名不是飞书而回退到 WebFetch；路由依据是 URL 路径模式和 token，而不是域名。
+    summary: 飞书电子表格：创建和操作电子表格。支持工作表与行列结构（增删/合并/尺寸/隐藏/冻结/分组）、单元格读写（值/公式/样式/批注/单元格图片）、区域复制移动排序填充、查找替换、批量更新，图表、透视表、条件格式、筛选器与筛选视图、下拉列表、迷你图、浮动图片等对象的创建与维护，以及公式校验、历史版本回滚、本地
+      Excel/CSV 与飞书表格的导入导出。当用户需要创建或编辑表格、统计汇总与可视化、表格美化、公式计算（含 Excel 公式迁移）、金融/财务建模（DCF、三张表、预算、Sensitivity 等）时使用。多维表格（Base/bitable）请改用
+      lark-base；若用户是想按名称或关键词搜索云空间（云盘/云存储）里的表格文件，请改用 lark-drive 的 drive +search 先定位资源。当用户给出 doubao.com 的 /sheets/ URL/token
+      时，也应直接使用本 skill，不要因为域名不是飞书而回退到 WebFetch；路由依据是 URL 路径模式和 token，而不是域名。
     version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: dfee6ecf7468
+    content_hash: eb8a3db33e33
     files:
     - SKILL.md
     - references/lark-sheets-batch-update.md
@@ -22924,7 +22925,6 @@ groups:
     - references/lark-sheets-formula-translation.md
     - references/lark-sheets-formula-verify.md
     - references/lark-sheets-history.md
-    - references/lark-sheets-legacy-command-migration.md
     - references/lark-sheets-pivot-table.md
     - references/lark-sheets-range-operations.md
     - references/lark-sheets-read-data.md
@@ -22943,7 +22943,7 @@ groups:
     - scripts/lark_profile_table.py
     - scripts/lark_sheet_range.py
     - scripts/lark_sheet_read_cli.py
-    - scripts/sheets_df.py
+    - scripts/lark_sheets_df.py
     author: Lark Technologies
     source_url: https://github.com/larksuite/cli/tree/main/skills/lark-sheets
     license: MIT
@@ -22981,7 +22981,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 20275afd7ce9
+    content_hash: a3966daddbe1
     files:
     - SKILL.md
     - references/asset-planning.md
@@ -23049,7 +23049,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 0c6f770ccb9d
+    content_hash: 8e0c9814d6b1
     files:
     - SKILL.md
     - references/lark-task-assign.md
@@ -23175,7 +23175,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3956070d2dfc
+    content_hash: 42b33625cba4
     files:
     - SKILL.md
     - references/lark-wiki-delete-space.md
