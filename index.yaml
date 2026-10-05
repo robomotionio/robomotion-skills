@@ -716,7 +716,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 347118a6eb69
+    content_hash: ffc0bdf8a261
     files:
     - SKILL.md
     - references/advanced-usage.md
