@@ -9325,14 +9325,14 @@ groups:
     title: code-review-and-quality
     summary: Conducts multi-axis code review. Use before merging any change. Use when reviewing code written by yourself,
       another agent, or a human. Use when you need to assess code quality across multiple dimensions before it enters the
-      main branch.
+      main branch. Use when asked to review a diff or a pull request, even when the diff is pasted inline.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 57574227c803
+    content_hash: e60dfee4a81d
     files:
     - SKILL.md
     author: Addy Osmani
@@ -9379,7 +9379,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ddb956d40f7d
+    content_hash: 00b635911247
     files:
     - SKILL.md
     - references/floor-guard.md
@@ -9507,7 +9507,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9850adcce705
+    content_hash: 812aeb883906
     files:
     - SKILL.md
     author: Addy Osmani
@@ -9598,7 +9598,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f271a5931d37
+    content_hash: 6b64430690d7
     files:
     - SKILL.md
     author: Addy Osmani
@@ -9683,9 +9683,10 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 57474a1f9307
+    content_hash: b5ec48fcf5ff
     files:
     - SKILL.md
+    - references/hardening-patterns.md
     author: Addy Osmani
     source_url: https://github.com/addyosmani/agent-skills/tree/main/skills/security-and-hardening
     license: MIT
