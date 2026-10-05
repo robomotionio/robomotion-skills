@@ -7993,7 +7993,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 61af4fe2aac8
+    content_hash: cd73a2ebf277
     files:
     - SKILL.md
     - references/ai-gateway/README.md
@@ -8364,7 +8364,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d0d6dadd6b2f
+    content_hash: c533f27520ef
     files:
     - SKILL.md
     - references/rules.md
@@ -8541,15 +8541,15 @@ groups:
     name: wrangler
     path: cloudflare-skills/skills/wrangler
     title: wrangler
-    summary: Run or troubleshoot Wrangler CLI commands and configure Worker projects for local development, deployment, and
-      Cloudflare resource management.
+    summary: Run or troubleshoot Wrangler CLI commands and configure Worker projects for local development, Previews, deployment,
+      and Cloudflare resource management.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 78cfa92a4392
+    content_hash: 57bf974f0d2c
     files:
     - SKILL.md
     author: Cloudflare
