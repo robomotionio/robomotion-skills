@@ -373,7 +373,7 @@ upstreams:
 - group: impeccable
   repo: https://github.com/pbakaus/impeccable
   track: main
-  commit: cb56ed6c19a07329a9fa0cd4e657bee040156593
+  commit: 9d715cc4f5564a990ca8345abfdd5df6dc9b41c8
   subdir: plugin
   mode: mirror
   license: Apache-2.0
