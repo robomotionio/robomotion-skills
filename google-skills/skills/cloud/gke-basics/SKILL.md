@@ -1,6 +1,7 @@
 ---
 name: gke-basics
 metadata:
+  version: "1.1.0"
   category: Containers
 description: >-
   Manages core GKE cluster provisioning, credentials, Autopilot vs Standard selection,

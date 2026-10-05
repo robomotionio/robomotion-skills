@@ -6,6 +6,7 @@ description: >-
   resources for inference, or deploying LLMs on GKE. Don't use for generic
   batch jobs or HPC task queues (use gke-batch-hpc instead).
 metadata:
+  version: "1.0.0"
   category: Containers
 ---
 

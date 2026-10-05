@@ -1,6 +1,7 @@
 ---
 name: detection-engineering-coverage-evaluation
 metadata:
+  version: "1.0.0"
   category: Security
 description: >-
   Automates the end-to-end detection engineering workflow in Google SecOps using MCP tools.

@@ -1,6 +1,7 @@
 ---
 name: iam-helper-for-troubleshooting
 metadata:
+  version: "1.0.0"
   category: Security
 description: >-
   Diagnoses, remediates, and manages Google Cloud Identity and Access Management (IAM)

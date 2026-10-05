@@ -1,6 +1,7 @@
 ---
 name: retrieving-developer-knowledge
 metadata:
+  version: "1.0.0"
   category: CloudInfrastructureAndServices
 description: >-
   Searches, retrieves, and synthesizes official Google developer documentation across Google Cloud,

@@ -1,6 +1,7 @@
 ---
 name: finding-google-skills
 metadata:
+  version: "1.0.0"
   category: MultiProductSolutions
 description: >-
   Locates and loads the right Google product skill on demand from a remote

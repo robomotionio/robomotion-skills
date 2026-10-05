@@ -11969,7 +11969,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1a698fec7924
+    content_hash: 9e4dc633718c
     files:
     - SKILL.md
     - references/create-audience.md
@@ -11994,7 +11994,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8fdc787dcbda
+    content_hash: 732fb7b2c777
     files:
     - SKILL.md
     author: Google
@@ -12016,7 +12016,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: e90dd51c1878
+    content_hash: 6376dee3b68c
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12044,7 +12044,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 0814458d4ac1
+    content_hash: dbd1790dc993
     files:
     - SKILL.md
     author: Google
@@ -12065,7 +12065,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c9abb9be424f
+    content_hash: 41bde3db3c73
     files:
     - SKILL.md
     author: Google
@@ -12097,7 +12097,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 94a1bc58a8a1
+    content_hash: 071e5019c80f
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12123,7 +12123,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dcba99bb0d08
+    content_hash: f7612ca05845
     files:
     - SKILL.md
     author: Google
@@ -12144,7 +12144,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 401e2f21cf4d
+    content_hash: 4f65b32138bb
     files:
     - SKILL.md
     - references/android-banner.md
@@ -12168,7 +12168,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b94ccd9e3eb6
+    content_hash: 90fc61742000
     files:
     - SKILL.md
     - references/android-get-started.md
@@ -12192,7 +12192,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1c562d3ba078
+    content_hash: c34cfca32349
     files:
     - SKILL.md
     - references/android-interstitial.md
@@ -12216,7 +12216,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f5f073f719e7
+    content_hash: 2938c0b5cab8
     files:
     - SKILL.md
     - references/android-rewarded.md
@@ -12241,7 +12241,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 077590e00c59
+    content_hash: 365d40fbe7c5
     files:
     - SKILL.md
     - references/ad-preloading.md
@@ -12323,7 +12323,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d94cd170ea22
+    content_hash: 763152be9bd3
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12353,7 +12353,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 58d4d93371e5
+    content_hash: e4d2aca7ac2d
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12384,7 +12384,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 80b87cac16e5
+    content_hash: a3a8d790efc3
     files:
     - SKILL.md
     - references/cost_alert_policies.md
@@ -12429,18 +12429,21 @@ groups:
       ai model-garden models list-deployment-config`), query deployment cost, troubleshoot deployment errors (like quota limits),
       or undeploy/clean up endpoints. Also use when copying and deploying a 1P Tuned Model. Don't use for pure listing/discovery
       questions of the form "is X deployed?", "list my endpoints", or "which regions have models running?" — for those use
-      `agent-platform-endpoint-management`. Don't use for public Vertex AI deployments (use the `vertex-deploy` skill) or
-      for running model evaluations (use the `agent-platform-eval-flywheel` skill).
+      `agent-platform-endpoint-management`. Don't use for public Vertex AI deployments (use `vertex-deploy` skill) or for
+      running model evaluations (use `agent-platform-eval-flywheel` skill).
     version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 56b06fb5b5cd
+    content_hash: 3c7616f6f153
     files:
     - SKILL.md
     - references/copy_deploy_guide.md
+    - references/region_availability.md
+    - references/troubleshooting.md
+    - references/undeploy_guide.md
     - references/usage.md
     - scripts/calculate_cost.py
     - scripts/config_gcloud_cli.sh
@@ -12462,7 +12465,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2d1c72743d36
+    content_hash: 927f04397246
     files:
     - SKILL.md
     author: Google
@@ -12475,17 +12478,17 @@ groups:
     path: google-skills/skills/cloud/agent-platform-eval-flywheel
     title: agent-platform-eval-flywheel
     summary: Measures and improves the quality of AI models and agents on Google Cloud using the Eval Quality Flywheel methodology.
-      Use when evaluating an agent or model, building an eval dataset, picking or writing evaluation metrics, analyzing failures,
-      comparing results before and after a fix, or when guidance is needed on Agent Platform eval methodology — including
-      dataset schema, LLM-as-judge scoring, and common failure causes. For fine-tuning, use agent-platform-tuning. For general
-      production deployment, use agent-platform-deploy.
+      Use when generating synthetic user scenarios, evaluating an agent or model, building an eval dataset, picking or writing
+      evaluation metrics, analyzing failures, comparing results before and after a fix, or when guidance is needed on Agent
+      Platform eval methodology — including dataset schema, LLM-as-judge scoring, and common failure causes. For fine-tuning,
+      use agent-platform-tuning. For general production deployment, use agent-platform-deploy.
     version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 51a953608d74
+    content_hash: c178b7d75e06
     files:
     - SKILL.md
     - references/dataset_schema.md
@@ -12521,7 +12524,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1ab56ae28c6b
+    content_hash: e8ed30753a73
     files:
     - SKILL.md
     - scripts/gemini_genai_sdk.py
@@ -12550,7 +12553,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9a7df692a5dd
+    content_hash: 2b0010a7df83
     files:
     - SKILL.md
     author: Google
@@ -12571,7 +12574,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f92f4c3bea6c
+    content_hash: fd69f3d50716
     files:
     - SKILL.md
     author: Google
@@ -12592,7 +12595,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c22a4a3e938a
+    content_hash: ac840819b44f
     files:
     - SKILL.md
     - references/create.md
@@ -12615,7 +12618,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 21bd94e97278
+    content_hash: d498c6a569aa
     files:
     - SKILL.md
     author: Google
@@ -12635,7 +12638,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 56e909054741
+    content_hash: ddd389c97ae5
     files:
     - SKILL.md
     - references/generate-skill.md
@@ -12664,7 +12667,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 69ebb13610b2
+    content_hash: 62b37f5d029b
     files:
     - SKILL.md
     - references/agent-gateway.md
@@ -12691,7 +12694,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 64188b5d5b43
+    content_hash: 02155e975f08
     files:
     - SKILL.md
     - references/data_prep.md
@@ -12723,7 +12726,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f150aead3312
+    content_hash: 992190695d8f
     files:
     - SKILL.md
     author: Google
@@ -12744,7 +12747,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 047b14cb443a
+    content_hash: 61f9ed9c9c4e
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -12771,7 +12774,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 153982b842a4
+    content_hash: fe2bce2ab45f
     files:
     - SKILL.md
     - references/adc_application_troubleshooting.md
@@ -12799,18 +12802,20 @@ groups:
     summary: Leverages BigQuery's built-in machine learning and GenAI capabilities for advanced data analytics. Use when you
       need to write SQL queries that perform time-series forecasting, predict values, detect outliers or anomalies, find key
       drivers, perform semantic search or vector search, classify text, calculate similarity, summarize content, translate
-      language, evaluate models, filter by semantic conditions, or leverage generative AI capabilities in BigQuery. Do not
-      use for general BigQuery dataset, table, or job management requests.
+      language, evaluate models, filter by semantic conditions, measure the causal effect of an intervention, compute correlations
+      between columns, detect change points or structural breaks, extract trend or seasonality components, or leverage generative
+      AI capabilities in BigQuery. Do not use for general BigQuery dataset, table, or job management requests.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f67d5b7558f9
+    content_hash: 20402c933372
     files:
     - SKILL.md
     - references/ai_agg.md
+    - references/ai_causal_effect.md
     - references/ai_classify.md
     - references/ai_detect_anomalies.md
     - references/ai_evaluate.md
@@ -12824,6 +12829,10 @@ groups:
     - references/ai_search.md
     - references/ai_similarity.md
     - references/ml_contribution_analysis.md
+    - references/ml_correlation.md
+    - references/ml_detect_change_points.md
+    - references/ml_seasonality.md
+    - references/ml_trend.md
     - references/remote_models.md
     - references/vector_search.md
     author: Google
@@ -12843,7 +12852,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d5159349bd56
+    content_hash: a9ea505407a8
     files:
     - SKILL.md
     - references/change-history.md
@@ -12863,22 +12872,81 @@ groups:
     name: bigquery-bigframes
     path: google-skills/skills/cloud/bigquery-bigframes
     title: bigquery-bigframes
-    summary: Generates Python code using BigQuery DataFrames (BigFrames), the pandas/scikit-learn-style API over BigQuery.
-      Use when writing BigFrames code or doing pandas-style dataframe/ML work against BigQuery (e.g. in a notebook). Don't
-      use for SQL-first workflows or the google-cloud-bigquery client library — use bigquery-basics.
+    summary: Generates Python code using BigQuery DataFrames (BigFrames). Use by default for any Python data task involving
+      BigQuery, including data processing, analysis, and machine learning. Don't use for SQL-first workflows or the google-cloud-bigquery
+      client library — use bigquery-basics.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 76b503fa0505
+    content_hash: 1f5d0bee433b
     files:
     - SKILL.md
     - references/linear_regression.md
     - references/logistic_regression.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-bigframes
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/bigquery-observability
+    name: bigquery-observability
+    path: google-skills/skills/cloud/bigquery-observability
+    title: bigquery-observability
+    summary: Provides data-retrieval best practices, tool selection guidance, and performant SQL query syntax for BigQuery
+      telemetry across INFORMATION_SCHEMA, Cloud Monitoring, and the REST API. Use when the telemetry to fetch is already
+      known, selecting telemetry tools, writing performant INFORMATION_SCHEMA queries, retrieving telemetry for diagnosing
+      single-job performance bottlenecks, investigating slot contention, job concurrency and queue latency, analyzing reservation
+      capacity, utilization and autoscaling saturation, or auditing capacity-based and on-demand compute and storage resource
+      billable usage. Don't use for root-cause diagnosis or symptom troubleshooting when the cause is unknown (use bigquery-troubleshooting
+      first), or for writing or optimizing business logic SQL (use bigquery-optimization).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e732e70f14c6
+    files:
+    - SKILL.md
+    - references/capacity_and_configuration_queries.md
+    - references/compute_capacity_billable.md
+    - references/compute_ondemand_billable.md
+    - references/job_performance_queries.md
+    - references/resource_contention_queries.md
+    - references/schema_compute.md
+    - references/schema_others.md
+    - references/schema_storage.md
+    - references/storage_footprints.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-observability
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/bigquery-slot-cost-optimizer
+    name: bigquery-slot-cost-optimizer
+    path: google-skills/skills/cloud/bigquery-slot-cost-optimizer
+    title: bigquery-slot-cost-optimizer
+    summary: Analyzes Google Cloud BigQuery slot consumption, query costs, and execution bottlenecks using INFORMATION_SCHEMA.
+      Use when diagnosing slow BigQuery queries, slot starvation, high on-demand query costs, unpartitioned table scans, or
+      join performance issues. Don't use for generic BigQuery administration (use bigquery-basics), BigQuery ML (use bigquery-ai-ml),
+      or DataFrame operations (use bigquery-bigframes).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: b024588e92e4
+    files:
+    - SKILL.md
+    - references/optimization_rules.md
+    - references/remediation_playbooks.md
+    - scripts/slot_analyzer.py
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-slot-cost-optimizer
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -12896,7 +12964,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 5ecd684ee69c
+    content_hash: 467234eb6901
     files:
     - SKILL.md
     - assets/row_key_schema.yaml
@@ -12924,7 +12992,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7ab92da00098
+    content_hash: 4d408055d48f
     files:
     - SKILL.md
     - references/cb-create-trigger.md
@@ -12949,7 +13017,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 10ba8b0c83bc
+    content_hash: 92acd89eb080
     files:
     - SKILL.md
     - references/onboarding_prompts.md
@@ -12974,7 +13042,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a6d2683ce710
+    content_hash: 582389ff6b6b
     files:
     - SKILL.md
     author: Google
@@ -12996,7 +13064,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1f70a8f09751
+    content_hash: 48d738bac6f9
     files:
     - SKILL.md
     author: Google
@@ -13017,7 +13085,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 47bb57add5ee
+    content_hash: 63213f8f28fc
     files:
     - SKILL.md
     - references/api_reference.md
@@ -13063,7 +13131,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b93f5e793d75
+    content_hash: 9a39d302a73d
     files:
     - SKILL.md
     - scripts/assemble_widget_proto.py
@@ -13094,7 +13162,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c52bab67417a
+    content_hash: 5d0387774956
     files:
     - SKILL.md
     - references/basic_aggregations.md
@@ -13116,7 +13184,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1c0831eee1b2
+    content_hash: 8dc68e84c1be
     files:
     - SKILL.md
     author: Google
@@ -13137,7 +13205,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 214f33f0ba3c
+    content_hash: f5890c9d0c51
     files:
     - SKILL.md
     - references/basic_aggregations.md
@@ -13164,7 +13232,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7523062bd18a
+    content_hash: d2de55f7d33a
     files:
     - SKILL.md
     - references/jobs.md
@@ -13188,7 +13256,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: aff24d64371e
+    content_hash: 9592e01f9164
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -13223,7 +13291,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 950964e22538
+    content_hash: dcd41694ef44
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -13254,7 +13322,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d3b080f32711
+    content_hash: 1ac0dcdc98b5
     files:
     - SKILL.md
     - references/mcp-usage.md
@@ -13277,7 +13345,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 405b0777299d
+    content_hash: d2d0b27f7c8b
     files:
     - SKILL.md
     - references/mcp-usage.md
@@ -13300,7 +13368,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 801bf7f73896
+    content_hash: 51312a5bbd03
     files:
     - SKILL.md
     - references/dbt_migration_patterns.md
@@ -13325,7 +13393,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8b7cacf2f8de
+    content_hash: fb90b98c4bca
     files:
     - SKILL.md
     author: Google
@@ -13346,7 +13414,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9e481a83cc1e
+    content_hash: 9a1d723b0489
     files:
     - SKILL.md
     - references/cancel_session.md
@@ -13376,7 +13444,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c69066fb1cdd
+    content_hash: bcaf84add718
     files:
     - SKILL.md
     - references/a2ui.md
@@ -13419,9 +13487,10 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: fc41cbe336b8
+    content_hash: 177b4d22fd1a
     files:
     - SKILL.md
+    - references/a2ui.md
     - references/agents-artifacts.md
     - references/agents-background.md
     - references/agents-branching.md
@@ -13576,7 +13645,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f4abd54c216f
+    content_hash: 7c56b7703339
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -13599,7 +13668,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1c0797b2f9c9
+    content_hash: 01c2f95a79ad
     files:
     - SKILL.md
     author: Google
@@ -13621,7 +13690,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: fe86878399c2
+    content_hash: 7d7d91df77f3
     files:
     - SKILL.md
     - references/advanced_features.md
@@ -13651,7 +13720,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: fb837a8f8e9c
+    content_hash: 8aec817939a3
     files:
     - SKILL.md
     author: Google
@@ -13674,7 +13743,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7efd3f5fdbf5
+    content_hash: 56499118382d
     files:
     - SKILL.md
     - references/client_server_messages.md
@@ -13700,7 +13769,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 187c1065a7d2
+    content_hash: 02792a9bb7d5
     files:
     - SKILL.md
     author: Google
@@ -13721,7 +13790,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f83586180f16
+    content_hash: 1c9b89a0177b
     files:
     - SKILL.md
     - references/failure_signatures.md
@@ -13745,7 +13814,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: da37605a54a0
+    content_hash: 0e88cfbb57e0
     files:
     - SKILL.md
     - references/failure_signatures.md
@@ -13769,7 +13838,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 766244f28ac2
+    content_hash: 4d943030e90b
     files:
     - SKILL.md
     - references/failure_signatures.md
@@ -13794,7 +13863,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 40f2cf6b35e5
+    content_hash: 4bed09fbc14c
     files:
     - SKILL.md
     - references/failure_signatures.md
@@ -13819,7 +13888,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: e97a4eeff339
+    content_hash: be3a459ca6c0
     files:
     - SKILL.md
     - references/gke_configuration_prerequisites.md
@@ -13844,7 +13913,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 594bb1439379
+    content_hash: 407d4cfc6c28
     files:
     - SKILL.md
     - assets/Dockerfile
@@ -13871,7 +13940,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9e225df138b4
+    content_hash: 6e0d7e9f6ed6
     files:
     - SKILL.md
     author: Google
@@ -13893,7 +13962,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9d9c545dd880
+    content_hash: bb4489bf1693
     files:
     - SKILL.md
     - references/cli-reference.md
@@ -13919,7 +13988,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 34fbeda26f94
+    content_hash: 6bf6165e44ac
     files:
     - SKILL.md
     author: Google
@@ -13941,7 +14010,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 807327eac1f5
+    content_hash: b4ae1a7914da
     files:
     - SKILL.md
     - assets/capacity-buffer-serving.yaml
@@ -13971,7 +14040,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9d1878a2fbbf
+    content_hash: 2b5ac1074cb1
     files:
     - SKILL.md
     author: Google
@@ -13993,7 +14062,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 0b0c36003dc1
+    content_hash: aae2bfb7fc5d
     files:
     - SKILL.md
     - assets/balanced-reserved-zonal-compute-class.yaml
@@ -14044,7 +14113,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: df0ddfcc9642
+    content_hash: 9d5ff76acf00
     files:
     - SKILL.md
     - references/billing-queries.md
@@ -14067,7 +14136,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 06611638cbcf
+    content_hash: f79542e41516
     files:
     - SKILL.md
     - assets/resource-quota-example.yaml
@@ -14092,7 +14161,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a742873db3b4
+    content_hash: db41be5711f4
     files:
     - SKILL.md
     author: Google
@@ -14113,7 +14182,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 317e48ebc6c5
+    content_hash: 27c81c6a8dfb
     files:
     - SKILL.md
     - assets/golden-path-autopilot.yaml
@@ -14135,7 +14204,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 752295a52d77
+    content_hash: 7184445bb86e
     files:
     - SKILL.md
     author: Google
@@ -14159,7 +14228,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b42e33a25f45
+    content_hash: 2321a0907c2f
     files:
     - SKILL.md
     - references/ai-inference.md
@@ -14185,7 +14254,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 49815d710ac1
+    content_hash: 834d126aac33
     files:
     - SKILL.md
     author: Google
@@ -14207,7 +14276,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 252e8f034b4b
+    content_hash: 2ac9cb978125
     files:
     - SKILL.md
     author: Google
@@ -14230,7 +14299,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 70c66cdb5743
+    content_hash: 005da04d1c16
     files:
     - SKILL.md
     author: Google
@@ -14251,7 +14320,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3efabd100dc0
+    content_hash: dcc8f62bd37f
     files:
     - SKILL.md
     author: Google
@@ -14275,7 +14344,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: efdee325de59
+    content_hash: d3a5f550c5f2
     files:
     - SKILL.md
     author: Google
@@ -14298,7 +14367,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c7b96e566847
+    content_hash: f2bc6596d83b
     files:
     - SKILL.md
     author: Google
@@ -14319,7 +14388,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: c71714ed8bd9
+    content_hash: 610354bdacdc
     files:
     - SKILL.md
     author: Google
@@ -14341,7 +14410,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 23671081da99
+    content_hash: 82883cfb5e6e
     files:
     - SKILL.md
     - assets/backendconfig.yaml
@@ -14362,19 +14431,43 @@ groups:
     path: google-skills/skills/cloud/gke-storage
     title: gke-storage
     summary: Manages GKE storage, including PVCs, PersistentVolumes, Filestore, and GCS FUSE. Use when configuring GKE storage,
-      creating PVCs, or setting up GCS FUSE on GKE. Don't use for database administration or replication strategies outside
-      volume provisioning context.
+      creating PVCs, or setting up GCS FUSE on GKE. For diagnosing storage failures (volume attach/mount errors, disk performance/node
+      storage pressure, or Cloud Storage FUSE OOM), use the gke-storage-troubleshooting skill instead. Don't use for database
+      administration or replication strategies outside volume provisioning context.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c7a463ddd349
+    content_hash: 1865753ae81a
     files:
     - SKILL.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-storage
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/gke-storage-troubleshooting
+    name: gke-storage-troubleshooting
+    path: google-skills/skills/cloud/gke-storage-troubleshooting
+    title: gke-storage-troubleshooting
+    summary: Diagnoses GKE persistent-storage failures — volume attach/mount errors (Regional PD on optimized VMs, fsGroup
+      mount timeouts), disk-performance and node storage-pressure issues, slow-disk Pod-creation failures, volume-expansion
+      problems, Local SSD / Hyperdisk Storage Pool creation errors, and Cloud Storage FUSE OOM. Use when Pods are stuck in
+      ContainerCreating, volumes fail to attach or mount, or nodes report storage pressure. Don't use for routine storage
+      provisioning or StorageClass/PVC authoring (see the gke-storage skill).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f8f09ba6e84b
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-storage-troubleshooting
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -14397,7 +14490,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 5b2bbad6c538
+    content_hash: 0257da1f8b97
     files:
     - SKILL.md
     - references/checklists.md
@@ -14425,7 +14518,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: cbf643614222
+    content_hash: 508bff2100d8
     files:
     - SKILL.md
     author: Google
@@ -14446,13 +14539,38 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: fe425cc76d24
+    content_hash: 47f242657552
     files:
     - SKILL.md
     - assets/hpa-example.yaml
     - assets/vpa-example.yaml
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-workload-scaling
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/gke-workload-scaling-troubleshooting
+    name: gke-workload-scaling-troubleshooting
+    path: google-skills/skills/cloud/gke-workload-scaling-troubleshooting
+    title: gke-workload-scaling-troubleshooting
+    summary: Diagnoses GKE HorizontalPodAutoscaler (HPA) failures — metrics showing as <unknown>, FailedGetResourceMetric
+      / FailedGetScale / FailedComputeMetricsReplicas events, missing Pod resource requests, custom/external metrics-pipeline
+      breakage (FailedGetExternalMetric / FailedGetCustomMetric, unavailable metrics adapter, control-plane firewall blocking
+      the adapter), HPA that won't scale up or down (tolerance / stabilization window / unavailable rate metrics), scale-to/from-zero
+      problems, and slow HPA reaction on large clusters. Use when an HPA isn't scaling a workload as expected or reports metric
+      errors. Don't use for configuring or authoring new HPA/VPA objects or scaling best practices (see the gke-workload-scaling
+      skill), or for Cluster Autoscaler / node-pool sizing.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 732290b03e00
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-workload-scaling-troubleshooting
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -14474,7 +14592,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7f1c43f392c3
+    content_hash: a3a9df675f2f
     files:
     - SKILL.md
     - assets/default-deny-netpol.yaml
@@ -14498,7 +14616,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 080df8b84d0f
+    content_hash: db2f95153e48
     files:
     - SKILL.md
     author: Google
@@ -14520,7 +14638,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 99cb131fdcfe
+    content_hash: a0bada613ded
     files:
     - SKILL.md
     author: Google
@@ -14543,7 +14661,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 4e36766a2b99
+    content_hash: c8f7ba16b0d6
     files:
     - SKILL.md
     - references/audit-rules-matrix.md
@@ -14571,7 +14689,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8a07c2fdedd5
+    content_hash: 4152c2e74471
     files:
     - SKILL.md
     - references/instance-tiers-specs.md
@@ -14579,6 +14697,36 @@ groups:
     - references/troubleshooting-errors.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/google-cloud-filestore-autoscale
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/google-cloud-filestore-log-troubleshooting
+    name: google-cloud-filestore-log-troubleshooting
+    path: google-skills/skills/cloud/google-cloud-filestore-log-troubleshooting
+    title: google-cloud-filestore-log-troubleshooting
+    summary: Diagnoses and resolves Google Cloud Filestore client mount failures, permission errors (EACCES), and network
+      timeouts (ETIMEDOUT). Use when an NFS mount hangs or fails from a Compute Engine VM, GKE pod, Cloud Run service, or
+      Vertex AI workload, when `mount.nfs` reports "Connection timed out" or "access denied by server", when checking whether
+      VPC ingress firewall rules or `nfsExportOptions` allow a client IP, or when a previously working Filestore share suddenly
+      stops mounting after an administrative change. Don't use for Cloud Storage (GCS) buckets, Persistent Disk, or Cloud
+      NetApp Volumes, and don't use for Filestore capacity scaling or backup and export-policy auditing.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 5cde0d439295
+    files:
+    - SKILL.md
+    - references/error-signatures.md
+    - references/logging-and-audit-queries.md
+    - references/mock-fleet-data.md
+    - references/network-firewall-spec.md
+    - scripts/diagnose_lib.py
+    - scripts/quick_diagnose.py
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/google-cloud-filestore-log-troubleshooting
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -14613,7 +14761,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9fc214abc4a3
+    content_hash: 8c33cf1586ca
     files:
     - SKILL.md
     - references/drift-detection.md
@@ -14640,7 +14788,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: fc0ecc1088e7
+    content_hash: 8f820dc70e50
     files:
     - SKILL.md
     - references/cloud-nat-analysis.md
@@ -14668,7 +14816,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 331a2b19f762
+    content_hash: 641edb65dee6
     files:
     - SKILL.md
     author: Google
@@ -14693,7 +14841,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a87761d87395
+    content_hash: e85371e0041f
     files:
     - SKILL.md
     - references/admin-iam.md
@@ -14718,7 +14866,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 67fa067067be
+    content_hash: e8a78613fe51
     files:
     - SKILL.md
     author: Google
@@ -14740,7 +14888,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7d9ba7194b99
+    content_hash: 105693e7cf2b
     files:
     - SKILL.md
     - references/finding_schema.md
@@ -14762,7 +14910,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1bd0fc960520
+    content_hash: 34a825a67efb
     files:
     - SKILL.md
     - references/app_hub_labels.md
@@ -14788,7 +14936,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d874a863a464
+    content_hash: 8839d09631eb
     files:
     - SKILL.md
     - assets/output-template.md
@@ -14803,17 +14951,19 @@ groups:
     name: google-cloud-solution-agentic-ai-borderless-data-lakehouse
     path: google-skills/skills/cloud/google-cloud-solution-agentic-ai-borderless-data-lakehouse
     title: google-cloud-solution-agentic-ai-borderless-data-lakehouse
-    summary: Guides agents to discover requirements and design a governed, secure borderless open data lakehouse with agentic
-      AI integration. Use when designing a multi-product architecture that connects data silos to AI agents, joining data
-      across clouds, or running federated queries across Google Cloud and external data sources, including on-premises or
-      other cloud providers. Don't use for simple single-cloud data warehouses or non-AI workloads.
+    summary: Discovers requirements and designs a borderless open data lakehouse using Lakehouse for Apache Iceberg and BigQuery
+      data agents. Use when architecting multi-cloud storage infrastructure (Cloud Storage, AWS S3, Azure Blob), establishing
+      ingestion and AI serving subsystems, configuring Cross-Cloud Interconnect, or deploying Gemini Enterprise Agent Platform
+      and BigQuery data agents. Don't use for single-cloud data warehouses, or when the focus is on Knowledge Catalog metadata
+      governance and Spark-driven IDE analytics workflows (use google-cloud-solution-agentic-analytics-spark-knowledge-catalog
+      instead).
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 4d915753c244
+    content_hash: f2f8d62907bc
     files:
     - SKILL.md
     - assets/output-template.md
@@ -14838,7 +14988,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9f87ca7f1d3d
+    content_hash: f68914a593bc
     files:
     - SKILL.md
     - assets/output-template.md
@@ -14853,19 +15003,19 @@ groups:
     name: google-cloud-solution-agentic-analytics-spark-knowledge-catalog
     path: google-skills/skills/cloud/google-cloud-solution-agentic-analytics-spark-knowledge-catalog
     title: google-cloud-solution-agentic-analytics-spark-knowledge-catalog
-    summary: Discovers requirements and generates guidance to design and deploy a governed, secure agentic-analytics solution
-      for data that's distributed across Google Cloud, other cloud providers, or on-premises. Data that's outside Google Cloud
-      (such as data from Databricks, Snowflake, Salesforce, SAP, or Oracle systems) is accessed through federation mechanisms
-      such as Apache Iceberg, other "zero-copy ETL" methods, or remote query push-down. Use this skill when designing an architecture
-      for efficient analytics across large volumes of structured and unstructured data that's located in multiple systems
-      and environments, including other cloud providers and on-premises.
+    summary: Discovers requirements and designs an end-to-end governed agentic analytics solution using Knowledge Catalog
+      and Managed Service for Apache Spark (Lightning Engine). Use when designing data science and analytics workflows across
+      structured and unstructured distributed data (including in S3, Azure Blob, AlloyDB, and Iceberg), establishing metadata
+      governance with Knowledge Catalog aspect types, or grounding agentic IDEs (VS Code, Antigravity) by using the Google
+      Cloud Data Agent Kit. Don't use for provisioning borderless data lakehouse infrastructure (use google-cloud-solution-agentic-ai-borderless-data-lakehouse
+      instead).
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1750875ae3bf
+    content_hash: 4f1edd591ae4
     files:
     - SKILL.md
     - assets/output-template.md
@@ -14893,7 +15043,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 65562ca83f7f
+    content_hash: 218d3c20d310
     files:
     - SKILL.md
     - assets/output-template.md
@@ -14919,7 +15069,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9fb7ab893a5a
+    content_hash: 36c76ca2af5b
     files:
     - SKILL.md
     - assets/implementation-template.md
@@ -14949,7 +15099,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: fd7b00eaf702
+    content_hash: fc83cf3b8d09
     files:
     - SKILL.md
     - assets/ccc-profile.yaml.tmpl
@@ -14978,7 +15128,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a0647c7f7820
+    content_hash: 0f9a8a9533ce
     files:
     - SKILL.md
     - assets/output-template.md
@@ -15003,7 +15153,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: e892a139443f
+    content_hash: c9a7f8c47d90
     files:
     - SKILL.md
     - assets/agw-authz-extension.yaml
@@ -15047,7 +15197,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3ba4abe38c62
+    content_hash: de52cb4db79d
     files:
     - SKILL.md
     - assets/main.tf
@@ -15074,7 +15224,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f4e6717ba19d
+    content_hash: 2f41c51e383e
     files:
     - SKILL.md
     - assets/output-template.md
@@ -15091,20 +15241,20 @@ groups:
     path: google-skills/skills/cloud/google-cloud-storage-basics
     title: google-cloud-storage-basics
     summary: Stores, retrieves, and manages data as objects in Cloud Storage (Google Cloud Storage, or GCS) buckets. Use when
-      you need to interact with Cloud Storage — create or configure buckets, upload, download, stream, or transfer data, organize
-      objects with folders, generate signed URLs, control access (IAM, ACLs, public access prevention), set storage classes
-      and tiering (Standard, Nearline, Coldline, Archive), manage cost and lifecycle, protect data (versioning, encryption/CMEK,
-      retention and Bucket Lock, object holds, soft delete), host static websites, trigger Pub/Sub notifications on object
-      changes, mount buckets as a file system (gcsfuse), or optimize storage performance at any scale. Covers the gcloud storage
-      / gsutil CLI, JSON and XML APIs, client libraries, Terraform, and Cloud Storage MCP servers. Don't use for block storage
-      (Persistent Disk), data warehousing/analytics (BigQuery), or databases (Cloud SQL, Spanner, Bigtable, Firestore).
+      you need to interact with Cloud Storage — set up a Storage MCP server (remote or local Toolbox), create or configure
+      buckets, upload, download, stream, or transfer data, organize objects with folders, generate signed URLs, control access
+      (IAM, ACLs, public access prevention), set storage classes (Standard, Nearline, Coldline, Archive), manage lifecycle
+      and cost, protect data (versioning, CMEK, retention, Bucket Lock, holds, soft delete), host static websites, trigger
+      Pub/Sub notifications, mount buckets (gcsfuse), or optimize performance. Covers gcloud storage / gsutil, JSON/XML APIs,
+      client libraries, Terraform, and Cloud Storage MCP servers. Don't use for non-Storage MCP servers, block storage (Persistent
+      Disk), BigQuery, or databases (Cloud SQL, Spanner, Bigtable, Firestore).
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1499ac94eb4c
+    content_hash: d59646766f68
     files:
     - SKILL.md
     - references/cli-api-usage.md
@@ -15140,7 +15290,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f7acce10c1c8
+    content_hash: f6ed4737883c
     files:
     - SKILL.md
     - references/archiving_compliance.md
@@ -15185,7 +15335,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 62c2f008bb44
+    content_hash: ff1a92af8663
     files:
     - SKILL.md
     - references/checkpoint-safety.md
@@ -15209,7 +15359,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f8c4b592c89d
+    content_hash: 0d28d10fcd5d
     files:
     - SKILL.md
     author: Google
@@ -15231,7 +15381,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2e75011bf951
+    content_hash: 4e1e7a8bf8e9
     files:
     - SKILL.md
     author: Google
@@ -15253,7 +15403,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2768c4c5add8
+    content_hash: d888c5453a88
     files:
     - SKILL.md
     author: Google
@@ -15275,7 +15425,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3a63babc77e7
+    content_hash: 08747ea0e0dc
     files:
     - SKILL.md
     author: Google
@@ -15296,7 +15446,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 3dfbb4c71799
+    content_hash: bdb1c5f2f672
     files:
     - SKILL.md
     author: Google
@@ -15308,17 +15458,20 @@ groups:
     name: google-cloud-waf-sustainability
     path: google-skills/skills/cloud/google-cloud-waf-sustainability
     title: google-cloud-waf-sustainability
-    summary: Generates sustainability-focused guidance for Google Cloud workloads based on the design principles and recommendations
-      in the Google Cloud Well-Architected Framework (WAF). Use this skill to evaluate a workload, identify environmental
-      impact requirements, and provide actionable recommendations to build, deploy, and manage the workload sustainably in
-      Google Cloud.
+    summary: Provides recommendations for environmental sustainability, carbon footprint reduction, and energy efficiency
+      based on the Sustainability pillar of the Google Cloud Well-Architected Framework (WAF). Use when the user asks to assess,
+      design, or optimize Google Cloud workloads for sustainability—including the shared responsibility model, selecting low-carbon
+      regions (CFE%), reducing resource and AI/ML energy waste, designing efficient software and storage lifecycles, or measuring
+      and tracking emissions using Google Cloud Carbon Footprint. Don't use for financial cost reduction (use google-cloud-waf-cost-optimization),
+      latency and throughput tuning (use google-cloud-waf-performance-optimization), or high availability and disaster recovery
+      (use google-cloud-waf-reliability).
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c667b61d6f7c
+    content_hash: 6b5076f15a83
     files:
     - SKILL.md
     author: Google
@@ -15341,7 +15494,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: de2d608cf19c
+    content_hash: ee2bcdf3d87b
     files:
     - SKILL.md
     - references/v1-allow-policies.md
@@ -15365,7 +15518,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 71a65ccca29a
+    content_hash: aa5c43579486
     files:
     - SKILL.md
     - scripts/analyze_simulation.py
@@ -15388,7 +15541,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 92e99d37ee1f
+    content_hash: 855b44d9c547
     files:
     - SKILL.md
     - assets/entitlement_template.yaml
@@ -15416,7 +15569,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 5bab067d7595
+    content_hash: acbb8a07ec5e
     files:
     - SKILL.md
     - references/guardrails.md
@@ -15444,7 +15597,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: bc0414640afd
+    content_hash: 919ffc505e8a
     files:
     - SKILL.md
     author: Google
@@ -15465,7 +15618,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 591d9379410f
+    content_hash: daeef18ac5e9
     files:
     - SKILL.md
     author: Google
@@ -15487,7 +15640,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ad2d7cb41b02
+    content_hash: 447b35fdc7c8
     files:
     - SKILL.md
     - references/airflow-3.md
@@ -15495,6 +15648,120 @@ groups:
     - references/local-development-environment.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/managed-airflow-migrations
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-cases
+    name: secops-cases
+    path: google-skills/skills/cloud/secops-cases
+    title: secops-cases
+    summary: Manage Google Security Operations (SecOps) SOAR cases throughout their lifecycle. Use when listing, creating,
+      inspecting, updating, or closing SOAR cases; adding investigative comments and notes; updating case priority or description;
+      or linking and grouping security alerts within cases. Supports both remote Google SecOps MCP tools and local fallback
+      tools. Don't use for SIEM UDM searches or detection rule authoring.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 315419307f32
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-cases
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-detection-engineering
+    name: secops-detection-engineering
+    path: google-skills/skills/cloud/secops-detection-engineering
+    title: secops-detection-engineering
+    summary: Author, validate, test, and deploy YARA-L 2.0 detection rules and evaluate end-to-end detection coverage gaps
+      in Google SecOps. Use when writing new detection rules, tuning existing rules, validating syntax, testing logic against
+      historical telemetry, or evaluating detection coverage against threat intelligence blogs, CVE disclosures, and Threat
+      Detection Opportunities (TDOs) using synthetic UDM events and long-running coverage analysis. Don't use for alert triage
+      (use secops-triage), deep forensic event reconstruction on infected hosts (use secops-investigate), or case management
+      operations (use secops-cases).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e6fca143b28a
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-detection-engineering
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-hunt
+    name: secops-hunt
+    path: google-skills/skills/cloud/secops-hunt
+    title: secops-hunt
+    summary: Expert guidance for proactive threat hunting in Google SecOps. Use when proactively hunting for threats, retroactively
+      analyzing indicators of compromise (IoCs), performing prevalence searches across enterprise events, hunting for MITRE
+      ATT&CK techniques, or detecting behavioral and statistical outliers using UDM queries. Don't use for incoming alert
+      triage (use secops-triage), active incident response and timeline deep-dives on a known breach (use secops-investigate),
+      or detection rule authoring (use secops-detection-engineering).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7d25590185f8
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-hunt
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-investigate
+    name: secops-investigate
+    path: google-skills/skills/cloud/secops-investigate
+    title: secops-investigate
+    summary: Expert guidance for deep security incident and entity investigations in Google SecOps. Use when investigating
+      cases, analyzing entities (hosts, IPs, domains, hashes, users), extracting and searching UDM events, performing asset
+      and user timeline analysis, and detecting lateral movement across enterprise networks. Don't use for detection rule
+      authoring or YARA-L tuning (use secops-detection-engineering), proactive hypothesis-driven hunting (use secops-hunt),
+      initial alert triage (use secops-triage), or basic case status updates (use secops-cases).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8ddb1ebd5dff
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-investigate
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-triage
+    name: secops-triage
+    path: google-skills/skills/cloud/secops-triage
+    title: secops-triage
+    summary: Expert guidance for security alert triage in Google SecOps. Use when investigating and triaging security alerts,
+      determining false positives vs. true positives, assessing entity risk, adjusting alert severity or priority, and closing
+      or escalating alerts and cases. Don't use for deep multi-hop incident investigations across host timelines (use secops-investigate),
+      proactive threat hunting or retroactive IoC sweeps (use secops-hunt), or authoring new detection rules (use secops-detection-engineering).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bba761fa2d89
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-triage
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -15510,7 +15777,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 89221cbec0b0
+    content_hash: bd5e502a3431
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -15542,7 +15809,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ffbbbb1fb362
+    content_hash: c9f922e19d67
     files:
     - SKILL.md
     - references/client-library-usage.md
@@ -15573,7 +15840,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 115ad17997ab
+    content_hash: 2b4a0330f7ca
     files:
     - SKILL.md
     author: Google
@@ -15596,7 +15863,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dfa665ecfe65
+    content_hash: 800458fe9c15
     files:
     - SKILL.md
     - references/api-fallback.md
@@ -15622,7 +15889,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: de252033aa49
+    content_hash: 1145e7777388
     files:
     - SKILL.md
     author: Google

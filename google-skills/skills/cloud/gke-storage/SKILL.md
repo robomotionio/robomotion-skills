@@ -3,9 +3,12 @@ name: gke-storage
 description: >-
   Manages GKE storage, including PVCs, PersistentVolumes, Filestore, and GCS
   FUSE. Use when configuring GKE storage, creating PVCs, or setting up GCS FUSE
-  on GKE. Don't use for database administration or replication strategies
-  outside volume provisioning context.
+  on GKE. For diagnosing storage failures (volume attach/mount errors, disk
+  performance/node storage pressure, or Cloud Storage FUSE OOM), use the
+  gke-storage-troubleshooting skill instead. Don't use for database
+  administration or replication strategies outside volume provisioning context.
 metadata:
+  version: "1.0.0"
   category: Storage
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: gke-upgrades
 metadata:
+  version: "1.0.0"
   category: Containers
 description: >-
   Plans, executes, and validates Google Kubernetes Engine (GKE) cluster upgrades

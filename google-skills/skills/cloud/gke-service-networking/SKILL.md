@@ -8,6 +8,7 @@ description: >-
   GKE. Don't use for core cluster IP planning, Dataplane V2 network policies, or
   node NAT egress (use gke-networking instead).
 metadata:
+  version: "1.0.0"
   category: Networking
 ---
 
