@@ -202,7 +202,7 @@ upstreams:
 - group: elevenlabs-skills
   repo: https://github.com/elevenlabs/skills
   track: main
-  commit: 9edcbd4b80ed57b8e07a3f86ea520333969fbc3c
+  commit: a310b94d1f266038430d693694b947d3f937ad2a
   subdir: ''
   mode: mirror
   license: MIT

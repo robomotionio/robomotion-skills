@@ -8662,7 +8662,7 @@ groups:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 4c3f2985c821
+    content_hash: b5cea4d3f935
     files:
     - SKILL.md
     - env.required
@@ -8717,7 +8717,7 @@ groups:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 216f58e52185
+    content_hash: c8dd729fa7c1
     files:
     - SKILL.md
     - env.required
@@ -8813,7 +8813,7 @@ groups:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 11e64f5a40b4
+    content_hash: f281ebd05663
     files:
     - SKILL.md
     - env.required
