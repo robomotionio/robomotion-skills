@@ -6795,7 +6795,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a6e68ff071f1
+    content_hash: 632ba16acd5b
     files:
     - README.md
     - SKILL.md
@@ -6837,7 +6837,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: db5f1893e13e
+    content_hash: 725dfed6e29a
     files:
     - README.md
     - SECURITY.md
@@ -7051,7 +7051,7 @@ groups:
   - LICENSE
   - skills/compile.mjs
   - skills/engine-mcp-tools.json
-  - skills/native-core.md
+  - skills/native/native-core.md
   - skills/registry.json
   - skills/verbs-gate.mjs
 - path: claude-seo
