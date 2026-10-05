@@ -26162,19 +26162,19 @@ groups:
     name: netlify-access-control
     path: netlify-skills/skills/netlify-access-control
     title: netlify-access-control
-    summary: Picks the right Netlify protection layer for a deployed site and disambiguates the three unrelated things people
-      call "auth". Use when a developer wants to password-protect a site or previews, restrict a project to their team, make
-      a project public/private, set team visibility defaults, require SSO to view a site, or debug SSO-session symptoms like
-      being logged out mid-session / getting 401s on an SSO-protected site / token expiry or refresh. Routes app-user login
-      ("who is this user in my app") to the netlify-identity skill and dashboard/team SSO SSO elsewhere; this skill only chooses
-      the perimeter layer for site/preview access.
+    summary: 'Picks the right Netlify site-protection layer and disambiguates the three unrelated "auth" concepts users conflate
+      — app-user login (Netlify Identity), site-load gating (Password Protection / project visibility), and dashboard SAML
+      SSO. Use it when asked to password-protect a site or Deploy Preview, make a project private/public, restrict a site
+      to your team, require SSO to view a site, set up company-wide app SSO, or invite users to a private project. Also use
+      it for SSO-session symptoms on protected sites: "logged out mid-session", 401s after about an hour, or token expiry/refresh
+      questions. Not for wiring auth code — route app-login setup to netlify-identity.'
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 915b801c8cdc
+    content_hash: 1aedb209cdc6
     files:
     - SKILL.md
     - references/two-layer-pattern.md
@@ -26208,19 +26208,19 @@ groups:
     name: netlify-ai-gateway
     path: netlify-skills/skills/netlify-ai-gateway
     title: netlify-ai-gateway
-    summary: Use OpenAI, Anthropic, Google Gemini, or OpenRouter models from Netlify Functions or Edge Functions without managing
-      provider API keys or accounts — the gateway injects credentials automatically. Reach for this when you add an AI chatbot
-      or completion endpoint, generate images or text with Gemini/GPT/Claude, summarize form submissions with AI, build an
-      LLM-backed API route, stream a long AI generation, or wire up any server-side AI provider call on Netlify. Covers provider
-      SDK setup, injected env vars, model availability, rate limits, credit costs, streaming for long generations, and local
-      dev with netlify dev or the Vite plugin.
+    summary: Use Netlify AI Gateway to call OpenAI, Anthropic Claude, Google Gemini, TypeSafe (Jev), or OpenRouter-hosted
+      models (xAI/DeepSeek/Meta/Mistral/Qwen) from Netlify Functions or Edge Functions without managing provider accounts
+      or API keys. Reach for this when adding an AI feature to a Netlify app — a chatbot, text summarizer, image generator,
+      joke/content generator, form-submission routing or analysis, or any LLM call — or when wiring the OpenAI/Anthropic/Gemini/TypeSafe/OpenRouter
+      SDK into a Netlify Function, choosing which env vars to use, streaming long generations, or debugging why gateway calls
+      fail at build time or return 401.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 4ddf104818df
+    content_hash: e48d790dda08
     files:
     - SKILL.md
     author: Netlify
@@ -26232,19 +26232,20 @@ groups:
     name: netlify-blobs
     path: netlify-skills/skills/netlify-blobs
     title: netlify-blobs
-    summary: Store and retrieve unstructured objects, file uploads, and cache-like state on Netlify using the @netlify/blobs
-      key/value API from Functions, Edge Functions, and Build Plugins. Use when a task involves saving user file or image
-      uploads, persisting form or contact-form submissions, storing generated output from Background Functions (sitemaps/processed
-      media/bulk-email results), building read-only asset stores, adding client-side blob expiration, or wiring file-based
-      blob uploads at deploy time. Not for per-user, transactional, or relational data (counters/balances/sessions) — reach
-      for Netlify DB there instead.
+    summary: Store and retrieve unstructured data like file uploads, images, documents, JSON, and cache-like state with Netlify
+      Blobs. It is a zero-config key/value store accessible from Functions, Edge Functions, and Build Plugins. Reach for this
+      when you handle a file or image upload, persist Background Function output like sitemaps or processed media, cache API
+      responses, store per-deploy assets, or need a simple key/value store from a serverless function. Covers creating site
+      and deploy stores, reading and writing values and JSON, listing keys with metadata, atomic conditional writes, consistency
+      modes, region selection, and file-based uploads. Not for per-user, transactional, or relational data — use Netlify DB
+      for that.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: dc31613fe80a
+    content_hash: ee4e379a7726
     files:
     - SKILL.md
     author: Netlify
@@ -26280,19 +26281,18 @@ groups:
     name: netlify-config
     path: netlify-skills/skills/netlify-config
     title: netlify-config
-    summary: Configure Netlify projects via netlify.toml and the _headers/_redirects files — covering build settings and deploy
-      contexts alongside environment variables/scopes and the Secrets Controller plus redirect/rewrite/proxy and custom-header
-      rules. Use when setting a build command or publish directory, adding redirect or rewrite or proxy rules, configuring
-      custom headers or basic auth, setting or scoping environment variables and secrets, wiring up a monorepo or SPA fallback,
-      or skipping unnecessary builds. Reach for this whenever you touch netlify.toml or ask "why is my env var undefined in
-      a function" or "how do I redirect this path".
+    summary: Configure Netlify builds and routing via netlify.toml, _redirects, and _headers. Use when setting a build command
+      or publish directory, adding redirects or rewrites or proxies, adding an SPA fallback rewrite, setting custom response
+      headers or basic auth, managing environment variables and secrets, scoping vars per deploy context, marking a var as
+      secret, disabling secret scanning, configuring functions bundling, ignoring builds, or wiring up a monorepo or JavaScript
+      SPA on Netlify.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8311567bddae
+    content_hash: 6730718dad0e
     files:
     - SKILL.md
     author: Netlify
@@ -26315,7 +26315,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 11a61176a1b4
+    content_hash: 8aeb757ba812
     files:
     - SKILL.md
     - references/cli-commands.md
@@ -26333,17 +26333,18 @@ groups:
     name: netlify-deploy
     path: netlify-skills/skills/netlify-deploy
     title: netlify-deploy
-    summary: Create and manage Netlify deploys — Git continuous deployment, CLI manual/anonymous deploys, Deploy to Netlify
-      buttons, drag-and-drop, and per-context netlify.toml build settings. Use when linking a repo, deploying from the CLI,
-      setting up Deploy Previews or branch deploys, configuring deploy contexts, adding skew protection, fixing a failed or
-      secrets-flagged deploy, or wiring build hooks and Deploy to Netlify buttons.
+    summary: Create, configure, and manage Netlify deploys from code — reach for this when setting up Git continuous deployment,
+      running netlify deploy or netlify deploy --prod from the CLI, writing netlify.toml deploy contexts, adding a Deploy
+      to Netlify button, wiring build hooks, configuring Deploy Previews or branch deploys, locking or skipping deploys, fixing
+      a failed or secrets-scanning deploy, or when someone asks to "deploy my site", "set up preview deploys", "add per-branch
+      build config", or "add a deploy button to my README".
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: e66a0f143587
+    content_hash: 4aabf31e5a22
     files:
     - SKILL.md
     - references/cli-commands.md
@@ -26369,7 +26370,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 47fff3fec6a6
+    content_hash: e2ae4db67f93
     files:
     - SKILL.md
     author: Netlify
@@ -26392,7 +26393,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: d30ebae808ea
+    content_hash: 302f128f34df
     files:
     - SKILL.md
     author: Netlify
@@ -26415,7 +26416,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 513057cd8996
+    content_hash: 784cb7beed07
     files:
     - SKILL.md
     - references/astro.md
@@ -26445,7 +26446,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b8720b3f1a0f
+    content_hash: c1a35c81d782
     files:
     - SKILL.md
     author: Netlify
@@ -26457,18 +26458,18 @@ groups:
     name: netlify-identity
     path: netlify-skills/skills/netlify-identity
     title: netlify-identity
-    summary: Add authentication and user management to a Netlify site with @netlify/identity — signup/login/logout, OAuth
-      social login (Google/GitHub/GitLab/Bitbucket), server-side user verification in Functions, role-based access control
-      (RBAC), admin user management, and Identity event hooks. Use when adding a login/signup flow, "add social login", gating
-      content by user role, protecting a function or page behind auth, assigning roles at signup, customizing auth emails,
-      or handling OAuth/confirmation/recovery callbacks. Not for locking an entire site to a company/team — that is netlify-access-control.
+    summary: Add user authentication to a Netlify site with @netlify/identity — signup/login/logout, Google/GitHub/GitLab/Bitbucket
+      OAuth, server-side getUser() checks, role-based access control, and Identity event functions. Use it when a task involves
+      adding a login or signup form, gating content to members or roles, "auth middleware" or verifying users in Netlify Functions
+      or Edge Functions, handling OAuth or email-confirmation callbacks, assigning roles at signup, or customizing Identity
+      emails. For locking a whole site to your company or employees-only access, use netlify-access-control instead.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: bdb42de72a3c
+    content_hash: 6d5922f8674d
     files:
     - SKILL.md
     - references/advanced-patterns.md
@@ -26687,6 +26688,7 @@ groups:
   - scripts/build-agent-plugin.sh
   - scripts/build-codex-skills.sh
   - scripts/build-cursor-rules.sh
+  - scripts/build-gemini-extension.sh
   - scripts/ctx-notify.mjs
   - scripts/ctx-notify.test.mjs
   - scripts/ctx-ordering-guard.mjs

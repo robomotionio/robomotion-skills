@@ -497,7 +497,7 @@ upstreams:
 - group: netlify-skills
   repo: https://github.com/netlify/context-and-tools
   track: main
-  commit: 5851a0e75f2065395efe5f242b4f0c6763911412
+  commit: 0830047fec55c33ea3f360b528c2039b9d96d97f
   subdir: ''
   mode: mirror
   license: MIT

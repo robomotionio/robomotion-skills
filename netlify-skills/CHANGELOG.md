@@ -4,6 +4,42 @@ All notable changes to this project are documented here. From v0.8.0 onward this
 file is maintained automatically by [release-please](https://github.com/googleapis/release-please).
 Versions v0.1.0–v0.8.0 were backfilled from the project's history.
 
+## [1.5.1](https://github.com/netlify/context-and-tools/compare/v1.5.0...v1.5.1) (2026-09-21)
+
+
+### Bug Fixes
+
+* **context:** sync skills from netlify/docs ([#130](https://github.com/netlify/context-and-tools/issues/130)) ([8870fe1](https://github.com/netlify/context-and-tools/commit/8870fe10a340f674b6a6733aba5857985281e9df))
+* **deps:** update dependency astro to v7 ([#132](https://github.com/netlify/context-and-tools/issues/132)) ([45ea6e3](https://github.com/netlify/context-and-tools/commit/45ea6e34f5fba23be477664776559bc08ae0c0f1))
+* **deps:** update dependency next to v16 ([#134](https://github.com/netlify/context-and-tools/issues/134)) ([78b5793](https://github.com/netlify/context-and-tools/commit/78b579373b11ab2fd96825991dafffee526d02d1))
+* describe Claude plugin marketplace ([#133](https://github.com/netlify/context-and-tools/issues/133)) ([9b49822](https://github.com/netlify/context-and-tools/commit/9b498224bfe8f68eed42ca033de05dc3d7685fa3))
+
+## [1.5.0](https://github.com/netlify/context-and-tools/compare/v1.4.1...v1.5.0) (2026-09-18)
+
+
+### Features
+
+* **context:** sync skills from netlify/docs ([#127](https://github.com/netlify/context-and-tools/issues/127)) ([fe58c5d](https://github.com/netlify/context-and-tools/commit/fe58c5d5c5b060b1aa59ce98e2adf98026022cae))
+
+
+### Bug Fixes
+
+* **ci:** title the skill sync PR so a merge actually cuts a release ([#128](https://github.com/netlify/context-and-tools/issues/128)) ([2b56d4a](https://github.com/netlify/context-and-tools/commit/2b56d4a06f509ee70f594756037e92a79a74d7be))
+
+## [1.4.1](https://github.com/netlify/context-and-tools/compare/v1.4.0...v1.4.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* **gemini:** derive the extension skill list from skills/ ([#125](https://github.com/netlify/context-and-tools/issues/125)) ([c1f66d6](https://github.com/netlify/context-and-tools/commit/c1f66d6d2f8a716bd609c9e78d723f6352a4304a))
+
+## [1.4.0](https://github.com/netlify/context-and-tools/compare/v1.3.2...v1.4.0) (2026-09-14)
+
+
+### Features
+
+* **ctx-pipeline:** post receive outcomes to Slack (EX-3057) ([#120](https://github.com/netlify/context-and-tools/issues/120)) ([5851a0e](https://github.com/netlify/context-and-tools/commit/5851a0e75f2065395efe5f242b4f0c6763911412))
+
 ## [1.3.2](https://github.com/netlify/context-and-tools/compare/v1.3.1...v1.3.2) (2026-09-10)
 
 
