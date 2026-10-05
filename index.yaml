@@ -1989,27 +1989,34 @@ groups:
     path: aws-skills/skills/core-skills/aws-cloudformation
     title: aws-cloudformation
     summary: Authors, validates, and troubleshoots AWS CloudFormation templates. Covers template authoring with secure defaults,
-      pre-deployment validation (cfn-lint, cfn-guard, change sets), CloudFormation Express mode for faster deployments, and
-      root-cause diagnosis of failed stacks using CloudFormation events and CloudTrail correlation.
+      local validation with either cfn-lint or cloudformation-validate, cfn-guard security and compliance checks as a recommended
+      default, account-aware CloudFormation service pre-deployment validation, CloudFormation Express mode for faster deployments,
+      and root-cause diagnosis of failed stacks using CloudFormation events and CloudTrail correlation. Also covers author-time
+      template intelligence with the CloudFormation Language Server and published cloudformation-validate libraries.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 23c184d14e97
+    content_hash: 531340df8e61
     files:
     - SKILL.md
     - references/author-cloudformation-best-practices.script.md
     - references/check-cloudformation-template-compliance.script.md
+    - references/cloudformation-language-server.md
     - references/cloudformation-pre-deploy-validation.script.md
     - references/deploy-with-express-mode.script.md
     - references/lookup-resource-properties.script.md
     - references/persist-template-context.script.md
     - references/retrieve-template-context.script.md
+    - references/security-considerations.md
     - references/template-safety-guidance.md
     - references/troubleshoot-deployment.script.md
-    - references/validate-cloudformation-template.script.md
+    - references/troubleshoot-failed-stack.script.md
+    - references/validate-with-cfn-lint.script.md
+    - references/validate-with-cloudformation-validate.script.md
+    - references/validation-tool-selection.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/aws-cloudformation
     license: Apache-2.0
@@ -2251,79 +2258,91 @@ groups:
     name: aws-observability
     path: aws-skills/skills/core-skills/aws-observability
     title: aws-observability
-    summary: Builds, configures, debugs, and optimizes AWS observability with CloudWatch (Log Insights, Metrics, Alarms, Dashboards,
-      EMF), X-Ray, CloudTrail, and ADOT (AWS Distro for OpenTelemetry), AND enables/onboards services to Application Signals
-      using ADOT auto-instrumentation SDKs. Covers Log Insights queries, alarms (metric, composite, anomaly), dashboards,
-      custom metrics/EMF, X-Ray tracing and sampling, ADOT collector config, CloudTrail auditing, and end-to-end Application
-      Signals enablement via ADOT SDKs (CloudWatch Observability EKS add-on, CloudWatch Agent IAM, OTLP endpoints, ServiceEvents,
-      Dynamic Instrumentation), breakpoint and snapshot in Dynamic Instrumentation, live data capture in running service,
-      debug without redeploying. Applies to CloudWatch, alarms, dashboards, EMF, X-Ray, traces, CloudTrail, ADOT, monitoring,
-      synthetics/canaries, OR enabling/onboarding/instrumenting a service for Application Signals. Not for app logging or
-      security threat detection.
+    summary: 'Builds, configures, debugs, and optimizes AWS observability — operator-symptom questions and detecting Omni
+      vs classic CloudWatch. CloudWatch: Log Insights, alarms, Dynamic Instrumentation, and Application Signals — instrumenting/onboarding
+      a service to Application Signals with ADOT on EC2/ECS/EKS/Lambda: auto-instrumentation, monitored service, reporting
+      telemetry, ServiceEvents, CI/CD metadata, Terraform/manifest. Also fleet health views. CloudWatch Omni on an existing
+      Space: SQL over logs and traces, PromQL over metrics, Omni dashboards, Omni alerts, context graph for root cause, programmatic/IaC
+      access (API/SDK/CLI/CloudFormation) and driving Omni from a coding agent or skills, and evaluating AI agent quality
+      from traces — on-demand and continuous online scoring of live agent traffic, readback, and custom trace evaluators.
+      For first-time Omni setup — creating a Space, granting access, ingestion, or ADOT instrumentation — use setting-up-cloudwatch-observability.
+      Not for app logging or threat detection.'
     version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 5c77a4e2b9df
+    content_hash: 851381c93b46
     files:
     - SKILL.md
-    - assets/alarm-template.ts
-    - assets/otel-config.yaml
-    - references/alarms.md
-    - references/application-signals-cicd-metadata.md
-    - references/application-signals-onboarding.md
-    - references/appsignals-guides/ec2-dotnet.md
-    - references/appsignals-guides/ec2-java.md
-    - references/appsignals-guides/ec2-nodejs.md
-    - references/appsignals-guides/ec2-python.md
-    - references/appsignals-guides/ecs-dotnet.md
-    - references/appsignals-guides/ecs-java.md
-    - references/appsignals-guides/ecs-nodejs.md
-    - references/appsignals-guides/ecs-python.md
-    - references/appsignals-guides/eks-dotnet.md
-    - references/appsignals-guides/eks-java.md
-    - references/appsignals-guides/eks-nodejs.md
-    - references/appsignals-guides/eks-python.md
-    - references/appsignals-guides/lambda-dotnet.md
-    - references/appsignals-guides/lambda-java.md
-    - references/appsignals-guides/lambda-nodejs.md
-    - references/appsignals-guides/lambda-python.md
-    - references/cloudtrail.md
-    - references/dashboards.md
-    - references/dynamic-instrumentation.md
-    - references/dynamic-instrumentation/breakpoint-creation.md
-    - references/dynamic-instrumentation/call-tree-and-directions.md
-    - references/dynamic-instrumentation/snapshot-parsing.md
-    - references/log-insights.md
-    - references/metrics.md
-    - references/synthetics.md
-    - references/tracing.md
-    - references/troubleshooting.md
-    - scripts/di_app_signals_client.py
-    - scripts/di_capture.py
-    - scripts/di_constants.py
-    - scripts/di_crud_rendering.py
-    - scripts/di_crud_tools.py
-    - scripts/di_error_translation.py
-    - scripts/di_formatting.py
-    - scripts/di_gateway.py
-    - scripts/di_instrumentation.py
-    - scripts/di_location.py
-    - scripts/di_logs_client.py
-    - scripts/di_region.py
-    - scripts/di_result.py
-    - scripts/di_session.py
-    - scripts/di_snapshot_parsing.py
-    - scripts/di_snapshot_queries.py
-    - scripts/di_snapshot_rendering.py
-    - scripts/di_snapshot_tools.py
-    - scripts/di_snapshots.py
-    - scripts/di_status_assessment.py
-    - scripts/di_status_rendering.py
-    - scripts/di_status_tools.py
-    - scripts/di_validation.py
+    - assets/cloudwatch/alarm-template.ts
+    - assets/cloudwatch/otel-config.yaml
+    - references/cloudwatch-omni/agent-evaluation.md
+    - references/cloudwatch-omni/alerts.md
+    - references/cloudwatch-omni/concepts.md
+    - references/cloudwatch-omni/context-graph.md
+    - references/cloudwatch-omni/dashboards.md
+    - references/cloudwatch-omni/programmatic-access.md
+    - references/cloudwatch-omni/query/promql-metrics.md
+    - references/cloudwatch-omni/query/sql-logs-traces.md
+    - references/cloudwatch-omni/query/views.md
+    - references/cloudwatch/alarms.md
+    - references/cloudwatch/application-signals-cicd-metadata.md
+    - references/cloudwatch/application-signals-onboarding.md
+    - references/cloudwatch/appsignals-guides/ec2-dotnet.md
+    - references/cloudwatch/appsignals-guides/ec2-java.md
+    - references/cloudwatch/appsignals-guides/ec2-nodejs.md
+    - references/cloudwatch/appsignals-guides/ec2-python.md
+    - references/cloudwatch/appsignals-guides/ecs-dotnet.md
+    - references/cloudwatch/appsignals-guides/ecs-java.md
+    - references/cloudwatch/appsignals-guides/ecs-nodejs.md
+    - references/cloudwatch/appsignals-guides/ecs-python.md
+    - references/cloudwatch/appsignals-guides/eks-dotnet.md
+    - references/cloudwatch/appsignals-guides/eks-java.md
+    - references/cloudwatch/appsignals-guides/eks-nodejs.md
+    - references/cloudwatch/appsignals-guides/eks-python.md
+    - references/cloudwatch/appsignals-guides/lambda-dotnet.md
+    - references/cloudwatch/appsignals-guides/lambda-java.md
+    - references/cloudwatch/appsignals-guides/lambda-nodejs.md
+    - references/cloudwatch/appsignals-guides/lambda-python.md
+    - references/cloudwatch/cloudtrail.md
+    - references/cloudwatch/dashboards.md
+    - references/cloudwatch/dynamic-instrumentation.md
+    - references/cloudwatch/dynamic-instrumentation/breakpoint-creation.md
+    - references/cloudwatch/dynamic-instrumentation/call-tree-and-directions.md
+    - references/cloudwatch/dynamic-instrumentation/snapshot-parsing.md
+    - references/cloudwatch/log-insights.md
+    - references/cloudwatch/metrics.md
+    - references/cloudwatch/synthetics.md
+    - references/cloudwatch/tracing.md
+    - references/cloudwatch/troubleshooting.md
+    - scripts/cloudwatch-omni/capture_dataset_from_traces.py
+    - scripts/cloudwatch-omni/evaluate_traces.py
+    - scripts/cloudwatch-omni/test_evaluate_traces.py
+    - scripts/cloudwatch/di_app_signals_client.py
+    - scripts/cloudwatch/di_capture.py
+    - scripts/cloudwatch/di_constants.py
+    - scripts/cloudwatch/di_crud_rendering.py
+    - scripts/cloudwatch/di_crud_tools.py
+    - scripts/cloudwatch/di_error_translation.py
+    - scripts/cloudwatch/di_formatting.py
+    - scripts/cloudwatch/di_gateway.py
+    - scripts/cloudwatch/di_instrumentation.py
+    - scripts/cloudwatch/di_location.py
+    - scripts/cloudwatch/di_logs_client.py
+    - scripts/cloudwatch/di_region.py
+    - scripts/cloudwatch/di_result.py
+    - scripts/cloudwatch/di_session.py
+    - scripts/cloudwatch/di_snapshot_parsing.py
+    - scripts/cloudwatch/di_snapshot_queries.py
+    - scripts/cloudwatch/di_snapshot_rendering.py
+    - scripts/cloudwatch/di_snapshot_tools.py
+    - scripts/cloudwatch/di_snapshots.py
+    - scripts/cloudwatch/di_status_assessment.py
+    - scripts/cloudwatch/di_status_rendering.py
+    - scripts/cloudwatch/di_status_tools.py
+    - scripts/cloudwatch/di_validation.py
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/aws-observability
     license: Apache-2.0
@@ -2474,7 +2493,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: bec11f6f3075
+    content_hash: 5770834839a9
     files:
     - SKILL.md
     - assets/powertools-handler.py
@@ -2531,6 +2550,40 @@ groups:
     license: Apache-2.0
     group: aws-skills
     category: Cloud
+  - id: aws-skills/aws-well-architected-review
+    name: aws-well-architected-review
+    path: aws-skills/skills/core-skills/aws-well-architected-review
+    title: aws-well-architected-review
+    summary: Performs a full AWS Well-Architected Framework review evaluating every framework question across all pillars
+      discovered from the live AWS documentation by analyzing code, IaC, and configurations to produce evidence-backed findings
+      with Eisenhower-prioritized remediation. Supports full reviews (every framework best practice with BP ID citations),
+      quick reviews (question-level), pillar-scoped reviews, score-mode reviews (a maturity scorecard with per-pillar scores
+      and filtered findings), and lens-specific reviews using lenses discovered from the live AWS documentation. Triggers
+      on mentions of Well-Architected review, WA review, WAR, pillar assessment, architecture review across pillars, workload
+      assessment, cloud readiness evaluation, or a Well-Architected score, grade, or scorecard request. Does not apply to
+      single-pillar deep-dives, learning WA concepts, ADRs, or migration readiness assessments.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8b923ea45944
+    files:
+    - SKILL.md
+    - assets/report-template.md
+    - references/discovery-procedure.md
+    - references/evaluation-procedure.md
+    - references/lens-guidance.md
+    - references/phase-live-inventory.md
+    - references/review-modes.md
+    - references/risk-assessment.md
+    - references/security-considerations.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/aws-well-architected-review
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
   - id: aws-skills/launch-with-aws
     name: launch-with-aws
     path: aws-skills/skills/core-skills/launch-with-aws
@@ -2560,6 +2613,72 @@ groups:
     - scripts/launch_with_aws.py
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/launch-with-aws
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/setting-up-cloudwatch-observability
+    name: setting-up-cloudwatch-observability
+    path: aws-skills/skills/core-skills/setting-up-cloudwatch-observability
+    title: setting-up-cloudwatch-observability
+    summary: Sets up CloudWatch Application Observability (also called Omni) for the first time. Covers creating an Omni Space
+      or Domain; configuring and listing Omni access grants (who has access and at what level) and access profiles bounding
+      what async alerts, integrations, or agents can do; instrumenting an application or AI agent with the ADOT SDK so traces
+      reach CloudWatch Omni (Python/Node/Java/.NET on EC2/ECS/EKS/Lambda) — CloudWatch Omni only; for Application Signals
+      (auto-instrumentation, monitored service, ServiceEvents, reporting telemetry) use aws-observability — including no-image-rebuild
+      and .NET CoreCLR profiler env vars; ingesting Azure telemetry via the CloudWatch agent on an Azure VM or AKS cluster;
+      connecting Slack to a Space (and whether GitHub can be connected); and registering a custom MCP tool server over HTTP
+      or stdio and choosing its auth (API key, bearer, or OAuth2). For using a Space already set up — querying, dashboards,
+      Omni alerts, or defining Omni resources as code — use aws-observability.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 04051e785a14
+    files:
+    - SKILL.md
+    - references/cloudwatch-omni/access-grants.md
+    - references/cloudwatch-omni/access-profiles.md
+    - references/cloudwatch-omni/app-basics.md
+    - references/cloudwatch-omni/azure-ingestion/azure-ingestion.md
+    - references/cloudwatch-omni/azure-ingestion/custom-telemetry.md
+    - references/cloudwatch-omni/custom-mcp-integration.md
+    - references/cloudwatch-omni/data-forwarding-and-centralization.md
+    - references/cloudwatch-omni/instrumentation/collector-ec2.md
+    - references/cloudwatch-omni/instrumentation/collector-ecs.md
+    - references/cloudwatch-omni/instrumentation/collector-eks.md
+    - references/cloudwatch-omni/instrumentation/collector.md
+    - references/cloudwatch-omni/instrumentation/ec2-dotnet.md
+    - references/cloudwatch-omni/instrumentation/ec2-java.md
+    - references/cloudwatch-omni/instrumentation/ec2-nodejs.md
+    - references/cloudwatch-omni/instrumentation/ec2-python.md
+    - references/cloudwatch-omni/instrumentation/ecs-dotnet.md
+    - references/cloudwatch-omni/instrumentation/ecs-java.md
+    - references/cloudwatch-omni/instrumentation/ecs-nodejs.md
+    - references/cloudwatch-omni/instrumentation/ecs-python.md
+    - references/cloudwatch-omni/instrumentation/eks-dotnet.md
+    - references/cloudwatch-omni/instrumentation/eks-java.md
+    - references/cloudwatch-omni/instrumentation/eks-nodejs.md
+    - references/cloudwatch-omni/instrumentation/eks-python.md
+    - references/cloudwatch-omni/instrumentation/instrumentation.md
+    - references/cloudwatch-omni/instrumentation/lambda-dotnet.md
+    - references/cloudwatch-omni/instrumentation/lambda-java.md
+    - references/cloudwatch-omni/instrumentation/lambda-nodejs.md
+    - references/cloudwatch-omni/instrumentation/lambda-python.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-crewai.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-langchain.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-langgraph.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-openai-agents.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-strands.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-vercel-ai.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/omni-agents-instrumentation.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/openinference-framework-guide.md
+    - references/cloudwatch-omni/org-domains.md
+    - references/cloudwatch-omni/slack-integration.md
+    - references/cloudwatch-omni/spaces-and-domains.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/setting-up-cloudwatch-observability
     license: Apache-2.0
     group: aws-skills
     category: Cloud
@@ -2918,7 +3037,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 9df10d9aa27c
+    content_hash: fb7f93d9cb82
     files:
     - SKILL.md
     - references/configure-clients.md
@@ -2932,6 +3051,7 @@ groups:
     - references/streaming-tables.md
     - references/troubleshoot-consumer-lag.md
     - references/troubleshoot-performance.md
+    - references/zk-to-kraft-migration.md
     - scripts/msk_sizing.py
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/managing-amazon-msk
@@ -3067,6 +3187,63 @@ groups:
     - references/redshift-sql-syntax.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/redshift-guide
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/aws-marketplace-metering
+    name: aws-marketplace-metering
+    path: aws-skills/skills/specialized-skills/aws-marketplace-skills/aws-marketplace-metering
+    title: aws-marketplace-metering
+    summary: Deploys, queries, and debugs AWS Marketplace usage-based (PAYG) metering — the pipeline (ResolveCustomer, BatchMeterUsage,
+      EventBridge via SAM) and querying/debugging metering records, statuses, failures, discrepancies. Covers Concurrent Agreements
+      (CustomerAWSAccountId + LicenseArn), multi-product, CloudTrail Event History (90 days; never CloudTrail Lake), Seller
+      Reports (Billed Revenue/Usage columns + CSV/SDDS parsing), existing-stack detection, metering region for BatchMeterUsage/MeterUsage
+      (DisabledApiException), metered AMI/Container + IAM roles, where registration data lives (customer-profile table), legacy
+      ProductCode + CustomerIdentifier, DuplicateRecord/CustomerNotSubscribed, bad LicenseArn. Also SCOPES adjacent asks —
+      flat-rate/SaaS-Subscription "do I still meter", CCP included-units + overage, contract term/annual renewal, forecasting
+      future bills/usage — with the right answer or a one-line redirect. Use for any BatchMeterUsage/ResolveCustomer or SaaS
+      usage-billing question.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 67da42a815c9
+    files:
+    - SKILL.md
+    - assets/requirements.txt
+    - assets/template-events.yaml
+    - assets/template-main.yaml
+    - references/architecture.md
+    - references/client-side-guardrails.md
+    - references/concurrent-agreements.md
+    - references/deployment-steps.md
+    - references/dimension-reference.md
+    - references/existing-sellers.md
+    - references/iam-credentials.md
+    - references/query-path.md
+    - references/query-patterns.md
+    - references/registration-page.md
+    - references/scalable-metering-design.md
+    - references/seller-reports.md
+    - references/setup-path.md
+    - references/test-plan.md
+    - references/troubleshooting.md
+    - scripts/aggregator.py
+    - scripts/cleanup.py
+    - scripts/deploy.sh
+    - scripts/deprovision_cleanup.py
+    - scripts/discoverer.py
+    - scripts/expiry.py
+    - scripts/metering_core.py
+    - scripts/query_metering.py
+    - scripts/register.py
+    - scripts/submitter.py
+    - scripts/subscription.py
+    - scripts/test_event_publisher.py
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/aws-marketplace-skills/aws-marketplace-metering
     license: Apache-2.0
     group: aws-skills
     category: Cloud
@@ -4456,6 +4633,38 @@ groups:
     license: Apache-2.0
     group: aws-skills
     category: Cloud
+  - id: aws-skills/aws-fault-injection-service
+    name: aws-fault-injection-service
+    path: aws-skills/skills/specialized-skills/resilience-skills/aws-fault-injection-service
+    title: aws-fault-injection-service
+    summary: Plans, builds, runs, and analyzes fault injection experiments with AWS Fault Injection Service (AWS FIS) to validate
+      application resilience through chaos engineering. Covers experiment templates (actions, targets, stop conditions), the
+      FIS actions catalog and action selection, the scenario library (AZ power interruption, cross-Region connectivity, EC2/EKS/EBS
+      stress), experiment lifecycle and monitoring, logging and reports, multi-account experiments, the experiment IAM role,
+      and blast-radius safety. Applies when a user mentions AWS FIS or fault injection, asks what experiment to run for a
+      failure mode (AZ, Region, API errors/throttling, instance/pod/DB/cache failure, latency, packet loss), wants to author
+      an experiment template or CLI/CloudFormation, or needs to safely run chaos experiments in pre-production or production.
+      For the broader resilience program across Resilience Hub and ARC, see aws-resilience-lifecycle; for ARC routing controls
+      and zonal shift, see recovery-controller-setup.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fc74c18d7eee
+    files:
+    - SKILL.md
+    - references/fis-actions-reference.md
+    - references/fis-api-reference.md
+    - references/fis-concepts.md
+    - references/fis-security.md
+    - references/fis-workflow.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/resilience-skills/aws-fault-injection-service
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
   - id: aws-skills/aws-resilience-lifecycle
     name: aws-resilience-lifecycle
     path: aws-skills/skills/specialized-skills/resilience-skills/aws-resilience-lifecycle
@@ -4624,6 +4833,50 @@ groups:
     - references/create-secrets-using-best-practices.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/security-and-identity-skills/creating-secrets-using-best-practices
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/amazon-eventbridge-event-bus
+    name: amazon-eventbridge-event-bus
+    path: aws-skills/skills/specialized-skills/serverless-skills/amazon-eventbridge-event-bus
+    title: amazon-eventbridge-event-bus
+    summary: Builds, runs, debugs, and operates event-driven applications using EventBridge Event Bus - a managed, centrally
+      governed publish/subscribe event bus that an organization can share across many teams and accounts. Applicable when
+      workloads need event-driven architectures, decoupling, choreography, asynchronous integration, pub/sub, fan-out, event
+      ordering, delivered in sequence, event router, event broker, event bus, event store, event retention, event replay,
+      deduplication, avro, protobuf, cloudevents, uses events or messages. Designed as a centrally managed event bus platform
+      allowing governance and control - such as subscriber control, revocation, per-account throttling - while giving application
+      owners flexibility across an organization spanning multiple accounts, with end-to-end open-standards observability and
+      cost allocation. Also helps reduce costs in high fan-out scenarios where multi-account forwarding adds cost. A serverless,
+      managed alternative to self-managed event streaming platforms.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 17c7b3382c6c
+    files:
+    - SKILL.md
+    - references/authorization.md
+    - references/cloudevents.md
+    - references/code-samples.md
+    - references/cost-and-quotas.md
+    - references/delivery-troubleshooting.md
+    - references/event-sources.md
+    - references/filters-and-expressions.md
+    - references/infrastructure-as-code.md
+    - references/migrating-from-classic.md
+    - references/observability.md
+    - references/provisioning-and-state.md
+    - references/replay-and-recovery.md
+    - references/schema-registries.md
+    - references/security-and-sharing.md
+    - references/setup-walkthroughs.md
+    - references/target-configuration.md
+    - references/target-contract.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/serverless-skills/amazon-eventbridge-event-bus
     license: Apache-2.0
     group: aws-skills
     category: Cloud

@@ -102,7 +102,7 @@ upstreams:
 - group: aws-skills
   repo: https://github.com/aws/agent-toolkit-for-aws
   track: main
-  commit: 7fcb1da17abba610d7becc973c2141b40412e02c
+  commit: dda61487cb4fa8b6dbc75ad4e27c2181adc9d058
   subdir: ''
   mode: mirror
   license: Apache-2.0
