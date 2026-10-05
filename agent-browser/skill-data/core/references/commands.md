@@ -48,7 +48,11 @@ agent-browser snapshot -i         # Interactive elements only (recommended)
 agent-browser snapshot -c         # Compact output
 agent-browser snapshot -d 3       # Limit depth to 3
 agent-browser snapshot -s "#main" # Scope to CSS selector
+agent-browser snapshot --delta     # Full state once, then bounded structural deltas
+agent-browser snapshot --delta --full # Force full state and refresh baseline
 ```
+
+Delta history is per tab and option set. Responses are `full`, `unchanged`, or `delta`; URL changes or large deltas return full state. For a delta, apply `changes` (`add`, `remove`, `replace`) to ref metadata. Split the previous tree on newlines, splice `treeChange.lines` at zero-based `startLine`, replacing `deleteCount` lines, then join with newlines. Apply both parts to `baseRevision` before advancing to `revision`; use `--full` if the baseline is unavailable.
 
 ## Interactions (use @refs from snapshot)
 
@@ -107,8 +111,12 @@ agent-browser is checked @e1      # Check if checked
 agent-browser screenshot          # Save to temporary directory
 agent-browser screenshot path.png # Save to specific path
 agent-browser screenshot --full   # Full page
+agent-browser screenshot --if-changed # Recommended: skip unchanged images to save tokens
+agent-browser screenshot --threshold 0.01 # Ignore changes affecting at most 1% of pixels
 agent-browser pdf output.pdf      # Save as PDF
 ```
+
+`--threshold <0-1>` implies `--if-changed`. Conditional history is isolated by tab and capture scope. JSON responses include `changed`, `revision`, `pixelChangeRatio`, and `threshold`; `path` is present only when the change exceeds the threshold. The first capture for a scope is always changed.
 
 Headless Chromium screenshots hide native scrollbars for consistent image output. Pass `--hide-scrollbars false` when launching to keep native scrollbars visible.
 
@@ -124,9 +132,11 @@ agent-browser record restart ./take2.webm # Stop current + start new
 agent-browser record start ./scroll.webm --fps 60  # 60 fps for motion-heavy takes
 agent-browser record start ./soak.webm --fps 10    # Lower rate for long sessions
 agent-browser tab new https://example.com          # Open a separate tab first if you want the recording there
+agent-browser record start ./demo.webm --cursor    # Add an animated mouse pointer
+agent-browser record start ./demo.webm --contact-sheet # Save a timestamped PNG summary
 ```
 
-Needs `ffmpeg` on PATH; use a `.webm` or `.mp4` path (other extensions go to ffmpeg as-is, an extensionless path is rejected). `--fps` accepts 1 to 60 and defaults to 30. Playback duration always matches the wall clock time recorded, so a slow page holds frames instead of speeding the video up.
+Needs `ffmpeg` on PATH; use a path with an extension. `--fps` accepts 1 to 60 and defaults to 30. `--contact-sheet-threshold <0-1>` adjusts keyframe sensitivity and implies `--contact-sheet`.
 
 ## Wait
 
@@ -146,11 +156,15 @@ After a page-changing action, prefer the selector, text, URL, or JavaScript cond
 ## Mouse Control
 
 ```bash
-agent-browser mouse move 100 200      # Move mouse
+agent-browser mouse move 100 200      # Move mouse instantly
+agent-browser mouse move 600 400 --duration 250 --steps 24
+agent-browser mouse move 600 400 --human --seed 42
 agent-browser mouse down left         # Press button
 agent-browser mouse up left           # Release button
 agent-browser mouse wheel 100         # Scroll wheel
 ```
+
+Use `--human` with `click` or `drag` when pointer-path events matter. Movement starts at the current cursor position and ends at the target; `mouse move --seed` makes the path reproducible. `--duration` is the target total duration, including browser response time; a slow browser can still extend it.
 
 ## Semantic Locators (alternative to refs)
 
@@ -356,8 +370,10 @@ agent-browser stream enable           # Start the WebSocket stream server
 agent-browser stream enable --port 9223
 
 # Experimental WebMCP page tools
-# Successful navigation advertises availability; JSON includes data.webmcp.toolCount
-agent-browser webmcp list
+# Browser results announce brief summaries only when the catalog changes.
+# Choose a relevant tool, fetch its schema, then invoke within the user task.
+agent-browser webmcp list <tool> --frame <frame-id> --json
+agent-browser webmcp list --json  # Full catalog or context recovery
 agent-browser webmcp invoke <tool> --params '{"key":"value"}'
 agent-browser webmcp invoke <tool> --params @input.json --detach
 agent-browser webmcp result <invocation-id>
@@ -534,6 +550,10 @@ AGENT_BROWSER_HIDE_SCROLLBARS="false"        # Keep native scrollbars visible in
 AGENT_BROWSER_WEBGPU="1"                     # Enable the WebGPU launch preset (see references/webgpu.md)
 AGENT_BROWSER_NO_XVFB="1"                    # Disable automatic Xvfb for headed mode on displayless Linux
 AGENT_BROWSER_PROVIDER="browserbase"         # Browser provider or configured provider plugin
+BROWSER_USE_API_KEY="your-api-key"           # Browser Use Cloud API key
+BROWSER_USE_PROFILE_ID="profile-uuid"        # Optional Browser Use profile UUID
+BROWSER_USE_PROXY_COUNTRY="de"               # Managed proxy country; none/direct disables proxy
+BROWSER_USE_ENABLE_RECORDING="true"          # Record the Browser Use Cloud session
 AGENT_BROWSER_STREAM_PORT="9223"             # Override WebSocket streaming port (default: OS-assigned)
 AGENT_BROWSER_DASHBOARD_ALLOWED_ORIGINS="https://dashboard.example.com" # Trusted HTTPS reverse-proxied dashboard origins
 AGENT_BROWSER_CONFIG="./agent-browser.json"  # Custom config file
@@ -541,3 +561,5 @@ AGENT_BROWSER_CDP="9222"                     # Connect daemon to CDP port or Web
 AGENT_BROWSER_ALLOWED_DOMAINS="example.com"  # Restrict network domains; requires a fresh controllable browser context without profile/session startup args, restore/state replay, or direct-page provider plugins
 AGENT_BROWSER_PLUGINS='[{"name":"vault","command":"agent-browser-plugin-vault","capabilities":["credential.read"]},{"name":"stealth","command":"agent-browser-plugin-stealth","capabilities":["launch.mutate"]}]'
 ```
+
+Browser Use Cloud lifecycle: setup is bounded to 18s plus up to 4s for timeout cleanup (10s create, 8s CDP attach, 4s stop). `close` succeeds only after the Cloud session acknowledges it stopped; a failed stop returns an error, keeps the session id for retrying `close`, and blocks a new launch until released. If create fails before an id arrives, the outcome is unknown; inspect the Browser Use Cloud dashboard before retrying. If the daemon exits before a successful stop, inspect and stop the browser in Cloud.
