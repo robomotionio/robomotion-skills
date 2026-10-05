@@ -1,7 +1,7 @@
 # ADK Workflow API Cheatsheet
 
-> Requires `google-adk >= 2.0.0`. Python only.
-> Requires **Python >= 3.11**. The `Workflow` class itself does not support Live Streaming (`Runner.run_live`) — the graph engine needs strict control over event emission. Use a plain `Agent` for live/bidi flows. ADK 2.0 itself still ships `Runner.run_live` and `LiveRequestQueue`.
+> Requires `google-adk >= 2.0.0`. This page documents the Python graph API; ADK Go has its own — see `references/adk-go-workflows.md`.
+> Requires **Python >= 3.11**. A `Workflow` can also run as a Live (voice) agent with no structural change — give the stage agents a Live model; see `references/adk-python-live.md`.
 
 **Official docs:** [Workflows overview](https://adk.dev/workflows/index.md) ·
 [Graph routes](https://adk.dev/graphs/routes/index.md) ·
@@ -192,7 +192,7 @@ class DraftOutput(BaseModel):
 
 writer = LlmAgent(
     name="writer",
-    model="gemini-3.7-flash",
+    model="gemini-3.8-flash",
     instruction="Write a draft based on the user's request.",
     output_schema=DraftOutput,  # Always set for structured output
     output_key="draft",         # Also store in state['draft']

@@ -8,7 +8,7 @@ Development skills for building agents with [Google ADK](https://adk.dev). Insta
 | Skill | Description |
 |-------|-------------|
 | `google-agents-cli-workflow` | Development lifecycle, code preservation rules, model selection |
-| `google-agents-cli-adk-code` | Python API reference — agents, tools, orchestration, callbacks, state |
+| `google-agents-cli-adk-code` | ADK API reference — agents, tools, orchestration, callbacks, state, graph Workflow API |
 | `google-agents-cli-scaffold` | Project scaffolding via Agents CLI |
 | `google-agents-cli-eval` | Evaluation lifecycle — datasets, metrics, generate/grade, compare, analyze, optimize, LLM-as-judge |
 | `google-agents-cli-deploy` | Deployment — Agent Runtime, Cloud Run, CI/CD, secrets |

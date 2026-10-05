@@ -11739,9 +11739,9 @@ groups:
     path: google-agents-cli/skills/google-agents-cli-adk-code
     title: google-agents-cli-adk-code
     summary: This skill should be used when the user wants to "write agent code", "build an agent with ADK", "add a tool",
-      "create a callback", "define an agent", "use state management", or needs ADK (Agent Development Kit) Python API patterns
-      and code examples. Part of the Google ADK skills suite. It provides a quick reference for agent types, tool definitions,
-      orchestration patterns, callbacks, state management, and reference recipes to study. Do NOT use for scaffolding (use
+      "create a callback", "define an agent", "use state management" — in a project that needs ADK (Agent Development Kit)
+      API patterns and code examples. It provides a quick reference for agent types, tool definitions, orchestration patterns,
+      callbacks, state management, the graph Workflow API, and reference recipes to study. Do NOT use for scaffolding (use
       google-agents-cli-scaffold) or deployment (use google-agents-cli-deploy).
     version: 1.0.0
     tags: []
@@ -11749,11 +11749,14 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 621a57bb84ad
+    content_hash: 6f7d1212d243
     files:
     - SKILL.md
+    - references/adk-go-workflows.md
+    - references/adk-go.md
+    - references/adk-python-live.md
+    - references/adk-python-workflows.md
     - references/adk-python.md
-    - references/adk-workflows.md
     - references/samples.md
     author: Google
     source_url: https://github.com/google/agents-cli/tree/main/skills/google-agents-cli-adk-code
@@ -11776,7 +11779,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2cecc94bb429
+    content_hash: c0a8ed6af7b5
     files:
     - SKILL.md
     - references/agent-runtime.md
@@ -11807,12 +11810,13 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ab6ff931cb68
+    content_hash: 0d64bc61d0d6
     files:
     - SKILL.md
     - references/advanced-commands.md
     - references/builtin-tools-eval.md
     - references/dataset_schema.md
+    - references/live-eval.md
     - references/metrics-guide.md
     - references/multimodal-eval.md
     - references/user-simulation.md
@@ -11836,7 +11840,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7e9830fa2dc0
+    content_hash: 0df5f458325f
     files:
     - SKILL.md
     - references/adk-docs.md
@@ -11864,7 +11868,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b499e441c59b
+    content_hash: 12db78fae549
     files:
     - SKILL.md
     author: Google
@@ -11887,7 +11891,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 0f17289d089d
+    content_hash: cf808734046c
     files:
     - SKILL.md
     - references/flags.md
@@ -11911,7 +11915,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ff9f0288e03a
+    content_hash: 7233f7e708c2
     files:
     - SKILL.md
     - references/brainstorming.md

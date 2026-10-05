@@ -15,7 +15,7 @@ description: >
 metadata:
   author: Google
   license: Apache-2.0
-  version: 1.5.0
+  version: 1.7.0
   requires:
     bins:
       - agents-cli
@@ -31,6 +31,7 @@ metadata:
 1. **Agent must be deployed** — the agent must be running and reachable
 2. **Gemini Enterprise app must exist** — Create one in Google Cloud Console → Gemini Enterprise → Apps before registering
 3. **`deployment_metadata.json`** (Agent Runtime only) — Created automatically by `agents-cli deploy`; contains the agent runtime ID, deployment target, the A2A flag, and the agent directory
+4. **Text-based agent** — Live/voice (bidi) agents are **not supported** by Gemini Enterprise, which has no `/run_live` transport. Register a text-based agent instead.
 
 ## Required Permissions for A2A on Cloud Run
 
@@ -45,7 +46,9 @@ metadata:
 Every scaffolded agent serves the Agent-to-Agent protocol. A2A is the default — and only — registration type on **Cloud Run** and **GKE** (no reasoning engine to invoke natively). It also works on **Agent Runtime** via `--registration-type a2a`. For an ADK agent there the CLI warns against it, because Gemini Enterprise can invoke Agent Runtime natively via `:streamQuery` — prefer ADK registration in that case. For an agent built on another framework there is no ADK app to invoke natively, so A2A is the right mode on every target and the warning is expected. Pass the agent card URL and the command fetches the card and registers it; display name and description default to the card's `name`/`description`.
 
 ```bash
-# A2A on Cloud Run / GKE
+# A2A on Cloud Run / GKE. The card path depends on the project's language:
+#   Python -> /a2a/{app_name}/.well-known/agent-card.json
+#   Go     -> /.well-known/agent-card.json
 agents-cli publish gemini-enterprise \
   --agent-card-url https://my-service-abc123.us-east1.run.app/a2a/app/.well-known/agent-card.json \
   --gemini-enterprise-app-id projects/123456/locations/global/collections/default_collection/engines/my-app
@@ -150,7 +153,7 @@ agents-cli publish gemini-enterprise \
 
 ---
 
-## SDK Compatibility
+## SDK Compatibility (Python only)
 
 Agent Runtime deployments may encounter "Session not found" errors with `google-cloud-aiplatform` versions <= 1.128.0. In interactive mode (`--interactive`), the command checks the SDK version from `uv.lock` and offers to upgrade. In programmatic mode, ensure your SDK is up to date before registering.
 
@@ -200,7 +203,7 @@ Docs: https://docs.cloud.google.com/agent-registry/manage-agents · https://docs
 | Re-publishing the same agent | Registration is idempotent — re-running updates the existing registration in place instead of creating a duplicate |
 | HTTP 403 on registration | Check that your account has Discovery Engine Editor permissions on the Gemini Enterprise project |
 | Debugging ADK invocation failures on Agent Runtime | Gemini Enterprise calls the agent via the `AdkApp`'s `streaming_agent_run_with_events` method (the native `:streamQuery` contract). Grep the runtime's `reasoning_engine_stderr` logs for `streaming_agent_run_with_events` to find the underlying error |
-| "Could not fetch agent card" | Verify the agent is running and the URL is correct; for Cloud Run, ensure `gcloud auth login` is done |
+| "Could not fetch agent card" | Verify the agent is running and the URL is correct; for Cloud Run, ensure `gcloud auth login` is done. A Live/voice agent drops its A2A card and cannot be published — Gemini Enterprise does not support Live agents |
 
 ---
 
