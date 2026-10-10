@@ -28692,7 +28692,7 @@ groups:
       required: []
       optional:
       - SCRAPEDO_TOKEN
-    content_hash: 6267e4372cff
+    content_hash: 932c740892fb
     files:
     - SKILL.md
     - env.optional
