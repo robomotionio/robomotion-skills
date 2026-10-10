@@ -27,11 +27,28 @@ Commands::
     sync-upstream.py sync <group>           move a group to a newer commit
     sync-upstream.py verify [group ...]     CI: the tree is exactly what the
                                             manifest says, or exit 1
+    sync-upstream.py version [group ...]    dry run: the version each group
+                                            gets at its pinned commit, and why
     sync-upstream.py pr-body <group> OLD NEW   the text a reviewer reads
 
 `verify` is the gate that matters: it rebuilds each group from its pinned
 commit and fails on any difference, so a hand edit to vendored content
 cannot ride along in a PR unseen.
+
+A vendored group's `version` (in its .robomotion/skill.yaml) is upstream's,
+never ours: `sync` and `add` write it, `verify` fails when it differs. At the
+pinned commit it is, in order:
+
+  1. the nearest upstream release tag at or before the commit, its leading
+     "v" (and any "<name>-" or "<name>@" prefix) stripped. Plain `vX.Y.Z`
+     tags are preferred; a group whose upstream tags several things names
+     its series in `version_tags` (a `git describe --match` glob);
+  2. if no tag reaches the commit, the version upstream declares at that
+     commit in .claude-plugin/plugin.json, plugin.json,
+     .claude-plugin/marketplace.json, package.json or pyproject.toml (the
+     group's subdir first, then the repo root), then the highest version in
+     the plugin manifests or SKILL.md front-matter of what the group takes;
+  3. if upstream declares no version anywhere, the commit's short SHA.
 """
 
 from __future__ import annotations
@@ -44,9 +61,11 @@ import os
 import posixpath
 import re
 import shutil
+import json
 import subprocess
 import sys
 import tempfile
+import tomllib
 from pathlib import Path
 
 try:
@@ -146,9 +165,11 @@ def bare_repo(u: dict) -> Path:
 
 
 def fetch(u: dict) -> tuple[Path, str]:
-    """Returns (bare repo, head of the tracked branch)."""
+    """Returns (bare repo, head of the tracked branch). Tags come too: the
+    group's version is upstream's release tag."""
     bare = bare_repo(u)
-    sh("git", "fetch", "-q", "--filter=blob:none", "origin", f"+refs/heads/{u['track']}:refs/heads/{u['track']}", cwd=bare)
+    sh("git", "fetch", "-q", "--filter=blob:none", "origin", f"+refs/heads/{u['track']}:refs/heads/{u['track']}",
+       "+refs/tags/*:refs/tags/*", cwd=bare)
     return bare, sh("git", "rev-parse", f"refs/heads/{u['track']}", cwd=bare).strip()
 
 
@@ -319,6 +340,140 @@ def license_sha(bare: Path, u: dict, sha: str) -> str:
     return ""
 
 
+# ── version: upstream's, never ours ──────────────────────────────────
+
+# A whole tag name that is a version: v1.2.3, 0.6.12, v2.0.0-rc.1.
+PLAIN_TAG = re.compile(r"^v?\d+(?:\.\d+)+(?:[-+][0-9A-Za-z.-]+)?$")
+# The version at the end of a prefixed tag: skill-v4.3.1, shadcn@4.21.1.
+VERSION_TAIL = re.compile(r"(?:^|[-@/_])v?(\d+(?:\.\d+)+(?:[-+][0-9A-Za-z.-]+)?)$")
+MANIFESTS = (".claude-plugin/plugin.json", "plugin.json", ".claude-plugin/marketplace.json",
+             "package.json", "pyproject.toml")
+
+
+def version_key(v: str) -> tuple:
+    """Orders versions the way semver does, near enough: numbers compare as
+    numbers, and a pre-release sorts below its release."""
+    core, _, pre = v.split("+", 1)[0].partition("-")
+    nums = tuple(int(x) for x in re.findall(r"\d+", core))
+    return nums + ((0,) if pre else (1,))
+
+
+def nearest_tag(bare: Path, sha: str, globs: list[str], accept: re.Pattern) -> str:
+    """The tag `git describe` finds first among `globs` whose whole name
+    `accept` matches. describe takes only globs, so a match the regex refuses
+    is excluded and the walk asked again."""
+    refused: list[str] = []
+    for _ in range(100):
+        p = subprocess.run(
+            ["git", "describe", "--tags", "--abbrev=0", *[f"--match={g}" for g in globs],
+             *[f"--exclude={t}" for t in refused], sha],
+            cwd=bare, capture_output=True, text=True)
+        tag = p.stdout.strip()
+        if p.returncode != 0 or not tag:
+            return ""
+        if accept.search(tag):
+            return tag
+        refused.append(tag)
+    return ""
+
+
+def blob_text(bare: Path, obj: str) -> str | None:
+    """A blob as text, by id or by `<commit>:<path>`; None when it is not there."""
+    p = subprocess.run(["git", "cat-file", "blob", obj], cwd=bare, capture_output=True)
+    return p.stdout.decode("utf-8", "replace") if p.returncode == 0 else None
+
+
+def declared_version(path: str, text: str) -> str:
+    """The version a manifest declares, or "" (a placeholder 0.0.0 is none)."""
+    v = ""
+    try:
+        if path.endswith(".json"):
+            j = json.loads(text)
+            v = j.get("version") or (j.get("metadata") or {}).get("version") or ""
+        elif path.endswith(".toml"):
+            d = tomllib.loads(text)
+            v = (d.get("project") or {}).get("version") or ((d.get("tool") or {}).get("poetry") or {}).get("version") or ""
+        elif path.endswith(".md") and text.startswith("---"):
+            fm = text[3:text.find("\n---", 3)]
+            m = re.search(r"^version\s*:\s*(.+?)\s*$", fm, re.M)
+            if not m:
+                block = re.search(r"^metadata\s*:\s*\n((?:[ \t]+.*\n|[ \t]*\n)*)", fm + "\n", re.M)
+                m = block and re.search(r"^[ \t]+version\s*:\s*(.+?)\s*$", block.group(1), re.M)
+            v = m.group(1).strip("'\" ") if m else ""
+    except (ValueError, AttributeError, tomllib.TOMLDecodeError):
+        return ""
+    v = re.sub(r"^[vV](?=\d)", "", str(v).strip())
+    return "" if not v or v.strip("0.") == "" else v
+
+
+def upstream_version(bare: Path, u: dict, sha: str) -> tuple[str, str]:
+    """(version, where it came from) for the group at upstream commit `sha`.
+    The rule is in the module docstring."""
+    # 1. The release tag.
+    if u.get("version_tags"):
+        tag = nearest_tag(bare, sha, [u["version_tags"]], VERSION_TAIL)
+    else:
+        tag = (nearest_tag(bare, sha, ["v[0-9]*", "[0-9]*"], PLAIN_TAG)
+               or nearest_tag(bare, sha, ["*"], VERSION_TAIL))
+    if tag:
+        ahead = int(sh("git", "rev-list", "--count", f"{tag}..{sha}", cwd=bare).strip() or 0)
+        return VERSION_TAIL.search(tag).group(1), f"tag {tag}" + (f" + {ahead} commits" if ahead else "")
+    # 2. What upstream declares at the commit.
+    pre = u.get("subdir", "").strip("/")
+    for base in ([pre] if pre else []) + [""]:
+        for name in MANIFESTS:
+            path = f"{base}/{name}" if base else name
+            text = blob_text(bare, f"{sha}:{path}")
+            if text is not None and (v := declared_version(path, text)):
+                return v, path
+    # Several plugins in one group (a marketplace) each declare their own;
+    # look at the plugins the group takes, then at its skills. Paths here are
+    # upstream's (under subdir), before `into` moves them.
+    tree = upstream_tree(bare, sha, pre)
+    into = (u.get("into") or "").strip("/")
+    keep = [p[len(into) + 1:] if into else p for p in wanted(u, tree)[0]]
+    tops = {p.split("/")[0] for p in keep if "/" in p}
+    plugins = [p for p in tree
+               if p.split("/")[0] in tops and re.fullmatch(r"[^/]+/(\.claude-plugin/)?plugin\.json", p)]
+    skills = [p for p in keep if posixpath.basename(p) == "SKILL.md"]
+    for kind, paths in (("plugin manifests", plugins), ("SKILL.md files", skills)):
+        read_blobs(bare, {tree[p][1] for p in paths})
+        found = {}
+        for p in paths:
+            if v := declared_version(p, blob_text(bare, tree[p][1]) or ""):
+                found[p] = v
+        if found:
+            best = max(found.values(), key=version_key)
+            n = len(set(found.values()))
+            return best, (f"{kind}: all {len(found)} say {best}" if n == 1
+                          else f"{kind}: highest of {n} versions across {len(found)}")
+    # 3. Nothing declared anywhere.
+    return sha[:12], "no version upstream: the commit"
+
+
+def set_group_version(group: str, version: str) -> str:
+    """Write `version` into the group's skill.yaml in place (the file's other
+    lines and comments stay as they are). Returns the version it replaced."""
+    path = ROOT / group / OURS / "skill.yaml"
+    text = path.read_text()
+    old = str((yaml.safe_load(text) or {}).get("version", ""))
+    try:
+        plain = yaml.safe_load(version) == version
+    except yaml.YAMLError:
+        plain = False
+    rendered = version if plain else json.dumps(version)
+    line = f"version: {rendered}"
+    text, n = re.subn(r"^version:.*$", lambda _m: line, text, count=1, flags=re.M)
+    if not n:
+        text = text.rstrip("\n") + f"\n{line}\n"
+    path.write_text(text)
+    return old
+
+
+def group_version(group: str) -> str:
+    return str((yaml.safe_load((ROOT / group / OURS / "skill.yaml").read_text()) or {}).get("version", ""))
+
+
 # ── commands ─────────────────────────────────────────────────────────
 
 
@@ -450,14 +605,17 @@ def cmd_add(args):
          "mode": "mirror", "license": args.license, "license_file": "LICENSE", "license_sha256": "",
          "include": args.include or [], "exclude": args.exclude or [], "local_paths": []}
     u["subdir"], u["into"], u["license_file"] = args.subdir or "", args.into or "", args.license_file
+    if args.version_tags:
+        u["version_tags"] = args.version_tags
     bare = bare_repo(u)
     u["track"] = sh("git", "symbolic-ref", "--short", "HEAD", cwd=bare).strip()
     fetch(u)
     target = pick_target(bare, u, args.min_age_days)
+    version, how = upstream_version(bare, u, target)
     ours = ROOT / args.group / OURS
     ours.mkdir(parents=True)
     (ours / "skill.yaml").write_text(yaml.safe_dump({
-        "schema_version": 1, "name": args.group, "title": args.title, "type": "group", "version": "1.0.0",
+        "schema_version": 1, "name": args.group, "title": args.title, "type": "group", "version": version,
         "author": args.author, "source_url": u["repo"], "license": args.license,
         "summary": args.summary, "category": args.category, "tags": args.tags or [],
     }, sort_keys=False, width=200))
@@ -470,7 +628,7 @@ def cmd_add(args):
     u["commit"], u["license_sha256"] = target, license_sha(bare, u, target)
     m["upstreams"].append(u)
     save_manifest(m)
-    print(f"{args.group}: added at {target[:12]}")
+    print(f"{args.group}: added at {target[:12]}, version {version} ({how})")
     for n in notes:
         print(f"  note: {n}")
 
@@ -511,7 +669,10 @@ def cmd_sync(args):
     old = u.get("commit", "")
     u["commit"], u["license_sha256"] = target, new_license
     save_manifest(m)
+    version, how = upstream_version(bare, u, target)
+    old_version = set_group_version(u["group"], version)
     print(f"{args.group}: rebuilt at {target[:12]}" if old == target else f"{args.group}: {old[:12]} -> {target[:12]}")
+    print(f"  version: {old_version} -> {version} ({how})")
     for n in notes:
         print(f"  note: {n}")
     print("now: python3 build-index.py && python3 scan-skills.py --changed")
@@ -531,10 +692,14 @@ def cmd_verify(args):
         if u.get("mode", "mirror") != "mirror":
             print(f"skip {u['group']} ({u['mode']})")
             continue
-        fetch(u)
+        bare, _ = fetch(u)
         with tempfile.TemporaryDirectory() as tmp:
             materialize(u, u["commit"], Path(tmp))
             diffs = compare(u, Path(tmp))
+        version, how = upstream_version(bare, u, u["commit"])
+        if group_version(u["group"]) != version:
+            diffs.append(f"  version is {group_version(u['group'])}; upstream's at {u['commit'][:12]} is "
+                         f"{version} ({how}). Set it with `sync-upstream.py sync {u['group']} --to {u['commit'][:12]}`")
         if diffs:
             failed = True
             print(f"FAIL {u['group']}: not what {u['commit'][:12]} + patches builds")
@@ -544,6 +709,24 @@ def cmd_verify(args):
         else:
             print(f"ok   {u['group']} = {u['repo'].split('github.com/')[-1]}@{u['commit'][:12]}")
     sys.exit(1 if failed else 0)
+
+
+def cmd_version(args):
+    """Dry run: the version each group gets at its pinned commit (or at
+    --at), where it came from, and what skill.yaml says now. Writes nothing."""
+    m = load_manifest()
+    todo = [entry_for(m, g) for g in args.groups] if args.groups else m["upstreams"]
+    stale = False
+    print(f"{'group':26} {'commit':12} {'skill.yaml':14} {'upstream':14} from")
+    for u in todo:
+        bare, _ = fetch(u)
+        sha = sh("git", "rev-parse", args.at or u["commit"], cwd=bare).strip()
+        version, how = upstream_version(bare, u, sha)
+        have = group_version(u["group"])
+        stale |= have != version
+        mark = "" if have == version else "  <- differs"
+        print(f"{u['group']:26} {sha[:12]:12} {have:14} {version:14} {how}{mark}")
+    sys.exit(1 if stale and args.check else 0)
 
 
 DOMAIN_RE = re.compile(r"https?://([A-Za-z0-9.-]+\.[A-Za-z]{2,})")
@@ -572,10 +755,14 @@ def cmd_pr_body(args):
         return found
 
     new_domains = sorted(domains(b, added + changed) - domains(a, list(a)))
+    v_old, how_old = upstream_version(bare, u, old)
+    v_new, how_new = upstream_version(bare, u, new)
     lines = [
         f"## {u['group']}: {slug} `{old[:12]}` -> `{new[:12]}`",
         "",
         f"Upstream diff: https://github.com/{slug}/compare/{old}...{new}",
+        "",
+        f"Version: {v_old} ({how_old}) -> {v_new} ({how_new})",
         "",
         f"**{len(changed)} changed, {len(added)} added, {len(removed)} removed** (after include/exclude).",
         "",
@@ -614,6 +801,8 @@ def main():
     n.add_argument("--subdir", help="upstream folder that becomes the group root")
     n.add_argument("--into", help="folder of the group the upstream tree lands in (e.g. skills)")
     n.add_argument("--license-file", default="LICENSE", help="path in the upstream repo")
+    n.add_argument("--version-tags", help="glob of upstream's release tags when it tags several things "
+                   "(e.g. 'skill-v*'); default: plain vX.Y.Z tags")
     n.add_argument("--min-age-days", type=int, default=DEFAULT_MIN_AGE_DAYS)
     n.set_defaults(fn=cmd_add)
     s = sub.add_parser("sync")
@@ -626,6 +815,11 @@ def main():
     v = sub.add_parser("verify")
     v.add_argument("groups", nargs="*")
     v.set_defaults(fn=cmd_verify)
+    ver = sub.add_parser("version", help="dry run: each group's upstream version at its pinned commit")
+    ver.add_argument("groups", nargs="*")
+    ver.add_argument("--at", help="an upstream commit or tag to ask about instead of the pinned one")
+    ver.add_argument("--check", action="store_true", help="exit 1 when a skill.yaml version differs")
+    ver.set_defaults(fn=cmd_version)
     p = sub.add_parser("pr-body")
     p.add_argument("group")
     p.add_argument("old")

@@ -379,6 +379,7 @@ upstreams:
   license: Apache-2.0
   license_file: LICENSE
   license_sha256: 02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812
+  version_tags: 'skill-v*'
   include: []
   exclude: []
   local_paths: []
@@ -580,6 +581,7 @@ upstreams:
   license: MIT
   license_file: LICENSE.md
   license_sha256: 1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f
+  version_tags: 'shadcn@*'
   include:
   - skills
   exclude: []
