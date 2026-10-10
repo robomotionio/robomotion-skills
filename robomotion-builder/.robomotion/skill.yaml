@@ -1,0 +1,14 @@
+schema_version: 1
+name: robomotion-builder
+title: Robomotion Builder
+type: group
+version: 1.0.0
+author: Robomotion
+source_url: https://github.com/robomotionio/robomotion-skills
+license: Apache-2.0
+summary: Build, check and run Robomotion flows and apps with the robomotion command, from inside the agent's sandbox.
+category: Automation
+tags:
+- robomotion
+- automation
+- flows
