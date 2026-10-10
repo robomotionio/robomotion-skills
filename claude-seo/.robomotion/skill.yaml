@@ -2,7 +2,7 @@ schema_version: 1
 name: claude-seo
 title: Claude SEO
 type: group
-version: 2.0.0
+version: 2.3.1
 author: AgriciDaniel
 source_url: https://github.com/AgriciDaniel/claude-seo
 license: MIT

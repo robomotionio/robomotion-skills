@@ -18,7 +18,7 @@ Even imperative requests like "migrate my code", "upgrade to gemini 3", "migrate
 **Sizing the scope (large repos).** Before asking, get a per-directory count:
 
 ```sh
-rg -l "generate_content|generateContent|gemini-1\.5|gemini-2\.0|gemini-2\.5|gemini-3\.1-flash-lite|gemini-3\.5|gemini-3\.6|gemini-3\.7|gemini-3-flash|thinking_budget|temperature" --type-not md | cut -d/ -f1 | sort | uniq -c | sort -rn
+rg -l "generate_content|generateContent|gemini-1\.5|gemini-2\.0|gemini-2\.5|gemini-3\.1-flash-lite|gemini-3\.1-flash-tts|gemini-3\.5|gemini-3\.6|gemini-3\.7|gemini-3-flash|thinking_budget|temperature" --type-not md | cut -d/ -f1 | sort | uniq -c | sort -rn
 ```
 
 Present the breakdown in your question (e.g. *"Found 42 references across 3 directories: src/ (28), tests/ (10), scripts/ (4). Which to migrate?"*).
@@ -63,6 +63,15 @@ For full before/after code examples, fetch the [Migration Guide](https://ai.goog
 | `gemini-2.5-flash` | `gemini-3.8-flash` or `gemini-3.5-flash-lite` | Latest Flash with Interactions API support, or latest Flash-Lite for cheaper/simpler tasks. |
 | `gemini-2.5-flash-lite` or `gemini-3.1-flash-lite` | `gemini-3.5-flash-lite` | Latest Flash-lite with Interactions API support |
 | `gemini-2.5-pro` | `gemini-3.1-pro-preview` | Latest Pro with 1M context, complex reasoning |
+| `gemini-3.1-flash-tts-preview` or `gemini-2.5-*-tts` | `gemini-3.8-flash-tts` or `gemini-3.8-flash-lite-tts` | Latest TTS models with Voice Design, Voice Replication, structured `speech_metadata`, and default WAV (`audio/wav`) output |
+| Legacy audio understanding / ASR | `gemini-3.5-transcribe` | Dedicated speech-to-text with auto language detection, diarization, word timestamps, and smart formatting |
+| Legacy Live API (`gemini-3.1-flash-live-preview`, `gemini-2.5-flash-native-audio-*`, `gemini-2.0-flash-live-001`) | `gemini-3.8-live` or `gemini-3.8-live-extended-thinking` | Install `google-gemini/gemini-live-api-dev` skill and see its `references/migration.md` for Live API protocol changes |
+
+### Managed Agents
+
+| Agent | Status | Drop-in Replacement | Notes |
+|-------|--------|---------------------|-------|
+| `antigravity-preview-05-2026` | Deprecated (October 5, 2026) | `antigravity-preview-09-2026` | Requests redirect to `antigravity-preview-09-2026` after October 5, 2026. |
 
 > **Note:** Within the Interactions API, model upgrades are generally drop-in — change the model string and verify. The breaking changes are at the **API level** (generateContent → Interactions) and parameter deprecations (`temperature`, `top_p`, `top_k`).
 
@@ -99,6 +108,11 @@ Every item is tagged: **`[BLOCKS]`** items cause errors or broken behavior if mi
 - [ ] Consider upgrading `gemini-3.1-flash-lite` → `gemini-3.5-flash-lite`
 - [ ] Consider upgrading `gemini-2.5-flash-lite` → `gemini-3.5-flash-lite` or `gemini-3.1-flash-lite`
 - [ ] Consider upgrading `gemini-2.5-pro` → `gemini-3.1-pro-preview`
+- [ ] Consider upgrading `gemini-3.1-flash-tts-preview` → `gemini-3.8-flash-tts` or `gemini-3.8-flash-lite-tts`
+
+### Agent Updates
+
+- [ ] Upgrade `antigravity-preview-05-2026` → `antigravity-preview-09-2026` (deprecated October 5, 2026; redirected afterwards)
 
 ### Migrate to Gemini 3.8 Flash or Gemini 3.5 Flash-Lite
 
@@ -107,6 +121,17 @@ Use this checklist if the user requests to migrate to Gemini 3.8 Flash or Gemini
 - [ ] Updated model name to `gemini-3.8-flash` or `gemini-3.5-flash-lite` (depending on user request)
 - [ ] Removed `temperature`, `top_p`, `top_k` from config
 - [ ] Replaced `thinking_budget` with `thinking_level` (`minimal`, `low`, `medium`, `high`)
+
+### Migrate to Gemini 3.8 TTS (`gemini-3.8-flash-tts` or `gemini-3.8-flash-lite-tts`)
+
+For full migration details, output formats, and prompting guide, fetch the [Speech Generation guide](https://ai.google.dev/gemini-api/docs/speech-generation.md.txt) (see `#migration` and `#prompting-guide`), [Voice Design](https://ai.google.dev/gemini-api/docs/voice-design.md.txt), and [Voice Replication](https://ai.google.dev/gemini-api/docs/voice-replication.md.txt).
+
+- [ ] Updated model to `gemini-3.8-flash-tts` (creative fidelity) or `gemini-3.8-flash-lite-tts` (fast/cost-efficient replacement for `gemini-3.1-flash-tts-preview`)
+- [ ] Moved turn-level directions (`style`) and speaker labels (`speaker`) out of transcript `text` into `annotations: [{"type": "speech_metadata", "speaker": "...", "style": "..."}]` (`text` is treated strictly as a verbatim transcript)
+- [ ] Specified `speaker` inside `speech_metadata` on **every** turn in multi-speaker requests
+- [ ] Accounted for default WAV (`audio/wav` with RIFF header) output on unary requests: remove manual WAV header wrappers (`wave` / `ffmpeg`), or explicitly set `response_format={"type": "audio", "mime_type": "audio/l16"}` (or `"audio/mulaw"` / `"audio/alaw"`). Streaming (`stream=True`) still defaults to headerless `audio/l16`.
+- [ ] Kept inline tags (`<laugh>`, `<sigh>`, `<cough>`, `<breath>`, `<short pause>`) and pipe backchannels (`|mhm|`) only for point-in-time vocal events; avoid sound-effect tags
+- [ ] Replaced multi-paragraph `"Audio Profile"` / `"Director's Notes"` blocks with a custom voice created via [Voice Design](https://ai.google.dev/gemini-api/docs/voice-design.md.txt) (`client.voices.create()` → `voice_...`)
 
 ---
 

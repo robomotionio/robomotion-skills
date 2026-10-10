@@ -190,6 +190,22 @@ accepted:
   path: last30days-skill/skills/last30days/scripts/lib/youtube_yt.py
   text: SSH alias (configured in ~/.ssh/config). On macOS hosts with Homebrew,
   reason: docstring for the optional LAST30DAYS_YOUTUBE_SSH_HOST, which names an alias in ~/.ssh/config; unset in the sandbox (read 2026-09-23)
+- key: e2a1efe8127ac193
+  rule: credential-path
+  path: anthropic-skills/skills/claude-api/shared/evals/report/build-report-lite.mjs
+  text: // `summary.json -> ~/.ssh/id_rsa`; the user later runs this builder (outside
+  reason: 'read on 2026-10-11: a comment explaining why readText opens with O_NOFOLLOW and refuses links and hard links, so a planted summary.json link to a key file
+    is never read'
+- key: 88cc367f487b15fe
+  rule: credential-path
+  path: anthropic-skills/skills/claude-api/shared/evals/report/runner-scaffold.mjs
+  text: // ~/.ssh/id_rsa` planted after the startup preflight must not be read into
+  reason: 'read on 2026-10-11: a comment explaining why readFileNoFollow refuses symlinks, hard links and paths outside the flow folder; nothing reads ~/.ssh'
+- key: 25e8bdfd77d83113
+  rule: pipe-to-shell
+  path: google-agents-cli/skills/google-agents-cli-adk-code/SKILL.md
+  text: '| `curl https://adk.dev/llms.txt` | Python | Docs index (every page title + URL). Fetch it, then `WebFetch` the specific'
+  reason: 'read on 2026-10-11: a markdown table row naming the adk.dev docs index (curl of llms.txt); the pipe is a table border, nothing is piped to a shell'
 trusted_installers:
 - aka.ms/
 - aspire.dev/install

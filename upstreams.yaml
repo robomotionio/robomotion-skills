@@ -5,7 +5,7 @@ upstreams:
 - group: agent-browser
   repo: https://github.com/vercel-labs/agent-browser
   track: main
-  commit: 8c15ff9f71ae60c7e99e66afe1e2d4b9bf414fe2
+  commit: 526157cfd4ec64f45939f9ba0f10d5936aa7ac33
   subdir: ''
   mode: mirror
   license: Apache-2.0
@@ -21,7 +21,7 @@ upstreams:
 - group: anthropic-skills
   repo: https://github.com/anthropics/skills
   track: main
-  commit: 34040c9c568585f6929bedeaad110ad08f079624
+  commit: 8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4
   subdir: ''
   mode: mirror
   license: Apache-2.0
@@ -41,7 +41,7 @@ upstreams:
 - group: awesome-copilot
   repo: https://github.com/github/awesome-copilot
   track: main
-  commit: 1899b18da3fa5183652f86165917d553cba1850a
+  commit: 143a3d976b3c1603cc8932984d5e1f28501cb5fc
   subdir: ''
   mode: mirror
   license: MIT
@@ -135,15 +135,17 @@ upstreams:
 - group: caveman-skills
   repo: https://github.com/JuliusBrussee/caveman
   track: main
-  commit: 8bc01d6753146e864cc4b97ef187c4badef146cb
+  commit: 17b5bff98e86db45c17cb4dfbe5ea79a177c433f
   subdir: ''
   mode: mirror
-  license: MIT
+  license: Apache-2.0
   license_file: LICENSE
-  license_sha256: 94fe75d355887f84ee7eefca68e06d8d082a23dad47a8e1f58a94d98900edf5b
+  license_sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
   include:
   - skills
   - LICENSE
+  - LICENSE-MIT
+  - NOTICE
   exclude:
   - skills/cavecrew
   - skills/caveman-stats
@@ -187,7 +189,7 @@ upstreams:
 - group: cloudflare-skills
   repo: https://github.com/cloudflare/skills
   track: main
-  commit: b052c32bab7dd493513260228a36c88294f343f1
+  commit: 41e0d19858946d18af9ee2c2feebbe2e11d829ff
   subdir: ''
   mode: mirror
   license: Apache-2.0
@@ -202,7 +204,7 @@ upstreams:
 - group: elevenlabs-skills
   repo: https://github.com/elevenlabs/skills
   track: main
-  commit: 9edcbd4b80ed57b8e07a3f86ea520333969fbc3c
+  commit: 81f1eafc65c9219ab4aa305d81ffc552a6f43f9d
   subdir: ''
   mode: mirror
   license: MIT
@@ -220,7 +222,7 @@ upstreams:
 - group: emilkowalski-skills
   repo: https://github.com/emilkowalski/skills
   track: main
-  commit: d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7
+  commit: e8a175de22ae1e49370fc144c1f3bb9aeedf988d
   subdir: ''
   mode: mirror
   license: MIT
@@ -235,7 +237,7 @@ upstreams:
 - group: engineering-skills
   repo: https://github.com/addyosmani/agent-skills
   track: main
-  commit: a1a80d56d1f88a4c2ffcbbb0877570a3eb8e7a3a
+  commit: c45732d2093992b76691e6772f7888e2321c5173
   subdir: ''
   mode: mirror
   license: MIT
@@ -248,7 +250,7 @@ upstreams:
 - group: financial-services
   repo: https://github.com/anthropics/financial-services
   track: main
-  commit: 90912d92c73e6fec9176de510976bbdf35e92fa6
+  commit: 574ed3624aebd0418c7e96cd101262f30210ab26
   subdir: plugins/vertical-plugins
   mode: mirror
   license: Apache-2.0
@@ -284,7 +286,7 @@ upstreams:
 - group: gemini-skills
   repo: https://github.com/google-gemini/gemini-skills
   track: main
-  commit: 80dd31dda25bbe1410207df0adb3e0d591c2c634
+  commit: 6fee1bec62d6a0ca92c1d0e34d62ff11f70c498a
   subdir: ''
   mode: mirror
   license: Apache-2.0
@@ -299,7 +301,7 @@ upstreams:
 - group: google-agents-cli
   repo: https://github.com/google/agents-cli
   track: main
-  commit: 5597738f14b5d4a490dfdefa282bc229003b7bbe
+  commit: 2c3945901e8e5cc933fa94fa44d1d4aaf644b596
   subdir: ''
   mode: mirror
   license: Apache-2.0
@@ -344,7 +346,7 @@ upstreams:
 - group: higgsfield-skills
   repo: https://github.com/higgsfield-ai/skills
   track: main
-  commit: d071406147a37b835bed09543d85ab3e9bd85c7d
+  commit: f83af0bc1d937c8119099a11f8ebbf5e6fb99819
   subdir: ''
   mode: mirror
   license: MIT
@@ -379,7 +381,7 @@ upstreams:
   license: Apache-2.0
   license_file: LICENSE
   license_sha256: 02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812
-  version_tags: 'skill-v*'
+  version_tags: skill-v*
   include: []
   exclude: []
   local_paths: []
@@ -387,7 +389,7 @@ upstreams:
 - group: knowledge-work-plugins
   repo: https://github.com/anthropics/knowledge-work-plugins
   track: main
-  commit: e92b5a0236482ba652bc170b2ded239127cc9861
+  commit: 8444efcd48f7012f09797778a36a33e73d0861f4
   subdir: ''
   mode: mirror
   license: Apache-2.0
@@ -417,7 +419,7 @@ upstreams:
 - group: lark-skills
   repo: https://github.com/larksuite/cli
   track: main
-  commit: 1bd78144e890c685726bd251ef8ee7710750e538
+  commit: 7beffb086d7fa3c5b843d8affa7c089f49cfc65e
   subdir: ''
   mode: mirror
   license: MIT
@@ -432,7 +434,7 @@ upstreams:
 - group: last30days-skill
   repo: https://github.com/mvanhorn/last30days-skill
   track: main
-  commit: 4909c2efb2d90b81004a70c6890f7e7402db3fd9
+  commit: 5103ba478b380552207a3754b74c7655d64208cd
   subdir: ''
   mode: mirror
   license: MIT
@@ -468,7 +470,7 @@ upstreams:
 - group: mattpocock-skills
   repo: https://github.com/mattpocock/skills
   track: main
-  commit: 3cca18b368ae95cdbdebbff572ccafa662551015
+  commit: 984a2c023c9fb42bb6ea40c70a652284a109dc05
   subdir: ''
   mode: mirror
   license: MIT
@@ -483,7 +485,7 @@ upstreams:
 - group: neon-skills
   repo: https://github.com/neondatabase/agent-skills
   track: main
-  commit: 2e0da3a1653bcdd227565ac14bb3e9e453a8b854
+  commit: 9e4a5705922fddb540c396111a7979e0dca79cc2
   subdir: ''
   mode: mirror
   license: Apache-2.0
@@ -575,13 +577,13 @@ upstreams:
 - group: shadcn-skills
   repo: https://github.com/shadcn-ui/ui
   track: main
-  commit: 2b3e6d4f8d9161fe5c19340dc383aade392012dd
+  commit: 295a1f114a138f23b5dfee0e0c6812394dfeb90c
   subdir: ''
   mode: mirror
   license: MIT
   license_file: LICENSE.md
   license_sha256: 1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f
-  version_tags: 'shadcn@*'
+  version_tags: shadcn@*
   include:
   - skills
   exclude: []
@@ -590,7 +592,7 @@ upstreams:
 - group: small-business-skills
   repo: https://github.com/anthropics/knowledge-work-plugins
   track: main
-  commit: e92b5a0236482ba652bc170b2ded239127cc9861
+  commit: 8444efcd48f7012f09797778a36a33e73d0861f4
   subdir: small-business
   mode: mirror
   license: Apache-2.0
@@ -608,7 +610,7 @@ upstreams:
 - group: supabase-skills
   repo: https://github.com/supabase/agent-skills
   track: main
-  commit: 8331f910845103c08d51f6ca1d86ebb7d1f745e3
+  commit: c9be0e931b7930f7d02126d04774d904c381e7d7
   subdir: ''
   mode: mirror
   license: MIT
@@ -623,7 +625,7 @@ upstreams:
 - group: superpowers
   repo: https://github.com/obra/superpowers
   track: main
-  commit: b36e0829c6d0140e93cfef2ca599b1b07d4a7797
+  commit: 8ca22dba9a94f28898bbce59f2537ff4d87c747d
   subdir: ''
   mode: mirror
   license: MIT
@@ -637,7 +639,7 @@ upstreams:
 - group: taste-skill
   repo: https://github.com/Leonxlnx/taste-skill
   track: main
-  commit: ccbc15639c97057cbfcf32ecebc38ef716e4bb37
+  commit: ce26fc25c0e5e8cab638f883de62d9a86ee5e45b
   subdir: ''
   mode: mirror
   license: MIT

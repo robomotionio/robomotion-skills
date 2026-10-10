@@ -2,7 +2,7 @@ schema_version: 1
 name: firecrawl-skills
 title: Firecrawl Skills
 type: group
-version: 1.0.0
+version: 0.1.0
 author: Firecrawl
 source_url: https://github.com/firecrawl/skills
 license: ISC

@@ -136,7 +136,8 @@ Result: "Based on message history and doc authorship,
 
 ```bash
 # 1. Install
-claude plugins add knowledge-work-plugins/enterprise-search
+claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install enterprise-search@knowledge-work-plugins
 
 # 2. Search across everything
 /enterprise-search:search [your question here]

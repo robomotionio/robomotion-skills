@@ -4,8 +4,8 @@ Reddit's public ``.json`` endpoints now return HTTP 403 from most contexts
 (shreddit anti-bot), so this is no longer the primary free path. The keyless
 pipeline (see reddit_keyless.py) still calls ``search`` as a cheap one-shot
 Tier 0 attempt — a residential machine may occasionally get a 200 — before
-falling through to RSS discovery (reddit_rss.py) and shreddit comment
-enrichment (reddit_shreddit.py).
+falling through to site search discovery (reddit_search.py) and shreddit
+comment enrichment (reddit_shreddit.py).
 
 ``search_reddit_public`` is retained as a compatibility shim that delegates to
 the keyless pipeline, so existing callers (pipeline.py) need no change.
@@ -58,6 +58,17 @@ def _url_encode(text: str) -> str:
     return urllib.parse.quote_plus(text)
 
 
+def _blocked(url: str, timeout: int) -> Optional[Dict[str, Any]]:
+    """Robomotion: repeat a request Reddit blocked on Scrape.do's datacenter
+    addresses once through its residential pool (scrapedo.py); None when
+    there is nothing to fall back to."""
+    if not scrapedo.can_fall_back(url):
+        return None
+    _log("Blocked on Scrape.do datacenter addresses; retrying through its residential pool")
+    with scrapedo.residential():
+        return _fetch_json(url, timeout)
+
+
 def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
     """Fetch JSON from a URL with retry on 429 and error handling.
 
@@ -80,7 +91,7 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
                 content_type = resp.headers.get("Content-Type", "")
                 if "json" not in content_type and "text/html" in content_type:
                     _log(f"Anti-bot HTML response (Content-Type: {content_type})")
-                    return None
+                    return _blocked(url, timeout)
 
                 raw = resp.read()
                 if resp.headers.get("Content-Encoding", "").lower() == "gzip":
@@ -102,13 +113,16 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
                     continue
                 # Last attempt exhausted
                 _log("429 retries exhausted")
-                return None
+                return _blocked(url, timeout)
             elif e.code == 404:
                 _log(f"404 not found: {url}")
                 return None
             elif e.code == 403:
                 _log(f"403 forbidden: {url}")
-                return None
+                return _blocked(url, timeout)
+            elif scrapedo.is_blocked(e.code) and scrapedo.can_fall_back(url):
+                _log(f"HTTP {e.code} through Scrape.do: {e.reason}")
+                return _blocked(url, timeout)
             else:
                 _log(f"HTTP {e.code}: {e.reason}")
                 return None
@@ -249,8 +263,8 @@ def search_reddit_public(
 
     Thin compatibility shim over the keyless pipeline: the legacy ``.json``
     search/enrichment endpoints now return HTTP 403, so this delegates to
-    ``reddit_keyless.search_and_enrich`` (dedicated-sub listings + RSS discovery
-    → shreddit comment enrichment; no ``.json`` search). The name and signature
+    ``reddit_keyless.search_and_enrich`` (dedicated-sub listings + site search
+    discovery → shreddit comment enrichment; no ``.json`` search). The name and signature
     are preserved so ``pipeline.py`` and other callers need no change and the
     ScrapeCreators backup still engages when this returns empty.
 

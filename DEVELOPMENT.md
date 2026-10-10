@@ -198,7 +198,7 @@ the folder. Use `--exclude` for skills we can't redistribute or run, and
 | Group | Difference |
 |---|---|
 | `anthropic-skills/` | Apache-licensed skills only; `docx`, `pdf`, `pptx` and `xlsx` are rights-reserved |
-| `caveman-skills/` | MIT-licensed skills only, minus the eight that need Caveman Cloud (its gateway sees a repo's LLM traffic), the `caveman` CLI, or Claude Code's hooks and sub-agents |
+| `caveman-skills/` | Apache-2.0 since upstream's 3.0.0 relicense (the pre-3.0 MIT text and upstream's `NOTICE` travel with it). Minus the eight that need Caveman Cloud (its gateway sees a repo's LLM traffic), the `caveman` CLI, or Claude Code's hooks and sub-agents |
 | `openai-skills/` | `skills/.curated` only, minus the Figma skills (under Figma's developer terms, not a licence) and four for Codex or Windows apps: `hatch-pet`, `migrate-to-codex`, `chatgpt-apps`, `winui-app`. The Notion skills are MIT and need a Notion MCP server. Upstream is deprecated and the pin is its last commit; its successor, `openai/plugins`, carries none of these skills and has no repository licence, so the group stays here as it is |
 | `mattpocock-skills/` | `engineering` and `productivity` folders only |
 | `google-skills/` | One skill excluded: it executes base64-decoded code |

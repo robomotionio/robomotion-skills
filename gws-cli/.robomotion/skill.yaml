@@ -2,7 +2,7 @@ schema_version: 1
 name: gws-cli
 title: Google Workspace CLI Skills
 type: group
-version: 1.0.0
+version: 0.22.5
 author: Google Workspace
 source_url: https://github.com/googleworkspace/cli
 license: Apache-2.0

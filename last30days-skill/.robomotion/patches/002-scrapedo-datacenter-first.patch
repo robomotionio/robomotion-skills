@@ -1,0 +1,173 @@
+diff --git i/skills/last30days/SKILL.md w/skills/last30days/SKILL.md
+index da4280f..0e232e1 100644
+--- i/skills/last30days/SKILL.md
++++ w/skills/last30days/SKILL.md
+@@ -77,7 +77,7 @@ In a Robomotion agent sandbox (`/etc/last30days/robomotion-ready` exists) these
+ - **Save to the agent's folder:** `--save-dir=/workspace/last30days` (it survives between runs; `~/Documents` does not).
+ - **No host web search here:** skip Steps 0.55 and 0.75 and add `--auto-resolve`, as the capability rule says for hosts without web search. Name subreddits yourself with `--subreddits` when you know the communities.
+ - **Sources:** Reddit, YouTube and Hacker News need no key. X, TikTok, Instagram, Bluesky and Threads need keys this sandbox does not have; leave them out (`--search reddit,youtube,hackernews`) and do not suggest signing up for anything.
+-- **Scrape.do (optional, `SCRAPEDO_TOKEN`).** When set, Reddit and YouTube are fetched through Scrape.do from residential addresses: Reddit keeps working where it blocks servers, and YouTube search returns this month's uploads. `SCRAPEDO_GEO=<two-letter country>` in front of the command picks the country (for example `SCRAPEDO_GEO=tr last30days ...`). Each fetch costs Scrape.do credits. Never print, echo or save the token; it is a placeholder the sandbox swaps on the way out.
++- **Scrape.do (optional, `SCRAPEDO_TOKEN`).** When set, Reddit and YouTube are fetched through Scrape.do: its datacenter addresses first, and a request that comes back blocked is repeated once through its residential pool (more credits per request), so Reddit keeps working where it blocks servers and YouTube search returns this month's uploads. `SCRAPEDO_SUPER=1` uses the residential pool for every request, `SCRAPEDO_SUPER=0` never. `SCRAPEDO_GEO=<two-letter country>` in front of the command picks the country (for example `SCRAPEDO_GEO=tr last30days ...`). Each fetch costs Scrape.do credits. Never print, echo or save the token; it is a placeholder the sandbox swaps on the way out.
+ - **Google Trends (needs `SCRAPEDO_TOKEN`):** `google-trends rising "<topic>" --geo <cc>` (queries and topics growing fastest, "Breakout" = over 5000%), `google-trends interest "<topic>" --geo <cc>` (is it rising or fading), `google-trends trending --geo <cc>` (what the whole country searches right now). Add `--gprop youtube` or `--gprop news` for YouTube or news searches.
+ - **Cover images:** `fetch-covers --out <folder> <youtube or reddit URL> ...` saves each video's thumbnail and each Reddit post's own images, one JSON line per file.
+ - **Transcripts:** the engine often gets no YouTube transcripts here and prints "Degraded: YouTube" with advice to update yt-dlp. The ranking uses titles, views, dates and comments, which still arrive; if it matters, say transcripts were unavailable. yt-dlp is pinned in the image, so updating it is not something the user can do.
+diff --git i/skills/last30days/scripts/lib/http.py w/skills/last30days/scripts/lib/http.py
+index 21fa494..0c7636f 100644
+--- i/skills/last30days/scripts/lib/http.py
++++ w/skills/last30days/scripts/lib/http.py
+@@ -1041,6 +1041,22 @@ def request(
+     raise_recorded(error)
+ 
+ 
++# Robomotion: a Reddit or YouTube request blocked on Scrape.do's datacenter
++# addresses is repeated once through its residential pool (scrapedo.py).
++_request_direct = request
++
++
++def request(method: str, url: str, *args, **kwargs) -> Union[Dict[str, Any], str]:
++    try:
++        return _request_direct(method, url, *args, **kwargs)
++    except HTTPError as e:
++        if not (scrapedo.can_fall_back(url) and scrapedo.is_blocked(e.status_code)):
++            raise
++        log(f"Blocked ({e.status_code}) on Scrape.do datacenter addresses; retrying through its residential pool")
++        with scrapedo.residential():
++            return _request_direct(method, url, *args, **kwargs)
++
++
+ def get(url: str, headers: Optional[Dict[str, str]] = None, **kwargs) -> Dict[str, Any]:
+     """Make a GET request."""
+     return request("GET", url, headers=headers, **kwargs)
+diff --git i/skills/last30days/scripts/lib/reddit_public.py w/skills/last30days/scripts/lib/reddit_public.py
+index 24f5a0b..efcb8b5 100644
+--- i/skills/last30days/scripts/lib/reddit_public.py
++++ w/skills/last30days/scripts/lib/reddit_public.py
+@@ -58,6 +58,17 @@ def _url_encode(text: str) -> str:
+     return urllib.parse.quote_plus(text)
+ 
+ 
++def _blocked(url: str, timeout: int) -> Optional[Dict[str, Any]]:
++    """Robomotion: repeat a request Reddit blocked on Scrape.do's datacenter
++    addresses once through its residential pool (scrapedo.py); None when
++    there is nothing to fall back to."""
++    if not scrapedo.can_fall_back(url):
++        return None
++    _log("Blocked on Scrape.do datacenter addresses; retrying through its residential pool")
++    with scrapedo.residential():
++        return _fetch_json(url, timeout)
++
++
+ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
+     """Fetch JSON from a URL with retry on 429 and error handling.
+ 
+@@ -80,7 +91,7 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
+                 content_type = resp.headers.get("Content-Type", "")
+                 if "json" not in content_type and "text/html" in content_type:
+                     _log(f"Anti-bot HTML response (Content-Type: {content_type})")
+-                    return None
++                    return _blocked(url, timeout)
+ 
+                 raw = resp.read()
+                 if resp.headers.get("Content-Encoding", "").lower() == "gzip":
+@@ -102,13 +113,16 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
+                     continue
+                 # Last attempt exhausted
+                 _log("429 retries exhausted")
+-                return None
++                return _blocked(url, timeout)
+             elif e.code == 404:
+                 _log(f"404 not found: {url}")
+                 return None
+             elif e.code == 403:
+                 _log(f"403 forbidden: {url}")
+-                return None
++                return _blocked(url, timeout)
++            elif scrapedo.is_blocked(e.code) and scrapedo.can_fall_back(url):
++                _log(f"HTTP {e.code} through Scrape.do: {e.reason}")
++                return _blocked(url, timeout)
+             else:
+                 _log(f"HTTP {e.code}: {e.reason}")
+                 return None
+diff --git i/skills/last30days/scripts/lib/scrapedo.py w/skills/last30days/scripts/lib/scrapedo.py
+index 3058130..835ba5c 100644
+--- i/skills/last30days/scripts/lib/scrapedo.py
++++ w/skills/last30days/scripts/lib/scrapedo.py
+@@ -11,8 +11,12 @@ Environment:
+     SCRAPEDO_GEO    Two-letter country code (us, tr, de, ...) for Scrape.do's
+                     geoCode, YouTube's gl and Google Trends' geo. Unset = no
+                     country for Scrape.do and US for Google Trends.
+-    SCRAPEDO_SUPER  "0" turns off residential routing (super=true), which
+-                    Reddit needs. On by default.
++    SCRAPEDO_SUPER  "auto" (the default) fetches through Scrape.do's
++                    datacenter addresses first and repeats a request that
++                    comes back blocked (403, 407, 429, 502, 503 or an
++                    anti-bot page) once through its residential pool
++                    (super=true), which costs more credits per request. "1"
++                    always uses the residential pool, "0" never does.
+ 
+ Scrape.do takes its token only as a query parameter. Inside a Robomotion
+ sandbox the variable holds a vault placeholder that the robot's credential
+@@ -22,10 +26,12 @@ appears in this process, its logs or its saved reports.
+ 
+ from __future__ import annotations
+ 
++import contextlib
+ import datetime as _dt
+ import json
+ import os
+ import re
++import threading
+ from typing import Any, Dict, List, Optional
+ from urllib.parse import quote, urlencode, urlsplit
+ 
+@@ -59,9 +65,48 @@ def geo() -> str:
+     return value if re.fullmatch(r"[a-z]{2}", value) else ""
+ 
+ 
++# A blocked answer from the datacenter pool: the request is worth one
++# more try through the residential pool.
++BLOCKED_STATUSES = frozenset({403, 407, 429, 502, 503})
++
++_local = threading.local()
++
++
++def super_mode() -> str:
++    """'auto' (datacenter first, residential on a block), 'always' or 'off'."""
++    value = (os.environ.get(SUPER_ENV) or "auto").strip().lower()
++    if value in {"0", "false", "no", "off", "never"}:
++        return "off"
++    if value in {"1", "true", "yes", "on", "always"}:
++        return "always"
++    return "auto"
++
++
+ def super_on() -> bool:
+-    value = (os.environ.get(SUPER_ENV) or "1").strip().lower()
+-    return value not in {"0", "false", "no", "off"}
++    """True when the next wrapped request goes through the residential pool."""
++    mode = super_mode()
++    return mode == "always" or (mode == "auto" and getattr(_local, "residential", False))
++
++
++@contextlib.contextmanager
++def residential():
++    """Requests wrapped inside this block use the residential pool."""
++    before = getattr(_local, "residential", False)
++    _local.residential = True
++    try:
++        yield
++    finally:
++        _local.residential = before
++
++
++def can_fall_back(url: str) -> bool:
++    """True when a blocked datacenter request for ``url`` may be repeated
++    once through the residential pool."""
++    return routes(url) and super_mode() == "auto" and not getattr(_local, "residential", False)
++
++
++def is_blocked(status: Optional[int]) -> bool:
++    return status in BLOCKED_STATUSES
+ 
+ 
+ def routes(url: str) -> bool:
