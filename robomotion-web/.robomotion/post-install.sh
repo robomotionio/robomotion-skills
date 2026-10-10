@@ -1,9 +1,9 @@
 #!/bin/sh
-# scrapedo-search install hook - runs once at image build (CWD = the skill folder).
+# robomotion-web group install hook - runs once at image build (CWD = the group root).
 # Standard-library Python only: nothing is downloaded. Two short commands are
 # put on PATH so the agent never has to locate the skill folder.
 set -eu
-script="$(pwd)/scripts/scrapedo.py"
+script="$(pwd)/skills/scrapedo-search/scripts/scrapedo.py"
 for pair in web-search:search web-fetch:fetch; do
   name=${pair%%:*}; sub=${pair#*:}
   cat > "/usr/local/bin/$name" <<EOF

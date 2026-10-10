@@ -28672,11 +28672,11 @@ groups:
   - research
   - web-search
   - scraping
-  has_post_install: false
+  has_post_install: true
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 06557408f0ac
+  content_hash: 9255d1495ccd
   skills:
   - id: robomotion-web/scrapedo-search
     name: scrapedo-search
@@ -28692,11 +28692,10 @@ groups:
       required: []
       optional:
       - SCRAPEDO_TOKEN
-    content_hash: c14fdaf839ac
+    content_hash: 6267e4372cff
     files:
     - SKILL.md
     - env.optional
-    - post-install.sh
     - scripts/scrapedo.py
     author: Robomotion
     source_url: https://github.com/robomotionio/robomotion-skills/tree/main/skills/scrapedo-search
@@ -28706,6 +28705,7 @@ groups:
   files:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
+  - .robomotion/post-install.sh
   - .robomotion/skill.yaml
 - path: shadcn-skills
   name: shadcn-skills
