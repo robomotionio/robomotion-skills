@@ -23260,7 +23260,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 5e3dc020aa7b
+  content_hash: c8c7d9986976
   skills:
   - id: last30days-skill/last30days
     name: last30days
@@ -23276,7 +23276,7 @@ groups:
       required: []
       optional:
       - SCRAPEDO_TOKEN
-    content_hash: 7842786269b6
+    content_hash: 8db996e77bd3
     files:
     - .skillignore
     - SKILL.md
@@ -23416,6 +23416,7 @@ groups:
   - .robomotion/CHANGELOG.md
   - .robomotion/LICENSE
   - .robomotion/patches/001-robomotion-sandbox-scrapedo.patch
+  - .robomotion/patches/002-scrapedo-datacenter-first.patch
   - .robomotion/post-install.sh
   - .robomotion/skill.yaml
   - LICENSE

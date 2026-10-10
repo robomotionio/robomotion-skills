@@ -58,6 +58,17 @@ def _url_encode(text: str) -> str:
     return urllib.parse.quote_plus(text)
 
 
+def _blocked(url: str, timeout: int) -> Optional[Dict[str, Any]]:
+    """Robomotion: repeat a request Reddit blocked on Scrape.do's datacenter
+    addresses once through its residential pool (scrapedo.py); None when
+    there is nothing to fall back to."""
+    if not scrapedo.can_fall_back(url):
+        return None
+    _log("Blocked on Scrape.do datacenter addresses; retrying through its residential pool")
+    with scrapedo.residential():
+        return _fetch_json(url, timeout)
+
+
 def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
     """Fetch JSON from a URL with retry on 429 and error handling.
 
@@ -80,7 +91,7 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
                 content_type = resp.headers.get("Content-Type", "")
                 if "json" not in content_type and "text/html" in content_type:
                     _log(f"Anti-bot HTML response (Content-Type: {content_type})")
-                    return None
+                    return _blocked(url, timeout)
 
                 raw = resp.read()
                 if resp.headers.get("Content-Encoding", "").lower() == "gzip":
@@ -102,13 +113,16 @@ def _fetch_json(url: str, timeout: int = 15) -> Optional[Dict[str, Any]]:
                     continue
                 # Last attempt exhausted
                 _log("429 retries exhausted")
-                return None
+                return _blocked(url, timeout)
             elif e.code == 404:
                 _log(f"404 not found: {url}")
                 return None
             elif e.code == 403:
                 _log(f"403 forbidden: {url}")
-                return None
+                return _blocked(url, timeout)
+            elif scrapedo.is_blocked(e.code) and scrapedo.can_fall_back(url):
+                _log(f"HTTP {e.code} through Scrape.do: {e.reason}")
+                return _blocked(url, timeout)
             else:
                 _log(f"HTTP {e.code}: {e.reason}")
                 return None

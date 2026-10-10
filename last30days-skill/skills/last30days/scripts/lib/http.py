@@ -1000,6 +1000,22 @@ def request(
     raise_recorded(error)
 
 
+# Robomotion: a Reddit or YouTube request blocked on Scrape.do's datacenter
+# addresses is repeated once through its residential pool (scrapedo.py).
+_request_direct = request
+
+
+def request(method: str, url: str, *args, **kwargs) -> Union[Dict[str, Any], str]:
+    try:
+        return _request_direct(method, url, *args, **kwargs)
+    except HTTPError as e:
+        if not (scrapedo.can_fall_back(url) and scrapedo.is_blocked(e.status_code)):
+            raise
+        log(f"Blocked ({e.status_code}) on Scrape.do datacenter addresses; retrying through its residential pool")
+        with scrapedo.residential():
+            return _request_direct(method, url, *args, **kwargs)
+
+
 def get(url: str, headers: Optional[Dict[str, str]] = None, **kwargs) -> Dict[str, Any]:
     """Make a GET request."""
     return request("GET", url, headers=headers, **kwargs)
