@@ -658,14 +658,16 @@ def cmd_sync(args):
         notes = materialize(u, target, Path(tmp))
         for rel, p in owned_files(u).items():
             p.unlink()
+        # Before copying: a folder upstream turned back into a link is empty
+        # now, and copying the link onto it would put the link inside it.
+        for d, _dirs, _files in os.walk(ROOT / u["group"], topdown=False):
+            if OURS not in Path(d).parts and not os.listdir(d):
+                os.rmdir(d)
         for p in sorted(Path(tmp).rglob("*")):
             if p.is_symlink() or p.is_file():
                 out = ROOT / u["group"] / p.relative_to(tmp)
                 out.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(p, out, follow_symlinks=False)
-    for d, _dirs, _files in os.walk(ROOT / u["group"], topdown=False):
-        if OURS not in Path(d).parts and not os.listdir(d):
-            os.rmdir(d)
     old = u.get("commit", "")
     u["commit"], u["license_sha256"] = target, new_license
     save_manifest(m)
