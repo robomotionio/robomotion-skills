@@ -28658,6 +28658,55 @@ groups:
   - .robomotion/LICENSE
   - .robomotion/skill.yaml
   - LICENSE
+- path: robomotion-web
+  name: robomotion-web
+  title: Robomotion Web
+  type: group
+  version: 1.0.0
+  author: Robomotion
+  source_url: https://github.com/robomotionio/robomotion-skills
+  license: Apache-2.0
+  summary: Search Google and read web pages through Scrape.do, with every result's link kept so findings can be cited.
+  category: Research
+  tags:
+  - research
+  - web-search
+  - scraping
+  has_post_install: false
+  has_env_yaml: false
+  has_changelog: true
+  has_license: true
+  content_hash: 06557408f0ac
+  skills:
+  - id: robomotion-web/scrapedo-search
+    name: scrapedo-search
+    path: robomotion-web/skills/scrapedo-search
+    title: scrapedo-search
+    summary: Search Google and read web pages (as Markdown) through Scrape.do, keeping each result's link so every finding
+      can be cited. Use for account and company research, competitor and pricing checks, finding a page that answers a question,
+      or reading a page a search turned up.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional:
+      - SCRAPEDO_TOKEN
+    content_hash: c14fdaf839ac
+    files:
+    - SKILL.md
+    - env.optional
+    - post-install.sh
+    - scripts/scrapedo.py
+    author: Robomotion
+    source_url: https://github.com/robomotionio/robomotion-skills/tree/main/skills/scrapedo-search
+    license: Apache-2.0
+    group: robomotion-web
+    category: Research
+  files:
+  - .robomotion/CHANGELOG.md
+  - .robomotion/LICENSE
+  - .robomotion/skill.yaml
 - path: shadcn-skills
   name: shadcn-skills
   title: shadcn/ui Skills
