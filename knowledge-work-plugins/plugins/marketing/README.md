@@ -5,7 +5,8 @@ A marketing plugin primarily designed for [Cowork](https://claude.com/product/co
 ## Installation
 
 ```bash
-claude plugins add knowledge-work-plugins/marketing
+claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install marketing@knowledge-work-plugins
 ```
 
 ## Commands

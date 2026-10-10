@@ -134,6 +134,20 @@ def fm_metadata_scalar(fm: str, key: str) -> str:
     return m.group(1).strip() if m else ""
 
 
+def skill_md_version(fm: str) -> str:
+    """The version a SKILL.md declares: a top-level `version:`, else
+    `metadata.version` (looked for only inside the metadata block, so a
+    `version:` under some other key is not taken). A 0.0.0 placeholder is no
+    version."""
+    v = fm_scalar(fm, "version")
+    if not v:
+        block = re.search(r"^metadata\s*:\s*\n((?:[ \t]+.*\n|[ \t]*\n)*)", fm + "\n", re.M)
+        m = block and re.search(r"^[ \t]+version\s*:\s*(.+?)\s*$", block.group(1), re.M)
+        v = m.group(1).strip("'\" ") if m else ""
+    v = re.sub(r"^[vV](?=\d)", "", str(v).strip())
+    return "" if not v or v.strip("0.") == "" else v
+
+
 def fm_tags(fm: str) -> list:
     raw = fm_scalar(fm, "tags")
     if not raw:
@@ -245,20 +259,12 @@ def read_skill(repo_root: str, skill_rel: str, group: dict | None) -> dict:
     fm = frontmatter(md)
     name = fm_scalar(fm, "name") or os.path.basename(skill_rel)
     summary = fm_scalar(fm, "summary") or fm_scalar(fm, "description")
-    # Group version wins for inner skills — group's .robomotion/skill.yaml is
-    # the authoritative Robomotion-side version (matches our release pin).
-    # Upstream SKILL.md frontmatter can drift between releases (e.g. upstream
-    # marketingskills has 1.9.0 in plugin.json, 2.0.0 in each SKILL.md, and
-    # 2.1.0 as the actual release tag) — we display ONE consistent number.
-    # Standalone skills fall back to their own SKILL.md frontmatter.
-    if group is not None:
-        version = group["version"]
-    else:
-        version = (
-            fm_scalar(fm, "version")
-            or fm_metadata_scalar(fm, "version")
-            or ""
-        )
+    # A version is upstream's, never ours. A skill whose SKILL.md declares
+    # its own version shows that one; any other inner skill shows its group's,
+    # which sync-upstream.py sets from upstream's release tag (or what
+    # upstream declares) at the pinned commit. Our own groups are their own
+    # upstream, so their skill.yaml version is the release.
+    version = skill_md_version(fm) or (group["version"] if group is not None else "")
     # Globally-unique id used by the Designer for storage / matching.
     # Bare `name` may collide across groups (e.g. claude-seo/seo-audit and
     # marketing-skills/seo-audit). `id` is "<group>/<name>" for inner skills,

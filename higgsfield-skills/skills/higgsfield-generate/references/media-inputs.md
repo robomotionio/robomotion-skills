@@ -8,10 +8,10 @@ Each media flag accepts either a local file path or a UUID. The CLI auto-uploads
 
 ```bash
 # Local path — CLI uploads automatically
-higgsfield generate create nano_banana_2 --prompt "stylize in watercolor" --image ./photo.png --wait
+higgsfield generate create nano_banana_flash --prompt "stylize in watercolor" --image ./photo.png --wait
 
 # Upload id (from higgsfield upload create)
-higgsfield generate create nano_banana_2 --prompt "..." --image <upload_id> --wait
+higgsfield generate create nano_banana_flash --prompt "..." --image <upload_id> --wait
 
 # Job id from a previous generation
 higgsfield generate create seedance_2_5 --prompt "anim" --mode omni_reference --start-image <previous_job_id> --wait
@@ -33,7 +33,7 @@ Each model declares a closed set of accepted roles or `*_references` params. Pas
 
 | Model | Accepted roles | Notes |
 |---|---|---|
-| Most image models (`nano_banana_2`, `flux_2`, `seedream_v4_5`, `gpt_image_2`, …) | `image` | 1+ references, often up to 8. |
+| Most image models (`nano_banana_flash`, `flux_2`, `seedream_v4_5`, `gpt_image_2`, …) | `image` | 1+ references, often up to 8. |
 | `nano_banana_2_lite` | `image_references` | Up to 14 image references. Use repeated `--image-references` or short alias `--image`; `aspect_ratio=auto` requires at least one reference. |
 | `gemini_omni` | `image_references`, `video_references` | Fast reference-to-video. Use repeated `--image-references`/`--video-references` or aliases `--image`/`--video`. Max 1 video reference; max 7 image references, or max 5 when a video reference is included. |
 | `gpt_image_2_5` | `image_references` | Use repeated `--image-references` or the short alias `--image`. |
@@ -64,7 +64,7 @@ higgsfield model get <model_id>   # shows the accepted media roles for this mode
 Most image models accept multiple references — repeat the `--image` flag:
 
 ```bash
-higgsfield generate create nano_banana_2 --prompt "..." \
+higgsfield generate create nano_banana_flash --prompt "..." \
   --image ./a.png --image ./b.png --image <upload_id> \
   --wait
 ```

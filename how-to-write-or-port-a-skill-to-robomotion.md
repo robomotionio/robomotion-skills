@@ -178,9 +178,8 @@ schema_version: 1
 name: marketing-skills
 title: Marketing Skills
 type: group                      # 'group' (has skills/) or 'skill' (single SKILL.md)
-version: 2.1.0                   # canonical upstream release tag — NOT necessarily what
-                                 # upstream's plugin.json or each SKILL.md's metadata.version
-                                 # says (those can drift; the release tag is the truth)
+version: 2.1.0                   # upstream's release tag at the pinned commit; written by
+                                 # sync-upstream.py, never by hand (see DEVELOPMENT.md)
 author: Corey Haines             # creator credit
 source_url: https://github.com/coreyhaines31/marketingskills
 license: MIT
@@ -190,7 +189,7 @@ tags: [marketing, copywriting, seo, ads, growth, cro]
 
 Notes:
 
-- `version` is **our pin**, matching upstream's canonical release tag. Upstream's own metadata can disagree with itself — marketingskills v2.1.0 has `plugin.json: 1.9.0` and `metadata.version: 2.0.0`/`2.0.1` in various SKILL.md files. The release tag wins; the loader propagates it to every inner skill (see §5.1 *Version inheritance*).
+- `version` is **upstream's**, never ours: the release tag the pinned commit belongs to, else the version upstream's own manifest declares at that commit, else the commit's short SHA. `sync-upstream.py sync` and `add` write it and `verify` fails on any other value. A first-party group is its own upstream and keeps its own version (see §5.1 *Version inheritance*).
 - `author` is the real upstream creator. The Designer renders `by Corey Haines` on skill cards and links the external icon to `source_url`.
 - `type: group` tells the indexer to also walk `marketing-skills/skills/<name>/SKILL.md` to discover the inner skills.
 
@@ -492,14 +491,14 @@ The only **required** file in `.robomotion/`. Fields:
 | `name` | yes | kebab-case identifier; must match the directory name. |
 | `title` | yes | Display name shown in the Designer. |
 | `type` | yes | `group` (has `skills/`) or `skill` (single SKILL.md). |
-| `version` | yes | Semver. For vendored groups: what we pin (not necessarily upstream HEAD). |
+| `version` | yes | Semver. For vendored groups: upstream's version at the pinned commit, set by `sync-upstream.py` (never typed by hand). |
 | `author` | yes | Creator credit. Upstream author for vendored; `Robomotion` for first-party. |
 | `source_url` | yes | Canonical source. Upstream repo for vendored; this repo + path for first-party. |
 | `license` | yes | SPDX identifier (e.g. `MIT`, `Apache-2.0`). |
 | `summary` | yes | One-sentence description. |
 | `tags` | optional | List of strings, for filtering in the Designer. |
 
-**Version inheritance.** For a `type: group` unit, the launcher's skill loader reads `version` from `.robomotion/skill.yaml` and **propagates it to every inner skill at load time**, overriding whatever each `SKILL.md` frontmatter declares. The indexer (`build-index.py`) does the same — every inner-skill row in `index.yaml` carries the group's version, not the upstream frontmatter value. This keeps the entire group on one consistent number (e.g. all 41 marketing skills show `v2.1.0`) and shields us from upstream's per-skill `metadata.version` drift.
+**Version inheritance.** In `index.yaml` (what the Designer and the hub show), an inner skill whose `SKILL.md` declares its own `version` or `metadata.version` carries that version; any other inner skill carries its group's `version` from `.robomotion/skill.yaml`. Every number is upstream's. The launcher's skill loader still propagates the group's `version` to every inner skill at load time.
 
 ### 5.2 `.robomotion/CHANGELOG.md` and `.robomotion/LICENSE`
 
@@ -665,7 +664,7 @@ encodes this as a `SKILL_DEPENDENCIES` map (directive edges only) plus a
 - **Putting an optional var in `env.required`.** It will block every run that doesn't bind it. Use `env.optional` when there's a fallback or alternative.
 - **Classifying an env var by its access idiom instead of its gate.** `process.env.X || ""` / `os.getenv("X", "")` reads as optional but is frequently just normalization — the deciding `if (!X) exit/throw` sits a few lines down. Trace every var forward to its first gate (§3.5b step 3). This exact miss filed `SERPAPI_KEY` as optional when `serp-analyzer.mjs` hard-exits without it.
 - **Adding `scripts/` to a skill that needs the host filesystem.** `scripts/` forces container mode; a filesystem skill (Obsidian-style) then loses host access. Stay pure-knowledge (no `scripts/`, no `post-install.sh`) if you need host fs.
-- **Forgetting to bump `version` in `.robomotion/skill.yaml`** after editing a `post-install.sh`. The container image hash includes the version + post-install content; without a bump the cache may serve a stale build.
+- **Forgetting to bump `version` in `.robomotion/skill.yaml`** after editing a `post-install.sh` of a first-party group. The container image hash includes the version + post-install content. A vendored group's `version` is upstream's and is never bumped by hand.
 - **Inventing filesystem paths for cross-skill state.** Producer-writes-a-file / consumer-reads-it is a brittle side-channel. Pick the right durable layer (§5.5): Memory for per-agent state, channel attachments for team-shared docs.
 - **Treating `/workspace` as shared team state.** A hired agent's workspace is per-hire — Copywriter and Lifecycle Manager don't share files there. For state multiple roles or humans need, upload to the team's Agent Teams channel and have other agents `files_download` it. See §5.5.
 - **Reaching for MCP first.** Robomotion is CLI-favored. Use a CLI via the `terminal` tool; reach for MCP only when there's no usable CLI.

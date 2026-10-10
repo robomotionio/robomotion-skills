@@ -2,7 +2,7 @@ schema_version: 1
 name: officecli
 title: OfficeCLI
 type: group
-version: 1.0.0
+version: 1.0.150
 author: iOfficeAI
 source_url: https://github.com/iOfficeAI/OfficeCLI
 license: Apache-2.0

@@ -1,5 +1,5 @@
 diff --git i/skills/last30days/SKILL.md w/skills/last30days/SKILL.md
-index f4db7b34..3268110c 100644
+index a4d6ae3..da4280f 100644
 --- i/skills/last30days/SKILL.md
 +++ w/skills/last30days/SKILL.md
 @@ -67,6 +67,23 @@ metadata:
@@ -34,10 +34,10 @@ index f4db7b34..3268110c 100644
 +{ [ -f /etc/last30days/robomotion-ready ] || grep -q "SETUP_COMPLETE=true" ~/.config/last30days/.env 2>/dev/null; } && echo "1" || echo "FIRST_RUN_DETECTED"
  ```
  
- This emits exactly one token: `1` or `FIRST_RUN_DETECTED`, never both.
+ This emits exactly one token: `1` or `FIRST_RUN_DETECTED`, never both. The grep only sees `SETUP_COMPLETE` in the global `.env`; it does not see process env, project config, Keychain, pass, or host-provided auth.
 diff --git i/skills/last30days/scripts/fetch_covers.py w/skills/last30days/scripts/fetch_covers.py
 new file mode 100644
-index 00000000..779b12f5
+index 0000000..779b12f
 --- /dev/null
 +++ w/skills/last30days/scripts/fetch_covers.py
 @@ -0,0 +1,133 @@
@@ -176,7 +176,7 @@ index 00000000..779b12f5
 +    sys.exit(main())
 diff --git i/skills/last30days/scripts/google_trends.py w/skills/last30days/scripts/google_trends.py
 new file mode 100644
-index 00000000..6f0bb965
+index 0000000..6f0bb96
 --- /dev/null
 +++ w/skills/last30days/scripts/google_trends.py
 @@ -0,0 +1,150 @@
@@ -331,10 +331,10 @@ index 00000000..6f0bb965
 +if __name__ == "__main__":
 +    sys.exit(main())
 diff --git i/skills/last30days/scripts/lib/http.py w/skills/last30days/scripts/lib/http.py
-index 7c1b5ce3..a4140ddc 100644
+index f238413..21fa494 100644
 --- i/skills/last30days/scripts/lib/http.py
 +++ w/skills/last30days/scripts/lib/http.py
-@@ -21,6 +21,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit, quote
+@@ -20,6 +20,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit, quote
  
  from . import health
  from . import log as _log
@@ -342,7 +342,7 @@ index 7c1b5ce3..a4140ddc 100644
  
  DEFAULT_TIMEOUT = 30
  
-@@ -792,7 +793,10 @@ def request(
+@@ -820,7 +821,10 @@ def request(
          data = json.dumps(json_data).encode('utf-8')
          headers.setdefault("Content-Type", "application/json")
  
@@ -352,13 +352,13 @@ index 7c1b5ce3..a4140ddc 100644
 +    wire_url = scrapedo.wrap(url) if scrapedo.routes(url) else url
 +    req = urllib.request.Request(wire_url, data=data, headers=headers, method=method)
  
-     safe_url = re.sub(r'([?&])(key|api_key|token|secret)=[^&]*', r'\1\2=***', url)
-     log(f"{method} {safe_url}")
+     def log_request(message: str) -> None:
+         log(_scrub_fixture_value(message, redactions=fixture_redactions))
 diff --git i/skills/last30days/scripts/lib/pipeline.py w/skills/last30days/scripts/lib/pipeline.py
-index 15f991eb..4fe19553 100644
+index d4304b8..e60bddf 100644
 --- i/skills/last30days/scripts/lib/pipeline.py
 +++ w/skills/last30days/scripts/lib/pipeline.py
-@@ -55,6 +55,7 @@ from . import (
+@@ -56,6 +56,7 @@ from . import (
      providers,
      query,
      reddit,
@@ -366,7 +366,7 @@ index 15f991eb..4fe19553 100644
      reddit_listing,
      reddit_public,
      relevance,
-@@ -323,7 +324,7 @@ def available_sources(
+@@ -324,7 +325,7 @@ def available_sources(
              x_pending = env.x_pending_browser_auth(config)
          if x_pending:
              available.append("x")
@@ -375,7 +375,7 @@ index 15f991eb..4fe19553 100644
          available.append("youtube")
      available.extend(["hackernews", "polymarket"])
      # StockTwits is gated to ticker/crypto topics only (flag set in run()).
-@@ -5074,8 +5075,22 @@ def _retrieve_stream_impl(
+@@ -5112,8 +5113,22 @@ def _retrieve_stream_impl(
              config.get("SCRAPECREATORS_API_KEY", "")
              if env.is_youtube_sc_available(config) else None
          )
@@ -399,7 +399,7 @@ index 15f991eb..4fe19553 100644
              try:
                  result = youtube_yt.search_and_transcribe(
                      yt_query, from_date, to_date, depth=depth, token=sc_token,
-@@ -5098,6 +5113,8 @@ def _retrieve_stream_impl(
+@@ -5136,6 +5151,8 @@ def _retrieve_stream_impl(
                  result = None
          if result is None:
              result = {"items": []}
@@ -409,7 +409,7 @@ index 15f991eb..4fe19553 100644
          items = youtube_yt.parse_youtube_response(result)
          if items and env.is_youtube_comments_available(config):
 diff --git i/skills/last30days/scripts/lib/reddit_public.py w/skills/last30days/scripts/lib/reddit_public.py
-index f4298c4e..b22eca92 100644
+index 48751c2..24f5a0b 100644
 --- i/skills/last30days/scripts/lib/reddit_public.py
 +++ w/skills/last30days/scripts/lib/reddit_public.py
 @@ -27,7 +27,7 @@ import urllib.parse
@@ -434,7 +434,7 @@ index f4298c4e..b22eca92 100644
          try:
 diff --git i/skills/last30days/scripts/lib/scrapedo.py w/skills/last30days/scripts/lib/scrapedo.py
 new file mode 100644
-index 00000000..30581302
+index 0000000..3058130
 --- /dev/null
 +++ w/skills/last30days/scripts/lib/scrapedo.py
 @@ -0,0 +1,185 @@
@@ -624,7 +624,7 @@ index 00000000..30581302
 +        params["gl"] = geo().upper()
 +    return "https://www.youtube.com/results?" + urlencode(params)
 diff --git i/skills/last30days/scripts/lib/youtube_yt.py w/skills/last30days/scripts/lib/youtube_yt.py
-index 3234d7d1..573d0979 100644
+index 3234d7d..573d097 100644
 --- i/skills/last30days/scripts/lib/youtube_yt.py
 +++ w/skills/last30days/scripts/lib/youtube_yt.py
 @@ -58,7 +58,7 @@ def reset_transcript_fetch_stats() -> None:

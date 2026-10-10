@@ -2,7 +2,7 @@ schema_version: 1
 name: higgsfield-skills
 title: Higgsfield Skills
 type: group
-version: 1.0.0
+version: 0.13.0
 author: Higgsfield AI
 source_url: https://github.com/higgsfield-ai/skills
 license: MIT

@@ -49,7 +49,7 @@ masked-inpaint composite) and `seamless.py` (legacy standalone seam fix).
    else** — never fall back to rewriting the script from memory:
 
    Use the path supplied by the active skill loader or search the agent's installed skills
-   directory for `higgsfield-game-generation/SKILL.md`, then export its parent directory.
+   directory for `higgsfield-websites/SKILL.md`, then export its parent directory.
 3. Still nothing → stop and report the exact path tried; a run without
    the bundled scripts is a blocker, not a license to improvise.
 

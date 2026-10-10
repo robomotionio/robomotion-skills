@@ -106,7 +106,7 @@ resource "google_pubsub_topic_iam_member" "app_publisher" {
 
 ```bash
 # For single-project infrastructure
-agents-cli infra single-project  # Runs terraform apply in deployment/terraform/single-project/
+agents-cli infra single-project --apply  # Runs terraform apply in deployment/terraform/single-project/
 
 # For CI/CD, infrastructure is applied automatically on push
 ```
@@ -124,6 +124,11 @@ agents-cli infra single-project  # Runs terraform apply in deployment/terraform/
 - Create topic and push subscription in Terraform
 - Point subscription to `/apps/{app_name}/trigger/pubsub` endpoint
 - Grant `iam.serviceAccountTokenCreator` role for push auth
+
+> **Go trigger endpoints are not enabled by default, and sit under `/api`.** The scaffolded `main.go`
+> already registers the `pubsub` and `eventarc` sub-launchers, but the container `ENTRYPOINT` omits
+> their keywords, so the routes are not served. Each trigger launcher keeps its own `-path_prefix`.
+> The launcher prints both URLs at startup; point the subscription at those.
 
 **BigQuery Remote Function:**
 - Create BigQuery connection in Terraform

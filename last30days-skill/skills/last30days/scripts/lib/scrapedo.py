@@ -11,8 +11,12 @@ Environment:
     SCRAPEDO_GEO    Two-letter country code (us, tr, de, ...) for Scrape.do's
                     geoCode, YouTube's gl and Google Trends' geo. Unset = no
                     country for Scrape.do and US for Google Trends.
-    SCRAPEDO_SUPER  "0" turns off residential routing (super=true), which
-                    Reddit needs. On by default.
+    SCRAPEDO_SUPER  "auto" (the default) fetches through Scrape.do's
+                    datacenter addresses first and repeats a request that
+                    comes back blocked (403, 407, 429, 502, 503 or an
+                    anti-bot page) once through its residential pool
+                    (super=true), which costs more credits per request. "1"
+                    always uses the residential pool, "0" never does.
 
 Scrape.do takes its token only as a query parameter. Inside a Robomotion
 sandbox the variable holds a vault placeholder that the robot's credential
@@ -22,10 +26,12 @@ appears in this process, its logs or its saved reports.
 
 from __future__ import annotations
 
+import contextlib
 import datetime as _dt
 import json
 import os
 import re
+import threading
 from typing import Any, Dict, List, Optional
 from urllib.parse import quote, urlencode, urlsplit
 
@@ -59,9 +65,48 @@ def geo() -> str:
     return value if re.fullmatch(r"[a-z]{2}", value) else ""
 
 
+# A blocked answer from the datacenter pool: the request is worth one
+# more try through the residential pool.
+BLOCKED_STATUSES = frozenset({403, 407, 429, 502, 503})
+
+_local = threading.local()
+
+
+def super_mode() -> str:
+    """'auto' (datacenter first, residential on a block), 'always' or 'off'."""
+    value = (os.environ.get(SUPER_ENV) or "auto").strip().lower()
+    if value in {"0", "false", "no", "off", "never"}:
+        return "off"
+    if value in {"1", "true", "yes", "on", "always"}:
+        return "always"
+    return "auto"
+
+
 def super_on() -> bool:
-    value = (os.environ.get(SUPER_ENV) or "1").strip().lower()
-    return value not in {"0", "false", "no", "off"}
+    """True when the next wrapped request goes through the residential pool."""
+    mode = super_mode()
+    return mode == "always" or (mode == "auto" and getattr(_local, "residential", False))
+
+
+@contextlib.contextmanager
+def residential():
+    """Requests wrapped inside this block use the residential pool."""
+    before = getattr(_local, "residential", False)
+    _local.residential = True
+    try:
+        yield
+    finally:
+        _local.residential = before
+
+
+def can_fall_back(url: str) -> bool:
+    """True when a blocked datacenter request for ``url`` may be repeated
+    once through the residential pool."""
+    return routes(url) and super_mode() == "auto" and not getattr(_local, "residential", False)
+
+
+def is_blocked(status: Optional[int]) -> bool:
+    return status in BLOCKED_STATUSES
 
 
 def routes(url: str) -> bool:
