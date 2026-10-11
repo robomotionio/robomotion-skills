@@ -33,7 +33,7 @@ A **unit** is any folder with a `.robomotion/skill.yaml`: a **group** of skills 
 
 Our metadata and edits, kept beside the upstream content and never inside it.
 
-- **`skill.yaml`** is the only source `build-index.py` reads for a group; upstream metadata such as `.claude-plugin/plugin.json` is ignored. Every skill in a group takes the group's `version`. Its `summary` is the pack description shown in the README and the Designer.
+- **`skill.yaml`** is the only source `build-index.py` reads for a group; upstream metadata such as `.claude-plugin/plugin.json` is ignored. A skill whose `SKILL.md` declares its own `version` (or `metadata.version`) shows that one; every other skill takes the group's `version`. For a vendored group that `version` is upstream's, written by `sync-upstream.py` (see [Versions](#versions)). Its `summary` is the pack description shown in the README and the Designer.
 - **`patches/`** holds every edit we make to upstream files. `sync-upstream.py` applies them after each sync.
 - **`post-install.sh`** is where a group's install exceptions go.
 - **`env.yaml`** maps a group's integrations to the credentials each one takes, for groups whose skills can use many alternative tools (`marketing-skills`). Per-skill `env.required` / `env.optional` stay the source of truth.
@@ -141,6 +141,32 @@ to upstream content is a patch file in `.robomotion/patches/`, never an edit
 in place: `verify` fails the build on one. A sync whose upstream licence file
 changed stops until someone reads it and re-runs with `--accept-license`.
 
+### Versions
+
+A vendored group's `version` is upstream's, never ours, and nobody types it.
+`sync` and `add` write it into `.robomotion/skill.yaml` from the pinned
+commit, and `verify` fails when it says anything else:
+
+1. the nearest release tag at or before the commit, with its leading `v` (and
+   any `name-` or `name@` prefix) stripped. Plain `vX.Y.Z` tags are preferred;
+   an upstream that tags several things names its series in the group's
+   `version_tags` (`skill-v*` for `impeccable`, `shadcn@*` for `shadcn-skills`);
+2. if no tag reaches the commit, the version upstream declares at that commit
+   in `.claude-plugin/plugin.json`, `plugin.json`,
+   `.claude-plugin/marketplace.json`, `package.json` or `pyproject.toml`, then
+   the highest in the plugin manifests or `SKILL.md` front-matter of what the
+   group takes;
+3. if upstream declares none anywhere, the commit's short SHA.
+
+```sh
+python3 sync-upstream.py version            # dry run: what each group gets, and from where
+python3 sync-upstream.py version --check    # exit 1 when a skill.yaml differs
+```
+
+A commit past its tag keeps the tag's version; the sync's output says how
+many commits past it is. Our own groups (`designer-skills`, `video-skills`)
+are their own upstream and keep their own versions.
+
 ### How a repository gets in
 
 A repository is added when it is popular (skills.sh installs, with GitHub stars and official publishers as secondary signals) **and**:
@@ -172,7 +198,7 @@ the folder. Use `--exclude` for skills we can't redistribute or run, and
 | Group | Difference |
 |---|---|
 | `anthropic-skills/` | Apache-licensed skills only; `docx`, `pdf`, `pptx` and `xlsx` are rights-reserved |
-| `caveman-skills/` | MIT-licensed skills only, minus the eight that need Caveman Cloud (its gateway sees a repo's LLM traffic), the `caveman` CLI, or Claude Code's hooks and sub-agents |
+| `caveman-skills/` | Apache-2.0 since upstream's 3.0.0 relicense (the pre-3.0 MIT text and upstream's `NOTICE` travel with it). Minus the eight that need Caveman Cloud (its gateway sees a repo's LLM traffic), the `caveman` CLI, or Claude Code's hooks and sub-agents |
 | `openai-skills/` | `skills/.curated` only, minus the Figma skills (under Figma's developer terms, not a licence) and four for Codex or Windows apps: `hatch-pet`, `migrate-to-codex`, `chatgpt-apps`, `winui-app`. The Notion skills are MIT and need a Notion MCP server. Upstream is deprecated and the pin is its last commit; its successor, `openai/plugins`, carries none of these skills and has no repository licence, so the group stays here as it is |
 | `mattpocock-skills/` | `engineering` and `productivity` folders only |
 | `google-skills/` | One skill excluded: it executes base64-decoded code |
@@ -247,6 +273,6 @@ For a first-party skill (third-party groups: see [Adding a group](#adding-a-grou
 3. If the skill needs OS packages or libraries, write `post-install.sh` and mark it executable.
 4. If it ships helpers the LLM invokes, drop them in `scripts/` and document the invocation pattern in `SKILL.md`.
 5. If it needs credentials, list the mandatory ones in `env.required` and any with a fallback in `env.optional`.
-6. Bump `version` in the group's `.robomotion/skill.yaml` if you changed an install hook, so the image cache rebuilds.
+6. Bump `version` in the group's `.robomotion/skill.yaml` if you changed an install hook, so the image cache rebuilds. (First-party groups only: a vendored group's `version` is upstream's.)
 7. Run `python3 build-index.py && python3 build-readme.py` and commit `index.yaml` and `README.md`.
 8. Run `python3 scan-skills.py --changed` and `bash validate.sh`, then open a PR.

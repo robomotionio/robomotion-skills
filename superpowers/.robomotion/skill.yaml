@@ -2,7 +2,7 @@ schema_version: 1
 name: superpowers
 title: Superpowers
 type: group
-version: 1.0.0
+version: 6.4.2
 author: Jesse Vincent
 source_url: https://github.com/obra/superpowers
 license: MIT

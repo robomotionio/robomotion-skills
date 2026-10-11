@@ -5,7 +5,8 @@ A sales plugin primarily designed for [Cowork](https://claude.com/product/cowork
 ## Installation
 
 ```bash
-claude plugins add knowledge-work-plugins/sales
+claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install sales@knowledge-work-plugins
 ```
 
 ## What's new in 2.0
@@ -136,7 +137,7 @@ With nothing connected, a skill says plainly what it used and what it could not 
 | **Data enrichment** | Clay, ZoomInfo, Apollo, Lusha, Crunchbase | Company and contact data |
 | **Chat** | Slack, Microsoft Teams | Team context and summaries posted to channels |
 
-**Salesforce and Microsoft 365 (Outlook, Teams, SharePoint) connect through the Claude connector directory.**
+**Salesforce and Microsoft 365 (Outlook, Teams, SharePoint) are included. Your organization's admin enables each one in Claude before people can sign in; for Salesforce, that includes setting up your org's Salesforce app.**
 
 See [CONNECTORS.md](CONNECTORS.md) for every included server and other options.
 

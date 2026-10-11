@@ -2,7 +2,7 @@ schema_version: 1
 name: emilkowalski-skills
 title: Emil Kowalski Skills
 type: group
-version: 1.0.0
+version: e8a175de22ae
 author: Emil Kowalski
 source_url: https://github.com/emilkowalski/skills
 license: MIT

@@ -14,7 +14,8 @@ An AI-powered productivity plugin for in-house legal teams, primarily designed f
 ## Installation
 
 ```
-claude plugins add knowledge-work-plugins/legal
+claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install legal@knowledge-work-plugins
 ```
 
 ## Quick Start
@@ -22,7 +23,8 @@ claude plugins add knowledge-work-plugins/legal
 ### 1. Install the plugin
 
 ```
-claude plugins add knowledge-work-plugins/legal
+claude plugin marketplace add anthropics/knowledge-work-plugins
+claude plugin install legal@knowledge-work-plugins
 ```
 
 ### 2. Configure your playbook

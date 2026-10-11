@@ -2,7 +2,7 @@ schema_version: 1
 name: azure-skills
 title: Azure Skills
 type: group
-version: 1.0.0
+version: 1.2.46
 author: Microsoft
 source_url: https://github.com/microsoft/azure-skills
 license: MIT
