@@ -1,0 +1,14 @@
+schema_version: 1
+name: robomotion-web
+title: Robomotion Web
+type: group
+version: 1.0.0
+author: Robomotion
+source_url: https://github.com/robomotionio/robomotion-skills
+license: Apache-2.0
+summary: Search Google and read web pages through Scrape.do, with every result's link kept so findings can be cited.
+category: Research
+tags:
+- research
+- web-search
+- scraping

@@ -1,0 +1,3 @@
+# This group asks for the robomotion command inside the sandbox. The Hermes
+# launcher (0.26.5+) mounts a Linux build of the robot's own version at
+# /usr/local/bin/robomotion when an active group carries this file.
