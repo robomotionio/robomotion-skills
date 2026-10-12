@@ -19421,7 +19421,7 @@ groups:
   name: impeccable
   title: Impeccable
   type: group
-  version: 4.3.1
+  version: 4.5.0
   author: Paul Bakaus
   source_url: https://github.com/pbakaus/impeccable
   license: Apache-2.0
@@ -19437,7 +19437,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 3c455eed6e0f
+  content_hash: 4ce49af8d255
   skills:
   - id: impeccable/impeccable
     name: impeccable
@@ -19451,13 +19451,13 @@ groups:
       design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that
       should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically
       extraordinary. Not for backend-only or non-UI tasks.
-    version: 4.3.1
+    version: 4.5.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 3bd520f068f9
+    content_hash: 3d83d28cfc75
     files:
     - SKILL.md
     - reference/adapt.md
@@ -19469,6 +19469,7 @@ groups:
     - reference/bolder.md
     - reference/clarify.md
     - reference/colorize.md
+    - reference/component-review.md
     - reference/craft-floor.md
     - reference/craft.md
     - reference/critique.md
@@ -19481,6 +19482,7 @@ groups:
     - reference/doctor.md
     - reference/document.md
     - reference/extract.md
+    - reference/generate.md
     - reference/harden.md
     - reference/hooks.md
     - reference/init.md
@@ -19488,6 +19490,9 @@ groups:
     - reference/layout.md
     - reference/live-setup.md
     - reference/live.md
+    - reference/mode-operate.md
+    - reference/mode-persuade.md
+    - reference/mode-read.md
     - reference/new-work.md
     - reference/onboard.md
     - reference/operate.md
@@ -19495,6 +19500,7 @@ groups:
     - reference/overdrive.md
     - reference/polish.md
     - reference/quieter.md
+    - reference/region-map.md
     - reference/routing.md
     - reference/shape.md
     - reference/typeset.md
