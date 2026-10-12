@@ -639,7 +639,7 @@ upstreams:
 - group: taste-skill
   repo: https://github.com/Leonxlnx/taste-skill
   track: main
-  commit: ce26fc25c0e5e8cab638f883de62d9a86ee5e45b
+  commit: 85fc47e4a1355fc2e047f8447171389c993855c9
   subdir: ''
   mode: mirror
   license: MIT
