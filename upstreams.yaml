@@ -316,7 +316,7 @@ upstreams:
 - group: google-skills
   repo: https://github.com/google/skills
   track: main
-  commit: 5d9d07bb1ce6e97b45b2b3ab302b2c61322f0f29
+  commit: 1d77046ad3670d62227f50a8f53286f6c6cde08b
   subdir: ''
   mode: mirror
   license: Apache-2.0

@@ -10,6 +10,7 @@ description: >-
   iam-helper-for-privileged-access-management), configuring VPC Service
   Controls, or managing network firewall rules.
 metadata:
+  version: "1.0.0"
   category: Security
 ---
 
