@@ -135,7 +135,7 @@ upstreams:
 - group: caveman-skills
   repo: https://github.com/JuliusBrussee/caveman
   track: main
-  commit: 17b5bff98e86db45c17cb4dfbe5ea79a177c433f
+  commit: d7795ad11c7e0ba3308d5005cf579a4eac1e4538
   subdir: ''
   mode: mirror
   license: Apache-2.0
