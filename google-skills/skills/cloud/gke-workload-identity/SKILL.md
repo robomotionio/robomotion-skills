@@ -1,18 +1,19 @@
 ---
 name: gke-workload-identity
 metadata:
+  version: "1.0.1"
   category: Security
 description: >-
-  Diagnoses Workload Identity Federation for GKE authentication failures for Pods
+  Configures and diagnoses Workload Identity Federation for GKE authentication failures for Pods
   (403 "iam.serviceAccounts.getAccessToken" / permission denied, "could not find
   default credentials", or GKE metadata server unreachable) by verifying
   cluster and node-pool Workload Identity configuration, the Kubernetes
   ServiceAccount (KSA) to IAM binding (direct principal binding and legacy Google
   ServiceAccount impersonation), target-resource IAM roles, and gke-metadata-server
-  health. Use when a Pod cannot authenticate to Google Cloud APIs even though
-  Workload Identity is expected to be in effect. Don't use for in-cluster
+  health. Use when setting up KSA/GSA bindings (`roles/iam.workloadIdentityUser`,
+  `iam.gke.io/gcp-service-account`) or when a Pod cannot authenticate to Google Cloud APIs. Don't use for in-cluster
   Kubernetes RBAC errors (API-server authorization), general workload crashes
-  (use gke-workload-troubleshooting), or Workload Identity setup and hardening
+  (use gke-workload-troubleshooting), or Pod Security Standards and NetworkPolicies
   (use gke-workload-security).
 ---
 
