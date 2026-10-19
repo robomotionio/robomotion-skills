@@ -12116,13 +12116,13 @@ groups:
       remove specific users, or clear/replace an entire audience for Customer Match, mobile device ID audiences, or any other
       audience use case supported by the Data Manager API. Don't use for uploading events or conversions (use the data-manager-api-event-ingestion
       skill).
-    version: '1.1'
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1a698fec7924
+    content_hash: 9e4dc633718c
     files:
     - SKILL.md
     - references/create-audience.md
@@ -12141,13 +12141,13 @@ groups:
       conversions, enhanced conversions for leads, click conversions, Google Analytics web or app events, or any other event
       ingestion use case supported by the Data Manager API. Don't use for uploading audience members (use the data-manager-api-audience-ingestion
       skill).
-    version: '1.1'
+    version: 1.2.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8fdc787dcbda
+    content_hash: 732fb7b2c777
     files:
     - SKILL.md
     author: Google
@@ -12163,13 +12163,13 @@ groups:
       Use this skill when a user is getting started with the Data Manager API and needs to setup their local environment,
       install the client library, or setup access to the API. Don't use for implementing audience or event ingestion logic
       (use the data-manager-api-audience-ingestion or data-manager-api-event-ingestion skills instead).
-    version: '1.0'
+    version: 1.0.2
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: e90dd51c1878
+    content_hash: 6376dee3b68c
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12191,13 +12191,13 @@ groups:
       drops, analyzing campaign impression share metrics, investigating low lead flow, or searching for bidding and budget
       constraints. Don't use for setting up new campaigns, uploading conversion events directly, or general Google Mobile
       Ads SDK integration issues (use gma-android-integrate instead).
-    version: '1.0'
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 0814458d4ac1
+    content_hash: dbd1790dc993
     files:
     - SKILL.md
     author: Google
@@ -12212,13 +12212,13 @@ groups:
     summary: Guides developers through downloading, configuring, and installing the official open-source Google Ads MCP Server.
       Use this skill when a user wants to connect their AI assistant (such as Gemini, Claude Code, or Cursor) to their Google
       Ads account to query campaigns or retrieve reporting metrics using natural language.
-    version: '1.0'
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c9abb9be424f
+    content_hash: 41bde3db3c73
     files:
     - SKILL.md
     author: Google
@@ -12244,13 +12244,13 @@ groups:
       - The user wants to write a quickstart/example script for Google Ads.
 
       - The user encounters errors like USER_PERMISSION_DENIED or DEVELOPER_TOKEN_NOT_APPROVED.'
-    version: '1.0'
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 94a1bc58a8a1
+    content_hash: 071e5019c80f
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12276,7 +12276,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: dcba99bb0d08
+    content_hash: f7612ca05845
     files:
     - SKILL.md
     author: Google
@@ -12297,7 +12297,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 401e2f21cf4d
+    content_hash: 4f65b32138bb
     files:
     - SKILL.md
     - references/android-banner.md
@@ -12321,7 +12321,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b94ccd9e3eb6
+    content_hash: 90fc61742000
     files:
     - SKILL.md
     - references/android-get-started.md
@@ -12345,7 +12345,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 1c562d3ba078
+    content_hash: c34cfca32349
     files:
     - SKILL.md
     - references/android-interstitial.md
@@ -12369,7 +12369,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f5f073f719e7
+    content_hash: 2938c0b5cab8
     files:
     - SKILL.md
     - references/android-rewarded.md
@@ -12394,7 +12394,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 077590e00c59
+    content_hash: 365d40fbe7c5
     files:
     - SKILL.md
     - references/ad-preloading.md
@@ -12470,13 +12470,13 @@ groups:
       accounts and properties, and manages data streams, custom dimensions, conversion events, and integrations. Use when
       you need to programmatically configure Google Analytics accounts, provision properties, manage data retention, configure
       Measurement Protocol secrets, or manage Firebase and Google Ads links.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d94cd170ea22
+    content_hash: 763152be9bd3
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12500,13 +12500,13 @@ groups:
       analytics reports, query metrics (like activeUsers, screenPageViews) and dimensions (like city, date), check metrics
       and dimensions compatibility, or verify API enablement. Don't use for Google Analytics Admin API operations (e.g., creating
       properties, managing users) or for front-end tracking installation.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 58d4d93371e5
+    content_hash: e4d2aca7ac2d
     files:
     - SKILL.md
     - references/dotnet.md
@@ -12531,13 +12531,13 @@ groups:
       to AI agents, or when the agent is not instrumented with OpenTelemetry (for Reliability, Cost, Safety, Security alerts).
       NOTE: Reliability, Cost, Safety, and Security alerts use generic OTel metrics and work across runtimes (such as Cloud
       Run, Vertex AI). Quality alerts rely on Vertex AI Online Monitors and are strictly bound to Vertex AI deployments.'
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 80b87cac16e5
+    content_hash: a3a8d790efc3
     files:
     - SKILL.md
     - references/cost_alert_policies.md
@@ -12582,18 +12582,20 @@ groups:
       ai model-garden models list-deployment-config`), query deployment cost, troubleshoot deployment errors (like quota limits),
       or undeploy/clean up endpoints. Also use when copying and deploying a 1P Tuned Model. Don't use for pure listing/discovery
       questions of the form "is X deployed?", "list my endpoints", or "which regions have models running?" — for those use
-      `agent-platform-endpoint-management`. Don't use for public Vertex AI deployments (use the `vertex-deploy` skill) or
-      for running model evaluations (use the `agent-platform-eval-flywheel` skill).
-    version: 0.0.1
+      `agent-platform-endpoint-management`. Don't use for running model evaluations (use `agent-platform-eval-flywheel` skill).
+    version: 1.0.4
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 56b06fb5b5cd
+    content_hash: 4bb941077d56
     files:
     - SKILL.md
     - references/copy_deploy_guide.md
+    - references/region_availability.md
+    - references/troubleshooting.md
+    - references/undeploy_guide.md
     - references/usage.md
     - scripts/calculate_cost.py
     - scripts/config_gcloud_cli.sh
@@ -12609,13 +12611,13 @@ groups:
     summary: Manages Agent Platform serving endpoints. Use when you need to create, list, describe, update, or delete serving
       endpoints for model deployment on Agent Platform. Also use when troubleshooting endpoint permission, quota, or resource
       busy errors. Don't use for deploying models to endpoints or for running model evaluations.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2d1c72743d36
+    content_hash: 096177b0b305
     files:
     - SKILL.md
     author: Google
@@ -12628,17 +12630,17 @@ groups:
     path: google-skills/skills/cloud/agent-platform-eval-flywheel
     title: agent-platform-eval-flywheel
     summary: Measures and improves the quality of AI models and agents on Google Cloud using the Eval Quality Flywheel methodology.
-      Use when evaluating an agent or model, building an eval dataset, picking or writing evaluation metrics, analyzing failures,
-      comparing results before and after a fix, or when guidance is needed on Agent Platform eval methodology — including
-      dataset schema, LLM-as-judge scoring, and common failure causes. For fine-tuning, use agent-platform-tuning. For general
-      production deployment, use agent-platform-deploy.
-    version: 0.0.1
+      Use when generating synthetic user scenarios, evaluating an agent or model, building an eval dataset, picking or writing
+      evaluation metrics, analyzing failures, comparing results before and after a fix, or when guidance is needed on Agent
+      Platform eval methodology — including dataset schema, LLM-as-judge scoring, and common failure causes. For fine-tuning,
+      use agent-platform-tuning. For general production deployment, use agent-platform-deploy.
+    version: 1.0.3
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 51a953608d74
+    content_hash: d0c77a5e339e
     files:
     - SKILL.md
     - references/dataset_schema.md
@@ -12668,13 +12670,13 @@ groups:
       with GenAI SDK, OpenAI SDK, or legacy Agent Platform SDK, configure base URLs and global/regional endpoints, or troubleshoot
       429 Resource Exhausted (DSQ), 400 User Validation, or 404 Not Found errors. Don't use for deploying models to endpoints
       or for running model evaluations.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 1ab56ae28c6b
+    content_hash: e8ed30753a73
     files:
     - SKILL.md
     - scripts/gemini_genai_sdk.py
@@ -12697,13 +12699,13 @@ groups:
     summary: Guides agents and users through migrating from Gemini API in Google AI Studio to Gemini Enterprise Agent Platform
       (formerly Vertex AI). Use this skill when moving applications to Google Cloud, to leverage Cloud credits, or to unify
       inferencing with other Cloud infrastructure (IAM, billing, telemetry).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9a7df692a5dd
+    content_hash: 2b0010a7df83
     files:
     - SKILL.md
     author: Google
@@ -12718,13 +12720,13 @@ groups:
     summary: Agent Platform Model Registry Management. Use when you need to upload, list, describe, update, or delete machine
       learning models (and their versions) in the Agent Platform Model Registry. Don't use for model training, model deployment
       to endpoints, or managing non-Agent Platform models.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f92f4c3bea6c
+    content_hash: 92e43eacd979
     files:
     - SKILL.md
     author: Google
@@ -12739,13 +12741,13 @@ groups:
     summary: Manages and orchestrates prompts in Agent Platform. Use when you need to create, list, retrieve, version, or
       delete managed prompts in Agent Platform. Don't use for model training, model deployment to endpoints, or managing non-Agent
       Platform prompts.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c22a4a3e938a
+    content_hash: ac840819b44f
     files:
     - SKILL.md
     - references/create.md
@@ -12762,13 +12764,13 @@ groups:
       Use when listing RAG corpora or files, inspecting a corpus, retrieving contexts, or generating content grounded in a
       RAG corpus. Do not use for standard database queries (use SQL/Spanner skills), Google Workspace RAG, or other RAG products
       like gRAG.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 21bd94e97278
+    content_hash: 07d6a509916e
     files:
     - SKILL.md
     author: Google
@@ -12782,13 +12784,13 @@ groups:
     title: agent-platform-skill-registry
     summary: Interact with the Gemini Enterprise Agent Platform Skill Registry to create and search for available skills.
       Use this skill to enable agents to register functionality or discover new capabilities.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 56e909054741
+    content_hash: ddd389c97ae5
     files:
     - SKILL.md
     - references/generate-skill.md
@@ -12811,13 +12813,13 @@ groups:
       Model Armor, Identity-Aware Proxy (IAP)). Use when agent requests fail with 403 (especially unauthorized egress), Agent
       Runtime queries return 500, or gateway/IAP logs show permission errors. Don't use for general Google Cloud Identity
       and Access Management (IAM) debugging or networking issues unrelated to the Agent Platform stack.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 69ebb13610b2
+    content_hash: 62b37f5d029b
     files:
     - SKILL.md
     - references/agent-gateway.md
@@ -12838,13 +12840,13 @@ groups:
     summary: Agent Platform Model Tuning. Use when you need to fine-tune open models or Gemini models using Agent Platform
       infrastructure. Don't use for model training outside Agent Platform, model deployment to endpoints (use `agent-platform-deploy`),
       or managing serving endpoints (use `agent-platform-endpoint-management`).
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 64188b5d5b43
+    content_hash: 04bbee671e28
     files:
     - SKILL.md
     - references/data_prep.md
@@ -12870,13 +12872,13 @@ groups:
     summary: Manages GenAI tuning jobs in Agent Platform. Use this to list, get, or cancel ongoing model tuning jobs. Don't
       use for fine-tuning models (use `agent-platform-tuning`), deploying models to endpoints (use `agent-platform-deploy`),
       or managing serving endpoints (use `agent-platform-endpoint-management`).
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f150aead3312
+    content_hash: bb2ea34f8442
     files:
     - SKILL.md
     author: Google
@@ -12891,13 +12893,13 @@ groups:
     summary: Manages clusters, instances, and backups for AlloyDB for PostgreSQL, and integrates with AlloyDB Model Context
       Protocol (MCP) tools for automated database operations. Use when creating, configuring, or administering AlloyDB databases.
       Do NOT use for general PostgreSQL instances (e.g. Cloud SQL) or other GCP databases.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 047b14cb443a
+    content_hash: 61f9ed9c9c4e
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -12918,13 +12920,13 @@ groups:
       - Designing GCP infrastructure with Terraform. - Validating local HCL. - Performing best-practice plan scans. - Importing
       templates to Application Design Center (ADC). - Deploying templates. - Troubleshooting deployment failures. Boundaries:
       - Only use for GCP-specific cloud infrastructure. - Only use for Terraform coding within the ADC context.'
-    version: '1'
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 153982b842a4
+    content_hash: fe2bce2ab45f
     files:
     - SKILL.md
     - references/adc_application_troubleshooting.md
@@ -12952,18 +12954,20 @@ groups:
     summary: Leverages BigQuery's built-in machine learning and GenAI capabilities for advanced data analytics. Use when you
       need to write SQL queries that perform time-series forecasting, predict values, detect outliers or anomalies, find key
       drivers, perform semantic search or vector search, classify text, calculate similarity, summarize content, translate
-      language, evaluate models, filter by semantic conditions, or leverage generative AI capabilities in BigQuery. Do not
-      use for general BigQuery dataset, table, or job management requests.
-    version: 0.0.1
+      language, evaluate models, filter by semantic conditions, measure the causal effect of an intervention, compute correlations
+      between columns, detect change points or structural breaks, extract trend or seasonality components, or leverage generative
+      AI capabilities in BigQuery. Do not use for general BigQuery dataset, table, or job management requests.
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f67d5b7558f9
+    content_hash: 20402c933372
     files:
     - SKILL.md
     - references/ai_agg.md
+    - references/ai_causal_effect.md
     - references/ai_classify.md
     - references/ai_detect_anomalies.md
     - references/ai_evaluate.md
@@ -12977,6 +12981,10 @@ groups:
     - references/ai_search.md
     - references/ai_similarity.md
     - references/ml_contribution_analysis.md
+    - references/ml_correlation.md
+    - references/ml_detect_change_points.md
+    - references/ml_seasonality.md
+    - references/ml_trend.md
     - references/remote_models.md
     - references/vector_search.md
     author: Google
@@ -12990,13 +12998,13 @@ groups:
     title: bigquery-basics
     summary: Manages datasets, tables, and jobs in BigQuery. Use when you need to interact with BigQuery, run SQL queries,
       manage BigQuery resources (datasets, tables, views), or perform basic data ingestion and analysis.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d5159349bd56
+    content_hash: a9ea505407a8
     files:
     - SKILL.md
     - references/change-history.md
@@ -13016,22 +13024,146 @@ groups:
     name: bigquery-bigframes
     path: google-skills/skills/cloud/bigquery-bigframes
     title: bigquery-bigframes
-    summary: Generates Python code using BigQuery DataFrames (BigFrames), the pandas/scikit-learn-style API over BigQuery.
-      Use when writing BigFrames code or doing pandas-style dataframe/ML work against BigQuery (e.g. in a notebook). Don't
-      use for SQL-first workflows or the google-cloud-bigquery client library — use bigquery-basics.
-    version: 0.0.1
+    summary: Generates Python code using BigQuery DataFrames (BigFrames). Use by default for any Python data task involving
+      BigQuery, including data processing, analysis, and machine learning. Don't use for SQL-first workflows or the google-cloud-bigquery
+      client library — use bigquery-basics.
+    version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 76b503fa0505
+    content_hash: 1f5d0bee433b
     files:
     - SKILL.md
     - references/linear_regression.md
     - references/logistic_regression.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-bigframes
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/bigquery-observability
+    name: bigquery-observability
+    path: google-skills/skills/cloud/bigquery-observability
+    title: bigquery-observability
+    summary: Provides data-retrieval best practices, tool selection guidance, and performant SQL query syntax for BigQuery
+      telemetry across INFORMATION_SCHEMA, Cloud Monitoring, and the REST API. Use when the telemetry to fetch is already
+      known, selecting telemetry tools, writing performant INFORMATION_SCHEMA queries, retrieving telemetry for diagnosing
+      single-job performance bottlenecks, investigating slot contention, job concurrency and queue latency, analyzing reservation
+      capacity, utilization and autoscaling saturation, or auditing capacity-based and on-demand compute and storage resource
+      billable usage. Don't use for root-cause diagnosis or symptom troubleshooting when the cause is unknown (use bigquery-troubleshooting
+      first), or for writing or optimizing business logic SQL (use bigquery-optimization).
+    version: 1.2.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f84b463b68db
+    files:
+    - SKILL.md
+    - references/capacity_and_configuration_queries.md
+    - references/compute_capacity_billable.md
+    - references/compute_ondemand_billable.md
+    - references/job_performance_queries.md
+    - references/resource_contention_queries.md
+    - references/schema_compute.md
+    - references/schema_others.md
+    - references/schema_storage.md
+    - references/storage_footprints.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-observability
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/bigquery-optimization
+    name: bigquery-optimization
+    path: google-skills/skills/cloud/bigquery-optimization
+    title: bigquery-optimization
+    summary: 'Provides workflows to optimize BigQuery environments (capacity planning, editions), storage assets (partitioning,
+      clustering, storage lifecycles, billing models), and SQL queries. Use when optimizing cost, modeling Edition migrations,
+      rightsizing reservations, evaluating logical vs. physical storage, designing table partitioning/clustering, generating
+      table DDL, migrating unpartitioned tables, managing partition expiration, optimizing individual SQL queries, or evaluating
+      acceleration structures (search indexes, materialized views, BI Engine).
+
+
+      Do not use for raw usage reporting (use bigquery-observability), query execution plan analysis, error troubleshooting,
+      or diagnosing why a specific job was slow (use bigquery-troubleshooting).'
+    version: 1.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8baffd79660f
+    files:
+    - SKILL.md
+    - references/bi_engine.md
+    - references/capacity_planning_editions.md
+    - references/materialized_views.md
+    - references/search_indexes.md
+    - references/sql_optimization.md
+    - references/storage_billing_models.md
+    - references/storage_lifecycle_management.md
+    - references/table_partitioning_clustering.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-optimization
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/bigquery-slot-cost-optimizer
+    name: bigquery-slot-cost-optimizer
+    path: google-skills/skills/cloud/bigquery-slot-cost-optimizer
+    title: bigquery-slot-cost-optimizer
+    summary: Analyzes Google Cloud BigQuery slot consumption, query costs, and execution bottlenecks using INFORMATION_SCHEMA.
+      Use when diagnosing slow BigQuery queries, slot starvation, high on-demand query costs, unpartitioned table scans, or
+      join performance issues. Don't use for generic BigQuery administration (use bigquery-basics), BigQuery ML (use bigquery-ai-ml),
+      or DataFrame operations (use bigquery-bigframes).
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: b024588e92e4
+    files:
+    - SKILL.md
+    - references/optimization_rules.md
+    - references/remediation_playbooks.md
+    - scripts/slot_analyzer.py
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-slot-cost-optimizer
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/bigquery-troubleshooting
+    name: bigquery-troubleshooting
+    path: google-skills/skills/cloud/bigquery-troubleshooting
+    title: bigquery-troubleshooting
+    summary: Provides diagnostic workflows and step-by-step root-cause analysis procedures for actively broken, failing, or
+      slow BigQuery jobs, execution graph and query plan stage bottlenecks, system performance issues, or unexpectedly expensive
+      workloads. Use when interpreting symptoms, isolating bottlenecks, diagnosing cost spikes (on-demand query spend, capacity
+      slot autoscaling, storage growth), execution graph stages or substep variables, identifying root causes, and determining
+      remediation steps. Don't use for writing or optimizing SQL, proactive capacity planning, or storage layout design (use
+      bigquery-optimization), or when the user already knows which telemetry they want and just needs the query (use bigquery-observability).
+    version: 1.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: bc0525032942
+    files:
+    - SKILL.md
+    - references/cost_compute_capacity.md
+    - references/cost_compute_ondemand.md
+    - references/cost_storage.md
+    - references/performance_config_changed.md
+    - references/performance_resource_contention.md
+    - references/query_plan_execution_graph.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/bigquery-troubleshooting
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -13043,13 +13175,13 @@ groups:
       designing Bigtable row keys, configuring column families, writing SQL queries or client library code (Java, Go, Python)
       for Bigtable, or diagnosing performance/hotspotting issues. Also use when provisioning Bigtable clusters using gcloud
       or cbt CLIs. Don't use for generic Cloud SQL administration.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 5ecd684ee69c
+    content_hash: 467234eb6901
     files:
     - SKILL.md
     - assets/row_key_schema.yaml
@@ -13068,16 +13200,16 @@ groups:
     name: cloud-build-basics
     path: google-skills/skills/cloud/cloud-build-basics
     title: cloud-build-basics
-    summary: Teaches the fundamentals of Google Cloud Build (GCB). Covers core concepts, API enablement, console navigation
+    summary: Teaches the fundamentals of Cloud Build on Google Cloud. Covers core concepts, API enablement, console navigation
       to the Build History page, and the end-to-end workflow for creating and manually running a basic build trigger. Do not
       use for managing private pools or complex pipeline architectures.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7ab92da00098
+    content_hash: 9cb9c11a940e
     files:
     - SKILL.md
     - references/cb-create-trigger.md
@@ -13096,13 +13228,13 @@ groups:
       matrix, and assists in database creation. Use when a user asks 'What database service should I use?', 'Help me pick
       a database', or when a user wants to create a new database on Google Cloud. Don't use for general Google Cloud maintenance,
       managing existing databases, or database migrations.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 10ba8b0c83bc
+    content_hash: 92acd89eb080
     files:
     - SKILL.md
     - references/onboarding_prompts.md
@@ -13118,16 +13250,16 @@ groups:
     name: cloud-logging-configuration-basics
     path: google-skills/skills/cloud/cloud-logging-configuration-basics
     title: cloud-logging-configuration-basics
-    summary: 'Configure single-project Google Cloud Logging: regional log buckets, log sinks, log views, restricting or hiding
-      sensitive logs in the default view (_Default) filter, IAM permissions for views (Logs View Accessor, IAM conditions),
+    summary: 'Configure single-project Cloud Logging on Google Cloud: regional log buckets, log sinks, log views, restricting
+      or hiding sensitive logs in the default view (_Default) filter, IAM permissions for views (Logs View Accessor, IAM conditions),
       logs-based metrics, log exclusions, and sampling. Don''t use for cross-project logging or multi-project setups.'
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a6d2683ce710
+    content_hash: c820aac6c388
     files:
     - SKILL.md
     author: Google
@@ -13143,13 +13275,13 @@ groups:
       - Setting up log routing from multiple projects/folders/organizations to a central log bucket. - Creating cross-project
       log sinks and configuring central log buckets. - Troubleshooting cross-project routing. Don''t use for single-project
       basic configurations.'
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1f70a8f09751
+    content_hash: 48d738bac6f9
     files:
     - SKILL.md
     author: Google
@@ -13161,16 +13293,16 @@ groups:
     name: cloud-logging-query-generation
     path: google-skills/skills/cloud/cloud-logging-query-generation
     title: cloud-logging-query-generation
-    summary: Generates Logging Query Language (LQL) queries for Google Cloud Logging from natural language. Use this skill
-      when you need to query log data or when you are debugging issues. You can filter log data by Google Cloud service. Don't
-      use this skill to query other databases, such as SQL or Cloud Spanner.
-    version: 0.0.1
+    summary: Generates Logging Query Language (LQL) queries for Cloud Logging on Google Cloud from natural language. Use this
+      skill when you need to query log data or when you are debugging issues. You can filter log data by Google Cloud service.
+      Don't use this skill to query other databases, such as SQL or Cloud Spanner.
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 47bb57add5ee
+    content_hash: 844448a7aa54
     files:
     - SKILL.md
     - references/api_reference.md
@@ -13204,19 +13336,19 @@ groups:
     name: cloud-monitoring-chart-generation
     path: google-skills/skills/cloud/cloud-monitoring-chart-generation
     title: cloud-monitoring-chart-generation
-    summary: 'Generates Google Cloud Monitoring Server-Driven UI (SDUI) Widget and XyChart Protocol Buffer textprotos from
-      resolved PromQL or ListTimeSeries queries. Use when: - Generating valid google.monitoring.dashboard.v1.Widget textprotos,
+    summary: 'Generates Cloud Monitoring Server-Driven UI (SDUI) Widget and XyChart Protocol Buffer textprotos on Google Cloud
+      from resolved PromQL or ListTimeSeries queries. Use when: - Generating valid google.monitoring.dashboard.v1.Widget textprotos,
       containing PrometheusQuery or TimeSeriesFilter datasets, for use with the Cloud Monitoring Dashboards API, gcloud CLI,
       or declarative dashboard definitions. - Synthesizing Server-Driven UI (SDUI) widget titles, axis labels, and plot types
       for Prometheus or ListTimeSeries queries. Don''t use for: - Metric discovery or PromQL query generation. For those tasks,
       use the cloud-monitoring-metric-selection or cloud-monitoring-promql-query skills.'
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: b93f5e793d75
+    content_hash: 04b7c18fa424
     files:
     - SKILL.md
     - scripts/assemble_widget_proto.py
@@ -13241,13 +13373,13 @@ groups:
       and resource parameters. Use when asked to create, generate, format, or build ListTimeSeries requests, JSON payloads,
       filter expressions, or aligner/reducer aggregations for Cloud Monitoring metrics and charts. Don't use for metric discovery
       or metric selection.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c52bab67417a
+    content_hash: 5d0387774956
     files:
     - SKILL.md
     - references/basic_aggregations.md
@@ -13260,16 +13392,16 @@ groups:
     name: cloud-monitoring-metric-selection
     path: google-skills/skills/cloud/cloud-monitoring-metric-selection
     title: cloud-monitoring-metric-selection
-    summary: Retrieve, query, and identify relevant Google Cloud Monitoring metric descriptors for a GCP service or resource
+    summary: Retrieve, query, and identify relevant Cloud Monitoring metric descriptors on Google Cloud for a service or resource
       (such as Compute Engine, Spanner, BigQuery, Cloud Run, Cloud SQL, Pub/Sub, Cloud Storage, etc.). Use when asked to find,
       list, search, or discover GCP metric types, names, kind/value schemas, or descriptors.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1c0831eee1b2
+    content_hash: a7fd619dca4a
     files:
     - SKILL.md
     author: Google
@@ -13284,13 +13416,13 @@ groups:
     summary: Generates valid PromQL queries from Cloud Monitoring metric descriptors and resource parameters. Use when asked
       to create, generate, write, or format PromQL queries, PromQL strings, or PromQL aggregations for Cloud Monitoring metrics
       and resources. Don't use for raw metric discovery or metric selection.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 214f33f0ba3c
+    content_hash: f5890c9d0c51
     files:
     - SKILL.md
     - references/basic_aggregations.md
@@ -13306,18 +13438,18 @@ groups:
     name: cloud-run-alert-configuration
     path: google-skills/skills/cloud/cloud-run-alert-configuration
     title: cloud-run-alert-configuration
-    summary: Configures best-practice, high-signal alerting policies for Google Cloud Run resources (services, jobs, and worker
-      pools) based on seasoned SRE practices. Use when analyzing, recommending, writing, or deploying Terraform PromQL alerting
-      policies to monitor Cloud Run error rates (4xx/5xx), request latency, container instance saturation (warning/critical),
-      container CPU/memory utilization and allocation, billable instance time, job execution status, and worker pool queue
-      backlog. Don't use for GKE workloads (use gke-alert-configuration) or Compute Engine VMs.
-    version: 0.0.1
+    summary: Configures best-practice, high-signal alerting policies for Cloud Run resources on Google Cloud (services, jobs,
+      and worker pools) based on seasoned SRE practices. Use when analyzing, recommending, writing, or deploying Terraform
+      PromQL alerting policies to monitor Cloud Run error rates (4xx/5xx), request latency, container instance saturation
+      (warning/critical), container CPU/memory utilization and allocation, billable instance time, job execution status, and
+      worker pool queue backlog. Don't use for GKE workloads (use gke-alert-configuration) or Compute Engine VMs.
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7523062bd18a
+    content_hash: 3896de275fc1
     files:
     - SKILL.md
     - references/jobs.md
@@ -13335,13 +13467,13 @@ groups:
     summary: Manages Cloud Run services, jobs, and worker pools. Use when you need to deploy applications responding to HTTP
       requests (services), run event-triggered or scheduled tasks (jobs), or handle always-on pull-based background processing
       (worker pools).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: aff24d64371e
+    content_hash: 9592e01f9164
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -13370,13 +13502,13 @@ groups:
 
 
       Cloud SQL handles backups, high availability, and secure connectivity for relational database workloads.'
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 950964e22538
+    content_hash: dcd41694ef44
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -13391,23 +13523,134 @@ groups:
     license: Apache-2.0
     group: google-skills
     category: Cloud
+  - id: google-skills/cloud-trace-querying
+    name: cloud-trace-querying
+    path: google-skills/skills/cloud/cloud-trace-querying
+    title: cloud-trace-querying
+    summary: Query Cloud Trace spans, filter by latency thresholds or error status, correlate distributed traces with Cloud
+      Logging, and diagnose latency bottlenecks across Google Cloud services. Use when investigating slow requests, analyzing
+      trace hierarchies, or resolving latency regressions. Do NOT use for querying non-GCP telemetry or database query optimization
+      outside Cloud Trace.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: a437cccda122
+    files:
+    - SKILL.md
+    - assets/formatting/a2ui/single_span/display.a2ui.json
+    - assets/formatting/a2ui/trace_chart/display.a2ui.json
+    - assets/formatting/a2ui/trace_flow/display.a2ui.json
+    - assets/formatting/a2ui/traces_heat_map/display.a2ui.json
+    - assets/formatting/ascii/single_span/display.txt
+    - assets/formatting/ascii/trace_chart/display.txt
+    - assets/formatting/ascii/trace_flow/display.txt
+    - assets/formatting/ascii/traces_heat_map/display.txt
+    - assets/queries/billing_errors/SCENARIO.md
+    - assets/queries/billing_errors/query.txt
+    - assets/queries/checkout_latency/SCENARIO.md
+    - assets/queries/checkout_latency/query.txt
+    - assets/queries/customer_spans/SCENARIO.md
+    - assets/queries/customer_spans/query.txt
+    - assets/queries/prod_outliers/SCENARIO.md
+    - assets/queries/prod_outliers/query.txt
+    - assets/queries/slow_db/SCENARIO.md
+    - assets/queries/slow_db/query.txt
+    - references/api-limits.md
+    - references/concepts-span.md
+    - references/concepts-trace.md
+    - references/console-deep-links.md
+    - references/conventions-gcp-legacy.md
+    - references/conventions-gcp.md
+    - references/conventions-otel-genai.md
+    - references/conventions-otel-grpc.md
+    - references/conventions-otel-http.md
+    - references/conventions-otel.md
+    - references/conventions.md
+    - references/correlated-logs.md
+    - references/decision-tree.md
+    - references/filter-syntax.md
+    - references/index.md
+    - references/knowledge-overview.md
+    - references/logs-trace-correlation.md
+    - references/observability-scopes.md
+    - references/querying-mcp.md
+    - references/querying-observability-analytics.md
+    - references/troubleshoot-latency.md
+    - references/workflows-overview.md
+    - scripts/fetch_entire_trace/run.sh
+    - scripts/fetch_entire_trace/src/main.py
+    - scripts/fetch_entire_trace/test.sh
+    - scripts/fetch_entire_trace/tests/main_test.py
+    - scripts/fetch_related_logs/run.sh
+    - scripts/fetch_related_logs/src/log_fetcher.py
+    - scripts/fetch_related_logs/src/main.py
+    - scripts/fetch_related_logs/src/observability_scopes.py
+    - scripts/fetch_related_logs/src/timestamp_utils.py
+    - scripts/fetch_related_logs/test.sh
+    - scripts/fetch_related_logs/tests/main_test.py
+    - scripts/fetch_related_logs/tests/timestamp_utils_test.py
+    - scripts/fetch_trace_span/run.sh
+    - scripts/fetch_trace_span/src/main.py
+    - scripts/fetch_trace_span/test.sh
+    - scripts/fetch_trace_span/tests/main_test.py
+    - scripts/generate_links/run.sh
+    - scripts/generate_links/src/main.py
+    - scripts/generate_links/test.sh
+    - scripts/generate_links/tests/main_test.py
+    - scripts/get_trace_project/run.sh
+    - scripts/get_trace_project/src/main.py
+    - scripts/get_trace_project/src/project_resolver.py
+    - scripts/get_trace_project/test.sh
+    - scripts/get_trace_project/tests/integration_test.py
+    - scripts/get_trace_project/tests/project_resolver_test.py
+    - scripts/requirements.txt
+    - scripts/run_python_with_deps/run.sh
+    - scripts/run_python_with_deps/src/cleanup_env.py
+    - scripts/run_python_with_deps/src/lock_manager.py
+    - scripts/run_python_with_deps/src/manage_venv.py
+    - scripts/run_python_with_deps/src/path_resolver.py
+    - scripts/run_python_with_deps/src/venv_cleaner.py
+    - scripts/run_python_with_deps/src/venv_executor.py
+    - scripts/run_python_with_deps/src/venv_setup.py
+    - scripts/run_python_with_deps/test.sh
+    - scripts/run_python_with_deps/tests/cleanup_env_test.py
+    - scripts/run_python_with_deps/tests/lock_manager_test.py
+    - scripts/run_python_with_deps/tests/path_resolver_test.py
+    - scripts/run_python_with_deps/tests/venv_setup_test.py
+    - scripts/search_traces/run.sh
+    - scripts/search_traces/src/main.py
+    - scripts/search_traces/src/timestamp_utils.py
+    - scripts/search_traces/src/trace_searcher.py
+    - scripts/search_traces/test.sh
+    - scripts/search_traces/tests/main_test.py
+    - scripts/search_traces/tests/timestamp_utils_test.py
+    - scripts/search_traces/tests/trace_searcher_test.py
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/cloud-trace-querying
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
   - id: google-skills/datalineage-bigquery-asset-impact-analysis
     name: datalineage-bigquery-asset-impact-analysis
     path: google-skills/skills/cloud/datalineage-bigquery-asset-impact-analysis
     title: datalineage-bigquery-asset-impact-analysis
-    summary: 'Analyzes the downstream impact (blast radius) when a BigQuery table or view is broken, stale, or modified. Identifies
-      all downstream tables, dashboards, and processes that will be affected. Use when: - Performing a blast radius or impact
-      analysis for a BigQuery table or view. - Assessing the consequences of modifying, deleting, or pausing updates to a
-      BigQuery asset. - Identifying downstream dependencies (tables, dashboards, processes) of a BigQuery asset. Don''t use
-      for: - General BigQuery querying or data analysis (use BigQuery-related tools instead). - Non-BigQuery assets (e.g.,
-      Cloud Storage files) unless they are part of the BigQuery lineage. - Creating or modifying lineage links directly.'
-    version: 0.0.1
+    summary: 'Analyzes the downstream impact (blast radius) using data lineage on Google Cloud when a BigQuery table or view
+      is broken, stale, or modified. Identifies all downstream tables, dashboards, and processes that will be affected. Use
+      when: - Performing a blast radius or impact analysis for a BigQuery table or view. - Assessing the consequences of modifying,
+      deleting, or pausing updates to a BigQuery asset. - Identifying downstream dependencies (tables, dashboards, processes)
+      of a BigQuery asset. Don''t use for: - General BigQuery querying or data analysis (use BigQuery-related tools instead).
+      - Non-BigQuery assets (e.g., Cloud Storage files) unless they are part of the BigQuery lineage. - Creating or modifying
+      lineage links directly.'
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d3b080f32711
+    content_hash: 5d8f2a814439
     files:
     - SKILL.md
     - references/mcp-usage.md
@@ -13420,17 +13663,18 @@ groups:
     name: datalineage-summary
     path: google-skills/skills/cloud/datalineage-summary
     title: datalineage-summary
-    summary: Summarizes Google Cloud Data Lineage graphs to help users debug data quality issues and understand data provenance
-      for BQ/GCS. Use when summarizing upstream and downstream data flows, and presenting complex lineage data as an intuitive
-      Markdown report. Don't use for generic BigQuery queries, editing lineage relationships, or downstream deprecation. Don't
-      use for downstream blast-radius impact analysis (use datalineage-bigquery-asset-impact-analysis skill instead).
-    version: 0.0.1
+    summary: Summarizes data lineage graphs on Google Cloud to help users debug data quality issues and understand data provenance
+      for BigQuery and Cloud Storage. Use when summarizing upstream and downstream data flows, and presenting complex lineage
+      data as an intuitive Markdown report. Don't use for generic BigQuery queries, editing lineage relationships, or downstream
+      deprecation. Don't use for downstream blast-radius impact analysis (use datalineage-bigquery-asset-impact-analysis skill
+      instead).
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 405b0777299d
+    content_hash: de73c56c1bb7
     files:
     - SKILL.md
     - references/mcp-usage.md
@@ -13447,13 +13691,13 @@ groups:
       masking, BigQuery Translation Service migration workflows, AST-based config transformations, explicit type casting,
       JSON extraction standardization, and deduplication. Use when migrating Snowflake dbt pipelines or models to Google Cloud
       BigQuery. Don't use for generic BigQuery queries or non-Snowflake SQL migrations.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 801bf7f73896
+    content_hash: 77797fe80f73
     files:
     - SKILL.md
     - references/dbt_migration_patterns.md
@@ -13470,15 +13714,15 @@ groups:
     title: detection-engineering-coverage-evaluation
     summary: Automates the end-to-end detection engineering workflow in Google SecOps using MCP tools. Use when fetching threat
       intelligence from blogs, generating Threat Detection Opportunities (TDOs), simulating attacker behavior with synthetic
-      UDM events, evaluating rule coverage, generating new YARA-L 2.0 rules to close coverage gaps, and with user approval,
-      deploy them to SecOps. Don't use when asked to perform threat hunting actions, and SOC investigative actions.
-    version: 0.0.1
+      UDM events, evaluating rule coverage, and deploying gap-closing rules. Don't use for standalone YARA-L 2.0 rule authoring/tuning
+      (use secops-detection-engineering), threat hunting, or SOC investigation.
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8b7cacf2f8de
+    content_hash: 6b5b448e1a9f
     files:
     - SKILL.md
     author: Google
@@ -13493,13 +13737,13 @@ groups:
     summary: Provides guidance and instructions on managing remote devices on Developer Device Platform (DDP). Use when reserving
       remote Android devices, establishing connection tunnels, checking session status, or extending/cancelling leases. Don't
       use for iOS or local device/hardware inquiries.
-    version: 0.0.1
+    version: 0.5.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 9e481a83cc1e
+    content_hash: 9a1d723b0489
     files:
     - SKILL.md
     - references/cancel_session.md
@@ -13523,13 +13767,13 @@ groups:
     title: developing-genkit-dart
     summary: Generates code and provides documentation for the Genkit Dart SDK. Use when the user asks to build AI agents
       in Dart, use Genkit flows, or integrate LLMs into Dart/Flutter applications.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c69066fb1cdd
+    content_hash: 40f7c5bc7a76
     files:
     - SKILL.md
     - references/a2ui.md
@@ -13566,15 +13810,16 @@ groups:
     summary: Develop AI-powered applications using Genkit in Go. Use when the user asks to build AI features, agents, flows,
       or tools in Go using Genkit, or when working with Genkit Go code involving generation, prompts, streaming, tool calling,
       or model providers.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fc41cbe336b8
+    content_hash: 8f1dc571ed43
     files:
     - SKILL.md
+    - references/a2ui.md
     - references/agents-artifacts.md
     - references/agents-background.md
     - references/agents-branching.md
@@ -13604,13 +13849,13 @@ groups:
     summary: Develop AI-powered applications using Genkit in Node.js/TypeScript. Use when the user asks about Genkit, AI agents,
       flows, or tools in JavaScript/TypeScript, or when encountering Genkit errors, validation issues, type errors, or API
       problems.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 6bce23575b0b
+    content_hash: cb7e0feaea55
     files:
     - SKILL.md
     - references/a2ui.md
@@ -13643,13 +13888,13 @@ groups:
     title: developing-genkit-python
     summary: Develop AI-powered applications using Genkit in Python. Use when the user asks about Genkit, AI agents, flows,
       or tools in Python, or when encountering Genkit errors, import issues, or API problems.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3eb4661a6d59
+    content_hash: f3fd5297e1c2
     files:
     - SKILL.md
     - references/agents-artifacts.md
@@ -13723,13 +13968,13 @@ groups:
       Platform (GCP) services and infrastructure. Use when planning, generating, constructing, proposing, describing, or executing
       any gcloud CLI commands - including when answering questions about gcloud syntax, or formatting flags. Don't use when
       writing Google Cloud client library code or raw REST/gRPC API requests.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f4abd54c216f
+    content_hash: 7c56b7703339
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -13746,13 +13991,13 @@ groups:
     summary: Manages custom Agent resources on Gemini Enterprise Agent Platform. Use when the user wants to programmatically
       create, configure, list, update, or delete stateful, server-managed Agent resources (including mounting files, skills,
       and tools) before executing conversations.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1c0797b2f9c9
+    content_hash: 01c2f95a79ad
     files:
     - SKILL.md
     author: Google
@@ -13768,13 +14013,13 @@ groups:
       Cloud, or Agent Platform. Guides the usage of the Gemini API on Agent Platform with the Google Gen AI SDK. Covers SDK
       usage (Python, JS/TS, Go, Java, C#), capabilities like multimodal inputs, tools, media generation, caching, batch prediction,
       and Live API.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fe86878399c2
+    content_hash: 7d7d91df77f3
     files:
     - SKILL.md
     - references/advanced_features.md
@@ -13798,15 +14043,17 @@ groups:
     summary: Guides the usage of Gemini Interactions API on Gemini Enterprise Agent Platform. Use when the user wants to use
       the stateful, server-managed Interactions API for multi-turn conversations, background execution, streaming, structured
       output, and function calling on the Agent Platform.
-    version: 0.0.1
+    version: 2.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fb837a8f8e9c
+    content_hash: 7c97dca3608e
     files:
     - SKILL.md
+    - references/data_model.md
+    - references/rest_api.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/gemini-interactions-api
     license: Apache-2.0
@@ -13821,13 +14068,13 @@ groups:
       session setup/resumption, bearer token refresh, and sending/receiving `ClientMessage`/`ServerMessage` protos. Don't
       use for general (non-live, non-bidirectional) Gemini API usage such as one-shot `generateContent`, embeddings, image/video
       generation, or fine-tuning — use the `gemini-api` skill for those.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7efd3f5fdbf5
+    content_hash: 56499118382d
     files:
     - SKILL.md
     - references/client_server_messages.md
@@ -13847,13 +14094,13 @@ groups:
       events on GPU/TPU nodepools, inspecting node interruption PromQL metrics, auditing node taints, or configuring workload
       protection strategies (graceful termination, opportunistic maintenance, PodDisruptionBudgets). Don't use for general
       GKE cluster creation, network policy configuration, or non-disruption workload deployment.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 187c1065a7d2
+    content_hash: 02792a9bb7d5
     files:
     - SKILL.md
     author: Google
@@ -13868,19 +14115,41 @@ groups:
     summary: Diagnoses GKE JobSet interruptions, restarts, and preemptions for AI/ML training workloads autonomously. Use
       when troubleshooting JobSet restart loops, spot VM preemptions, node readiness failures, host VM issues, or coordinator
       worker crashes. Don't use for general GKE cluster creation, basic workload deployment, or non-JobSet application issues.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: f83586180f16
+    content_hash: 1c9b89a0177b
     files:
     - SKILL.md
     - references/failure_signatures.md
     - scripts/validate_queries.sh
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-ai-troubleshooting-jobset-interruption
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/gke-ai-troubleshooting-node-unresponsive-timeout
+    name: gke-ai-troubleshooting-node-unresponsive-timeout
+    path: google-skills/skills/cloud/gke-ai-troubleshooting-node-unresponsive-timeout
+    title: gke-ai-troubleshooting-node-unresponsive-timeout
+    summary: Diagnose and mitigate GKE TPU or GPU nodes stuck in NotReady / NodeStatusUnknown ("Kubelet stopped posting node
+      status") due to host kernel panics, hardware lockups, or disabled node auto-repair. Use when nodes stop heartbeating
+      beyond the node auto-repair threshold and pods remain stuck in Terminating. Don't use for healthy nodes, pod-only application
+      crashes, or routine GKE upgrades.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 9b065a8ae9eb
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-ai-troubleshooting-node-unresponsive-timeout
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -13892,13 +14161,13 @@ groups:
       states, troubleshooting slice provisioning failures, validating single-slice or multi-slice (JobSet) workload manifests,
       or safely patching stuck finalizers and disabling the slice controller. Don't use for generic GKE cluster node pool
       creation or standard non-TPU workload management (use gke-basics or gke-cluster-creation instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: da37605a54a0
+    content_hash: 0e88cfbb57e0
     files:
     - SKILL.md
     - references/failure_signatures.md
@@ -13916,19 +14185,78 @@ groups:
       when monitoring TensorCore duty cycle, TPU memory, node readiness, multi-host TPU node pool availability, host maintenance
       or preemption interruptions, and calculating MTTR or MTBI metrics for GKE TPUs. Don't use for general non-TPU GKE workload
       monitoring or non-metric TPU debugging.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 766244f28ac2
+    content_hash: 4d943030e90b
     files:
     - SKILL.md
     - references/failure_signatures.md
     - scripts/validate_queries.sh
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-ai-troubleshooting-tpu-metrics-monitoring
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/gke-ai-troubleshooting-tpu-mxla-hang
+    name: gke-ai-troubleshooting-tpu-mxla-hang
+    path: google-skills/skills/cloud/gke-ai-troubleshooting-tpu-mxla-hang
+    title: gke-ai-troubleshooting-tpu-mxla-hang
+    summary: Diagnose GKE Cloud TPU multi-slice training hangs (Megascale `HANG_DETECTED` logs and hang monitored events)
+      using the ML Diagnostics `Megascale XLA (MXLA) Hang Analyzer` (`gcloud alpha mldiagnostics monitored-events`) and 1-minute
+      Cloud Monitoring multi-slice latency metrics (`kubernetes.io/container/multislice/*`). Distinguishes XLA compiler/HLO
+      launch divergence and host data-input stalls from TPU chip, SparseCore, ICI, or network fabric faults. Use when multi-slice
+      TPU training jobs freeze without progressing steps, emit `HANG_DETECTED`, or stall in collective operations. Don't use
+      for gradual step-time throughput drops without hangs (use gke-ai-troubleshooting-tpu-performance-degradation) or pod
+      preemption/eviction restarts (use gke-ai-troubleshooting-jobset-interruption).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ed7e22677d49
+    files:
+    - SKILL.md
+    - references/path-a-compiler-hlo-divergence.md
+    - references/path-b-program-queueing-input-stall.md
+    - references/path-c-hardware-network-faults.md
+    - references/path-d-no-detected-or-unknown.md
+    - references/path-e-healthy-telemetry.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-ai-troubleshooting-tpu-mxla-hang
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/gke-ai-troubleshooting-tpu-performance-degradation
+    name: gke-ai-troubleshooting-tpu-performance-degradation
+    path: google-skills/skills/cloud/gke-ai-troubleshooting-tpu-performance-degradation
+    title: gke-ai-troubleshooting-tpu-performance-degradation
+    summary: Diagnose GKE Cloud TPU training throughput drops and step-time regressions (15%+ TPU duty-cycle drop) using ML
+      Diagnostics Workload Monitoring (`gcloud alpha mldiagnostics monitored-events` / `hypercomputecluster.googleapis.com/v1alpha`)
+      and 1-minute Cloud Monitoring system metrics (`kubernetes.io/node/accelerator/*`). Distinguishes hardware and network
+      fabric throttling from workload resource bottlenecks (HBM capacity, host memory, or host CPU saturation). Use when TPU
+      training throughput or duty cycle drops without crashing pods, when `PERFORMANCE_DEGRADATION` monitored events fire,
+      or when triaging slow multi-slice training steps. Don't use for complete multi-slice XLA execution stalls with `HANG_DETECTED`
+      logs (use gke-ai-troubleshooting-tpu-mxla-hang) or pod eviction/interruption restarts (use gke-ai-troubleshooting-jobset-interruption).
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7dad51cf77ab
+    files:
+    - SKILL.md
+    - references/path-a-workload-bottlenecks.md
+    - references/path-b-infrastructure-throttling.md
+    - references/path-c-no-detected-analyzer.md
+    - references/path-d-healthy-telemetry.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-ai-troubleshooting-tpu-performance-degradation
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -13941,13 +14269,13 @@ groups:
       Use when troubleshooting vbar_control_agent crashes, memory cgroup OOMs in serial console logs, tpu-device-plugin metrics
       checksum corruption errors, or custom TPU metrics collection conflicts on GKE TPU v6e nodes. Don't use for general non-TPU
       container OOM troubleshooting or standard GKE node lifecycle operations.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 40f2cf6b35e5
+    content_hash: 4bed09fbc14c
     files:
     - SKILL.md
     - references/failure_signatures.md
@@ -13966,13 +14294,13 @@ groups:
       Terraform alerting policies to monitor GKE service latency, traffic, error rates using Multi-Window Multi-Burn-Rate
       SLO alerts, memory saturation, and cluster health such as CrashLoopBackOff and Node NotReady conditions. Don't use for
       non-GKE compute runtimes such as standalone Compute Engine VMs or standalone Cloud Run services without GKE.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: e97a4eeff339
+    content_hash: be3a459ca6c0
     files:
     - SKILL.md
     - references/gke_configuration_prerequisites.md
@@ -13991,13 +14319,13 @@ groups:
     summary: Manages GKE application onboarding, covering containerization, deployment manifests, and migration. Use when
       onboarding or deploying an application to GKE for the first time, or containerizing an app for GKE. Don't use for general
       GKE cluster administration or upgrades (use gke-basics or gke-upgrades instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 594bb1439379
+    content_hash: 407d4cfc6c28
     files:
     - SKILL.md
     - assets/Dockerfile
@@ -14018,13 +14346,13 @@ groups:
     summary: 'Configures Backup for GKE: the BackupRestore cluster addon, BackupPlan and RestorePlan resources, restore workflows,
       and CMEK-encrypted backups. Use for backup policies, disaster recovery, or GKE cluster restores. Don''t use for database
       backups.'
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9e225df138b4
+    content_hash: 6e0d7e9f6ed6
     files:
     - SKILL.md
     author: Google
@@ -14037,16 +14365,16 @@ groups:
     path: google-skills/skills/cloud/gke-basics
     title: gke-basics
     summary: Manages core GKE cluster provisioning, credentials, Autopilot vs Standard selection, and workload deployment.
-      Use when creating GKE clusters, fetching kubectl credentials, configuring Workload Identity, or deciding between Autopilot
-      and Standard modes. Don't use for specialized GKE networking (use gke-networking), advanced security hardening (use
+      Use when creating GKE clusters, fetching kubectl credentials, or deciding between Autopilot and Standard modes. Don't
+      use for Workload Identity (use gke-workload-identity), GKE networking (use gke-networking), security hardening (use
       gke-platform-security or gke-workload-security), or cluster upgrades (use gke-upgrades).
-    version: 0.0.1
+    version: 1.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9d9c545dd880
+    content_hash: b26272af0d10
     files:
     - SKILL.md
     - references/cli-reference.md
@@ -14066,13 +14394,13 @@ groups:
     summary: Runs batch and HPC workloads on GKE, utilizing job queues and parallel processing. Use when running GKE batch
       jobs, configuring GKE HPC, or setting up GKE job queues. Don't use for standard web application deployments (use gke-app-onboarding
       instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 34fbeda26f94
+    content_hash: 6bf6165e44ac
     files:
     - SKILL.md
     author: Google
@@ -14088,13 +14416,13 @@ groups:
       Provides guidance on enabling and optimizing cluster autoscaler, best practices, and troubleshooting issues such as
       nodes not scaling up or down, zonal stockouts, or capacity buffers. Do not use for ComputeClass-specific YAML generation
       or priority configuration (defer to gke-compute-classes skill).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 807327eac1f5
+    content_hash: b4ae1a7914da
     files:
     - SKILL.md
     - assets/capacity-buffer-serving.yaml
@@ -14118,13 +14446,13 @@ groups:
       (Autopilot, Standard Regional, GPU/AI Inference, AI Hypercompute). Use when creating GKE clusters, provisioning GKE
       environments, selecting cluster modes, or auditing GKE clusters. Don't use for application onboarding or deployment
       configuration (use gke-app-onboarding instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9d1878a2fbbf
+    content_hash: 2b5ac1074cb1
     files:
     - SKILL.md
     author: Google
@@ -14140,13 +14468,13 @@ groups:
       targeting specific accelerators (GPUs/TPUs) or machine families, restricting ComputeClass access, or debugging pending
       pods related to node pool auto-creation. Do not use for cluster-level Node Auto Provisioning configuration or general
       GKE cluster creation.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 0b0c36003dc1
+    content_hash: aae2bfb7fc5d
     files:
     - SKILL.md
     - assets/balanced-reserved-zonal-compute-class.yaml
@@ -14191,13 +14519,13 @@ groups:
       or workloads, analyzing billing reports in BigQuery (`bq`), checking cluster cost budgets (`gcloud billing`), or diagnosing
       cost drivers like pod requests vs. actual utilization (`kubectl top`). Don't use for applying cost optimization changes,
       creating rightsizing manifests (VPA/MPA), or selecting ComputeClasses (use gke-cost-optimization instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: df0ddfcc9642
+    content_hash: 9d5ff76acf00
     files:
     - SKILL.md
     - references/billing-queries.md
@@ -14214,13 +14542,13 @@ groups:
       Use when optimizing GKE cluster or workload costs, configuring GKE cost allocation or quotas, rightsizing CPU/memory
       requests, or selecting Spot VMs and machine types. Don't use for general compute class provisioning or GPU Selection
       (use gke-compute-classes instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 06611638cbcf
+    content_hash: f79542e41516
     files:
     - SKILL.md
     - assets/resource-quota-example.yaml
@@ -14239,13 +14567,13 @@ groups:
       clues. Use when finding the golden base image for custom GKE node creation, mapping cluster configuration parameters
       (GKE version, OS, architecture, accelerators, gVisor, cgroups) to image names, or querying GKE base image maps. Don't
       use for general GKE cluster creation (use gke-cluster-creation) or standard node pool management (use gke-basics).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a742873db3b4
+    content_hash: db41be5711f4
     files:
     - SKILL.md
     author: Google
@@ -14260,13 +14588,13 @@ groups:
     summary: Provides GKE golden path configuration defaults, production readiness checklists, and cluster default patterns.
       Use when designing GKE clusters, verifying GKE production readiness, or checking configurations against GKE defaults.
       Don't use for setting up workload autoscaling specifically (use gke-workload-scaling instead).
-    version: 0.0.1
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 317e48ebc6c5
+    content_hash: 8fcde3f3d8aa
     files:
     - SKILL.md
     - assets/golden-path-autopilot.yaml
@@ -14280,15 +14608,16 @@ groups:
     path: google-skills/skills/cloud/gke-inference
     title: gke-inference
     summary: Deploys and optimizes AI/ML inference workloads on GKE, using GPUs, TPUs, and model servers. Use when deploying
-      GKE inference servers, configuring GKE GPU resources for inference, or deploying LLMs on GKE. Don't use for generic
-      batch jobs or HPC task queues (use gke-batch-hpc instead).
-    version: 0.0.1
+      GKE inference servers, configuring GKE GPU resources for inference, or deploying LLMs on GKE. Don't use for migrating
+      existing AI workloads to GKE (use google-cloud-solution-guided-gke-ai-migration), GKE RAG with Cloud SQL/AlloyDB (use
+      google-cloud-solution-rag-enterprise-search-gke-sqldb), or batch/HPC (use gke-batch-hpc).
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 752295a52d77
+    content_hash: ed5e4592a069
     files:
     - SKILL.md
     author: Google
@@ -14306,13 +14635,13 @@ groups:
       GKE Gateway API routes, targeting Spot VMs, or deploying AI model inference workloads (vLLM, TGI, Gemma). Don't use
       for live cluster operations, pod troubleshooting (use gke-workload-troubleshooting), or cluster infrastructure provisioning
       (use gke-cluster-creation).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: b42e33a25f45
+    content_hash: 2321a0907c2f
     files:
     - SKILL.md
     - references/ai-inference.md
@@ -14332,13 +14661,13 @@ groups:
       LimitRanges, network isolation, and cost allocation. Use when designing GKE multi-tenancy, configuring GKE namespaces,
       setting up resource quotas, or isolating GKE teams. Don't use for single-tenant cluster configuration or general deployment
       instructions (use gke-basics or gke-app-onboarding instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 49815d710ac1
+    content_hash: 834d126aac33
     files:
     - SKILL.md
     author: Google
@@ -14354,13 +14683,13 @@ groups:
       DNS, node egress, Dataplane V2, and IP planning. Use when designing GKE networking layouts, configuring private clusters,
       setting up Dataplane V2, planning GKE IP ranges, or managing VPC- native cluster modes. Don't use for application ingress,
       load balancing, or service networking (use gke-service-networking instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 252e8f034b4b
+    content_hash: 2ac9cb978125
     files:
     - SKILL.md
     author: Google
@@ -14377,13 +14706,13 @@ groups:
       node status, or when workloads are evicted or stuck Pending due to node health. Don't use for pod-level application
       failures (use gke-workload-troubleshooting), autoscaler scale-up/scale-down decisions (use gke-cluster-autoscaler),
       or non-GKE compute.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 70c66cdb5743
+    content_hash: 005da04d1c16
     files:
     - SKILL.md
     author: Google
@@ -14396,15 +14725,17 @@ groups:
     path: google-skills/skills/cloud/gke-observability
     title: gke-observability
     summary: Configures GKE observability, including Cloud Logging, Cloud Monitoring, and managed Prometheus. Use when configuring
-      GKE monitoring, setting up GKE logging, or configuring Prometheus metrics collection. Don't use to configure local application
-      logging frameworks or external APMs outside GKE.
-    version: 0.0.1
+      GKE monitoring, setting up GKE logging, or configuring Prometheus metrics collection, and to troubleshoot Managed Service
+      for Prometheus (GMP) issues such as missing metrics, unhealthy scrape targets, PodMonitoring misconfiguration, rule/alert
+      evaluation failures, and monitoring permission errors. Don't use to configure local application logging frameworks or
+      external APMs outside GKE.
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3efabd100dc0
+    content_hash: b614219a5a9a
     files:
     - SKILL.md
     author: Google
@@ -14418,17 +14749,18 @@ groups:
     title: gke-platform-security
     summary: Plans, configures, and hardens platform-level Google Kubernetes Engine (GKE) cluster security. Covers cluster
       add-ons (Secret Manager enablement), RBAC hardening (disabling insecure bindings, audit tools), Binary Authorization,
-      enabling Shielded Nodes, GKE Sandbox cluster enablement, GKE IAM roles, and cross-service authentication IAM patterns.
-      Use when securing cluster control planes, hardening GKE RBAC, enabling Shielded Nodes, enabling GKE Sandbox runtime,
-      enabling cluster-wide security add-ons, or managing GKE IAM roles. Don't use for workload-level security (Workload Identity,
-      SecretProviderClass, PSS, NetPol, gVisor pod runtimeClassName; use gke-workload-security instead).
-    version: 0.0.1
+      Secrets Encryption (--database-encryption-key), Security Posture (--security-posture), enabling Shielded Nodes, GKE
+      Sandbox cluster enablement, GKE IAM roles, and cross-service authentication IAM patterns. Use when securing cluster
+      control planes, hardening GKE RBAC, enabling Shielded Nodes, enabling GKE Sandbox runtime, enabling cluster-wide security
+      add-ons, or managing GKE IAM roles. Don't use for Workload Identity (use gke-workload-identity) or workload-level security
+      (SecretProviderClass, PSS, NetPol, gVisor pod runtimeClassName; use gke-workload-security).
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: efdee325de59
+    content_hash: d009494a6a13
     files:
     - SKILL.md
     author: Google
@@ -14445,13 +14777,13 @@ groups:
       prepare, assess, audit, or review a GKE cluster or workload before going live to production. Don't use for deep-dive
       single-domain implementation (use specific domain skills like gke-workload-scaling, gke-platform-security, gke-workload-security,
       gke-service-networking, gke-reliability instead).
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c7b96e566847
+    content_hash: f2bc6596d83b
     files:
     - SKILL.md
     author: Google
@@ -14465,14 +14797,14 @@ groups:
     title: gke-reliability
     summary: Improves GKE workload reliability, using PDBs, health probes, and topology spread constraints. Use when configuring
       GKE workload reliability, setting up PDBs, or configuring GKE health probes (liveness, readiness, startup). Don't use
-      for disaster recovery setup or full cluster backups (use gke-backup-dr instead).
-    version: 0.0.1
+      for generating K8s YAML manifests (use gke-manifest-generation) or disaster recovery and cluster backups (use gke-backup-dr).
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c71714ed8bd9
+    content_hash: 89161506be45
     files:
     - SKILL.md
     author: Google
@@ -14486,15 +14818,16 @@ groups:
     title: gke-service-networking
     summary: Configures GKE edge networking, traffic routing, load balancing, and private service endpoints. Use when configuring
       Gateway API manifests, standard Ingress, Cloud Armor WAF security policies, Container-Native Load Balancing (NEGs),
-      Private Service Connect (PSC), or Google-managed SSL certificates on GKE. Don't use for core cluster IP planning, Dataplane
-      V2 network policies, or node NAT egress (use gke-networking instead).
-    version: 0.0.1
+      Private Service Connect (PSC), or Google-managed SSL certificates on GKE, and to troubleshoot Ingress and load-balancer
+      502/5xx errors, backend health-check failures, connection draining, and TLS/SSL policy enforcement. Don't use for core
+      cluster IP planning, Dataplane V2 network policies, or node NAT egress (use gke-networking instead).
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 23671081da99
+    content_hash: b5de12c7b447
     files:
     - SKILL.md
     - assets/backendconfig.yaml
@@ -14514,20 +14847,44 @@ groups:
     name: gke-storage
     path: google-skills/skills/cloud/gke-storage
     title: gke-storage
-    summary: Manages GKE storage, including PVCs, PersistentVolumes, Filestore, and GCS FUSE. Use when configuring GKE storage,
-      creating PVCs, or setting up GCS FUSE on GKE. Don't use for database administration or replication strategies outside
-      volume provisioning context.
-    version: 0.0.1
+    summary: Manages GKE storage, including PVCs, PersistentVolumes, and Filestore. Use when configuring GKE storage or creating
+      PVCs. For GCS FUSE mounts, use google-cloud-storage-fuse. For diagnosing storage failures (volume attach/mount errors,
+      disk performance/node storage pressure, or Cloud Storage FUSE OOM), use gke-storage-troubleshooting. Don't use for database
+      administration or replication strategies outside volume provisioning context.
+    version: 1.0.2
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c7a463ddd349
+    content_hash: 6d1759286a7f
     files:
     - SKILL.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-storage
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/gke-storage-troubleshooting
+    name: gke-storage-troubleshooting
+    path: google-skills/skills/cloud/gke-storage-troubleshooting
+    title: gke-storage-troubleshooting
+    summary: Diagnoses GKE persistent-storage failures — volume attach/mount errors (Regional PD on optimized VMs, fsGroup
+      mount timeouts), disk-performance and node storage-pressure issues, slow-disk Pod-creation failures, volume-expansion
+      problems, Local SSD / Hyperdisk Storage Pool creation errors, and Cloud Storage FUSE OOM. Use when Pods are stuck in
+      ContainerCreating, volumes fail to attach or mount, or nodes report storage pressure. Don't use for routine storage
+      provisioning or StorageClass/PVC authoring (see the gke-storage skill).
+    version: 1.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f8f09ba6e84b
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-storage-troubleshooting
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -14544,13 +14901,13 @@ groups:
       management task — even casual mentions like "we need to upgrade our clusters" or "plan our next GKE maintenance" or
       "our upgrade is stuck." Don't use for GKE cluster creation, application onboarding, general networking/routing setup,
       or security policy configurations (use gke-basics or relevant GKE skills instead).
-    version: 0.0.1
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 5b2bbad6c538
+    content_hash: 11c7119c2fc8
     files:
     - SKILL.md
     - references/checklists.md
@@ -14565,20 +14922,20 @@ groups:
     name: gke-workload-identity
     path: google-skills/skills/cloud/gke-workload-identity
     title: gke-workload-identity
-    summary: Diagnoses Workload Identity Federation for GKE authentication failures for Pods (403 "iam.serviceAccounts.getAccessToken"
+    summary: Configures and diagnoses Workload Identity Federation for GKE authentication failures for Pods (403 "iam.serviceAccounts.getAccessToken"
       / permission denied, "could not find default credentials", or GKE metadata server unreachable) by verifying cluster
       and node-pool Workload Identity configuration, the Kubernetes ServiceAccount (KSA) to IAM binding (direct principal
       binding and legacy Google ServiceAccount impersonation), target-resource IAM roles, and gke-metadata-server health.
-      Use when a Pod cannot authenticate to Google Cloud APIs even though Workload Identity is expected to be in effect. Don't
-      use for in-cluster Kubernetes RBAC errors (API-server authorization), general workload crashes (use gke-workload-troubleshooting),
-      or Workload Identity setup and hardening (use gke-workload-security).
-    version: 0.0.1
+      Use when setting up KSA/GSA bindings (`roles/iam.workloadIdentityUser`, `iam.gke.io/gcp-service-account`) or when a
+      Pod cannot authenticate to Google Cloud APIs. Don't use for in-cluster Kubernetes RBAC errors (API-server authorization),
+      general workload crashes (use gke-workload-troubleshooting), or Pod Security Standards and NetworkPolicies (use gke-workload-security).
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: cbf643614222
+    content_hash: 8a438744574a
     files:
     - SKILL.md
     author: Google
@@ -14593,13 +14950,13 @@ groups:
     summary: Manages scaling for GKE workloads using HPA and VPA. Use when configuring Horizontal Pod Autoscaler (HPA), configuring
       Vertical Pod Autoscaler (VPA), or applying best practices for GKE workload autoscaling. Do not use for cluster-level
       autoscaling (Cluster Autoscaler), static cluster sizing, or configuring node-level machine styles directly.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fe425cc76d24
+    content_hash: 47f242657552
     files:
     - SKILL.md
     - assets/hpa-example.yaml
@@ -14609,25 +14966,50 @@ groups:
     license: Apache-2.0
     group: google-skills
     category: Cloud
+  - id: google-skills/gke-workload-scaling-troubleshooting
+    name: gke-workload-scaling-troubleshooting
+    path: google-skills/skills/cloud/gke-workload-scaling-troubleshooting
+    title: gke-workload-scaling-troubleshooting
+    summary: Diagnoses GKE HorizontalPodAutoscaler (HPA) failures — metrics showing as <unknown>, FailedGetResourceMetric
+      / FailedGetScale / FailedComputeMetricsReplicas events, missing Pod resource requests, custom/external metrics-pipeline
+      breakage (FailedGetExternalMetric / FailedGetCustomMetric, unavailable metrics adapter, control-plane firewall blocking
+      the adapter), HPA that won't scale up or down (tolerance / stabilization window / unavailable rate metrics), scale-to/from-zero
+      problems, and slow HPA reaction on large clusters. Use when an HPA isn't scaling a workload as expected or reports metric
+      errors. Don't use for configuring or authoring new HPA/VPA objects or scaling best practices (see the gke-workload-scaling
+      skill), or for Cluster Autoscaler / node-pool sizing.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 732290b03e00
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/gke-workload-scaling-troubleshooting
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
   - id: google-skills/gke-workload-security
     name: gke-workload-security
     path: google-skills/skills/cloud/gke-workload-security
     title: gke-workload-security
     summary: Audits, configures, and hardens workload-level security controls for Google Kubernetes Engine (GKE) applications
-      and namespaces. Covers running cluster security audits (`audit_cluster.sh`), configuring Workload Identity Federation
-      (impersonation, KSA/GSA binding, and pod setup), enforcing Network Policies (default-deny and Dataplane V2 logging),
-      isolating high-risk pods inside GKE Sandbox (`gVisor`), enforcing Pod Security Standards (`restricted` labeling), and
-      mounting Secret Manager secrets via CSI (`SecretProviderClass`). Use when auditing cluster security posture, isolating
-      namespaces, applying pod security standards, setting up Workload Identity, or configuring network policies and secret
-      volume mounts. Don't use for cluster-wide control plane security, RBAC hardening, Binary Authorization, Shielded Nodes,
-      or enabling platform-level GKE add-ons (use gke-platform-security instead).
-    version: 0.0.1
+      and namespaces. Covers running security audits (`audit_cluster.sh`), enforcing Network Policies (default-deny and Dataplane
+      V2 logging), isolating high-risk pods inside GKE Sandbox (`gVisor`), enforcing Pod Security Standards (`restricted`
+      labeling) and pod securityContext, and mounting Secret Manager secrets via CSI (`SecretProviderClass`). Use when auditing
+      workload security posture, isolating namespaces, applying pod security standards, or configuring network policies and
+      secret volume mounts. Don't use for Workload Identity (use gke-workload-identity), cluster-wide control plane security,
+      RBAC hardening, Binary Authorization, Shielded Nodes, or enabling platform-level GKE add-ons (use gke-platform-security
+      instead).
+    version: 1.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 7f1c43f392c3
+    content_hash: c5cf03aa1eb9
     files:
     - SKILL.md
     - assets/default-deny-netpol.yaml
@@ -14645,13 +15027,13 @@ groups:
     summary: Diagnoses GKE workload failures (CrashLoopBackOff, OOMKilled, ImagePullBackOff, Pending, etc.) via logs and events.
       Use when pods fail to start or crash repeatedly. Don't use for GKE cluster infrastructure provisioning, node pool creation,
       or non-Kubernetes Google Cloud services.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 080df8b84d0f
+    content_hash: db2f95153e48
     files:
     - SKILL.md
     author: Google
@@ -14667,13 +15049,13 @@ groups:
       agent", "develop an agent", "build an agent using ADK", "run the agent locally", "debug agent code", "test an agent",
       "evaluate an agent", "deploy an agent", "publish an agent", "monitor an agent", or needs the ADK (Agent Development
       Kit) development lifecycle.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 99cb131fdcfe
+    content_hash: a0bada613ded
     files:
     - SKILL.md
     author: Google
@@ -14685,18 +15067,18 @@ groups:
     name: google-cloud-filestore-auditing
     path: google-skills/skills/cloud/google-cloud-filestore-auditing
     title: google-cloud-filestore-auditing
-    summary: Audits Google Cloud Filestore instances across projects for disaster recovery readiness (missing or stale backups),
-      security access governance (overly permissive NFS export rules, 0.0.0.0/0 exposure, missing ROOT_SQUASH), and reliability
-      compliance (Physical Zone Isolation PZI and Physical Zone Separation PZS). Use when assessing storage health posture,
-      auditing NFS export permissions, identifying unprotected file shares, or validating zone failure domains. Don't use
-      for Cloud Storage buckets, Persistent Disk, or NetApp Volumes.
-    version: 0.0.1
+    summary: Audits Filestore instances on Google Cloud across projects for disaster recovery readiness (missing or stale
+      backups), security access governance (overly permissive NFS export rules, 0.0.0.0/0 exposure, missing ROOT_SQUASH),
+      and reliability compliance (Physical Zone Isolation PZI and Physical Zone Separation PZS). Use when assessing storage
+      health posture, auditing NFS export permissions, identifying unprotected file shares, or validating zone failure domains.
+      Don't use for Cloud Storage buckets, Persistent Disk, or NetApp Volumes.
+    version: 1.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 4e36766a2b99
+    content_hash: ad4136998b56
     files:
     - SKILL.md
     - references/audit-rules-matrix.md
@@ -14713,18 +15095,18 @@ groups:
     name: google-cloud-filestore-autoscale
     path: google-skills/skills/cloud/google-cloud-filestore-autoscale
     title: google-cloud-filestore-autoscale
-    summary: Inspects Google Cloud Filestore capacity and utilization, evaluates storage scaling rules, and performs capacity
+    summary: Inspects Filestore capacity and utilization on Google Cloud, evaluates storage scaling rules, and performs capacity
       autoscaling (scale UP for low free space or scale DOWN for cost optimization). Use when monitoring Filestore instance
       headroom, resizing instance shares, configuring automated growth/shrink thresholds (custom thresholds apply globally
       across projects in session memory), or preventing out-of-space outages. Don't use for Cloud Storage (GCS) buckets, Persistent
       Disk block storage, or NetApp Volumes.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8a07c2fdedd5
+    content_hash: ad9d5ebd95c2
     files:
     - SKILL.md
     - references/instance-tiers-specs.md
@@ -14732,6 +15114,36 @@ groups:
     - references/troubleshooting-errors.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/cloud/google-cloud-filestore-autoscale
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/google-cloud-filestore-log-troubleshooting
+    name: google-cloud-filestore-log-troubleshooting
+    path: google-skills/skills/cloud/google-cloud-filestore-log-troubleshooting
+    title: google-cloud-filestore-log-troubleshooting
+    summary: Diagnoses and resolves Filestore client mount failures on Google Cloud, permission errors (EACCES), and network
+      timeouts (ETIMEDOUT). Use when an NFS mount hangs or fails from a Compute Engine VM, GKE pod, Cloud Run service, or
+      Vertex AI workload, when `mount.nfs` reports "Connection timed out" or "access denied by server", when checking whether
+      VPC ingress firewall rules or `nfsExportOptions` allow a client IP, or when a previously working Filestore share suddenly
+      stops mounting after an administrative change. Don't use for Cloud Storage (GCS) buckets, Persistent Disk, or Cloud
+      NetApp Volumes, and don't use for Filestore capacity scaling or backup and export-policy auditing.
+    version: 1.0.1
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 2da66eb17cba
+    files:
+    - SKILL.md
+    - references/error-signatures.md
+    - references/logging-and-audit-queries.md
+    - references/mock-fleet-data.md
+    - references/network-firewall-spec.md
+    - scripts/diagnose_lib.py
+    - scripts/quick_diagnose.py
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/google-cloud-filestore-log-troubleshooting
     license: Apache-2.0
     group: google-skills
     category: Cloud
@@ -14760,13 +15172,13 @@ groups:
       - Non-Google Cloud load balancing or security configurations.
 
       - Purely regional or internal load balancing setups (unless part of a hybrid/failover global design).'
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9fc214abc4a3
+    content_hash: 8c33cf1586ca
     files:
     - SKILL.md
     - references/drift-detection.md
@@ -14784,16 +15196,17 @@ groups:
     name: google-cloud-networking-observability
     path: google-skills/skills/cloud/google-cloud-networking-observability
     title: google-cloud-networking-observability
-    summary: Investigates Google Cloud networking issues by analyzing logs, metrics, and diagnostics. Use when investigating
-      VPC Flow Logs (including cost estimation), NAT, firewall, or threat logs, querying latency and throughput metrics, or
-      running Connectivity Tests for path diagnostics. Don't use for generic VM management or non-observability tasks.
-    version: 0.0.1
+    summary: Investigates Google Cloud networking issues by analyzing GCP logs, metrics, and diagnostics. Use when investigating
+      dropped network traffic, packet drops, drop reasons, VPC Flow Logs (including Private Service Connect / PSC, serverless
+      / App Engine Direct VPC, and cost estimation), NAT, firewall, or threat logs, querying latency and throughput metrics,
+      or running Connectivity Tests for path diagnostics. Don't use for generic VM management or non-observability tasks.
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fc0ecc1088e7
+    content_hash: c753cf499c63
     files:
     - SKILL.md
     - references/cloud-nat-analysis.md
@@ -14813,15 +15226,16 @@ groups:
     name: google-cloud-recipe-auth
     path: google-skills/skills/cloud/google-cloud-recipe-auth
     title: google-cloud-recipe-auth
-    summary: Provides expert guidance on authenticating and authorizing to Google Cloud services and APIs, covering human
-      users, service identities, Application Default Credentials (ADC), and best practices for secure access.
-    version: 0.0.1
+    summary: Provides expert guidance on Identity and Access Management (IAM) and authenticating and authorizing to Google
+      Cloud services and APIs, covering human users, service identities, Application Default Credentials (ADC), and best practices
+      for secure access.
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 331a2b19f762
+    content_hash: db45e550f903
     files:
     - SKILL.md
     author: Google
@@ -14840,13 +15254,13 @@ groups:
 
 
       Don''t use for individual project onboarding (use google-cloud-recipe-onboarding or product-specific skills instead).'
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a87761d87395
+    content_hash: e85371e0041f
     files:
     - SKILL.md
     - references/admin-iam.md
@@ -14865,13 +15279,13 @@ groups:
       and deploying a first resource. Use when a new developer wants to initialize their first Google Cloud project, configure
       billing, and verify deployment. Don't use for enterprise organization setup (use Google Cloud Setup guided flow for
       that instead). Don't use for complex multi-project architectures.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 67fa067067be
+    content_hash: e8a78613fe51
     files:
     - SKILL.md
     author: Google
@@ -14884,16 +15298,16 @@ groups:
     path: google-skills/skills/cloud/google-cloud-scc-query
     title: google-cloud-scc-query
     summary: Queries and retrieves active security findings, external exposures, toxic combinations, vulnerabilities, threats,
-      and sensitive data risks from Google Cloud Security Command Center. Use when retrieving details for a security finding
+      and sensitive data risks from Security Command Center on Google Cloud. Use when retrieving details for a security finding
       by its name, validating finding scope (e.g., verifying findingClass is TOXIC_COMBINATION, VULNERABILITY, EXTERNAL_EXPOSURE,
       or THREAT), or fetching finding details for triage. Don't use to draft remediations, apply patches, or execute configurations.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7d9ba7194b99
+    content_hash: c20b86401e2a
     files:
     - SKILL.md
     - references/finding_schema.md
@@ -14902,20 +15316,45 @@ groups:
     license: Apache-2.0
     group: google-skills
     category: Cloud
-  - id: google-skills/google-cloud-slo-alert-configuration
-    name: google-cloud-slo-alert-configuration
-    path: google-skills/skills/cloud/google-cloud-slo-alert-configuration
-    title: google-cloud-slo-alert-configuration
-    summary: Configures PromQL-based Service Level Objective (SLO) alerting policies for Google Cloud resources registered
-      in App Hub or individually specified. Generates Terraform output. Use when the user asks to configure an SLO or Service
-      Level Objective. Don't use for standard alerting policies.
-    version: 0.0.1
+  - id: google-skills/google-cloud-scc-remediation
+    name: google-cloud-scc-remediation
+    path: google-skills/skills/cloud/google-cloud-scc-remediation
+    title: google-cloud-scc-remediation
+    summary: Remediates Google Cloud Security Command Center findings, including IAM permission fixes, cloud resource misconfigurations,
+      vulnerabilities, and Toxic Combinations. Use when asked to fix, remediate, or mitigate a Security Command Center finding
+      or address attack paths. Don't use for general IAM policy querying without a Security Command Center finding. For runtime
+      threat detections, this skill provides containment and investigation guidance rather than automated configuration fixes.
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1bd0fc960520
+    content_hash: 6a2d79c32c60
+    files:
+    - SKILL.md
+    - references/remediation_iam.md
+    - references/remediation_misconfig.md
+    - references/remediation_vuln.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/google-cloud-scc-remediation
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/google-cloud-slo-alert-configuration
+    name: google-cloud-slo-alert-configuration
+    path: google-skills/skills/cloud/google-cloud-slo-alert-configuration
+    title: google-cloud-slo-alert-configuration
+    summary: Configures Cloud Monitoring PromQL-based Service Level Objective (SLO) alerting policies on Google Cloud for
+      resources registered in App Hub or individually specified. Generates Terraform output. Use when the user asks to configure
+      an SLO or Service Level Objective. Don't use for standard alerting policies.
+    version: 1.0.1
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c18119299899
     files:
     - SKILL.md
     - references/app_hub_labels.md
@@ -14935,13 +15374,13 @@ groups:
       a custom Google Cloud solution that uses opinionated best practices and architecture guidance. Use when users need agentic
       assistance to design and create a multi-product solution in the cloud for live bidirectional multimodal streaming workloads.
       Don't use for simple text-based chat applications or workloads without real-time streaming requirements.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d874a863a464
+    content_hash: 8839d09631eb
     files:
     - SKILL.md
     - assets/output-template.md
@@ -14956,17 +15395,19 @@ groups:
     name: google-cloud-solution-agentic-ai-borderless-data-lakehouse
     path: google-skills/skills/cloud/google-cloud-solution-agentic-ai-borderless-data-lakehouse
     title: google-cloud-solution-agentic-ai-borderless-data-lakehouse
-    summary: Guides agents to discover requirements and design a governed, secure borderless open data lakehouse with agentic
-      AI integration. Use when designing a multi-product architecture that connects data silos to AI agents, joining data
-      across clouds, or running federated queries across Google Cloud and external data sources, including on-premises or
-      other cloud providers. Don't use for simple single-cloud data warehouses or non-AI workloads.
-    version: 0.0.1
+    summary: Discovers requirements and designs a borderless open data lakehouse using Lakehouse for Apache Iceberg and BigQuery
+      data agents. Use when architecting multi-cloud storage infrastructure (Cloud Storage, AWS S3, Azure Blob), establishing
+      ingestion and AI serving subsystems, configuring Cross-Cloud Interconnect, or deploying Gemini Enterprise Agent Platform
+      and BigQuery data agents. Don't use for single-cloud data warehouses, or when the focus is on Knowledge Catalog metadata
+      governance and Spark-driven IDE analytics workflows (use google-cloud-solution-agentic-analytics-spark-knowledge-catalog
+      instead).
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 4d915753c244
+    content_hash: f2f8d62907bc
     files:
     - SKILL.md
     - assets/output-template.md
@@ -14985,13 +15426,13 @@ groups:
     summary: Designs a tailored multi-product agentic data science architecture on Google Cloud that incorporates opinionated
       best practices. Use when architecting multi-product solutions for agent-based data analytics or ML workloads. Don't
       use for simple queries, non-agentic pipelines, general cloud reviews, or writing agent code.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9f87ca7f1d3d
+    content_hash: 4917ae9b2329
     files:
     - SKILL.md
     - assets/output-template.md
@@ -15006,19 +15447,19 @@ groups:
     name: google-cloud-solution-agentic-analytics-spark-knowledge-catalog
     path: google-skills/skills/cloud/google-cloud-solution-agentic-analytics-spark-knowledge-catalog
     title: google-cloud-solution-agentic-analytics-spark-knowledge-catalog
-    summary: Discovers requirements and generates guidance to design and deploy a governed, secure agentic-analytics solution
-      for data that's distributed across Google Cloud, other cloud providers, or on-premises. Data that's outside Google Cloud
-      (such as data from Databricks, Snowflake, Salesforce, SAP, or Oracle systems) is accessed through federation mechanisms
-      such as Apache Iceberg, other "zero-copy ETL" methods, or remote query push-down. Use this skill when designing an architecture
-      for efficient analytics across large volumes of structured and unstructured data that's located in multiple systems
-      and environments, including other cloud providers and on-premises.
-    version: 0.0.1
+    summary: Discovers requirements and designs an end-to-end governed agentic analytics solution using Knowledge Catalog
+      and Managed Service for Apache Spark (Lightning Engine). Use when designing data science and analytics workflows across
+      structured and unstructured distributed data (including in S3, Azure Blob, AlloyDB, and Iceberg), establishing metadata
+      governance with Knowledge Catalog aspect types, or grounding agentic IDEs (VS Code, Antigravity) by using the Google
+      Cloud Data Agent Kit. Don't use for provisioning borderless data lakehouse infrastructure (use google-cloud-solution-agentic-ai-borderless-data-lakehouse
+      instead).
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1750875ae3bf
+    content_hash: 4f1edd591ae4
     files:
     - SKILL.md
     - assets/output-template.md
@@ -15040,13 +15481,13 @@ groups:
       for new cloud workloads or migrations. Don't use for single-product tasks (use product-specific skills), initial onboarding
       or authentication (use google-cloud-recipe-*), Well-Architected Framework reviews or audits (use google-cloud-waf-*),
       or workloads covered by specialized solution skills.
-    version: 0.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 65562ca83f7f
+    content_hash: d305c53e32ec
     files:
     - SKILL.md
     - assets/output-template.md
@@ -15066,13 +15507,13 @@ groups:
       to gather requirements, recommend a tailored architecture, and generate deployment instructions. Use when designing
       or implementing agentic systems on Google Cloud. Don't use for general Google Cloud solution architecture (use google-cloud-solution-architecture
       instead) or for narrow tasks targeting a single product without agent context.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9fb7ab893a5a
+    content_hash: 36c76ca2af5b
     files:
     - SKILL.md
     - assets/implementation-template.md
@@ -15096,13 +15537,13 @@ groups:
       follow-up questions during such a migration (hardware sizing, model staging, manifest generation, validation, traffic
       cutover). DO NOT use for brand new GKE inference deployments with no existing workload to migrate (use gke-inference
       instead). DO NOT use if the user intends to automate the migration via the Gemini Cloud Assist MCP server.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fd7b00eaf702
+    content_hash: fc83cf3b8d09
     files:
     - SKILL.md
     - assets/ccc-profile.yaml.tmpl
@@ -15125,13 +15566,13 @@ groups:
       AI validation, or serverless hosting across transactional relational databases, analytical data warehouses, or managed
       database engines. DON'T use this skill for simple keyword-only search, or when a standalone non-relational vector database
       is required.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a0647c7f7820
+    content_hash: 0f9a8a9533ce
     files:
     - SKILL.md
     - assets/output-template.md
@@ -15150,13 +15591,13 @@ groups:
     summary: Designs, deploys, and secures Google Cloud Agent Gateway solutions. Use when the user needs to configure multi-agent
       security, ingress (CLIENT_TO_AGENT), or egress (AGENT_TO_ANYWHERE) patterns involving Model Armor, IAP, and Agent Registry.
       Don't use for general Cloud Load Balancing or basic VPC setup not related to Agent Gateways.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: e892a139443f
+    content_hash: c9a7f8c47d90
     files:
     - SKILL.md
     - assets/agw-authz-extension.yaml
@@ -15194,13 +15635,13 @@ groups:
       Use when users need architecture designs, security checklists, Terraform code, or deployment guidance for multi-tier
       serverless apps, regional data residency / European sovereignty compliance, zero-trust private VPC networking, or Private
       Service Connect. Don't use for VM, GKE, or non-Google Cloud architectures.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3ba4abe38c62
+    content_hash: de52cb4db79d
     files:
     - SKILL.md
     - assets/main.tf
@@ -15221,13 +15662,13 @@ groups:
       as the store and index for the embedding vectors, an open model and open-source inferencing framework, and Kubernetes
       containers to host all the application components. DON'T use this skill for fully-managed RAG, or SaaS search services,
       or when a non-SQL vector database is required.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f4e6717ba19d
+    content_hash: 2f41c51e383e
     files:
     - SKILL.md
     - assets/output-template.md
@@ -15243,21 +15684,21 @@ groups:
     name: google-cloud-storage-basics
     path: google-skills/skills/cloud/google-cloud-storage-basics
     title: google-cloud-storage-basics
-    summary: Stores, retrieves, and manages data as objects in Cloud Storage (Google Cloud Storage, or GCS) buckets. Use when
-      you need to interact with Cloud Storage — create or configure buckets, upload, download, stream, or transfer data, organize
-      objects with folders, generate signed URLs, control access (IAM, ACLs, public access prevention), set storage classes
-      and tiering (Standard, Nearline, Coldline, Archive), manage cost and lifecycle, protect data (versioning, encryption/CMEK,
-      retention and Bucket Lock, object holds, soft delete), host static websites, trigger Pub/Sub notifications on object
-      changes, mount buckets as a file system (gcsfuse), or optimize storage performance at any scale. Covers the gcloud storage
-      / gsutil CLI, JSON and XML APIs, client libraries, Terraform, and Cloud Storage MCP servers. Don't use for block storage
-      (Persistent Disk), data warehousing/analytics (BigQuery), or databases (Cloud SQL, Spanner, Bigtable, Firestore).
-    version: '1'
+    summary: Stores, retrieves, and manages data as objects in Cloud Storage on Google Cloud (also known colloquially as GCS)
+      buckets. Use when you need to interact with Cloud Storage — set up a Storage MCP server (remote or local Toolbox), create
+      or configure buckets, upload, download, stream, or transfer data, organize objects with folders, generate signed URLs,
+      control access (IAM, ACLs, public access prevention), set storage classes (Standard, Nearline, Coldline, Archive), manage
+      lifecycle and cost, protect data (versioning, CMEK, retention, Bucket Lock, holds, soft delete), host static websites,
+      trigger Pub/Sub notifications, mount buckets (gcsfuse), or optimize performance. Covers gcloud storage / gsutil, JSON/XML
+      APIs, client libraries, Terraform, and Cloud Storage MCP servers. Don't use for non-Storage MCP servers, block storage
+      (Persistent Disk), BigQuery, or databases (Cloud SQL, Spanner, Bigtable, Firestore).
+    version: 1.0.2
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1499ac94eb4c
+    content_hash: bb3a3c323f09
     files:
     - SKILL.md
     - references/cli-api-usage.md
@@ -15279,21 +15720,22 @@ groups:
     name: google-cloud-storage-bucket-architect
     path: google-skills/skills/cloud/google-cloud-storage-bucket-architect
     title: google-cloud-storage-bucket-architect
-    summary: Creates Cloud Storage (Google Cloud Storage, or GCS) buckets. Analyzes the workload (sensitive data, media hosting,
-      ingestion, web hosting, archiving, backup, logging, analytics, AI/ML, or general-purpose), validates project-level security
-      settings, and designs a secure-by-default, cost-effective configuration (location, storage class, uniform bucket-level
-      access, public access prevention, soft delete, lifecycle) before creating it. Use whenever a user wants to create, make,
-      set up, provision, or spin up a bucket, or needs object storage for an app, service, pipeline, or dataset — even a "simple"
-      or "default" bucket, or when bucket creation is one step in a larger workflow. Outputs or executes the creation via
-      gcloud, the JSON/REST API, Terraform, or SDK client libraries (C++, Java, Python, Go). Don't use for anything other
-      than creating new buckets — for uploads, downloads, access changes, or reconfiguring existing buckets, use google-cloud-storage-basics.
-    version: '1'
+    summary: Creates Cloud Storage on Google Cloud (also known colloquially as GCS) buckets. Analyzes the workload (sensitive
+      data, media hosting, ingestion, web hosting, archiving, backup, logging, analytics, AI/ML, or general-purpose), validates
+      project-level security settings, and designs a secure-by-default, cost-effective configuration (location, storage class,
+      uniform bucket-level access, public access prevention, soft delete, lifecycle) before creating it. Use whenever a user
+      wants to create, make, set up, provision, or spin up a bucket, or needs object storage for an app, service, pipeline,
+      or dataset — even a "simple" or "default" bucket, or when bucket creation is one step in a larger workflow. Outputs
+      or executes the creation via gcloud, the JSON/REST API, Terraform, or SDK client libraries (C++, Java, Python, Go).
+      Don't use for anything other than creating new buckets — for uploads, downloads, access changes, or reconfiguring existing
+      buckets, use google-cloud-storage-basics.
+    version: 1.0.2
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f7acce10c1c8
+    content_hash: 133e1c23e84c
     files:
     - SKILL.md
     - references/archiving_compliance.md
@@ -15324,21 +15766,22 @@ groups:
     name: google-cloud-storage-fuse
     path: google-skills/skills/cloud/google-cloud-storage-fuse
     title: google-cloud-storage-fuse
-    summary: 'Mounts Cloud Storage buckets as a POSIX file system with Cloud Storage FUSE (gcsfuse). Use when interacting
-      with gcsfuse: decide whether FUSE, native gs:// reads, or Filestore/Managed Lustre fits a workload, deploy tuned mounts
-      on GKE, Compute Engine, or Cloud Run, enable and size file, stat, and list caches, tune mount flags or config-file settings,
-      apply workload profiles, keep ML checkpointing safe (rename atomicity, hierarchical namespace/HNS, close-time finalization,
-      concurrent writers), or diagnose slow training, low throughput, or bill spikes with gcsfuse metrics. Covers mount semantics,
-      gcsfuse CLI and config files, GKE gcsfuse CSI driver (Workload Identity principal:// bindings, profile StorageClasses,
-      sidecar sizing), and Cloud Run volume mounts. Don''t use for bucket administration or data management without a mount
-      (google-cloud-storage-basics) or fully POSIX-compliant shared file systems (Filestore, Managed Lustre).'
-    version: '1'
+    summary: 'Mounts Cloud Storage buckets on Google Cloud as a POSIX file system using Cloud Storage FUSE (and the gcsfuse
+      CLI tool). Use when interacting with the gcsfuse CLI or Cloud Storage FUSE mounts: decide whether FUSE, native gs://
+      reads, or Filestore/Managed Lustre fits a workload, deploy tuned mounts on GKE, Compute Engine, or Cloud Run, enable
+      and size file, stat, and list caches, tune mount flags (--implicit-dirs) or config-file settings, apply workload profiles,
+      keep ML checkpointing safe (rename atomicity, hierarchical namespace/HNS, close-time finalization, concurrent writers),
+      or diagnose slow training, low throughput, or bill spikes with gcsfuse metrics. Covers mount semantics, gcsfuse CLI
+      and config files, GKE gcsfuse CSI driver (Workload Identity principal:// bindings, profile StorageClasses, sidecar sizing),
+      and Cloud Run volume mounts. Don''t use for bucket administration or data management without a mount (google-cloud-storage-basics)
+      or fully POSIX-compliant shared file systems (Filestore, Managed Lustre; use gke-storage).'
+    version: 1.0.2
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 62c2f008bb44
+    content_hash: 052125613f33
     files:
     - SKILL.md
     - references/checkpoint-safety.md
@@ -15353,16 +15796,17 @@ groups:
     name: google-cloud-waf-cost-optimization
     path: google-skills/skills/cloud/google-cloud-waf-cost-optimization
     title: google-cloud-waf-cost-optimization
-    summary: Generates cost optimization guidance for Google Cloud workloads based on the Google Cloud Well-Architected Framework
-      (WAF). Use this skill to evaluate a workload, identify cost requirements and constraints, and provide actionable recommendations
-      for build, deploy, and manage the workload cost-efficiently in Google Cloud.
-    version: 0.0.1
+    summary: Evaluates Google Cloud workloads for cost efficiency and FinOps alignment using the Google Cloud Well-Architected
+      Framework Cost Optimization pillar. Use when the user asks to analyze Google Cloud spend, reduce cloud bills, rightsize
+      resources (for example, Compute, GKE, Storage, Databases), evaluate discount options (for example, CUDs, SUDs, Spot
+      VMs), or eliminate idle capacity. Do not use for standalone product pricing lookups or non-cost architecture design.
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f8c4b592c89d
+    content_hash: 30e36b268b69
     files:
     - SKILL.md
     author: Google
@@ -15378,13 +15822,13 @@ groups:
       in the Operational Excellence pillar of the Google Cloud Well-Architected Framework (WAF). Use this skill to evaluate
       a workload, identify operational requirements, and provide actionable recommendations for deployment, monitoring, and
       incident management.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2e75011bf951
+    content_hash: 4e1e7a8bf8e9
     files:
     - SKILL.md
     author: Google
@@ -15400,13 +15844,13 @@ groups:
       in the Performance Optimization pillar of the Google Cloud Well-Architected Framework (WAF). Use this skill to evaluate
       a workload, identify performance requirements, and provide actionable recommendations for resource allocation, modular
       design, and elasticity.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2768c4c5add8
+    content_hash: d888c5453a88
     files:
     - SKILL.md
     author: Google
@@ -15422,13 +15866,13 @@ groups:
       (DR) for Google Cloud workloads based on the design principles and recommendations in the Google Cloud Well-Architected
       Framework. Use when the user asks to evaluate, design, or improve the reliability, resilience, availability, or disaster
       recovery capabilities of Google Cloud workloads.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3a63babc77e7
+    content_hash: 08747ea0e0dc
     files:
     - SKILL.md
     author: Google
@@ -15443,13 +15887,13 @@ groups:
     summary: Generates security-focused guidance for Google Cloud workloads based on the design principles and recommendations
       in the Google Cloud Well-Architected Framework (WAF). Use this skill to evaluate workloads, identify security requirements,
       and provide actionable recommendations for IAM, network security, data protection, and operational security.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3dfbb4c71799
+    content_hash: bdb1c5f2f672
     files:
     - SKILL.md
     author: Google
@@ -15461,17 +15905,20 @@ groups:
     name: google-cloud-waf-sustainability
     path: google-skills/skills/cloud/google-cloud-waf-sustainability
     title: google-cloud-waf-sustainability
-    summary: Generates sustainability-focused guidance for Google Cloud workloads based on the design principles and recommendations
-      in the Google Cloud Well-Architected Framework (WAF). Use this skill to evaluate a workload, identify environmental
-      impact requirements, and provide actionable recommendations to build, deploy, and manage the workload sustainably in
-      Google Cloud.
-    version: 0.0.1
+    summary: Provides recommendations for environmental sustainability, carbon footprint reduction, and energy efficiency
+      based on the Sustainability pillar of the Google Cloud Well-Architected Framework (WAF). Use when the user asks to assess,
+      design, or optimize Google Cloud workloads for sustainability—including the shared responsibility model, selecting low-carbon
+      regions (CFE%), reducing resource and AI/ML energy waste, designing efficient software and storage lifecycles, or measuring
+      and tracking emissions using Google Cloud Carbon Footprint. Don't use for financial cost reduction (use google-cloud-waf-cost-optimization),
+      latency and throughput tuning (use google-cloud-waf-performance-optimization), or high availability and disaster recovery
+      (use google-cloud-waf-reliability).
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c667b61d6f7c
+    content_hash: 6b5076f15a83
     files:
     - SKILL.md
     author: Google
@@ -15488,13 +15935,13 @@ groups:
       creating, updating, listing, or deleting IAM allow policies or deny policies. Don't use for access denial troubleshooting
       (use iam-helper-for-troubleshooting), temporary privileged access (use iam-helper-for-privileged-access-management),
       configuring VPC Service Controls, or managing network firewall rules.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: de2d608cf19c
+    content_hash: ee2bcdf3d87b
     files:
     - SKILL.md
     - references/v1-allow-policies.md
@@ -15508,17 +15955,17 @@ groups:
     name: iam-helper-for-policy-simulator
     path: google-skills/skills/cloud/iam-helper-for-policy-simulator
     title: iam-helper-for-policy-simulator
-    summary: Safely simulates and applies Google Cloud IAM v1 (Allow) policy changes. Uses the Policy Simulator to replay
-      historical access logs against proposed policies to prevent breaking active workloads before applying the changes. Use
-      when simulating or applying IAM v1 allow policies across Projects, Folders, or Organizations. Don't use for analyzing
-      IAM v2 deny policies, VPC Service Controls, or performing general policy troubleshooting.
-    version: 0.0.1
+    summary: Safely simulates and applies Identity and Access Management (IAM) v1 (Allow) policy changes on Google Cloud.
+      Uses the Policy Simulator to replay historical access logs against proposed policies to prevent breaking active workloads
+      before applying the changes. Use when simulating or applying IAM v1 allow policies across Projects, Folders, or Organizations.
+      Don't use for analyzing IAM v2 deny policies, VPC Service Controls, or performing general policy troubleshooting.
+    version: 1.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 71a65ccca29a
+    content_hash: 49464bc04dd8
     files:
     - SKILL.md
     - scripts/analyze_simulation.py
@@ -15535,13 +15982,13 @@ groups:
       a user asks to create, read, update, or delete PAM entitlements, request temporary access, or approve/deny pending PAM
       grants. Do NOT use for permanent IAM policy bindings, troubleshooting IAM permission errors, or general Google Cloud
       resource provisioning.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 92e99d37ee1f
+    content_hash: 855b44d9c547
     files:
     - SKILL.md
     - assets/entitlement_template.yaml
@@ -15558,18 +16005,18 @@ groups:
     name: iam-helper-for-troubleshooting
     path: google-skills/skills/cloud/iam-helper-for-troubleshooting
     title: iam-helper-for-troubleshooting
-    summary: 'Diagnoses, remediates, and manages Google Cloud Identity and Access Management (IAM) access issues. Supports
+    summary: 'Diagnoses, remediates, and manages Identity and Access Management (IAM) access issues on Google Cloud. Supports
       two distinct operational modes: (1) Requester Flow for developers encountering access denials (capturing error context,
       self-service PAM JIT activations, elevated developer self-remediation, or logging structured tickets), and (2) Resolver
       Flow for privileged administrators (authoritative Policy Troubleshooter analysis, deny policy exemptions, least-privilege
       role discovery, and PAM/IAM provisioning).'
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 5bab067d7595
+    content_hash: 157f37b0c8dc
     files:
     - SKILL.md
     - references/guardrails.md
@@ -15591,13 +16038,13 @@ groups:
       Composer). Covers environment context discovery, Airflow 2 vs 3 compatibility, authoring best practices, and local/remote
       validation processes. Use when creating or extending an Airflow DAG. Don't use when authoring Python code unrelated
       to Airflow DAGs.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: bc0414640afd
+    content_hash: 919ffc505e8a
     files:
     - SKILL.md
     author: Google
@@ -15612,13 +16059,13 @@ groups:
     summary: Provides guidance for troubleshooting Apache Airflow DAGs (failed DAG runs and task instances) in Managed Service
       for Apache Airflow (MSAA; formerly Cloud Composer). Use when figuring out reasons for DAG run or task instance failures.
       Don't use when looking for overall recommendations for Managed Airflow environment performance.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 591d9379410f
+    content_hash: daeef18ac5e9
     files:
     - SKILL.md
     author: Google
@@ -15634,13 +16081,13 @@ groups:
       Composer). Covers migration to Airflow 2.11.1 (MSAA Gen 2 and 3) and Airflow 3 (MSAA Gen 3), including environment inspection,
       GCS download/upload and scanning patterns for breaking changes. Use when migrating the DAG code to newer Airflow version.
       Don't use when checking DAG run failures unrelated to code migration.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: ad2d7cb41b02
+    content_hash: 447b35fdc7c8
     files:
     - SKILL.md
     - references/airflow-3.md
@@ -15651,19 +16098,133 @@ groups:
     license: Apache-2.0
     group: google-skills
     category: Cloud
+  - id: google-skills/secops-cases
+    name: secops-cases
+    path: google-skills/skills/cloud/secops-cases
+    title: secops-cases
+    summary: Manage Google Security Operations (SecOps) SOAR cases throughout their lifecycle. Use when listing, creating,
+      inspecting, updating, or closing SOAR cases; adding investigative comments and notes; updating case priority or description;
+      or linking and grouping security alerts within cases. Supports both remote Google SecOps MCP tools and local fallback
+      tools. Don't use for SIEM UDM searches or detection rule authoring.
+    version: 1.1.1
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 315419307f32
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-cases
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-detection-engineering
+    name: secops-detection-engineering
+    path: google-skills/skills/cloud/secops-detection-engineering
+    title: secops-detection-engineering
+    summary: Author, validate, test, and deploy YARA-L 2.0 detection rules and evaluate end-to-end detection coverage gaps
+      in Google SecOps. Use when writing new detection rules, tuning existing rules, validating syntax, testing logic against
+      historical telemetry, or evaluating detection coverage against threat intelligence blogs, CVE disclosures, and Threat
+      Detection Opportunities (TDOs) using synthetic UDM events and long-running coverage analysis. Don't use for alert triage
+      (use secops-triage), deep forensic event reconstruction on infected hosts (use secops-investigate), or case management
+      operations (use secops-cases).
+    version: 1.1.1
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e6fca143b28a
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-detection-engineering
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-hunt
+    name: secops-hunt
+    path: google-skills/skills/cloud/secops-hunt
+    title: secops-hunt
+    summary: Expert guidance for proactive threat hunting in Google SecOps. Use when proactively hunting for threats, retroactively
+      analyzing indicators of compromise (IoCs), performing prevalence searches across enterprise events, hunting for MITRE
+      ATT&CK techniques, or detecting behavioral and statistical outliers using UDM queries. Don't use for incoming alert
+      triage (use secops-triage), active incident response and timeline deep-dives on a known breach (use secops-investigate),
+      or detection rule authoring (use secops-detection-engineering).
+    version: 1.1.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7d25590185f8
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-hunt
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-investigate
+    name: secops-investigate
+    path: google-skills/skills/cloud/secops-investigate
+    title: secops-investigate
+    summary: Expert guidance for deep security incident and entity investigations in Google SecOps. Use when investigating
+      cases, analyzing entities (hosts, IPs, domains, hashes, users), extracting and searching UDM events, performing asset
+      and user timeline analysis, and detecting lateral movement across enterprise networks. Don't use for detection rule
+      authoring or YARA-L tuning (use secops-detection-engineering), proactive hypothesis-driven hunting (use secops-hunt),
+      initial alert triage (use secops-triage), or basic case status updates (use secops-cases).
+    version: 1.1.2
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 29c3250c4f63
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-investigate
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/secops-triage
+    name: secops-triage
+    path: google-skills/skills/cloud/secops-triage
+    title: secops-triage
+    summary: Expert guidance for security alert triage in Google SecOps. Use when investigating and triaging security alerts,
+      determining false positives vs. true positives, assessing entity risk, adjusting alert severity or priority, and closing
+      or escalating alerts and cases. Don't use for deep multi-hop incident investigations across host timelines (use secops-investigate),
+      proactive threat hunting or retroactive IoC sweeps (use secops-hunt), or authoring new detection rules (use secops-detection-engineering).
+    version: 1.1.1
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 7c519b161d23
+    files:
+    - SKILL.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/cloud/secops-triage
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
   - id: google-skills/spanner-basics
     name: spanner-basics
     path: google-skills/skills/cloud/spanner-basics
     title: spanner-basics
     summary: Assists in provisioning instances and databases, designing performant schemas, and querying data in Spanner.
       Use when designing primary keys, writing SQL queries or client library code, or diagnosing performance issues.
-    version: 0.0.1
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 89221cbec0b0
+    content_hash: 2b4f298aad43
     files:
     - SKILL.md
     - references/cli-usage.md
@@ -15672,6 +16233,7 @@ groups:
     - references/iam-security.md
     - references/mcp-usage.md
     - references/postgresql-dialect.md
+    - references/queues-usage.md
     - references/schema-design.md
     - references/terraform-usage.md
     author: Google
@@ -15689,13 +16251,13 @@ groups:
       review violations, export results to BigQuery, or automate Workload Manager through client libraries because no service-specific
       public CLI or MCP server is available. Don't use for general Google Compute Engine instance management, VPC configuration,
       or standard IAM auditing.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: ffbbbb1fb362
+    content_hash: c9f922e19d67
     files:
     - SKILL.md
     - references/client-library-usage.md
@@ -15715,18 +16277,19 @@ groups:
     name: finding-google-skills
     path: google-skills/skills/developers/finding-google-skills
     title: finding-google-skills
-    summary: Locates and loads the right Google product skill on demand from a remote catalog index, instead of preloading
-      every skill. Use at the START of any request touching a Google product, API, or developer platform - including Google
-      Cloud (GKE, Cloud Run, IAM, BigQuery, Vertex AI, Spanner), Google Ads, Google Analytics, Google Workspace (Gmail, Drive,
-      Admin SDK), Chrome and Chrome extensions, Android, Firebase, YouTube, Google Maps, Gemini and the Gemini API, Google
-      Play, and Flutter. Consult the index before answering from memory or searching the web. Don't use for non-Google products.
-    version: 0.0.1
+    summary: Google platform decision and setup guidance, loaded on demand from Google's skill catalog. Use when a developer
+      is choosing or setting up part of their stack, such as where to run a service, a database, storage, messaging, authentication,
+      analytics, ads, or AI model serving, and a Google product is a reasonable candidate - whether or not a vendor is named
+      - or when a request names a Google product or API. Brings in the matching Google skill so the answer can weigh Google
+      options, their trade-offs, and when they are not the right fit. Skip when the stack is already settled on another provider
+      and no Google product is named, or the task involves no platform choice.
+    version: 1.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 115ad17997ab
+    content_hash: 7c064639c8bb
     files:
     - SKILL.md
     author: Google
@@ -15743,13 +16306,13 @@ groups:
       MCP server (search_documents, get_documents, answer_query) or the Developer Knowledge REST API fallback. Use when searching
       for gcloud CLI commands, API syntax, IAM permissions, official documentation, architectural comparisons, or product
       choice overviews. Don't use for local filesystem lookups or non-Google documentation.
-    version: 0.0.1
+    version: 1.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: dfa665ecfe65
+    content_hash: 8330f465fbeb
     files:
     - SKILL.md
     - references/api-fallback.md
@@ -15769,17 +16332,48 @@ groups:
       (P-256), generating DPoP Proof JWTs for authorization code exchange and token refresh, or handling 400 use_dpop_nonce
       challenge retry loops at oauth2.googleapis.com/token. Don't use for unconstrained OAuth 2.0 flows (where refresh tokens
       are not bound to a client key pair), or for Google Cloud IAM / service account authentication.
-    version: 0.0.1
+    version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: de252033aa49
+    content_hash: 1145e7777388
     files:
     - SKILL.md
     author: Google
     source_url: https://github.com/google/skills/tree/main/skills/identity/dpop-adoption
+    license: Apache-2.0
+    group: google-skills
+    category: Cloud
+  - id: google-skills/sign-in-with-google-web
+    name: sign-in-with-google-web
+    path: google-skills/skills/identity/sign-in-with-google-web
+    title: sign-in-with-google-web
+    summary: Implement, configure, and secure Sign In With Google (SiwG) using Google Identity Services (GIS / `https://accounts.google.com/gsi/client`)
+      across web architectures. Use when creating Google sign-in buttons, implementing Google One Tap with FedCM, integrating
+      GIS in React/Next.js/Angular/HTML, verifying ID tokens on backend runtimes (Python/Node.js/Go/Java), enforcing Google
+      Workspace domain restrictions (`hd`), securing client-side ID tokens via WebCrypto nonces or encrypted IndexedDB, embedding
+      in cross-origin iframes via the Intermediate Iframe API (`https://accounts.google.com/gsi/intermediate`), configuring
+      Content Security Policy (CSP), COOP, and Permissions Policy (`identity-credentials-get`) headers, or handling sign-out
+      and revocation. Don't use for legacy Google Sign-In (`gapi.auth2`), Google Cloud IAM service accounts, or Android/iOS
+      native Credential Manager.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 2ea6ceae9d4f
+    files:
+    - SKILL.md
+    - references/bff_fastapi_verification.md
+    - references/in_memory_spa_nonce.md
+    - references/intermediate_iframe.md
+    - references/offline_pwa_encryption.md
+    - references/tmb_login_uri_redirect.md
+    author: Google
+    source_url: https://github.com/google/skills/tree/main/skills/identity/sign-in-with-google-web
     license: Apache-2.0
     group: google-skills
     category: Cloud

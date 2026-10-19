@@ -1,37 +1,37 @@
 ---
 name: google-cloud-storage-basics
 description: >-
-  Stores, retrieves, and manages data as objects in Cloud Storage (Google
-  Cloud Storage, or GCS) buckets. Use when you need to interact with Cloud
-  Storage — create or configure buckets, upload, download, stream, or transfer
-  data, organize objects with folders, generate signed URLs, control access
-  (IAM, ACLs, public access prevention), set storage classes and tiering
-  (Standard, Nearline, Coldline, Archive), manage cost and lifecycle, protect
-  data (versioning, encryption/CMEK, retention and Bucket Lock, object holds,
-  soft delete), host static websites, trigger Pub/Sub notifications on object
-  changes, mount buckets as a file system (gcsfuse), or optimize storage
-  performance at any scale. Covers the gcloud storage / gsutil CLI, JSON and
-  XML APIs, client libraries, Terraform, and Cloud Storage MCP servers. Don't
-  use for block storage (Persistent Disk), data warehousing/analytics
-  (BigQuery), or databases (Cloud SQL, Spanner, Bigtable, Firestore).
+  Stores, retrieves, and manages data as objects in Cloud Storage on Google
+  Cloud (also known colloquially as GCS) buckets. Use when you need to interact
+  with Cloud Storage — set up a Storage MCP server (remote or local Toolbox),
+  create or configure buckets, upload, download, stream, or transfer data,
+  organize objects with folders, generate signed URLs, control access (IAM,
+  ACLs, public access prevention), set storage classes (Standard, Nearline,
+  Coldline, Archive), manage lifecycle and cost, protect data (versioning,
+  CMEK, retention, Bucket Lock, holds, soft delete), host static websites,
+  trigger Pub/Sub notifications, mount buckets (gcsfuse), or optimize
+  performance. Covers gcloud storage / gsutil, JSON/XML APIs, client
+  libraries, Terraform, and Cloud Storage MCP servers. Don't use for
+  non-Storage MCP servers, block storage (Persistent Disk), BigQuery, or
+  databases (Cloud SQL, Spanner, Bigtable, Firestore).
 license: Apache-2.0
 metadata:
-  version: v1
+  version: "1.0.2"
   publisher: google
   tags: "gcs, storage, cloud-storage, buckets, objects"
   category: Storage
   support_tier: primary
 ---
 
-# Google Cloud Storage Basics
+# Cloud Storage Basics
 
-Google Cloud Storage (GCS) is a managed service for storing data as objects at
-any scale. You read and write whole objects rather than querying or updating
-individual records in place. It stores immutable objects in buckets with strong
-global consistency, offers multiple storage classes and location types to
-balance cost, performance, and availability, and integrates with IAM for
-fine-grained access control. GCS serves workloads ranging from website content
-and backups to data lakes and high-throughput AI/ML training.
+Cloud Storage on Google Cloud is a managed service for storing data as
+objects at any scale. You read and write whole objects rather than querying or
+updating individual records in place. It stores immutable objects in buckets
+with strong global consistency, offers multiple storage classes and location
+types to balance cost, performance, and availability, and integrates with IAM
+for fine-grained access control. Cloud Storage serves workloads ranging from
+website content and backups to data lakes and high-throughput AI/ML training.
 
 ## Attribution
 
@@ -41,10 +41,13 @@ version; it carries no user data.
 
 -   Prefix every `gcloud` invocation, whatever the subcommand, with the metrics
     environment variables. Set them inline on each command; shell state may not
-    persist between commands:
+    persist between commands. Use this append form verbatim. It keeps any
+    attribution the host environment already set (for example an IDE plugin
+    tagging agent activity through the same variable) and adds the skill tag
+    after it, so neither value clobbers the other:
 
     ```bash
-    CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
+    CLOUDSDK_METRICS_ENVIRONMENT="${CLOUDSDK_METRICS_ENVIRONMENT:+$CLOUDSDK_METRICS_ENVIRONMENT }gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
     gcloud <command> [flags]
     ```
 
@@ -61,10 +64,10 @@ version; it carries no user data.
     User-Agent: gcs-skills/1.0 (skill:google-cloud-storage-basics)
     ```
 
--   For client libraries, Terraform, and GCSFuse, use the user-agent options
-    shown in the corresponding references.
+-   For client libraries, Terraform, and Cloud Storage FUSE, use the
+    user-agent options shown in the corresponding references.
 
-## Routing to Specialized GCS Skills
+## Routing to Specialized Cloud Storage Skills
 
 This skill covers everyday Cloud Storage tasks. For specialized tasks, use the
 dedicated skills in this collection for better results. Check your available
@@ -83,8 +86,8 @@ skills and invoke the matching skill by name instead of improvising:
     deploying tuned mounts on GKE, Compute Engine, or Cloud Run, sizing file,
     stat, and list caches, tuning mount flags, ensuring safe ML checkpointing,
     or diagnosing slow or expensive mounts. The
-    [GCSFuse reference](references/gcsfuse.md) in this skill covers only basic
-    installation and mounting.
+    [Cloud Storage FUSE reference](references/gcsfuse.md) in this skill covers
+    only basic installation and mounting.
 
 -   **`google-cloud-storage-diagnostic`**: Troubleshooting 403 Permission Denied
     errors and diagnosing IAM policy bindings, ACLs, uniform bucket-level access
@@ -110,15 +113,18 @@ npx skills add gemini-cli-extensions/google-cloud-storage --skill <skill-name>
 
 ## Quick Start
 
-If a Cloud Storage MCP server is connected, prefer its structured tools (such as
+To set up, configure, or choose between the Google-hosted remote Cloud Storage
+MCP server (`https://storage.googleapis.com/storage/mcp`) and the local MCP
+Toolbox (`cloud-storage`), read [MCP Usage](references/mcp-usage.md). If a Cloud
+Storage MCP server is already connected, prefer its structured tools (such as
 `create_bucket`, `list_objects`, `read_object`, and `upload_object`) over the
-CLI and API commands below — see [MCP Usage](references/mcp-usage.md). Fall back
-to `gcloud storage` and the JSON API when no MCP server is available.
+CLI and API commands below, and fall back to `gcloud storage` and the JSON API
+when no MCP server is available.
 
 1.  **Enable the Cloud Storage API:**
 
     ```bash
-    CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
+    CLOUDSDK_METRICS_ENVIRONMENT="${CLOUDSDK_METRICS_ENVIRONMENT:+$CLOUDSDK_METRICS_ENVIRONMENT }gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
     gcloud services enable storage.googleapis.com --quiet
     ```
 
@@ -131,13 +137,13 @@ to `gcloud storage` and the JSON API when no MCP server is available.
 
     For a production or workload-specific bucket, route to
     `google-cloud-storage-bucket-architect` before creating a bucket (see
-    [Routing to Specialized GCS Skills](#routing-to-specialized-gcs-skills)).
+    [Routing to Specialized Cloud Storage Skills](#routing-to-specialized-cloud-storage-skills)).
     The commands below create a basic default bucket.
 
     Using the gcloud CLI:
 
     ```bash
-    CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
+    CLOUDSDK_METRICS_ENVIRONMENT="${CLOUDSDK_METRICS_ENVIRONMENT:+$CLOUDSDK_METRICS_ENVIRONMENT }gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
     gcloud storage buckets create gs://my-bucket --location=us-central1
     ```
 
@@ -156,7 +162,7 @@ to `gcloud storage` and the JSON API when no MCP server is available.
     Using the gcloud CLI:
 
     ```bash
-    CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
+    CLOUDSDK_METRICS_ENVIRONMENT="${CLOUDSDK_METRICS_ENVIRONMENT:+$CLOUDSDK_METRICS_ENVIRONMENT }gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
     gcloud storage cp ./my-file.txt gs://my-bucket
     ```
 
@@ -175,7 +181,7 @@ to `gcloud storage` and the JSON API when no MCP server is available.
     Using the gcloud CLI:
 
     ```bash
-    CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
+    CLOUDSDK_METRICS_ENVIRONMENT="${CLOUDSDK_METRICS_ENVIRONMENT:+$CLOUDSDK_METRICS_ENVIRONMENT }gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-basics)" \
     gcloud storage cp gs://my-bucket/my-file.txt .
     ```
 
@@ -228,7 +234,7 @@ to `gcloud storage` and the JSON API when no MCP server is available.
     Bucket, Rapid Cache (Anywhere Cache), and hierarchical namespace for AI/ML,
     analytics, and other performance-critical workloads.
 
--   [GCSFuse](references/gcsfuse.md): Installing Cloud Storage FUSE, mounting
-    buckets, file operations, POSIX semantics and limitations (locking, writes,
-    renames, consistency), and caching. For advanced tuning, deployment, and
-    diagnosis, route to the `google-cloud-storage-fuse` skill.
+-   [Cloud Storage FUSE](references/gcsfuse.md): Installing Cloud Storage FUSE,
+    mounting buckets, file operations, POSIX semantics and limitations (locking,
+    writes, renames, consistency), and caching. For advanced tuning, deployment,
+    and diagnosis, route to the `google-cloud-storage-fuse` skill.

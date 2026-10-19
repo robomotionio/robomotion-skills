@@ -1,9 +1,10 @@
 ---
 name: google-cloud-filestore-autoscale
 metadata:
+  version: "1.0.1"
   category: Storage
 description: >-
-  Inspects Google Cloud Filestore capacity and utilization, evaluates storage
+  Inspects Filestore capacity and utilization on Google Cloud, evaluates storage
   scaling rules, and performs capacity autoscaling (scale UP for low free space
   or scale DOWN for cost optimization). Use when monitoring Filestore instance
   headroom, resizing instance shares, configuring automated growth/shrink
@@ -12,10 +13,10 @@ description: >-
   Persistent Disk block storage, or NetApp Volumes.
 ---
 
-# Google Cloud Filestore Autoscale
+# Filestore Autoscale
 
-This skill enables agents to inspect, evaluate, and modify Google Cloud
-Filestore instance capacities across GCP projects based on configured
+This skill enables agents to inspect, evaluate, and modify Filestore
+instance capacities across Google Cloud projects based on configured
 thresholds.
 
 ## Prerequisites / IAM Requirements

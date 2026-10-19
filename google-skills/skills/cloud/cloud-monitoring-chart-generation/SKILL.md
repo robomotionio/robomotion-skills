@@ -1,10 +1,12 @@
 ---
 name: cloud-monitoring-chart-generation
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 description: >-
-  Generates Google Cloud Monitoring Server-Driven UI (SDUI) Widget and
-  XyChart Protocol Buffer textprotos from resolved PromQL or ListTimeSeries queries.
+  Generates Cloud Monitoring Server-Driven UI (SDUI) Widget and XyChart Protocol
+  Buffer textprotos on Google Cloud from resolved PromQL or ListTimeSeries
+  queries.
   Use when:
     - Generating valid google.monitoring.dashboard.v1.Widget textprotos,
       containing PrometheusQuery or TimeSeriesFilter datasets, for use with the Cloud Monitoring

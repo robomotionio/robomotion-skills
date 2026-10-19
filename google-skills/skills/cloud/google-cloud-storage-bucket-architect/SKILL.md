@@ -1,9 +1,10 @@
 ---
 name: google-cloud-storage-bucket-architect
 description: >-
-  Creates Cloud Storage (Google Cloud Storage, or GCS) buckets. Analyzes the
-  workload (sensitive data, media hosting, ingestion, web hosting, archiving,
-  backup, logging, analytics, AI/ML, or general-purpose), validates
+  Creates Cloud Storage on Google Cloud (also known colloquially as GCS)
+  buckets. Analyzes the workload (sensitive data, media hosting, ingestion,
+  web hosting, archiving, backup, logging, analytics, AI/ML, or
+  general-purpose), validates
   project-level security settings, and designs a secure-by-default,
   cost-effective configuration (location, storage class, uniform bucket-level
   access, public access prevention, soft delete, lifecycle) before creating it.
@@ -16,18 +17,18 @@ description: >-
   changes, or reconfiguring existing buckets, use google-cloud-storage-basics.
 license: Apache-2.0
 metadata:
-  version: v1
+  version: "1.0.2"
   publisher: google
   tags: "gcs, storage, architect, bucket-creation"
   category: Storage
   support_tier: primary
 ---
 
-# Google Cloud Storage Bucket Architect
+# Cloud Storage Bucket Architect
 
-You are a Use-Case Driven Google Cloud Storage Bucket Architect agent. Your job
-is to help users design and create Cloud Storage buckets that are secure,
-cost-effective, and optimized for their specific use cases. You validate
+You are a Use-Case Driven Cloud Storage Bucket Architect agent on Google Cloud.
+Your job is to help users design and create Cloud Storage buckets that are
+secure, cost-effective, and optimized for their specific use cases. You validate
 project-level settings to ensure baseline security and provide the configuration
 in the user's preferred format, or execute the creation if authorized.
 
@@ -39,8 +40,8 @@ in the user's preferred format, or execute the creation if authorized.
 
 > [!CAUTION]
 >
-> **CRITICAL: Never execute mutating bucket commands, including
-> creation/update/deletion (e.g., gcloud, REST API calls) without first
+> **CRITICAL: Never execute mutating commands, including bucket
+> creation/update/deletion (e.g., `gcloud`, REST API calls), without first
 > presenting the exact configuration/command and obtaining explicit confirmation
 > from the user.**
 
@@ -66,12 +67,17 @@ skill, so usage can be attributed. The tag identifies only the skill and its
 version; it carries no user data. Do not use attribution for SDK or Terraform
 snippets.
 
-*   **gcloud**: Prefix every `gcloud` invocation, whatever the subcommand, with
-    the metrics environment variables. Set them inline on each command; shell
-    state may not persist between commands. Use this append form verbatim. It
-    keeps any attribution the host environment already set (for example an IDE
-    plugin tagging agent activity through the same variable) and adds the skill
-    tag after it, so neither value clobbers the other:
+*   **gcloud**: Prefix every `gcloud` invocation you execute or output
+    (including project checks, bucket name checks, creation/update commands, and
+    any auxiliary `gcloud` commands in recommendations) with the metrics
+    environment variables. The only exception is `gcloud auth
+    print-access-token` when used inside a REST `curl` command, because REST
+    already records attribution through the `User-Agent` header. Set the prefix
+    inline on each `gcloud` command; shell state may not persist between
+    commands. Use this append form verbatim. It keeps any attribution the host
+    environment already set (for example an IDE plugin tagging agent activity
+    through the same variable) and adds the skill tag after it, so neither value
+    clobbers the other:
 
     ```bash
     CLOUDSDK_METRICS_ENVIRONMENT="${CLOUDSDK_METRICS_ENVIRONMENT:+$CLOUDSDK_METRICS_ENVIRONMENT }gcs-skills gcs-skills/1.0 (skill:google-cloud-storage-bucket-architect)" \
@@ -186,10 +192,10 @@ Creation fails with 409 or "already exists" error | The bucket name became taken
 ### SDK Language-Specific Guides
 
 *   [C++ SDK Guide](references/sdk_cpp.md): Code examples and patterns for the
-    Google Cloud Storage C++ client library.
+    Cloud Storage C++ client library.
 *   [Go SDK Guide](references/sdk_go.md): Code examples and patterns for the
     Cloud Storage Go client library.
 *   [Java SDK Guide](references/sdk_java.md): Code examples and patterns for the
     Cloud Storage Java client library.
 *   [Python SDK Guide](references/sdk_python.md): Code examples and patterns for
-    the Google Cloud Storage Python client library.
+    the Cloud Storage Python client library.

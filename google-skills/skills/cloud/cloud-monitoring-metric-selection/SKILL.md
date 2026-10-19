@@ -1,10 +1,11 @@
 ---
 name: cloud-monitoring-metric-selection
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 description: >-
-  Retrieve, query, and identify relevant Google Cloud Monitoring metric
-  descriptors for a GCP service or resource (such as Compute Engine, Spanner,
+  Retrieve, query, and identify relevant Cloud Monitoring metric descriptors on
+  Google Cloud for a service or resource (such as Compute Engine, Spanner,
   BigQuery, Cloud Run, Cloud SQL, Pub/Sub, Cloud Storage, etc.). Use when asked
   to find, list, search, or discover GCP metric types, names, kind/value
   schemas, or descriptors.
@@ -12,7 +13,7 @@ description: >-
 
 # Metric Selection (Service Query & Local Keyword Filtering)
 
-Use this skill to identify the most relevant Google Cloud Monitoring metric
+Use this skill to identify the most relevant Cloud Monitoring metric
 descriptors. It queries all metric descriptors for a target service from the API
 and filters them locally inside the agent's context using keyword matching.
 
@@ -41,8 +42,8 @@ and filters them locally inside the agent's context using keyword matching.
     `google-cloud-monitoring:list_metric_descriptors`,
     `mcp_google-cloud-monitoring_list_metric_descriptors`, or a similar pattern)
     is available in your active toolset.
-2.  **Verify via Unique URL**: To ensure you are calling the correct Google
-    Cloud Monitoring tool, confirm that the underlying MCP server configuration
+2.  **Verify via Unique URL**: To ensure you are calling the correct Cloud
+    Monitoring tool, confirm that the underlying MCP server configuration
     points to: **`https://monitoring.googleapis.com/mcp`**.
 3.  If the tool is **missing**:
 
@@ -97,7 +98,7 @@ and filters them locally inside the agent's context using keyword matching.
 ### Step 3: Query Metric Descriptors via list_metric_descriptors Tool
 
 Query all metric descriptors for each identified service prefix using the
-`list_metric_descriptors` MCP tool (using `pageSize: 200`). Because Google Cloud
+`list_metric_descriptors` MCP tool (using `pageSize: 200`). Because Cloud
 Monitoring filters do not allow combining multiple `metric.type` restrictions
 with `OR`, you must **initiate a separate query for each identified service
 prefix** (either sequentially or in parallel).
@@ -156,7 +157,7 @@ your LLM context:
 2.  **Resource Alignment**: Check if the metric contains labels matching the
     target resource granularity (such as checking for a `database` label if
     targeting a database resource). Do not attempt to dynamically match resource
-    type strings directly, as Google Cloud Monitoring resource mappings (like
+    type strings directly, as Cloud Monitoring resource mappings (like
     Spanner databases mapping to `spanner_instance`) can be counter-intuitive.
 
 #### Troubleshooting & API Fallbacks
@@ -182,7 +183,7 @@ You MUST report the selected metrics in clean Markdown tables, grouped by
 service (that is, one table per service prefix). The table MUST include the
 following columns: "Metric Type", "Display Name", "Description", "Metric Kind",
 "Value Type", "Unit", and "Monitored Resource Types". Map the fields from the
-Google Cloud Monitoring `list_metric_descriptors` tool call response objects
+Cloud Monitoring `list_metric_descriptors` tool call response objects
 directly to the table columns:
 
 *   **Metric Type**: Map to the `type` field (for example,
@@ -205,7 +206,7 @@ Metric Type                                       | Display Name             | D
 
 ## Reference Documentation & Links
 
-*   **Google Cloud Monitoring Metric List**:
+*   **Cloud Monitoring Metric List**:
     [GCP Metrics Documentation](https://cloud.google.com/monitoring/api/metrics_gcp)
 *   **MetricDescriptor MCP Tool Reference**:
     [MCP Tools Reference: monitoring.googleapis.com](https://docs.cloud.google.com/monitoring/api/ref_v3_mcp/mcp/tools_list/list_metric_descriptors)
