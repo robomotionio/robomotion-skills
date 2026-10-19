@@ -26361,7 +26361,7 @@ groups:
   name: netlify-skills
   title: Netlify Skills
   type: group
-  version: 1.3.2
+  version: 1.7.0
   author: Netlify
   source_url: https://github.com/netlify/context-and-tools
   license: MIT
@@ -26383,25 +26383,25 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: f93a1291541f
+  content_hash: 8354e6e429c0
   skills:
   - id: netlify-skills/netlify-access-control
     name: netlify-access-control
     path: netlify-skills/skills/netlify-access-control
     title: netlify-access-control
-    summary: Picks the right Netlify protection layer for a deployed site and disambiguates the three unrelated things people
-      call "auth". Use when a developer wants to password-protect a site or previews, restrict a project to their team, make
-      a project public/private, set team visibility defaults, require SSO to view a site, or debug SSO-session symptoms like
-      being logged out mid-session / getting 401s on an SSO-protected site / token expiry or refresh. Routes app-user login
-      ("who is this user in my app") to the netlify-identity skill and dashboard/team SSO SSO elsewhere; this skill only chooses
-      the perimeter layer for site/preview access.
-    version: 1.3.2
+    summary: 'Picks the right Netlify site-protection layer and disambiguates the three unrelated "auth" concepts users conflate
+      — app-user login (Netlify Identity), site-load gating (Password Protection / project visibility), and dashboard SAML
+      SSO. Use it when asked to password-protect a site or Deploy Preview, make a project private/public, restrict a site
+      to your team, require SSO to view a site, set up company-wide app SSO, or invite users to a private project. Also use
+      it for SSO-session symptoms on protected sites: "logged out mid-session", 401s after about an hour, or token expiry/refresh
+      questions. Not for wiring auth code — route app-login setup to netlify-identity.'
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 915b801c8cdc
+    content_hash: 1aedb209cdc6
     files:
     - SKILL.md
     - references/two-layer-pattern.md
@@ -26417,9 +26417,9 @@ groups:
     summary: Run AI agent tasks remotely on Netlify using Claude, Codex, or Gemini. Use when the user wants to run an AI agent
       on their site, get a second opinion from another model, or delegate development tasks to run remotely against their
       repo.
-    version: 1.3.2
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -26435,19 +26435,19 @@ groups:
     name: netlify-ai-gateway
     path: netlify-skills/skills/netlify-ai-gateway
     title: netlify-ai-gateway
-    summary: Use OpenAI, Anthropic, Google Gemini, or OpenRouter models from Netlify Functions or Edge Functions without managing
-      provider API keys or accounts — the gateway injects credentials automatically. Reach for this when you add an AI chatbot
-      or completion endpoint, generate images or text with Gemini/GPT/Claude, summarize form submissions with AI, build an
-      LLM-backed API route, stream a long AI generation, or wire up any server-side AI provider call on Netlify. Covers provider
-      SDK setup, injected env vars, model availability, rate limits, credit costs, streaming for long generations, and local
-      dev with netlify dev or the Vite plugin.
-    version: 1.3.2
+    summary: Use Netlify AI Gateway to call OpenAI, Anthropic Claude, Google Gemini, TypeSafe (Jev), or OpenRouter-hosted
+      models (xAI/DeepSeek/Meta/Mistral/Qwen) from Netlify Functions or Edge Functions without managing provider accounts
+      or API keys. Reach for this when adding an AI feature to a Netlify app — a chatbot, text summarizer, image generator,
+      joke/content generator, form-submission routing or analysis, or any LLM call — or when wiring the OpenAI/Anthropic/Gemini/TypeSafe/OpenRouter
+      SDK into a Netlify Function, choosing which env vars to use, streaming long generations, or debugging why gateway calls
+      fail at build time or return 401.
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 4ddf104818df
+    content_hash: e48d790dda08
     files:
     - SKILL.md
     author: Netlify
@@ -26459,19 +26459,19 @@ groups:
     name: netlify-blobs
     path: netlify-skills/skills/netlify-blobs
     title: netlify-blobs
-    summary: Store and retrieve unstructured objects, file uploads, and cache-like state on Netlify using the @netlify/blobs
-      key/value API from Functions, Edge Functions, and Build Plugins. Use when a task involves saving user file or image
-      uploads, persisting form or contact-form submissions, storing generated output from Background Functions (sitemaps/processed
-      media/bulk-email results), building read-only asset stores, adding client-side blob expiration, or wiring file-based
-      blob uploads at deploy time. Not for per-user, transactional, or relational data (counters/balances/sessions) — reach
-      for Netlify DB there instead.
-    version: 1.3.2
+    summary: Store and retrieve unstructured objects, files, and cache-like state on Netlify with the @netlify/blobs module.
+      Use when persisting user file uploads (images/documents), caching computed output from functions or Background Functions,
+      serving downloadable assets, storing JSON blobs keyed by ID, or seeding deploy-specific data. Reach for this for key/value
+      or object storage from Functions, Edge Functions, or Build Plugins — not for per-user, transactional, or relational
+      data (use Netlify DB for that). Triggers include "save an uploaded file", "cache API results", "store generated site
+      map", "key/value store for a function", or "file uploads without a database".
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: dc31613fe80a
+    content_hash: b4e70af08f6c
     files:
     - SKILL.md
     author: Netlify
@@ -26489,9 +26489,9 @@ groups:
       use the programmatic Cache API (caches.open/match/put) or @netlify/cache helpers (fetchWithCache/cacheHeaders/getCacheStatus),
       speed up an expensive API call, add ISR or on-demand revalidation, or debug why a response is or isn't cached via the
       Cache-Status header.
-    version: 1.3.2
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -26507,19 +26507,18 @@ groups:
     name: netlify-config
     path: netlify-skills/skills/netlify-config
     title: netlify-config
-    summary: Configure Netlify projects via netlify.toml and the _headers/_redirects files — covering build settings and deploy
-      contexts alongside environment variables/scopes and the Secrets Controller plus redirect/rewrite/proxy and custom-header
-      rules. Use when setting a build command or publish directory, adding redirect or rewrite or proxy rules, configuring
-      custom headers or basic auth, setting or scoping environment variables and secrets, wiring up a monorepo or SPA fallback,
-      or skipping unnecessary builds. Reach for this whenever you touch netlify.toml or ask "why is my env var undefined in
-      a function" or "how do I redirect this path".
-    version: 1.3.2
+    summary: Configure Netlify builds and routing via netlify.toml, _redirects, and _headers. Use when setting a build command
+      or publish directory, adding redirects or rewrites or proxies, adding an SPA fallback rewrite, setting custom response
+      headers or basic auth, managing environment variables and secrets, scoping vars per deploy context, marking a var as
+      secret, disabling secret scanning, configuring functions bundling, ignoring builds, or wiring up a monorepo or JavaScript
+      SPA on Netlify.
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 8311567bddae
+    content_hash: 6730718dad0e
     files:
     - SKILL.md
     author: Netlify
@@ -26536,13 +26535,13 @@ groups:
       an existing Postgres project onto Netlify. Use when adding a database, building a contact form or CRUD API, writing
       SQL migrations, wiring up Drizzle, running netlify database commands, testing with a local Postgres, or switching from
       Neon/Supabase/RDS to Netlify Database.
-    version: 1.3.2
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 11a61176a1b4
+    content_hash: 8aeb757ba812
     files:
     - SKILL.md
     - references/cli-commands.md
@@ -26560,17 +26559,18 @@ groups:
     name: netlify-deploy
     path: netlify-skills/skills/netlify-deploy
     title: netlify-deploy
-    summary: Create and manage Netlify deploys — Git continuous deployment, CLI manual/anonymous deploys, Deploy to Netlify
-      buttons, drag-and-drop, and per-context netlify.toml build settings. Use when linking a repo, deploying from the CLI,
-      setting up Deploy Previews or branch deploys, configuring deploy contexts, adding skew protection, fixing a failed or
-      secrets-flagged deploy, or wiring build hooks and Deploy to Netlify buttons.
-    version: 1.3.2
+    summary: Create, configure, and manage Netlify deploys from code — reach for this when setting up Git continuous deployment,
+      running netlify deploy or netlify deploy --prod from the CLI, writing netlify.toml deploy contexts, adding a Deploy
+      to Netlify button, wiring build hooks, configuring Deploy Previews or branch deploys, locking or skipping deploys, fixing
+      a failed or secrets-scanning deploy, or when someone asks to "deploy my site", "set up preview deploys", "add per-branch
+      build config", or "add a deploy button to my README".
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: e66a0f143587
+    content_hash: aa4c30698b5d
     files:
     - SKILL.md
     - references/cli-commands.md
@@ -26585,18 +26585,20 @@ groups:
     name: netlify-edge-functions
     path: netlify-skills/skills/netlify-edge-functions
     title: netlify-edge-functions
-    summary: Write, configure, and deploy Netlify Edge Functions (Deno runtime at the network edge) in TypeScript/JavaScript.
-      Use when adding request/response manipulation at the edge — auth middleware, geolocation redirects, A/B testing and
-      personalization, content localization, redirects/rewrites, SSR at the edge, or transforming responses — or when configuring
-      path routing, response caching, or edge error handling. Triggers on tasks like "add auth middleware", "geo-based redirect",
-      "A/B testing at the edge", "rewrite requests", or editing files in netlify/edge-functions.
-    version: 1.3.2
+    summary: Write and configure Netlify Edge Functions — TypeScript/JavaScript handlers running in a Deno runtime at the
+      network edge. Use when adding auth middleware or auth redirects, geolocation or localization logic, A/B testing or personalization,
+      request/response transforms (rewrites/redirects), or edge SSR to a Netlify site. Triggers on tasks like "add an edge
+      function", "auth check at the edge", "redirect visitors by country", "A/B test with cookies", "rewrite requests", "personalize
+      by geo", or "cache an edge response". Covers the config export, path routing, the Context object, response caching,
+      environment variables, and edge-vs-serverless choices. Check the framework's adapter first — only hand-write an edge
+      function when the framework doesn't already generate one.
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 47fff3fec6a6
+    content_hash: 569fe1058c83
     files:
     - SKILL.md
     author: Netlify
@@ -26613,13 +26615,13 @@ groups:
       to a Netlify site; wiring AJAX form submission; setting up a custom thank-you page; adding a honeypot or reCAPTCHA to
       a form; getting forms working in Next.js, Nuxt, SvelteKit, Astro, or Gatsby; reading form submissions via the Netlify
       API; or debugging missing submissions and forms that silently fail to register.
-    version: 1.3.2
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: d30ebae808ea
+    content_hash: 5009d5c5e5f2
     files:
     - SKILL.md
     author: Netlify
@@ -26636,13 +26638,13 @@ groups:
       / TanStack Start / SolidStart / Gatsby / Angular / Vite / Express / Hydrogen / Hugo / Eleventy / Vue / React), adding
       SSR or edge functions or middleware wired to Netlify context, fixing SPA redirect and catch-all rules, setting a build
       command or publish directory, or debugging "why isn't my env var updating" and framework build failures.
-    version: 1.3.2
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 513057cd8996
+    content_hash: 784cb7beed07
     files:
     - SKILL.md
     - references/astro.md
@@ -26666,13 +26668,13 @@ groups:
       to deploy or form events, setting up rate limiting or region/memory config, or reading environment variables and secrets
       inside a function. Covers file locations, the Request/Context/Response handler shape, path routing, config options,
       and local testing with netlify dev.
-    version: 1.3.2
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: b8720b3f1a0f
+    content_hash: c1a35c81d782
     files:
     - SKILL.md
     author: Netlify
@@ -26684,18 +26686,18 @@ groups:
     name: netlify-identity
     path: netlify-skills/skills/netlify-identity
     title: netlify-identity
-    summary: Add authentication and user management to a Netlify site with @netlify/identity — signup/login/logout, OAuth
-      social login (Google/GitHub/GitLab/Bitbucket), server-side user verification in Functions, role-based access control
-      (RBAC), admin user management, and Identity event hooks. Use when adding a login/signup flow, "add social login", gating
-      content by user role, protecting a function or page behind auth, assigning roles at signup, customizing auth emails,
-      or handling OAuth/confirmation/recovery callbacks. Not for locking an entire site to a company/team — that is netlify-access-control.
-    version: 1.3.2
+    summary: Add user authentication to a Netlify site with @netlify/identity — signup/login/logout, Google/GitHub/GitLab/Bitbucket
+      OAuth, server-side getUser() checks, role-based access control, and Identity event functions. Use it when a task involves
+      adding a login or signup form, gating content to members or roles, "auth middleware" or verifying users in Netlify Functions
+      or Edge Functions, handling OAuth or email-confirmation callbacks, assigning roles at signup, or customizing Identity
+      emails. For locking a whole site to your company or employees-only access, use netlify-access-control instead.
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: bdb42de72a3c
+    content_hash: 6d5922f8674d
     files:
     - SKILL.md
     - references/advanced-patterns.md
@@ -26709,18 +26711,18 @@ groups:
     name: netlify-image-cdn
     path: netlify-skills/skills/netlify-image-cdn
     title: netlify-image-cdn
-    summary: Transform, resize, crop, reformat, and optimize images on demand via Netlify Image CDN's /.netlify/images endpoint.
-      Use when adding responsive images, generating thumbnails, converting formats (avif/webp/png), cropping to aspect ratios,
-      tuning image quality, creating blurred placeholders, allowlisting remote image domains, serving user-uploaded images,
-      or wiring framework image components (Next.js, Astro, Nuxt, Angular, Gatsby) to Netlify. Triggers on tasks like "optimize
-      images", "add image thumbnails", "resize images on the fly", "serve images from an external domain", or "add blur placeholders".
-    version: 1.3.2
+    summary: Transforms images on demand via Netlify Image CDN's /.netlify/images endpoint with query parameters for resizing/cropping/format/quality.
+      Use when adding image optimization or responsive images, converting formats (WebP/AVIF/PNG), generating thumbnails or
+      blur placeholders, serving remote/third-party images through the CDN, allowlisting remote domains in netlify.toml, setting
+      up image redirects or cache headers, building user-uploaded image pipelines, or debugging a 404 on /.netlify/images.
+      Also covers framework image handling for Angular/Astro/Gatsby/Next.js/Nuxt.
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: e158e9a68114
+    content_hash: 3f2de7e61878
     files:
     - SKILL.md
     - references/user-uploads.md
@@ -26739,9 +26741,9 @@ groups:
       Netlify Function, authentication (single shared secret vs per-user API keys with Netlify Identity), read/write safety,
       file uploads, and connecting clients. Use even when the user just says "MCP", "tool server for an agent", or "let an
       AI use my API".
-    version: 1.3.2
+    version: 1.7.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
@@ -26827,6 +26829,7 @@ groups:
   - agent-plugin/skills/netlify-mcp-servers/references/authentication.md
   - agent-plugin/skills/netlify-mcp-servers/references/connecting-clients.md
   - agent-plugin/skills/netlify-mcp-servers/references/file-uploads.md
+  - bin/netlify-skills.mjs
   - codex/AGENTS.md
   - codex/skills/netlify-access-control/SKILL.md
   - codex/skills/netlify-access-control/references/two-layer-pattern.md
@@ -26907,6 +26910,7 @@ groups:
   - docs/autopilot/2026-08-19-ax-136-receiver-byte-diff-report.md
   - docs/autopilot/2026-08-19-ax-136-receiver-byte-diff.md
   - gemini-extension.json
+  - netlify.toml
   - package-lock.json
   - package.json
   - release-please-config.json
@@ -26914,6 +26918,15 @@ groups:
   - scripts/build-agent-plugin.sh
   - scripts/build-codex-skills.sh
   - scripts/build-cursor-rules.sh
+  - scripts/build-gemini-extension.sh
+  - scripts/build-hosted.mjs
+  - scripts/build-hosted.test.mjs
+  - scripts/build-manifest.mjs
+  - scripts/build-manifest.test.mjs
+  - scripts/check-skills.mjs
+  - scripts/check-skills.test.mjs
+  - scripts/ctx-hub-ping.mjs
+  - scripts/ctx-hub-ping.test.mjs
   - scripts/ctx-notify.mjs
   - scripts/ctx-notify.test.mjs
   - scripts/ctx-ordering-guard.mjs
@@ -26921,6 +26934,9 @@ groups:
   - scripts/ctx-receive-ordering.test.mjs
   - scripts/ctx-receive.mjs
   - scripts/ctx-receive.test.mjs
+  - scripts/fetch-skill.mjs
+  - scripts/fetch-skill.test.mjs
+  - skill-registry.json
   - skills/CLAUDE.md
 - path: officecli
   name: officecli
