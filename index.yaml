@@ -6777,7 +6777,7 @@ groups:
   name: caveman-skills
   title: Caveman Skills
   type: group
-  version: 3.1.0
+  version: 3.2.0
   author: Julius Brussee
   source_url: https://github.com/JuliusBrussee/caveman
   license: Apache-2.0
@@ -6792,7 +6792,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 953f70957671
+  content_hash: 5934a25732b3
   skills:
   - id: caveman-skills/caveman
     name: caveman
@@ -6800,13 +6800,13 @@ groups:
     title: caveman
     summary: 'Terse caveman voice: answer first, fluff gone, every technical fact kept. Use for /caveman, "caveman mode",
       "talk like caveman", "be brief", "less tokens". Stays on until "stop caveman" or "normal mode".'
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 05bfd0cbf407
+    content_hash: 8dd75b3ad1dc
     files:
     - README.md
     - SKILL.md
@@ -6821,7 +6821,7 @@ groups:
     title: caveman-commit
     summary: Write a Conventional Commits message compressed to intent only. Use for "write a commit", "commit message", /commit
       or /caveman-commit.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -6842,13 +6842,13 @@ groups:
     title: caveman-compress
     summary: 'Compress a memory file such as CLAUDE.md or a todo list into caveman format to save input tokens, keeping a
       readable backup. Trigger: /caveman-compress.'
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 3b3c24f793dc
+    content_hash: 128b759edd43
     files:
     - README.md
     - SECURITY.md
@@ -6872,7 +6872,7 @@ groups:
     summary: Read-only repository explorer for cold-start orientation, broad cross-file localization, or when a direct search
       failed. Skip it when the exact file or symbol is already named. Returns path:line citations only; its reads stay out
       of main context.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -6893,13 +6893,13 @@ groups:
     path: caveman-skills/skills/caveman-help
     title: caveman-help
     summary: 'Quick-reference card for the three caveman skills and their commands. Trigger: /caveman-help or "caveman help".'
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a13aa12e6098
+    content_hash: 6610948e4a0f
     files:
     - README.md
     - SKILL.md
@@ -6914,7 +6914,7 @@ groups:
     title: caveman-review
     summary: Compressed code review - one line per finding with location, problem and fix. Use for /caveman-review, "review
       this PR", or "review the diff".
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -6935,7 +6935,7 @@ groups:
     title: investigate-first
     summary: Diagnose ambiguous failures before editing. Use for unknown causes, intermittent behavior, performance regressions,
       or investigations needing evidence-ranked hypotheses.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -6956,7 +6956,7 @@ groups:
     title: lean-build
     summary: Build feature work with high overbuilding risk. Use for new behavior, product slices, or integrations where repository
       reuse, strict scope, and an explicit stop condition matter.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -6977,13 +6977,13 @@ groups:
     title: megacave
     summary: 'Caveman in Classical Chinese: 文言文 register, far fewer characters, technical terms verbatim. Invoke only with
       /megacave or /caveman wenyan. Stays on until "stop caveman" or "normal mode".'
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c2ac0c464532
+    content_hash: 9df6cea312a9
     files:
     - README.md
     - SKILL.md
@@ -6998,7 +6998,7 @@ groups:
     title: migration
     summary: Implement reversible compatibility-safe transitions. Use for schema, data, API, protocol, configuration, or dependency
       migrations requiring rollback and preservation proof.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -7019,7 +7019,7 @@ groups:
     title: safe-refactor
     summary: Restructure code while preserving behavior. Use for extraction, consolidation, ownership moves, or cleanup where
       verification must bracket structural edits.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -7040,7 +7040,7 @@ groups:
     title: surgical-patch
     summary: Fix bugs and small behavior changes at the narrowest responsible layer. Use when regression proof, preserved
       surrounding behavior, and task-relevant tests matter.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
@@ -7061,13 +7061,13 @@ groups:
     title: ultracave
     summary: 'Caveman at maximum compression: fragments, one word when one word is enough, each fact once. Invoke only with
       /ultracave or /caveman ultra. Stays on until "stop caveman" or "normal mode".'
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3b210561b99e
+    content_hash: 84a5b6957c0a
     files:
     - README.md
     - SKILL.md
@@ -7082,7 +7082,7 @@ groups:
     title: verify-and-stop
     summary: Prove existing work meets acceptance conditions without expanding scope. Use for validation-only tasks, completion
       checks, focused gate runs, and last-mile proof.
-    version: 3.1.0
+    version: 3.2.0
     tags: []
     mode: host
     env:
