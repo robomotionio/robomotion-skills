@@ -63,7 +63,9 @@ All generated Terraform alert policies use explicit default constants. Users can
 | `traffic_drop_ratio` | `0.20` (80% drop) | `var.traffic_drop_ratio` | Throughput drop threshold vs 1h moving average. |
 | `traffic_min_hourly_rate` | `1.0` (1 req/s) | `var.traffic_min_hourly_rate` | Min hourly rate guard to prevent scale-to-zero false alarms. |
 | `traffic_surge_multiplier` | `3.0` (3x surge) | `var.traffic_surge_multiplier` | Throughput spike multiplier vs 1h moving average. |
+| `traffic_surge_min_rate` | `15.0` (15 req/s) | `var.traffic_surge_min_rate` | Minimum 5m request rate guard (req/s) to suppress traffic surge false alarms on low volume. |
 | `billable_time_surge_multiplier` | `3.0` (3x surge) | `var.billable_time_surge_multiplier` | Billable compute time multiplier vs 1h moving average. |
+| `billable_time_min_rate` | `5.0` (5 s/s) | `var.billable_time_min_rate` | Minimum 5m billable instance-seconds rate guard to prevent FinOps false alarms on low baseline usage. |
 | `retest_duration_buffer` | `"300s"` (5m) | `var.retest_duration_buffer` | Retest window for lookbacks $\le 25$h. Omitted for lookbacks $>25$h. |
 
 ---
@@ -517,35 +519,143 @@ resource "google_monitoring_alert_policy" "traffic_drop_anomaly" {
 ```
 
 #### 6.2 Traffic Surge Anomaly
-Detects sudden volumetric traffic spikes compared to 1h moving average.
+Detects sudden volumetric traffic spikes (e.g. DDoS or unexpected viral load) compared to the 1h moving average baseline (`> 3x` baseline with a minimum rate guard of `> 15 req/s`).
+
+##### PromQL Query
 
 ```promql
 (
   sum(rate(run_googleapis_com:request_count{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[5m])) by (service_name, location)
   /
   (sum(rate(run_googleapis_com:request_count{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[1h])) by (service_name, location) + 0.1)
-  > [SURGE_MULTIPLIER]
+  > 3.0
 )
 and
 (
-  sum(rate(run_googleapis_com:request_count{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[5m])) by (service_name, location) > [MIN_SURGE_RATE]
+  sum(rate(run_googleapis_com:request_count{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[5m])) by (service_name, location) > 15.0
 )
 ```
 
+##### Terraform Snippet
+
+```hcl
+variable "traffic_surge_multiplier" {
+  description = "Throughput spike multiplier vs 1h moving average baseline"
+  type        = number
+  default     = 3.0 # 3x surge
+}
+
+variable "traffic_surge_min_rate" {
+  description = "Minimum 5m request rate guard (req/s) to suppress false alarms on low volume"
+  type        = number
+  default     = 15.0 # 15 req/s
+}
+
+resource "google_monitoring_alert_policy" "traffic_surge_anomaly" {
+  for_each     = var.cloud_run_services
+  project      = var.scoping_project_id
+  display_name = "[Cloud Run] Traffic Surge Anomaly (>3x Baseline) - ${each.key}"
+  combiner     = "OR"
+
+  conditions {
+    display_name = "Traffic Surged >3x vs 1h Average on ${each.key}"
+    condition_prometheus_query_language {
+      query = <<-EOT
+        (
+          sum(rate(run_googleapis_com:request_count{monitored_resource="cloud_run_revision", service_name="${each.key}"}[5m])) by (service_name, location)
+          /
+          (sum(rate(run_googleapis_com:request_count{monitored_resource="cloud_run_revision", service_name="${each.key}"}[1h])) by (service_name, location) + 0.1)
+          > ${var.traffic_surge_multiplier}
+        )
+        and
+        (
+          sum(rate(run_googleapis_com:request_count{monitored_resource="cloud_run_revision", service_name="${each.key}"}[5m])) by (service_name, location) > ${var.traffic_surge_min_rate}
+        )
+      EOT
+      duration = "300s"
+    }
+  }
+
+  user_labels = {
+    severity                    = "warning"
+    service                     = each.key
+    tier                        = "traffic"
+    "created-with-google-skill" = "cloud-run-alert-configuration"
+  }
+
+  alert_strategy { auto_close = "604800s" }
+  notification_channels = var.notification_channels
+}
+```
+
 #### 6.3 Billable Instance Time Surge (FinOps Cost Control)
-Monitors runaway autoscaling or unoptimized compute consumption by tracking surges in billable container instance time.
+Monitors runaway autoscaling or unoptimized compute consumption by tracking surges in billable container instance time (`> 3x` 1-hour moving average baseline with a minimum billable instance-seconds guard `> 5.0`).
+
+##### PromQL Query
 
 ```promql
 (
   sum(rate(run_googleapis_com:container_billable_instance_time{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[5m])) by (service_name, location)
   /
   (sum(rate(run_googleapis_com:container_billable_instance_time{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[1h])) by (service_name, location) + 0.1)
-  > [BILLABLE_SURGE_MULTIPLIER]
+  > 3.0
 )
 and
 (
-  sum(rate(run_googleapis_com:container_billable_instance_time{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[5m])) by (service_name, location) > [MIN_BILLABLE_SECONDS]
+  sum(rate(run_googleapis_com:container_billable_instance_time{monitored_resource="cloud_run_revision", service_name="[SERVICE_NAME]"}[5m])) by (service_name, location) > 5.0
 )
+```
+
+##### Terraform Snippet
+
+```hcl
+variable "billable_time_surge_multiplier" {
+  description = "Billable compute time surge multiplier vs 1h moving average baseline"
+  type        = number
+  default     = 3.0 # 3x surge
+}
+
+variable "billable_time_min_rate" {
+  description = "Minimum 5m billable instance-seconds rate guard to suppress alerts on low baseline usage"
+  type        = number
+  default     = 5.0 # 5 billable instance-seconds/s
+}
+
+resource "google_monitoring_alert_policy" "billable_instance_time_surge" {
+  for_each     = var.cloud_run_services
+  project      = var.scoping_project_id
+  display_name = "[Cloud Run] FinOps Billable Instance Time Surge (>3x Baseline) - ${each.key}"
+  combiner     = "OR"
+
+  conditions {
+    display_name = "Billable Instance Time >3x vs 1h Average on ${each.key}"
+    condition_prometheus_query_language {
+      query = <<-EOT
+        (
+          sum(rate(run_googleapis_com:container_billable_instance_time{monitored_resource="cloud_run_revision", service_name="${each.key}"}[5m])) by (service_name, location)
+          /
+          (sum(rate(run_googleapis_com:container_billable_instance_time{monitored_resource="cloud_run_revision", service_name="${each.key}"}[1h])) by (service_name, location) + 0.1)
+          > ${var.billable_time_surge_multiplier}
+        )
+        and
+        (
+          sum(rate(run_googleapis_com:container_billable_instance_time{monitored_resource="cloud_run_revision", service_name="${each.key}"}[5m])) by (service_name, location) > ${var.billable_time_min_rate}
+        )
+      EOT
+      duration = "300s"
+    }
+  }
+
+  user_labels = {
+    severity                    = "warning"
+    service                     = each.key
+    tier                        = "finops"
+    "created-with-google-skill" = "cloud-run-alert-configuration"
+  }
+
+  alert_strategy { auto_close = "604800s" }
+  notification_channels = var.notification_channels
+}
 ```
 
 ---
