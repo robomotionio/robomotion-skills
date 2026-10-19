@@ -9609,7 +9609,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: ecd3c80a95f2
+    content_hash: 7e0166ce8935
     files:
     - SKILL.md
     author: Addy Osmani
@@ -9653,7 +9653,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 812aeb883906
+    content_hash: 657534f12775
     files:
     - SKILL.md
     author: Addy Osmani
@@ -9830,7 +9830,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: b5ec48fcf5ff
+    content_hash: b8cd1febebf5
     files:
     - SKILL.md
     - references/hardening-patterns.md
@@ -9852,7 +9852,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: db77f4f4ec14
+    content_hash: a9a85dffc7ba
     files:
     - SKILL.md
     author: Addy Osmani
@@ -9909,14 +9909,15 @@ groups:
     title: test-driven-development
     summary: Drives development with tests using the red-green-refactor loop. Use when implementing any logic, fixing any
       bug, or changing any behavior. Use when you need to prove that code works, when a bug report arrives, or when you're
-      about to modify existing functionality.
+      about to modify existing functionality. Use when asked to add tests to a function, fix a bug in it or change its behavior,
+      even when the code is pasted inline and the request does not mention tests.
     version: 0.6.12
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 882558e001a3
+    content_hash: eddf28e11914
     files:
     - SKILL.md
     author: Addy Osmani
