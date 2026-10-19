@@ -592,7 +592,7 @@ upstreams:
 - group: small-business-skills
   repo: https://github.com/anthropics/knowledge-work-plugins
   track: main
-  commit: 8444efcd48f7012f09797778a36a33e73d0861f4
+  commit: 02ffa99ff00ce4d3046ccebabb8357cb39f3ab06
   subdir: small-business
   mode: mirror
   license: Apache-2.0
