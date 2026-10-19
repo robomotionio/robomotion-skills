@@ -11799,7 +11799,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 5d784df0aba2
+    content_hash: 9a4d9bf4752c
     files:
     - SKILL.md
     - references/migration.md
