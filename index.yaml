@@ -28984,7 +28984,7 @@ groups:
   name: shadcn-skills
   title: shadcn/ui Skills
   type: group
-  version: 4.21.1
+  version: 4.21.4
   author: shadcn
   source_url: https://github.com/shadcn-ui/ui
   license: MIT
@@ -28999,7 +28999,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: af525e1b9b73
+  content_hash: 793361821b57
   skills:
   - id: shadcn-skills/migrate-radix-to-base
     name: migrate-radix-to-base
@@ -29008,7 +29008,7 @@ groups:
     summary: Migrates React projects and components from Radix UI to Base UI. Use when asked to migrate from radix, move to
       base-ui, convert radix primitives, or switch a shadcn project's base library. Handles single components ("migrate accordion")
       and whole projects.
-    version: 4.21.1
+    version: 4.21.4
     tags: []
     mode: host
     env:
@@ -29038,21 +29038,27 @@ groups:
     summary: Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI, including
       chat interfaces. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui,
       component registries, presets, --preset codes, or any project with a components.json file. Also triggers for "shadcn
-      init", "create an app with --preset", or "switch to --preset".
-    version: 4.21.1
+      init", "create an app with --preset", "switch to --preset", and for building a design system or applying a DESIGN.md
+      or brand spec to shadcn/ui.
+    version: 4.21.4
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 7633fb580830
+    content_hash: b4238aa0ae6a
     files:
     - SKILL.md
     - agents/openai.yml
     - assets/shadcn-small.png
     - assets/shadcn.png
+    - assets/showcase/color-pair.tsx
+    - assets/showcase/preview-states.css
+    - assets/showcase/state-matrix.tsx
     - cli.md
     - customization.md
+    - design-system-page.md
+    - design-system.md
     - evals/evals.json
     - mcp.md
     - registry.md
@@ -29062,6 +29068,7 @@ groups:
     - rules/forms.md
     - rules/icons.md
     - rules/styling.md
+    - scripts/showcase-coverage.mjs
     author: shadcn
     source_url: https://github.com/shadcn-ui/ui/tree/main/skills/shadcn
     license: MIT
