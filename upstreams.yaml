@@ -419,7 +419,7 @@ upstreams:
 - group: lark-skills
   repo: https://github.com/larksuite/cli
   track: main
-  commit: 7beffb086d7fa3c5b843d8affa7c089f49cfc65e
+  commit: 97f0dabe7b046f45cfd820453b8305aeed47a601
   subdir: ''
   mode: mirror
   license: MIT
