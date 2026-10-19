@@ -30898,7 +30898,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 66c068d44001
+    content_hash: afe4e1d5c00f
     files:
     - SKILL.md
     author: Leonxlnx
@@ -30940,7 +30940,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2699f333a4cf
+    content_hash: e78c64da5e79
     files:
     - SKILL.md
     author: Leonxlnx
@@ -31031,7 +31031,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 0b63afb03f68
+    content_hash: a63da935bb6f
     files:
     - SKILL.md
     author: Leonxlnx
@@ -31071,7 +31071,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: f6b0637adf34
+    content_hash: f302ea3642af
     files:
     - SKILL.md
     author: Leonxlnx
@@ -31126,18 +31126,51 @@ groups:
     name: design-taste-frontend
     path: taste-skill/skills/taste-skill
     title: design-taste-frontend
-    summary: Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the
-      right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first
-      on redesigns, strict pre-flight check.
+    summary: tasteskill v2, the anti-slop frontend skill. Art direction for websites, distilled from a study of 247 curated
+      gallery sites (One Page Love, Awwwards Sites of the Day). Deals researched directions (idea, composition, type, palette,
+      photographs, section blueprints) from a library, enforces a strict no-slop house style with a real-browser inspector,
+      and runs a look-and-fix loop on screenshots. Use this whenever you build, design, redesign, restyle, polish or review
+      a landing page, marketing site, portfolio, product page, one-pager, hero or any public-facing web page, in any stack
+      (HTML/CSS, React, Next.js, Vue, Svelte, Astro, Tailwind) — also when the user says a page looks generic, templated,
+      "AI-made", sloppy, or asks to make it look designed, premium, award-level or less like every other site. Not for dashboards
+      or app screens.
     version: 1.0.0
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 32134157d573
+    content_hash: 3d3d94d4f887
     files:
+    - README.md
     - SKILL.md
+    - assets/base.css
+    - assets/base.js
+    - evals/evals.json
+    - library/directions.json
+    - library/heroes.json
+    - library/motions.json
+    - library/palettes.json
+    - library/photos.json
+    - library/sections.json
+    - library/sites.json
+    - library/type.json
+    - references/colour.md
+    - references/copy.md
+    - references/critique.md
+    - references/imagery.md
+    - references/layout.md
+    - references/motion.md
+    - references/research.md
+    - references/tells.md
+    - references/type.md
+    - scripts/assets.mjs
+    - scripts/draw.mjs
+    - scripts/inspect.mjs
+    - scripts/lib/cdp.mjs
+    - scripts/lib/probe.mjs
+    - scripts/lib/rules.mjs
+    - scripts/lint.mjs
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill
     license: MIT
@@ -31148,18 +31181,40 @@ groups:
     path: taste-skill/skills/taste-skill-v1
     title: design-taste-frontend-v1
     summary: The original v1 taste-skill, preserved for projects depending on its exact behavior. The current default is `design-taste-frontend`
-      (v2 experimental), which is a substantial rewrite. Use this v1 install name only if you need exact backward compatibility.
+      (v2), which is a new skill. Use this v1 install name only if you need exact backward compatibility.
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8dbcb90df1b9
+    content_hash: fa1330ac86b7
     files:
     - SKILL.md
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill-v1
+    license: MIT
+    group: taste-skill
+    category: Design
+  - id: taste-skill/design-taste-frontend-v2-experimental
+    name: design-taste-frontend-v2-experimental
+    path: taste-skill/skills/taste-skill-v2-experimental
+    title: design-taste-frontend-v2-experimental
+    summary: Old v2 (experimental) of taste-skill, the single-file dial-driven version, preserved for projects depending on
+      its exact behavior. The current default is `design-taste-frontend` (v2). Use this install name only if you need the
+      earlier behavior. Anti-slop frontend rules for landing pages, portfolios, and redesigns, with real design systems when
+      applicable, audit-first redesigns and a strict pre-flight check.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ac848cfe470f
+    files:
+    - SKILL.md
+    author: Leonxlnx
+    source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill-v2-experimental
     license: MIT
     group: taste-skill
     category: Design
