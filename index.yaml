@@ -26120,7 +26120,7 @@ groups:
   name: neon-skills
   title: Neon Skills
   type: group
-  version: 2.1.1
+  version: 2.1.2
   author: Neon
   source_url: https://github.com/neondatabase/agent-skills
   license: Apache-2.0
@@ -26135,7 +26135,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 8cff66e2fb1b
+  content_hash: 5c8e97dc218b
   skills:
   - id: neon-skills/neon
     name: neon
@@ -26148,13 +26148,13 @@ groups:
       or search. Child skill neon-auth wins for login, users, sessions, identity routing, and Managed Better Auth setup. Also
       use for object storage, S3, buckets, serverless functions, function triggers, cron, AI gateway, LLM calls, logs, Loki,
       Grafana, observability, postgres, database, backend, Claimable Neon, neon.new, or a no-signup database.'
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a669c7dc823f
+    content_hash: 6b20e18116c2
     files:
     - SKILL.md
     - references/auth.md
@@ -26179,7 +26179,7 @@ groups:
       the Vercel AI SDK, and Mastra by changing only the base URL. Triggers include "call an LLM", "add AI to my app", "chat
       completion", "model routing", "LLM proxy/gateway", "one API for all models", "use Claude/GPT/Gemini", "AI SDK", "Mastra
       agent", "Neon AI Gateway", and "log/rate-limit AI calls".
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
@@ -26203,7 +26203,7 @@ groups:
       Better Auth, Clerk, Supabase Auth, or another IdP. User asked to migrate from Supabase Auth: Managed Better Auth. A
       required plugin outside Managed support: self-managed Better Auth on a Neon Function or the existing app host. Also
       use for auth APIs in @neondatabase/neon-js.'
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
@@ -26232,7 +26232,7 @@ groups:
       "MCP server", "cron", "function trigger", "scheduled function", "cron job", "object storage trigger", "on upload", "run
       code next to my database", "function that won''t time out", "function logs", "Neon Functions", "Neon Compute", "DDoS
       protection", "rate limiting", and "production hardening".'
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
@@ -26265,7 +26265,7 @@ groups:
       Triggers include "object storage", "bucket", "blob storage", "file storage", "store uploads/images/files", "S3-compatible
       storage", "presigned URL", "where do I put files", "storage logs", "bucket logs", "CDN in front of object storage",
       "Neon Object Storage", "Neon Storage", and "storage that branches with my database".
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
@@ -26288,7 +26288,7 @@ groups:
       and Lakebase Search. Use when the work is an existing DATABASE_URL, SQL, schema, inspect, or search. New backends, Auth,
       files, Functions, and LLM calls go to the parent `neon` skill. Also use for "@neondatabase/serverless", "@neondatabase/neon-js",
       "neon inspect db", "semantic search", "vector search", "full-text search", "BM25", or "hybrid search".'
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
@@ -26315,7 +26315,7 @@ groups:
       a branch from its parent, branch expiration and CI/CD branch lifecycles, or branch creation via Neon CLI or Neon MCP.
       Triggers include "Neon branch", "test migrations safely", "branch production data", "schema-only branch", "reset branch",
       "branch per PR" and "sensitive data testing".
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
@@ -26338,7 +26338,7 @@ groups:
       "database costs jumped", SELECT * optimization, query overfetching, reduce Neon costs, optimize database usage, or wants
       to reduce data sent from their database to their application. Also use when reviewing query patterns for cost efficiency,
       even if the user doesn't explicitly mention egress or data transfer.
-    version: 2.1.1
+    version: 2.1.2
     tags: []
     mode: host
     env:
