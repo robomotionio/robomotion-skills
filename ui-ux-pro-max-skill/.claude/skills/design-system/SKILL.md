@@ -1,5 +1,5 @@
 ---
-name: ckm:design-system
+name: design-system
 description: Token architecture, component specifications, and slide generation. Three-layer tokens (primitive→semantic→component), CSS variables, spacing/typography scales, component specs, strategic slide creation. Use for design tokens, systematic design, brand-compliant presentations.
 argument-hint: "[component or token]"
 license: MIT
@@ -47,6 +47,10 @@ Component (component-specific)
 /* Component */
 --button-bg: var(--color-primary);
 ```
+
+## Script Paths
+
+Script paths in this skill and its `references/` are relative to the directory that contains this SKILL.md, not to the project: `scripts/<file>` is this skill's own `scripts/` folder, and `../<skill>/scripts/<file>` is a sibling sub-skill installed alongside it. Build the full path from that directory (Claude Code reports it as the skill's base directory when the skill loads) and keep the working directory at the project root — the scripts read and write project files such as `docs/brand-guidelines.md`, `assets/design-tokens.json` or `src/` relative to it.
 
 ## Quick Start
 
