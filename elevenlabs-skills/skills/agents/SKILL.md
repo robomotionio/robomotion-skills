@@ -10,7 +10,7 @@ metadata: {"openclaw": {"requires": {"env": ["ELEVENLABS_API_KEY"]}, "primaryEnv
 
 Build voice AI agents with natural conversations, multiple LLM providers, custom tools, and easy web embedding.
 
-> **Setup:** See [Installation Guide](references/installation.md) for CLI and SDK setup.
+> **Setup, before writing any code:** if `ELEVENLABS_API_KEY` isn't set for this project, run `npx -y @elevenlabs/cli@latest onboard init` from the app's folder first and follow what it prints: it signs the user in and stores a key for the project, so nobody copies one by hand. Otherwise see the [Installation Guide](references/installation.md) for CLI and SDK setup.
 
 ## Quick Start with CLI
 
@@ -168,8 +168,8 @@ function App({ signedUrl }: { signedUrl: string }) {
 
 | Provider | Models |
 |----------|--------|
-| OpenAI | `gpt-6-sol`, `gpt-6-luna`, `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.5-2026-04-23`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4-2026-03-05`, `gpt-5.4-mini-2026-03-17`, `gpt-5.4-nano-2026-03-17`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo` |
-| Anthropic | `claude-opus-5-5`, `claude-opus-5`, `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-sonnet-4-5`, `claude-sonnet-4`, `claude-haiku-4-5`, `claude-3-7-sonnet`, `claude-3-5-sonnet`, `claude-3-haiku` |
+| OpenAI | `gpt-6.1-sol`, `gpt-6-sol`, `gpt-6-luna`, `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.5-2026-04-23`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4-2026-03-05`, `gpt-5.4-mini-2026-03-17`, `gpt-5.4-nano-2026-03-17`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo` |
+| Anthropic | `claude-opus-5-5`, `claude-opus-5`, `claude-sonnet-5-5`, `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-sonnet-4-5`, `claude-sonnet-4`, `claude-haiku-4-5`, `claude-3-7-sonnet`, `claude-3-5-sonnet`, `claude-3-haiku` |
 | Google | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.1-flash-lite-preview`, `gemini-3.1-pro-preview`, `gemini-3-pro-preview`, `gemini-3-flash-preview`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.0-flash`, `gemini-2.0-flash-lite` |
 | ElevenLabs | `glm-52`, `deepseek-v41-flash`, `glm-45-air-fp8`, `qwen3-30b-a3b`, `qwen36-35b-a3b`, `qwen35-35b-a3b`, `qwen35-397b-a17b`, `gpt-oss-120b` |
 | Custom | `custom-llm` (bring your own endpoint) |
@@ -298,7 +298,7 @@ No-auth APIs useful for prototypes (URLs must be HTTPS):
 
 Route conversations through discrete steps with branching logic. Define under the agent's top-level `workflow` field. Reference: [Agent Workflows](https://elevenlabs.io/docs/eleven-agents/customization/agent-workflows).
 
-**Node types:** `start` (ID must be `"start_node"`), `end`, `override_agent` (subagent step with `label` + `additional_prompt`), `dispatch_tool` (executes a tool with success/failure routing), `agent_transfer`, `transfer_to_number`.
+**Node types:** `start` (ID must be `"start_node"`), `end` (`outcome` records the conversation as `success`, the default, or `failure`), `override_agent` (subagent step with `label` + `additional_prompt`), `dispatch_tool` (executes a tool with success/failure routing), `agent_transfer`, `transfer_to_number`.
 
 **Edge types:** `unconditional`, `llm` (natural-language condition), `expression` (deterministic data check). Tool nodes have separate success/failure edges.
 
@@ -337,7 +337,7 @@ Semantics worth knowing before writing any of these calls:
 
 - Nothing reaches the live agent until you publish. Publishing is not a procedure endpoint; one PATCH on the agent versions every changed procedure draft on the branch.
 - `GET .../procedures/{procedure_id}` reads branch HEAD and returns `404` until that procedure's first publish. Read the `/draft` variant to see a procedure you just created; do not retry the create.
-- Turning a structured procedure's steps into the form the agent executes is called compiling. When you publish, the platform validates every structured procedure on the branch, compiles them, and stores the result with the new version. You do not compile anything yourself and do not send a `workflow` in the request; `agents.update` with `branch_id` publishes, and compilation happens as part of that. The compiled result is currently visible as read-only nodes in the dashboard's Workflow tab. A failed publish writes nothing, so publishing is also the validation step. To validate without publishing, save an agent draft with `POST /v1/convai/agents/{agent_id}/drafts?branch_id=...`, sending the agent's current `name`, `conversation_config`, `platform_settings`, and `workflow` unchanged, then discard that agent draft with `DELETE` on the same path; see [Using the Procedure API](references/using-procedure-api.md#validate-without-publishing).
+- Turning a structured procedure's steps into the form the agent executes is called compiling. The platform compiles every structured procedure when the agent draft is saved or the agent is published; authors never compile anything themselves. The compiled result is currently visible as read-only nodes in the dashboard's Workflow tab. Both draft save and publish validate every structured procedure on the branch. A failed operation writes nothing. To validate without publishing, save an agent draft with `POST /v1/convai/agents/{agent_id}/drafts?branch_id=...`, sending the agent's current `name`, `conversation_config`, `platform_settings`, and `workflow` unchanged, then discard that agent draft with `DELETE` on the same path; see [Using the Procedure API](references/using-procedure-api.md#validate-without-publishing).
 - If a structured procedure is invalid, the publish or draft save returns `400` with `status` `procedure_validation_failed` and `errors` keyed by procedure ID, each entry carrying the `path` of the offending field and a message. Nothing is written; repair the procedure draft and publish again.
 - A draft update replaces the whole body. Read the draft first, then resend `name`, `type`, and `trigger` alongside the new `content`. `type` cannot change after creation.
 - `content` is markdown for a `free_form` procedure, and a JSON-encoded object with a `steps` array for a `deterministic` one. The trigger is the top-level `trigger` field in both cases, not part of `content`. Serialize it; do not hand-escape quotes.
