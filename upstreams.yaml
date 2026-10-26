@@ -286,7 +286,7 @@ upstreams:
 - group: gemini-skills
   repo: https://github.com/google-gemini/gemini-skills
   track: main
-  commit: 6fee1bec62d6a0ca92c1d0e34d62ff11f70c498a
+  commit: ee9da52195752ca83c2fca701d96bcb5a9c08d2d
   subdir: ''
   mode: mirror
   license: Apache-2.0
