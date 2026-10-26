@@ -1,11 +1,12 @@
 ---
 name: google-cloud-recipe-auth
 metadata:
+  version: "1.0.1"
   category: GettingStarted
-description: Provides expert guidance on authenticating and authorizing to Google Cloud services and APIs, covering human users, service identities, Application Default Credentials (ADC), and best practices for secure access.
+description: Provides expert guidance on Identity and Access Management (IAM) and authenticating and authorizing to Google Cloud services and APIs, covering human users, service identities, Application Default Credentials (ADC), and best practices for secure access.
 ---
 
-# Authenticating to Google Cloud
+# Authenticating and Authorizing to Google Cloud (IAM)
 
 [Authentication](https://docs.cloud.google.com/docs/authentication.md.txt) is the
 process of proving **who you are**. In Google Cloud, you represent a

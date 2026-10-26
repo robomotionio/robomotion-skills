@@ -1,9 +1,10 @@
 ---
 name: datalineage-summary
 metadata:
+  version: "1.0.1"
   category: BigDataAndAnalytics
 description: >-
-  Summarizes Google Cloud Data Lineage graphs to help users debug data quality issues and understand data provenance for BQ/GCS.
+  Summarizes data lineage graphs on Google Cloud to help users debug data quality issues and understand data provenance for BigQuery and Cloud Storage.
   Use when summarizing upstream and downstream data flows, and presenting complex lineage data as an intuitive Markdown report.
   Don't use for generic BigQuery queries, editing lineage relationships, or downstream deprecation.
   Don't use for downstream blast-radius impact analysis (use datalineage-bigquery-asset-impact-analysis skill instead).
@@ -19,8 +20,8 @@ details into plain English.
 
 ## Prerequisites
 
-This skill relies on the **Google Cloud Data Lineage (Knowledge Catalog) MCP
-Server** for graph traversal. Ensure you can run `search_lineage` queries in
+This skill relies on the **data lineage (Knowledge Catalog) MCP Server** on
+Google Cloud for graph traversal. Ensure you can run `search_lineage` queries in
 both upstream and downstream directions. For detailed connection configurations
 and tool schemas, refer to [MCP Usage](references/mcp-usage.md).
 
@@ -36,7 +37,7 @@ and downstream) by making *two separate calls* to the MCP tool: one with
     comprehensive list of locations dynamically from the provided
     [Knowledge Catalog Locations](https://docs.cloud.google.com/dataplex/docs/locations.md.txt)
     link. To ensure cross-regional lineage is not missed, always verify the
-    current list of GCP regions using this link before populating the
+    current list of Google Cloud regions using this link before populating the
     `locations` array. You **MUST** populate the `locations` array with all
     supported physical regions fetched from this link. You may optionally
     additionally determine the asset's specific active region (using `bq show`
@@ -136,8 +137,8 @@ Generate the summary using the prompt guidelines below.
     *   You MUST explicitly list specific asset names (e.g., source tables,
         intermediate views, consumer tables) if there are fewer than 5. Do not
         just summarize counts if there are fewer than 5; name them explicitly.
-        Otherwise, if 5 or more, aggregate them by count (e.g., "5 GCS
-        buckets").
+        Otherwise, if 5 or more, aggregate them by count (e.g., "5 Cloud
+        Storage buckets").
     *   Only mention counts for *ultimate sources*, *final consumers*, and
         *total assets*.
     *   Do not repeat project names redundantly for every dataset if only one
@@ -151,6 +152,6 @@ Return the final summarized output back to the user.
 
 ## External Documentation
 
--   [Google Cloud Knowledge Catalog Data Lineage Documentation](https://docs.cloud.google.com/dataplex/docs/about-data-lineage.md.txt)
+-   [Knowledge Catalog Data Lineage Documentation](https://docs.cloud.google.com/dataplex/docs/about-data-lineage.md.txt)
 -   [Use the Data Lineage MCP server](https://docs.cloud.google.com/dataplex/docs/use-lineage-mcp.md.txt)
 -   [Knowledge Catalog Data Lineage API Reference](https://docs.cloud.google.com/dataplex/docs/reference/data-lineage/rest.md.txt)

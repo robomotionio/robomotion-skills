@@ -49,6 +49,7 @@ Use for conceptual guides, architectural comparisons, product overviews, and how
     -H "Content-Type: application/json" \
     -d '{"query": "How do I create a custom metric in Cloud Logging?"}'
   ```
+- **Rate Limits & Fallback**: This endpoint has limited synthesis quota. If you receive an HTTP 429 (`RESOURCE_EXHAUSTED` / out of quota error) from `:answerQuery`, do not abandon documentation retrieval or answer from unverified memory. Fall back to calling `documents:searchDocumentChunks` instead using 2–5 focused keywords.
 
 ---
 

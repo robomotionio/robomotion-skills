@@ -1,18 +1,21 @@
 ---
 name: google-cloud-slo-alert-configuration
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 description: >-
-  Configures PromQL-based Service Level Objective (SLO) alerting policies for Google Cloud
-  resources registered in App Hub or individually specified. Generates Terraform output.
+  Configures Cloud Monitoring PromQL-based Service Level Objective (SLO)
+  alerting policies on Google Cloud for resources registered in App Hub or
+  individually specified. Generates Terraform output.
   Use when the user asks to configure an SLO or Service Level Objective.
   Don't use for standard alerting policies.
 ---
 
 # SLO Alert Configuration Setup Wizard
 
-This skill guides the user through a structured conversation to configure
-PromQL-based Service Level Objective (SLO) alerting policies in Terraform. Your
+This skill guides the user through a structured conversation to configure Cloud
+Monitoring PromQL-based Service Level Objective (SLO) alerting policies on
+Google Cloud in Terraform. Your
 role is to act as a setup wizard that conceptually models the 4 key components
 of an SLO API (Service Scope, Service Level, SLI, and Alert Condition), gathers
 the requirements, and outputs a Terraform configuration.

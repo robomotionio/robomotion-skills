@@ -2,10 +2,11 @@
 name: google-ads-api-account-diagnostics
 description: >-
   Diagnoses Google Ads account performance issues such as conversion loss (value or volume), low lead flow/volume, and lost impression share (opportunities) due to ad rank, bids, or budgets. Use when troubleshooting sudden performance drops, analyzing campaign impression share metrics, investigating low lead flow, or searching for bidding and budget constraints. Don't use for setting up new campaigns, uploading conversion events directly, or general Google Mobile Ads SDK integration issues (use gma-android-integrate instead).
+compatibility: Google Ads MCP Server (tools: search, list_accessible_customers, get_resource_metadata); see the google-ads-api-mcp-setup skill.
 metadata:
   category: GoogleAds
   author: google-ads-api-team
-  version: "1.0"
+  version: "1.0.1"
 ---
 
 # Google Ads API Account Performance Diagnostics Skill
@@ -13,6 +14,11 @@ metadata:
 This skill provides instructions on how to use the Google Ads MCP server tools to diagnose common account performance issues.
 
 ## Workflows
+
+### Pre-Flight Tool Verification
+Before starting any diagnostic task, verify whether the Google Ads MCP Server tools (`search`, `list_accessible_customers`, `get_resource_metadata` — these may be exposed with a server prefix, e.g. `customers_list_accessible_customers`) are available in the runtime environment:
+- **If MCP tools are available**: Proceed with live diagnostics — first [identify active client accounts](#identifying-active-client-accounts), then run GAQL via the `search` tool (arguments `customer_id` and `query`).
+- **If MCP tools are missing**: Follow [Fallback When MCP Tools Are Unavailable](#fallback-when-mcp-tools-are-unavailable).
 
 ### Identifying Active Client Accounts
 Most diagnostics tasks require sending GAQL queries to a specific customer account. If the customer ID is not explicitly provided by the user, you must first call the `list_accessible_customers` (or `customers_list_accessible_customers`) tool to retrieve the customer resource names/IDs you have access to.
@@ -29,8 +35,15 @@ WHERE customer_client.status = 'ENABLED' AND customer_client.manager = FALSE
 ```
 Only run subsequent diagnostic queries against the enabled client customer IDs retrieved from this list. Do not query deactivated or manager accounts, as doing so will cause API errors.
 
-### Using the MCP Tools Directly
-To retrieve information and run queries, you must call the `search` tool on the MCP server directly (with arguments like `customer_id`, `fields`, `resource`, and `conditions`). Do not write or execute custom Python scripts or use the Google Ads client library to query the API, as they will fail authentication inside the evaluation sandbox.
+### Fallback When MCP Tools Are Unavailable
+When Google Ads MCP tools (`search`, `list_accessible_customers`, `get_resource_metadata` — these may be exposed with a server prefix, e.g. `customers_list_accessible_customers`) are not registered in the runtime environment:
+1. **Inform the User**: State that live account performance diagnostics require the Google Ads MCP Server.
+2. **Reference Setup Guide**: Direct the user to the setup instructions in the [google-ads-api-mcp-setup](../google-ads-api-mcp-setup/SKILL.md) skill to install and configure the Google Ads MCP Server for their assistant environment.
+3. **Provide GAQL Templates, Gotchas, and Remediation Guidance**: Formulate and output the complete diagnostic plan for manual execution in the Google Ads Query Builder or via API integration:
+   - Provide all multi-step GAQL queries for the workflow, including current-vs-prior date window comparisons (e.g. traffic, impression share, conversion breakdowns, or change events).
+   - Explain all metric conversion and constraint gotchas (`metrics.cost_micros / 1,000,000` for currency, impression share reported as decimals or `"< 0.10"`, `change_event` 30-day window and `LIMIT 10000` without `metrics.*`, and `successful_event_count / total_event_count` plus `status` for upload health).
+   - Outline concrete **actionable next steps** for each diagnostic branch (e.g., raising campaign budgets when `search_budget_lost_impression_share` is high vs. improving ad quality or bids when `search_rank_lost_impression_share` is high).
+4. **Do Not Attempt Unauthorized Local Probing**: Do **not** attempt to run shell commands, custom Python scripts, local SQL/database queries, or direct RPC CLI utilities to access account data. These commands lack credentials and API access and will fail.
 
 ### 1. Conversion and Conversion Value Loss
 
@@ -44,9 +57,10 @@ When conversions or conversion value suddenly decline, use the following steps t
     *   **Segments**: To isolate the loss, include segments like `segments.date`, `segments.device`, `segments.conversion_action`.
     *   **Conditions**: Compare the period of decline with a previous period (e.g., `segments.date >= '{start_date}'`).
     *   *Gotcha*: `metrics.cost_micros` must be divided by 1,000,000 to get standard currency amounts.
+    *   *Gotcha (conversion action segmentation)*: In GAQL, `metrics.cost_micros` cannot be selected when segmenting by `segments.conversion_action`. Query conversion action breakdowns separately without `metrics.cost_micros`.
 
-    **Example GAQL Query:**
-    To query performance data for a customer account `{customer_id}` between `{start_date}` and `{end_date}`:
+    **Example GAQL Queries:**
+    1. To query performance and cost by date and device:
     ```sql
     SELECT
       campaign.name,
@@ -54,7 +68,18 @@ When conversions or conversion value suddenly decline, use the following steps t
       metrics.conversions_value,
       metrics.cost_micros,
       segments.date,
-      segments.device,
+      segments.device
+    FROM campaign
+    WHERE segments.date >= '{start_date}' AND segments.date <= '{end_date}'
+    ```
+
+    2. To query conversion breakdown by conversion action (without `metrics.cost_micros`):
+    ```sql
+    SELECT
+      campaign.name,
+      metrics.conversions,
+      metrics.conversions_value,
+      segments.date,
       segments.conversion_action
     FROM campaign
     WHERE segments.date >= '{start_date}' AND segments.date <= '{end_date}'
@@ -109,6 +134,24 @@ When a user asks "why is my lead flow low these past few days?", follow this sys
 2.  **Isolate Cause**:
     *   Check if **Traffic** (clicks, impressions) dropped.
     *   Check if **Conversion Rate** (conversions/clicks) dropped.
+
+    **Example GAQL Query (Traffic and Conversion Trends):**
+    To query traffic and conversion rate metrics across campaigns segmented by date:
+    ```sql
+    SELECT
+      campaign.id,
+      campaign.name,
+      segments.date,
+      metrics.impressions,
+      metrics.clicks,
+      metrics.ctr,
+      metrics.conversions,
+      metrics.conversions_from_interactions_rate
+    FROM campaign
+    WHERE segments.date >= '{start_date}' AND segments.date <= '{end_date}'
+    ORDER BY segments.date DESC
+    ```
+
 3.  **If Traffic Dropped**: Check Impression Share metrics (see Workflow 2) to see if it's a budget or rank issue, or if search volume generally declined.
 4.  **If Conversion Rate Dropped**: Check breakdowns by `segments.device` or `segments.conversion_action` to see if a specific area is failing.
 5.  **Check Changes**: Query the `change_event` resource to see if any changes were made to bids, budgets, or targeting around the time the drop started.
@@ -135,18 +178,7 @@ When a user asks "why is my lead flow low these past few days?", follow this sys
 When offline conversion uploads for a specific action (e.g., store-purchase) stop showing up or fail, use the following steps to diagnose the issue.
 
 **Steps:**
-1.  **Retrieve Client Accounts**: If `{customer_id}` is not provided, first call the `list_accessible_customers` (or `customers_list_accessible_customers`) tool to retrieve the customer resource names/IDs you have access to. Then, query the `customer_client` resource to find active client customer accounts, ensuring you filter out manager accounts and deactivated/canceled accounts to avoid query errors.
-
-    **Example GAQL Query:**
-    ```sql
-    SELECT
-      customer_client.id,
-      customer_client.descriptive_name,
-      customer_client.status,
-      customer_client.manager
-    FROM customer_client
-    WHERE customer_client.status = 'ENABLED' AND customer_client.manager = FALSE
-    ```
+1.  **Retrieve Client Accounts**: If `{customer_id}` is not provided, follow [Identifying Active Client Accounts](#identifying-active-client-accounts) to retrieve active client customer accounts.
 
 2.  **Verify Pipeline Health**: Query `offline_conversion_upload_conversion_action_summary` for the active client account.
     *   **Fields**: Include `offline_conversion_upload_conversion_action_summary.conversion_action_name`, `offline_conversion_upload_conversion_action_summary.successful_event_count`, `offline_conversion_upload_conversion_action_summary.total_event_count`, and `offline_conversion_upload_conversion_action_summary.status`.
