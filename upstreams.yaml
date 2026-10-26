@@ -237,7 +237,7 @@ upstreams:
 - group: engineering-skills
   repo: https://github.com/addyosmani/agent-skills
   track: main
-  commit: c45732d2093992b76691e6772f7888e2321c5173
+  commit: aeac41d4d005999432bb7312f7ff06383a91d59d
   subdir: ''
   mode: mirror
   license: MIT
