@@ -11,6 +11,6 @@ Development skills for building agents with [Google ADK](https://adk.dev). Insta
 | `google-agents-cli-adk-code` | ADK API reference — agents, tools, orchestration, callbacks, state, graph Workflow API |
 | `google-agents-cli-scaffold` | Project scaffolding via Agents CLI |
 | `google-agents-cli-eval` | Evaluation lifecycle — datasets, metrics, generate/grade, compare, analyze, optimize, LLM-as-judge |
-| `google-agents-cli-deploy` | Deployment — Agent Runtime, Cloud Run, CI/CD, secrets |
-| `google-agents-cli-publish` | Gemini Enterprise registration |
+| `google-agents-cli-deploy` | Deployment — Agent Runtime in Gemini platform, Cloud Run, CI/CD, secrets |
+| `google-agents-cli-publish` | Gemini registration |
 | `google-agents-cli-observability` | Observability — Cloud Trace, Cloud Logging, third-party integrations |
