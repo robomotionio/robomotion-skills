@@ -2,7 +2,7 @@ schema_version: 1
 name: agent-browser
 title: Agent Browser
 type: group
-version: 0.38.2
+version: 0.39.1
 author: Vercel
 source_url: https://github.com/vercel-labs/agent-browser
 license: Apache-2.0
