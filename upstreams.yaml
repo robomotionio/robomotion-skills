@@ -120,7 +120,7 @@ upstreams:
 - group: azure-skills
   repo: https://github.com/microsoft/azure-skills
   track: main
-  commit: 9d46511c1828eee052d6d0ef4652dcd548565e27
+  commit: cf79ce8778ad063eeac19dbe8bf982d71b466ce0
   subdir: ''
   mode: mirror
   license: MIT

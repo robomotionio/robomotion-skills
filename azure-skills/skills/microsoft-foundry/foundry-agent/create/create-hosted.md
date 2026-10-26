@@ -4,7 +4,7 @@ Scaffold or develop a hosted Foundry agent project with the Azure Developer CLI 
 
 > **Creating a new agent end-to-end from scratch?** Use [quick-start-hosted.md](quick-start-hosted.md) instead -- an opinionated happy-path with safe defaults. Stay here for anything not covered by the quickstart.
 
-> **Scope:** `azd ai` is the preferred *code-first* path -- use it when the intent is agent code on disk, in a repo, with infrastructure-as-code and a local inner-loop. If the intent is only to create a remote agent resource (no code on disk), other approaches may apply -- for prompt agents see [create-prompt.md](create-prompt.md), or use the Foundry MCP tools / portal.
+> **Scope:** `azd ai` is the preferred *code-first* path -- use it when the intent is agent code on disk, in a repo, with infrastructure-as-code and a local inner-loop. If the intent is only to create a remote agent resource (no code on disk), other approaches may apply -- for ordinary prompt agents see [create-prompt.md](create-prompt.md). A Managed Harness Agent also uses azd but is `kind: prompt`; use [create-managed-harness.md](create-managed-harness.md).
 
 ## Quick Reference
 
@@ -25,16 +25,17 @@ Scaffold or develop a hosted Foundry agent project with the Azure Developer CLI 
 - Add tools (web search, AI Search, MCP, A2A) to a hosted agent.
 - Run and iterate on a hosted agent locally before deploying.
 
-For prompt agents (LLM + instructions, no container), use [create-prompt.md](create-prompt.md). For deploy, use [deploy.md](../deploy/deploy.md).
+For ordinary prompt agents, use [create-prompt.md](create-prompt.md). For a Prompt Agent with `harness.type: github_copilot_preview`, use [create-managed-harness.md](create-managed-harness.md). For deploy, use [deploy.md](../deploy/deploy.md).
 
 ## Hosted vs Prompt
 
-| | Hosted | Prompt |
-|--|--------|--------|
-| Custom Python / .NET code? | Yes -> this skill | No -> [create-prompt.md](create-prompt.md) |
-| Tools / RAG / MCP / A2A | Toolbox + connections | Built-in tool configs |
-| Local debugging | `azd ai agent run --no-client` | Limited |
-| Output | New immutable agent version per `azd deploy` | `agent_update` via MCP / SDK |
+| | Hosted | Prompt | Managed Harness Agent |
+|--|--------|--------|-----|
+| Definition | Custom Python / .NET code | Model + instructions | Prompt agent with GitHub Copilot harness |
+| Workflow | This skill | [create-prompt.md](create-prompt.md) | [create-managed-harness.md](create-managed-harness.md) |
+| Tools | Prefer Toolbox + connections | Direct tool configs | Prefer direct tools; Toolbox only when explicit |
+| Local debugging | `azd ai agent run --no-client` | Limited | No local harness runtime |
+| Output | Immutable version via `azd deploy` | `agent_update` via MCP / SDK | Immutable version via `azd deploy` |
 
 ## azd Sample Selection Guidance
 
@@ -224,6 +225,7 @@ Check the scaffold before local run:
    FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
    AZURE_AI_MODEL_DEPLOYMENT_NAME=<model-deployment-name>
    ```
+   Keep `.env` out of the deploy package: make sure the service directory's `.agentignore` lists `.env` (add it if missing).
 4. Prefer `--agent-name` at init time (above). Fallback only: if init already ran without it, rename the `azure.yaml` service key AND its `name:` to the same value, preserving its `project:` path.
 5. If you change CPU or memory, set it in the agent service's `container.resources` in `azure.yaml`.
 
