@@ -1,16 +1,29 @@
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import type { AIType } from '../types/index.js';
+import type { AIType, ConcreteAIType } from '../types/index.js';
 
 interface DetectionResult {
-  detected: AIType[];
+  detected: ConcreteAIType[];
   suggested: AIType | null;
 }
 
-export function detectAIType(cwd: string = process.cwd()): DetectionResult {
-  const detected: AIType[] = [];
+// Files and folders only GitHub Copilot reads (see the Copilot customization
+// cheat sheet), plus its personal skills folder for global installs. Most
+// repositories have a .github/ folder for workflows, so it alone says nothing.
+const COPILOT_MARKERS = [
+  join('.github', 'copilot-instructions.md'),
+  join('.github', 'instructions'),
+  join('.github', 'prompts'),
+  join('.github', 'agents'),
+  join('.github', 'skills'),
+  join('.github', 'hooks'),
+  join('.copilot', 'skills'),
+];
 
-  if (existsSync(join(cwd, '.claude'))) {
+export function detectAIType(cwd: string = process.cwd()): DetectionResult {
+  const detected: ConcreteAIType[] = [];
+
+  if (existsSync(join(cwd, '.claude')) || existsSync(join(cwd, '.claude-plugin'))) {
     detected.push('claude');
   }
   if (existsSync(join(cwd, '.cursor'))) {
@@ -19,16 +32,21 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   if (existsSync(join(cwd, '.windsurf'))) {
     detected.push('windsurf');
   }
-  if (existsSync(join(cwd, '.agents')) || existsSync(join(cwd, '.agent'))) {
+  if (existsSync(join(cwd, '.agents'))) {
+    detected.push('antigravity');
+    detected.push('codex');
+    detected.push('universal');
+    detected.push('openclaw');
+  } else if (existsSync(join(cwd, '.agent'))) {
     detected.push('antigravity');
   }
-  if (existsSync(join(cwd, '.github'))) {
+  if (COPILOT_MARKERS.some(marker => existsSync(join(cwd, marker)))) {
     detected.push('copilot');
   }
   if (existsSync(join(cwd, '.kiro'))) {
     detected.push('kiro');
   }
-  if (existsSync(join(cwd, '.codex'))) {
+  if (existsSync(join(cwd, '.codex')) && !detected.includes('codex')) {
     detected.push('codex');
   }
   if (existsSync(join(cwd, '.roo'))) {
@@ -64,11 +82,27 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   if (existsSync(join(cwd, '.augment'))) {
     detected.push('augment');
   }
+  if (existsSync(join(cwd, '.codewhale'))) {
+    detected.push('codewhale');
+  }
+  if (existsSync(join(cwd, '.zcode'))) {
+    detected.push('zcode');
+  }
+  if (existsSync(join(cwd, '.amazonq'))) {
+    detected.push('amazonq');
+  }
 
   // Suggest based on what's detected
   let suggested: AIType | null = null;
   if (detected.length === 1) {
     suggested = detected[0];
+  } else if (
+    (detected.length >= 2 && detected.length <= 4) &&
+    detected.includes('antigravity') &&
+    detected.includes('codex')
+  ) {
+    // Platforms share `.agents`; avoid suggesting an install for every AI.
+    suggested = 'codex';
   } else if (detected.length > 1) {
     suggested = 'all';
   }
@@ -87,11 +121,11 @@ export function getAITypeDescription(aiType: AIType): string {
     case 'antigravity':
       return 'Antigravity (.agents/skills/)';
     case 'copilot':
-      return 'GitHub Copilot (.github/prompts/)';
+      return 'GitHub Copilot (.github/skills/)';
     case 'kiro':
       return 'Kiro (.kiro/steering/)';
     case 'codex':
-      return 'Codex (.codex/skills/)';
+      return 'Codex (.agents/skills/)';
     case 'roocode':
       return 'RooCode (.roo/skills/)';
     case 'qoder':
@@ -114,6 +148,16 @@ export function getAITypeDescription(aiType: AIType): string {
       return 'Warp (.warp/skills/)';
     case 'augment':
       return 'Augment (.augment/skills/)';
+    case 'codewhale':
+      return 'CodeWhale (.codewhale/skills/)';
+    case 'zcode':
+      return 'ZCode (.zcode/skills/)';
+    case 'amazonq':
+      return 'Amazon Q Developer (.amazonq/rules/)';
+    case 'openclaw':
+      return 'OpenClaw (.agents/skills/)';
+    case 'universal':
+      return 'Universal (.agents/skills/)';
     case 'all':
       return 'All AI assistants';
   }
