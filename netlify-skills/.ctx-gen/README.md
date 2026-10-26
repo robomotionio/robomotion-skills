@@ -35,12 +35,17 @@ AXIS scenarios.)
   and `build-generated-outputs` (cursor/codex parity) gates; a human reviews
   and merges. Rollback = revert.
 - **`../.github/workflows/ctx-pipeline-notify.yml`** — a `workflow_run`
-  watcher that posts every receiver outcome (imported / no-op / stale skip /
-  failed / unclassified) to `#notify-context-pipeline`, the same channel the docs side
-  reports to. docs' dispatch is fire-and-forget, so without this a failed
-  import was invisible while Slack kept saying "delivered" (EX-3057). Logic in
-  `../scripts/ctx-notify.mjs`; inert until `SLACK_WEBHOOK_URL` exists in the
-  `ctx-pipeline` environment.
+  watcher that reports every receiver outcome (imported / no-op / stale skip /
+  failed / unclassified) to context-hub, which posts the Slack notice to
+  `#notify-context-pipeline`. docs' dispatch is fire-and-forget, so the
+  receiver's own outcome has to be reported from this side (EX-3057). Logic in
+  `../scripts/ctx-notify.mjs`; inert until `CONTEXT_HUB_URL` (variable) and
+  `CONTEXT_HUB_PIPELINE_KEY` (secret) exist in the `ctx-pipeline` environment.
+- **Release pings** — `release-please.yml` (`notify-hub` and `report`) tells
+  context-hub when a release PR opens, a release is created, and a publish
+  finishes, via `../scripts/ctx-hub-ping.mjs` (EX-3255). Inert until
+  `CONTEXT_HUB_URL` (variable) and `CONTEXT_HUB_PIPELINE_KEY` (secret) exist in
+  the `ctx-pipeline` environment; a failed ping never blocks a release.
 
 ## Triggers
 
@@ -61,6 +66,13 @@ overlapping PRs when a second docs change lands before the first import merges �
 otherwise both would touch the same skill dirs and `state.json` and need
 merge-conflict cleanup. The job concurrency group serializes runs so the branch
 always has a single writer.
+
+The sync PR is titled `fix(context)`, not `chore`. The repo squash-merges
+with the PR title as the whole commit message, and release-please hides
+`chore`, so a chore-titled sync would never cut a release. As `fix`, every
+merged import lands in the standing Release PR as a patch bump, and merging
+that PR publishes the skills and manifest to the hosted site and npm
+(`.github/workflows/release-please.yml`).
 
 ## Running it locally
 
