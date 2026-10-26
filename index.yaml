@@ -30867,7 +30867,7 @@ groups:
   name: taste-skill
   title: Taste
   type: group
-  version: 1.0.0
+  version: 2.1.1
   author: Leonxlnx
   source_url: https://github.com/Leonxlnx/taste-skill
   license: MIT
@@ -30882,25 +30882,23 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 2ba13bb09a15
+  content_hash: b384725115dc
   skills:
   - id: taste-skill/brandkit
     name: brandkit
     path: taste-skill/skills/brandkit
     title: brandkit
-    summary: Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity
-      decks, and visual-world presentations. Trained for minimalist, cinematic, editorial, dark-tech, luxury, cultural, security,
-      gaming, developer-tool, and consumer-app brand systems. Optimized for intentional logo concepting, refined composition,
-      sparse typography, strong symbolic meaning, premium mockups, art-directed imagery, and flexible grid layouts.
-    version: 1.0.0
+    summary: Moved to github.com/Leonxlnx/imagegen-skills. Runs only when called by name.
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 66c068d44001
+    content_hash: 4d1c30e31188
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/brandkit
     license: MIT
@@ -30910,18 +30908,18 @@ groups:
     name: industrial-brutalist-ui
     path: taste-skill/skills/brutalist-skill
     title: industrial-brutalist-ui
-    summary: Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme
-      type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial
-      sites that need to feel like declassified blueprints.
-    version: 1.0.0
+    summary: 'Classic style skill, opt-in: it runs only when called by name. A hard mechanical look with Swiss type, rigid
+      grids, extreme scale contrast and utilitarian colour.'
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d915c228e1fd
+    content_hash: 591e711c7325
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/brutalist-skill
     license: MIT
@@ -30931,18 +30929,18 @@ groups:
     name: gpt-taste
     path: taste-skill/skills/gpt-tasteskill
     title: gpt-taste
-    summary: Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout variance, strict
-      AIDA page structure, wide editorial typography (bans 6-line wraps), gapless bento grids, strict GSAP ScrollTriggers
-      (pinning, stacking, scrubbing), inline micro-images, and massive section spacing.
-    version: 1.0.0
+    summary: 'Classic skill for GPT and Codex, opt-in: it runs only when called by name. Layout variance, a strict AIDA page
+      structure and GSAP scroll motion.'
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2699f333a4cf
+    content_hash: 9bbc8ea20f9d
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/gpt-tasteskill
     license: MIT
@@ -30952,20 +30950,17 @@ groups:
     name: image-to-code
     path: taste-skill/skills/image-to-code-skill
     title: image-to-code
-    summary: Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate the design
-      image(s) itself, deeply analyze them, then implement the website to match them as closely as possible. In Codex, it
-      must prefer large, readable, section-specific images instead of tiny compressed boards, generate fresh standalone images
-      for sections or detail views instead of cropping old ones, avoid lazy under-generation, avoid cards-inside-cards-inside-cards
-      UI, and keep the hero clean, spacious, readable, and visible on a small laptop.
-    version: 1.0.0
+    summary: Moved to github.com/Leonxlnx/imagegen-skills. Runs only when called by name.
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: ce9e7282b05e
+    content_hash: 7ca1547ce6ab
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/image-to-code-skill
     license: MIT
@@ -30975,21 +30970,17 @@ groups:
     name: imagegen-frontend-mobile
     path: taste-skill/skills/imagegen-frontend-mobile
     title: imagegen-frontend-mobile
-    summary: Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows. Designed
-      for iOS, Android, and cross-platform mobile products. Prioritizes clean hierarchy, comfortably readable text, strong
-      multi-screen consistency, controlled color palettes, non-generic creative direction, textured surfaces, image-led composition,
-      tasteful custom iconography, and clean phone mockup framing. By default, screens should be shown inside a subtle premium
-      iPhone or similar phone mockup with a visible frame, while the main focus stays on the app content itself. This skill
-      generates images only. It does not write code.
-    version: 1.0.0
+    summary: Moved to github.com/Leonxlnx/imagegen-skills. Runs only when called by name.
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9d08a2fd4f71
+    content_hash: a8ee23a1583f
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/imagegen-frontend-mobile
     license: MIT
@@ -30999,21 +30990,17 @@ groups:
     name: imagegen-frontend-web
     path: taste-skill/skills/imagegen-frontend-web
     title: imagegen-frontend-web
-    summary: Elite frontend image-direction skill for generating premium, conversion-aware website design references. CRITICAL
-      OUTPUT RULE — generate ONE separate horizontal image FOR EVERY section. A landing page with 8 sections produces 8 images.
-      Never compress multiple sections into one image. Enforces composition variety (not always left-text / right-image),
-      background-image freedom, varied CTAs, varied hero scales (giant / mid / mini minimalist), narrative concept spine,
-      second-read moments, and a single consistent palette across all images. Optimized for landing pages, marketing sites,
-      and product comps that developers or coding models can accurately recreate.
-    version: 1.0.0
+    summary: Moved to github.com/Leonxlnx/imagegen-skills. Runs only when called by name.
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d5215faecc59
+    content_hash: 5db1b8711cb3
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/imagegen-frontend-web
     license: MIT
@@ -31023,39 +31010,20 @@ groups:
     name: minimalist-ui
     path: taste-skill/skills/minimalist-skill
     title: minimalist-ui
-    summary: Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels.
-      No gradients, no heavy shadows.
-    version: 1.0.0
+    summary: 'Classic style skill, opt-in: it runs only when called by name. Editorial product UI with a warm monochrome palette,
+      typographic contrast and flat bento grids.'
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 0b63afb03f68
+    content_hash: 1d614344673f
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/minimalist-skill
-    license: MIT
-    group: taste-skill
-    category: Design
-  - id: taste-skill/full-output-enforcement
-    name: full-output-enforcement
-    path: taste-skill/skills/output-skill
-    title: full-output-enforcement
-    summary: Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patterns, and
-      handles token-limit splits cleanly. Apply to any task requiring exhaustive, unabridged output.
-    version: 1.0.0
-    tags: []
-    mode: host
-    env:
-      required: []
-      optional: []
-    content_hash: 933b89da8840
-    files:
-    - SKILL.md
-    author: Leonxlnx
-    source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/output-skill
     license: MIT
     group: taste-skill
     category: Design
@@ -31063,17 +31031,18 @@ groups:
     name: redesign-existing-projects
     path: taste-skill/skills/redesign-skill
     title: redesign-existing-projects
-    summary: Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns,
-      and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS.
-    version: 1.0.0
+    summary: 'Retired: redesigns, restyles and design reviews are part of design-taste-frontend. Runs only when called by
+      name.'
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: f6b0637adf34
+    content_hash: 51bc8a72767b
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/redesign-skill
     license: MIT
@@ -31083,18 +31052,18 @@ groups:
     name: high-end-visual-design
     path: taste-skill/skills/soft-skill
     title: high-end-visual-design
-    summary: Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures,
-      and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or
-      generic.
-    version: 1.0.0
+    summary: 'Classic style skill, opt-in: it runs only when called by name. A calm, polished look with soft contrast, generous
+      whitespace and spring motion.'
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 49c7b83a5337
+    content_hash: b61f3ab26641
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/soft-skill
     license: MIT
@@ -31104,19 +31073,19 @@ groups:
     name: stitch-design-taste
     path: taste-skill/skills/stitch-skill
     title: stitch-design-taste
-    summary: Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium,
-      anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated
-      performance.
-    version: 1.0.0
+    summary: 'Classic skill for Google Stitch, opt-in: it runs only when called by name. Writes an agent-friendly DESIGN.md
+      with strict type, colour and layout rules.'
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: e37419c24236
+    content_hash: 91f1be587cfa
     files:
     - DESIGN.md
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/stitch-skill
     license: MIT
@@ -31126,18 +31095,61 @@ groups:
     name: design-taste-frontend
     path: taste-skill/skills/taste-skill
     title: design-taste-frontend
-    summary: Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the
-      right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first
-      on redesigns, strict pre-flight check.
-    version: 1.0.0
+    summary: 'tasteskill v2, the anti-slop frontend skill. Art direction for websites, distilled from a study of 247 curated
+      gallery sites (One Page Love, Awwwards Sites of the Day). Deals researched directions (idea, composition, type, palette,
+      photographs, section blueprints) from a library, enforces a strict no-slop house style with a real-browser inspector,
+      and runs a look-and-fix loop on screenshots. Use this whenever you build, design, redesign, restyle, polish or review
+      a landing page, marketing site, portfolio, product page, one-pager, hero or any public-facing web page, in any stack
+      (HTML/CSS, React, Next.js, Vue, Svelte, Astro, Tailwind) — also when the user says a page looks generic, templated,
+      "AI-made", sloppy, or asks to make it look designed, premium, award-level or less like every other site. Also for app
+      screens: dashboards, admin and analytics views, settings, inboxes and other screens people work in, with their own run
+      and rules.'
+    version: 2.1.1
     tags: []
-    mode: host
+    mode: container
     env:
       required: []
       optional: []
-    content_hash: 32134157d573
+    content_hash: 41f83968e6b1
     files:
+    - README.md
     - SKILL.md
+    - assets/app.css
+    - assets/base.css
+    - assets/base.js
+    - assets/charts.js
+    - assets/scenes/stage.css
+    - assets/scenes/stage.js
+    - evals/evals.json
+    - library/app.json
+    - library/directions.json
+    - library/heroes.json
+    - library/motions.json
+    - library/palettes.json
+    - library/photos.json
+    - library/sections.json
+    - library/sites.json
+    - library/type.json
+    - references/app-screens.md
+    - references/colour.md
+    - references/copy.md
+    - references/critique.md
+    - references/imagery.md
+    - references/layout.md
+    - references/motion.md
+    - references/research.md
+    - references/scenes.md
+    - references/tells.md
+    - references/type.md
+    - scripts/assets.mjs
+    - scripts/draw.mjs
+    - scripts/inspect.mjs
+    - scripts/lib/app-draw.mjs
+    - scripts/lib/cdp.mjs
+    - scripts/lib/probe.mjs
+    - scripts/lib/rules.mjs
+    - scripts/lint.mjs
+    - scripts/scenes.mjs
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill
     license: MIT
@@ -31147,19 +31159,41 @@ groups:
     name: design-taste-frontend-v1
     path: taste-skill/skills/taste-skill-v1
     title: design-taste-frontend-v1
-    summary: The original v1 taste-skill, preserved for projects depending on its exact behavior. The current default is `design-taste-frontend`
-      (v2 experimental), which is a substantial rewrite. Use this v1 install name only if you need exact backward compatibility.
-    version: 1.0.0
+    summary: 'The original taste-skill v1, kept for projects that depend on its exact behaviour. Opt-in: it runs only when
+      called by name.'
+    version: 2.1.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8dbcb90df1b9
+    content_hash: 69fe26f52f46
     files:
     - SKILL.md
+    - agents/openai.yaml
     author: Leonxlnx
     source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill-v1
+    license: MIT
+    group: taste-skill
+    category: Design
+  - id: taste-skill/design-taste-frontend-v2-experimental
+    name: design-taste-frontend-v2-experimental
+    path: taste-skill/skills/taste-skill-v2-experimental
+    title: design-taste-frontend-v2-experimental
+    summary: 'The single-file, dial-driven taste-skill that was the default before v2, kept for projects that depend on its
+      exact behaviour. Opt-in: it runs only when called by name.'
+    version: 2.1.1
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: e0f983b8dabd
+    files:
+    - SKILL.md
+    - agents/openai.yaml
+    author: Leonxlnx
+    source_url: https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill-v2-experimental
     license: MIT
     group: taste-skill
     category: Design
