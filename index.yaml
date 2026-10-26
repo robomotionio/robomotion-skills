@@ -22289,7 +22289,7 @@ groups:
   name: lark-skills
   title: Lark Skills
   type: group
-  version: 1.0.97
+  version: 1.0.98
   author: Lark Technologies
   source_url: https://github.com/larksuite/cli
   license: MIT
@@ -22303,7 +22303,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 842650c638d1
+  content_hash: 4165da0a5857
   skills:
   - id: lark-skills/lark-approval
     name: lark-approval
@@ -22346,15 +22346,15 @@ groups:
     title: lark-apps
     summary: 妙搭（Spark/Miaoda）应用开发与托管：应用创建、本地全栈开发、云端生成迭代、创意设计（UI mockup / 可交互原型 / 线框图 / 落地页 / 仪表盘 / 幻灯片 deck / 视觉探索）、AI相关能力和飞书平台能力或者其他外部能力集成、日志/Trace/监控指标/PV/UV
       查询、环境变量管理、应用协作者与协作权限设置、应用角色与成员管理、自动化触发器（定时/记录变更/Webhook/飞书审批）。当用户要开发/新建一个系统·工具·平台·应用，或要本地开发 / 云端开发 / 修改 / 部署 / 发布 /
-      上线 / 拿可分享链接，或用 HTML 做页面·网站·部署到妙搭，或要设计 / design / mockup / prototype / wireframe / 做 PPT / deck / 视觉探索，或提到妙搭/Spark/Miaoda（应用运行时域名形如
-      *.aiforce.cloud）、应用数据库、应用文件存储、开放 API Key、可见范围、应用协作者/开发权限、应用角色/角色成员、线上日志、接口请求量、错误量、延迟、访问量、环境变量、给妙搭应用配自动化任务/定时触发/审批通过后自动触发时使用。不负责普通云盘文件上传（lark-drive）、飞书文档编辑（lark-doc）、原生幻灯片创建（lark-slides）。
+      上线 / 拿可分享链接，或用 HTML 做页面·网站·部署到妙搭，或要设计 / design / mockup / prototype / wireframe / 做 PPT / deck / 视觉探索，或提到妙搭/Spark/Miaoda
+      应用（链接形如 `/app/app_xxx` 或 `/page/<token>`，运行时域名形如 *.aiforce.cloud）、应用数据库、应用文件存储、开放 API Key、可见范围、应用协作者/开发权限、应用角色/角色成员、线上日志、接口请求量、错误量、延迟、访问量、环境变量、给妙搭应用配自动化任务/定时触发/审批通过后自动触发时使用。不负责普通云盘文件上传（lark-drive）、飞书文档编辑（lark-doc）、原生幻灯片创建（lark-slides）。
     version: 1.0.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fa7efcdc92c1
+    content_hash: 1fac89e4e03a
     files:
     - SKILL.md
     - creative-design/agents/assets/vision-probe.png
@@ -22448,7 +22448,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 30d0f2174565
+    content_hash: 09902e7c2507
     files:
     - SKILL.md
     - references/lark-base-advanced-permission-and-role.md
@@ -22544,14 +22544,15 @@ groups:
     path: lark-skills/skills/lark-doc
     title: lark-doc
     summary: 飞书云文档（Docx / Wiki）内容操作：读取、创建、编辑文档，插入或下载图片附件，以及操作思维笔记。用户提供文档 URL/token（包括 doubao.com 的 /docx/、/wiki/）时使用；按 URL
-      路径/token 而非域名路由。文档内嵌资源按读取参考中的统一规则分流。独立评论操作走 lark-drive；随正文读取评论使用 docs +fetch。表格或 Base 内部数据操作不在本 skill。
-    version: 1.0.97
+      路径/token 而非域名路由；`/page/<token>` 是妙搭应用，非飞书云文档。文档内嵌资源按读取参考中的统一规则分流。独立评论操作走 lark-drive；随正文读取评论使用 docs +fetch。表格或 Base 内部数据操作不在本
+      skill。
+    version: 1.0.98
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 50c1830faf0f
+    content_hash: cd2e1eba41c9
     files:
     - SKILL.md
     - references/genres/business-analysis.md
@@ -23134,7 +23135,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a3966daddbe1
+    content_hash: 1a25a8157439
     files:
     - SKILL.md
     - references/asset-planning.md
@@ -23202,7 +23203,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 8e0c9814d6b1
+    content_hash: 6a3b8999d8fb
     files:
     - SKILL.md
     - references/lark-task-assign.md
@@ -23215,6 +23216,7 @@ groups:
     - references/lark-task-reminder.md
     - references/lark-task-reopen.md
     - references/lark-task-search.md
+    - references/lark-task-sections.md
     - references/lark-task-set-ancestor.md
     - references/lark-task-tasklist-create.md
     - references/lark-task-tasklist-members.md
