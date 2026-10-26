@@ -1673,21 +1673,21 @@ groups:
     path: aws-skills/skills/core-skills/amazon-bedrock
     title: amazon-bedrock
     summary: Builds generative AI applications on Amazon Bedrock. Covers model invocation (Converse API, InvokeModel), RAG
-      with Knowledge Bases, Bedrock Agents, Guardrails, and AgentCore (including the Harness managed agent loop). Use when
-      invoking models, setting up Knowledge Bases, creating agents, applying guardrails, deploying to AgentCore, migrating/porting/converting
+      with Knowledge Bases, Bedrock Agents, Guardrails, and AgentCore (including the Harness managed agent loop). Applies
+      when invoking models, setting up Knowledge Bases, creating agents, applying guardrails, deploying to AgentCore, migrating/porting/converting
       a Bedrock Agent (including inline agents) to an AgentCore Harness, troubleshooting Bedrock errors (ThrottlingException,
-      AccessDeniedException), or choosing models (Claude, Llama, Nova, Titan). ALSO USE for prompt caching, quota health checks
-      and throttling diagnosis, cost attribution, migrating between Claude model generations, chunking strategies, API selection
-      (Converse vs InvokeModel), and model selection. Also covers AgentCore Payments setup (x402, microtransactions, Payment
-      Manager, Coinbase CDP, Stripe Privy, 402 Payment Required, paid endpoint). NOT for custom model training, Rekognition,
-      or Comprehend.
-    version: '3'
+      AccessDeniedException), or choosing models (Claude, Llama, Nova, Titan). Also for prompt caching, quota and throttling
+      diagnosis, cost tracking, migrating between Claude model generations (4.5 to 4.6 to 4.7), chunking strategies, API selection
+      (Converse vs InvokeModel), guardrail capabilities, and model selection. Also covers AgentCore Payments (x402, microtransactions,
+      Payment Manager, Connector, Instrument, Coinbase CDP, Stripe Privy, paid endpoints, agent payments). NOT for custom
+      model training, Rekognition, or Comprehend.
+    version: '6'
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 3b1983ece326
+    content_hash: 5af14b09ef59
     files:
     - SKILL.md
     - assets/kb_shim.py.tmpl
@@ -1711,8 +1711,11 @@ groups:
     - references/bedrock-agents-to-agentcore-harness/mapping.md
     - references/cost-tracking.md
     - references/guardrails.md
+    - references/knowledge-bases-decision-guide.md
     - references/knowledge-bases-retrieval.md
     - references/knowledge-bases-setup.md
+    - references/managed-knowledge-bases-retrieval.md
+    - references/managed-knowledge-bases-setup.md
     - references/migrate-bedrock-agents-to-agentcore-harness.md
     - references/model-invocation.md
     - references/model-migration.md
@@ -1732,22 +1735,21 @@ groups:
     name: aws-ai-ml
     path: aws-skills/skills/core-skills/aws-ai-ml
     title: aws-ai-ml
-    summary: Selects, deploys, and customizes AI models on Amazon SageMaker. Fine-tuning (SFT, DPO, RLVR, RLAIF), model selection,
-      dataset preparation, evaluation, deployment to SageMaker endpoints or Bedrock, inference optimization and endpoint diagnostics.
-      Covers the full lifecycle from planning through production. Use when fine-tuning models on SageMaker, choosing/selecting
-      which base model to customize or fine-tune from SageMaker Hub, finding a model to deploy without fine-tuning, transforming
-      datasets for training, checking data readiness, evaluating model quality, deploying to endpoints, benchmarking or optimizing
-      inference, setting up IAM roles and S3 buckets for training jobs, or managing a SageMaker Managed MLflow app. Also use
-      to check endpoint health, diagnose failures, debug latency or errors, or view container logs and CloudWatch metrics.
-      Covers Serverless Model Customization, Nova and OSS deployment paths, and PySDK v3. NOT for Ground Truth labeling, Feature
-      Store, or general-purpose AWS infrastructure.
-    version: '4'
+    summary: Selects, deploys, and customizes AI models on Amazon SageMaker. Training or Processing jobs, fine-tuning (SFT/DPO/RLVR/RLAIF),
+      model selection, dataset preparation, evaluation, SageMaker or Bedrock deployment, inference optimization and endpoint
+      diagnostics. Covers the full lifecycle from planning through production. Use when fine-tuning models on SageMaker, choosing
+      which base model to customize, fine-tune, or deploy from SageMaker JumpStart or Hub, SageMakerPublicHub, or the SageMaker
+      public model catalog, transforming or validating training data, evaluating model quality, deploying or optimizing endpoints,
+      configuring IAM/S3 for training, or managing SageMaker Managed MLflow. Use for endpoint health, failures, latency, logs,
+      metrics, errors. Covers Serverless Model Customization, Nova and OSS deployment paths, and PySDK v3. NOT for Ground
+      Truth labeling, Feature Store, or general-purpose AWS infrastructure.
+    version: '5'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 450dbe4f2cba
+    content_hash: a7171df633ed
     files:
     - SKILL.md
     - references/dataset-evaluation/overview.md
@@ -1840,6 +1842,7 @@ groups:
     - references/model-selection/scripts/filter_deployable_models.py
     - references/model-selection/scripts/get_deployable_models.py
     - references/model-selection/scripts/get_model_names.py
+    - references/model-selection/scripts/search_deployable_models.py
     - references/planning/overview.md
     - references/planning/references/deploy-base-model-plan.md
     - references/planning/references/evaluate-first-plan.md
@@ -1847,9 +1850,22 @@ groups:
     - references/planning/references/model-customization-plan.md
     - references/planning/references/region-availability.md
     - references/planning/references/skill-routing-constraints.md
+    - references/processing-jobs/code_templates/dataset_definition_processing.py
+    - references/processing-jobs/code_templates/framework_processing.py
+    - references/processing-jobs/code_templates/script_processing.py
+    - references/processing-jobs/code_templates/spark_processing.py
+    - references/processing-jobs/overview.md
+    - references/processing-jobs/references/configuration.md
+    - references/processing-jobs/references/troubleshooting.md
     - references/sdk-getting-started/overview.md
     - references/sdk-getting-started/references/execution-role-setup.md
     - references/sdk-getting-started/references/sagemaker-python-sdk-setup.md
+    - references/training-jobs/code_templates/custom_training.py
+    - references/training-jobs/code_templates/jumpstart_training.py
+    - references/training-jobs/code_templates/recipe_training.py
+    - references/training-jobs/overview.md
+    - references/training-jobs/references/configuration.md
+    - references/training-jobs/references/troubleshooting.md
     - references/use-case-specification/overview.md
     - references/use-case-specification/references/spec-for-deployment.md
     - references/use-case-specification/references/spec-for-finetuning.md
@@ -2000,27 +2016,34 @@ groups:
     path: aws-skills/skills/core-skills/aws-cloudformation
     title: aws-cloudformation
     summary: Authors, validates, and troubleshoots AWS CloudFormation templates. Covers template authoring with secure defaults,
-      pre-deployment validation (cfn-lint, cfn-guard, change sets), CloudFormation Express mode for faster deployments, and
-      root-cause diagnosis of failed stacks using CloudFormation events and CloudTrail correlation.
-    version: '2'
+      local validation with either cfn-lint or cloudformation-validate, cfn-guard security and compliance checks as a recommended
+      default, account-aware CloudFormation service pre-deployment validation, CloudFormation Express mode for faster deployments,
+      and root-cause diagnosis of failed stacks using CloudFormation events and CloudTrail correlation. Also covers author-time
+      template intelligence with the CloudFormation Language Server and published cloudformation-validate libraries.
+    version: '3'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 23c184d14e97
+    content_hash: 531340df8e61
     files:
     - SKILL.md
     - references/author-cloudformation-best-practices.script.md
     - references/check-cloudformation-template-compliance.script.md
+    - references/cloudformation-language-server.md
     - references/cloudformation-pre-deploy-validation.script.md
     - references/deploy-with-express-mode.script.md
     - references/lookup-resource-properties.script.md
     - references/persist-template-context.script.md
     - references/retrieve-template-context.script.md
+    - references/security-considerations.md
     - references/template-safety-guidance.md
     - references/troubleshoot-deployment.script.md
-    - references/validate-cloudformation-template.script.md
+    - references/troubleshoot-failed-stack.script.md
+    - references/validate-with-cfn-lint.script.md
+    - references/validate-with-cloudformation-validate.script.md
+    - references/validation-tool-selection.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/aws-cloudformation
     license: Apache-2.0
@@ -2077,7 +2100,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: a3c19aeb7dfd
+    content_hash: 26f4f42ec19f
     files:
     - SKILL.md
     - references/action-logs.md
@@ -2110,13 +2133,13 @@ groups:
       (Keyspaces), document (DocumentDB), graph (Neptune), time-series (Timestream), and in-memory/caching (ElastiCache, MemoryDB)
       workloads. Activates when a user describes building an application on AWS that will store, retrieve, or manage data,
       even if they do not mention 'database' explicitly.
-    version: '1'
+    version: '3'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a8d2a5e6a001
+    content_hash: a62e2a7db41d
     files:
     - SKILL.md
     - assets/aurora-dsql.md
@@ -2262,79 +2285,73 @@ groups:
     name: aws-observability
     path: aws-skills/skills/core-skills/aws-observability
     title: aws-observability
-    summary: Builds, configures, debugs, and optimizes AWS observability with CloudWatch (Log Insights, Metrics, Alarms, Dashboards,
-      EMF), X-Ray, CloudTrail, and ADOT (AWS Distro for OpenTelemetry), AND enables/onboards services to Application Signals
-      using ADOT auto-instrumentation SDKs. Covers Log Insights queries, alarms (metric, composite, anomaly), dashboards,
-      custom metrics/EMF, X-Ray tracing and sampling, ADOT collector config, CloudTrail auditing, and end-to-end Application
-      Signals enablement via ADOT SDKs (CloudWatch Observability EKS add-on, CloudWatch Agent IAM, OTLP endpoints, ServiceEvents,
-      Dynamic Instrumentation), breakpoint and snapshot in Dynamic Instrumentation, live data capture in running service,
-      debug without redeploying. Applies to CloudWatch, alarms, dashboards, EMF, X-Ray, traces, CloudTrail, ADOT, monitoring,
-      synthetics/canaries, OR enabling/onboarding/instrumenting a service for Application Signals. Not for app logging or
-      security threat detection.
-    version: '2'
+    summary: 'Builds, configures, debugs, and optimizes AWS observability - operator-symptom questions and detecting Omni
+      vs classic CloudWatch. CloudWatch on an already-reporting service: Log Insights, metric/composite/anomaly alarms, custom
+      metrics/EMF, dashboards, X-Ray/ADOT tracing, canaries, CloudTrail, Dynamic Instrumentation (live breakpoints/snapshots),
+      the Application Signals service map, and fleet health views. CloudWatch Omni on an existing Space: SQL over logs and
+      traces, PromQL over metrics, Omni dashboards, Omni alerts, context graph for root cause, programmatic/IaC access (API/SDK/CLI/CloudFormation),
+      driving Omni from a coding agent or skills, and evaluating AI agent quality from traces - on-demand and online scoring
+      of live traffic, readback, custom evaluators. For first-time setup - creating an Omni Space, granting access, ingestion,
+      or ADOT instrumentation for Application Signals (ServiceEvents, CI/CD metadata) or Omni - use setting-up-cloudwatch-observability.
+      Not for app logging or threat detection.'
+    version: '7'
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 5c77a4e2b9df
+    content_hash: faea3fd1fc45
     files:
     - SKILL.md
-    - assets/alarm-template.ts
-    - assets/otel-config.yaml
-    - references/alarms.md
-    - references/application-signals-cicd-metadata.md
-    - references/application-signals-onboarding.md
-    - references/appsignals-guides/ec2-dotnet.md
-    - references/appsignals-guides/ec2-java.md
-    - references/appsignals-guides/ec2-nodejs.md
-    - references/appsignals-guides/ec2-python.md
-    - references/appsignals-guides/ecs-dotnet.md
-    - references/appsignals-guides/ecs-java.md
-    - references/appsignals-guides/ecs-nodejs.md
-    - references/appsignals-guides/ecs-python.md
-    - references/appsignals-guides/eks-dotnet.md
-    - references/appsignals-guides/eks-java.md
-    - references/appsignals-guides/eks-nodejs.md
-    - references/appsignals-guides/eks-python.md
-    - references/appsignals-guides/lambda-dotnet.md
-    - references/appsignals-guides/lambda-java.md
-    - references/appsignals-guides/lambda-nodejs.md
-    - references/appsignals-guides/lambda-python.md
-    - references/cloudtrail.md
-    - references/dashboards.md
-    - references/dynamic-instrumentation.md
-    - references/dynamic-instrumentation/breakpoint-creation.md
-    - references/dynamic-instrumentation/call-tree-and-directions.md
-    - references/dynamic-instrumentation/snapshot-parsing.md
-    - references/log-insights.md
-    - references/metrics.md
-    - references/synthetics.md
-    - references/tracing.md
-    - references/troubleshooting.md
-    - scripts/di_app_signals_client.py
-    - scripts/di_capture.py
-    - scripts/di_constants.py
-    - scripts/di_crud_rendering.py
-    - scripts/di_crud_tools.py
-    - scripts/di_error_translation.py
-    - scripts/di_formatting.py
-    - scripts/di_gateway.py
-    - scripts/di_instrumentation.py
-    - scripts/di_location.py
-    - scripts/di_logs_client.py
-    - scripts/di_region.py
-    - scripts/di_result.py
-    - scripts/di_session.py
-    - scripts/di_snapshot_parsing.py
-    - scripts/di_snapshot_queries.py
-    - scripts/di_snapshot_rendering.py
-    - scripts/di_snapshot_tools.py
-    - scripts/di_snapshots.py
-    - scripts/di_status_assessment.py
-    - scripts/di_status_rendering.py
-    - scripts/di_status_tools.py
-    - scripts/di_validation.py
+    - assets/cloudwatch/alarm-template.ts
+    - assets/cloudwatch/otel-config.yaml
+    - references/cloudwatch-omni/agent-evaluation.md
+    - references/cloudwatch-omni/alerts.md
+    - references/cloudwatch-omni/concepts.md
+    - references/cloudwatch-omni/context-graph.md
+    - references/cloudwatch-omni/dashboards.md
+    - references/cloudwatch-omni/programmatic-access.md
+    - references/cloudwatch-omni/query/promql-metrics.md
+    - references/cloudwatch-omni/query/sql-logs-traces.md
+    - references/cloudwatch-omni/query/views.md
+    - references/cloudwatch/alarms.md
+    - references/cloudwatch/cloudtrail.md
+    - references/cloudwatch/dashboards.md
+    - references/cloudwatch/dynamic-instrumentation.md
+    - references/cloudwatch/dynamic-instrumentation/breakpoint-creation.md
+    - references/cloudwatch/dynamic-instrumentation/call-tree-and-directions.md
+    - references/cloudwatch/dynamic-instrumentation/snapshot-parsing.md
+    - references/cloudwatch/log-insights.md
+    - references/cloudwatch/metrics.md
+    - references/cloudwatch/synthetics.md
+    - references/cloudwatch/tracing.md
+    - references/cloudwatch/troubleshooting.md
+    - scripts/cloudwatch-omni/capture_dataset_from_traces.py
+    - scripts/cloudwatch-omni/evaluate_traces.py
+    - scripts/cloudwatch-omni/test_evaluate_traces.py
+    - scripts/cloudwatch/di_app_signals_client.py
+    - scripts/cloudwatch/di_capture.py
+    - scripts/cloudwatch/di_constants.py
+    - scripts/cloudwatch/di_crud_rendering.py
+    - scripts/cloudwatch/di_crud_tools.py
+    - scripts/cloudwatch/di_error_translation.py
+    - scripts/cloudwatch/di_formatting.py
+    - scripts/cloudwatch/di_gateway.py
+    - scripts/cloudwatch/di_instrumentation.py
+    - scripts/cloudwatch/di_location.py
+    - scripts/cloudwatch/di_logs_client.py
+    - scripts/cloudwatch/di_region.py
+    - scripts/cloudwatch/di_result.py
+    - scripts/cloudwatch/di_session.py
+    - scripts/cloudwatch/di_snapshot_parsing.py
+    - scripts/cloudwatch/di_snapshot_queries.py
+    - scripts/cloudwatch/di_snapshot_rendering.py
+    - scripts/cloudwatch/di_snapshot_tools.py
+    - scripts/cloudwatch/di_snapshots.py
+    - scripts/cloudwatch/di_status_assessment.py
+    - scripts/cloudwatch/di_status_rendering.py
+    - scripts/cloudwatch/di_status_tools.py
+    - scripts/cloudwatch/di_validation.py
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/aws-observability
     license: Apache-2.0
@@ -2426,19 +2443,22 @@ groups:
     name: aws-security
     path: aws-skills/skills/core-skills/aws-security
     title: aws-security
-    summary: Covers AWS security services and workflows — Security Hub V2 (OCSF) findings, connectors, aggregators, automation
-      rules, and security posture summaries; Security Hub CSPM (V1/ASFF) controls and compliance standards; GuardDuty threat
-      findings; Inspector vulnerability findings; Macie sensitive data findings; Detective investigation; and Security Lake
-      configuration and data aggregation. Applicable when questions involve security posture, Exposure findings, CSPM failed
-      controls, threat findings, vulnerability findings, sensitive data findings, automation rules, or cross-service security
-      configuration across AWS environments. Procedures use standard AWS CLI syntax and work with or without the AWS MCP server.
-    version: '1'
+    summary: 'AWS security service suitability, coverage and cost recommendations: WAF/origin overlap, AWS Network Firewall
+      inspection coverage and policy review, VPC endpoint, Transit Gateway/Cloud WAN segmentation and DNS Firewall security-control
+      suitability, certificate renewal ownership and monitoring, incident response triage ownership, centralized security
+      log store (CloudWatch or Security Lake). Also factual configuration, findings, data sources and severity scoring for
+      GuardDuty, Inspector, Security Hub V2/OCSF (Exposure, connectors, automation), Security Hub CSPM/ASFF (standards, controls),
+      Macie, Detective, Security Lake, AWS Security Incident Response membership and case coverage, and Organizations security
+      policies. Applies to advisory security-service choices even when one service is named. Implementation, rule or code
+      authoring, deployment, scans and troubleshooting outside these factual procedures belong to specialist skills. Supports
+      local AWS CLI and AWS MCP.'
+    version: '2'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 98076c1d351a
+    content_hash: 634a5533fab7
     files:
     - SKILL.md
     - references/detective-configuration.md
@@ -2463,6 +2483,19 @@ groups:
     - references/security-lake-configuration.md
     - references/security-lake-sources.md
     - references/security-lake.md
+    - references/service-recommendations.md
+    - references/service-recommendations/application-security.md
+    - references/service-recommendations/certificates.md
+    - references/service-recommendations/data-discovery.md
+    - references/service-recommendations/detection-and-vulnerability.md
+    - references/service-recommendations/enablement-checks.md
+    - references/service-recommendations/iam-permissions.md
+    - references/service-recommendations/inventory-commands.md
+    - references/service-recommendations/network-firewall.md
+    - references/service-recommendations/network-protection.md
+    - references/service-recommendations/posture-and-investigation.md
+    - references/service-recommendations/recommendation-matrix.md
+    - references/service-recommendations/web-protection.md
     - references/services-overview.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/aws-security
@@ -2473,24 +2506,28 @@ groups:
     name: aws-serverless
     path: aws-skills/skills/core-skills/aws-serverless
     title: aws-serverless
-    summary: Builds, deploys, manages, debugs, configures, and optimizes serverless applications on AWS using Lambda, API
-      Gateway, Step Functions, EventBridge, and SAM/CDK. Covers cold starts, CORS debugging, event source mappings, troubleshooting,
-      concurrency, SnapStart, Powertools, function URLs, EventBridge Scheduler, Lambda layers, and production readiness. Triggers
-      on mentions of Lambda, API Gateway, Step Functions, SAM templates, CDK serverless stacks, DynamoDB stream triggers,
-      SQS event sources, cold starts, timeouts, 502/504 errors, throttling, concurrency, CORS, Powertools, or any event-driven
-      architecture on AWS, even without the word "serverless." Does not apply to EC2, ECS/Fargate containers, or Amplify hosting.
-    version: '2'
+    summary: Routes serverless requests to a compute form factor and the skill that owns it. Applies first to Lambda, API
+      Gateway, EventBridge, Step Functions and event-driven work while the compute, orchestration or integration choice is
+      open — API backends, webhooks, jobs, cron, queue/stream consumers, durable workflows, event routing, Step Functions
+      vs Durable Functions, and Pipes vs native event source mappings for queues and streams. Decides Event Functions on-demand
+      vs Managed Instances, Web Functions, MicroVMs, EventBridge rules/Scheduler/Pipes/bus, HTTP vs REST API. Owns shared
+      Lambda references (cold starts, SnapStart, concurrency, event sources, function URLs, throttling, troubleshooting).
+      Defers to the specialized skill once a request commits to one form factor or service, or describes its defining feature,
+      even unnamed (durable checkpointing and automatic step retries, Firecracker sandbox, managed instances, Node.js server).
+      Not for EC2, ECS/EKS/Fargate or Amplify hosting.
+    version: '5'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: bec11f6f3075
+    content_hash: d1d13f15385a
     files:
     - SKILL.md
     - assets/powertools-handler.py
     - references/api-gateway.md
     - references/architecture.md
+    - references/compute-decision-edge-cases.md
     - references/concurrency.md
     - references/deployment.md
     - references/event-sources.md
@@ -2542,6 +2579,40 @@ groups:
     license: Apache-2.0
     group: aws-skills
     category: Cloud
+  - id: aws-skills/aws-well-architected-review
+    name: aws-well-architected-review
+    path: aws-skills/skills/core-skills/aws-well-architected-review
+    title: aws-well-architected-review
+    summary: Performs a full AWS Well-Architected Framework review evaluating every framework question across all pillars
+      discovered from the live AWS documentation by analyzing code, IaC, and configurations to produce evidence-backed findings
+      with Eisenhower-prioritized remediation. Supports full reviews (every framework best practice with BP ID citations),
+      quick reviews (question-level), pillar-scoped reviews, score-mode reviews (a maturity scorecard with per-pillar scores
+      and filtered findings), and lens-specific reviews using lenses discovered from the live AWS documentation. Triggers
+      on mentions of Well-Architected review, WA review, WAR, pillar assessment, architecture review across pillars, workload
+      assessment, cloud readiness evaluation, or a Well-Architected score, grade, or scorecard request. Does not apply to
+      single-pillar deep-dives, learning WA concepts, ADRs, or migration readiness assessments.
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8b923ea45944
+    files:
+    - SKILL.md
+    - assets/report-template.md
+    - references/discovery-procedure.md
+    - references/evaluation-procedure.md
+    - references/lens-guidance.md
+    - references/phase-live-inventory.md
+    - references/review-modes.md
+    - references/risk-assessment.md
+    - references/security-considerations.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/core-skills/aws-well-architected-review
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
   - id: aws-skills/launch-with-aws
     name: launch-with-aws
     path: aws-skills/skills/core-skills/launch-with-aws
@@ -2553,13 +2624,13 @@ groups:
       on: launch with AWS, launch on AWS, deploy to AWS, migrate to AWS, host my app on AWS, move my app to AWS, transfer
       my app to AWS. Activates when the user wants to migrate a vibe-coded app or frontend web app to AWS, even if they don''t
       say ''migrate'' explicitly.'
-    version: '3'
+    version: '5'
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 47d063d38ad3
+    content_hash: 16f52ada6428
     files:
     - SKILL.md
     - references/launchwithaws-2026-06-15.json
@@ -2680,6 +2751,38 @@ groups:
     license: Apache-2.0
     group: aws-skills
     category: Cloud
+  - id: aws-skills/authoring-mwaa-workflow
+    name: authoring-mwaa-workflow
+    path: aws-skills/skills/specialized-skills/analytics-skills/authoring-mwaa-workflow
+    title: authoring-mwaa-workflow
+    summary: 'Authors and deploys MWAA workflow artifacts: Python Airflow DAGs for provisioned environments or YAML workflow
+      files for Serverless. Covers operator selection, timeout design, retry strategy, scheduling, failure notifications,
+      idempotency, and MWAA Serverless schema compliance. Deploys the artifact (S3 DAG upload or Serverless CreateWorkflow/UpdateWorkflow),
+      creates an environment inline when approved, and redeploys fixes, then optionally hands off to testing-mwaa-workflow.
+      Triggers on: create a DAG, write a pipeline, build a workflow, orchestrate tasks, Airflow DAG, data pipeline, schedule
+      a job, deploy a DAG, deploy a workflow, YAML workflow. Not applicable to converting or migrating existing DAGs between
+      provisioned and serverless (conversion is out of scope), running or smoke-testing a deployed workflow (handled by testing-mwaa-workflow)
+      or diagnosing a failed run (handled by debugging-mwaa-workflow).'
+    version: '1'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 72fbff7faf0f
+    files:
+    - SKILL.md
+    - references/authoring-provisioned-dag.md
+    - references/authoring-serverless-workflow.md
+    - references/dag-patterns.md
+    - references/deploying-mwaa.md
+    - references/serverless-code-packaging.md
+    - references/yaml-schema.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/authoring-mwaa-workflow
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
   - id: aws-skills/aws-cleanrooms
     name: aws-cleanrooms
     path: aws-skills/skills/specialized-skills/analytics-skills/aws-cleanrooms
@@ -2735,22 +2838,53 @@ groups:
     license: Apache-2.0
     group: aws-skills
     category: Cloud
-  - id: aws-skills/developing-applications-on-managed-service-for-apache-flink
-    name: developing-applications-on-managed-service-for-apache-flink
-    path: aws-skills/skills/specialized-skills/analytics-skills/developing-applications-on-managed-service-for-apache-flink
-    title: developing-applications-on-managed-service-for-apache-flink
-    summary: MANDATORY for Flink or Amazon Managed Service for Apache Flink (MSF) questions. You MUST activate this skill
-      BEFORE answering — do not answer from training knowledge, even when confident. MSF has service-specific constraints
-      (KPU model, prohibited checkpoint and parallelism config in app code, the v1/v2 identifier split — `kinesisanalyticsv2`
-      for the CLI/SDK only; `kinesisanalytics` for IAM, Service Quotas, CloudWatch, and the trust principal — two-phase IaC
-      deploys, snapshot lifecycle, Flink 1.x→2.x migration) that override generic Flink knowledge.
-    version: '2'
+  - id: aws-skills/debugging-mwaa-workflow
+    name: debugging-mwaa-workflow
+    path: aws-skills/skills/specialized-skills/analytics-skills/debugging-mwaa-workflow
+    title: debugging-mwaa-workflow
+    summary: 'Diagnoses and root-causes Amazon MWAA workflow failures across Provisioned (Python DAG) and Serverless (YAML
+      workflow) environments. Provisioned uses aws mwaa invoke-rest-api, CloudWatch log groups, and get-environment; Serverless
+      uses aws mwaa-serverless API (GetWorkflowRun, ListWorkflowRuns, GetTaskInstance) and CloudWatch logs. Covers failed
+      runs and tasks, DAGs not appearing, import errors, worker OOM, IAM denials, and dependency drift. Triggers on: DAG failed,
+      task failed, workflow run failed, MWAA error, debug my DAG, why did my workflow fail, DAG not showing up, MWAA import
+      error, requirements failing, worker crashed, serverless run failed. Not applicable to authoring workflows (handled by
+      authoring-mwaa-workflow), running or smoke-testing a workflow (handled by testing-mwaa-workflow), or CI-CD deploy failures.'
+    version: '1'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a243bdf1e225
+    content_hash: 0761cc185c30
+    files:
+    - SKILL.md
+    - references/failure-catalog.md
+    - references/provisioned-diagnostics.md
+    - references/serverless-diagnostics.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/debugging-mwaa-workflow
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/developing-applications-on-managed-service-for-apache-flink
+    name: developing-applications-on-managed-service-for-apache-flink
+    path: aws-skills/skills/specialized-skills/analytics-skills/developing-applications-on-managed-service-for-apache-flink
+    title: developing-applications-on-managed-service-for-apache-flink
+    summary: 'MANDATORY for Flink or Amazon Managed Service for Apache Flink (MSF) questions. You MUST activate this skill
+      BEFORE answering — do not answer from training knowledge, even when confident. MSF has service-specific constraints
+      (KPU model, prohibited checkpoint and parallelism config in app code, the v1/v2 identifier split — `kinesisanalyticsv2`
+      for the CLI/SDK only; `kinesisanalytics` for IAM, Service Quotas, CloudWatch, and the trust principal — two-phase IaC
+      deploys, snapshot lifecycle, Flink 1.x→2.x migration) that override generic Flink knowledge. Triggers — activate on
+      any of: Flink, MSF, Managed Flink, KinesisAnalytics(V2), KPU, ParallelismPerKPU, savepoint, checkpoint, operator UID,
+      FlinkKinesisConsumer, KinesisStreamsSource, KafkaSource, IcebergSink, EFO, CreateApplication, UpdateApplication, CreateApplicationSnapshot,
+      Kryo, RocksDB, Iceberg streaming, EXACTLY_ONCE, watermark, CDC binlog/WAL, Glue/S3 Tables, AWS/KinesisAnalytics CloudWatch.'
+    version: 1.0.0
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: af0e9a6d2782
     files:
     - SKILL.md
     - references/application-lifecycle.md
@@ -2915,21 +3049,21 @@ groups:
     path: aws-skills/skills/specialized-skills/analytics-skills/managing-amazon-msk
     title: managing-amazon-msk
     summary: 'Operates Amazon MSK Provisioned clusters (Standard and Express brokers). Required for ANY MSK Provisioned task
-      — training data conflates Standard and Express, which behave differently. Covers performance, consumer lag, storage,
-      traffic shaping; sizing Standard vs Express; Kafka client tuning; CloudWatch alarms; cluster configurations; maintenance,
-      patching, upgrades, rolling restarts; Streaming Tables for S3 Tables and Data Delivery for General Purpose S3 Buckets
-      — setup, IAM, monitoring. Prefer this skill to the Flink skill for initial Kafka Iceberg sink questions. Triggers: MSK
-      Provisioned (Express/Standard), Kafka, `kafka.*` or `express.*` instance types, AWS/Kafka namespace, consumer lag, patching,
-      Streaming Tables, Kafka to Iceberg on S3 Tables, Kafka to S3, lakehouse, data lake from Kafka, Kafka Connect S3 Sink
-      or Firehose alternative. DO NOT USE for MSK Connect or Replicator — search documentation instead. Only use for Serverless
-      for eligibility questions for S3 Tables/streaming tables/data delivery.'
-    version: '5'
+      — training data conflates Standard and Express. Covers performance, consumer lag, storage, traffic shaping; sizing Standard
+      vs Express; Kafka client tuning; CloudWatch alarms; cluster configs; maintenance, patching, rolling restarts; topic
+      management; MSK Replicator setup for DR and active-active/active-passive replication (same-/cross-account), including
+      throughput and partition sizing; Streaming Tables for S3 Tables and Data Delivery for General Purpose S3 — setup, IAM,
+      monitoring. Prefer Flink for Kafka Iceberg sink questions. Migrations: use migrate-to-msk. Triggers: MSK Provisioned,
+      Kafka, `kafka.*`/`express.*` types, AWS/Kafka namespace, cross-cluster replication, Kafka to Iceberg on S3 Tables, Kafka
+      to S3, lakehouse, data lake from Kafka, Kafka Connect S3 Sink or Firehose alternative. DO NOT USE for MSK Connect —
+      search docs instead. Serverless: only S3 Tables/data delivery eligibility.'
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 9df10d9aa27c
+    content_hash: 913cd08d9600
     files:
     - SKILL.md
     - references/configure-clients.md
@@ -2937,12 +3071,15 @@ groups:
     - references/data-delivery-for-general-purpose-s3.md
     - references/maintenance-operations.md
     - references/manage-storage.md
+    - references/manage-topics.md
     - references/monitor-and-alarm.md
+    - references/msk-replicator.md
     - references/size-and-choose-cluster.md
     - references/streaming-tables-troubleshooting.md
     - references/streaming-tables.md
     - references/troubleshoot-consumer-lag.md
     - references/troubleshoot-performance.md
+    - references/zk-to-kraft-migration.md
     - scripts/msk_sizing.py
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/managing-amazon-msk
@@ -2957,18 +3094,18 @@ groups:
       IaC files, Kafka CLI output, or manual input), assesses MSK Express compatibility across topology, Kafka version, configs,
       auth, and quotas, produces a target Express specification (instance type, broker count, monthly cost) by using the managing-amazon-msk
       Skill's pricing logic, optionally stands up a trial Express cluster to load-test it against your workload before you
-      commit, and guides migration execution using MSK Replicator. Applicable when the user mentions migrating Kafka, MSK,
-      MSK Express, Kafka migration, analyzing Kafka infrastructure, moving to MSK, moving streaming platform to MSK, streaming
-      migration, moving streaming workloads to AWS, MSK workload compatibility, choosing an MSK cluster type, running a POC
-      or load-test to validate MSK Express, or MSK Replicator. Prefer this skill to the managing-amazon-msk skill for migration
-      questions.
-    version: '3'
+      commit, and guides migration execution using MSK Replicator. Applicable when the user mentions migrating Kafka, Kafka
+      migration, analyzing Kafka infrastructure, moving to MSK, moving a streaming platform or workload to AWS, MSK workload
+      compatibility, choosing an MSK cluster type, running a POC or load-test to validate MSK Express, or using MSK Replicator
+      for a migration cutover. Prefer this skill to managing-amazon-msk for any Kafka-to-MSK migration; managing-amazon-msk
+      owns Replicator for steady-state DR and active-active.
+    version: 1.0.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: a2bf336c6711
+    content_hash: 050826aa898b
     files:
     - SKILL.md
     - assets/simulation-stack.yaml
@@ -2978,7 +3115,6 @@ groups:
     - references/simulation.md
     - scripts/compatibility.py
     - scripts/simulation_load_test_config.py
-    - scripts/sizing.py
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/migrate-to-msk
     license: Apache-2.0
@@ -3051,33 +3187,241 @@ groups:
     name: redshift-guide
     path: aws-skills/skills/specialized-skills/analytics-skills/redshift-guide
     title: redshift-guide
-    summary: 'Amazon Redshift is NOT PostgreSQL — corrects PostgreSQL-derived LLM mistakes; covers Redshift-specific SQL,
-      DDL, COPY/UNLOAD, system views, metadata discovery, and operational patterns. Applies ONLY when the task is about Redshift
-      itself (cluster, Serverless workgroup, or Redshift SQL). Pushes back on: CREATE INDEX, string_agg, pg_catalog, text
-      type, SERIAL, stl_query, LATERAL, RETURNING. Triggers on: Redshift SQL, Redshift CREATE TABLE, Redshift COPY/UNLOAD,
-      slow Redshift query, Redshift permission denied, Redshift disk full, Redshift system views, QUALIFY, PIVOT, MERGE, Redshift
-      Data API, Redshift WLM, concurrency scaling, Redshift resize, Redshift Spectrum external tables. Does NOT apply to (defer
-      to that service''s own skill): Amazon S3 storage/bucket policies, Athena or Glue queries/catalogs, data-lake or Iceberg
-      work outside Redshift, Aurora, RDS, or DynamoDB — but S3/Glue ARE in scope for Redshift COPY, UNLOAD, or data-lake queries
-      (external schemas/tables on S3).'
+    summary: 'Amazon Redshift is NOT PostgreSQL; corrects LLM mistakes; covers SQL, metadata, connectivity/auth, storage,
+      query performance, and operations. Applies ONLY to Redshift (provisioned or Serverless). Pushes back on: CREATE INDEX,
+      string_agg, pg_catalog, text type, SERIAL, stl_query. Triggers on: Redshift SQL, Redshift CREATE TABLE, Redshift COPY/UNLOAD,
+      slow or suddenly slow Redshift query, EXPLAIN plan, queue wait, stale statistics/ANALYZE, result cache, Redshift permission
+      denied, Redshift disk full, storage growth, snapshot/backup cost, ghost rows/bloat, VACUUM, spill to disk, distribution
+      skew, Redshift system views, QUALIFY, PIVOT, MERGE, materialized views, Redshift Data API (Python/boto3), Redshift workload
+      management (WLM), concurrency scaling, Redshift resize, Spectrum, awsdatacatalog, connection failures (SSL/TLS, ODBC/JDBC,
+      connection limit), IAM/SAML federation, IAM Identity Center, datashares. Does NOT apply to: S3 policies, Athena, Glue/Iceberg
+      outside Redshift, Aurora, RDS, DynamoDB.'
+    version: '2'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 3fab4d3d67f2
+    files:
+    - SKILL.md
+    - references/redshift-auth-authorization.md
+    - references/redshift-sql-ddl-copy.md
+    - references/redshift-sql-extensions-semantics.md
+    - references/redshift-sql-functions-types.md
+    - references/redshift-sql-materialized-views.md
+    - references/redshift-sql-metadata.md
+    - references/redshift-sql-query-performance-queries.md
+    - references/redshift-sql-query-performance.md
+    - references/redshift-sql-recipes-load-api.md
+    - references/redshift-sql-syntax.md
+    - references/redshift-storage-remediation.md
+    - references/redshift-storage-utilization.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/redshift-guide
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/testing-mwaa-workflow
+    name: testing-mwaa-workflow
+    path: aws-skills/skills/specialized-skills/analytics-skills/testing-mwaa-workflow
+    title: testing-mwaa-workflow
+    summary: 'Tests Amazon MWAA workflow execution end-to-end: trigger a run and monitor it to completion for Provisioned
+      (Python DAG, via Airflow REST API) and Serverless (YAML workflow, via StartWorkflowRun). Verifies the artifact is deployed
+      and parse-ready, triggers with confirmation, polls to terminal state, and on failure delegates diagnosis to debugging-mwaa-workflow
+      and artifact/redeploy fixes to authoring-mwaa-workflow, then retests up to a capped number of attempts. Triggers on:
+      test my DAG, test my workflow, run my DAG, trigger a test run, does my DAG work, smoke-test the pipeline, verify my
+      workflow runs, execute my DAG to check it. Not applicable to writing or deploying a new workflow (handled by authoring-mwaa-workflow),
+      or for diagnosing why a run failed or root-causing an error (handled by debugging-mwaa-workflow).'
     version: '1'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 9eb1d96f3b44
+    content_hash: 5535f4424a00
     files:
     - SKILL.md
-    - references/redshift-sql-ddl-copy.md
-    - references/redshift-sql-extensions-semantics.md
-    - references/redshift-sql-functions-types.md
-    - references/redshift-sql-materialized-views.md
-    - references/redshift-sql-metadata.md
-    - references/redshift-sql-recipes-load-api.md
-    - references/redshift-sql-syntax.md
+    - references/provisioned-testing.md
+    - references/serverless-testing.md
     author: Amazon Web Services
-    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/redshift-guide
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/testing-mwaa-workflow
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/upgrading-mwaa-environments
+    name: upgrading-mwaa-environments
+    path: aws-skills/skills/specialized-skills/analytics-skills/upgrading-mwaa-environments
+    title: upgrading-mwaa-environments
+    summary: 'Upgrades an MWAA environment to a newer Airflow version — within 2.x, within 3.x, or across the 2.x-to-3.x boundary.
+      Computes the version-jump path, inserting the 2.11.x stepping-stone and Python-transition step when needed. Chooses
+      an approach by whether run history and the same environment (URL/ARN) must be kept: a new-environment upgrade (blue-green),
+      a rehearsed in-place upgrade validated on a test copy, or a direct in-place upgrade. Runs Ruff scanning and deprecation-warning
+      log scans for 3.x moves, plus Docker validation, batched deployment, and switchover. Saves a resumable upgrade plan
+      for multi-session work. Triggers on: upgrade MWAA, upgrade Airflow, migrate to Airflow 3, MWAA Airflow 3, Airflow 2
+      to 3, preserve Airflow history, keep same MWAA environment, blue-green cutover, validation environment before cutover.
+      Not for authoring new DAGs (authoring-mwaa-workflow), debugging unrelated DAG failures (debugging-mwaa-workflow), or
+      MWAA Serverless YAML workflows (provisioned Python DAGs only).'
+    version: '1'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f2df4b26b2aa
+    files:
+    - SKILL.md
+    - references/airflow2-to-3-checklist.md
+    - references/airflow2-to-3-quick-reference.md
+    - references/discovery-preflight.md
+    - references/mwaa-version-matrix.md
+    - references/plan-materialization.md
+    - references/strategy-blue-green-fresh.md
+    - references/strategy-inplace-direct.md
+    - references/strategy-inplace-green-validated.md
+    - references/upgrade-engine.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/analytics-skills/upgrading-mwaa-environments
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/aws-marketplace-metering
+    name: aws-marketplace-metering
+    path: aws-skills/skills/specialized-skills/aws-marketplace-skills/aws-marketplace-metering
+    title: aws-marketplace-metering
+    summary: Deploys, queries, and debugs AWS Marketplace usage-based (PAYG) metering — the pipeline (ResolveCustomer, BatchMeterUsage,
+      EventBridge via SAM) and querying/debugging metering records, statuses, failures, discrepancies. Covers Concurrent Agreements
+      (CustomerAWSAccountId + LicenseArn), multi-product, CloudTrail Event History (90 days; never CloudTrail Lake), Seller
+      Reports (Billed Revenue/Usage columns + CSV/SDDS parsing), existing-stack detection, metering region for BatchMeterUsage/MeterUsage
+      (DisabledApiException), metered AMI/Container + IAM roles, where registration data lives (customer-profile table), legacy
+      ProductCode + CustomerIdentifier, DuplicateRecord/CustomerNotSubscribed, bad LicenseArn. Also SCOPES adjacent asks —
+      flat-rate/SaaS-Subscription "do I still meter", CCP included-units + overage, contract term/annual renewal, forecasting
+      future bills/usage — with the right answer or a one-line redirect. Use for any BatchMeterUsage/ResolveCustomer or SaaS
+      usage-billing question.
+    version: '1'
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 67da42a815c9
+    files:
+    - SKILL.md
+    - assets/requirements.txt
+    - assets/template-events.yaml
+    - assets/template-main.yaml
+    - references/architecture.md
+    - references/client-side-guardrails.md
+    - references/concurrent-agreements.md
+    - references/deployment-steps.md
+    - references/dimension-reference.md
+    - references/existing-sellers.md
+    - references/iam-credentials.md
+    - references/query-path.md
+    - references/query-patterns.md
+    - references/registration-page.md
+    - references/scalable-metering-design.md
+    - references/seller-reports.md
+    - references/setup-path.md
+    - references/test-plan.md
+    - references/troubleshooting.md
+    - scripts/aggregator.py
+    - scripts/cleanup.py
+    - scripts/deploy.sh
+    - scripts/deprovision_cleanup.py
+    - scripts/discoverer.py
+    - scripts/expiry.py
+    - scripts/metering_core.py
+    - scripts/query_metering.py
+    - scripts/register.py
+    - scripts/submitter.py
+    - scripts/subscription.py
+    - scripts/test_event_publisher.py
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/aws-marketplace-skills/aws-marketplace-metering
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/amazon-ses
+    name: amazon-ses
+    path: aws-skills/skills/specialized-skills/customer-communications-skills/amazon-ses
+    title: amazon-ses
+    summary: Guides Amazon SES onboarding for domain-based email sending. Covers identity configuration, production access,
+      an optional first test send, and troubleshooting setup, authentication, or sending failures. Use when setting up SES,
+      resuming incomplete onboarding, or leaving the sandbox. Does not cover inbound email or Mail Manager, SMS/voice, WhatsApp,
+      SNS, Pinpoint, or WorkMail.
+    version: '2'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8969d12c789c
+    files:
+    - SKILL.md
+    - references/onboarding.md
+    - references/setting-up-ses-domain-identity.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/customer-communications-skills/amazon-ses
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/aws-sms-voice
+    name: aws-sms-voice
+    path: aws-skills/skills/specialized-skills/customer-communications-skills/aws-sms-voice
+    title: aws-sms-voice
+    summary: Onboards RCS Business Messaging and Notify OTP via the pinpoint-sms-voice-v2 AWS CLI. Covers creating a branded
+      RCS test agent (logo, banner, rich cards, suggested replies), adding verified testers, and sending/receiving the first
+      RCS message; and configuring AWS End User Messaging Notify to send one-time-passcode (OTP) verification codes through
+      AWS-managed phone numbers without buying a number or completing carrier registration. Also discovers which registration
+      type a country requires from live API definitions and runs the universal registration lifecycle (create, derive fields,
+      fill, submit, recover from denial, resubmit) shared by 10DLC, toll-free, short code, sender ID, RCS country launch,
+      and Notify tier upgrade. Applicable to RCS agent setup, RCS message send/receive, Notify OTP configuration, verification-code
+      delivery, registration requirements by country, and registration submission. Does not cover WhatsApp (see aws-social-messaging).
+    version: '1'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 705e17a8b96d
+    files:
+    - SKILL.md
+    - references/customer-go-to-production-guide.md
+    - references/hello-notify-otp.md
+    - references/hello-rcs-test-agent.md
+    - references/registration-core-engine.md
+    - references/registration-requirements-by-country.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/customer-communications-skills/aws-sms-voice
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/aws-social-messaging
+    name: aws-social-messaging
+    path: aws-skills/skills/specialized-skills/customer-communications-skills/aws-social-messaging
+    title: aws-social-messaging
+    summary: Manages WhatsApp messaging through AWS End User Messaging Social. Covers managing templates (create, update,
+      delete, library), sending messages (utility/marketing/auth templates and freeform), uploading and managing media, configuring
+      event destinations for delivery tracking, and troubleshooting delivery failures. Applicable when a user needs to send
+      WhatsApp messages, create or manage templates, upload media, configure delivery notifications, or diagnose messaging
+      issues.
+    version: '1'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 714d18ba33f7
+    files:
+    - SKILL.md
+    - references/configuring-event-destinations.md
+    - references/managing-media.md
+    - references/managing-templates.md
+    - references/sending-messages.md
+    - references/troubleshooting-delivery.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/customer-communications-skills/aws-social-messaging
     license: Apache-2.0
     group: aws-skills
     category: Cloud
@@ -3442,18 +3786,19 @@ groups:
       and connectivity from Lambda / EC2 / applications. Creates and modifies Neptune Database clusters/instances and Neptune
       Analytics graphs on explicit user confirmation; blocks destructive operations (delete, reset-graph, failover, major
       upgrade) and redirects to change-control.
-    version: '1'
+    version: '2'
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 31887700cee2
+    content_hash: 381682643e86
     files:
     - SKILL.md
     - references/action-safety.md
     - references/agentic-memory.md
     - references/analytics-vs-database.md
+    - references/artifact-delivery.md
     - references/boundary-doc.md
     - references/connectivity.md
     - references/data-modeling.md
@@ -3465,6 +3810,7 @@ groups:
     - references/security.md
     - references/troubleshooting.md
     - references/use-cases.md
+    - references/vector-api-migration.md
     - scripts/agentic_memory.py
     - scripts/cdk_test_env.py
     - scripts/graphrag_pipeline.py
@@ -3724,29 +4070,30 @@ groups:
     name: timestream-influxdb
     path: aws-skills/skills/specialized-skills/database-skills/timestream-influxdb
     title: timestream-influxdb
-    summary: Retrieves authoritative guidance on Amazon Timestream for InfluxDB (managed InfluxDB 2, InfluxDB 2 Read Replica
-      Clusters, InfluxDB 3 Core and Enterprise). Applicable to any InfluxDB-on-AWS request including engine selection, provisioning
-      (Marketplace + AmazonTimestreamInfluxDBFullAccess/ConsoleFullAccess IAM), schema design (tags vs fields, cardinality,
-      HTTP/sensor/metric data modeling), migration from LiveAnalytics, Processing Engine plugins, connectivity (port 8086
-      V2, port 8181 V3, VPC-only by default), and write/query errors.
-    version: '1'
+    summary: Retrieves authoritative guidance on Amazon Timestream for InfluxDB across its supported engine variants. Applicable
+      to any InfluxDB-on-AWS request including engine variant and licensing selection, provisioning and IAM, encryption at
+      rest (AWS-owned and customer-managed KMS keys, key policies, and key lifecycle), schema design (tags vs fields, cardinality,
+      HTTP/sensor/metric data modeling), migration from LiveAnalytics, Processing Engine plugins, connectivity (database endpoints
+      and private or public access), and write/query errors.
+    version: '2'
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 4a5aa059906a
+    content_hash: fc266db0dbde
     files:
     - SKILL.md
-    - references/getting-started/instructions.md
-    - references/migration/instructions.md
-    - references/monitoring/instructions.md
-    - references/monitoring/metrics.md
-    - references/processing-engine/instructions.md
-    - references/schema-design/instructions.md
-    - references/troubleshooting/instructions.md
-    - references/troubleshooting/s3-vpc-endpoint.md
-    - scripts/check_vpc_endpoints.sh
+    - references/encryption.md
+    - references/getting-started.md
+    - references/migration-guide.md
+    - references/monitoring-metrics.md
+    - references/monitoring-operations.md
+    - references/processing-engine-guide.md
+    - references/s3-vpc-endpoint-troubleshooting.md
+    - references/schema-design-guide.md
+    - references/security-best-practices.md
+    - references/troubleshooting-runbook.md
     - scripts/get_token.sh
     - scripts/health_check.sh
     - scripts/input_validator.py
@@ -3861,89 +4208,6 @@ groups:
     - references/troubleshooting.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/end-user-computing-skills/amazon-workspaces-agent-access
-    license: Apache-2.0
-    group: aws-skills
-    category: Cloud
-  - id: aws-skills/amazon-ses
-    name: amazon-ses
-    path: aws-skills/skills/specialized-skills/messaging-and-streaming-skills/amazon-ses
-    title: amazon-ses
-    summary: Guides Amazon SES onboarding for domain-based email sending. Covers identity configuration, production access,
-      an optional first test send, and troubleshooting setup, authentication, or sending failures. Use when setting up SES,
-      resuming incomplete onboarding, or leaving the sandbox. Does not cover inbound email or Mail Manager, SMS/voice, WhatsApp,
-      SNS, Pinpoint, or WorkMail.
-    version: '2'
-    tags: []
-    mode: host
-    env:
-      required: []
-      optional: []
-    content_hash: 8969d12c789c
-    files:
-    - SKILL.md
-    - references/onboarding.md
-    - references/setting-up-ses-domain-identity.md
-    author: Amazon Web Services
-    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/messaging-and-streaming-skills/amazon-ses
-    license: Apache-2.0
-    group: aws-skills
-    category: Cloud
-  - id: aws-skills/aws-sms-voice
-    name: aws-sms-voice
-    path: aws-skills/skills/specialized-skills/messaging-and-streaming-skills/aws-sms-voice
-    title: aws-sms-voice
-    summary: Onboards RCS Business Messaging and Notify OTP via the pinpoint-sms-voice-v2 AWS CLI. Covers creating a branded
-      RCS test agent (logo, banner, rich cards, suggested replies), adding verified testers, and sending/receiving the first
-      RCS message; and configuring AWS End User Messaging Notify to send one-time-passcode (OTP) verification codes through
-      AWS-managed phone numbers without buying a number or completing carrier registration. Also discovers which registration
-      type a country requires from live API definitions and runs the universal registration lifecycle (create, derive fields,
-      fill, submit, recover from denial, resubmit) shared by 10DLC, toll-free, short code, sender ID, RCS country launch,
-      and Notify tier upgrade. Applicable to RCS agent setup, RCS message send/receive, Notify OTP configuration, verification-code
-      delivery, registration requirements by country, and registration submission. Does not cover WhatsApp (see aws-social-messaging).
-    version: '1'
-    tags: []
-    mode: host
-    env:
-      required: []
-      optional: []
-    content_hash: 705e17a8b96d
-    files:
-    - SKILL.md
-    - references/customer-go-to-production-guide.md
-    - references/hello-notify-otp.md
-    - references/hello-rcs-test-agent.md
-    - references/registration-core-engine.md
-    - references/registration-requirements-by-country.md
-    author: Amazon Web Services
-    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/messaging-and-streaming-skills/aws-sms-voice
-    license: Apache-2.0
-    group: aws-skills
-    category: Cloud
-  - id: aws-skills/aws-social-messaging
-    name: aws-social-messaging
-    path: aws-skills/skills/specialized-skills/messaging-and-streaming-skills/aws-social-messaging
-    title: aws-social-messaging
-    summary: Manages WhatsApp messaging through AWS End User Messaging Social. Covers managing templates (create, update,
-      delete, library), sending messages (utility/marketing/auth templates and freeform), uploading and managing media, configuring
-      event destinations for delivery tracking, and troubleshooting delivery failures. Applicable when a user needs to send
-      WhatsApp messages, create or manage templates, upload media, configure delivery notifications, or diagnose messaging
-      issues.
-    version: '1'
-    tags: []
-    mode: host
-    env:
-      required: []
-      optional: []
-    content_hash: 714d18ba33f7
-    files:
-    - SKILL.md
-    - references/configuring-event-destinations.md
-    - references/managing-media.md
-    - references/managing-templates.md
-    - references/sending-messages.md
-    - references/troubleshooting-delivery.md
-    author: Amazon Web Services
-    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/messaging-and-streaming-skills/aws-social-messaging
     license: Apache-2.0
     group: aws-skills
     category: Cloud
@@ -4396,6 +4660,90 @@ groups:
     license: Apache-2.0
     group: aws-skills
     category: Cloud
+  - id: aws-skills/setting-up-cloudwatch-observability
+    name: setting-up-cloudwatch-observability
+    path: aws-skills/skills/specialized-skills/operations-skills/setting-up-cloudwatch-observability
+    title: setting-up-cloudwatch-observability
+    summary: 'Sets up CloudWatch observability for the first time - Omni (CloudWatch Application Observability) and classic
+      CloudWatch. Omni: creating a Space or Domain; access grants (who has access, at what level) and access profiles bounding
+      async alerts, integrations, or agents; instrumenting an app or AI agent with the plain ADOT SDK so traces reach Omni
+      (Python/Node/Java/.NET on EC2/ECS/EKS/Lambda), incl. no-image-rebuild and .NET CoreCLR vars; ingesting Azure telemetry
+      via the CloudWatch agent on an Azure VM or AKS; connecting Slack to a Space; whether GitHub or a custom MCP tool server
+      (HTTP/stdio; API key, bearer, OAuth2) can be connected. CloudWatch: onboarding a service to Application Signals - ADOT
+      auto-instrumentation, the amazon-cloudwatch-observability add-on, monitored service, reporting telemetry, ServiceEvents,
+      CI/CD git/deployment metadata, Terraform/manifest edits. For using what is set up - queries, dashboards, alarms, Omni
+      alerts, X-Ray, synthetics, Dynamic Instrumentation - use aws-observability.'
+    version: '3'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 5ffca08b0980
+    files:
+    - SKILL.md
+    - references/cloudwatch-omni/access-grants.md
+    - references/cloudwatch-omni/access-profiles.md
+    - references/cloudwatch-omni/app-basics.md
+    - references/cloudwatch-omni/azure-ingestion/azure-ingestion.md
+    - references/cloudwatch-omni/azure-ingestion/custom-telemetry.md
+    - references/cloudwatch-omni/custom-mcp-integration.md
+    - references/cloudwatch-omni/data-forwarding-and-centralization.md
+    - references/cloudwatch-omni/instrumentation/collector-ec2.md
+    - references/cloudwatch-omni/instrumentation/collector-ecs.md
+    - references/cloudwatch-omni/instrumentation/collector-eks.md
+    - references/cloudwatch-omni/instrumentation/collector.md
+    - references/cloudwatch-omni/instrumentation/ec2-dotnet.md
+    - references/cloudwatch-omni/instrumentation/ec2-java.md
+    - references/cloudwatch-omni/instrumentation/ec2-nodejs.md
+    - references/cloudwatch-omni/instrumentation/ec2-python.md
+    - references/cloudwatch-omni/instrumentation/ecs-dotnet.md
+    - references/cloudwatch-omni/instrumentation/ecs-java.md
+    - references/cloudwatch-omni/instrumentation/ecs-nodejs.md
+    - references/cloudwatch-omni/instrumentation/ecs-python.md
+    - references/cloudwatch-omni/instrumentation/eks-dotnet.md
+    - references/cloudwatch-omni/instrumentation/eks-java.md
+    - references/cloudwatch-omni/instrumentation/eks-nodejs.md
+    - references/cloudwatch-omni/instrumentation/eks-python.md
+    - references/cloudwatch-omni/instrumentation/instrumentation.md
+    - references/cloudwatch-omni/instrumentation/lambda-dotnet.md
+    - references/cloudwatch-omni/instrumentation/lambda-java.md
+    - references/cloudwatch-omni/instrumentation/lambda-nodejs.md
+    - references/cloudwatch-omni/instrumentation/lambda-python.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-crewai.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-langchain.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-langgraph.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-openai-agents.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-strands.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/instrument-vercel-ai.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/omni-agents-instrumentation.md
+    - references/cloudwatch-omni/omni-agents-instrumentation/openinference-framework-guide.md
+    - references/cloudwatch-omni/org-domains.md
+    - references/cloudwatch-omni/slack-integration.md
+    - references/cloudwatch-omni/spaces-and-domains.md
+    - references/cloudwatch/application-signals-cicd-metadata.md
+    - references/cloudwatch/application-signals-onboarding.md
+    - references/cloudwatch/appsignals-guides/ec2-dotnet.md
+    - references/cloudwatch/appsignals-guides/ec2-java.md
+    - references/cloudwatch/appsignals-guides/ec2-nodejs.md
+    - references/cloudwatch/appsignals-guides/ec2-python.md
+    - references/cloudwatch/appsignals-guides/ecs-dotnet.md
+    - references/cloudwatch/appsignals-guides/ecs-java.md
+    - references/cloudwatch/appsignals-guides/ecs-nodejs.md
+    - references/cloudwatch/appsignals-guides/ecs-python.md
+    - references/cloudwatch/appsignals-guides/eks-dotnet.md
+    - references/cloudwatch/appsignals-guides/eks-java.md
+    - references/cloudwatch/appsignals-guides/eks-nodejs.md
+    - references/cloudwatch/appsignals-guides/eks-python.md
+    - references/cloudwatch/appsignals-guides/lambda-dotnet.md
+    - references/cloudwatch/appsignals-guides/lambda-java.md
+    - references/cloudwatch/appsignals-guides/lambda-nodejs.md
+    - references/cloudwatch/appsignals-guides/lambda-python.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/operations-skills/setting-up-cloudwatch-observability
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
   - id: aws-skills/troubleshooting-application-failures
     name: troubleshooting-application-failures
     path: aws-skills/skills/specialized-skills/operations-skills/troubleshooting-application-failures
@@ -4464,6 +4812,38 @@ groups:
     - references/positioning.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/resilience-skills/arc-region-switch
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/aws-fault-injection-service
+    name: aws-fault-injection-service
+    path: aws-skills/skills/specialized-skills/resilience-skills/aws-fault-injection-service
+    title: aws-fault-injection-service
+    summary: Plans, builds, runs, and analyzes fault injection experiments with AWS Fault Injection Service (AWS FIS) to validate
+      application resilience through chaos engineering. Covers experiment templates (actions, targets, stop conditions), the
+      FIS actions catalog and action selection, the scenario library (AZ power interruption, cross-Region connectivity, EC2/EKS/EBS
+      stress), experiment lifecycle and monitoring, logging and reports, multi-account experiments, the experiment IAM role,
+      and blast-radius safety. Applies when a user mentions AWS FIS or fault injection, asks what experiment to run for a
+      failure mode (AZ, Region, API errors/throttling, instance/pod/DB/cache failure, latency, packet loss), wants to author
+      an experiment template or CLI/CloudFormation, or needs to safely run chaos experiments in pre-production or production.
+      For the broader resilience program across Resilience Hub and ARC, see aws-resilience-lifecycle; for ARC routing controls
+      and zonal shift, see recovery-controller-setup.
+    version: '1'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fc74c18d7eee
+    files:
+    - SKILL.md
+    - references/fis-actions-reference.md
+    - references/fis-api-reference.md
+    - references/fis-concepts.md
+    - references/fis-security.md
+    - references/fis-workflow.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/resilience-skills/aws-fault-injection-service
     license: Apache-2.0
     group: aws-skills
     category: Cloud
@@ -4638,6 +5018,50 @@ groups:
     license: Apache-2.0
     group: aws-skills
     category: Cloud
+  - id: aws-skills/amazon-eventbridge-event-bus
+    name: amazon-eventbridge-event-bus
+    path: aws-skills/skills/specialized-skills/serverless-skills/amazon-eventbridge-event-bus
+    title: amazon-eventbridge-event-bus
+    summary: Builds, runs, debugs, and operates event-driven applications using EventBridge Event Bus - a managed, centrally
+      governed publish/subscribe event bus that an organization can share across many teams and accounts. Applicable when
+      workloads need event-driven architectures, decoupling, choreography, asynchronous integration, pub/sub, fan-out, event
+      ordering, delivered in sequence, event router, event broker, event bus, event store, event retention, event replay,
+      deduplication, avro, protobuf, cloudevents, uses events or messages. Designed as a centrally managed event bus platform
+      allowing governance and control - such as subscriber control, revocation, per-account throttling - while giving application
+      owners flexibility across an organization spanning multiple accounts, with end-to-end open-standards observability and
+      cost allocation. Also helps reduce costs in high fan-out scenarios where multi-account forwarding adds cost. A serverless,
+      managed alternative to self-managed event streaming platforms.
+    version: '2'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 17c7b3382c6c
+    files:
+    - SKILL.md
+    - references/authorization.md
+    - references/cloudevents.md
+    - references/code-samples.md
+    - references/cost-and-quotas.md
+    - references/delivery-troubleshooting.md
+    - references/event-sources.md
+    - references/filters-and-expressions.md
+    - references/infrastructure-as-code.md
+    - references/migrating-from-classic.md
+    - references/observability.md
+    - references/provisioning-and-state.md
+    - references/replay-and-recovery.md
+    - references/schema-registries.md
+    - references/security-and-sharing.md
+    - references/setup-walkthroughs.md
+    - references/target-configuration.md
+    - references/target-contract.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/serverless-skills/amazon-eventbridge-event-bus
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
   - id: aws-skills/aws-lambda-durable-functions
     name: aws-lambda-durable-functions
     path: aws-skills/skills/specialized-skills/serverless-skills/aws-lambda-durable-functions
@@ -4678,21 +5102,22 @@ groups:
     name: aws-lambda-managed-instances
     path: aws-skills/skills/specialized-skills/serverless-skills/aws-lambda-managed-instances
     title: aws-lambda-managed-instances
-    summary: Evaluates, configures, and migrates workloads to AWS Lambda Managed Instances (LMI). Runs Lambda functions on
-      EC2 instances in the user's account while AWS manages provisioning, patching, scaling, routing, and load balancing.
-      Triggers when queries mention Lambda Managed Instances, LMI, capacity providers, multi-concurrent execution environments,
-      EC2-backed Lambda, persistent Lambda instances, PerExecutionEnvironmentMaxConcurrency, CapacityProviderConfig, cold
-      start elimination via dedicated instances, migrating standard Lambda to managed instances, or cost comparison between
-      standard Lambda and LMI with Savings Plans or Reserved Instances. Also covers long-running and asynchronous workloads
-      and the 90-minute (5400s) function timeout for asynchronous and event-source-mapping (SQS, Kinesis, DynamoDB Streams
-      / ESM) invocations, including how to raise the function timeout up to 90 minutes / 5400s and the related duration limits.
-    version: '2'
+    summary: Evaluates, configures, and migrates workloads to AWS Lambda Managed Instances (LMI). Runs Lambda Event Functions
+      (standard Lambda) on EC2 instances in the user's account while AWS manages provisioning, patching, scaling, routing,
+      and load balancing. Triggers when queries mention Lambda Managed Instances, LMI, capacity providers, multi-concurrent
+      execution environments, EC2-backed Lambda, persistent Lambda instances, PerExecutionEnvironmentMaxConcurrency, CapacityProviderConfig,
+      cold start elimination via dedicated instances, migrating Lambda Event Functions to managed instances, or cost comparison
+      between Lambda Event Functions and LMI with Savings Plans or Reserved Instances. Also covers long-running and asynchronous
+      workloads and the 90-minute (5400s) function timeout for asynchronous and event-source-mapping (SQS, Kinesis, DynamoDB
+      Streams / ESM) invocations, including how to raise the function timeout up to 90 minutes / 5400s and the related duration
+      limits.
+    version: '3'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 057211f19297
+    content_hash: 5a458fc70152
     files:
     - SKILL.md
     - assets/sqs-processor/template.yaml
@@ -4719,13 +5144,13 @@ groups:
       game or simulation servers, or isolated security scanners. Also applicable when the workload needs long-lived sessions,
       a real port-listening server (gRPC, WebSocket, custom TCP protocols), state preserved across periods of inactivity (suspend/resume),
       container-level access (FUSE, eBPF, custom syscalls), or session-affine routing.
-    version: '1'
+    version: '2'
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: e6a2b105d640
+    content_hash: 80515f19d3de
     files:
     - SKILL.md
     - references/getting-started.md
@@ -4736,6 +5161,43 @@ groups:
     - references/troubleshooting.md
     author: Amazon Web Services
     source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/serverless-skills/aws-lambda-microvms
+    license: Apache-2.0
+    group: aws-skills
+    category: Cloud
+  - id: aws-skills/aws-lambda-web-functions
+    name: aws-lambda-web-functions
+    path: aws-skills/skills/specialized-skills/serverless-skills/aws-lambda-web-functions
+    title: aws-lambda-web-functions
+    summary: Creates and deploys Node.js HTTP web applications on AWS Lambda Web Functions. Guides users through building
+      web apps and APIs with Express, Fastify, or Hono, packaging, deploying via the aws lambda-web CLI, and iterating. Triggers
+      when user wants to deploy a website or web app to AWS as serverless, deploy a Node.js HTTP server to AWS, build a serverless
+      website or API with Node.js, deploy Express/Hono/Fastify apps, set up multi-region HTTP endpoints, connect a Node.js
+      web app to private VPC resources, or explicitly mentions Lambda Web Functions. Does NOT trigger for non-Node.js runtimes,
+      event-driven patterns (SQS, Kinesis, S3 events), or container deployments.
+    version: '1'
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: a192c357b187
+    files:
+    - SKILL.md
+    - references/architecture-patterns.md
+    - references/deployment.md
+    - references/domains-and-routing.md
+    - references/frameworks.md
+    - references/getting-started.md
+    - references/iam-and-security.md
+    - references/infrastructure-as-code.md
+    - references/migration.md
+    - references/networking.md
+    - references/observability.md
+    - references/scaling-and-concurrency.md
+    - references/static-assets.md
+    - references/troubleshooting.md
+    author: Amazon Web Services
+    source_url: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/serverless-skills/aws-lambda-web-functions
     license: Apache-2.0
     group: aws-skills
     category: Cloud
