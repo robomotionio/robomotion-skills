@@ -23577,7 +23577,7 @@ groups:
   name: marketing-skills
   title: Marketing Skills
   type: group
-  version: 2.11.1
+  version: 2.11.11
   author: Corey Haines
   source_url: https://github.com/coreyhaines31/marketingskills
   license: MIT
@@ -23597,7 +23597,7 @@ groups:
   has_env_yaml: true
   has_changelog: true
   has_license: true
-  content_hash: 45b438851642
+  content_hash: ca88c198beb8
   skills:
   - id: marketing-skills/ab-testing
     name: ab-testing
@@ -23652,9 +23652,9 @@ groups:
       'ChatGPT ad,' 'Apple Notes ad,' 'AirDrop ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,'
       'creative review page,' 'present ad creative for approval,' 'motion video ad,' 'faceless video ad,' 'UGC ad,' 'greenscreen
       ad,' 'TikTok/Reels ad format,' 'which ad format to make,' 'Meta ad format tier list,' or 'creative format taxonomy.'
-      Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting,
-      see ads. For landing page copy, see copywriting.
-    version: 2.8.2
+      Use it to produce or iterate ad copy at scale. Copy avoids AI tells like 'it's not X, it's Y' reveals. For campaign
+      strategy and targeting, see ads. For landing page copy, see copywriting.
+    version: 2.9.0
     tags: []
     mode: container
     env:
@@ -23668,7 +23668,7 @@ groups:
       - META_AD_ACCOUNT_ID
       - TIKTOK_ACCESS_TOKEN
       - TIKTOK_ADVERTISER_ID
-    content_hash: d268808324e9
+    content_hash: 118b72651cac
     files:
     - SKILL.md
     - assets/creative-review-template.html
@@ -23697,10 +23697,11 @@ groups:
       Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,'
       'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad
       spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance
-      Max,' 'thought leader ads,' or 'when should I kill an ad.' Use this for campaign strategy, audience targeting, bidding,
-      and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see
-      cro.
-    version: 2.3.2
+      Max,' 'thought leader ads,' 'when should I kill an ad,' 'search terms report,' 'wasted spend,' or 'is this campaign
+      working.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation
+      and iteration, see ad-creative. For landing page optimization, see cro. For conversion pixels, CAPI, and tracking audits,
+      see conversion-tracking.
+    version: 2.4.2
     tags: []
     mode: container
     env:
@@ -23723,7 +23724,7 @@ groups:
       - SUPERMETRICS_API_KEY
       - TIKTOK_ACCESS_TOKEN
       - TIKTOK_ADVERTISER_ID
-    content_hash: c893f795a074
+    content_hash: 32913189f5cd
     files:
     - SKILL.md
     - env.optional
@@ -23733,7 +23734,6 @@ groups:
     - references/audience-targeting.md
     - references/audit-guardrails.md
     - references/b2b-paid-playbook.md
-    - references/conversion-tracking.md
     - references/creative-research-automation.md
     - references/google-ads-audit-checklist.md
     - references/google-search-playbook.md
@@ -23741,6 +23741,7 @@ groups:
     - references/meta-decision-system.md
     - references/payback-period.md
     - references/platform-setup-checklists.md
+    - references/reading-google-ads-data.md
     - references/rsa-output-spec.md
     author: Corey Haines
     source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/ads
@@ -23756,10 +23757,11 @@ groups:
       'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,'
       'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,'
       'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,'
-      'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' or 'AI citation format shift.'
-      Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional
-      technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema.
-    version: 2.5.0
+      'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'how do LLMs see our brand,'
+      'LinkedIn for AEO,' or 'AI citation format shift.' Use this whenever someone wants their content to be cited or surfaced
+      by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured
+      data implementation, see schema.
+    version: 2.7.0
     tags: []
     mode: container
     env:
@@ -23769,7 +23771,7 @@ groups:
       - AIROPS_WORKSPACE_ID
       - EXA_API_KEY
       - RANKPARSE_API_KEY
-    content_hash: 8976fe9bfdfc
+    content_hash: 9e0244621412
     files:
     - SKILL.md
     - env.optional
@@ -23779,8 +23781,10 @@ groups:
     - references/content-patterns.md
     - references/content-types.md
     - references/format-volatility.md
+    - references/linkedin-ai-citations.md
     - references/okf.md
     - references/platform-ranking-factors.md
+    - references/positioning-and-consensus.md
     - references/youtube-ai-citations.md
     author: Corey Haines
     source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/ai-seo
@@ -23792,12 +23796,13 @@ groups:
     path: marketing-skills/skills/analytics
     title: analytics
     summary: When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions
-      "set up tracking," "GA4," "Google Analytics," "conversion tracking," "event tracking," "UTM parameters," "tag manager,"
-      "GTM," "analytics implementation," "tracking plan," "how do I measure this," "track conversions," "Mixpanel," "Segment,"
-      "are my events firing," or "analytics isn't working." Use this whenever someone asks how to know if something is working
-      or wants to measure marketing results. For choosing attribution models, comparing multi-touch/MMM/incrementality, or
-      reconciling conflicting numbers across tools, see attribution. For A/B test measurement, see ab-testing.
-    version: 2.0.1
+      "set up tracking," "GA4," "Google Analytics," "event tracking," "UTM parameters," "tag manager," "GTM," "analytics implementation,"
+      "tracking plan," "how do I measure this," "Mixpanel," "Segment," "are my events firing," or "analytics isn't working."
+      Use this whenever someone asks how to know if something is working or wants to measure marketing results. For getting
+      conversions into ad platforms (pixels, conversion tags, CAPI, server-side) and verifying they arrived, see conversion-tracking.
+      For choosing attribution models, comparing multi-touch/MMM/incrementality, or reconciling conflicting numbers across
+      tools, see attribution. For A/B test measurement, see ab-testing.
+    version: 2.0.2
     tags: []
     mode: container
     env:
@@ -23838,7 +23843,7 @@ groups:
       - TIKTOK_ACCESS_TOKEN
       - TIKTOK_ADVERTISER_ID
       - ZAPIER_API_KEY
-    content_hash: d286e9018780
+    content_hash: 480e88c67cba
     files:
     - SKILL.md
     - env.optional
@@ -23890,15 +23895,15 @@ groups:
       "holdout test," "how did you hear about us," "self-reported attribution," "dark social," or wants to instrument attribution
       themselves — "stitch my bookings to their source," "SavvyCal/Calendly attribution," "close the identify gap," "track
       conversions on a third-party domain," "first-party / self-hosted attribution." For event tracking setup and UTMs, see
-      analytics. For ad-platform pixels/CAPI, see ads. For pipeline and CRM revenue reporting, see revops. For the AI-search
-      attribution blind spot, see ai-seo.
-    version: 1.1.0
+      analytics. For ad-platform pixels/CAPI and conversion tracking, see conversion-tracking. For pipeline and CRM revenue
+      reporting, see revops. For the AI-search attribution blind spot, see ai-seo.
+    version: 1.1.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: a4c7a611c2b2
+    content_hash: b9c8f8812bb7
     files:
     - SKILL.md
     - evals/evals.json
@@ -23976,9 +23981,10 @@ groups:
       emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions
       "cold outreach," "prospecting email," "outbound email," "email to leads," "reach out to prospects," "sales email," "follow-up
       email sequence," "nobody's replying to my emails," or "how do I write a cold email." Covers subject lines, opening lines,
-      body copy, CTAs, personalization, and multi-touch follow-up sequences. For warm/lifecycle email sequences, see emails.
-      For sales collateral beyond emails, see sales-enablement.
-    version: 2.0.0
+      body copy, CTAs, personalization, and multi-touch follow-up sequences. Emails avoid AI tells like 'it's not X, it's
+      Y' reveals and 'no X, no Y, no Z' lists. For warm/lifecycle email sequences, see emails. For sales collateral beyond
+      emails, see sales-enablement.
+    version: 2.1.0
     tags: []
     mode: container
     env:
@@ -23993,7 +23999,7 @@ groups:
       - ZOOMINFO_ACCESS_TOKEN
       - ZOOMINFO_PRIVATE_KEY
       - ZOOMINFO_USERNAME
-    content_hash: ea2236224927
+    content_hash: fa877bc338b7
     files:
     - SKILL.md
     - env.optional
@@ -24044,7 +24050,7 @@ groups:
       'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor
       profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific
       battle cards, see sales-enablement.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: container
     env:
@@ -24052,7 +24058,7 @@ groups:
       optional:
       - EXA_API_KEY
       - RANKPARSE_API_KEY
-    content_hash: f2e42fe72066
+    content_hash: 93556d8f80f5
     files:
     - SKILL.md
     - env.optional
@@ -24068,13 +24074,15 @@ groups:
     name: competitors
     path: marketing-skills/skills/competitors
     title: competitors
-    summary: 'When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also
+    summary: 'When the user wants to create competitor comparison or alternative pages for SEO and buyer-facing use. Also
       use when the user mentions ''alternative page,'' ''vs page,'' ''competitor comparison,'' ''comparison page,'' ''[Product]
-      vs [Product],'' ''[Product] alternative,'' ''competitive landing pages,'' ''how do we compare to X,'' ''battle card,''
-      or ''competitor teardown.'' Use this for any content that positions your product against competitors. Covers four formats:
-      singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For sales-specific competitor
-      docs, see sales-enablement.'
-    version: 2.0.1
+      vs [Product],'' ''[Product] alternative,'' ''competitive landing pages,'' ''how do we compare to X,'' ''competitor teardown,''
+      ''audit our competitor pages,'' ''are our comparison pages out of date,'' or ''competitive asset audit.'' Use this for
+      any content that positions your product against competitors. Covers four formats: singular alternative, plural alternatives,
+      you vs competitor, and competitor vs competitor. For auditing existing claims (not researching competitors from scratch,
+      which is competitor-profiling; not technical SEO on these pages, which is seo-audit), use the asset audit here. For
+      internal battle cards and sales-specific competitor docs, see sales-enablement.'
+    version: 2.3.0
     tags: []
     mode: container
     env:
@@ -24096,7 +24104,7 @@ groups:
       - ZOOMINFO_ACCESS_TOKEN
       - ZOOMINFO_PRIVATE_KEY
       - ZOOMINFO_USERNAME
-    content_hash: 153179cbeec2
+    content_hash: 065baec9b954
     files:
     - SKILL.md
     - env.optional
@@ -24156,6 +24164,107 @@ groups:
     license: MIT
     group: marketing-skills
     category: Marketing
+  - id: marketing-skills/conversion-tracking
+    name: conversion-tracking
+    path: marketing-skills/skills/conversion-tracking
+    title: conversion-tracking
+    summary: Set up, audit, verify, or fix website conversion tracking. Use when the conversion is a form submission, booked
+      meeting, chat, phone call, signup, or purchase; when conversions must reach Google Ads, Meta, GA4, LinkedIn, TikTok,
+      or Microsoft Ads; when the work involves GTM tags and dataLayer events, pixels, the Conversions API (CAPI), Enhanced
+      Conversions, server-side tagging, or gclid and fbclid capture; or when the user reports conversion problems like "conversions
+      stopped", "double counting", "spend but no conversions", "GA4 and Google Ads don't match", or an Unverified or Inactive
+      status. Covers lead gen and ecommerce. Always fire on confirmed success, never the submit click; verify a test conversion
+      arrives; diagnose before changing anything; offer free and native paths alongside paid ones and disclose partner tools.
+      For tracking plans and UTMs, see analytics. For attribution models, see attribution. For campaigns and bidding, see
+      ads. For CRM lead-stage design, see revops.
+    version: 1.0.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: d5178c96bc02
+    files:
+    - SKILL.md
+    - assets/gtm-recipes/README.md
+    - assets/gtm-recipes/detect/detect-acuity-scheduling.json
+    - assets/gtm-recipes/detect/detect-cal-com.json
+    - assets/gtm-recipes/detect/detect-calendly.json
+    - assets/gtm-recipes/detect/detect-contact-form-7.json
+    - assets/gtm-recipes/detect/detect-divi-forms.json
+    - assets/gtm-recipes/detect/detect-elementor-forms.json
+    - assets/gtm-recipes/detect/detect-file-download.json
+    - assets/gtm-recipes/detect/detect-fluent-forms.json
+    - assets/gtm-recipes/detect/detect-formidable-forms.json
+    - assets/gtm-recipes/detect/detect-forminator.json
+    - assets/gtm-recipes/detect/detect-framer-forms.json
+    - assets/gtm-recipes/detect/detect-generic-ajax-form.json
+    - assets/gtm-recipes/detect/detect-gravity-forms.json
+    - assets/gtm-recipes/detect/detect-hubspot-forms.json
+    - assets/gtm-recipes/detect/detect-jotform.json
+    - assets/gtm-recipes/detect/detect-ninja-forms.json
+    - assets/gtm-recipes/detect/detect-phone-click.json
+    - assets/gtm-recipes/detect/detect-squarespace-forms.json
+    - assets/gtm-recipes/detect/detect-tally.json
+    - assets/gtm-recipes/detect/detect-thank-you-page.json
+    - assets/gtm-recipes/detect/detect-typeform.json
+    - assets/gtm-recipes/detect/detect-webflow-forms.json
+    - assets/gtm-recipes/detect/detect-wix-forms.json
+    - assets/gtm-recipes/detect/detect-wix-scheduling.json
+    - assets/gtm-recipes/detect/detect-wpforms.json
+    - assets/gtm-recipes/detect/detect-ws-form.json
+    - assets/gtm-recipes/event-map.json
+    - assets/gtm-recipes/send/ga4.json
+    - assets/gtm-recipes/send/google-ads.json
+    - assets/gtm-recipes/send/linkedin.json
+    - assets/gtm-recipes/send/meta.json
+    - assets/gtm-recipes/send/microsoft.json
+    - assets/gtm-recipes/send/tiktok.json
+    - assets/snippets/README.md
+    - assets/snippets/acuity-scheduling-field.html
+    - assets/snippets/acuity-scheduling.js
+    - assets/snippets/cal-com.js
+    - assets/snippets/calendly.js
+    - assets/snippets/contact-form-7.js
+    - assets/snippets/divi-forms.js
+    - assets/snippets/elementor-forms.js
+    - assets/snippets/file-download.js
+    - assets/snippets/fluent-forms.js
+    - assets/snippets/formidable-forms.js
+    - assets/snippets/forminator.js
+    - assets/snippets/framer-forms.js
+    - assets/snippets/generic-ajax-form.js
+    - assets/snippets/gravity-forms.js
+    - assets/snippets/hubspot-forms.js
+    - assets/snippets/jotform.js
+    - assets/snippets/ninja-forms.js
+    - assets/snippets/phone-click.js
+    - assets/snippets/squarespace-forms.js
+    - assets/snippets/tally.js
+    - assets/snippets/thank-you-page.js
+    - assets/snippets/typeform.js
+    - assets/snippets/webflow-forms.js
+    - assets/snippets/wix-forms.js
+    - assets/snippets/wix-scheduling.js
+    - assets/snippets/wpforms.js
+    - assets/snippets/ws-form.js
+    - evals/evals.json
+    - references/audit-playbook.md
+    - references/browser-side.md
+    - references/conversion-moments.md
+    - references/discrepancies.md
+    - references/ecommerce-platforms.md
+    - references/google-ads.md
+    - references/meta.md
+    - references/other-platforms.md
+    - references/server-side.md
+    - scripts/build_recipe.py
+    - scripts/check_recipes.py
+    author: Corey Haines
+    source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/conversion-tracking
+    license: MIT
+    group: marketing-skills
+    category: Marketing
   - id: marketing-skills/copy-editing
     name: copy-editing
     path: marketing-skills/skills/copy-editing
@@ -24163,15 +24272,17 @@ groups:
     summary: When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use
       when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,'
       'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,'
-      'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit.' Use this when the user already
-      has copy and wants it improved or refreshed rather than rewritten from scratch. For writing new copy, see copywriting.
-    version: 2.0.0
+      'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit,' 'this sounds like AI,' 'AI
+      slop,' 'de-slop this,' or 'make it sound human.' Use this when the user already has copy and wants it improved or refreshed
+      rather than rewritten from scratch. Every edit removes AI tells such as 'it's not X, it's Y' reveals, 'no X, no Y, no
+      Z' lists, and sentences that trail into extra comma clauses. For writing new copy, see copywriting.
+    version: 2.1.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 1f86edb2ed87
+    content_hash: e4d02883e52a
     files:
     - SKILL.md
     - evals/evals.json
@@ -24187,14 +24298,15 @@ groups:
     name: copywriting
     path: marketing-skills/skills/copywriting
     title: copywriting
-    summary: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,
+    summary: When the user wants to write, rewrite, or improve marketing copy for any page, including homepage, landing pages,
       pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve
       this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline,"
-      "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product."
-      Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails.
-      For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses,
-      guarantees, value framing), see offers.
-    version: 2.0.2
+      "hero section copy," "above the fold," "this copy is weak," "make this more compelling," "this sounds like AI," "AI
+      slop," "make it sound human," or "help me describe my product." Use this whenever someone is working on website text
+      that needs to persuade or convert. Drafts never use AI tells like "it's not X, it's Y" reveals, "no X, no Y, no Z" lists,
+      or sentences that trail into extra comma clauses. For email copy, see emails. For popup copy, see popups. For editing
+      existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.
+    version: 2.1.0
     tags: []
     mode: container
     env:
@@ -24202,11 +24314,12 @@ groups:
       optional:
       - AIROPS_API_KEY
       - AIROPS_WORKSPACE_ID
-    content_hash: dadd0cc4339c
+    content_hash: c3ffd9952c3a
     files:
     - SKILL.md
     - env.optional
     - evals/evals.json
+    - references/ai-tells.md
     - references/copy-frameworks.md
     - references/natural-transitions.md
     author: Corey Haines
@@ -24294,17 +24407,18 @@ groups:
     summary: When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories
       for backlinks, domain rating, and discovery. Also use when the user mentions "directory submissions," "submit to directories,"
       "backlinks from directories," "list my product," "submit to Product Hunt," "BetaList," "TAAFT," "Futurepedia," "G2 listing,"
-      "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "agent directory," "dofollow backlinks,"
-      "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product
-      launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should
-      live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
-    version: 2.0.0
+      "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "publish my MCP server," "awesome
+      list," "llms.txt directory," "Claude plugin directory," "agent directory," "dofollow backlinks," "launch directories,"
+      or "directory tracker." Use this whenever someone is planning the directory layer of a product launch or an ongoing
+      backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should live behind these
+      backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
+    version: 2.1.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: e6b3b2baa0f2
+    content_hash: fc94f5383aca
     files:
     - SKILL.md
     - evals/evals.json
@@ -24324,8 +24438,9 @@ groups:
       email program. Also use when the user mentions "email sequence," "drip campaign," "nurture sequence," "onboarding emails,"
       "welcome sequence," "re-engagement emails," "email automation," "lifecycle emails," "trigger-based emails," "email funnel,"
       "email workflow," "what emails should I send," "welcome series," or "email cadence." Use this for any multi-email automated
-      flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
-    version: 2.0.0
+      flow. Emails avoid AI tells like 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and fake 'Re:' subject lines.
+      For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
+    version: 2.1.0
     tags: []
     mode: container
     env:
@@ -24349,7 +24464,7 @@ groups:
       - SEGMENT_WRITE_KEY
       - SENDGRID_API_KEY
       - ZAPIER_API_KEY
-    content_hash: d9a9e83ff4ce
+    content_hash: 49c83e57267f
     files:
     - SKILL.md
     - env.optional
@@ -25063,12 +25178,14 @@ groups:
     title: sales-enablement
     summary: When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts.
       Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific
-      ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'help my sales
-      team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales
-      team close deals. For competitor comparison pages and battle cards, see competitors. For marketing website copy, see
+      ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'battle card,'
+      'battlecard,' 'competitive one-pager,' 'win-loss analysis,' 'why are we losing deals,' 'loss reasons,' 'how do I respond
+      to this objection,' 'prospect just said,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.'
+      Use this for any document or asset that helps a sales team close deals. For public competitor comparison pages, see
+      competitors. For running buyer interviews or churn research, see customer-research. For marketing website copy, see
       copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure),
       see offers.
-    version: 2.0.1
+    version: 2.3.1
     tags: []
     mode: container
     env:
@@ -25081,7 +25198,7 @@ groups:
       - ZOOMINFO_ACCESS_TOKEN
       - ZOOMINFO_PRIVATE_KEY
       - ZOOMINFO_USERNAME
-    content_hash: 5ef9fc0ff85c
+    content_hash: 58e49dddc650
     files:
     - SKILL.md
     - env.optional
@@ -25090,6 +25207,7 @@ groups:
     - references/demo-scripts.md
     - references/objection-library.md
     - references/one-pager-templates.md
+    - references/win-loss-analysis.md
     author: Corey Haines
     source_url: https://github.com/coreyhaines31/marketingskills/tree/main/skills/sales-enablement
     license: MIT
@@ -25257,22 +25375,22 @@ groups:
     path: marketing-skills/skills/social
     title: social
     summary: When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,
-      TikTok, Facebook, or other platforms, or wants to do social listening and engagement triage. Also use when the user
-      mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral
-      content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,'
-      'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a
-      reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking
-      for,' 'carousel,' 'slide-by-slide,' or 'document post.' Use this for social media content creation, repurposing, scheduling,
-      short-form video scripting, and social listening. For broader content strategy, see content-strategy. For paid ads,
-      see ad-creative. For earned media, see public-relations.
-    version: 2.2.0
+      TikTok, or Facebook, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn
+      post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what
+      should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,'
+      'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,'
+      'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking for,' 'carousel,' 'slide-by-slide,'
+      or 'document post.' Use this for social content, repurposing, scheduling, video scripts, and listening. Posts avoid
+      AI tells like 'it's not X, it's Y' reveals and broetry. For broader content strategy, see content-strategy. For paid
+      ads, see ad-creative. For earned media, see public-relations.
+    version: 2.3.0
     tags: []
     mode: container
     env:
       required: []
       optional:
       - SUPERMETRICS_API_KEY
-    content_hash: a44f92a96921
+    content_hash: e63cbe3f8251
     files:
     - SKILL.md
     - env.optional

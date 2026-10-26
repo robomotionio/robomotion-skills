@@ -5,24 +5,25 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.8.2 | 2026-08-23 |
-| ai-seo | 2.5.0 | 2026-09-04 |
-| analytics | 2.0.1 | 2026-07-22 |
+| ad-creative | 2.9.0 | 2026-10-02 |
+| ai-seo | 2.7.0 | 2026-10-02 |
+| analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
-| attribution | 1.1.0 | 2026-07-23 |
+| attribution | 1.1.1 | 2026-10-02 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
 | co-marketing | 2.0.1 | 2026-08-23 |
-| cold-email | 2.0.0 | 2026-05-05 |
+| cold-email | 2.1.0 | 2026-10-02 |
 | community-marketing | 2.0.1 | 2026-08-23 |
-| competitor-profiling | 2.0.1 | 2026-08-19 |
-| competitors | 2.0.1 | 2026-07-09 |
+| competitor-profiling | 2.1.0 | 2026-10-01 |
+| competitors | 2.3.0 | 2026-10-01 |
 | content-strategy | 2.1.1 | 2026-08-23 |
-| copy-editing | 2.0.0 | 2026-05-05 |
-| copywriting | 2.0.2 | 2026-08-23 |
+| conversion-tracking | 1.0.0 | 2026-10-02 |
+| copy-editing | 2.1.0 | 2026-10-02 |
+| copywriting | 2.1.0 | 2026-10-02 |
 | cro | 2.0.0 | 2026-05-05 |
 | customer-research | 2.0.2 | 2026-08-23 |
-| directory-submissions | 2.0.0 | 2026-05-05 |
-| emails | 2.0.0 | 2026-05-05 |
+| directory-submissions | 2.1.0 | 2026-10-02 |
+| emails | 2.1.0 | 2026-10-02 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.1 | 2026-05-18 |
@@ -36,7 +37,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.3.2 | 2026-08-23 |
+| ads | 2.4.2 | 2026-10-02 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.1 | 2026-08-23 |
@@ -46,16 +47,103 @@ Current versions of all skills. Agents can compare against local versions to che
 | public-relations | 1.1.1 | 2026-08-23 |
 | referrals | 2.0.1 | 2026-08-23 |
 | revops | 2.0.0 | 2026-05-05 |
-| sales-enablement | 2.0.1 | 2026-06-16 |
+| sales-enablement | 2.3.1 | 2026-10-01 |
 | schema | 2.0.0 | 2026-05-05 |
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.2.0 | 2026-07-09 |
+| social | 2.3.0 | 2026-10-02 |
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.12.0 (2026-10-02)
+
+- Added the **`conversion-tracking`** skill (1.0.0). Setting up, auditing, verifying and fixing the path from a conversion on a website to Google Ads, Meta, GA4, LinkedIn, TikTok and Microsoft Ads, for lead generation and ecommerce. Gives an orphaned job a home. Analytics listed conversion tracking as a trigger without covering it, attribution routed pixels and CAPI to ads, and ads held one reference file. Built on one distinction, that lead gen has to infer success from a browser signal while ecommerce reads it from an order record. Nine references (how each form, booking and chat tool signals success, the complete browser-side path, the server-side options with prices, ecommerce platforms including Shopify's 26 Aug 2026 Additional Scripts removal, Google Ads, Meta, other platforms, the audit playbook, and why the numbers never match), 22 detection snippets, importable GTM recipes merged by `scripts/build_recipe.py`, and 16 evals. Audit scoring follows the ads skill's audit guardrails, summarised inline. New skill = repo y release; total skills: 51. Contributed by Aaron Beashel (Converly ◆, a Verified Partner) and reviewed against the repo's partner-integrity bar before merge:
+  - **Neutrality:** free and native paths first (browser Enhanced Conversions, Meta advanced matching, Google tag gateway, Meta CAPI Gateway, tool webhooks); a "when server-side matters less" section; the partner row matches the others in length and lists its tradeoffs; a free-tier row in the side-by-side; paid options surface at the delivery decision, not in every answer; the contributor's other tool (Attributer) is disclosed with alternatives; five neutrality evals (ids 17–21) and one delivery-decision eval (id 22).
+  - **Facts:** browser tags can send hashed email and phone; Meta dropped the AEM 8-event cap in May 2023; Microsoft has a Conversions API (self-serve token, still rolling out); LinkedIn dedup needs a shared `eventId`; Meta CAPI for CRM gates; Google tROAS vs tCPA minimums; conversion-adjustment windows; Shopify's 1 Oct 2026 script-tag change; the undercount stated as a 10–30% range rather than a universal 30%.
+  - **Assets:** 18 detection snippets replaced with listeners that passed live checks on real forms, Jotform's now firing on the completion message its iframe and script embeds send, and Framer's confirming through Framer's own form request; every GTM recipe uses Tag Manager's import format, so Import Container accepts it; 10 drifted GTM recipes regenerated from their snippets, with `scripts/check_recipes.py` to keep them in sync; `build_recipe.py` validates every ID and substitutes safely (no JSON or JS injection) on Python 3.8+; every send tag requires consent (the Google Ads conversion tag `ad_storage` only); snippet success-signal types documented; four new tested detectors (Squarespace Forms, HubSpot Forms, Cal.com and Acuity Scheduling), for 26 in all.
+  - **Repo fit:** operative rules in the description, a revops boundary, no cross-skill relative links, two audit checks restored from the retired ads reference.
+- **Converly integration guide** filled in (capabilities, setup, operations); platform lift stats carry a holdout caveat.
+- **analytics** (2.0.1 → 2.0.2): description drops the "conversion tracking" and "track conversions" triggers and hands getting conversions into ad platforms to conversion-tracking.
+- **attribution** (1.1.0 → 1.1.1): pixels, CAPI and server-side conversion tracking now route to conversion-tracking (description, Boundaries, Related Skills, and the by-business-type tooling note).
+- **ads** (2.4.1 → 2.4.2): conversion tracking pointers (routing table, Platform Setup, tracking setup line, google-ads-audit-checklist) now go to the conversion-tracking skill; description and Related Skills name it. `references/conversion-tracking.md` retired, its content carried into conversion-tracking's browser-side.md, audit-playbook.md and server-side.md.
+
+### 2.11.11 (2026-10-02)
+
+- **ai-seo** (2.6.0 → 2.7.0): new `references/linkedin-ai-citations.md`, prompted by Kaleigh Moore's 20 weeks of consistent Pulse-article citations (Sep 2026) and built from six 2026 citation studies (Profound, Semrush, OtterlyAI, Cloro, Goodie, Scrunch) plus our own Ahrefs pull by URL path.
+  - **Engine split:** ChatGPT moved from Pulse articles to feed posts (Pulse ~−86%, posts ~+74% May → Oct 2026, with a ~36% LinkedIn drop in the mid-August retrieval change). Perplexity cites LinkedIn most, company pages first. Copilot citations of LinkedIn more than doubled. Gemini almost never cites LinkedIn.
+  - **Crawler access:** from LinkedIn's robots.txt, search crawlers (Googlebot, Bingbot, OAI-SearchBot, Claude-SearchBot) are allowed and live-fetch agents are blocked. Includes a `curl` self-check for crawler-only `noindex` on Pulse articles.
+  - **What gets cited:** engagement and follower count barely matter; original, specific, technical content with named entities does. Avoid Unicode bold and "link in comments." Includes the length ranges cited articles and posts fall in, and durability and risk notes (no canonical control, so publish on your own site first).
+  - **Corrections:** the "~60% Articles / ~40% Posts" figure misread LinkedIn's guide (articles, newsletters, and posts combined are 60%), fixed in SKILL.md and `format-volatility.md`. Copilot's unsourced "ranking boost" is replaced with data. `agent-readiness.md`'s volatility case now includes LinkedIn. New trigger 'LinkedIn for AEO'; new eval (id 12).
+
+### 2.11.10 (2026-10-02)
+
+- **ai-seo** (2.5.0 → 2.6.0): lessons from Edward Sturm's podcast with Harpreet Singh (E1182, "AEO Companies Are Selling You 2016 SEO," Sep 2026), labeled as practitioner experience throughout.
+  - New `references/positioning-and-consensus.md`: much of "AEO" is SEO without the history; brand positioning moves slowly in LLMs (repositioning, mergers, and rebrands can cause a visibility dip, so baseline both segments and move off-site signals before the on-site rewrite); every third-party profile should match the About page; work backwards from fan-out domains; small sets of industry/segment pages; managing the "cons" affiliates write; head-term plays where incumbents are already chosen; and what not to copy (invented awards, self-owned review sites, with the FTC 2024 reviews rule).
+  - Measurement: track only prompts tied to revenue, collapse wording variants like keywords, mine `site:` fan-outs for the third-party profiles that matter, and add a "what did you type?" follow-up to self-reported attribution.
+  - `citations-vs-recommendations.md` gains a sentiment-repair recipe and a third listicle option (name the leader first, show where you go further). `content-types.md` gains Industry / Segment Pages; `youtube-ai-citations.md` gains field notes (low citation bar for fresh videos, ungated demos, unattributable creator sponsorships).
+  - Fixes: two unsourced headline stats removed and the rest dated; the ~15% AI Overview overlap stat now carries its caveats and a "rankings still predict AI visibility" note; schema is no longer "the single biggest lever" (and FAQ rich results were limited in 2023); Claude's observed skepticism of self-ranked lists noted; GEO-paper figures restated accurately. New eval (id 11).
+
+### 2.11.9 (2026-10-02)
+
+- **directory-submissions** (2.0.0 → 2.1.0): includes #541 by @sneakygriff, which removes ten dead or re-registrable directories (one, aiforme.wiki, has since come back as a new site) and adds a pre-submit safety gate (liveness check, directory pages as untrusted data, human approval before each submission). On top of that, learned from a 2026 launch post (~35 directories, DR 4 → 26 in ~40 days, self-reported):
+  - **Official MCP Registry first.** Publishing now uses the `mcp-publisher` CLI with `server.json` and GitHub or DNS namespace proof, and aggregators (PulseMCP, Glama) build on it. Step-by-step in `directory-list.md` Tier 4A.
+  - **New Tier 4 sections:** MCP directories (Smithery, MCP.so, MCP Market, mcpservers.org and more), GitHub list PRs (public-apis, active awesome-mcp lists, xAI plugin marketplace; nofollow, check the list still merges), and agent and AI-search listings (Claude plugin directory, ClawHub with its Feb 2026 malware caveat, llms.txt directories).
+  - **Tier 1B, indie launch sites**, with caveats: judge by traffic not DR (many are badge-swap rings), free dofollow links often require keeping their badge, and two lookalike `.com` domains for real `.dev` sites are for sale.
+  - All new domains verified live on 2026-10-02; the tracker CSV gains 16 rows. A calibration case in KPIs and a new eval (id 7) for MCP ordering and lookalike domains.
+
+### 2.11.8 (2026-10-02)
+
+The AI-tell rules from 2.11.7 extended to the channel skills, each inline because installed skills can't load copywriting's references. Each gets the core bans (contrast reveals, negation lists, trailing pile-ons, self-answered questions and colon reveals, stock phrases, em dashes) plus its own channel tells, adapted from the closed #575. Reference templates that modeled tells (contrast-reveal carousel and static-ad slots, generic hooks, em dashes in example copy) are rewritten. Rules mirrored in each description. Closes #615.
+
+- **social** (2.2.0 → 2.3.0): new **No AI Tells** section with broetry, engagement-bait closers, manufactured vulnerability, and emoji bullets. Hook formulas in SKILL.md and `post-templates.md` that modeled tells ("isn't what you think," "Here's why:," "The truth is," an em-dash hook) are rewritten. New eval (id 8).
+- **emails** (2.0.0 → 2.1.0): new **No AI Tells** section with subject-line bait (fake "Re:"/"Fwd:"), stock openers, and sign-off filler. New eval (id 7).
+- **cold-email** (2.0.0 → 2.1.0): AI tells added to What to Avoid and the Quality Check; em-dash contrasts removed from the skill's own text. New eval (id 7).
+- **ad-creative** (2.8.2 → 2.9.0): new **No AI Tells** section with stacked negations to fit character limits, hook slop, CTA slop, and a no-repeated-sentence-shape rule across a batch. New eval (id 16).
+
+### 2.11.7 (2026-10-02)
+
+AI-tell blacklist for copy. Clients reject drafts that read as AI-written, and the worst tells are sentence shapes that word lists miss. Closes #613.
+
+- **copywriting** (2.0.2 → 2.1.0): new **No AI Tells** section and `references/ai-tells.md`, a researched blacklist (Wikipedia's AI-cleanup guide, excess-vocabulary studies, slop benchmarks, practitioner catalogs). Bans contrast reveals ("it's not X, it's Y," "not because X, because Y"), negation lists ("no X, no Y, no Z"), trailing pile-ons (a claim followed by more comma clauses), self-answered questions, colon reveals, stock openers and marketing phrases, and em dashes in short copy. Caps fragments, lists of three, and vague vocabulary. Rewrite rules (fix from the facts, swap test, no invented proof) and a self-check to run before every delivery. Rhetorical-question advice now warns against answering your own question. The skill now follows its own rules: em dashes and a contrast reveal removed from SKILL.md, and conflicting advice removed from the references ('When it comes to,' self-answering question transitions, the 'Everything you need to' formula). Defines short copy, long copy, and sections, and lists what stays fine (FAQ questions, one 'No card required,' real three-feature lists). The rules are mirrored in the description. New triggers: 'this sounds like AI,' 'AI slop,' 'make it sound human.' New eval (id 9).
+- **copy-editing** (2.0.0 → 2.1.0): new **AI-Tell Check** run on every edit, inline because installed skills can't load copywriting's references; a "Reads as AI-Written" problem entry and checklist section. The word-swap table no longer suggests synonyms (robust → strong) that the check forbids. New control eval (id 8) checks that clean copy is left alone. Rule mirrored in the description. New triggers: 'this sounds like AI,' 'AI slop,' 'de-slop this,' 'make it sound human.' New eval (id 7).
+
+### 2.11.6 (2026-10-01)
+
+Post-merge review fixes. Closes #611.
+
+- **ads** (2.4.0 → 2.4.1): `reading-google-ads-data.md` corrections. The 30-day limit is `change_event`'s; `change_status` covers 90 days without field detail. `metrics.conversions` can include secondary actions a custom goal pulls in. `client_type` names the client, not who or why, and Editor changes aren't returned. Learning phase blocks optimizing, not fixing verified breakage.
+- **sales-enablement** (2.3.0 → 2.3.1): Battle Cards points single live objections at Live Deal Objection.
+- **tools/google-ads**: computed date ranges use the local calendar date (UTC shifted them a day late in US evenings), and invalid `--days` values are rejected.
+- **CI**: `check-versions.mjs` requires skill and repo versions to increase, and the repo version to match the newest changelog block.
+
+### 2.11.5 (2026-10-01)
+
+Three competitive-PMM jobs added to existing skills instead of new ones, so the evidence rules from 2.11.3 apply to all of them. Closes #604.
+
+- **sales-enablement** (2.2.0 → 2.3.0): new **Live Deal Objection** subsection: one objection from a live deal gets a deal-specific answer (pin down who said what, name the likely concern and a question that separates readings, one say-as-written response, only proof the rep can stand behind, when to qualify out). New **Win-Loss Analysis** section and `references/win-loss-analysis.md`: source bias table (rep-entered CRM reasons skew to price/timing), segment before counting, one primary reason per deal with a source, counts with sample sizes, under ~5 deals is a signal not a finding, report format, and where findings feed battle cards and the objection library. New triggers: 'win-loss analysis,' 'why are we losing deals,' 'loss reasons,' 'how do I respond to this objection,' 'prospect just said.' New evals (ids 9, 10).
+- **competitors** (2.2.0 → 2.3.0): new **Competitive Asset Audit** under Research Process: inventory every competitor claim across vs pages, battle cards, talk tracks, and decks; re-verify with a check date; mark current / changed / unverifiable / overclaimed; fix public pages first; report with replacement wording. New Asset Audit Report output. New triggers: 'audit our competitor pages,' 'are our comparison pages out of date,' 'competitive asset audit.' New eval (id 8).
+
+### 2.11.4 (2026-10-01)
+
+- **sales-enablement** (2.1.0 → 2.2.0): new **Battle Cards** section, which had no home before. `competitors` claimed the trigger with no guidance and `sales-enablement` pointed back at it. Covers an 8-part structure (when you'll see them, why buyers consider them, where they're strong, where we win and for whom, discovery questions, top objections, when to walk away, last verified) and a refresh cadence. Asks which competitor rather than guessing. New triggers: 'battle card,' 'battlecard,' 'competitive one-pager.' New eval (id 8).
+- **competitors** (2.1.0 → 2.2.0): 'battle card' trigger moved to sales-enablement; description and related skills point there. Closes #608.
+
+### 2.11.3 (2026-10-01)
+
+Evidence discipline for the three skills that make claims about competitors. Comparison pages and battle cards are claims a competitor's team, or a buyer, can check in a minute.
+
+- **competitors** (2.0.1 → 2.1.0): new **Evidence Discipline** principle. "Not observed" is not "doesn't have": a feature missing from a pricing page gets "not listed (as of date)" or no row, and ✗ only when docs or a trial confirm it. Date competitor facts, treat one visit as a snapshot (no "hasn't changed" without dated history), state what changed but never guess why, and keep fact, interpretation, and recommendation separate. Ask instead of guessing when no competitor is named. `templates.md` gains a "not listed" table row; the competitor data template gains `last_verified` + `sources`.
+- **competitor-profiling** (2.0.1 → 2.1.0): Facts Over Opinions now separates **observed / inferred / implication**, adds not-observed ≠ absent (including "no public pricing" ≠ free) and no-motive rules; Current Data notes a single scrape can't support "hasn't changed"; "where we're strong" requires customer, win/loss, or review evidence or is labeled a hypothesis.
+- **sales-enablement** (2.0.1 → 2.1.0): new **Claims Reps Can Defend** principle. "Why we win" needs win/loss, CRM, call, or customer evidence; without it, advantages are hypotheses with the evidence that would confirm them. Competitor claims follow the competitors evidence rules, and competitive docs say where you lose.
+- One new eval per skill. Closes #602.
+
+### 2.11.2 (2026-10-01)
+
+- **ads** (2.3.2 → 2.4.0): new `references/reading-google-ads-data.md`, covering how Google Ads data misleads before an audit even starts. **Search terms are a sample**: on small accounts 50–65% of clicks have no disclosed query, so every claim states disclosed vs total clicks, the report is pulled unfiltered first, and nothing (GA4, CRM) recovers the withheld queries. Data traps: `conversions` vs `all_conversions`, several final URLs per ad group, click-date attribution, expired experiment arms that look like duplicate campaigns, the 30-day change-history limit, and `client_type` for who else changes the account. **Window vs lifetime** and no pooling across config changes. **Small numbers**: a zero-conversions-in-N-clicks table (what each sample size rules out) plus break-even CVR = CPC ÷ target CPA, and "let it run" only with a date. **Stating findings** as verified / inferred / stale, the "can the client disprove this in a minute?" test, and a "conclusions that sound right" table. Fixed the `audit-guardrails.md` Fail example that treated disclosed search terms as a share of all spend. Two new evals (ids 12–13). New triggers: 'search terms report,' 'wasted spend,' 'is this campaign working.'
+- **tools/google-ads**: API URLs moved from the long-sunset v14 to v24 (guide and CLI); added analysis GAQL recipes (campaign inventory, monthly since launch, conversions by action, unfiltered search terms, ads by final URL, change history) and a gotchas table. Closes #601.
 
 ### 2.11.1 (2026-09-04)
 

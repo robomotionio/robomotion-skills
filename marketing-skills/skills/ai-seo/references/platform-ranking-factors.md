@@ -20,14 +20,14 @@ Beyond these basics, each platform weights different signals. Here's what matter
 
 ## Google AI Overviews
 
-Google AI Overviews pull from Google's own index and lean heavily on E-E-A-T signals (Experience, Expertise, Authoritativeness, Trustworthiness). They appear in roughly 45% of Google searches.
+Google AI Overviews pull from Google's own index and lean heavily on E-E-A-T signals (Experience, Expertise, Authoritativeness, Trustworthiness). Studies have measured them on roughly 45% of tracked keywords (BrightEdge).
 
-**What makes Google AI Overviews different:** They already have your traditional SEO signals — backlinks, page authority, topical relevance. The additional AI layer adds a preference for content with cited sources and structured data. Research shows that including authoritative citations in your content correlates with a 132% visibility boost, and writing with an authoritative (not salesy) tone adds another 89%.
+**What makes Google AI Overviews different:** They already have your traditional SEO signals — backlinks, page authority, topical relevance. The additional AI layer adds a preference for content with cited sources and structured data. The GEO study (Aggarwal et al., 2023) found that adding citations, quotations, and statistics raised visibility by roughly 30–40% on its own metric; individual examples in the paper show much larger jumps, but those aren't typical or additive.
 
-**Importantly, AI Overviews don't just recycle the traditional Top 10.** Only about 15% of AI Overview sources overlap with conventional organic results. Pages that wouldn't crack page 1 in traditional search can still get cited if they have strong structured data and clear, extractable answers.
+**AI Overviews don't just recycle the traditional Top 10.** Some studies have put the overlap between AI Overview sources and conventional organic results as low as ~15%, though figures vary widely by study, date, and query set. Pages that wouldn't crack page 1 can still get cited with clear, extractable answers. Even so, practitioners consistently find that better organic rankings mean better AI visibility, so don't treat the low-overlap stat as permission to skip SEO.
 
 **What to focus on:**
-- Schema markup is the single biggest lever — Article, FAQPage, HowTo, and Product schemas give AI Overviews structured context to work with (30-40% visibility boost)
+- Schema markup gives AI Overviews structured context (Article, HowTo, Product). It's one lever among several, and Google says no special markup is required for AI features. Google limited FAQ rich results to government and health sites in 2023, so don't promise an AI lift from FAQPage schema
 - Build topical authority through content clusters with strong internal linking
 - Include named, sourced citations in your content (not just claims)
 - Author bios with real credentials matter — E-E-A-T is weighted heavily
@@ -85,14 +85,14 @@ Perplexity always cites its sources with clickable links, making it the most tra
 
 Copilot is embedded across Microsoft's ecosystem — Edge, Windows, Microsoft 365, and Bing Search. It relies entirely on Bing's index, so if Bing hasn't indexed your content, Copilot can't cite it.
 
-**What makes Copilot different:** The Microsoft ecosystem connection creates unique optimization opportunities. Mentions and content on LinkedIn and GitHub provide ranking boosts that other platforms don't offer. Copilot also puts more weight on page speed — sub-2-second load times are a clear threshold.
+**What makes Copilot different:** The Microsoft ecosystem connection creates unique optimization opportunities. Copilot cites LinkedIn heavily (its LinkedIn citations more than doubled May → Oct 2026 and run about 6.5× its Reddit citations, per Ahrefs data), and GitHub content is a natural fit too. Copilot also puts more weight on page speed — sub-2-second load times are a clear threshold.
 
 **What to focus on:**
 - Submit your site to Bing Webmaster Tools (many sites only submit to Google Search Console)
 - Use IndexNow protocol for faster indexing of new and updated content
 - Optimize page speed to under 2 seconds
 - Write clear entity definitions — when your content defines a term or concept, make the definition explicit and extractable
-- Build presence on LinkedIn (publish articles, maintain company page) and GitHub if relevant
+- Build presence on LinkedIn (articles, posts, and a complete company page; see [linkedin-ai-citations.md](linkedin-ai-citations.md)) and GitHub if relevant
 - Ensure Bingbot has full crawl access
 
 ---
@@ -110,6 +110,7 @@ Claude uses Brave Search as its search backend when web search is enabled — no
 - Use clear, extractable structure with descriptive headings
 - Cite authoritative sources within your content
 - Aim to be the most factually accurate source on your topic — Claude rewards precision
+- Don't rely on self-ranked "best X" lists. In a live test (Sep 2026), Claude noted that results for a "best [category]" query were dominated by vendors ranking themselves #1 and leaned on juried awards and practitioner reputation instead
 
 ---
 
