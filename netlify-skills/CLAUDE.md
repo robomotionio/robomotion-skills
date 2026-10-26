@@ -8,6 +8,7 @@ This repository contains public Netlify skills — factual platform reference fo
 - `.claude-plugin/` — Plugin marketplace config for Claude Code installation (VS Code agent plugins share this format and auto-detect `.claude-plugin/plugin.json`; no VS-Code-specific mirror is generated)
 - `.grok-plugin/` — Plugin manifest for Grok Build (same plugin format as Claude Code; hand-authored, not generated)
 - `.mcp.json` — Netlify MCP server config bundled with the Claude Code and Grok Build plugins (hosted HTTP endpoint; OAuth at runtime)
+- `gemini-extension.json` — Gemini CLI extension manifest. `name`, `version` (stamped by release-please), and `mcpServers` are hand-authored; the `skills` array is auto-generated from `skills/` (do NOT edit it directly). Gemini CLI itself auto-discovers skills from the `skills/` directory, so the array is informational (gallery listing, readers)
 - `skills/` — Netlify platform skills (source of truth for all agent formats)
 - `agent-plugin/` — [Agent Plugins](https://agent-plugins.org) spec-compliant package (`plugin.json` + `mcp.json` + `skills/`). Root manifests are hand-authored; `agent-plugin/skills/` is auto-generated (do NOT edit directly)
 - `cursor/rules/` — Auto-generated Cursor `.mdc` rule files (do NOT edit directly)
@@ -15,7 +16,17 @@ This repository contains public Netlify skills — factual platform reference fo
 - `scripts/build-cursor-rules.sh` — Converts `skills/` → `cursor/rules/`
 - `scripts/build-codex-skills.sh` — Copies `skills/` → `codex/` and generates `AGENTS.md`
 - `scripts/build-agent-plugin.sh` — Mirrors `skills/` → `agent-plugin/skills/`
-- `.github/workflows/build-generated-outputs.yml` — Rebuilds `cursor/`, `codex/`, and `agent-plugin/skills/` from `skills/` and commits them in a single step (on push to main and on PRs), so the generated mirrors always stay in parity with `skills/`
+- `scripts/build-gemini-extension.sh` — Rewrites the `skills` array in `gemini-extension.json` from `skills/*/SKILL.md` (sorted; requires `jq`)
+- `scripts/check-skills.mjs` — CI check that every `skills/netlify-*/` folder is listed in `skills/CLAUDE.md` and contains only files the build scripts carry (`SKILL.md` plus flat `references/*.md`)
+- `scripts/build-manifest.mjs` — Generates `manifest.json` (skill names, statuses, per-skill `version` and `history` derived from git tags, prior names, per-file hashes, `tree_hash`, docs provenance) from `skills/`, `.ctx-gen/`, and `skill-registry.json`
+- `scripts/build-hosted.mjs` — Materializes every release tag into `dist/` (`manifest.json`, `skills/`, `versions.json`, `v/<version>/…`) for the hosted site
+- `scripts/fetch-skill.mjs` — Zero-dependency reference client: install skills (`--skill`/`--all`) from a release directory (`--source`) or the hosted site (`--host`) with hash verification; `--check` a local skills dir against the manifest; `--update` applies the sync rules (stale → replace, modified → keep unless `--reset`, renamed → migrate, deprecated → delete, edited copies kept unless `--reset`)
+- `bin/netlify-skills.mjs` — The `netlify-skills` command shipped in `@netlify/skills` (`npx @netlify/skills@latest add|check|update`); installs from the package's own bundled release by default, `--host` for the hosted manifest, into the agent directory found in the project or the one `--agent`/`--dest` names; thin wrapper over `fetch-skill.mjs`
+- `skill-registry.json` — Hand-maintained prior names and deprecations that the manifest cannot derive from `skills/`
+- `netlify.toml` — Hosted-site config (publish dir, cache headers); deployed by `.github/workflows/release-please.yml`, not by a Git-connected build
+- `.github/workflows/release-please.yml` — Cuts releases and publishes each tag to npm (`@netlify/skills`, Trusted Publishing tied to this filename) and then to the hosted Netlify site; also the manual re-publish entry point, guarded to real release tags on main
+- `.github/workflows/ctx-pipeline-sync-closed.yml` — Reports to context-hub when the rolling agent-context sync PR is merged or closed (EX-3352), via `scripts/ctx-hub-ping.mjs sync-pr-closed`; `pull_request_target` limited to the sync branch from this repo, never checks out PR code, telemetry only (`continue-on-error`)
+- `.github/workflows/build-generated-outputs.yml` — Rebuilds `cursor/`, `codex/`, `agent-plugin/skills/`, and the `gemini-extension.json` skill list from `skills/` and commits them in a single step (on push to main and on PRs), so the generated outputs always stay in parity with `skills/`
 
 ## Skills
 
@@ -33,8 +44,10 @@ bash scripts/build-cursor-rules.sh
 
 Skills should be factual and platform-focused — not opinionated about frameworks, ORMs, or workflow preferences. They help any agent work correctly with Netlify primitives.
 
-Each skill follows the standard SKILL.md format with YAML frontmatter (`name` and `description`). Keep SKILL.md files under 500 lines. Use `references/` subdirectories for detailed content.
+Each skill follows the standard SKILL.md format with YAML frontmatter (`name` and `description`). Keep SKILL.md files under 500 lines. Use `references/` subdirectories for detailed content. A new skill needs a `` `netlify-<name>/SKILL.md` `` line in `skills/CLAUDE.md` (the router Cursor and Codex read), or CI fails.
 
-**Important:** Always edit files in `skills/`. Never edit files in `cursor/rules/`, `codex/`, or `agent-plugin/skills/` — they are overwritten by CI.
+**Renaming or retiring a skill:** add the old name to `skill-registry.json` (`prior_names` on the successor, or a `deprecated` entry when there is no successor). The hosted manifest reads it so syncing clients can map or delete the old copy.
+
+**Important:** Always edit files in `skills/`. Never edit files in `cursor/rules/`, `codex/`, or `agent-plugin/skills/`, or the `skills` array in `gemini-extension.json` — they are overwritten by CI.
 
 **Don't commit contributor-only skills.** `npx skills add netlify/context-and-tools` discovers any `SKILL.md` in the repo (including `.claude/skills/`) and installs it for users. Contributor tooling comes in as a plugin instead: `.claude/settings.json` enables Anthropic's `skill-creator` plugin, and Claude Code prompts you to install it when you trust this folder. Use it when creating or editing a skill.
