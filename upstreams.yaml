@@ -577,7 +577,7 @@ upstreams:
 - group: shadcn-skills
   repo: https://github.com/shadcn-ui/ui
   track: main
-  commit: 295a1f114a138f23b5dfee0e0c6812394dfeb90c
+  commit: daaf156ee00ed91cc7e6bdd937c1b4973152d141
   subdir: ''
   mode: mirror
   license: MIT
