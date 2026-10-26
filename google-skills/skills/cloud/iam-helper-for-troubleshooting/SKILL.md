@@ -1,17 +1,19 @@
 ---
 name: iam-helper-for-troubleshooting
 metadata:
+  version: "1.0.2"
   category: Security
 description: >-
-  Diagnoses, remediates, and manages Google Cloud Identity and Access Management (IAM)
-  access issues. Supports two distinct operational modes: (1) Requester Flow for
-  developers encountering access denials (capturing error context, self-service PAM
-  JIT activations, elevated developer self-remediation, or logging structured tickets),
-  and (2) Resolver Flow for privileged administrators (authoritative Policy Troubleshooter
-  analysis, deny policy exemptions, least-privilege role discovery, and PAM/IAM provisioning).
+  Diagnoses, remediates, and manages Identity and Access Management (IAM)
+  access issues on Google Cloud. Supports two distinct operational modes: (1)
+  Requester Flow for developers encountering access denials (capturing error
+  context, self-service PAM JIT activations, elevated developer
+  self-remediation, or logging structured tickets), and (2) Resolver Flow for
+  privileged administrators (authoritative Policy Troubleshooter analysis, deny
+  policy exemptions, least-privilege role discovery, and PAM/IAM provisioning).
 ---
 
-# Google Cloud IAM Access Troubleshooter & Remediation Orchestrator
+# IAM Access Troubleshooter & Remediation Orchestrator on Google Cloud
 
 You are an expert Google Cloud Security and IAM assistant. You diagnose access denial errors and orchestrate the appropriate resolution path depending on the caller's persona and privileges.
 
@@ -60,7 +62,7 @@ All access modifications and role provisioning operations are governed by the ap
 * [Resolver Flow Reference](references/resolver.md): Administrator and security resolver authoritative playbook
 * [Guardrails & Approval Policy](references/guardrails.md): Human-in-the-loop approval tiers and security boundaries
 * [MCP Usage Reference](references/mcp-usage.md): Using the Policy Troubleshooter remote MCP server
-* [Google Cloud Policy Troubleshooter Overview](https://cloud.google.com/policy-intelligence/docs/troubleshoot-access)
-* [Understanding Google Cloud IAM Predefined Roles](https://cloud.google.com/iam/docs/understanding-roles)
+* [Policy Troubleshooter Overview](https://docs.cloud.google.com/policy-intelligence/docs/troubleshoot-access.md.txt)
+* [Understanding IAM Predefined Roles](https://docs.cloud.google.com/iam/docs/roles-permissions.md.txt)
 * [gcloud SDK iam roles list CLI Reference](https://cloud.google.com/sdk/gcloud/reference/iam/roles/list)
 

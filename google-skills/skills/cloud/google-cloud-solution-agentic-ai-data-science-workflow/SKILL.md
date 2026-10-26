@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-agentic-ai-data-science-workflow
 metadata:
+  version: "1.0.2"
   category: MultiProductSolutions
 description: >-
   Designs a tailored multi-product agentic data science
@@ -42,7 +43,7 @@ identifiers.
 | Legacy Name | Updated Name |
 | :--- | :--- |
 | Vertex AI | Gemini Enterprise Agent Platform |
-| Vertex AI Agent Engine | Gemini Enterprise Agent Runtime |
+| Vertex AI Agent Engine | Agent Runtime |
 
 ### Phase 1: Requirements discovery and analysis
 
@@ -131,11 +132,11 @@ identifiers.
 ### Phase 3: Implementation plan
 
 - [ ] **Step 1: Retrieve relevant implementation resources**:
-   - [ADK Data Science Sample Code](https://github.com/google/adk-samples/tree/main/python/agents/data-science)
    - [Stateful Data Science Agent on Agent Engine](https://codelabs.developers.google.com/next26/adk-deploy-scale)
    - [Build and deploy an AI agent to Cloud Run using ADK](https://docs.cloud.google.com/run/docs/ai/build-and-deploy-ai-agents/deploy-adk-agent.md.txt)
    - [Use AlloyDB with agents](https://docs.cloud.google.com/alloydb/docs/connect-ide-using-mcp-toolbox.md.txt)
    - [MCP Toolbox for Databases Configuration](https://mcp-toolbox.dev/documentation/configuration/)
+   - [Agents CLI reference](https://google.github.io/agents-cli/cli/)
 
    _Important_: Use these resources as the technical foundation for the IaC and
    deployment instructions you generate in the remaining steps of this phase.
@@ -150,12 +151,17 @@ identifiers.
 - [ ] **Step 3: Generate Infrastructure as Code (IaC)**: Generate code, such as
   Terraform, and deployment scripts to automate the provisioning of the proposed
   Google Cloud resources.
+  -   Use Agents CLI commands (`agents-cli scaffold
+  create` or `agents-cli scaffold enhance`) to set up the agent application
+  structure, and deploy the agent to Cloud Run.
 
 - [ ] **Step 4: Write deployment instructions**: Draft sequential, step-by-step
   deployment instructions to execute the IaC and initialize the workload
   components. Update deployment instructions in
   `solution-architecture-guide.md`, based on the template in
   `assets/output-template.md`.
+  -   Use the Agents CLI `agents-cli deploy` command (alongside or instead of
+      raw infrastructure/deployment scripts) to run the agent deployment.
 
 - [ ] **Step 5: Request review**: Present the generated deployment instructions
   to the user for feedback and confirmation. You must halt and wait for the
@@ -176,15 +182,27 @@ identifiers.
 
 - [ ] **Step 2: Define validation checks**: Outline validation steps to verify
   that the deployed infrastructure meets the workload's requirements:
-   - **Deployment dry-run**: Commands like `terraform plan` to preview changes.
-   - **Connectivity and routing**: Verification of network paths, load balancer
-     routing, and service endpoints.
-   - **Security policies**: Verification of restricted access, firewall rules,
-     and IAM enforcement.
+  -   **Deployment dry-run**: Commands like `terraform plan` to preview
+    changes. Include instructions to run agent deployment in dry-run mode
+    (e.g., using `agents-cli deploy --dry-run` or `-n`) to preview steps and
+    Terraform executions before pushing to production.
+  -   **Local testing and quality verification**: Recommend using the Agents
+      CLI to run and test agent logic locally (`agents-cli run`) and conduct
+      systematic evaluations (`agents-cli eval run`) to verify agent quality
+      and performance before deploying.
+  -   **Connectivity and routing**: Verification of network paths, load
+      balancer routing, and service endpoints.
+  -   **Security policies**: Verification of restricted access, firewall
+      rules, and IAM enforcement.
 
 - [ ] **Step 3: Generate verification scripts**: Draft lightweight scripts or
-  command-line instructions (e.g. using `curl` or `gcloud`) that the user can
-  run to perform these validation checks.
+  command-line instructions (e.g. using `curl`, `gcloud`, or `agents-cli`)
+  that the user can run to perform these validation checks.
+
+  -   The validation plan MUST include instructions using the Agents CLI for
+      local runs, evaluations, and post-deployment validation checks (e.g.,
+      `agents-cli run --url <service-url>` to test the deployed service
+      endpoint).
 
 - [ ] **Step 4: Compile validation report**: Document the validation steps,
   verification scripts, and expected outcomes in a single Markdown file.

@@ -5,6 +5,7 @@ description: >-
   Use when agent requests fail with 403 (especially unauthorized egress), Agent Runtime queries return 500, or gateway/IAP logs show permission errors.
   Don't use for general Google Cloud Identity and Access Management (IAM) debugging or networking issues unrelated to the Agent Platform stack.
 metadata:
+  version: "1.0.0"
   category: AiAndMachineLearning
 ---
 

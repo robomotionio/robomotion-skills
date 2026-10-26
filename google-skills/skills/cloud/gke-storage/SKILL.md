@@ -1,15 +1,20 @@
 ---
 name: gke-storage
 description: >-
-  Manages GKE storage, including PVCs, PersistentVolumes, Filestore, and GCS
-  FUSE. Use when configuring GKE storage, creating PVCs, or setting up GCS FUSE
-  on GKE. Don't use for database administration or replication strategies
-  outside volume provisioning context.
+  Manages GKE storage, including PVCs, PersistentVolumes, and Filestore. Use
+  when configuring GKE storage or creating PVCs. For GCS FUSE mounts, use
+  google-cloud-storage-fuse. For diagnosing storage failures (volume attach/mount
+  errors, disk performance/node storage pressure, or Cloud Storage FUSE OOM), use
+  gke-storage-troubleshooting. Don't use for database
+  administration or replication strategies outside volume provisioning context.
 metadata:
+  version: "1.0.2"
   category: Storage
 ---
 
 # GKE Storage
+
+> **Routing Note:** For Cloud Storage FUSE (`gcsfuse`) mounts or the GKE `gcsfuse.csi.storage.gke.io` CSI driver, open `google-cloud-storage-fuse/SKILL.md`.
 
 This reference covers storage configuration for GKE clusters including
 persistent disks, file storage, and cloud storage integration.
@@ -144,6 +149,15 @@ patch_k8s_resource(parent="...", resourceType="persistentvolumeclaim", name="<PV
 ```
 
 Kubernetes automatically resizes the filesystem.
+
+## Stateful Storage & Capacity Constraints
+
+When configuring storage for stateful workloads, keep the following capacity and scheduling constraints in mind:
+
+*   **Existing zonal PVs pin the workload to a zone:** A Pod that uses an existing zonal PersistentVolume (for example, in `europe-north1-b`) can only run in that zone. The cluster autoscaler can't work around a capacity shortage by adding nodes in another zone; any fallback must be in the same zone.
+*   **Use automated disk type selection and topology-aware scheduling for new workloads:** Use `volumeBindingMode: WaitForFirstConsumer` so the volume is created in the zone where the Pod lands. When a ComputeClass mixes machine generations (for example, C4/N4 priority with N2 fallback), configure the StorageClass for **automated disk type selection** (`parameters.type: dynamic` with `pd-type: pd-balanced`, `hyperdisk-type: hyperdisk-balanced`, `disk-type-preference: hyperdisk-type`, and `use-allowed-disk-topology: "true"`, GKE 1.35.3-gke.1290000+; or `use-allowed-disk-topology: "true"` on GKE 1.34.1-gke.2541000+) so the autoscaler only picks nodes that support the disk type and new volumes get a compatible disk type per node.
+*   **Same-zone PD-type swaps rarely help:** Switching a same-zone fallback from `pd-ssd` to `pd-balanced` is unlikely to resolve a zonal capacity shortage, because both can be affected by the same zonal constraints. Prefer a fallback to a Hyperdisk-capable machine series (for example, C3 or N4) with `hyperdisk-balanced`.
+*   **Check Hyperdisk quotas first:** Hyperdisk quotas (for example, `HDB-TOTAL-GB`, throughput, and IOPS) are separate from Persistent Disk quotas. Verify the regional limits before recommending a Hyperdisk Balanced fallback.
 
 ## Best Practices
 

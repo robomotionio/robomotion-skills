@@ -8,6 +8,7 @@ description: >-
   - Troubleshooting cross-project routing.
   Don't use for single-project basic configurations.
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 ---
 
@@ -165,13 +166,26 @@ gcloud logging buckets create {bucket_id} \
 ### 2. Create log sink in central project (Tier M)
 
 Create a project-level sink in the central project pointing to the central log
-bucket. This sink will route logs that land in the central project's log router
-into the central log bucket.
+bucket. This sink routes logs that land in the central project's Log Router into
+the central log bucket.
+
+Assuming the newly created bucket is specifically for centralizing data from
+other projects (and the central project is not one of the source projects), the
+central sink should exclude the central project's own logs. Include the
+`_Required` audit log exclusions on this central sink to avoid redundancy
+between `{bucket_id}` and the `_Required` bucket.
 
 ```bash
 gcloud logging sinks create {sink_name} \
     logging.googleapis.com/projects/{central_project_id}/locations/{region}/buckets/{bucket_id} \
-    --project={central_project_id}
+    --project={central_project_id} \
+    --exclusion=filter='logName:"projects/{central_project_id}/"' \
+    --exclusion=filter='LOG_ID("cloudaudit.googleapis.com/activity")' \
+    --exclusion=filter='LOG_ID("externalaudit.googleapis.com/activity")' \
+    --exclusion=filter='LOG_ID("cloudaudit.googleapis.com/system_event")' \
+    --exclusion=filter='LOG_ID("externalaudit.googleapis.com/system_event")' \
+    --exclusion=filter='LOG_ID("cloudaudit.googleapis.com/access_transparency")' \
+    --exclusion=filter='LOG_ID("externalaudit.googleapis.com/access_transparency")'
 ```
 
 ### 3. Create log sink in source resource (Tier M)

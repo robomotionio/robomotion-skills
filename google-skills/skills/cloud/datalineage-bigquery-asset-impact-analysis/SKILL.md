@@ -1,9 +1,10 @@
 ---
 name: datalineage-bigquery-asset-impact-analysis
 metadata:
+  version: "1.0.1"
   category: BigDataAndAnalytics
 description: >-
-  Analyzes the downstream impact (blast radius) when a BigQuery table or view is broken, stale, or modified.
+  Analyzes the downstream impact (blast radius) using data lineage on Google Cloud when a BigQuery table or view is broken, stale, or modified.
   Identifies all downstream tables, dashboards, and processes that will be affected.
   Use when:
   - Performing a blast radius or impact analysis for a BigQuery table or view.
@@ -22,12 +23,12 @@ radius assessment) when a BigQuery table or view is reported as broken, stale,
 missing, or when a user is planning maintenance and wants to know the
 consequences of modifying or pausing updates to an asset.
 
-It relies primarily on the **Google Cloud Data Lineage (Knowledge Catalog) MCP Server**
-to discover relationships between assets.
+It relies primarily on the **data lineage (Knowledge Catalog) MCP Server** on
+Google Cloud to discover relationships between assets.
 
 ## Prerequisites
 
-This skill requires access to the Google Cloud Data Lineage API and an active
+This skill requires access to the data lineage API on Google Cloud and an active
 client connection to the Data Lineage MCP Server. For detailed connection
 configurations and tool schemas, refer to [MCP Usage](references/mcp-usage.md).
 
@@ -126,11 +127,11 @@ Present your findings clearly to the user using the following structure:
 
 ## Reference Directory
 
--   [MCP Usage](references/mcp-usage.md): Using the Google Cloud Data Lineage
-    remote MCP server and tool preferences.
+-   [MCP Usage](references/mcp-usage.md): Using the data lineage remote MCP
+    server on Google Cloud and tool preferences.
 
 ## External Documentation
 
--   [Google Cloud Knowledge Catalog Data Lineage Documentation](https://cloud.google.com/dataplex/docs/about-data-lineage)
+-   [Knowledge Catalog Data Lineage Documentation](https://cloud.google.com/dataplex/docs/about-data-lineage)
 -   [Use the Data Lineage MCP server](https://docs.cloud.google.com/dataplex/docs/use-lineage-mcp)
 -   [Knowledge Catalog Data Lineage API Reference](https://cloud.google.com/dataplex/docs/reference/data-lineage/rest)

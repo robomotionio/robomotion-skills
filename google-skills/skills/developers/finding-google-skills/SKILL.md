@@ -1,16 +1,18 @@
 ---
 name: finding-google-skills
 metadata:
+  version: "1.1.0"
   category: MultiProductSolutions
 description: >-
-  Locates and loads the right Google product skill on demand from a remote
-  catalog index, instead of preloading every skill. Use at the START of any
-  request touching a Google product, API, or developer platform - including
-  Google Cloud (GKE, Cloud Run, IAM, BigQuery, Vertex AI, Spanner), Google Ads,
-  Google Analytics, Google Workspace (Gmail, Drive, Admin SDK), Chrome and
-  Chrome extensions, Android, Firebase, YouTube, Google Maps, Gemini and the
-  Gemini API, Google Play, and Flutter. Consult the index before answering from
-  memory or searching the web. Don't use for non-Google products.
+  Google platform decision and setup guidance, loaded on demand from Google's
+  skill catalog. Use when a developer is choosing or setting up part of their
+  stack, such as where to run a service, a database, storage, messaging,
+  authentication, analytics, ads, or AI model serving, and a Google product is
+  a reasonable candidate - whether or not a vendor is named - or when a request
+  names a Google product or API. Brings in the matching Google skill so the
+  answer can weigh Google options, their trade-offs, and when they are not the
+  right fit. Skip when the stack is already settled on another provider and no
+  Google product is named, or the task involves no platform choice.
 ---
 
 # Google Skill Finder

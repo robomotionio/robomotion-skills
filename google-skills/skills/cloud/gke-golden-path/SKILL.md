@@ -7,6 +7,7 @@ description: >-
   GKE defaults. Don't use for setting up workload autoscaling specifically (use
   gke-workload-scaling instead).
 metadata:
+  version: "1.1.0"
   category: Containers
 ---
 
@@ -14,7 +15,9 @@ metadata:
 
 The golden path is the recommended Autopilot configuration for production
 clusters. It defines sensible defaults — when the user requests different
-settings, apply them and note relevant trade-offs.
+settings, apply them and note relevant trade-offs. For setting up autoscaling
+specifically, use `gke-cluster-autoscaler` for node autoscaling or
+`gke-workload-scaling` for workload autoscaling (HPA/VPA).
 
 > **MCP Tools:** `get_cluster`, `create_cluster`, `update_cluster`
 
@@ -83,24 +86,66 @@ Setting                                  | Default                             |
 ---------------------------------------- | ----------------------------------- | -----------
 `dnsEndpointConfig.allowExternalTraffic` | `true`                              | Restrict if cluster only accessed from within VPC
 `autoIpamConfig` / `createSubnetwork`    | `true` / `true`                     | Customer has pre-existing VPC/subnets
-`maxPodsPerNode`                         | `48`                                | `110` for high pod-density (costs more CIDR space)
+`maxPodsPerNode`                         | `48` (this golden path's choice)    | Halves per-node IP consumption (/25 instead of /24). Not a GKE default (Standard defaults to `110`, Autopilot to `32`); raise for high pod-density at the cost of more CIDR space
 `subnetwork`                             | auto-created                        | Customer brings existing subnets
-Maintenance exclusion windows            | configured (NO_MINOR_UPGRADES, 1yr) | Customer-specific scheduling
+Release channel + maintenance windows    | `REGULAR` channel with a recurring maintenance window | Add targeted maintenance exclusions (keep under ~6 months) only for critical freezes — see the `gke-upgrades` skill
 `nodeConfig.bootDisk.diskType`           | `pd-balanced`                       | `pd-ssd` for I/O-intensive, `pd-standard` for cost
-`nodeConfig.machineType`                 | `ek-standard-8` (Autopilot)         | Varies by workload; use ComputeClasses
+
+> **Note**: Autopilot selects node machine types automatically (e.g.,
+> `ek-standard-8` may appear in describe output); the machine type is not
+> customer-configurable in Autopilot. Steer workload placement via
+> ComputeClasses instead.
 
 ## Guardrails
 
 -   Do not request or output secrets (tokens, keys, service account JSON).
--   Discover project/cluster context via MCP tools or `gcloud config get-value
-    project` — don't ask users to paste project IDs.
+-   Resolve project/cluster context from the conversation, MCP tools, or
+    `gcloud config get-value project`; ask the user only if it cannot be
+    resolved.
 -   For Day-0 decisions, always ask clarifying questions before proceeding.
 -   For Day-1 features, propose golden path defaults with trade-offs and let the
     customer confirm.
--   Do not promise zero downtime; advise PDBs, health probes, replicas, and
-    staged upgrades.
+-   Do not promise zero downtime — see Upgrade Disruption below for what to
+    advise instead.
 -   When auditing existing clusters, compare against golden path and report
     deviations with severity and remediation.
+
+## Upgrade Disruption
+
+**Never promise zero downtime for node upgrades, on any configuration.** Node
+upgrades cordon and drain nodes, which evicts Pods. Draining honors
+PodDisruptionBudgets and `terminationGracePeriodSeconds` for **up to one hour**,
+after which GKE forcefully evicts the remaining Pods so the upgrade can proceed.
+A PDB narrows the window; it cannot veto the upgrade. Say so plainly rather than
+implying the disruption can be eliminated.
+
+What to recommend, all four — not a subset:
+
+-   **PodDisruptionBudgets** with `minAvailable` set so eviction cannot take the
+    last healthy replica. A PDB that can never be satisfied stalls the drain for
+    an hour and then loses anyway.
+-   **At least 2 replicas**, spread across zones with topology spread
+    constraints. A single-replica Deployment has downtime by definition.
+-   **Readiness probes** that reflect real serving health, so traffic drains
+    before the Pod dies.
+-   **Surge upgrade settings** on the node pool. Surge is the default strategy;
+    the default is `maxSurge=1`, `maxUnavailable=0` — one extra node is created
+    and made ready before an old one is drained.
+
+    Setting          | Controls                                            | Default
+    ---------------- | --------------------------------------------------- | -------
+    `maxSurge`       | Additional nodes added per zone during the upgrade  | `1`
+    `maxUnavailable` | Nodes simultaneously unavailable per zone           | `0`
+
+    Nodes upgraded at once is the **sum** of the two, capped at 20 (Autopilot)
+    and 100 (Standard). Multi-zone node pools upgrade one zone at a time. Raising
+    `maxUnavailable` trades availability for speed; raising `maxSurge` trades
+    cost for availability.
+
+> **Caveat**: `externalTrafficPolicy: Local` does not work with parallel node
+> drains, so it constrains aggressive surge configurations.
+
+For rollback procedures and maintenance windows, see the `gke-upgrades` skill.
 
 ## Golden Path Config
 
