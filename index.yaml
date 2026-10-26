@@ -8726,7 +8726,7 @@ groups:
   name: elevenlabs-skills
   title: ElevenLabs Skills
   type: group
-  version: 81f1eafc65c9
+  version: f3c79c119a53
   author: ElevenLabs
   source_url: https://github.com/elevenlabs/skills
   license: MIT
@@ -8742,7 +8742,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: fff278a91009
+  content_hash: 6f96c2d5667f
   skills:
   - id: elevenlabs-skills/agents
     name: agents
@@ -8752,14 +8752,14 @@ groups:
       voice characters, or any real-time voice conversation experience, and when configuring an agent's tools, workflows,
       or procedures, including creating, editing, and publishing free-form and structured procedure drafts on an agent branch
       over the SDKs or REST API.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: f52d2fb55582
+    content_hash: 860b879f8e3a
     files:
     - SKILL.md
     - env.required
@@ -8782,14 +8782,14 @@ groups:
     summary: Dub audio and video into other languages using the ElevenLabs Dubbing API (dubbing_v2), preserving the original
       speakers' voices. Use when translating videos, podcasts, or recordings into other languages, localizing media content,
       reviewing or correcting dubbing transcripts and translations, or regenerating a dub after edits.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: d196e3d609e1
+    content_hash: 37e4f905b7e0
     files:
     - SKILL.md
     - env.required
@@ -8807,14 +8807,14 @@ groups:
     summary: Generate music using ElevenLabs Music API. Use when creating instrumental tracks, songs with lyrics, background
       music, jingles, or any AI-generated music composition. Supports prompt-based generation, composition plans for granular
       control, and detailed output with metadata.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: c8dd729fa7c1
+    content_hash: 39cc03851a29
     files:
     - SKILL.md
     - env.required
@@ -8825,20 +8825,45 @@ groups:
     license: MIT
     group: elevenlabs-skills
     category: Media
-  - id: elevenlabs-skills/setup-api-key
-    name: setup-api-key
-    path: elevenlabs-skills/skills/setup-api-key
-    title: setup-api-key
-    summary: Guides users through setting up an ElevenLabs API key for REST API and SDK workflows. Use when the user needs
-      to configure an ElevenLabs API key or when an API or SDK request fails because a key is missing. First checks whether
-      ELEVENLABS_API_KEY is already configured and valid, and only runs full setup when needed.
-    version: 81f1eafc65c9
+  - id: elevenlabs-skills/onboarding
+    name: onboarding
+    path: elevenlabs-skills/skills/onboarding
+    title: onboarding
+    summary: Add ElevenLabs to a project from scratch. Use when the user wants to start using ElevenLabs, add text to speech,
+      speech to text, voice agents, real-time voice for their own agent runtime (Speech Engine), sound effects, music, voice
+      changing, voice isolation, or dubbing to their app, or get set up with an ElevenLabs account or API key for the first
+      time. Handles sign-in, API key creation, SDK install and a test request end to end; the user leaves the conversation
+      once, to approve a browser page. Not for fixing a key that stopped working or placing one an administrator issued (use
+      setup-api-key).
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 52a7e95f3885
+    content_hash: 5996ca5fd382
+    files:
+    - SKILL.md
+    author: ElevenLabs
+    source_url: https://github.com/elevenlabs/skills/tree/main/skills/onboarding
+    license: MIT
+    group: elevenlabs-skills
+    category: Media
+  - id: elevenlabs-skills/setup-api-key
+    name: setup-api-key
+    path: elevenlabs-skills/skills/setup-api-key
+    title: setup-api-key
+    summary: Fix or hand-configure an existing ElevenLabs API key. Use when a key stopped working (401 or invalid_api_key),
+      when an administrator issued the key, when the user's role cannot create keys, or when the user already has a key and
+      needs it in the right place. Checks whether ELEVENLABS_API_KEY is configured and valid, without reading it into the
+      conversation. Not for first-time setup or adding ElevenLabs to a project (use onboarding).
+    version: f3c79c119a53
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 8ebc71d781f3
     files:
     - SKILL.md
     author: ElevenLabs
@@ -8853,14 +8878,14 @@ groups:
     summary: Generate sound effects from text descriptions using ElevenLabs. Use when creating sound effects, generating audio
       textures, producing ambient sounds, cinematic impacts, UI sounds, or any audio that isn't speech. Supports looping,
       duration control, and prompt influence tuning.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 3504e31cc6c8
+    content_hash: 7832cb755630
     files:
     - SKILL.md
     - env.required
@@ -8878,14 +8903,14 @@ groups:
       Speech Engine servers, WebSocket handlers, WebRTC browser clients, conversation token endpoints, interruption-aware
       streaming responses, or voice-enabled chat agents that connect developer-owned server logic to ElevenLabs speech-to-text
       and text-to-speech.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: c4a56994f2ef
+    content_hash: 091ba3979e6c
     files:
     - SKILL.md
     - env.required
@@ -8903,14 +8928,14 @@ groups:
     title: speech-to-text
     summary: Transcribe audio to text using ElevenLabs Scribe v2. Use when converting audio/video to text, generating subtitles,
       transcribing meetings, or processing spoken content.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: f399fdbd4746
+    content_hash: db8c012fa633
     files:
     - SKILL.md
     - env.required
@@ -8931,14 +8956,14 @@ groups:
     title: text-to-speech
     summary: Convert text to speech using ElevenLabs voice AI. Use when generating audio from text, creating voiceovers, building
       voice apps, or synthesizing speech in 90+ languages.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: b58055d8eb34
+    content_hash: c97d39bd7335
     files:
     - SKILL.md
     - env.required
@@ -8962,14 +8987,14 @@ groups:
       a voice in audio, re-voicing a clip, or applying a different voice to an existing recording — even if they don't explicitly
       say "voice changer". Do not use this skill to create or clone a new voice from a voice sample — that is voice cloning
       (IVC/PVC), a separate feature; this skill only converts an existing recording into an existing voice_id.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: 40045be5a36c
+    content_hash: f79e8ebc6b8c
     files:
     - SKILL.md
     - env.required
@@ -8987,14 +9012,14 @@ groups:
       API. Use when cleaning up noisy recordings, removing music or background ambience from dialogue, isolating speech from
       field recordings, preparing audio for transcription, extracting vocals, or any "denoise / clean up / isolate voice"
       task.
-    version: 81f1eafc65c9
+    version: f3c79c119a53
     tags: []
     mode: host
     env:
       required:
       - ELEVENLABS_API_KEY
       optional: []
-    content_hash: bea0dcbab992
+    content_hash: e31e769e89e6
     files:
     - SKILL.md
     - env.required
@@ -9016,6 +9041,10 @@ groups:
   - skills/evals/dubbing/trigger_eval.json
   - skills/evals/music/evals.json
   - skills/evals/music/trigger_eval.json
+  - skills/evals/onboarding/bin/elevenlabs
+  - skills/evals/onboarding/bin/npx
+  - skills/evals/onboarding/evals.json
+  - skills/evals/onboarding/trigger_eval.json
   - skills/evals/run_all.py
   - skills/evals/setup-api-key/evals.json
   - skills/evals/setup-api-key/trigger_eval.json
