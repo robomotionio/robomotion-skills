@@ -11093,8 +11093,8 @@ groups:
     title: firecrawl
     summary: 'Any live-web task via the Firecrawl CLI — including ordinary web research: searching the web, reading or extracting
       pages, gathering sources, discovering site URLs, bulk extraction, downloading a site, change alerts, or pages needing
-      clicks/login — web only; local files route to firecrawl-parse. For papers use firecrawl-research-index; for library,
-      API, error, or bug questions use firecrawl-developer-index.'
+      clicks/login — web only; local files route to firecrawl-parse. For US legal or regulatory questions use gov; for papers
+      use firecrawl-research-index; for library, API, error, or bug questions use firecrawl-developer-index.'
     version: 0.1.0
     tags: []
     mode: container
@@ -11102,7 +11102,7 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: f112b79fe9ad
+    content_hash: 8b1e15fb59b5
     files:
     - SKILL.md
     - env.optional
@@ -11117,8 +11117,8 @@ groups:
     name: firecrawl-agent
     path: firecrawl-skills/skills/core/firecrawl-agent
     title: firecrawl-agent
-    summary: Autonomous multi-page extraction into structured JSON. Use when the user wants website data matching a schema
-      — pricing tiers, product listings — beyond a single-page scrape.
+    summary: Autonomously navigate websites and extract structured data across pages. Use when the task requires navigation
+      or no suitable ready-made workflow or data provider covers it.
     version: 0.1.0
     tags: []
     mode: container
@@ -11126,12 +11126,32 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: b0a6f75b2060
+    content_hash: 9e5e5265bca8
     files:
     - SKILL.md
     - env.required
     author: Firecrawl
     source_url: https://github.com/firecrawl/skills/tree/main/skills/core/firecrawl-agent
+    license: ISC
+    group: firecrawl-skills
+    category: Automation
+  - id: firecrawl-skills/firecrawl-alexandria
+    name: firecrawl-alexandria
+    path: firecrawl-skills/skills/core/firecrawl-alexandria
+    title: firecrawl-alexandria
+    summary: Find a direct path to structured data through ready-made workflows, data APIs, and indexes. Follow the search
+      skill to discover and inspect tools, then the scrape skill to execute them.
+    version: 0.1.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 17439f0a2671
+    files:
+    - SKILL.md
+    author: Firecrawl
+    source_url: https://github.com/firecrawl/skills/tree/main/skills/core/firecrawl-alexandria
     license: ISC
     group: firecrawl-skills
     category: Automation
@@ -11161,8 +11181,13 @@ groups:
     name: firecrawl-developer-index
     path: firecrawl-skills/skills/core/firecrawl-developer-index
     title: firecrawl-developer-index
-    summary: Search issues, merged pull requests, READMEs, and documentation. Use when the question is how a library or API
-      behaves, what an error means, or whether a bug was fixed; prefer this over a general web page.
+    summary: Searches current documentation, release notes, API references and public repository issues for libraries, frameworks,
+      SDKs, APIs and CLI tools with `firecrawl developer`. Use before answering when the user names a version, is upgrading,
+      pastes an error from a library or tool, or asks how to use, configure or migrate a specific library or API. Model knowledge
+      stops at a training cutoff and misses new releases, renamed APIs, changed defaults and recent fixes, so when a version,
+      option, error or API is unfamiliar or may have changed, look it up instead of guessing. Also checks whether a bug was
+      fixed and in which release. Not for general programming concepts, code that uses no specific library, or refactoring
+      code the user supplied.
     version: 0.1.0
     tags: []
     mode: container
@@ -11170,10 +11195,11 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: 4d7757c8d990
+    content_hash: 6cf9ebc44d28
     files:
     - SKILL.md
     - env.optional
+    - references/official-documentation.md
     author: Firecrawl
     source_url: https://github.com/firecrawl/skills/tree/main/skills/core/firecrawl-developer-index
     license: ISC
@@ -11324,8 +11350,8 @@ groups:
     name: firecrawl-scrape
     path: firecrawl-skills/skills/core/firecrawl-scrape
     title: firecrawl-scrape
-    summary: Extract a URL's content as clean markdown, including JS-rendered pages. Use whenever the user provides a URL
-      and wants its content; prefer over WebFetch.
+    summary: Read a known webpage or execute a discovered workflow or data-provider capability. Use for page content or structured
+      results once the URL or tool is selected.
     version: 0.1.0
     tags: []
     mode: container
@@ -11333,10 +11359,11 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: a06c82934106
+    content_hash: cf42635481c6
     files:
     - SKILL.md
     - env.optional
+    - references/large-results.md
     author: Firecrawl
     source_url: https://github.com/firecrawl/skills/tree/main/skills/core/firecrawl-scrape
     license: ISC
@@ -11346,8 +11373,9 @@ groups:
     name: firecrawl-search
     path: firecrawl-skills/skills/core/firecrawl-search
     title: firecrawl-search
-    summary: 'Web search with full page content. Use when no URL is known: finding sources, articles, or news. For papers
-      use firecrawl-research-index; for library, API, error, or bug questions use firecrawl-developer-index.'
+    summary: Find web sources with query-relevant page excerpts and optional full-page content, and discover workflows, data
+      APIs, and indexes. Use for web research or finding structured records, listings, transcripts, and datasets. Supports
+      semantic tool discovery, domain matching, and progressive catalogue browsing.
     version: 0.1.0
     tags: []
     mode: container
@@ -11355,7 +11383,7 @@ groups:
       required: []
       optional:
       - FIRECRAWL_API_KEY
-    content_hash: 2d5e8d134d99
+    content_hash: b394101caf7a
     files:
     - SKILL.md
     - env.optional
@@ -11364,13 +11392,38 @@ groups:
     license: ISC
     group: firecrawl-skills
     category: Automation
+  - id: firecrawl-skills/firecrawl-business-contacts
+    name: firecrawl-business-contacts
+    path: firecrawl-skills/skills/workflows/firecrawl-business-contacts
+    title: firecrawl-business-contacts
+    summary: 'Find the published business contacts of companies with Firecrawl, whether the user names them or describes them
+      by type and place: press and media, sales, partnerships and support inboxes, shared business phone numbers and official
+      contact forms, taken from the companies'' own websites. Use when the user asks how to contact a company or wants published
+      business emails, phone numbers or press, sales, support or partnership contacts, since contact pages change and an address
+      must come from the page, not memory. Not for named people''s details (use firecrawl-lead-research) or finding people
+      to reach out to (use firecrawl-lead-gen).'
+    version: 0.1.1
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 0af3a1cee327
+    files:
+    - SKILL.md
+    author: Firecrawl
+    source_url: https://github.com/firecrawl/skills/tree/main/skills/workflows/firecrawl-business-contacts
+    license: ISC
+    group: firecrawl-skills
+    category: Automation
   - id: firecrawl-skills/firecrawl-company-directories
     name: firecrawl-company-directories
     path: firecrawl-skills/skills/workflows/firecrawl-company-directories
     title: firecrawl-company-directories
-    summary: Extract structured company lists from directories with Firecrawl. Use for scraping YC, Crunchbase, Product Hunt,
-      G2, startup directories, category directories, or custom company databases into JSON, CSV, CRM-ready lists, or research
-      tables.
+    summary: 'Extract structured company lists with Firecrawl from any page or site that lists companies: accelerator batches,
+      VC portfolios, member and sponsor lists, marketplaces and app directories, YC, Crunchbase, Product Hunt or G2. Use when
+      the user wants those companies as a CSV, JSON, CRM-ready list or research table, even without an explicit request to
+      scrape.'
     version: 0.1.0
     tags: []
     mode: container
@@ -11378,7 +11431,7 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 2da3dd30da8f
+    content_hash: 778be9ea5afa
     files:
     - SKILL.md
     - env.required
@@ -11413,9 +11466,9 @@ groups:
     name: firecrawl-dashboard-reporting
     path: firecrawl-skills/skills/workflows/firecrawl-dashboard-reporting
     title: firecrawl-dashboard-reporting
-    summary: Pull metrics from analytics dashboards and internal web tools with Firecrawl browser. Use when the user needs
-      dashboard reporting, cross-platform metric summaries, authenticated analytics extraction, date-range reports, or structured
-      metrics from web dashboards.
+    summary: 'Read metrics off web dashboards with Firecrawl browser: public stats, status and transparency pages as well
+      as analytics tools the user is signed in to. Use when the user wants numbers, KPIs or charts from a dashboard turned
+      into a report, summary or date-range table, even without an explicit request to scrape.'
     version: 0.1.0
     tags: []
     mode: container
@@ -11423,7 +11476,7 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: f9b1d63f41bf
+    content_hash: 8888d1404b75
     files:
     - SKILL.md
     - env.required
@@ -11501,6 +11554,48 @@ groups:
     license: ISC
     group: firecrawl-skills
     category: Automation
+  - id: firecrawl-skills/firecrawl-fantasy-sports
+    name: firecrawl-fantasy-sports
+    path: firecrawl-skills/skills/workflows/firecrawl-fantasy-sports
+    title: firecrawl-fantasy-sports
+    summary: Help fantasy players make start/sit, waiver, streaming, trade, draft and keeper decisions using current player
+      news, usage, matchups and their league's scoring. Use for choosing between players, finding pickups, evaluating a deal
+      or filling a roster need, even without an explicit research request. Excludes generic sports scores, betting and changing
+      league rosters.
+    version: 0.1.1
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: 0678257a754c
+    files:
+    - SKILL.md
+    author: Firecrawl
+    source_url: https://github.com/firecrawl/skills/tree/main/skills/workflows/firecrawl-fantasy-sports
+    license: ISC
+    group: firecrawl-skills
+    category: Automation
+  - id: firecrawl-skills/firecrawl-job-postings
+    name: firecrawl-job-postings
+    path: firecrawl-skills/skills/workflows/firecrawl-job-postings
+    title: firecrawl-job-postings
+    summary: Find current job postings on employer career pages and job boards. Use when the user asks who's hiring, seeks
+      remote or local jobs, or wants openings matched to their role, skills, experience, or salary preferences.
+    version: 0.1.1
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: bc252dff925f
+    files:
+    - SKILL.md
+    author: Firecrawl
+    source_url: https://github.com/firecrawl/skills/tree/main/skills/workflows/firecrawl-job-postings
+    license: ISC
+    group: firecrawl-skills
+    category: Automation
   - id: firecrawl-skills/firecrawl-knowledge-base
     name: firecrawl-knowledge-base
     path: firecrawl-skills/skills/workflows/firecrawl-knowledge-base
@@ -11527,9 +11622,10 @@ groups:
     name: firecrawl-knowledge-ingest
     path: firecrawl-skills/skills/workflows/firecrawl-knowledge-ingest
     title: firecrawl-knowledge-ingest
-    summary: Ingest public or authenticated knowledge bases and docs portals with Firecrawl browser. Use for JS-heavy docs,
-      login-gated portals, paginated help centers, support knowledge bases, or structured JSON/markdown extraction from documentation
-      sites.
+    summary: Export documentation portals, help centers and API reference sites into local markdown or JSON with Firecrawl
+      browser, including pages that render with JavaScript, hide content behind collapsible navigation or paginate. Use when
+      the user wants a docs site, help center or support knowledge base saved as files, even without an explicit request to
+      scrape.
     version: 0.1.0
     tags: []
     mode: container
@@ -11537,7 +11633,7 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 01c68a24255b
+    content_hash: cab611c265a6
     files:
     - SKILL.md
     - env.required
@@ -11550,17 +11646,20 @@ groups:
     name: firecrawl-lead-gen
     path: firecrawl-skills/skills/workflows/firecrawl-lead-gen
     title: firecrawl-lead-gen
-    summary: Generate structured lead lists from prospect databases and web directories with Firecrawl browser. Use for finding
-      prospects by role, company type, industry, stage, location, technologies, or other criteria and exporting CRM-ready
-      JSON or CSV.
-    version: 0.1.0
+    summary: 'Find and qualify new prospects with Firecrawl Alexandria people and company data: people by role, seniority,
+      company, industry, size, location or technology, target accounts that match criteria, or the right contacts at companies,
+      returned as a ranked, sourced table or CSV. Also extracts lead lists from a database or directory the user names, and
+      refreshes a prospect list with only new matches. Use when the user wants a lead list, prospects, target accounts or
+      the people to reach out to at companies that fit criteria. Not for enriching people or companies the user already supplied
+      (use firecrawl-lead-research).'
+    version: 0.1.1
     tags: []
     mode: container
     env:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 5a908ce915b4
+    content_hash: 8918be5f79b2
     files:
     - SKILL.md
     - env.required
@@ -11573,20 +11672,24 @@ groups:
     name: firecrawl-lead-research
     path: firecrawl-skills/skills/workflows/firecrawl-lead-research
     title: firecrawl-lead-research
-    summary: Produce pre-meeting lead intelligence briefs with Firecrawl. Use when the user needs company research, person
-      research, recent news, talking points, pain points, or outreach preparation before a sales call, partnership meeting,
-      investor conversation, or customer interview.
-    version: 0.1.0
+    summary: 'Enrich and research the people and companies the user names or supplies with Firecrawl Alexandria data: background
+      on a person, a professional profile URL to look up, whether someone still holds a role, missing columns in a table or
+      CSV of people or companies, firmographics for company domains (industry, headcount, funding, location), and pre-call
+      or meeting briefs. Use whenever the request is about specific named people or companies, even without the word enrich,
+      since roles, headcount and funding change faster than training data. Not for finding new prospects (use firecrawl-lead-gen)
+      or a company''s published press, sales or support contacts (use firecrawl-business-contacts).'
+    version: 0.1.1
     tags: []
     mode: container
     env:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: b8a7c5d50e74
+    content_hash: a55f2225b26b
     files:
     - SKILL.md
     - env.required
+    - references/meeting-brief.md
     author: Firecrawl
     source_url: https://github.com/firecrawl/skills/tree/main/skills/workflows/firecrawl-lead-research
     license: ISC
@@ -11596,9 +11699,9 @@ groups:
     name: firecrawl-market-research
     path: firecrawl-skills/skills/workflows/firecrawl-market-research
     title: firecrawl-market-research
-    summary: Extract market, financial, earnings, industry, and company metrics with Firecrawl. Use when the user asks for
-      market research, industry trends, public company data, financial comparisons, earnings research, or structured market
-      reports.
+    summary: 'Research markets and companies with Firecrawl using current, cited figures: market size, growth, trends, financials
+      and earnings. Use when the user asks for market research, an industry overview or a comparison of companies by the numbers,
+      since these figures change faster than training data.'
     version: 0.1.0
     tags: []
     mode: container
@@ -11606,7 +11709,7 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 1aa493c4059a
+    content_hash: d144091d7f7c
     files:
     - SKILL.md
     - env.required
@@ -11619,8 +11722,8 @@ groups:
     name: firecrawl-qa
     path: firecrawl-skills/skills/workflows/firecrawl-qa
     title: firecrawl-qa
-    summary: QA test a live website with Firecrawl browser and scrape evidence. Use when the user wants exploratory QA, form
-      testing, navigation/link checks, responsive checks, performance observations, bug reports, or a pre-launch quality review.
+    summary: 'Test a live website with Firecrawl browser and write up what''s broken: links, forms, mobile layout, performance
+      and console errors. Use for pre-launch checks, bug hunts or confirming a deployed site works.'
     version: 0.1.0
     tags: []
     mode: container
@@ -11628,7 +11731,7 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 6eda02d8c20d
+    content_hash: 22b8220cab6f
     files:
     - SKILL.md
     - env.required
@@ -11668,16 +11771,18 @@ groups:
     name: firecrawl-seo-audit
     path: firecrawl-skills/skills/workflows/firecrawl-seo-audit
     title: firecrawl-seo-audit
-    summary: Audit a website's SEO with Firecrawl. Use when the user asks for an SEO audit, metadata and heading review, sitemap/site-structure
-      analysis, keyword opportunities, competitor SERP comparison, or prioritized search optimization recommendations.
-    version: 0.1.0
+    summary: Inspect a website's titles, meta descriptions, headings, canonicals, structured data and internal links for on-page
+      and technical SEO issues. Use for SEO audits, page-source checks, broken-link reviews or comparing pages for target
+      keywords, even without an explicit request to scrape. Return source-backed findings and prioritized fixes. Excludes
+      generic SEO explanations, standalone copywriting and functional website testing.
+    version: 0.1.1
     tags: []
     mode: container
     env:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 0505a45f7bbe
+    content_hash: b0ef6993fb4b
     files:
     - SKILL.md
     - env.required
@@ -11690,9 +11795,10 @@ groups:
     name: firecrawl-shop
     path: firecrawl-skills/skills/workflows/firecrawl-shop
     title: firecrawl-shop
-    summary: Research products across the web with Firecrawl and produce a shopping recommendation or cart-ready summary.
-      Use when the user wants to compare products, find the best option, evaluate reviews, respect budget/preferences, or
-      shop with a saved browser session.
+    summary: Researches products across retailers and review sites with Firecrawl and recommends what to buy within the user's
+      budget and preferences, with current prices and sources. Use when the user wants to compare products, find the best
+      option or check reviews before buying, since prices and models change faster than training data. Adds to a cart only
+      when asked and a signed-in browser profile exists.
     version: 0.1.0
     tags: []
     mode: container
@@ -11700,7 +11806,7 @@ groups:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 0c03992c7d1f
+    content_hash: fcfa8d3fd1db
     files:
     - SKILL.md
     - env.required
@@ -11713,20 +11819,21 @@ groups:
     name: firecrawl-website-design-clone
     path: firecrawl-skills/skills/workflows/firecrawl-website-design-clone
     title: firecrawl-website-design-clone
-    summary: Extract any website's design system into an agent-ready DESIGN.md using Firecrawl scrape evidence. Use when the
-      user wants colors, fonts, spacing, components, layout patterns, or brand/UI guidance from a website so AI agents can
-      create new websites, clone a look, or build pages inspired by that design.
-    version: 0.1.0
+    summary: Extract an existing website's visual system into DESIGN.md, or collect its existing logo, colors, fonts and homepage
+      messaging for a document. Use for reference-based UI implementation, documenting design patterns, or matching a presentation
+      to a company's website. Excludes inventing a new brand or brand positioning.
+    version: 0.1.1
     tags: []
     mode: container
     env:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: 54c00c3bdba7
+    content_hash: 33480635552a
     files:
     - SKILL.md
     - env.required
+    - references/brand-assets.md
     author: Firecrawl
     source_url: https://github.com/firecrawl/skills/tree/main/skills/workflows/firecrawl-website-design-clone
     license: ISC
@@ -11736,18 +11843,17 @@ groups:
     name: firecrawl-workflows
     path: firecrawl-skills/skills/workflows/firecrawl-workflows
     title: firecrawl-workflows
-    summary: Run outcome-focused Firecrawl workflows that produce deliverables such as research reports, literature reviews
-      over published papers, SEO audits, QA reports, lead lists, knowledge bases, website design systems, and other structured
-      web-data artifacts. Use when the user wants Firecrawl to complete a business, marketing, product, or creative workflow
-      rather than merely scrape a page or integrate API calls into code.
-    version: 0.1.0
+    summary: Run focused Firecrawl workflows for research, documentation lookup, SEO audits, QA, lead discovery and enrichment,
+      business contacts, current jobs, fantasy decisions, brand assets, knowledge bases and website design systems. Use when
+      the user wants a sourced answer or deliverable from a workflow rather than raw extraction or product-code integration.
+    version: 0.1.1
     tags: []
     mode: container
     env:
       required:
       - FIRECRAWL_API_KEY
       optional: []
-    content_hash: e27d70d1c7bc
+    content_hash: df416b96ea10
     files:
     - SKILL.md
     - env.required
