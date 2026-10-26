@@ -19421,7 +19421,7 @@ groups:
   name: impeccable
   title: Impeccable
   type: group
-  version: 4.3.1
+  version: 4.6.0
   author: Paul Bakaus
   source_url: https://github.com/pbakaus/impeccable
   license: Apache-2.0
@@ -19437,27 +19437,24 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 3c455eed6e0f
+  content_hash: f15074a51240
   skills:
   - id: impeccable/impeccable
     name: impeccable
     path: impeccable/skills/impeccable
     title: impeccable
-    summary: Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize,
-      adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards,
-      product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy,
-      information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography,
-      fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable
-      design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that
-      should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically
-      extraordinary. Not for backend-only or non-UI tasks.
-    version: 4.3.1
+    summary: 'Use when the user wants to design, redesign, shape, critique, audit, polish, simplify, harden, animate, or otherwise
+      improve a frontend interface: websites, landing pages, dashboards, product UI, components, forms, settings, onboarding,
+      empty states, and native iOS or Android screens. Handles UX review, hierarchy, layout, typography, color, motion, UX
+      copy, accessibility, responsive behavior, edge cases, and capturing or documenting design systems (DESIGN.md, tokens).
+      Also for making bland UI bolder, loud UI quieter, or ambitious visual effects. Not for backend-only or non-UI tasks.'
+    version: 4.6.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 3bd520f068f9
+    content_hash: a0145d9ee21e
     files:
     - SKILL.md
     - reference/adapt.md
@@ -19469,6 +19466,7 @@ groups:
     - reference/bolder.md
     - reference/clarify.md
     - reference/colorize.md
+    - reference/component-review.md
     - reference/craft-floor.md
     - reference/craft.md
     - reference/critique.md
@@ -19481,6 +19479,7 @@ groups:
     - reference/doctor.md
     - reference/document.md
     - reference/extract.md
+    - reference/generate.md
     - reference/harden.md
     - reference/hooks.md
     - reference/init.md
@@ -19488,6 +19487,9 @@ groups:
     - reference/layout.md
     - reference/live-setup.md
     - reference/live.md
+    - reference/mode-operate.md
+    - reference/mode-persuade.md
+    - reference/mode-read.md
     - reference/new-work.md
     - reference/onboard.md
     - reference/operate.md
@@ -19495,6 +19497,7 @@ groups:
     - reference/overdrive.md
     - reference/polish.md
     - reference/quieter.md
+    - reference/region-map.md
     - reference/routing.md
     - reference/shape.md
     - reference/typeset.md
