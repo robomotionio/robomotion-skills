@@ -11769,7 +11769,7 @@ groups:
   name: gemini-skills
   title: Gemini Skills
   type: group
-  version: 2.1.0
+  version: 2.2.0
   author: Google
   source_url: https://github.com/google-gemini/gemini-skills
   license: Apache-2.0
@@ -11783,7 +11783,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: dcefbae52135
+  content_hash: 62a26467041e
   skills:
   - id: gemini-skills/gemini-api-dev
     name: gemini-api-dev
@@ -11793,13 +11793,13 @@ groups:
       image generation, video generation, speech generation (TTS), voice design, voice replication, streaming responses, background
       research tasks, function calling, structured output, or migrating from the old generateContent API. Covers SDK usage
       and best practices for Gemini models and agents in Python and TypeScript.
-    version: 2.1.0
+    version: 2.2.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 5d784df0aba2
+    content_hash: 5e99086d1a35
     files:
     - SKILL.md
     - references/migration.md
@@ -11816,7 +11816,7 @@ groups:
       legacy Live models (2.0/2.5/3.1) to Gemini 3.8 Live. Covers WebSocket-based audio/video/text streaming, voice activity
       detection (VAD), background reasoning (extended thinking), asynchronous function calling, session management, ephemeral
       tokens, live transcription, and live translation. SDKs covered - google-genai (Python), @google/genai (JavaScript/TypeScript).
-    version: 2.1.0
+    version: 2.2.0
     tags: []
     mode: host
     env:
@@ -11839,7 +11839,7 @@ groups:
       first-and-last-frame transitions, and video extensions using Gemini Omni 1.1 Flash (gemini-omni-1.1-flash) via the official
       google-genai SDK. Includes workflows for pre-processing/optimizing high-resolution or long source videos with ffmpeg,
       stripping audio for full sound regeneration, and handling turn-by-turn video editing and parallel execution.
-    version: 2.1.0
+    version: 2.2.0
     tags: []
     mode: container
     env:
