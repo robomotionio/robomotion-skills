@@ -9037,7 +9037,7 @@ groups:
   name: emilkowalski-skills
   title: Emil Kowalski Skills
   type: group
-  version: e8a175de22ae
+  version: 2d228630ba14
   author: Emil Kowalski
   source_url: https://github.com/emilkowalski/skills
   license: MIT
@@ -9052,7 +9052,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 927db6cead9b
+  content_hash: 3055286d895b
   skills:
   - id: emilkowalski-skills/animate
     name: animate
@@ -9062,7 +9062,7 @@ groups:
       it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits.
       Writes the implementation. Use when asked to animate something, add motion, make a component feel alive, or build a
       transition. For critiquing existing motion use review-animations; for auditing a whole codebase use improve-animations.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9086,7 +9086,7 @@ groups:
       it degrades. Writes the implementation with Reanimated, Gesture Handler, Expo Router and expo-haptics. Use when animating
       anything in an Expo app, adding gestures, sheets, screen transitions, press feedback or haptics, or fixing motion that
       stutters on device. For web animation use `animate`.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9101,6 +9101,31 @@ groups:
     license: MIT
     group: emilkowalski-skills
     category: Design
+  - id: emilkowalski-skills/animation-performance
+    name: animation-performance
+    path: emilkowalski-skills/skills/animation-performance
+    title: animation-performance
+    summary: Keep web animations inside the frame budget — animate composite-only properties, keep motion off the main thread
+      when the page is busy, and find the cause when an animation drops frames. Covers the layout/paint/composite pipeline,
+      cheaper property swaps, CSS vs WAAPI vs requestAnimationFrame, Framer Motion's hardware-accelerated path, React re-rendering
+      per frame, inherited CSS variable recalculation, blur cost, and when `will-change` actually helps. Use when an animation
+      is janky, choppy, stutters, or drops frames; when choosing which property to animate; when deciding between CSS and
+      JS animation on performance grounds; or when reaching for `will-change` or GPU layers. For choosing easing, duration,
+      or whether to animate at all use animate; for reviewing motion as a whole use review-animations.
+    version: 2d228630ba14
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: d10b128326f6
+    files:
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/animation-performance
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
   - id: emilkowalski-skills/animation-vocabulary
     name: animation-vocabulary
     path: emilkowalski-skills/skills/animation-vocabulary
@@ -9109,7 +9134,7 @@ groups:
       ("the bouncy thing when a popover opens" → Pop in; "the iOS rubber-band scroll" → Rubber-banding). Use when the user
       asks "what's it called when…", or describes a motion effect without knowing its name and wants the right word to prompt
       an AI or designer with. For naming an effect, not designing or building one.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9131,7 +9156,7 @@ groups:
       reviewing gesture-driven UI, spring animations, drag/swipe/sheet interactions, momentum and interruptible transitions,
       translucent materials and depth, typography (optical sizing, tracking, leading), reduced-motion, or the design foundations
       (feedback, spatial consistency, restraint) behind Apple-style interfaces.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9153,7 +9178,7 @@ groups:
       and loading toasts, updating, dismissing and persisting toasts, styling, theming and icons, positioning and multiple
       toasters. Use when working with Sonner or troubleshooting it — toasts that don't appear, appear twice, lose their styles,
       ignore Tailwind classes, sit behind a modal, or don't follow dark mode.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9177,7 +9202,7 @@ groups:
       a "Demo data / Worst case" toggle and report everything that broke, with the fix for each. Use when the user asks to
       stress-test, break, or find edge cases in a component or screen, or to "try the worst case". For visual design critique
       use emil-design-eng; for motion use review-animations.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9198,7 +9223,7 @@ groups:
     title: emil-design-eng
     summary: This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible
       details that make software feel great.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9220,7 +9245,7 @@ groups:
       it proposes motion with exact values, it does not implement it. Use when the user asks "what could be animated here?"
       or wants to "make this feel more alive". For fixing existing animations, use improve-animations or review-animations
       instead.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9242,7 +9267,7 @@ groups:
       self-contained implementation plans for other agents (or cheaper models) to execute. Read-only on source code — it plans
       improvements, it does not apply them. Use when the user asks to "improve the animations", "audit the motion", "make
       this app feel better", or wants a roadmap of animation fixes rather than a review of a single diff.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9269,7 +9294,7 @@ groups:
       being built for or reviewed on mobile, when something "works in Chrome but feels wrong on my phone", when building a
       PWA, a bottom sheet, a carousel, a full-screen layout, or any touch interaction. For motion itself use animate; for
       React Native use animate-expo.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9290,7 +9315,7 @@ groups:
     summary: Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts,
       command menus, virtualization, drag and drop, toasts, state, styling, and more. Only runs when explicitly invoked; it
       does not trigger on its own.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9311,7 +9336,7 @@ groups:
     summary: Build multiple genuinely different versions of a UI piece you describe, rendered behind a visual picker so you
       can flip through them live and promote the one that feels right. Only runs when explicitly invoked; it does not trigger
       on its own.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9332,7 +9357,7 @@ groups:
     title: review-animations
     summary: Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy.
       Default to flagging; approval is earned.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
@@ -9356,7 +9381,7 @@ groups:
       and ARC, Swift Testing, macros, and the modern language features agents don't know about yet. Use when writing, reviewing,
       or migrating Swift, or when a concurrency error, a hang, a data race, a retain cycle, or a performance problem needs
       fixing.
-    version: e8a175de22ae
+    version: 2d228630ba14
     tags: []
     mode: host
     env:
