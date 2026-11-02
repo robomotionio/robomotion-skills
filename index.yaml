@@ -19531,7 +19531,7 @@ groups:
   name: knowledge-work-plugins
   title: Knowledge Work Plugins
   type: group
-  version: 2.0.1
+  version: 2.1.0
   author: Anthropic
   source_url: https://github.com/anthropics/knowledge-work-plugins
   license: Apache-2.0
@@ -19551,7 +19551,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 7529d3ab1b85
+  content_hash: 634e0ae7bccf
   skills:
   - id: knowledge-work-plugins/customer-escalation
     name: customer-escalation
@@ -19560,7 +19560,7 @@ groups:
     summary: Package an escalation for engineering, product, or leadership with full context. Use when a bug needs engineering
       attention beyond normal support, multiple customers report the same issue, a customer is threatening to churn, or an
       issue has sat unresolved past its SLA.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19581,7 +19581,7 @@ groups:
     summary: Multi-source research on a customer question or topic with source attribution. Use when a customer asks something
       you need to look up, investigating whether a bug has been reported before, checking what was previously told to a specific
       account, or gathering background before drafting a response.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19602,7 +19602,7 @@ groups:
     summary: Draft a professional customer-facing response tailored to the situation and relationship. Use when answering
       a product question, responding to an escalation or outage, delivering bad news like a delay or won't-fix, declining
       a feature request, or replying to a billing issue.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19623,7 +19623,7 @@ groups:
     summary: Draft a knowledge base article from a resolved issue or common question. Use when a ticket resolution is worth
       documenting for self-service, the same question keeps coming up, a workaround needs to be published, or a known issue
       should be communicated to customers.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19644,7 +19644,7 @@ groups:
     summary: Triage and prioritize a support ticket or customer issue. Use when a new ticket comes in and needs categorization,
       assigning P1-P4 priority, deciding which team should handle it, or checking whether it's a duplicate or known issue
       before routing.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19664,7 +19664,7 @@ groups:
     title: analyze
     summary: Answer data questions -- from quick lookups to full analyses. Use when looking up a single metric, investigating
       what's driving a trend or drop, comparing segments over time, or preparing a formal data report for stakeholders.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19685,7 +19685,7 @@ groups:
     summary: Build an interactive HTML dashboard with charts, filters, and tables. Use when creating an executive overview
       with KPI cards, turning query results into a shareable self-contained report, building a team monitoring snapshot, or
       needing multiple charts with filters in one browser-openable file.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19706,7 +19706,7 @@ groups:
     summary: Create publication-quality visualizations with Python. Use when turning query results or a DataFrame into a chart,
       selecting the right chart type for a trend or comparison, generating a plot for a report or presentation, or needing
       an interactive chart with hover and zoom.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19739,7 +19739,7 @@ groups:
 
       Use when data analysts want Claude to understand their company''s specific data warehouse, terminology, metrics definitions,
       and common query patterns.'
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: container
     env:
@@ -19765,7 +19765,7 @@ groups:
     summary: Create effective data visualizations with Python (matplotlib, seaborn, plotly). Use when building charts, choosing
       the right chart type for a dataset, creating publication-quality figures, or applying design principles like accessibility
       and color theory.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19786,7 +19786,7 @@ groups:
     summary: Profile and explore a dataset to understand its shape, quality, and patterns. Use when encountering a new table
       or file, checking null rates and column distributions, spotting data quality issues like duplicates or suspicious values,
       or deciding which dimensions and metrics to analyze.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19807,7 +19807,7 @@ groups:
     summary: Write correct, performant SQL across all major data warehouse dialects (Snowflake, BigQuery, Databricks, PostgreSQL,
       etc.). Use when writing queries, optimizing slow SQL, translating between dialects, or building complex analytical queries
       with CTEs, window functions, or aggregations.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19828,7 +19828,7 @@ groups:
     summary: Apply statistical methods including descriptive stats, trend analysis, outlier detection, and hypothesis testing.
       Use when analyzing distributions, testing for significance, detecting anomalies, computing correlations, or interpreting
       statistical results.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19849,7 +19849,7 @@ groups:
     summary: QA an analysis before sharing -- methodology, accuracy, and bias checks. Use when reviewing an analysis before
       a stakeholder presentation, spot-checking calculations and aggregation logic, verifying a SQL query's results look right,
       or assessing whether conclusions are actually supported by the data.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19870,7 +19870,7 @@ groups:
     summary: Write optimized SQL for your dialect with best practices. Use when translating a natural-language data need into
       SQL, building a multi-CTE query with joins and aggregations, optimizing a query against a large partitioned table, or
       getting dialect-specific syntax for Snowflake, BigQuery, Postgres, etc.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19891,7 +19891,7 @@ groups:
     summary: Run a WCAG 2.1 AA accessibility audit on a design or page. Trigger with "audit accessibility", "check a11y",
       "is this accessible?", or when reviewing a design for color contrast, keyboard navigation, touch target size, or screen
       reader behavior before handoff.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19912,7 +19912,7 @@ groups:
     summary: Get structured design feedback on usability, hierarchy, and consistency. Trigger with "review this design", "critique
       this mockup", "what do you think of this screen?", or when sharing a Figma link or screenshot for feedback at any stage
       from exploration to final polish.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19933,7 +19933,7 @@ groups:
     summary: Generate developer handoff specs from a design. Use when a design is ready for engineering and needs a spec sheet
       covering layout, design tokens, component props, interaction states, responsive breakpoints, edge cases, and animation
       details.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19954,7 +19954,7 @@ groups:
     summary: Audit, document, or extend your design system. Use when checking for naming inconsistencies or hardcoded values
       across components, writing documentation for a component's variants, states, and accessibility notes, or designing a
       new pattern that fits the existing system.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19975,7 +19975,7 @@ groups:
     summary: Synthesize user research into themes, insights, and recommendations. Use when you have interview transcripts,
       survey results, usability test notes, support tickets, or NPS responses that need to be distilled into patterns, user
       segments, and prioritized next steps.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -19996,7 +19996,7 @@ groups:
     summary: Plan, conduct, and synthesize user research. Trigger with "user research plan", "interview guide", "usability
       test", "survey design", "research questions", or when the user needs help with any aspect of understanding their users
       through research.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20017,7 +20017,7 @@ groups:
     summary: Write or review UX copy — microcopy, error messages, empty states, CTAs. Trigger with "write copy for", "what
       should this button say?", "review this error message", or when naming a CTA, wording a confirmation dialog, filling
       an empty state, or writing onboarding text.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20038,7 +20038,7 @@ groups:
     summary: Create or evaluate an architecture decision record (ADR). Use when choosing between technologies (e.g., Kafka
       vs SQS), documenting a design decision with trade-offs and consequences, reviewing a system design proposal, or designing
       a new component from requirements and constraints.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20059,7 +20059,7 @@ groups:
     summary: Review code changes for security, performance, and correctness. Trigger with a PR URL or diff, "review this before
       I merge", "is this code safe?", or when checking a change for N+1 queries, injection risks, missing edge cases, or error
       handling gaps.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20080,7 +20080,7 @@ groups:
     summary: Structured debugging session — reproduce, isolate, diagnose, and fix. Trigger with an error message or stack
       trace, "this works in staging but not prod", "something broke after the deploy", or when behavior diverges from expected
       and the cause isn't obvious.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20101,7 +20101,7 @@ groups:
     summary: Pre-deployment verification checklist. Use when about to ship a release, deploying a change with database migrations
       or feature flags, verifying CI status and approvals before going to production, or documenting rollback triggers ahead
       of time.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20122,7 +20122,7 @@ groups:
     summary: Write and maintain technical documentation. Trigger with "write docs for", "document this", "create a README",
       "write a runbook", "onboarding guide", or when the user needs help with any form of technical writing — API docs, architecture
       docs, or operational runbooks.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20143,7 +20143,7 @@ groups:
     summary: Run an incident response workflow — triage, communicate, and write postmortem. Trigger with "we have an incident",
       "production is down", an alert that needs severity assessment, a status update mid-incident, or when writing a blameless
       postmortem after resolution.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20164,7 +20164,7 @@ groups:
     summary: Generate a standup update from recent activity. Use when preparing for daily standup, summarizing yesterday's
       commits and PRs and ticket moves, formatting work into yesterday/today/blockers, or structuring a few rough notes into
       a shareable update.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20185,7 +20185,7 @@ groups:
     summary: Design systems, services, and architectures. Trigger with "design a system for", "how should we architect", "system
       design for", "what's the right architecture for", or when the user needs help with API design, data modeling, or service
       boundaries.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20206,7 +20206,7 @@ groups:
     summary: Identify, categorize, and prioritize technical debt. Trigger with "tech debt", "technical debt audit", "what
       should we refactor", "code health", or when the user asks about code quality, refactoring priorities, or maintenance
       backlog.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20226,7 +20226,7 @@ groups:
     title: testing-strategy
     summary: Design test strategies and test plans. Trigger with "how should we test", "test strategy for", "write tests for",
       "test plan", "what tests do we need", or when the user needs help with testing approaches, coverage, or test architecture.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20247,7 +20247,7 @@ groups:
     summary: Generate a daily or weekly digest of activity across all connected sources. Use when catching up after time away,
       starting the day and wanting a summary of mentions and action items, or reviewing a week's decisions and document updates
       grouped by project.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20267,7 +20267,7 @@ groups:
     title: knowledge-synthesis
     summary: Combines search results from multiple sources into coherent, deduplicated answers with source attribution. Handles
       confidence scoring based on freshness and authority, and summarizes large result sets effectively.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20288,7 +20288,7 @@ groups:
     summary: Search across all connected sources in one query. Trigger with "find that doc about...", "what did we decide
       on...", "where was the conversation about...", or when looking for a decision, document, or discussion that could live
       in chat, email, cloud storage, or a project tracker.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20309,7 +20309,7 @@ groups:
     summary: Query decomposition and multi-source search orchestration. Breaks natural language questions into targeted searches
       per source, translates queries into source-specific syntax, ranks results by relevance, and handles ambiguity and fallback
       strategies.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20329,7 +20329,7 @@ groups:
     title: source-management
     summary: Manages connected MCP sources for enterprise search. Detects available sources, guides users to connect new ones,
       handles source priority ordering, and manages rate limiting awareness.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20350,7 +20350,7 @@ groups:
     summary: Support SOX 404 compliance with control testing methodology, sample selection, and documentation standards. Use
       when generating testing workpapers, selecting audit samples, classifying control deficiencies, or preparing for internal
       or external audits.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20370,7 +20370,7 @@ groups:
     title: close-management
     summary: Manage the month-end close process with task sequencing, dependencies, and status tracking. Use when planning
       the close calendar, tracking close progress, identifying blockers, or sequencing close activities by day.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20392,7 +20392,7 @@ groups:
       and variance analysis. Use when preparing a monthly or quarterly P&L, closing the books and need to flag material variances,
       comparing actuals to budget, building a financial summary for leadership review, or looking up GAAP presentation requirements
       and period-end adjustments.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20413,7 +20413,7 @@ groups:
     summary: Prepare journal entries with proper debits, credits, and supporting detail. Use when booking month-end accruals
       (AP, payroll, prepaid), recording depreciation or amortization, posting revenue recognition or deferred revenue adjustments,
       or documenting an entry for audit review.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20434,7 +20434,7 @@ groups:
     summary: Prepare journal entries with proper debits, credits, and supporting documentation for month-end close. Use when
       booking accruals, prepaid amortization, fixed asset depreciation, payroll entries, revenue recognition, or any manual
       journal entry.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20455,7 +20455,7 @@ groups:
     summary: Reconcile accounts by comparing GL balances to subledgers, bank statements, or third-party data. Use when performing
       bank reconciliations, GL-to-subledger recs, intercompany reconciliations, or identifying and categorizing reconciling
       items.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20476,7 +20476,7 @@ groups:
     summary: Generate SOX sample selections, testing workpapers, and control assessments. Use when planning quarterly or annual
       SOX 404 testing, pulling a sample for a control (revenue, P2P, ITGC, close), building a testing workpaper template,
       or evaluating and classifying a control deficiency.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20496,7 +20496,7 @@ groups:
     title: variance-analysis
     summary: Decompose financial variances into drivers with narrative explanations and waterfall analysis. Use when analyzing
       budget vs. actual, period-over-period changes, revenue or expense variances, or preparing variance commentary for leadership.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20517,7 +20517,7 @@ groups:
     summary: Analyze compensation — benchmarking, band placement, and equity modeling. Trigger with "what should we pay a
       [role]", "is this offer competitive", "model this equity grant", or when uploading comp data to find outliers and retention
       risks.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20538,7 +20538,7 @@ groups:
     summary: Draft an offer letter with comp details and terms. Use when a candidate is ready for an offer, assembling a total
       comp package (base, equity, signing bonus), writing the offer letter text itself, or prepping negotiation guidance for
       the hiring manager.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20559,7 +20559,7 @@ groups:
     summary: Create structured interview plans with competency-based questions and scorecards. Trigger with "interview plan
       for", "interview questions for", "how should we interview", "scorecard for", or when the user is preparing to interview
       candidates.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20580,7 +20580,7 @@ groups:
     summary: Generate an onboarding checklist and first-week plan for a new hire. Use when someone has a start date coming
       up, building the pre-start task list (accounts, equipment, buddy), scheduling Day 1 and Week 1, or setting 30/60/90-day
       goals for a new team member.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20601,7 +20601,7 @@ groups:
     summary: Headcount planning, org design, and team structure optimization. Trigger with "org planning", "headcount plan",
       "team structure", "reorg", "who should we hire next", or when the user is thinking about team size, reporting structure,
       or organizational design.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20622,7 +20622,7 @@ groups:
     summary: Generate headcount, attrition, diversity, or org health reports. Use when pulling a headcount snapshot for leadership,
       analyzing turnover trends by team, preparing diversity representation metrics, or assessing span of control and flight
       risk across the org.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20643,7 +20643,7 @@ groups:
     summary: Structure a performance review with self-assessment, manager template, and calibration prep. Use when review
       season kicks off and you need a self-assessment template, writing a manager review for a direct report, prepping rating
       distributions and promotion cases for calibration, or turning vague feedback into specific behavioral examples.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20664,7 +20664,7 @@ groups:
     summary: Find and explain company policies in plain language. Trigger with "what's our PTO policy", "can I work remotely
       from another country", "how do expenses work", or any plain-language question about benefits, travel, leave, or handbook
       rules.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20684,7 +20684,7 @@ groups:
     title: recruiting-pipeline
     summary: Track and manage recruiting pipeline stages. Trigger with "recruiting update", "candidate pipeline", "how many
       candidates", "hiring status", or when the user discusses sourcing, screening, interviewing, or extending offers.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20706,7 +20706,7 @@ groups:
       starting your day and need a scan of legal-relevant items across email, calendar, and contracts, when researching a
       specific legal question across internal sources, or when a developing situation (data breach, litigation threat, regulatory
       inquiry) needs rapid context.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20728,7 +20728,7 @@ groups:
       required approvals, and risk areas. Use when launching a feature that touches personal data, when marketing or product
       proposes something with regulatory implications, or when you need to know which approvals and jurisdictional requirements
       apply before proceeding.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20749,7 +20749,7 @@ groups:
     summary: Generate a response to a common legal inquiry using configured templates, with built-in escalation checks for
       situations that shouldn't use a templated reply. Use when responding to data subject requests, litigation hold notices,
       vendor legal questions, NDA requests from business teams, or subpoenas.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20770,7 +20770,7 @@ groups:
     summary: Assess and classify legal risks using a severity-by-likelihood framework with escalation criteria. Use when evaluating
       contract risk, assessing deal exposure, classifying issues by severity, or determining whether a matter needs senior
       counsel or outside legal review.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20791,7 +20791,7 @@ groups:
     summary: Prepare structured briefings for meetings with legal relevance and track resulting action items. Use when preparing
       for contract negotiations, board meetings, compliance reviews, or any meeting where legal context, background research,
       or action tracking is needed.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20812,7 +20812,7 @@ groups:
     summary: Review a contract against your organization's negotiation playbook — flag deviations, generate redlines, provide
       business impact analysis. Use when reviewing vendor or customer agreements, when you need clause-by-clause analysis
       against standard positions, or when preparing a negotiation strategy with prioritized redlines and fallback positions.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20833,7 +20833,7 @@ groups:
     summary: Prepare and route a document for e-signature — run a pre-signature checklist, configure signing order, and send
       for execution. Use when a contract is finalized and ready to sign, when verifying entity names, exhibits, and signature
       blocks before sending, or when setting up an envelope with sequential or parallel signers.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20854,7 +20854,7 @@ groups:
     summary: Rapidly triage an incoming NDA and classify it as GREEN (standard approval), YELLOW (counsel review), or RED
       (full legal review). Use when a new NDA arrives from sales or business development, when screening for embedded non-solicits,
       non-competes, or missing carveouts, or when deciding whether an NDA can be signed under standard delegation.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20876,7 +20876,7 @@ groups:
       storage — with gap analysis and upcoming deadlines. Use when onboarding or renewing a vendor, when you need a consolidated
       view of what's signed and what's missing (MSA, DPA, SOW), or when checking for approaching expirations and surviving
       obligations.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20897,7 +20897,7 @@ groups:
     summary: Review content against your brand voice, style guide, and messaging pillars, flagging deviations by severity
       with specific before/after fixes. Use when checking a draft before it ships, when auditing copy for voice consistency
       and terminology, or when screening for unsubstantiated claims, missing disclaimers, and other legal flags.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20918,7 +20918,7 @@ groups:
     summary: Generate a full campaign brief with objectives, audience, messaging, channel strategy, content calendar, and
       success metrics. Use when planning a product launch, lead-gen push, or awareness campaign, when you need a week-by-week
       content calendar with dependencies, or when translating a marketing goal into a structured, executable plan.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20939,7 +20939,7 @@ groups:
     summary: Research competitors and generate a positioning and messaging comparison with content gaps, opportunities, and
       threats. Use when building sales battlecards, when finding positioning gaps and messaging angles competitors haven't
       claimed, or when a competitor makes a move and you need to assess the impact.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20960,7 +20960,7 @@ groups:
     summary: Draft marketing content across channels — blog posts, social media, email newsletters, landing pages, press releases,
       and case studies. Use when writing any marketing content, when you need channel-specific formatting, SEO-optimized copy,
       headline options, or calls to action.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -20981,7 +20981,7 @@ groups:
     summary: Draft blog posts, social media, email newsletters, landing pages, press releases, and case studies with channel-specific
       formatting and SEO recommendations. Use when writing any marketing content, when you need headline or subject line options,
       or when adapting a message for a specific platform, audience, and brand voice.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21002,7 +21002,7 @@ groups:
     summary: Design and draft multi-email sequences with full copy, timing, branching logic, exit conditions, and performance
       benchmarks. Use when building onboarding, lead nurture, re-engagement, win-back, or product launch flows, when you need
       a complete drip campaign with A/B test suggestions, or when mapping a sequence end-to-end with a flow diagram.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21023,7 +21023,7 @@ groups:
     summary: Build a marketing performance report with key metrics, trend analysis, wins and misses, and prioritized optimization
       recommendations. Use when wrapping a campaign, when preparing weekly, monthly, or quarterly channel summaries for stakeholders,
       or when you need data translated into an executive summary with next-period priorities.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21044,7 +21044,7 @@ groups:
     summary: Run a comprehensive SEO audit — keyword research, on-page analysis, content gaps, technical checks, and competitor
       comparison. Use when assessing a site's SEO health, when finding keyword opportunities and content gaps competitors
       own, or when you need a prioritized action plan split into quick wins and strategic investments.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21065,7 +21065,7 @@ groups:
     summary: Plan resource capacity — workload analysis and utilization forecasting. Use when heading into quarterly planning,
       the team feels overallocated and you need the numbers, deciding whether to hire or deprioritize, or stress-testing whether
       upcoming projects fit the people you have.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21086,7 +21086,7 @@ groups:
     summary: Create a change management request with impact analysis and rollback plan. Use when proposing a system or process
       change that needs approval, preparing a change record for CAB review, documenting risk and rollback steps before a deployment,
       or planning stakeholder communications for a rollout.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21106,7 +21106,7 @@ groups:
     title: compliance-tracking
     summary: Track compliance requirements and audit readiness. Trigger with "compliance", "audit prep", "SOC 2", "ISO 27001",
       "GDPR", "regulatory requirement", or when the user needs help tracking, preparing for, or documenting compliance activities.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21127,7 +21127,7 @@ groups:
     summary: Document a business process — flowcharts, RACI, and SOPs. Use when formalizing a process that lives in someone's
       head, building a RACI to clarify who owns what, writing an SOP for a handoff or audit, or capturing the exceptions and
       edge cases of how work actually gets done.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21147,7 +21147,7 @@ groups:
     title: process-optimization
     summary: Analyze and improve business processes. Trigger with "this process is slow", "how can we improve", "streamline
       this workflow", "too many steps", "bottleneck", or when the user describes an inefficient process they want to fix.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21168,7 +21168,7 @@ groups:
     summary: Identify, assess, and mitigate operational risks. Trigger with "what are the risks", "risk assessment", "risk
       register", "what could go wrong", or when the user is evaluating risks associated with a project, vendor, process, or
       decision.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21189,7 +21189,7 @@ groups:
     summary: Create or update an operational runbook for a recurring task or procedure. Use when documenting a task that on-call
       or ops needs to run repeatably, turning tribal knowledge into exact step-by-step commands, adding troubleshooting and
       rollback steps to an existing procedure, or writing escalation paths for when things go wrong.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21210,7 +21210,7 @@ groups:
     summary: Generate a status report with KPIs, risks, and action items. Use when writing a weekly or monthly update for
       leadership, summarizing project health with green/yellow/red status, surfacing risks and decisions that need stakeholder
       attention, or turning a pile of project tracker activity into a readable narrative.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21231,7 +21231,7 @@ groups:
     summary: Evaluate a vendor — cost analysis, risk assessment, and recommendation. Use when reviewing a new vendor proposal,
       deciding whether to renew or replace a contract, comparing two vendors side-by-side, or building a TCO breakdown and
       negotiation points before procurement sign-off.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21252,7 +21252,7 @@ groups:
     summary: Review and analyze product metrics with trend analysis and actionable insights. Use when running a weekly, monthly,
       or quarterly metrics review, investigating a sudden spike or drop, comparing performance against targets, or turning
       raw numbers into a scorecard with recommended actions.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21273,7 +21273,7 @@ groups:
     summary: Brainstorm product ideas, explore problem spaces, and challenge assumptions as a thinking partner. Use when exploring
       a new opportunity, generating solutions to a product problem, stress-testing an idea, or when a PM needs to think out
       loud with a sharp sparring partner before converging on a direction.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21294,7 +21294,7 @@ groups:
     summary: Update, create, or reprioritize your product roadmap. Use when adding a new initiative and deciding what moves
       to make room, shifting priorities after new information comes in, moving timelines due to a dependency slip, or building
       a Now/Next/Later view from scratch.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21315,7 +21315,7 @@ groups:
     summary: Plan a sprint — scope work, estimate capacity, set goals, and draft a sprint plan. Use when kicking off a new
       sprint, sizing a backlog against team availability (accounting for PTO and meetings), deciding what's P0 vs. stretch,
       or handling carryover from the last sprint.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21336,7 +21336,7 @@ groups:
     summary: Generate a stakeholder update tailored to audience and cadence. Use when writing a weekly or monthly status for
       leadership, announcing a launch, escalating a risk or blocker, or translating the same progress into exec-brief, engineering-detail,
       or customer-facing versions.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21357,7 +21357,7 @@ groups:
     summary: Synthesize user research from interviews, surveys, and feedback into structured insights. Use when you have a
       pile of interview notes, survey responses, or support tickets to make sense of, need to extract themes and rank findings
       by frequency and impact, or want to turn raw feedback into roadmap recommendations.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21378,7 +21378,7 @@ groups:
     summary: Write a feature spec or PRD from a problem statement or feature idea. Use when turning a vague idea or user request
       into a structured document, scoping a feature with goals and non-goals, defining success metrics and acceptance criteria,
       or breaking a big ask into a phased spec.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21399,7 +21399,7 @@ groups:
     summary: Two-tier memory system that makes Claude a true workplace collaborator. Decodes shorthand, acronyms, nicknames,
       and internal language so Claude understands requests like a colleague would. CLAUDE.md for working memory, memory/ directory
       for the full knowledge base.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21420,7 +21420,7 @@ groups:
     summary: Initialize the productivity system and open the dashboard. Use when setting up the plugin for the first time,
       bootstrapping working memory from your existing task list, or decoding the shorthand (nicknames, acronyms, project codenames)
       you use in your todos.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21440,7 +21440,7 @@ groups:
     title: task-management
     summary: Simple task management using a shared TASKS.md file. Reference this when the user asks about their tasks, wants
       to add/complete tasks, or needs help tracking commitments.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21461,7 +21461,7 @@ groups:
     summary: Sync tasks and refresh memory from your current activity. Use when pulling new assignments from your project
       tracker into TASKS.md, triaging stale or overdue tasks, filling memory gaps for unknown people or projects, or running
       a comprehensive scan to catch todos buried in chat and email.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
@@ -21482,13 +21482,13 @@ groups:
     summary: 360-degree view of an account - CRM data, recent email threads, docs, transcripts, and internal chat chatter,
       synthesized into one brief. Use when the user asks "tell me about [account]" (an existing customer; for a prospect,
       account-research), "account context for [name]", "what's going on with [account]", or "catch me up on [account]".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 27262a2eb481
+    content_hash: 5b8cd392fade
     files:
     - SKILL.md
     author: Anthropic
@@ -21503,13 +21503,13 @@ groups:
     summary: Build or refresh a strategic account plan - current state, goals, stakeholder coverage, opportunity map, risks,
       and the action plan - written to a doc and key fields synced to the CRM. Use when the user says "build an account plan
       for [account]", "update the [account] plan", "account planning for [account]", or before a planning cycle / QBR.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2df949bc0865
+    content_hash: 1aa9bb7e5d5b
     files:
     - SKILL.md
     author: Anthropic
@@ -21525,13 +21525,13 @@ groups:
       and fit against your ICP. Cross-references existing CRM records. Use when the user asks to "research [company]", "look
       into [company]", "prospect research on [company]", "look up [person]", "intel on [prospect]", "who is [person] at [company]",
       or "tell me about [company]" when the company is a prospect rather than an existing account.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 30fcf2d6ce89
+    content_hash: cc12a5bec176
     files:
     - SKILL.md
     author: Anthropic
@@ -21546,13 +21546,13 @@ groups:
     summary: Score and tier a list of accounts (or your full book) against ICP fit and engagement signals to prioritize where
       to spend time. Use when the user asks to "tier my accounts", "prioritize my book", "which accounts should I focus on",
       or "score these accounts".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3532b798bf2f
+    content_hash: 4e68773a1b12
     files:
     - SKILL.md
     author: Anthropic
@@ -21568,13 +21568,13 @@ groups:
       opportunity status, and suggested discovery questions. Use when the user asks "prep me for [meeting/company]", "call
       prep [company]", "I'm meeting with [company], prep me", "get me ready for [meeting]", or "what do I need to know before
       my [time] call".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 89ce1c38c6b7
+    content_hash: bee2beacbcd4
     files:
     - SKILL.md
     author: Anthropic
@@ -21590,13 +21590,13 @@ groups:
       CRM updates. Use when the user says "call summary", "follow up on my [company] call", "summarize my call with [account]",
       "write the recap", "process this transcript", "process my call notes", "capture the objections and next steps", or pastes
       rough notes or a transcript after a discovery, demo, or negotiation call.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8edbee8265d4
+    content_hash: 20562e49306f
     files:
     - SKILL.md
     author: Anthropic
@@ -21611,13 +21611,13 @@ groups:
     summary: Build the business case and mutual action plan for a deal - the why-buy/why-now story, the ROI framing, and the
       dated step-by-step path to signature shared with the customer. Use when the user says "build a close plan for [deal]",
       "mutual action plan for [account]", "business case for [opp]", or "what's the path to signature".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 6b1f5c21f749
+    content_hash: ccb817dd34ef
     files:
     - SKILL.md
     author: Anthropic
@@ -21634,13 +21634,13 @@ groups:
       do we compare to [competitor]", "what's new with [competitor]", "battlecard for [competitor]", "how do we beat [competitor]",
       "what's the play against [competitor] in [deal]", "where are we losing to [competitor]", "win/loss patterns", "competitive
       analysis", "refresh the battlecards", or on a weekly schedule.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1dbcac93d541
+    content_hash: ee6ae96e1b9a
     files:
     - SKILL.md
     author: Anthropic
@@ -21655,13 +21655,13 @@ groups:
     summary: Build a customer deck, one-pager or leave-behind from your account data, call notes and approved materials, with
       no made-up numbers. Use when the user asks for a sales asset, one-pager, deck, leave-behind, "create an asset for [prospect]",
       or "make something for [account]".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 017e6b4fe78c
+    content_hash: 45ad1152e250
     files:
     - SKILL.md
     author: Anthropic
@@ -21676,13 +21676,13 @@ groups:
     summary: Read-only audit of your CRM opportunities for missing fields, stale dates, and stage mismatches - outputs a fix
       checklist to apply by hand or through update-opportunity. Use when the user asks "check my CRM hygiene", "check my Salesforce
       or HubSpot data", "clean up my CRM", "audit my opps", "what's missing in the CRM", or "clean up my pipeline".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 0df0c46351c6
+    content_hash: 7c8bd033fc8f
     files:
     - SKILL.md
     author: Anthropic
@@ -21697,13 +21697,13 @@ groups:
     summary: Health check on a customer account and QBR-ready prep - relationship strength, engagement trend, risk signals,
       value delivered, and the agenda that makes the review worth their time. Use when the user asks "how healthy is [account]",
       "customer health check", "prep the [account] QBR", "business review prep", or "are we at risk with [customer]".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: b33e05562c7b
+    content_hash: e72064ffa8ac
     files:
     - SKILL.md
     author: Anthropic
@@ -21718,13 +21718,13 @@ groups:
     summary: Surface what customers are actually saying - direct attributed quotes on a topic across call transcripts and
       email, across your accounts. Use when the user asks "what are customers saying about [topic]", "pull quotes on [objection/feature/competitor]",
       "voice of customer on [X]", or "what's coming up in calls".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1fcfd1bb8be6
+    content_hash: 9ae4b3578472
     files:
     - SKILL.md
     author: Anthropic
@@ -21739,13 +21739,13 @@ groups:
     summary: Morning rundown - today's meetings with account context, opps closing soon with stale flags, waiting customer
       emails, and the day's top actions. Use when the user says "daily briefing", "daily brief", "morning briefing", "what's
       my day", "what's on my plate today", "prep my day", "start my day", "morning rundown", or on a schedule.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 503e16f4aad7
+    content_hash: f1b725abd397
     files:
     - SKILL.md
     author: Anthropic
@@ -21760,13 +21760,13 @@ groups:
     summary: Forward-looking gap check on one opportunity - exactly what is missing to advance it to the next stage and to
       close, with who does what by when. Use when the user asks "what's missing to advance [deal]", "what do I need to move
       [opp] forward", "why is [deal] stuck", or "what's between [account] and a close".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 965f1b43bfc1
+    content_hash: 13d332c211b0
     files:
     - SKILL.md
     author: Anthropic
@@ -21781,13 +21781,13 @@ groups:
     summary: Deep-dive on a single opportunity - signal-adjusted health score, risks, gaps in qualification, and recommended
       next actions. Use when the user asks "review the [account] deal", "deal review on [opp]", "is [opp] going to close",
       or "what's the risk on [deal]".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8492d3523467
+    content_hash: 49f3d76022dc
     files:
     - SKILL.md
     author: Anthropic
@@ -21803,13 +21803,13 @@ groups:
       windows opening, competitor mentions - surfaced as a short alert digest you can act on. Use when the user asks "what
       changed in my book", "any deals gone quiet", "what should I be worried about today", "run my deal signals", or sets
       it up as a recurring scheduled task.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 0efcf03048cc
+    content_hash: f247cfce79df
     files:
     - SKILL.md
     author: Anthropic
@@ -21824,13 +21824,13 @@ groups:
     summary: Model what happens to your number if a deal slips, shrinks, or dies - quota impact, coverage ratio change, and
       the substitute pipeline needed to stay on plan. Use when the user asks "what if [deal] slips", "what happens if [account]
       pushes to next quarter", "can I still hit my number without [deal]", or "model losing [deal]".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: befd9ed985c2
+    content_hash: 9e52d75283d6
     files:
     - SKILL.md
     author: Anthropic
@@ -21846,13 +21846,13 @@ groups:
       and add the contact to a sequence in your sales engagement tool when asked. Use when the user asks to "draft outreach
       to [person/company]", "write a cold email to [prospect]", "re-engage [prospect]", "draft a 3-touch sequence", or "reach
       out to [person]".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 44cdcc9c4fa5
+    content_hash: 15817a43a725
     files:
     - SKILL.md
     author: Anthropic
@@ -21867,13 +21867,13 @@ groups:
     summary: The closing beat of the day - every call processed or explicitly skipped, the CRM brought current, commitments
       captured, and tomorrow's top three teed up. Use when the user says "end of day", "close out my day", "process today's
       calls", "EOD", or on an evening schedule. Companion bookend to daily-briefing.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: fc346b4811da
+    content_hash: 749b85bdecd6
     files:
     - SKILL.md
     author: Anthropic
@@ -21888,13 +21888,13 @@ groups:
     summary: Find the expansion whitespace in an account or a book - what they own vs. what they could own, the evidence for
       each play, and the open opps to create. Use when the user asks "what's the whitespace at [account]", "where can I expand
       [account]", "upsell opportunities in my book", or "which customers should I be growing".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 25108093b010
+    content_hash: 1603f7d040c8
     files:
     - SKILL.md
     author: Anthropic
@@ -21910,13 +21910,13 @@ groups:
       closing, what's at risk, what changed since last time. Use when the user asks "write my forecast", "forecast narrative",
       "prep for forecast call", "prep for my quarterly forecast call", "which deals should I commit vs. call upside", "forecast
       from this pipeline export", or "prep for my 1:1 with my manager".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7ebeeb38b9ec
+    content_hash: a49adef9c3c2
     files:
     - SKILL.md
     author: Anthropic
@@ -21932,13 +21932,13 @@ groups:
       before, and the proof points to use, grounded in your own win/loss history and customer quotes. Use when the user says
       "they said we're too expensive", "how do I respond to [objection]", "[competitor] is in the deal", "help me handle this
       pushback", or pastes an objection from an email or call.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: edc67a06257c
+    content_hash: 0690b855839c
     files:
     - SKILL.md
     author: Anthropic
@@ -21952,13 +21952,13 @@ groups:
     title: inbox-sweep
     summary: Batch-process unread customer emails - classify, prioritize, and draft replies. Use when the user asks "sweep
       my inbox", "what customer emails need a reply", "draft replies to my customer emails", or "what needs a response".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a4ccc2d6b364
+    content_hash: 4f00e88c2ba3
     files:
     - SKILL.md
     author: Anthropic
@@ -21973,13 +21973,13 @@ groups:
     summary: Score and route an inbound lead, or rank a backlog of leads, against your ICP and qualification framework, then
       recommend a priority and next action. Use when the user asks "triage this lead", "triage my leads", "rank my lead backlog",
       "is [company] a good lead", "qualify [lead]", or pastes or uploads lead info.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 505c3250d04e
+    content_hash: 3c6e383a2821
     files:
     - SKILL.md
     author: Anthropic
@@ -21995,13 +21995,13 @@ groups:
       opportunity, and contact - drafted from your description or a transcript, shown with its sources and saved when you
       ask. Use when the user says "log this call", "log my meeting with [account]", "log that I emailed [contact]", "track
       this conversation in the CRM", or "what activities are logged on [account]".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 79d76f857535
+    content_hash: a96f97bebea7
     files:
     - SKILL.md
     author: Anthropic
@@ -22017,13 +22017,13 @@ groups:
       data. Use when the user asks "review my pipeline", "pipeline health", "where's my pipeline stuck", "weekly pipeline
       review", "which deals should I focus on this week", "any stale or stuck deals", "which deals have past close dates",
       "which deals are single-threaded", or "check my pipeline coverage against my number".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 06ea0de5f747
+    content_hash: d0a44a657884
     files:
     - SKILL.md
     author: Anthropic
@@ -22038,13 +22038,13 @@ groups:
     summary: Upcoming renewals with timing, risk, and uplift potential - and the renewal opportunity records to keep them
       honest. Use when the user asks "what renewals are coming up", "renewal radar", "is [account] going to renew", "prep
       the [account] renewal", or "which renewals are at risk".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 812b7d265ba2
+    content_hash: d60889d44677
     files:
     - SKILL.md
     author: Anthropic
@@ -22059,13 +22059,13 @@ groups:
     summary: Leader's prep on a single rep before a 1:1 - their pipeline, recent activity, what they've been working on per
       chat and calendar, and where they might need help. Use when the user asks "prep for my 1:1 with [rep]" (a rep you manage),
       "how is [rep] doing", or "what's [rep] working on".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 828478b40a1a
+    content_hash: 860b80738547
     files:
     - SKILL.md
     author: Anthropic
@@ -22081,13 +22081,13 @@ groups:
       rules, a routing card the human router accepts or overrides, and drafted handoff notes. Use when the user says "route
       this lead", "who should own [lead/opp]", "work the routing queue", "assign [company] to a rep", or on a scheduled intake
       sweep.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: c8ee7cb873b4
+    content_hash: df7d97ca6951
     files:
     - SKILL.md
     author: Anthropic
@@ -22102,13 +22102,13 @@ groups:
     summary: Find a time, draft the invite, and book the meeting on Google Calendar or Outlook - then log it to the CRM as
       an event on the right account and opportunity. Use when the user says "schedule a follow-up with [contact]", "book the
       demo with [account]", "find time with [name] next week", "send my Calendly link", or "get the QBR on the calendar".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7d822a9219bc
+    content_hash: ad83b4352afc
     files:
     - SKILL.md
     author: Anthropic
@@ -22125,13 +22125,13 @@ groups:
       are missing it walks through connecting the CRM, then email, then calendar, showing something useful after each. Use
       on first open, or when the user says "set me up", "get started", "what's connected", "learn my voice", "match my writing
       style", or "onboard me".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 1306186fed8a
+    content_hash: dbef925685b4
     files:
     - SKILL.md
     author: Anthropic
@@ -22146,13 +22146,13 @@ groups:
     summary: Map the people in a deal or account - roles, influence, sentiment, who's missing, and your best access path to
       the people you haven't reached. Use when the user asks "who are the players at [account]", "who's my way in", "am I
       single-threaded on [deal]", "map the stakeholders", or "who else should I be talking to".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 35af7ba4a388
+    content_hash: e76813dae937
     files:
     - SKILL.md
     author: Anthropic
@@ -22167,13 +22167,13 @@ groups:
     summary: Leader view - roll up a team's pipeline by rep and stage, flag at-risk deals, and surface coaching moments. Use
       when the user asks "show my team's pipeline", "team forecast", "prep for my team's pipeline review", or "where does
       my team need help".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 33d8bf49677e
+    content_hash: 8b7158738510
     files:
     - SKILL.md
     author: Anthropic
@@ -22189,13 +22189,13 @@ groups:
       category. Shows the before/after, writes what you ask for or accept, and verifies with a record link. Use when the user
       says "push [deal] to [stage]", "move the close date on [opp]", "update next steps on [account]", "mark [deal] commit",
       or accepts a suggested update from another skill.
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: eda21c7bb239
+    content_hash: d0ca7d3cb3fd
     files:
     - SKILL.md
     author: Anthropic
@@ -22210,13 +22210,13 @@ groups:
     summary: End-of-week summary for a rep or leader - what closed, what moved, what slipped, and what's on deck Monday. Optionally
       drafts a chat post to the team channel. Use when the user says "weekly wrap", "week in review", "what happened this
       week", or "Friday summary".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: e27d425d1e42
+    content_hash: efcb4522f932
     files:
     - SKILL.md
     author: Anthropic
@@ -22231,13 +22231,13 @@ groups:
     summary: Analyze recently closed opportunities to find patterns in what wins and what loses - stage of loss, common objections
       from transcripts, deal characteristics. Leader-focused. Use when the user asks "win loss review", "why are we losing
       deals", "what's working", or "analyze closed opps".
-    version: 2.0.1
+    version: 2.1.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 496a12c8345e
+    content_hash: 9f16948858bf
     files:
     - SKILL.md
     author: Anthropic
