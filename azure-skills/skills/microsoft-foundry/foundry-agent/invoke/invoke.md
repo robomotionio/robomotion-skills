@@ -1,18 +1,111 @@
 # Invoke Foundry Agent
 
-Invoke Prompt Agents with Foundry MCP. Invoke Hosted Agents and manage their sessions, files, and logs with azd.
+Invoke ordinary Prompt Agents with Foundry MCP. Invoke Hosted and Managed Harness Agents with azd. Invoke Voice Agents over the managed Foundry `voice` WebSocket endpoint (not `azd ai agent invoke`).
 
 ## Route by Agent Type
 
 | Agent type | Protocol | Invoke path | State management |
 |------------|----------|-------------|------------------|
 | Prompt | — | Foundry MCP `agent_invoke` | `conversationId`; no hosted session or file operations |
+| Managed Harness Agent | Responses | `azd ai agent invoke` | Managed response history; no Hosted session/file operations |
+| Voice (Prompt Voice or Hosted Voice wrapper) | `voice` (`wss://.../protocols/voice?api-version=v1`) | Smoke helper for minimal programmatic verification; Foundry Voice playground for interactive audio-to-audio testing; **never** `azd ai agent invoke` | Real-time Voice session; no Hosted session/file commands on `kind: voice` |
+| Hosted Voice target (diagnostic only) | `invocations_ws` + Bridge `1.0` | Bridge-compatible WebSocket client; see [voice-agent-hosted-bridge.md](../create/references/voice-agent-hosted-bridge.md) | Target container session (`agent_session_id`); does not validate the Voice wrapper |
 | Hosted | `responses` | `azd ai agent invoke` | azd sessions, files, conversations, and monitor commands |
 | Hosted | `invocations` | `azd ai agent invoke --protocol invocations` | azd sessions, files, conversations, and monitor commands |
 | Hosted | `activity` | Microsoft 365 channel, such as Teams | Activity conversation and channel state |
-| Hosted | `invocations_ws` | WebSocket client; follow [invocations-ws](../invocations-ws/invocations-ws.md) | Agent-managed state keyed by `agent_session_id` |
+| Hosted (custom real-time/audio) | `invocations_ws` | Custom WebSocket client; follow [invocations-ws](../invocations-ws/invocations-ws.md) | Agent-managed state keyed by `agent_session_id` |
 
-Treat an `azure.yaml` service with `host: azure.ai.agent` as Hosted. If the type is still unknown, use `agent_get` only to classify the agent. Do not use MCP invoke, session, or file tools for a Hosted Agent.
+Classify `azure.yaml` services in order: Voice is a **Voice Agent** (`conversationEngine.type: hosted_agent` for Hosted Voice wrapper, `modelType: managed` or `self_deployed` for Prompt Voice); apply the top-level compatibility classification for legacy manifests. `kind: hosted` is **Hosted**; `kind: prompt` plus `harness.type: github_copilot_preview` is a **Managed Harness Agent**; other `kind: prompt` services are ordinary **Prompt Agents**. If still unknown, use `agent_get` only to classify.
+
+## Voice Agent Workflow (Prompt Voice and Hosted Voice Wrapper)
+
+> **Critical**: `azd ai agent invoke` does **not** support Voice Agents, including Hosted Voice wrappers. Use the bundled smoke helper for minimal programmatic/single-turn verification. For "talk to," interactive testing, microphone/audio-to-audio, voice quality, VAD, interruption, or full-experience requests, provide the Voice Agent Playground URL from `azd ai agent show --output json`.
+
+### Step 1: Verify Deployed Version(s)
+
+Inside the azd project, run:
+
+```bash
+azd ai agent show --output json
+```
+
+- For **Prompt Voice**, confirm the `kind: voice` agent version is active.
+- For **Hosted Voice**, confirm **both** the `kind: hosted` target and the `kind: voice` wrapper versions are active, and target the **`kind: voice` wrapper's** name for end-to-end Voice invocation.
+
+### Step 2: Choose the Invocation Experience
+
+- **Minimal programmatic or single-turn verification:** run the bundled smoke helper over the managed `voice` WebSocket.
+- **Interactive or full audio-to-audio testing:** direct the user to the Foundry Voice Agent playground URL returned by `azd ai agent show --output json`. This is the path for microphone capture, STT quality, VAD/turn-taking, barge-in/interruption, playback/voice quality, browser/device behavior, and perceived latency.
+
+The smoke helper is a text-driven technical verification client, not a complete interactive microphone client. See [voice-agent-smoke-test.md](../create/references/voice-agent-smoke-test.md) for the validation boundary.
+
+#### Automated Smoke Test
+
+Run the paired smoke-test helper from the `microsoft-foundry` skill root (`plugins/azure-skills/skills/microsoft-foundry`) using `DefaultAzureCredential` (`https://ai.azure.com/.default`). Note that PowerShell uses PascalCase parameters (`-Endpoint`, `-AgentName`, `-Text`, `-Timeout`, `-OutputAudio`, `-DryRun`).
+
+**Bash** ([../create/scripts/smoke-test-voice.sh](../create/scripts/smoke-test-voice.sh))
+```bash
+./foundry-agent/create/scripts/smoke-test-voice.sh \
+  --endpoint "$AZURE_AI_PROJECT_ENDPOINT" \
+  --agent-name "<voice-agent-name>" \
+  --text "Hello, briefly introduce yourself." \
+  --timeout 180
+```
+
+**PowerShell** ([../create/scripts/smoke-test-voice.ps1](../create/scripts/smoke-test-voice.ps1))
+```powershell
+.\foundry-agent\create\scripts\smoke-test-voice.ps1 `
+  -Endpoint $env:AZURE_AI_PROJECT_ENDPOINT `
+  -AgentName "<voice-agent-name>" `
+  -Text "Hello, briefly introduce yourself." `
+  -Timeout 180
+```
+
+See [voice-agent-smoke-test.md](../create/references/voice-agent-smoke-test.md) for `--dry-run` / `-DryRun`, `--output-audio` / `-OutputAudio`, and exit code semantics (`0` pass, `1` failure, `2` usage error).
+
+### Optional Step 3: Hosted Voice Target Bridge `1.0` Diagnostic
+
+When a **Hosted Voice Agent** fails or needs target-level isolation, test the `kind: hosted` target directly over `/invocations_ws` using the diagnostic sequence in [voice-agent-hosted-bridge.md](../create/references/voice-agent-hosted-bridge.md). Target-only testing does **not** replace end-to-end wrapper verification in Step 2.
+
+## Managed Harness Agent Workflow with azd
+
+### Step 1: Verify the Managed Harness Agent
+
+Inside the azd project, confirm the selected service is `kind: prompt` with `harness.type: github_copilot_preview`, then run:
+
+```bash
+azd ai agent show --output json
+```
+
+Verify the deployed version is active and still contains the harness.
+
+### Step 2: Invoke
+
+Single-Agent project:
+
+```bash
+azd ai agent invoke "hello"
+```
+
+Multi-Agent project:
+
+```bash
+azd ai agent invoke <service-name> "hello"
+```
+
+Invoke supports `default` and `raw` output; do not pass `--output json`.
+
+The managed harness uses its Agent-specific Responses endpoint. azd persists response history as supported by the installed extension. Use its invoke help for reset/select flags when needed.
+
+Do not use:
+
+- `azd ai agent run`
+- Hosted `sessions` commands
+- Hosted `files` commands
+- `azd ai agent monitor`
+- Foundry MCP `agent_invoke` as the default Managed Harness Agent path
+
+Remote invocation can incur model usage charges. Run it only within the user's request.
 
 ## Hosted Agent Workflow with azd
 
@@ -114,13 +207,15 @@ Delete removes both compute and persistent filesystem state.
 2. Invoke with `agent_invoke(projectEndpoint, agentName, inputText)`.
 3. Reuse the returned `conversationId` for later turns.
 
-Prompt Agents do not use hosted sessions or hosted file operations.
+Ordinary Prompt Agents do not use hosted sessions or hosted file operations.
 
 ## Error Handling
 
 | Error | Resolution |
 |-------|------------|
 | Agent service cannot be resolved | Use the `azure.yaml` service name, correct the service block, or use `--agent-endpoint` outside the project |
+| Managed Harness Agent is routed to Hosted session/file commands | Reclassify from `kind: prompt` plus `harness.type: github_copilot_preview` and use the Managed Harness Agent workflow |
+| Managed Harness Agent published definition lacks harness | Fix `azure.yaml`, verify the extension version, and redeploy |
 | Hosted version is not active | Inspect `azd ai agent show --output json` and deployment logs |
 | Session is missing or expired | Run `azd ai agent sessions list`, then use a valid ID or invoke with `--new-session` |
 | Conversation is missing after a session was deleted | For the responses protocol, retry with `--new-session --new-conversation` |
