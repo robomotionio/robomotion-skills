@@ -1,10 +1,12 @@
 ---
 name: cloud-monitoring-chart-generation
 metadata:
+  version: "1.0.2"
   category: CloudObservabilityAndMonitoring
 description: >-
-  Generates Google Cloud Monitoring Server-Driven UI (SDUI) Widget and
-  XyChart Protocol Buffer textprotos from resolved PromQL or ListTimeSeries queries.
+  Generates Cloud Monitoring Server-Driven UI (SDUI) Widget and XyChart Protocol
+  Buffer textprotos on Google Cloud from resolved PromQL or ListTimeSeries
+  queries.
   Use when:
     - Generating valid google.monitoring.dashboard.v1.Widget textprotos,
       containing PrometheusQuery or TimeSeriesFilter datasets, for use with the Cloud Monitoring
@@ -46,6 +48,15 @@ dashboard provisioning pipelines.
 >     strongly prefixed with "Wrote widget textproto to:". You MUST parse this
 >     exact prefix from the logs to extract the generated path and use it for
 >     validation in Stage 4.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:cloud-monitoring-chart-generation)"`
+and append `agent-skills/1.0 (skill:cloud-monitoring-chart-generation)` to `User-Agent` headers.
 
 ## Prerequisites: Environment Setup
 

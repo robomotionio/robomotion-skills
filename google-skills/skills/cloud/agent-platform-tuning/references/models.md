@@ -1,5 +1,7 @@
 # Agent Platform Supported Models and Recommendations
 
+
+
 This reference catalog provides technical specifications, tuning
 recommendations, and deployment hardware requirements for supported models in
 Agent Platform.
@@ -81,30 +83,46 @@ size.
 
 The **Resource name** column is the exact value to pass to `--base_model`.
 
-| Model | Resource name for `--base_model` | Tuning Mode | Learning Rate | Epochs | Adapter Size (PEFT) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Gemma 4 E2B IT | `google/gemma4@gemma-4-e2b-it` | PEFT | 2.0E-4 | 3 | 16 |
-| Gemma 4 E4B IT | `google/gemma4@gemma-4-e4b-it` | PEFT | 2.0E-4 | 3 | 16 |
-| Gemma 4 26B A4B IT | `google/gemma4@gemma-4-26b-a4b-it` | PEFT | 2.0E-4 | 3 | 16 |
-| Gemma 4 31B IT | `google/gemma4@gemma-4-31b-it` | PEFT | 2.0E-4 | 3 | 16 |
-| Gemma 3 1B IT | `google/gemma3@gemma-3-1b-it` | Full | 2.0E-5 | 3 | N/A |
-| Gemma 3 4B IT | `google/gemma3@gemma-3-4b-it` | Full | 1.0E-5 | 3 | N/A |
-| Gemma 3 12B IT | `google/gemma3@gemma-3-12b-it` | Full | 1.0E-5 | 3 | N/A |
-| Gemma 3 27B IT | `google/gemma3@gemma-3-27b-it` | PEFT | 2.0E-4 | 3 | 32 |
-| Gemma 3 27B IT | `google/gemma3@gemma-3-27b-it` | Full | 2.0E-4 | 3 | N/A |
-| Medgemma 1.5 4B IT | `google/medgemma@medgemma-1.5-4b-it` | Full | 1.0E-5 | 3 | N/A |
-| Llama 3.1 8B | `meta/llama3_1@llama-3.1-8b` | PEFT | 2.0E-4 | 3 | 16 |
-| Llama 3.1 8B | `meta/llama3_1@llama-3.1-8b` | Full | 2.0E-4 | 3 | N/A |
-| Llama 3.1 8B Instruct | `meta/llama3_1@llama-3.1-8b-instruct` | PEFT | 2.0E-4 | 3 | 16 |
-| Llama 3.1 8B Instruct | `meta/llama3_1@llama-3.1-8b-instruct` | Full | 2.0E-4 | 3 | N/A |
-| Llama 3.2 1B Instruct | `meta/llama3-2@llama-3.2-1b-instruct` | Full | 1.5E-6 | 3 | N/A |
-| Llama 3.2 3B Instruct | `meta/llama3-2@llama-3.2-3b-instruct` | Full | 1.0E-7 | 3 | N/A |
-| Llama 3.3 70B Instruct | `meta/llama3-3@llama-3.3-70b-instruct` | PEFT | 5.0E-5 | 3 | 16 |
-| Llama 3.3 70B Instruct | `meta/llama3-3@llama-3.3-70b-instruct` | Full | 5.0E-5 | 3 | N/A |
-| Llama 4 Scout 17B 16E Instruct | `meta/llama4@llama-4-scout-17b-16e-instruct` | PEFT | 2.0E-5 | 3 | 16 |
-| Qwen 3.5 9B | `qwen/qwen3-5@qwen3.5-9b` | Full | 2e-5 | 3 | N/A |
-| Qwen 3 4B | `qwen/qwen3@qwen3-4b` | Full | 7.5e-5 | 3 | N/A |
-| Qwen 3 8B | `qwen/qwen3@qwen3-8b` | Full | 5e-5 | 3 | N/A |
-| Qwen 3 14B | `qwen/qwen3@qwen3-14b` | Full | 4e-5 | 3 | N/A |
-| Qwen 3 32B | `qwen/qwen3@qwen3-32b` | PEFT | 2.0E-4 | 3 | 16 |
-| Qwen 3 32B | `qwen/qwen3@qwen3-32b` | Full | 2.5e-5 | 3 | N/A |
+Model                          | Resource name for `--base_model`             | Tuning Mode | Learning Rate | Epochs | Adapter Size (PEFT)
+:----------------------------- | :------------------------------------------- | :---------- | :------------ | :----- | :------------------
+Gemma 4 E2B IT                 | `google/gemma4@gemma-4-e2b-it`               | PEFT        | 2.0E-4        | 3      | 16
+Gemma 4 E4B IT                 | `google/gemma4@gemma-4-e4b-it`               | PEFT        | 2.0E-4        | 3      | 16
+Gemma 4 26B A4B IT             | `google/gemma4@gemma-4-26b-a4b-it`           | PEFT        | 2.0E-4        | 3      | 16
+Gemma 4 31B IT                 | `google/gemma4@gemma-4-31b-it`               | PEFT        | 2.0E-4        | 3      | 16
+Gemma 3 1B IT                  | `google/gemma3@gemma-3-1b-it`                | Full        | 2.0E-5        | 3      | N/A
+Gemma 3 4B IT                  | `google/gemma3@gemma-3-4b-it`                | Full        | 1.0E-5        | 3      | N/A
+Gemma 3 12B IT                 | `google/gemma3@gemma-3-12b-it`               | Full        | 1.0E-5        | 3      | N/A
+Gemma 3 27B IT                 | `google/gemma3@gemma-3-27b-it`               | PEFT        | 2.0E-4        | 3      | 32
+Gemma 3 27B IT                 | `google/gemma3@gemma-3-27b-it`               | Full        | 2.0E-4        | 3      | N/A
+Medgemma 1.5 4B IT             | `google/medgemma@medgemma-1.5-4b-it`         | Full        | 1.0E-5        | 3      | N/A
+Llama 3.1 8B                   | `meta/llama3_1@llama-3.1-8b`                 | PEFT        | 2.0E-4        | 3      | 16
+Llama 3.1 8B                   | `meta/llama3_1@llama-3.1-8b`                 | Full        | 2.0E-4        | 3      | N/A
+Llama 3.1 8B Instruct          | `meta/llama3_1@llama-3.1-8b-instruct`        | PEFT        | 2.0E-4        | 3      | 16
+Llama 3.1 8B Instruct          | `meta/llama3_1@llama-3.1-8b-instruct`        | Full        | 2.0E-4        | 3      | N/A
+Llama 3.2 1B Instruct          | `meta/llama3-2@llama-3.2-1b-instruct`        | Full        | 1.5E-6        | 3      | N/A
+Llama 3.2 3B Instruct          | `meta/llama3-2@llama-3.2-3b-instruct`        | Full        | 1.0E-7        | 3      | N/A
+Llama 3.3 70B Instruct         | `meta/llama3-3@llama-3.3-70b-instruct`       | PEFT        | 5.0E-5        | 3      | 16
+Llama 3.3 70B Instruct         | `meta/llama3-3@llama-3.3-70b-instruct`       | Full        | 5.0E-5        | 3      | N/A
+Llama 4 Scout 17B 16E Instruct | `meta/llama4@llama-4-scout-17b-16e-instruct` | PEFT        | 2.0E-5        | 3      | 16
+Qwen 3.6 27B                   | `qwen/qwen3-6@qwen3.6-27b`                   | PEFT        | 8.0E-4        | 3      | 16
+Qwen 3.6 35B A3B               | `qwen/qwen3-6@qwen3.6-35b-a3b`               | PEFT        | 5.0E-4        | 1      | 16
+Qwen 3.5 9B                    | `qwen/qwen3-5@qwen3.5-9b`                    | Full        | 2e-5          | 3      | N/A
+Qwen 3 4B                      | `qwen/qwen3@qwen3-4b`                        | Full        | 7.5e-5        | 3      | N/A
+Qwen 3 8B                      | `qwen/qwen3@qwen3-8b`                        | Full        | 5e-5          | 3      | N/A
+Qwen 3 14B                     | `qwen/qwen3@qwen3-14b`                       | Full        | 4e-5          | 3      | N/A
+Qwen 3 32B                     | `qwen/qwen3@qwen3-32b`                       | PEFT        | 2.0E-4        | 3      | 16
+Qwen 3 32B                     | `qwen/qwen3@qwen3-32b`                       | Full        | 2.5e-5        | 3      | N/A
+GLM 4.7 Flash                  | `zai-org/glm-4.7-flash@glm-4.7-flash`        | PEFT        | 2.0E-4        | 1      | 16
+
+## Supported Gemini Models for Supervised Fine-Tuning
+
+| Model Display Name | Base Model Identifier for `base_model` / `source_model` | Recommended Use Case |
+| :--- | :--- | :--- |
+| Gemini 2.5 Flash | `gemini-2.5-flash` | **Default / Recommended** for fast turnaround, coding, math reasoning, and chat tasks. |
+| Gemini 2.5 Flash Lite | `gemini-2.5-flash-lite` | Ultra-lightweight and fastest turnaround. |
+| Gemini 2.5 Pro | `gemini-2.5-pro` | Complex multi-turn coding and advanced algorithmic reasoning. |
+
+> [!CAUTION] **UNSUPPORTED / DEPRECATED GEMINI MODELS** Do NOT use or recommend
+> `gemini-1.5-flash-002`, `gemini-1.5-pro-002`, or `gemini-1.5-flash` for
+> tuning. The tuning service rejects them with `INVALID_ARGUMENT: Base model ...
+> is not supported`. Always propose `gemini-2.5-flash` instead.

@@ -4,19 +4,31 @@ description: >-
   Improves GKE workload reliability, using PDBs, health probes, and topology
   spread constraints. Use when configuring GKE workload reliability, setting up
   PDBs, or configuring GKE health probes (liveness, readiness, startup). Don't
-  use for disaster recovery setup or full cluster backups (use gke-backup-dr
-  instead).
+  use for generating K8s YAML manifests (use gke-manifest-generation) or
+  disaster recovery and cluster backups (use gke-backup-dr).
 metadata:
+  version: "1.0.2"
   category: Containers
 ---
 
 # GKE Reliability
+
+> **Routing Note:** To generate Kubernetes YAML manifests (`Deployment`, `StatefulSet`, `Service`, `ConfigMap`, `HTTPRoute`, `PodDisruptionBudget`), open `gke-manifest-generation/SKILL.md`.
 
 This reference covers high availability and reliability configuration for GKE
 clusters and workloads.
 
 > **MCP Tools:** `get_cluster`, `get_k8s_resource`, `describe_k8s_resource`,
 > `apply_k8s_manifest`, `list_k8s_events`
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-reliability)"`
+and append `agent-skills/1.0 (skill:gke-reliability)` to `User-Agent` headers.
 
 ## Golden Path Reliability Defaults
 

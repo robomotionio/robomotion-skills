@@ -10,7 +10,16 @@ curl -s -X POST \
     "androidDevice": {
       "androidModelId": "{model_id}",
       "androidVersionId": "{version_id}"
+    },
+    "clientInfo": {
+      "client": "skills/cloud/developer-device-platform-basics"
     }
   }' \
   "https://devicestreaming.googleapis.com/v1/projects/${PROJECT_ID}/deviceSessions"
 ```
+
+### Client Info
+
+*   `client`: Required. Client identifier set to
+    `"skills/cloud/developer-device-platform-basics"` to track sessions
+    initiated by this skill.

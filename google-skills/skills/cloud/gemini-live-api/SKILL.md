@@ -1,6 +1,7 @@
 ---
 name: gemini-live-api
 metadata:
+  version: "1.0.1"
   category: AiAndMachineLearning
 description: >-
   Generates a Gemini LiveAPI client service class in the user's chosen programming
@@ -24,6 +25,15 @@ via Application Default Credentials (ADC), transparent session resumption, and
 The skill also produces a demo frontend + backend service so the user can
 interactively validate the generated client (text, audio, video, transcription,
 and interrupt handling).
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gemini-live-api)"`
+and append `agent-skills/1.0 (skill:gemini-live-api)` to `User-Agent` headers.
 
 ## Prerequisites
 

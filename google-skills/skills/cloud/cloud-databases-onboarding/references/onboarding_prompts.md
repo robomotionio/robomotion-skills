@@ -44,6 +44,7 @@ the user's requirements. *A "complete picture" generally requires knowing: 1)
 Data model (e.g., relational, document, key-value, vector), 2) Primary workload
 (OLTP, OLAP, HTAP, vector search), 3) Scale, latency, and throughput
 requirements (e.g., QPS, vector count, number of dimensions, index size),
+
 4) On-prem requirements and 5) Current database/migration context.
 
 **Stay in this phase until you have gathered enough
@@ -201,15 +202,34 @@ modifications. Do NOT apply changes to production directly:
     directory are not clear, ask the user explicitly to confirm the file
     paths or target directory before modifying anything.
 
-3.  **Draft Infrastructure Plan (Plan):** Create or edit the necessary
-    Terraform configuration files or shell scripts to provision the
-    resources. When creating or editing Terraform files, you MUST:
-    -   Add a stamped header comment at the top of every generated file
-        (e.g., `# Generated with cloud onboarding skills selector
-        @timestamp`).
-    -   Add a custom default tag like `resource_generated_by = "cloud db
-        onboarding skill"` under the `default_tags` block or as a resource
-        label/tag.
+3.  **Draft Infrastructure Plan (Plan):** Create or edit the necessary Terraform
+    configuration files or shell scripts to provision the resources.
+
+    -   When generating `gcloud` CLI commands or shell scripts, you MUST follow
+        and apply the `gcloud` skill instructions (`../../gcloud/SKILL.md`):
+        *   Always use `gcloud beta` command group for database provisioning
+            (e.g., `gcloud beta <group> <resource> create`).
+        *   Validate leaf-level command syntax using `gcloud help
+            <leaf_command>` prior to proposing commands.
+        *   Explicitly append `--project=<PROJECT_ID>` and explicit location
+            flags (`--region`, `--zone`, or `--location`).
+        *   Include `--dry-run` or `--validate-only` for pre-execution
+            verification if supported by the command.
+        *   Include custom label/tag flags (e.g.,
+            `--labels=resource_generated_by=cloud_db_onboarding_skill`) on
+            generated `gcloud` provisioning commands.
+        *   Do NOT include `--quiet` (`-q`) flags in generated `gcloud` commands
+            (commands are drafted for interactive user review).
+        *   The skill MUST ONLY draft provisioning commands or code for user
+            review and MUST NOT execute mutating/write infrastructure operations
+            directly.
+    -   When creating or editing Terraform files or shell scripts, you MUST:
+        *   Add a stamped header comment at the top of every generated file
+            (e.g., `# Generated with cloud onboarding skills selector
+            @timestamp`).
+        *   Add a custom default tag like `resource_generated_by = "cloud db
+            onboarding skill"` under the `default_tags` block or as a resource
+            label/tag.
 
 4.  **Validate Infrastructure Code (Validate):** Before finalizing, validate
     the drafted infrastructure code to verify syntax and configuration

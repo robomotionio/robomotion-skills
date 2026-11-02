@@ -1,12 +1,22 @@
 ---
 name: gke-ai-troubleshooting-handle-disruption-gpu-tpu
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 description: >-
   Diagnoses, predicts, and mitigates node disruptions during Compute Engine host maintenance and hardware or software maintenance events for GPU and TPU workloads on GKE. Use when diagnosing node disruptions, predicting host maintenance events on GPU/TPU nodepools, inspecting node interruption PromQL metrics, auditing node taints, or configuring workload protection strategies (graceful termination, opportunistic maintenance, PodDisruptionBudgets). Don't use for general GKE cluster creation, network policy configuration, or non-disruption workload deployment.
 ---
 
 # Handle Disruption on GPUs and TPUs Troubleshooting
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-ai-troubleshooting-handle-disruption-gpu-tpu)"`
+and append `agent-skills/1.0 (skill:gke-ai-troubleshooting-handle-disruption-gpu-tpu)` to `User-Agent` headers.
 
 ## 🔍 Diagnostic Workflow
 

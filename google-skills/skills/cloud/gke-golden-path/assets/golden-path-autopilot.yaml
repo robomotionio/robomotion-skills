@@ -1,6 +1,5 @@
 # Golden Path Autopilot Configuration (cluster-level policy settings only)
 # Condensed from `gcloud container clusters describe` export.
-# Full export: resources/recommended-ap.yaml
 #
 # Autopilot manages all node pools, node config, and provisioning defaults
 # automatically. Only cluster-level policy decisions are shown here.
@@ -20,7 +19,9 @@ addonsConfig:
   kubernetesDashboard:
     disabled: true
   networkPolicyConfig:
-    disabled: true
+    disabled: true                      # Calico addon not needed: Dataplane V2
+                                        # (ADVANCED_DATAPATH) enforces
+                                        # NetworkPolicy natively
   parallelstoreCsiDriverConfig:
     enabled: true
   rayOperatorConfig: {}
@@ -47,7 +48,10 @@ autoscaling:
 
 # --- Security ---
 binaryAuthorization:
-  evaluationMode: DISABLED
+  evaluationMode: DISABLED              # Optional hardening, off by default in
+                                        # this golden path; enable for supply-
+                                        # chain attestation — see the
+                                        # gke-platform-security skill
 controlPlaneEndpointsConfig:
   dnsEndpointConfig:
     allowExternalTraffic: true          # Customer-configurable
@@ -91,7 +95,11 @@ ipAllocationPolicy:
   stackType: IPV4
   useIpAliases: true
 defaultMaxPodsConstraint:
-  maxPodsPerNode: '48'                  # Customer-configurable (48 or 110)
+  maxPodsPerNode: '48'                  # This golden path's chosen value —
+                                        # halves per-node IP consumption (/25
+                                        # instead of /24). Not a GKE default
+                                        # (Standard: 110, Autopilot: 32).
+                                        # Customer-configurable.
 
 # --- Logging ---
 loggingConfig:
@@ -124,13 +132,16 @@ monitoringConfig:
     enabled: true
 
 # --- Maintenance ---
+# Default control: release channel + a recurring maintenance window.
+# Use targeted maintenance exclusions only for critical freezes, and keep them
+# under ~6 months — see the gke-upgrades skill for exclusion scopes and limits.
 maintenancePolicy:
   window:
-    maintenanceExclusions:
-      blackout-1:
-        maintenanceExclusionOptions:
-          scope: NO_MINOR_UPGRADES
-        # 1-year exclusion window (customer-configurable dates)
+    recurringWindow:
+      recurrence: FREQ=WEEKLY;BYDAY=SA,SU   # Customer-configurable schedule
+      window:
+        startTime: <START_TIME>             # e.g. 2026-01-01T04:00:00Z
+        endTime: <END_TIME>                 # e.g. 2026-01-01T12:00:00Z
 
 # --- Upgrades ---
 releaseChannel:
@@ -144,4 +155,4 @@ verticalPodAutoscaling:
 # Autopilot manages all node pools, node config (disk, machine type, shielded
 # instances, gvnic, gcfs, workload metadata mode), and upgrade strategy
 # automatically. These are not user-configurable in Autopilot mode.
-# See resources/recommended-ap.yaml for the full describe output.
+# Run `gcloud container clusters describe` on a live cluster for the full output.

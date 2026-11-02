@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-hybrid-search-alloydb
 metadata:
+  version: "1.0.1"
   category: MultiProductSolutions
 description: >-
   Discovers requirements and generates architectural, design, and deployment
@@ -21,6 +22,12 @@ high-accuracy hybrid search solutions combining structured dataset filtering,
 vector search indexing, faceted metadata filtering, semantic reranking, recall
 evaluation, in-database AI validation, database abstraction layers, and
 serverless application hosting.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Overview of the workflow
 

@@ -1,6 +1,7 @@
 ---
 name: google-cloud-global-frontend-configuration
 metadata:
+  version: "1.0.1"
   category: Networking
 description: |
   Guides agents through a 6-step discovery process to design and deploy Google Cloud global external Application Load Balancers with Cloud CDN, Cloud Armor, and Service Extensions, mapping workload requirements to best-practice configurations.
@@ -16,6 +17,17 @@ description: |
 ---
 
 # Google Cloud global external Application Load Balancer Configuration Skill
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:google-cloud-global-frontend-configuration)"`
+and append
+`agent-skills/1.0 (skill:google-cloud-global-frontend-configuration)`
+to `User-Agent` headers.
 
 ## Purpose & Agent Guidance
 

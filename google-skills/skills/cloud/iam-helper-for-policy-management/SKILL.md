@@ -10,6 +10,7 @@ description: >-
   iam-helper-for-privileged-access-management), configuring VPC Service
   Controls, or managing network firewall rules.
 metadata:
+  version: "1.0.1"
   category: Security
 ---
 
@@ -17,6 +18,12 @@ metadata:
 
 Orchestrates the lifecycle and management of IAM allow and deny policies across
 IAM v1 (allow policies) and IAM v2 (deny policies).
+
+## Usage Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 --------------------------------------------------------------------------------
 

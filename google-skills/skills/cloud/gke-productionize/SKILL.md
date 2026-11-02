@@ -1,6 +1,7 @@
 ---
 name: gke-productionize
 metadata:
+  version: "1.0.1"
   category: Containers
 description: Orchestrates comprehensive production readiness reviews and assessments for GKE clusters and workloads across scalability, security, reliability, observability, backup/DR, and cost optimization. Use when asked to productionize, prepare, assess, audit, or review a GKE cluster or workload before going live to production. Don't use for deep-dive single-domain implementation (use specific domain skills like gke-workload-scaling, gke-platform-security, gke-workload-security, gke-service-networking, gke-reliability instead).
 ---
@@ -17,6 +18,15 @@ workloads for production readiness.
 > implement all production readiness features directly within this skill;
 > instead, use this skill to assess the environment and then delegate to the
 > specific skills for each domain.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-productionize)"`
+and append `agent-skills/1.0 (skill:gke-productionize)` to `User-Agent` headers.
 
 ## Scope
 
