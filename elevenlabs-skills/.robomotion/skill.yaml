@@ -2,7 +2,7 @@ schema_version: 1
 name: elevenlabs-skills
 title: ElevenLabs Skills
 type: group
-version: 81f1eafc65c9
+version: 9a1a4b7fbb6c
 author: ElevenLabs
 source_url: https://github.com/elevenlabs/skills
 license: MIT
