@@ -13,7 +13,7 @@ description: >
 metadata:
   author: Google
   license: Apache-2.0
-  version: 1.8.0
+  version: 1.11.0
   requires:
     bins:
       - agents-cli
@@ -39,7 +39,7 @@ clone the repo and read the one matching the capability you need before implemen
 Do NOT write agent code until a project is scaffolded.
 
 1. Verify project: run `agents-cli info` (proceed if config exists).
-2. New project: run `agents-cli scaffold create <name>` — add `--agent adk_go` for Go.
+2. New project: run `agents-cli scaffold create <name> --agent adk --deployment-target <target>` — use `--agent adk_go` for Go.
 3. Existing code: run `agents-cli scaffold enhance .`.
 
 ## Quick Reference — Most Common Patterns
