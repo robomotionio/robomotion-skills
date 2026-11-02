@@ -2,7 +2,9 @@
 
 Provision Azure resources when needed, deploy the agent, and smoke-test it.
 For **hosted agents** (custom container or code), use `azd deploy`.
-For **prompt agents** (LLM + instructions, no custom code), use the Foundry MCP `agent_update` tool.
+For **Voice Agents**, use `azd deploy` and smoke-test over the `voice` WebSocket endpoint.
+For **Managed Harness Agents** (`kind: prompt` plus the GitHub Copilot harness), use `azd deploy`.
+For **ordinary prompt agents**, use the Foundry MCP `agent_update` tool.
 
 ## Quick Reference
 
@@ -10,15 +12,20 @@ For **prompt agents** (LLM + instructions, no custom code), use the Foundry MCP 
 |----------|-------|
 | Hosted (recommended) | `azd provision` when needed, code deploy via `azd deploy` (`codeConfiguration` present), then verify and invoke |
 | Hosted (container) | `azd provision` when needed, container deploy via `azd deploy` (remote builds require a Dockerfile and ACR; local builds also require Docker; no `codeConfiguration:` in the `azure.yaml` service block) |
+| Voice (Prompt Voice) | `azd provision` when needed, declarative `azd deploy`, then verify over the `voice` WebSocket endpoint (`azd ai agent invoke` is not supported) |
+| Voice (Hosted Voice) | `azd provision` when needed, `azd deploy` for both the `kind: hosted` target and `kind: voice` wrapper, report both versions separately, and smoke-test the wrapper over the `voice` WebSocket endpoint |
+| Managed Harness Agent | `azd provision` when needed, then declarative `azd deploy`; no code/container packaging |
 | Prompt MCP | `agent_definition_schema_get`, `agent_update`, `agent_get`, `agent_delete` |
 | Versioning | Each successful `azd deploy` creates an immutable agent version |
 | Endpoint-only patch | `azd ai agent endpoint update` (no new version) |
-| Local dev | [create-hosted](../create/create-hosted.md), [local-run](../create/references/local-run.md) |
+| Local dev | [create-hosted](../create/create-hosted.md), [create-voice](../create/create-voice.md), [local-run](../create/references/local-run.md) |
 
-## Hosted vs Prompt
+## Route by Agent Type
 
-- Shipping Python / .NET code -> **Hosted** (azd workflow below).
-- Updating only model / instructions / tools -> **Prompt** (MCP workflow below).
+- Voice Agent (single-agent Prompt Voice or two-agent Hosted Voice wrapper + `kind: hosted` target) -> **Voice** (azd Voice workflow below).
+- Shipping Python / .NET code (`kind: hosted`) -> **Hosted** (azd workflow below).
+- Explicit `kind: prompt` plus `harness.type: github_copilot_preview` -> **Managed Harness Agent** (azd workflow below).
+- Ordinary Prompt Agent model / instructions / tools -> **Prompt** (MCP workflow below).
 
 ## Deploy Mode Selection -- Hosted agents
 
@@ -129,12 +136,16 @@ environment:
 - `AZURE_AI_MODEL_DEPLOYMENT_NAME`
 - `AZURE_TENANT_ID`
 
+For Python, verify that `<service-dir>/.agentignore` excludes `.venv/`, adding the rule if missing.
+
 #### Container deploy
 
 Complete the [Container Deploy Precheck](references/container-deploy.md)
 before continuing.
 
 ### Step 4 -- Deploy the agent
+
+> **Private package index:** If `azd deploy` fails and the user's `uv.lock` points to a private Python package index, the Foundry service might be unable to access the index when installing dependencies. Guide the user to regenerate `uv.lock` using the public PyPI index, or export the locked dependencies to a `requirements.txt` file with pinned versions, and then retry the deployment.
 
 ```bash
 azd deploy --no-prompt
@@ -252,9 +263,91 @@ Each env has its own `AGENT_<SVC>_*` vars.
 
 For deeper logs, see [troubleshoot](../troubleshoot/troubleshoot.md).
 
+## Workflow -- Managed Harness Agent (azd)
+
+A Microsoft Foundry Managed Harness Agent is a declarative Prompt Agent configuration that this workflow deploys with azd. Read [create-managed-harness](../create/create-managed-harness.md) before creating or editing it.
+
+### Step 1: Resolve and validate
+
+Inside the azd project, select the service and verify:
+
+```yaml
+host: azure.ai.agent
+kind: prompt
+harness:
+  type: github_copilot_preview
+```
+
+Reject Hosted-only code/container fields. Do not convert an ordinary Prompt or Hosted Agent in place.
+
+Resolve the active environment:
+
+```bash
+azd env get-values
+azd ai project show --output json
+azd ai agent show --output json
+```
+
+If the Agent is not deployed, continue to provisioning. If active/deployed, skip provisioning unless infrastructure changed.
+
+### Step 2: Provision when required
+
+Run `azd provision --no-prompt` only for a new Foundry project, a new model deployment, or another real infrastructure change. If no project is configured and the user did not select a new or existing project, stop and ask.
+
+A Managed Harness Agent does not require Hosted Agent source packaging, Docker, ACR, runtime, protocol, or container configuration.
+
+### Step 3: Deploy
+
+```bash
+azd deploy <service-name> --no-prompt
+```
+
+Deployment reads the Prompt Agent definition from `azure.yaml` and creates a new immutable version. It must not package source or build a container.
+
+### Step 4: Verify and invoke
+
+```bash
+azd ai agent show --output json
+```
+
+Verify the version is active/deployed and the published definition retains:
+
+- `kind: prompt`
+- `harness.type: github_copilot_preview`
+- Requested direct tools
+- Versioned Toolbox MCP endpoint, when explicitly configured
+- Versioned Skill references, when explicitly configured
+
+A successful deploy that drops the harness is a failure.
+
+Run one remote smoke invocation:
+
+```bash
+azd ai agent invoke <service-name> "hello, are you up?"
+```
+
+Follow the Managed Harness Agent branch in [invoke](../invoke/invoke.md). Do not use Hosted sessions/files/monitor and do not start evaluation generation in Phase 1.
+
+### Step 5: Hand off
+
+Show Agent name, version, project, model, harness, tools, optional Toolbox, deployment status, and smoke-test status.
+
+## Common failure modes -- Managed Harness Agent
+
+| Error | Fix |
+|---|---|
+| Deploy packages code/container | Remove Hosted-only fields and verify `kind: prompt` |
+| Published definition lacks harness | Fix `harness.type`, verify the extension version, and redeploy |
+| Tool shape rejected | Read the matching Managed Harness Agent tool reference and preserve REST field names |
+| Connection missing | Use a user-supplied/existing configured connection, or create it only on explicit request |
+
+## Workflow -- Voice Agent (azd)
+
+Follow [Voice Agent deployment](references/voice-deploy.md) for Prompt Voice and Hosted Voice provisioning, deployment order, and two-stage verification.
+
 ## Workflow -- Prompt agent (MCP)
 
-Prompt agents are not containerized -- they are a model + instructions + optional tools, created through the Foundry MCP server. Use when the user explicitly wants a prompt agent.
+Ordinary Prompt Agents are not containerized -- they are a model + instructions + optional tools, created through the Foundry MCP server. Do not use this branch for a Managed Harness Agent.
 
 ### MCP tools
 
@@ -298,7 +391,7 @@ This step runs automatically after deploy. Ask the user which source to use and 
 | Permission denied | User needs `Foundry User` role on the project. |
 | Model not found | Deploy the model first via [models/deploy-model](../../models/deploy-model/SKILL.md). |
 
-## Display agent details (both flows)
+## Display agent details
 
 After a successful deploy, show the agent's name, version, status, and endpoints in a table. Include a Playground link:
 
