@@ -30486,7 +30486,7 @@ groups:
   name: superpowers
   title: Superpowers
   type: group
-  version: 6.4.2
+  version: 7.0.1
   author: Jesse Vincent
   source_url: https://github.com/obra/superpowers
   license: MIT
@@ -30503,29 +30503,29 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 7d2ae441fa1c
+  content_hash: 06abd4adad5f
   skills:
   - id: superpowers/brainstorming
     name: brainstorming
     path: superpowers/skills/brainstorming
     title: brainstorming
-    summary: You MUST use this before any creative work - creating features, building components, adding functionality, or
-      modifying behavior. Explores user intent, requirements and design before implementation.
-    version: 6.4.2
+    summary: You MUST use this before any creative work - creating features, building components, adding functionality, modifying
+      behavior, or planning anything new, in software or out of it (a talk, a business, a renovation).
+    version: 7.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 364bb3309b1c
+    content_hash: fdf64531280b
     files:
     - SKILL.md
+    - builder-check-prompt.md
     - scripts/frame-template.html
     - scripts/helper.js
     - scripts/server.cjs
     - scripts/start-server.sh
     - scripts/stop-server.sh
-    - spec-document-reviewer-prompt.md
     - visual-companion.md
     author: Jesse Vincent
     source_url: https://github.com/obra/superpowers/tree/main/skills/brainstorming
@@ -30540,13 +30540,13 @@ groups:
       stumbles, poor results, a skill that didn't fire, "it took too long", "why is it so expensive", "what is it doing" —
       or wants to build a bug report for the superpowers maintainers, for the current session or a past one identified by
       id or path, on any harness.
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 4fc900055484
+    content_hash: 41d5660b88d1
     files:
     - SKILL.md
     - prompts/analyst-common.md
@@ -30578,7 +30578,7 @@ groups:
     path: superpowers/skills/dispatching-parallel-agents
     title: dispatching-parallel-agents
     summary: Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30598,13 +30598,13 @@ groups:
     title: executing-plans
     summary: Use when executing an implementation plan in the current session as the implementer yourself — your human partner
       chose inline execution, or no subagent tool is available
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 6929a96d5c1a
+    content_hash: 51dc855ca975
     files:
     - SKILL.md
     - scripts/task-done
@@ -30619,7 +30619,7 @@ groups:
     path: superpowers/skills/finishing-a-development-branch
     title: finishing-a-development-branch
     summary: Use when implementation is complete, all tests pass, and you need to decide how to integrate the work
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30639,7 +30639,7 @@ groups:
     title: receiving-code-review
     summary: Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear
       or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30658,13 +30658,13 @@ groups:
     path: superpowers/skills/requesting-code-review
     title: requesting-code-review
     summary: Use when completing tasks, implementing major features, or before merging to verify work meets requirements
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: e70a585c7a12
+    content_hash: da21da5cdf78
     files:
     - SKILL.md
     - code-reviewer.md
@@ -30678,17 +30678,24 @@ groups:
     path: superpowers/skills/subagent-driven-development
     title: subagent-driven-development
     summary: Use when executing implementation plans with independent tasks in the current session
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 653aba0168c8
+    content_hash: 7f2865b5034b
     files:
     - SKILL.md
     - implementer-prompt.md
     - re-review-prompt.md
+    - references/batching.md
+    - references/cannot-verify.md
+    - references/final-review.md
+    - references/fix-loop.md
+    - references/handling-reports.md
+    - references/preflight.md
+    - references/resuming.md
     - scripts/review-package
     - scripts/sdd-workspace
     - scripts/task-brief
@@ -30703,13 +30710,13 @@ groups:
     path: superpowers/skills/systematic-debugging
     title: systematic-debugging
     summary: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 37fd06e80f29
+    content_hash: 7c2628773e52
     files:
     - CREATION-LOG.md
     - SKILL.md
@@ -30732,7 +30739,7 @@ groups:
     path: superpowers/skills/test-driven-development
     title: test-driven-development
     summary: Use when implementing any feature or bugfix, before writing implementation code
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30753,7 +30760,7 @@ groups:
     title: using-git-worktrees
     summary: Use when starting feature work that needs isolation from current workspace or before executing implementation
       plans - ensures an isolated workspace exists via native tools or git worktree fallback
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30773,7 +30780,7 @@ groups:
     title: using-superpowers
     summary: Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before
       ANY response including clarifying questions
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30800,7 +30807,7 @@ groups:
     title: verification-before-completion
     summary: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running
       verification commands and confirming output before making any success claims; evidence before assertions always
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30819,7 +30826,7 @@ groups:
     path: superpowers/skills/writing-plans
     title: writing-plans
     summary: Use when you have a spec or requirements for a multi-step task, before touching code
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
@@ -30838,21 +30845,24 @@ groups:
     path: superpowers/skills/writing-skills
     title: writing-skills
     summary: Use when creating new skills, editing existing skills, or verifying skills work before deployment
-    version: 6.4.2
+    version: 7.0.1
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: eebe835f35a2
+    content_hash: 5123e7175534
     files:
     - SKILL.md
-    - anthropic-best-practices.md
-    - examples/CLAUDE_MD_TESTING.md
-    - graphviz-conventions.dot
-    - persuasion-principles.md
+    - references/CLAUDE_MD_TESTING.md
+    - references/anthropic-best-practices.md
+    - references/bulletproofing.md
+    - references/discovery.md
+    - references/flowcharts.md
+    - references/graphviz-conventions.dot
+    - references/persuasion-principles.md
+    - references/testing-skills-with-subagents.md
     - render-graphs.js
-    - testing-skills-with-subagents.md
     author: Jesse Vincent
     source_url: https://github.com/obra/superpowers/tree/main/skills/writing-skills
     license: MIT
