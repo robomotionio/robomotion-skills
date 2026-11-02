@@ -299,7 +299,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 2d2567f314af
+    content_hash: f67bd388306f
     files:
     - LICENSE.txt
     - SKILL.md
@@ -358,9 +358,24 @@ groups:
     - shared/managed-agents-events.md
     - shared/managed-agents-memory.md
     - shared/managed-agents-multiagent.md
+    - shared/managed-agents-onboarding-from-quickstart.md
+    - shared/managed-agents-onboarding-from-url.md
     - shared/managed-agents-onboarding.md
     - shared/managed-agents-outcomes.md
     - shared/managed-agents-overview.md
+    - shared/managed-agents-quickstarts/bug-hunter.md
+    - shared/managed-agents-quickstarts/contract-tracker.md
+    - shared/managed-agents-quickstarts/data-analyst.md
+    - shared/managed-agents-quickstarts/deep-researcher.md
+    - shared/managed-agents-quickstarts/explainer-video-maker.md
+    - shared/managed-agents-quickstarts/field-monitor.md
+    - shared/managed-agents-quickstarts/incident-commander.md
+    - shared/managed-agents-quickstarts/performance-tuner.md
+    - shared/managed-agents-quickstarts/sprint-retro-facilitator.md
+    - shared/managed-agents-quickstarts/structured-extractor.md
+    - shared/managed-agents-quickstarts/support-agent.md
+    - shared/managed-agents-quickstarts/support-to-eng-escalator.md
+    - shared/managed-agents-quickstarts/watchlist-scanner.md
     - shared/managed-agents-scheduled-deployments.md
     - shared/managed-agents-self-hosted-sandboxes.md
     - shared/managed-agents-tools.md
