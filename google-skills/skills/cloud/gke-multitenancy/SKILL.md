@@ -8,6 +8,7 @@ description: >-
   for single-tenant cluster configuration or general deployment instructions
   (use gke-basics or gke-app-onboarding instead).
 metadata:
+  version: "1.0.1"
   category: Containers
 ---
 
@@ -18,6 +19,15 @@ namespace isolation, RBAC planning, resource quotas, and network segmentation.
 
 > **MCP Tools:** `apply_k8s_manifest`, `get_k8s_resource`, `check_k8s_auth`,
 > `describe_k8s_resource`, `delete_k8s_resource`
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-multitenancy)"`
+and append `agent-skills/1.0 (skill:gke-multitenancy)` to `User-Agent` headers.
 
 ## When to Use
 

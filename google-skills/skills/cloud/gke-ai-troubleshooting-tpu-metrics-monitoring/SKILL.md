@@ -7,12 +7,22 @@ description: >-
   preemption interruptions, and calculating MTTR or MTBI metrics for GKE TPUs.
   Don't use for general non-TPU GKE workload monitoring or non-metric TPU debugging.
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 ---
 
 # GKE TPU Metrics Monitoring Guide
 
 This skill enables the agent to monitor GKE TPU workloads, nodes, and node pools using GKE system metrics. It helps diagnose if workload interruptions or performance issues are caused by underlying infrastructure.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-ai-troubleshooting-tpu-metrics-monitoring)"`
+and append `agent-skills/1.0 (skill:gke-ai-troubleshooting-tpu-metrics-monitoring)` to `User-Agent` headers.
 
 ## Step 0: Mandatory Context
 

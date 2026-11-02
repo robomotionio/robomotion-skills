@@ -3,9 +3,13 @@ name: gke-observability
 description: >-
   Configures GKE observability, including Cloud Logging, Cloud Monitoring, and
   managed Prometheus. Use when configuring GKE monitoring, setting up GKE logging,
-  or configuring Prometheus metrics collection. Don't use to configure local
-  application logging frameworks or external APMs outside GKE.
+  or configuring Prometheus metrics collection, and to troubleshoot Managed
+  Service for Prometheus (GMP) issues such as missing metrics, unhealthy scrape
+  targets, PodMonitoring misconfiguration, rule/alert evaluation failures, and
+  monitoring permission errors. Don't use to configure local application logging
+  frameworks or external APMs outside GKE.
 metadata:
+  version: "1.1.6"
   category: CloudObservabilityAndMonitoring
 ---
 
@@ -18,6 +22,15 @@ metrics.
 > **MCP Tools:** `get_cluster`, `list_k8s_events`, `get_k8s_logs`,
 > `get_k8s_cluster_info`, `describe_k8s_resource`. **CLI-only:** `gcloud
 > container clusters update --monitoring=...`, `gcloud logging read`
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-observability)"`
+and append `agent-skills/1.0 (skill:gke-observability)` to `User-Agent` headers.
 
 ## Golden Path Observability Defaults
 
@@ -43,6 +56,30 @@ default clusters:
 
 These are critical for diagnosing cluster-level issues (slow API responses,
 scheduling delays, stuck controllers).
+
+When recommending any control-plane metric below, always state that it is a
+Managed Service for Prometheus (GMP) metric that requires explicit enabling
+(`--monitoring=SYSTEM,API_SERVER,...` and `--enable-managed-prometheus`) and
+link to
+https://docs.cloud.google.com/kubernetes-engine/docs/how-to/control-plane-metrics:
+
+-   **API storage utilization by resource
+    (`apiserver_resource_size_estimate_bytes`)**: Use
+    `apiserver_resource_size_estimate_bytes` (grouped by `group` and `resource`)
+    to identify which Kubernetes resource types consume the most API server
+    storage bytes in etcd, complementing object counts
+    (`apiserver_storage_objects`) and total database size
+    (`apiserver_storage_size_bytes`).
+-   **Admission webhook latency and timeouts
+    (`apiserver_admission_webhook_admission_duration_seconds`)**: When API calls
+    time out or fail and mutating or validating admission webhooks are
+    suspected, query the opt-in GMP metric
+    `apiserver_admission_webhook_admission_duration_seconds` (grouped by `name`,
+    `type`, `operation`, and `rejected`) to pinpoint slow or failing webhooks;
+    also inspect `ValidatingWebhookConfiguration` /
+    `MutatingWebhookConfiguration` `timeoutSeconds`, `failurePolicy`,
+    `namespaceSelector` exclusions (such as `kube-system`), and backing webhook
+    Service/Pod health.
 
 ## Enabling Full Monitoring
 
@@ -161,6 +198,82 @@ gcloud container clusters describe <CLUSTER_NAME> --region <REGION> \
   --quiet
 ```
 
+### Control-Plane Component Logs & Slow Request Traces
+
+`kube-apiserver` component logs (`API_SERVER`) are an **optional feature that is
+not enabled by default** and must be explicitly turned on
+(`--logging=SYSTEM,WORKLOADS,API_SERVER`); always mention this and link to
+https://docs.cloud.google.com/kubernetes-engine/docs/how-to/view-logs#control_plane_logs
+when recommending `apiserver` log analysis.
+
+To diagnose which specific `kube-apiserver` requests were slow and why:
+
+1.  **Search for `trace` or `Trace` entries**: Query `apiserver` component logs
+    (`resource.type="k8s_control_plane_component" AND
+    resource.labels.component_name="apiserver"`) for `trace` or `Trace` (for
+    example, `textPayload:"Trace["`).
+2.  **How to interpret trace logs**: `kube-apiserver` uses the upstream
+    [`k8s.io/utils/trace`](https://github.com/kubernetes/utils/blob/master/trace/README.md)
+    package (`trace.go`) to log requests that exceed a latency threshold
+    (typically 500ms). Each trace header records the operation (`"List"`,
+    `"Get"`, `"Create"`, `"Patch"`), `url`, `user-agent`, `audit-id`, `client`
+    IP, start timestamp, and `total time`. Below the header, nested sub-traces
+    appear in brackets `[...]` and sequential steps exceeding the step threshold
+    appear as `---"<StepName>" <duration>ms`.
+3.  **Example trace logs for typical problems**:
+    -   **Slow etcd / storage read or write** (`List(recursive=true) etcd3` or
+        `GuaranteedUpdate etcd3` dominates `total time`):
+        ```text
+        I1015 11:36:56.835120      10 trace.go:236] Trace[123456789]: "List" url:/api/v1/pods,user-agent:my-controller/v1.0.0,audit-id:11111111-2222-3333-4444-555555555555,client:10.0.0.1 (15-Oct-2026 11:36:49.460) (total time: 7374ms):
+        Trace[123456789]: ["List(recursive=true) etcd3" 6890ms (11:36:49.461)]
+        Trace[123456789]: ---"Objects listed" 6891ms (11:36:56.352)
+        Trace[123456789]: ---"SerializeObject" 480ms (11:36:56.832)
+        ```
+    -   **Slow client / response streaming bottleneck** (`"Objects listed"` is
+        fast, but `"SerializeObject"` and `---"Write call succeeded"` or
+        `---"Write call failed"` dominate `total time` because a slow or
+        bandwidth-constrained client takes seconds to read a large response
+        payload):
+        ```text
+        I1015 11:40:12.104512      10 trace.go:236] Trace[987654321]: "List" url:/api/v1/pods,user-agent:slow-watcher/v0.1,audit-id:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee,client:10.0.0.2 (15-Oct-2026 11:40:01.002) (total time: 11102ms):
+        Trace[987654321]: ---"Objects listed" 45ms (11:40:01.047)
+        Trace[987654321]: ["SerializeObject" 11055ms (11:40:01.047)]
+        Trace[987654321]: ---"Write call succeeded" 11054ms (11:40:12.101)
+        ```
+4.  **Upstream documentation & future evolution (always cite both)**: Always
+    link to https://github.com/kubernetes/utils/blob/master/trace/README.md as
+    the upstream OSS documentation for `trace.go`, and mention
+    https://github.com/kubernetes/enhancements/tree/master/keps/sig-instrumentation/647-apiserver-tracing
+    (KEP-647: APIServer Tracing) as a possible future change to how
+    `kube-apiserver` traces are generated (via OpenTelemetry).
+
+### Identifying Heavy API Server Clients from HTTP Access Logs
+
+To identify which clients are generating the most load on `kube-apiserver`,
+analyze the `httplog.go` HTTP access entries in `apiserver` component logs (an
+**optional feature that must be explicitly enabled** via
+`--logging=SYSTEM,WORKLOADS,API_SERVER`; always state this and link to
+https://docs.cloud.google.com/kubernetes-engine/docs/how-to/view-logs#control_plane_logs):
+
+1.  **Very stable `httplog.go` log structure (always mention this stability and
+    show an example log line)**: Explicitly advise the user that the structure
+    of `kube-apiserver` `httplog.go` logs is **very stable** across Kubernetes
+    releases (making regex extraction and Log Analytics queries reliable), and
+    include this example log line:
+    ```text
+    I1015 11:36:56.835535      10 httplog.go:137] "HTTP" verb="GET" URI="/api/v1/namespaces/default/pods" latency="7.374935s" userAgent="my-controller/v1.0.0 (linux/amd64)" audit-ID="11111111-2222-3333-4444-555555555555" srcIP="10.0.0.1:12345" apf_pl="workload-low" apf_fs="everybody" apf_iseats=1 apf_fseats=0 apf_additionalLatency="0s" apf_execution_time="7.374765s" resp=200
+    ```
+2.  **Key fields for client load analysis**:
+    -   **`user_agent`** (`userAgent` in raw log text): Identifies the client
+        binary, controller, or operator issuing the requests.
+    -   **`verb`**: Distinguishes expensive request types (such as cluster-wide
+        `LIST` or mutating `PATCH`/`UPDATE` calls) from lightweight `GET` calls.
+    -   **`apf_iseats`** (along with `apf_fseats` and `apf_execution_time`):
+        Reports the API Priority and Fairness (APF) initial concurrency seats
+        occupied by the request; weighting or summing `apf_iseats *
+        apf_execution_time` by `user_agent` and `verb` reveals which clients
+        consume the most API server concurrency capacity.
+
 ## Alerting
 
 Set up alerts for critical conditions:
@@ -196,6 +309,39 @@ A comprehensive assessment of node health relies on analyzing these two metrics 
 
 1.  **`kubernetes.io/node/status_condition`** (filtered by `status_condition="Ready"`): Use this to track healthy nodes. Note that it will only report values for nodes that have successfully bootstrapped.
 2.  **`compute.googleapis.com/instance_group/size`** (filtered by `instance_group_name="gke-<cluster_name>-.*"`): Use this to track the total number of nodes in a specific cluster. Note that it does not differentiate between healthy and unhealthy nodes.
+
+### Control Plane Health (Production Rules)
+
+To check whether Google considers a GKE cluster's control plane healthy, use the
+**`kubernetes.io/cluster/kcp_healthchecks`** system metric (on the `k8s_cluster`
+monitored resource, included in the default `SYSTEM` metrics package):
+
+1.  **Metric semantics**: `kubernetes.io/cluster/kcp_healthchecks` is an
+    incremental (`DELTA` / `CUMULATIVE` counter) metric sampled every 60 seconds
+    that counts Google-internal control plane probes, labeled by boolean
+    `success` (`"true"` or `"false"`).
+2.  **Charting health ratio**: Because the metric is an incremental counter
+    rather than a boolean gauge, chart control plane availability by dividing
+    the rate of successful checks (`success="true"`) by the overall rate of
+    checks across all `success` values:
+
+```promql
+sum by (project_id, location, cluster_name) (
+  rate(
+    kubernetes_io:cluster_kcp_healthchecks{
+      monitored_resource="k8s_cluster", success="true"
+    }[5m]
+  )
+)
+/
+sum by (project_id, location, cluster_name) (
+  rate(
+    kubernetes_io:cluster_kcp_healthchecks{
+      monitored_resource="k8s_cluster"
+    }[5m]
+  )
+)
+```
 
 ## Cost Considerations
 
@@ -258,10 +404,93 @@ resource.type="k8s_event" AND jsonPayload.reason="FailedScheduling"
 resource.type="k8s_cluster" AND logName:"cloudaudit.googleapis.com"
 ```
 
+## Troubleshooting Managed Prometheus (GMP)
+
+Diagnose GMP ingestion, rule, and query problems. Stay read-only (`kubectl get`
+/ `describe` / `logs`) and propose config changes; do not mutate live resources
+directly.
+
+### First: split ingestion-side vs query-side
+
+Before anything else, query the `up` metric in the **Metrics Explorer PromQL
+tab** in Cloud Monitoring. If `up` returns data, ingestion works and the problem
+is query-side (Grafana / PromQL / permissions). If `up` is empty, the problem is
+ingestion-side (collectors, scrape config, or write permission).
+
+### Ingestion-side
+
+1.  **Check GMP system pods.** They run in `gmp-system` on Standard clusters and
+    `gke-gmp-system` on Autopilot. Look for `gmp-operator`, `collector`
+    (DaemonSet), and `rule-evaluator` not `Running` or with high restarts:
+
+    ```bash
+    kubectl get pods -n gmp-system            # gke-gmp-system on Autopilot
+    kubectl logs -n gmp-system -l app.kubernetes.io/name=collector -c prometheus
+    ```
+
+    A collector in `CrashLoopBackOff` with `OOMKilled` usually means high metric
+    cardinality - drop unneeded series/labels (see cost section below) or apply a
+    VPA to the collector.
+
+2.  **Check PodMonitoring / ClusterPodMonitoring.** The three classic mistakes:
+    - `spec.selector.matchLabels` does not match the target Pod labels.
+    - A `PodMonitoring` only discovers targets **in its own namespace** - use
+      `ClusterPodMonitoring` for cluster-wide scope.
+    - `spec.endpoints.port` must reference the **named** container port (e.g.
+      `port: web`), not the port number.
+
+3.  **Enable target status for scrape errors.** Propose patching
+    `OperatorConfig` in `gmp-public` with `features.targetStatus.enabled: true`;
+    once applied, `kubectl describe podmonitoring <name>` and read `Active Targets`,
+    `Unhealthy Targets`, and `Last Error` (for example `connection refused`, HTTP 404,
+    `context deadline exceeded`). Disable it again when done - it can OOM the
+    operator on large clusters.
+
+### Permissions (403 / no data written)
+
+GMP components inherit the **node service account**. Ingestion needs
+`roles/monitoring.metricWriter` (error `Permission monitoring.timeSeries.create
+denied` in collector logs); the `rule-evaluator` and query paths need
+`roles/monitoring.viewer` (403 / `PermissionDenied`). If a query app (like
+Grafana) uses Workload Identity, the bound Google service account also needs
+`roles/monitoring.viewer`.
+
+### Rule and alert evaluation
+
+Rule scope is decided by the resource kind: `Rules` (single namespace),
+`ClusterRules` (whole cluster), and `GlobalRules` (all data in the metrics
+scope). You **must** use `GlobalRules` to write rules against Cloud Monitoring
+metrics - a `Rules`/`ClusterRules` resource silently returns no data for them.
+Check `rule-evaluator` logs (`-c evaluator`) for parse/permission errors.
+
+### Query-side (Grafana / PromQL)
+
+-   **Data source** must point at the GMP frontend query proxy, not
+    `localhost:9090`, and the HTTP **Method must be GET** - `POST` fails with
+    `no match[] parameter provided`.
+-   **Grafana template variables:** use the two-argument form
+    `label_values(<metric>, <label>)`; the single-argument
+    `label_values(<label>)` is not supported by the GMP API.
+-   **Cloud Monitoring metrics** that exist for multiple resource types need a
+    `monitored_resource` label matcher, otherwise the query fails with
+    `series selector must specify a label matcher on monitored resource name`.
+
+### Cost, cardinality, and quota
+
+Use the Cloud Monitoring **Metrics Management** page to find the metrics driving
+billable samples and high cardinality. Reduce them with `metricRelabeling` in
+the `PodMonitoring` (`action: drop` for whole metrics, `action: labeldrop` for
+unbounded labels like `user_id`/`request_id`) or by raising the scrape
+`interval`. `429` / `RESOURCE_EXHAUSTED` errors mean you have hit the Cloud
+Monitoring API ingestion or query quota - optimize first, then request a quota
+increase.
+
 ## Supporting Links
 
 -   [GKE system metrics](https://docs.cloud.google.com/monitoring/api/metrics_kubernetes)
 -   [GKE Observability Documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/observability)
 -   [Google Cloud Managed Service for Prometheus](https://cloud.google.com/stackdriver/docs/managed-prometheus)
+-   [Troubleshoot Managed Service for Prometheus](https://docs.cloud.google.com/stackdriver/docs/managed-prometheus/troubleshooting.md.txt)
+-   [Rule evaluation (Rules / ClusterRules / GlobalRules)](https://docs.cloud.google.com/stackdriver/docs/managed-prometheus/rules-managed.md.txt)
 -   [Cloud Logging Query Language (LQL)](https://cloud.google.com/logging/docs/view/logging-query-language)
 -   [Google Cloud Monitoring Alerts](https://cloud.google.com/monitoring/alerts)

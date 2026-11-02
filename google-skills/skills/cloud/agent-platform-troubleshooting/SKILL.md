@@ -5,6 +5,7 @@ description: >-
   Use when agent requests fail with 403 (especially unauthorized egress), Agent Runtime queries return 500, or gateway/IAP logs show permission errors.
   Don't use for general Google Cloud Identity and Access Management (IAM) debugging or networking issues unrelated to the Agent Platform stack.
 metadata:
+  version: "1.0.1"
   category: AiAndMachineLearning
 ---
 
@@ -20,6 +21,17 @@ metadata:
 Diagnose issues across the Google Cloud Gemini Enterprise Agent Platform: Agent
 Gateway, Agent Registry (Agents / MCP Servers / Endpoints), Agent Identity,
 Policies, IAP-delegated authorization, and service extensions.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:agent-platform-troubleshooting)"`
+and append
+`agent-skills/1.0 (skill:agent-platform-troubleshooting)`
+to `User-Agent` headers.
 
 ## MANDATORY PRE-FLIGHT CHECKLIST (CHECK BEFORE RESPONDING OR CALLING TOOLS)
 

@@ -7,6 +7,7 @@ description: >-
   requests, or selecting Spot VMs and machine types. Don't use for general
   compute class provisioning or GPU Selection (use gke-compute-classes instead).
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 ---
 
@@ -14,6 +15,15 @@ metadata:
 
 This reference covers strategies and workflows for reducing Google Kubernetes
 Engine (GKE) costs while maintaining a secure and reliable posture.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-cost-optimization)"`
+and append `agent-skills/1.0 (skill:gke-cost-optimization)` to `User-Agent` headers.
 
 ## Workflows & Optimization Strategies
 

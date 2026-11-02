@@ -1,6 +1,7 @@
 ---
 name: iam-helper-for-privileged-access-management
 metadata:
+  version: "1.0.1"
   category: Security
 description: >-
   Manages the end-to-end lifecycle of on-demand, temporary access using
@@ -16,6 +17,12 @@ description: >-
 This skill provides step-by-step guidance for planning, validating, and
 executing Privileged Access Manager (PAM) entitlement CRUD operations, approval
 workflow configurations, access elevations, and grant approval/denial workflows.
+
+## Usage Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Table of Contents
 

@@ -7,6 +7,7 @@ description: >-
   general GKE cluster administration or upgrades (use gke-basics or
   gke-upgrades instead).
 metadata:
+  version: "1.0.1"
   category: Containers
 ---
 
@@ -17,6 +18,15 @@ to GKE for the first time.
 
 > **MCP Tools:** `apply_k8s_manifest`, `get_k8s_resource`,
 > `get_k8s_rollout_status`, `get_k8s_logs`, `describe_k8s_resource`
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-app-onboarding)"`
+and append `agent-skills/1.0 (skill:gke-app-onboarding)` to `User-Agent` headers.
 
 ## Workflow
 

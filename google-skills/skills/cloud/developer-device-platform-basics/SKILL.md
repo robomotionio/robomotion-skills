@@ -5,6 +5,7 @@ description: >-
   Use when reserving remote Android devices, establishing connection tunnels, checking session status, or extending/cancelling leases.
   Don't use for iOS or local device/hardware inquiries.
 metadata:
+  version: "0.5.1"
   category: CloudInfrastructureAndServices
 ---
 
@@ -19,6 +20,15 @@ providing access to a wide variety of physical and virtual devices.
 > status checking, stopping/canceling, updating, or listing a session), always
 > verify and use the exact instructions and curl commands provided in the linked
 > reference `.md` files.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:developer-device-platform-basics)"`
+and append `agent-skills/1.0 (skill:developer-device-platform-basics)` to `User-Agent` headers.
 
 ## Authentication & Setup
 

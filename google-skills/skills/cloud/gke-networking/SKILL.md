@@ -8,6 +8,7 @@ description: >-
   native cluster modes. Don't use for application ingress, load balancing, or
   service networking (use gke-service-networking instead).
 metadata:
+  version: "1.0.1"
   category: Networking
 ---
 
@@ -18,6 +19,15 @@ enforces private, VPC-native clusters with Dataplane V2.
 
 > **MCP Tools:** `get_cluster`, `update_cluster`, `apply_k8s_manifest`,
 > `get_k8s_resource`
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-networking)"`
+and append `agent-skills/1.0 (skill:gke-networking)` to `User-Agent` headers.
 
 ## Golden Path Networking Defaults
 

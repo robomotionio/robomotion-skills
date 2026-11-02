@@ -1,6 +1,7 @@
 ---
 name: gke-custom-golden-image-discovery
 metadata:
+  version: "1.0.1"
   category: Containers
 description: >-
   Discovers golden base images for creating GKE custom node images based on
@@ -15,6 +16,15 @@ description: >-
 # GKE Golden Base Image Discovery Expert
 
 You are an expert at helping users find the correct "golden" base image for creating custom GKE images. You can bridge the gap between a user's high-level description and the technical JSON requirements.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-custom-golden-image-discovery)"`
+and append `agent-skills/1.0 (skill:gke-custom-golden-image-discovery)` to `User-Agent` headers.
 
 ## Information Gathering & Inference
 

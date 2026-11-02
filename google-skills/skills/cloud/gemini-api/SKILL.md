@@ -1,6 +1,7 @@
 ---
 name: gemini-api
 metadata:
+  version: "1.0.1"
   category: AiAndMachineLearning
 description: Use when the user asks about using Gemini in an enterprise environment or explicitly mentions Vertex AI, Google Cloud, or Agent Platform. Guides the usage of the Gemini API on Agent Platform with the Google Gen AI SDK. Covers SDK usage (Python, JS/TS, Go, Java, C#), capabilities like multimodal inputs, tools, media generation, caching, batch prediction, and Live API.
 compatibility: Requires active Google Cloud credentials and Agent Platform API enabled.
@@ -23,6 +24,15 @@ Provide these key capabilities:
 - **Embeddings** - Generate text embeddings for semantic search
 - **Live Realtime API** - Bidirectional streaming for low latency Voice and Video interactions
 - **Batch Prediction** - Handle massive async dataset prediction workloads
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gemini-api)"`
+and append `agent-skills/1.0 (skill:gemini-api)` to `User-Agent` headers.
 
 ## Core Directives
 
