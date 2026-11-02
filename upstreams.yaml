@@ -485,7 +485,7 @@ upstreams:
 - group: neon-skills
   repo: https://github.com/neondatabase/agent-skills
   track: main
-  commit: 9e4a5705922fddb540c396111a7979e0dca79cc2
+  commit: 4da86b02402ee8d00b3d365a1fccb62a812ec08e
   subdir: ''
   mode: mirror
   license: Apache-2.0
