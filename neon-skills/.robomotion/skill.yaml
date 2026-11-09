@@ -2,7 +2,7 @@ schema_version: 1
 name: neon-skills
 title: Neon Skills
 type: group
-version: 2.1.1
+version: 2.3.0
 author: Neon
 source_url: https://github.com/neondatabase/agent-skills
 license: Apache-2.0
