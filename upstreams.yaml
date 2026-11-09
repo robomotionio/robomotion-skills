@@ -5,7 +5,7 @@ upstreams:
 - group: agent-browser
   repo: https://github.com/vercel-labs/agent-browser
   track: main
-  commit: 526157cfd4ec64f45939f9ba0f10d5936aa7ac33
+  commit: 5868f7c05020e047c00e68e4abf9253cce864f41
   subdir: ''
   mode: mirror
   license: Apache-2.0
