@@ -1,7 +1,7 @@
 ---
 name: lark-apps
 version: 1.0.0
-description: "妙搭（Spark/Miaoda）应用开发与托管：应用创建、本地全栈开发、云端生成迭代、创意设计（UI mockup / 可交互原型 / 线框图 / 落地页 / 仪表盘 / 幻灯片 deck / 视觉探索）、AI相关能力和飞书平台能力或者其他外部能力集成、日志/Trace/监控指标/PV/UV 查询、环境变量管理、应用协作者与协作权限设置、应用角色与成员管理、自动化触发器（定时/记录变更/Webhook/飞书审批）。当用户要开发/新建一个系统·工具·平台·应用，或要本地开发 / 云端开发 / 修改 / 部署 / 发布 / 上线 / 拿可分享链接，或用 HTML 做页面·网站·部署到妙搭，或要设计 / design / mockup / prototype / wireframe / 做 PPT / deck / 视觉探索，或提到妙搭/Spark/Miaoda（应用运行时域名形如 *.aiforce.cloud）、应用数据库、应用文件存储、开放 API Key、可见范围、应用协作者/开发权限、应用角色/角色成员、线上日志、接口请求量、错误量、延迟、访问量、环境变量、给妙搭应用配自动化任务/定时触发/审批通过后自动触发时使用。不负责普通云盘文件上传（lark-drive）、飞书文档编辑（lark-doc）、原生幻灯片创建（lark-slides）。"
+description: "妙搭（Spark/Miaoda）应用开发与托管：应用创建、本地全栈开发、云端生成迭代、创意设计（UI mockup / 可交互原型 / 线框图 / 落地页 / 仪表盘 / 幻灯片 deck / 视觉探索）、AI相关能力和飞书平台能力或者其他外部能力集成、日志/Trace/监控指标/PV/UV 查询、环境变量管理、应用协作者与协作权限设置、应用角色与成员管理、自动化触发器（定时/记录变更/Webhook/飞书审批）。当用户要开发/新建一个系统·工具·平台·应用，或要本地开发 / 云端开发 / 修改 / 部署 / 发布 / 上线 / 拿可分享链接，或用 HTML 做页面·网站·部署到妙搭，或要设计 / design / mockup / prototype / wireframe / 做 PPT / deck / 视觉探索，或提到妙搭/Spark/Miaoda 应用（链接形如 `/app/app_xxx` 或 `/page/<token>`，运行时域名形如 *.aiforce.cloud）、应用数据库、应用文件存储、开放 API Key、可见范围、应用协作者/开发权限、应用角色/角色成员、线上日志、接口请求量、错误量、延迟、访问量、环境变量、给妙搭应用配自动化任务/定时触发/审批通过后自动触发时使用。不负责普通云盘文件上传（lark-drive）、飞书文档编辑（lark-doc）、原生幻灯片创建（lark-slides）。"
 metadata:
   requires:
     bins: ["lark-cli"]
@@ -31,13 +31,15 @@ lark-cli auth login --domain apps
 | 创建**新**应用资产、拿 app_id | `+create` | [`lark-apps-create.md`](references/lark-apps-create.md) |
 | 找已有 app_id、按名字过滤应用 | `+list --keyword <name>` | [`lark-apps-list.md`](references/lark-apps-list.md) |
 | 查单个应用详情（类型、名称、发布状态等） | `+get --app-id <app_id>` | [`lark-apps-get.md`](references/lark-apps-get.md) |
-| 改应用名或描述 | `+update` | [`lark-apps-update.md`](references/lark-apps-update.md) |
+| 改应用名、描述或图标（图标优先 `--icon-file` 传本地 png/jpeg；OpenClaw 类应用等类型不支持改图标） | `+update` | [`lark-apps-update.md`](references/lark-apps-update.md) |
 | HTML 应用 / 创意模式 — 写 HTML 页面/网站、静态页、PPT/deck、落地页、仪表盘、UI mockup、原型、线框图、视觉探索 | 加载 [`creative-design/creative-design.md`](creative-design/creative-design.md)（含完整开发与发布流程） | [`creative-design/creative-design.md`](creative-design/creative-design.md) |
 | 旧版存量 HTML 应用（无 Git 管理）继续上传已有静态产物 | `+html-publish`（仅兼容旧链路；新建 html / 创意模式 / creative-design 产物不得使用） | [`lark-apps-html-publish.md`](references/lark-apps-html-publish.md) |
 | 开发已有应用 / 初始化本地仓库（开发方式已定为本地后；先解析 app_id，勿 `+create` 新建） | `+init`（或手动 `+git-credential-init` + 原生 git）。**执行前必读** [`lark-apps-local-dev.md`](references/lark-apps-local-dev.md)，含端到端流程和领域规则 | [`lark-apps-init.md`](references/lark-apps-init.md), [`lark-apps-git-credential.md`](references/lark-apps-git-credential.md) |
-| 只要一份源码快照、不做本地开发；或要取**别人分享给你的**应用源码（你对其仓库无权限） | `+export`（下载 zip；不配 git 凭证、不建工作区）。要继续开发用 `+init` 而非本命令 | [`lark-apps-export.md`](references/lark-apps-export.md) |
+| 阅读 / 分析 / 总结一个妙搭应用的内容（任意应用模式，含创意模式应用的 `/page/<token>` 链接）；只要一份源码快照、不做本地开发；或要取**别人分享给你的**应用源码（你对其仓库无权限） | `+export`（下载 zip 后解压读源码；不配 git 凭证、不建工作区）。创意模式应用的 `/page/` 链接直接传 `--meta-token <token>`，不必先 `+get` 换 app_id。要继续开发用 `+init` 而非本命令 | [`lark-apps-export.md`](references/lark-apps-export.md) |
 | 本地开发时 `.env.local` 损坏/丢失，重新拉取启动期环境变量 | `+env-pull` | [`lark-apps-env-pull.md`](references/lark-apps-env-pull.md) |
 | 管理应用环境变量（查看/设置/删除） | `+env-list`, `+env-set`, `+env-delete` | [`lark-apps-env.md`](references/lark-apps-env.md) |
+| 网页/另一台电脑开通数据库后同步本地环境变量 | `+env-pull`（之后重启本地开发进程） | [`lark-apps-env-pull.md`](references/lark-apps-env-pull.md) |
+| 查应用是否已开启数据库；给应用开启数据库 | `+features --app-id <app_id>`；确认需求后 `+feature-enable --feature database --app-id <app_id>` | [`lark-apps-features.md`](references/lark-apps-features.md) |
 | 查线上日志、Trace、请求数、错误率、延迟、CPU、memory、PV/UV/访问量 | `+log-list`, `+log-get`, `+trace-list`, `+trace-get`, `+metric-list`, `+analytics-list` | [`lark-apps-observability.md`](references/lark-apps-observability.md) |
 | 看表 / 看结构 / 初始化多环境 / 导入导出数据 / 变更追溯 / 行级审计 / dev→online 发布 / 时间点恢复 / 查 DB 用量 | `+db-table-list`、`+db-table-get`、`+db-env-create`、`+db-data-export`/`+db-data-import`、`+db-changelog-list`、`+db-audit-status`/`+db-audit-enable`/`+db-audit-disable`/`+db-audit-list`、`+db-env-diff`/`+db-env-migrate`、`+db-recovery-diff`/`+db-recovery-apply`、`+db-quota-get` | [`lark-apps-db.md`](references/lark-apps-db.md) |
 | 逐条执行 SQL（SELECT / DML / DDL）；建表 / 改表 / 写 SQL 的平台规范 | `+db-execute` | [`lark-apps-db-execute.md`](references/lark-apps-db-execute.md)（含「平台 SQL 规范」：审计列 / RLS / `user_profile` / 禁用 SQL / PG 陷阱） |
@@ -98,7 +100,7 @@ lark-cli apps +member-settings-set --app-id <app_id> --external-access disabled 
 
 | 信号 | 判定 |
 |---|---|
-| 含数据库 / 后端持久化：登录 / 增删改查 / 报名·投票·站会存记录 / 多人协作 / 泛称"系统·工具"且明确要存数据 | `app_type=full_stack` |
+| 含数据库 / 后端持久化：登录 / 增删改查 / 报名·投票·站会存记录 / 多人协作 / 泛称"系统·工具"且明确要存数据 | `app_type=full_stack`；创建后用 `+features` 看 `database` 的 `enabled`，为 `false` 时按 [`lark-apps-features.md`](references/lark-apps-features.md) 用 `+feature-enable --feature database` 开数据库 |
 | 纯静态展示（给人"看"的物料，无 JS 交互）：PPT/deck / demo / 落地页 / 海报 / UI mockup / 线框图 / 静态仪表盘 / 视觉探索 | `app_type=html`，加载 [`creative-design/creative-design.md`](creative-design/creative-design.md)（含完整开发与发布流程） |
 | 有 JS 交互但无数据库（给人"用"的前端应用）：可交互原型 / SPA / 表单校验 / 动态计算 / 调用外部 API / 泛称"工具·系统"但未明确要存数据 | `app_type=frontend`（**默认倾向**：用户未明确提出数据库需求时默认引导 frontend，不默认 full_stack） |
 | 类型模糊（尤其"要不要存数据"不清） | **追问**，话术偏向 frontend，例："看起来是个前端应用，需要保存数据吗？"；确认要存数据再转 full_stack，确认纯展示再转 html |
@@ -108,7 +110,7 @@ lark-cli apps +member-settings-set --app-id <app_id> --external-access disabled 
 | 修改已有 + 当前目录是 `.spark/meta.json` 项目 | 直接继续本地按意图路由，不必问也不必判云端 |
 | 修改已有 + 有云端偏好 | 云端会话；未表达偏好且非本地项目 → 默认本地；判不准先问 |
 
-**类型升级**：`frontend` 应用后续需要数据库/后端能力时，本地 CLI 不提供类型升级；引导用户到云端会话（打开 `https://miaoda.feishu.cn/app/{app_id}`），用自然语言描述后端需求（如"给这个应用加登录和数据存储"）即可触发升级，无需特殊指令。
+**后续加数据库 / 类型升级**：应用后续需要数据库时，先 `+features --app-id <app_id>`：列出 `database` 且 `enabled=false` 时经用户确认后 `+feature-enable --feature database`，再 `+env-pull` 并重启本地开发进程（见 [`lark-apps-features.md`](references/lark-apps-features.md)）；没列出 `database`、`+features` 报错或服务端拒绝启用时，本地 CLI 不提供类型升级，引导用户到云端会话（打开 `https://miaoda.feishu.cn/app/{app_id}`），用自然语言描述后端需求（如"给这个应用加登录和数据存储"）即可触发升级，无需特殊指令。
 
 ## 发布态护栏
 
@@ -120,7 +122,7 @@ lark-cli apps +member-settings-set --app-id <app_id> --external-access disabled 
 - 开发态链接 `https://miaoda.feishu.cn/app/{app_id}`（full_stack / frontend 应用）：进应用编辑/开发态、管理与继续开发应用的入口，也是 frontend 升级为 full_stack 的入口（云端会话）。创意模式（html）应用开发态和发布态是同一个链接，无需额外提供开发态链接。
 - 发布态链接来源：`+release-get` 轮询 `finished` 给 `online_url` / `failed` 给 `error_logs`（html / frontend / full_stack 统一走 `+release-get`）。
 - html 应用的主链路是创意模式开发方式：按 [`lark-apps-local-dev.md`](references/lark-apps-local-dev.md) 初始化仓库、在仓库内产出 HTML 及关联文件，并通过 git commit / git push / `+release-create` / `+release-get` 发布部署。任何 git 操作（clone / pull / push）报错时，先执行 `lark-cli apps +git-credential-init --app-id <app_id> --as user` 刷新本地 Git 凭证，再重试原 git 命令。如果刷新凭证也失败，**停止并向用户报告**：原始 git 错误、凭证刷新失败原因，以及是否可能是当前环境（操作系统、沙箱）限制导致（如 macOS Keychain 在沙箱中不可用、Linux 加密文件目录不可写等）。不要改走 `+html-publish`，也不要把 `+html-publish` 当作本地开发链路的 fallback。
-- 创意模式（html）应用的链接格式为 `https://{租户域名}/page/{meta_token}`，**开发态和发布态是同一个链接**（区别于 full_stack 应用两者分开）。此链接形似飞书文档链接。`+get --app-id <meta_token>` 可获取应用信息（含 `app_id`），`+get --app-id <app_id>` 可获取 `meta_token`。看到 `/page/xxx` 链接时，它是妙搭创意模式应用，不要当成飞书文档跳过。
+- 创意模式（html）应用的链接格式为 `https://{租户域名}/page/{meta_token}`，**开发态和发布态是同一个链接**（区别于 full_stack 应用两者分开）。此链接形似飞书文档链接。`+get --app-id <meta_token>` 可获取应用信息（含 `app_id`），`+get --app-id <app_id>` 可获取 `meta_token`。看到 `/page/xxx` 链接时，它是妙搭创意模式应用，不要当成飞书文档跳过；用户要看懂 / 总结这个应用的内容时，直接 `+export --meta-token <token>` 导出源码阅读。
 
 ## 平台资源与应用源码边界
 
@@ -138,7 +140,7 @@ lark-cli apps +member-settings-set --app-id <app_id> --external-access disabled 
 
 `app_id` 必须是妙搭应用 ID（`app_` 开头）。`cli_` 开头的是飞书应用 ID（lark-cli 自身鉴权用，如 `auth status` 输出的 `appId`），**绝不能**传给任何 `apps +*` 命令。
 
-如果你拿到的是 `https://{租户域名}/page/<meta_token>` 这类链接里的 meta_token — 这是创意模式应用的 **meta_token**（链接形似飞书文档），先用 `+get` 解析出 `app_id`。如果拿到的不是链接、也不是 `app_` 开头，可能是裸 meta_token，同样先用 `+get --app-id <token>` 尝试获取应用信息，能正常返回则说明是 meta_token：
+如果你拿到的是 `https://{租户域名}/page/<meta_token>` 这类链接里的 meta_token — 这是创意模式应用的 **meta_token**（链接形似飞书文档）。只为阅读 / 导出源码时不需要 `app_id`，直接 `+export --meta-token <meta_token>`；其余命令需要 `app_id` 时，先用 `+get` 解析出 `app_id`。如果拿到的不是链接、也不是 `app_` 开头，可能是裸 meta_token，同样先用 `+get --app-id <token>` 尝试获取应用信息，能正常返回则说明是 meta_token：
 
 ```bash
 lark-cli apps +get --app-id <meta_token> -q '.data.app.app_id'
