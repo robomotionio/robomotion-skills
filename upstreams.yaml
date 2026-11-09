@@ -301,7 +301,7 @@ upstreams:
 - group: google-agents-cli
   repo: https://github.com/google/agents-cli
   track: main
-  commit: 2c3945901e8e5cc933fa94fa44d1d4aaf644b596
+  commit: f4e994044164ff6617f0799900dba0fc091ef0e3
   subdir: ''
   mode: mirror
   license: Apache-2.0
