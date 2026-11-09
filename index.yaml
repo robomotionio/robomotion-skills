@@ -7979,7 +7979,7 @@ groups:
   name: cloudflare-skills
   title: Cloudflare Skills
   type: group
-  version: 1.0.1
+  version: 1.0.3
   author: Cloudflare
   source_url: https://github.com/cloudflare/skills
   license: Apache-2.0
@@ -7996,20 +7996,20 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: bd5a4f213a3e
+  content_hash: 26223fb28f10
   skills:
   - id: cloudflare-skills/agents-sdk
     name: agents-sdk
     path: cloudflare-skills/skills/agents-sdk
     title: agents-sdk
     summary: Build, debug, or review Cloudflare Agents SDK applications using the agents package.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 92c8b2e1fb95
+    content_hash: ddc4d2584d99
     files:
     - SKILL.md
     - references/browse-the-web.md
@@ -8025,6 +8025,7 @@ groups:
     - references/queue-retries.md
     - references/routing.md
     - references/server-driven-messages.md
+    - references/skill-feedback.md
     - references/state-scheduling.md
     - references/streaming-chat.md
     - references/think.md
@@ -8043,13 +8044,13 @@ groups:
     summary: Build and troubleshoot Cloudflare Basin analytics workflows with Basin Pipelines, Basin Catalog, and Basin SQL.
       Use for streaming data into R2 Iceberg tables, managing catalogs, or querying those tables; also use for requests using
       the former Data Platform, Pipelines, R2 Data Catalog, or R2 SQL names.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7b5549d380b9
+    content_hash: 19f33d9bcc18
     files:
     - SKILL.md
     - references/catalog/README.md
@@ -8062,6 +8063,7 @@ groups:
     - references/pipelines/configuration.md
     - references/pipelines/gotchas.md
     - references/pipelines/patterns.md
+    - references/skill-feedback.md
     - references/sql/README.md
     - references/sql/api.md
     - references/sql/configuration.md
@@ -8072,6 +8074,28 @@ groups:
     license: Apache-2.0
     group: cloudflare-skills
     category: DevOps
+  - id: cloudflare-skills/cf-cli
+    name: cf-cli
+    path: cloudflare-skills/skills/cf-cli
+    title: cf-cli
+    summary: Cloudflare's official cf CLI (beta) for the public Cloudflare API and Workers projects. Use for finding and running
+      Cloudflare commands from the terminal — sign-in and profiles, cf cli search, cf schema, cf deploy/dev/build, resource
+      commands for DNS, zones, D1, KV, and R2 — and for choosing between cf and Wrangler in a project.
+    version: 1.0.3
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: f6c1f5416eee
+    files:
+    - SKILL.md
+    - references/skill-feedback.md
+    author: Cloudflare
+    source_url: https://github.com/cloudflare/skills/tree/main/skills/cf-cli
+    license: Apache-2.0
+    group: cloudflare-skills
+    category: DevOps
   - id: cloudflare-skills/cloudflare
     name: cloudflare
     path: cloudflare-skills/skills/cloudflare
@@ -8079,13 +8103,13 @@ groups:
     summary: Discover and choose Cloudflare products for apps, APIs, AI agents, storage, networking, and security. Use for
       architecture and product selection, including when the user describes a need without naming a Cloudflare product; then
       find the relevant skill or documentation.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 278367695a55
+    content_hash: 052ba488ea04
     files:
     - SKILL.md
     - references/ai-gateway/README.md
@@ -8099,39 +8123,11 @@ groups:
     - references/ai-search/configuration.md
     - references/ai-search/gotchas.md
     - references/ai-search/patterns.md
-    - references/analytics-engine/README.md
-    - references/analytics-engine/api.md
-    - references/analytics-engine/configuration.md
-    - references/analytics-engine/gotchas.md
-    - references/analytics-engine/patterns.md
-    - references/api-shield/README.md
-    - references/api-shield/api.md
-    - references/api-shield/configuration.md
-    - references/api-shield/gotchas.md
-    - references/api-shield/patterns.md
-    - references/api/README.md
-    - references/api/api.md
-    - references/api/configuration.md
-    - references/api/gotchas.md
-    - references/api/patterns.md
-    - references/argo-smart-routing/README.md
-    - references/argo-smart-routing/api.md
-    - references/argo-smart-routing/configuration.md
-    - references/argo-smart-routing/gotchas.md
-    - references/argo-smart-routing/patterns.md
-    - references/artifacts/README.md
-    - references/artifacts/api.md
-    - references/artifacts/configuration.md
     - references/bindings/README.md
     - references/bindings/api.md
     - references/bindings/configuration.md
     - references/bindings/gotchas.md
     - references/bindings/patterns.md
-    - references/bot-management/README.md
-    - references/bot-management/api.md
-    - references/bot-management/configuration.md
-    - references/bot-management/gotchas.md
-    - references/bot-management/patterns.md
     - references/browser-rendering/README.md
     - references/browser-rendering/api.md
     - references/browser-rendering/configuration.md
@@ -8142,11 +8138,6 @@ groups:
     - references/c3/configuration.md
     - references/c3/gotchas.md
     - references/c3/patterns.md
-    - references/cache-reserve/README.md
-    - references/cache-reserve/api.md
-    - references/cache-reserve/configuration.md
-    - references/cache-reserve/gotchas.md
-    - references/cache-reserve/patterns.md
     - references/containers/README.md
     - references/containers/api.md
     - references/containers/configuration.md
@@ -8162,37 +8153,6 @@ groups:
     - references/d1/configuration.md
     - references/d1/gotchas.md
     - references/d1/patterns.md
-    - references/ddos/README.md
-    - references/ddos/api.md
-    - references/ddos/configuration.md
-    - references/ddos/gotchas.md
-    - references/ddos/patterns.md
-    - references/do-storage/README.md
-    - references/do-storage/api.md
-    - references/do-storage/configuration.md
-    - references/do-storage/gotchas.md
-    - references/do-storage/patterns.md
-    - references/do-storage/testing.md
-    - references/email-routing/README.md
-    - references/email-routing/api.md
-    - references/email-routing/configuration.md
-    - references/email-routing/gotchas.md
-    - references/email-routing/patterns.md
-    - references/email-workers/README.md
-    - references/email-workers/api.md
-    - references/email-workers/configuration.md
-    - references/email-workers/gotchas.md
-    - references/email-workers/patterns.md
-    - references/flagship/README.md
-    - references/flagship/api.md
-    - references/flagship/configuration.md
-    - references/flagship/gotchas.md
-    - references/flagship/patterns.md
-    - references/graphql-api/README.md
-    - references/graphql-api/api.md
-    - references/graphql-api/configuration.md
-    - references/graphql-api/gotchas.md
-    - references/graphql-api/patterns.md
     - references/hyperdrive/README.md
     - references/hyperdrive/api.md
     - references/hyperdrive/configuration.md
@@ -8213,11 +8173,6 @@ groups:
     - references/miniflare/configuration.md
     - references/miniflare/gotchas.md
     - references/miniflare/patterns.md
-    - references/network-interconnect/README.md
-    - references/network-interconnect/api.md
-    - references/network-interconnect/configuration.md
-    - references/network-interconnect/gotchas.md
-    - references/network-interconnect/patterns.md
     - references/observability/README.md
     - references/observability/api.md
     - references/observability/configuration.md
@@ -8233,11 +8188,6 @@ groups:
     - references/pages/configuration.md
     - references/pages/gotchas.md
     - references/pages/patterns.md
-    - references/pulumi/README.md
-    - references/pulumi/api.md
-    - references/pulumi/configuration.md
-    - references/pulumi/gotchas.md
-    - references/pulumi/patterns.md
     - references/queues/README.md
     - references/queues/api.md
     - references/queues/configuration.md
@@ -8248,36 +8198,12 @@ groups:
     - references/r2/configuration.md
     - references/r2/gotchas.md
     - references/r2/patterns.md
-    - references/realtime-sfu/README.md
-    - references/realtime-sfu/api.md
-    - references/realtime-sfu/configuration.md
-    - references/realtime-sfu/gotchas.md
-    - references/realtime-sfu/patterns.md
-    - references/realtimekit/README.md
-    - references/realtimekit/api.md
-    - references/realtimekit/configuration.md
-    - references/realtimekit/gotchas.md
-    - references/realtimekit/patterns.md
     - references/secrets-store/README.md
     - references/secrets-store/api.md
     - references/secrets-store/configuration.md
     - references/secrets-store/gotchas.md
     - references/secrets-store/patterns.md
-    - references/smart-placement/README.md
-    - references/smart-placement/api.md
-    - references/smart-placement/configuration.md
-    - references/smart-placement/gotchas.md
-    - references/smart-placement/patterns.md
-    - references/snippets/README.md
-    - references/snippets/api.md
-    - references/snippets/configuration.md
-    - references/snippets/gotchas.md
-    - references/snippets/patterns.md
-    - references/spectrum/README.md
-    - references/spectrum/api.md
-    - references/spectrum/configuration.md
-    - references/spectrum/gotchas.md
-    - references/spectrum/patterns.md
+    - references/skill-feedback.md
     - references/static-assets/README.md
     - references/static-assets/api.md
     - references/static-assets/configuration.md
@@ -8294,22 +8220,12 @@ groups:
     - references/tail-workers/configuration.md
     - references/tail-workers/gotchas.md
     - references/tail-workers/patterns.md
-    - references/terraform/README.md
-    - references/terraform/api.md
-    - references/terraform/configuration.md
-    - references/terraform/gotchas.md
-    - references/terraform/patterns.md
     - references/tunnel/README.md
     - references/tunnel/api.md
     - references/tunnel/configuration.md
     - references/tunnel/gotchas.md
     - references/tunnel/networking.md
     - references/tunnel/patterns.md
-    - references/turn/README.md
-    - references/turn/api.md
-    - references/turn/configuration.md
-    - references/turn/gotchas.md
-    - references/turn/patterns.md
     - references/vectorize/README.md
     - references/vectorize/api.md
     - references/vectorize/configuration.md
@@ -8320,47 +8236,16 @@ groups:
     - references/waf/configuration.md
     - references/waf/gotchas.md
     - references/waf/patterns.md
-    - references/web-analytics/README.md
-    - references/web-analytics/configuration.md
-    - references/web-analytics/gotchas.md
-    - references/web-analytics/integration.md
-    - references/web-analytics/patterns.md
-    - references/workerd/README.md
-    - references/workerd/api.md
-    - references/workerd/configuration.md
-    - references/workerd/gotchas.md
-    - references/workerd/patterns.md
     - references/workers-ai/README.md
     - references/workers-ai/api.md
     - references/workers-ai/configuration.md
     - references/workers-ai/gotchas.md
     - references/workers-ai/patterns.md
-    - references/workers-for-platforms/README.md
-    - references/workers-for-platforms/api.md
-    - references/workers-for-platforms/configuration.md
-    - references/workers-for-platforms/gotchas.md
-    - references/workers-for-platforms/patterns.md
-    - references/workers-playground/README.md
-    - references/workers-playground/api.md
-    - references/workers-playground/configuration.md
-    - references/workers-playground/gotchas.md
-    - references/workers-playground/patterns.md
-    - references/workers-vpc/README.md
-    - references/workers-vpc/api.md
-    - references/workers-vpc/configuration.md
-    - references/workers-vpc/gotchas.md
-    - references/workers-vpc/patterns.md
     - references/workflows/README.md
     - references/workflows/api.md
     - references/workflows/configuration.md
     - references/workflows/gotchas.md
     - references/workflows/patterns.md
-    - references/zaraz/IMPLEMENTATION_SUMMARY.md
-    - references/zaraz/README.md
-    - references/zaraz/api.md
-    - references/zaraz/configuration.md
-    - references/zaraz/gotchas.md
-    - references/zaraz/patterns.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/cloudflare
     license: Apache-2.0
@@ -8371,13 +8256,13 @@ groups:
     path: cloudflare-skills/skills/cloudflare-email-service
     title: cloudflare-email-service
     summary: Implement or troubleshoot Cloudflare Email Sending and Email Routing integrations and their delivery configuration.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 96c9ebab1c15
+    content_hash: a7a2f682b4e0
     files:
     - SKILL.md
     - references/cli-and-mcp.md
@@ -8385,6 +8270,7 @@ groups:
     - references/rest-api.md
     - references/routing.md
     - references/sending.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/cloudflare-email-service
     license: Apache-2.0
@@ -8396,15 +8282,16 @@ groups:
     title: cloudflare-one
     summary: Design, configure, troubleshoot, or review Cloudflare One Zero Trust and SASE deployments. Use cloudflare-one-migrations
       for migration planning from other vendors.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: be197cff08c6
+    content_hash: 74a20946de91
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/cloudflare-one
     license: Apache-2.0
@@ -8416,15 +8303,16 @@ groups:
     title: cloudflare-one-migrations
     summary: Assess and plan migrations from existing VPN, SWG, or SASE platforms to Cloudflare One, including policy mapping,
       parity gaps, and rollout.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 33809e12e76b
+    content_hash: d8cde84d146d
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/cloudflare-one-migrations
     license: Apache-2.0
@@ -8435,20 +8323,42 @@ groups:
     path: cloudflare-skills/skills/durable-objects
     title: durable-objects
     summary: Build, debug, or review Cloudflare Durable Objects code for persistent state and coordination.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 5e3533ea47a7
+    content_hash: 07a98b64a087
     files:
     - SKILL.md
     - references/rules.md
+    - references/skill-feedback.md
     - references/testing.md
     - references/workers.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/durable-objects
+    license: Apache-2.0
+    group: cloudflare-skills
+    category: DevOps
+  - id: cloudflare-skills/gateway-workers
+    name: gateway-workers
+    path: cloudflare-skills/skills/gateway-workers
+    title: gateway-workers
+    summary: Build, debug, or review Cloudflare Workers invoked by the Forward action in Gateway HTTP policies, including
+      the GatewayMiddleware entrypoint, Gateway types, context, and continuation.
+    version: 1.0.3
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: ef8deaac372b
+    files:
+    - SKILL.md
+    - references/skill-feedback.md
+    author: Cloudflare
+    source_url: https://github.com/cloudflare/skills/tree/main/skills/gateway-workers
     license: Apache-2.0
     group: cloudflare-skills
     category: DevOps
@@ -8458,15 +8368,16 @@ groups:
     title: k2
     summary: Build and troubleshoot Cloudflare K2 or K2 Streams durable logs. Use for stream setup, producing from Workers
       or HTTP, configuring retention and inputs, and consuming through subscriptions.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 5a11f9af590b
+    content_hash: f9ba2c3313b8
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/k2
     license: Apache-2.0
@@ -8480,15 +8391,16 @@ groups:
       on Cloudflare, moving an existing app to Workers, choosing between vinext and OpenNext, or setting up vinext for Workers.
       For setup, migration, or deployment, install vinext's upstream skills with `npx skills add cloudflare/vinext` if missing,
       then read and follow the applicable skill and docs.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: ec22fd5002ee
+    content_hash: 7eefb3e663b1
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/nextjs-on-cloudflare
     license: Apache-2.0
@@ -8500,15 +8412,16 @@ groups:
     title: sandbox-migrate-to-next
     summary: Migrate Cloudflare Sandbox apps from stable @cloudflare/sandbox to @cloudflare/sandbox@next (SDK 1.0 preview).
       Use sandbox-next for apps already on the preview.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: ecb4b9e3ccb2
+    content_hash: faa33ac5a848
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/sandbox-migrate-to-next
     license: Apache-2.0
@@ -8520,17 +8433,18 @@ groups:
     title: sandbox-next
     summary: Build or maintain Cloudflare Sandbox apps on @cloudflare/sandbox@next (SDK 1.0 preview). Use sandbox-migrate-to-next
       when porting a stable app.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: cd415e24ff13
+    content_hash: ec376d7c1cdc
     files:
     - SKILL.md
     - references/api-quick-ref.md
     - references/examples.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/sandbox-next
     license: Apache-2.0
@@ -8542,15 +8456,16 @@ groups:
     title: sandbox-stable
     summary: Build or maintain Cloudflare Sandbox apps on the stable @cloudflare/sandbox package. Use sandbox-next for preview
       apps and sandbox-migrate-to-next for stable-to-preview migrations.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: d2166ce55447
+    content_hash: 1d98b8839507
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/sandbox-stable
     license: Apache-2.0
@@ -8562,7 +8477,7 @@ groups:
     title: turnstile-spin
     summary: Set up, repair, or migrate to Cloudflare Turnstile bot verification in an existing frontend and backend, including
       server-side Siteverify.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: container
     env:
@@ -8570,7 +8485,7 @@ groups:
       - CLOUDFLARE_API_TOKEN
       optional:
       - CLOUDFLARE_ACCOUNT_ID
-    content_hash: 6edb9132a60e
+    content_hash: ae09af0fb90b
     files:
     - README.md
     - SKILL.md
@@ -8580,12 +8495,14 @@ groups:
     - references/hugo.md
     - references/nextjs-app.md
     - references/nextjs-pages.md
+    - references/skill-feedback.md
     - references/sveltekit.md
     - references/vanilla-html.md
     - scripts/auth-probe.sh
     - scripts/persist-skill.sh
     - scripts/validate.sh
     - scripts/widget-create.sh
+    - tests/test_persist_skill.py
     - tests/validation.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/turnstile-spin
@@ -8598,15 +8515,16 @@ groups:
     title: web-perf
     summary: Audit, diagnose, or optimize website loading and interaction performance, Core Web Vitals, and Lighthouse performance
       scores.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8f96cf1dd7d7
+    content_hash: 8f7d802a6cdc
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/web-perf
     license: Apache-2.0
@@ -8617,20 +8535,42 @@ groups:
     path: cloudflare-skills/skills/workers-best-practices
     title: workers-best-practices
     summary: Cloudflare Workers best practices for production applications. Use when writing, reviewing, or configuring Workers.
-    version: 1.0.1
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 4445e8e5bf93
+    content_hash: cd515e01c840
     files:
     - SKILL.md
     - references/configuration.md
     - references/platform-apis.md
     - references/runtime-patterns.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/workers-best-practices
+    license: Apache-2.0
+    group: cloudflare-skills
+    category: DevOps
+  - id: cloudflare-skills/workers-profiling
+    name: workers-profiling
+    path: cloudflare-skills/skills/workers-profiling
+    title: workers-profiling
+    summary: Profile or debug CPU usage and memory allocation in deployed Cloudflare Workers and Durable Objects. Then use
+      this information to optimize your code.
+    version: 1.0.3
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 160175cebabb
+    files:
+    - SKILL.md
+    - references/skill-feedback.md
+    author: Cloudflare
+    source_url: https://github.com/cloudflare/skills/tree/main/skills/workers-profiling
     license: Apache-2.0
     group: cloudflare-skills
     category: DevOps
@@ -8638,17 +8578,19 @@ groups:
     name: wrangler
     path: cloudflare-skills/skills/wrangler
     title: wrangler
-    summary: Run or troubleshoot Wrangler CLI commands and configure Worker projects for local development, Previews, deployment,
-      and Cloudflare resource management.
-    version: 1.0.1
+    summary: Run or troubleshoot Wrangler CLI commands in projects that have a wrangler.jsonc, wrangler.json, or wrangler.toml
+      file, including local development, Previews, deployment, and resource management. For new projects and projects without
+      a Wrangler configuration file, use the cf CLI instead.
+    version: 1.0.3
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 8789f6d13bb4
+    content_hash: 43d6e7641fda
     files:
     - SKILL.md
+    - references/skill-feedback.md
     author: Cloudflare
     source_url: https://github.com/cloudflare/skills/tree/main/skills/wrangler
     license: Apache-2.0
