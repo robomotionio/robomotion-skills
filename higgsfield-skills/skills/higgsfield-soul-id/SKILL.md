@@ -1,5 +1,5 @@
 ---
-version: 0.13.0
+version: 0.14.0
 name: higgsfield-soul-id
 description: |
   Train a Soul Character — a personalized model on a person's face that

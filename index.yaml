@@ -17630,7 +17630,7 @@ groups:
   name: higgsfield-skills
   title: Higgsfield Skills
   type: group
-  version: 0.13.0
+  version: 0.14.0
   author: Higgsfield AI
   source_url: https://github.com/higgsfield-ai/skills
   license: MIT
@@ -17646,7 +17646,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: bc5d596d594a
+  content_hash: a22e156d6809
   skills:
   - id: higgsfield-skills/higgsfield-brandkit
     name: higgsfield-brandkit
@@ -17660,13 +17660,13 @@ groups:
       for general image production and Marketing Studio brand-kits when importing website metadata for ads. NOT for unbranded
       image generation (use higgsfield-generate), product catalog photography (use higgsfield-product-photoshoot), website
       implementation (use higgsfield-websites), or native Figma/Canva/PSD/AI delivery.'
-    version: 0.13.0
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: a4780e79be99
+    content_hash: 7c091029f305
     files:
     - SKILL.md
     - agents/openai.yaml
@@ -17699,6 +17699,59 @@ groups:
     - scripts/render_brandbook_pdf.py
     author: Higgsfield AI
     source_url: https://github.com/higgsfield-ai/skills/tree/main/skills/higgsfield-brandkit
+    license: MIT
+    group: higgsfield-skills
+    category: Media
+  - id: higgsfield-skills/higgsfield-faceless-video
+    name: higgsfield-faceless-video
+    path: higgsfield-skills/skills/higgsfield-faceless-video
+    title: higgsfield-faceless-video
+    summary: 'Create a finished faceless explainer, documentary, illustrated story or children''s music video, or edit a previously
+      created faceless video. Use when: "make a faceless video", "create a narrated explainer", "make a children''s song video",
+      "edit this faceless video". NOT for: a single silent clip, ads or UGC, unrelated footage edits, or script-only requests.'
+    version: 0.14.0
+    tags: []
+    mode: container
+    env:
+      required: []
+      optional: []
+    content_hash: c5804a5d1ec5
+    files:
+    - SKILL.md
+    - references/captions.md
+    - references/channel-motion.md
+    - references/creative.md
+    - references/editing.md
+    - references/picture-story.md
+    - references/presenter.md
+    - references/production.md
+    - references/prompts.md
+    - references/song.md
+    - references/styles.md
+    - references/talking-characters.md
+    - scripts/assemble_blocks.sh
+    - scripts/assemble_final.sh
+    - scripts/assemble_partial_edit.sh
+    - scripts/assemble_slides.sh
+    - scripts/audio_to_captions.py
+    - scripts/bind_scene_frame_results.py
+    - scripts/build_scene_timeline.py
+    - scripts/burn_captions.sh
+    - scripts/check_voice.sh
+    - scripts/measure_narration_takes.py
+    - scripts/presenter_composite.sh
+    - scripts/speech_metrics.sh
+    - scripts/tests/test_assembly.py
+    - scripts/tests/test_captions.py
+    - scripts/tests/test_channel.py
+    - scripts/tests/test_modes.py
+    - scripts/tests/test_song.py
+    - scripts/tests/test_timeline.py
+    - scripts/trim_static_head.sh
+    - scripts/validate_motion_script.py
+    - scripts/validate_song_prompt.py
+    author: Higgsfield AI
+    source_url: https://github.com/higgsfield-ai/skills/tree/main/skills/higgsfield-faceless-video
     license: MIT
     group: higgsfield-skills
     category: Media
@@ -17741,13 +17794,13 @@ groups:
       higgsfield-video-explainer), playable games/assets (use
 
       higgsfield-websites), or TTS.'
-    version: 0.13.0
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 48c7b7f92133
+    content_hash: 02b747794d56
     files:
     - SKILL.md
     - references/marketing-ad-references.md
@@ -17790,13 +17843,13 @@ groups:
       (use higgsfield-product-photoshoot), video generation or UGC ads (use
 
       higgsfield-generate), or Soul Character training (use higgsfield-soul-id).'
-    version: 0.13.0
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 3b785ba28ca0
+    content_hash: c7f02e1ec6dd
     files:
     - SKILL.md
     author: Higgsfield AI
@@ -17839,13 +17892,13 @@ groups:
       (use higgsfield-marketplace-cards), Soul Character training (use
 
       higgsfield-soul-id).'
-    version: 0.13.0
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 77dbd9bffd46
+    content_hash: 1f00ea67ac82
     files:
     - SKILL.md
     author: Higgsfield AI
@@ -17876,13 +17929,13 @@ groups:
       NOT for: one-shot face swaps (use higgsfield-generate with --image),
 
       named-character / non-photo avatars (use higgsfield-generate with prompt).'
-    version: 0.13.0
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 4f167cbba7ac
+    content_hash: de83f399b874
     files:
     - SKILL.md
     - references/photo-guide.md
@@ -17896,35 +17949,17 @@ groups:
     name: higgsfield-video-explainer
     path: higgsfield-skills/skills/higgsfield-video-explainer
     title: higgsfield-video-explainer
-    summary: 'Build a complete non-photoreal narrated explainer or story video from
-
-      ordered 10-second blocks: one narrator, one universal style key, one Seed
-
-      Audio take and one Gemini Omni clip per block, then server-side assembly
-
-      with explainer_video. Use when: "make an explainer video", "explain this in
-
-      a video", "turn this topic or document into a narrated video", "tell this
-
-      story as an animated video", "make a faceless narrated video", or "show me
-
-      explainer styles". Supports live CMS presets, custom style references,
-
-      mascot/faceless modes, two aspects, and optional burned subtitles. NOT for:
-
-      photoreal films, ads/UGC, talking heads, podcasts, motion typography reels,
-
-      one-off clips without narration, or editing a finished video.'
-    version: 0.13.0
+    summary: 'Compatibility entry for the former video explainer skill. Use when: the user explicitly invokes higgsfield-video-explainer
+      or continues its existing workflow. NOT for: new generic explainer requests, ads, single clips, or unrelated video edits.'
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 39cfbfaf5b27
+    content_hash: 526d9cbb29ca
     files:
     - SKILL.md
-    - references/prompts.md
     author: Higgsfield AI
     source_url: https://github.com/higgsfield-ai/skills/tree/main/skills/higgsfield-video-explainer
     license: MIT
@@ -17946,13 +17981,13 @@ groups:
 
       NOT for: single image/video/audio generation (higgsfield-generate), product photos (higgsfield-product-photoshoot),
       marketplace cards (higgsfield-marketplace-cards).'
-    version: 0.13.0
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 4ebd3973b936
+    content_hash: 3046baecac9c
     files:
     - SKILL.md
     - references/app-cover.md
@@ -18018,13 +18053,13 @@ groups:
       "thumbnail for this video", "MrBeast-style cover", "Shorts cover", or "Instagram video cover". Chain after any video
       workflow once its truthful topic and visual direction are known. NOT for producing the video itself (use higgsfield-generate),
       product catalog photos (use higgsfield-product-photoshoot), or marketplace cards (use higgsfield-marketplace-cards).'
-    version: 0.13.0
+    version: 0.14.0
     tags: []
     mode: container
     env:
       required: []
       optional: []
-    content_hash: 0604a5f018d8
+    content_hash: ea498c7d8d9d
     files:
     - SKILL.md
     - agents/openai.yaml
