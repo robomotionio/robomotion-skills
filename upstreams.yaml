@@ -332,7 +332,7 @@ upstreams:
 - group: gws-cli
   repo: https://github.com/googleworkspace/cli
   track: main
-  commit: a3768d0e82ad83cca2da97724e46bea4ff0e6dbd
+  commit: cd3697e07eb520056dcf142d0c7439bbb9ba32e9
   subdir: ''
   mode: mirror
   license: Apache-2.0
