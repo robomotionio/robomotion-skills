@@ -189,7 +189,7 @@ upstreams:
 - group: cloudflare-skills
   repo: https://github.com/cloudflare/skills
   track: main
-  commit: 41e0d19858946d18af9ee2c2feebbe2e11d829ff
+  commit: 1a33048817d06df12882cb881dfc754e7039954a
   subdir: ''
   mode: mirror
   license: Apache-2.0
