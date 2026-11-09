@@ -548,7 +548,7 @@ upstreams:
 - group: prisma-skills
   repo: https://github.com/prisma/skills
   track: main
-  commit: 1123817e60d15ca0f3af91878923241dee7e3b09
+  commit: 8ea289b730c2e89f7ff1f518af128b113d842a92
   subdir: ''
   mode: mirror
   license: MIT
