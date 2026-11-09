@@ -1,14 +1,24 @@
 ---
 name: spanner-basics
 metadata:
+  version: "1.1.2"
   category: Databases
 description: >-
-  Assists in provisioning instances and databases, designing performant schemas, and querying data in Spanner. Use when designing primary keys, writing SQL queries or client library code, or diagnosing performance issues.
+  Assists in provisioning instances and databases, designing performant schemas, and querying data in Cloud Spanner on Google Cloud. Use when designing primary keys, writing SQL queries or client library code, or diagnosing performance issues.
 ---
 
 # Spanner Basics
 
-This skill provides core workflows and guidance for administering and developing with Google Cloud Spanner, a fully managed, mission-critical database service offering global transactional consistency and automatic, synchronous replication for high availability.
+This skill provides core workflows and guidance for administering and developing with Cloud Spanner on Google Cloud, a fully managed, mission-critical database service offering global transactional consistency and automatic, synchronous replication for high availability.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:spanner-basics)"`
+and append `agent-skills/1.0 (skill:spanner-basics)` to `User-Agent` headers.
 
 ## Core Principles
 
@@ -44,6 +54,7 @@ This skill provides core workflows and guidance for administering and developing
 - [Terraform Usage](references/terraform-usage.md): Infrastructure as Code examples for provisioning Spanner instances and databases.
 - [MCP Usage](references/mcp-usage.md): Using the Spanner remote MCP server.
 - [PostgreSQL Dialect](references/postgresql-dialect.md): Best practices and examples for using the PostgreSQL interface in Spanner.
+- [Queues Usage](references/queues-usage.md): Cloud Spanner Queues: mental model, design constraints, and links related to transactional message queues.
 - [Schema Design](references/schema-design.md): Guidelines on primary key selection and interleaved tables for performance.
 
 If you need product information that's not found in these references, use the

@@ -1,6 +1,7 @@
 ---
 name: google-cloud-recipe-foundation-builder
 metadata:
+  version: "1.0.1"
   category: GettingStarted
 description: >-
   Deploys a baseline landing zone foundation for a Google Cloud Organization, establishing security guardrails using Organization Policies, resource hierarchy folders and projects, billing association, and centralized logging and monitoring. Deploys Google Cloud's recommended security controls and architecture.
@@ -20,6 +21,15 @@ This skill guides the setup of a secure, enterprise-grade Google Cloud landing
 zone foundation. It establishes baseline security controls, organizes the
 initial resource hierarchy, and configures centralized audit logging and
 cross-environment monitoring.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:google-cloud-recipe-foundation-builder)"`
+and append `agent-skills/1.0 (skill:google-cloud-recipe-foundation-builder)` to `User-Agent` headers.
 
 ## Overview
 

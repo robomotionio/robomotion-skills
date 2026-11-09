@@ -16,7 +16,7 @@ to ground the product mapping and guidance that you generate.
       overhead, and higher base infrastructure costs.
 - **Runtime for your agent**:
   - Recommended primary product: Cloud Run
-  - Alternative product 1: Gemini Enterprise Agent Runtime
+  - Alternative product 1: Agent Runtime
     - Pros: Fully managed Python runtime, built-in memory storage, and secure
       code execution sandbox.
     - Cons: Limited to Python, doesn't support hosting custom MCP servers,
