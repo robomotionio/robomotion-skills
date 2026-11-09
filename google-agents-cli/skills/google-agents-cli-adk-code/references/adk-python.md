@@ -202,7 +202,7 @@ refinement_loop = LoopAgent(
 )
 ```
 
-For a production LoopAgent with EscalationChecker, BuiltInPlanner, and grounding citations, look it up in the topic index in `references/samples.md`.
+For a production LoopAgent with EscalationChecker, BuiltInPlanner, and grounding citations, look it up in the topic index in `references/recipes.md`.
 
 ---
 
@@ -301,8 +301,8 @@ class EscalationChecker(BaseAgent):
 # AI Studio (dev): in the project .env, comment the GOOGLE_* lines and
 # uncomment GEMINI_API_KEY (GOOGLE_API_KEY is also accepted).
 
-# Vertex AI (prod)
-# Set: GOOGLE_CLOUD_PROJECT, GOOGLE_CLOUD_LOCATION, GOOGLE_GENAI_USE_VERTEXAI=True
+# Gemini platform (prod)
+# Set: GOOGLE_CLOUD_PROJECT, GOOGLE_CLOUD_LOCATION, GOOGLE_GENAI_USE_ENTERPRISE=True
 
 agent = Agent(model="gemini-3.8-flash", ...)
 ```
@@ -317,12 +317,12 @@ agent = Agent(model=LiteLlm(model="anthropic/claude-sonnet-4-20250514"), ...)
 agent = Agent(model=LiteLlm(model="ollama_chat/llama3:instruct"), ...)
 ```
 
-### Vertex AI Native Models
+### Gemini platform native models
 
 ```python
 from google.adk.models import Gemini
 
-# Vertex AI hosted Gemini (set GOOGLE_GENAI_USE_VERTEXAI=True)
+# Gemini hosted on Gemini platform (set GOOGLE_GENAI_USE_ENTERPRISE=True)
 agent = Agent(model=Gemini(model="gemini-3.8-flash"), ...)
 ```
 
@@ -396,7 +396,7 @@ from google.adk.code_executors import BuiltInCodeExecutor
 # Google Search grounding
 agent = Agent(tools=[google_search], ...)
 
-# Agent Platform Search grounding (your own data)
+# Grounding with Search in Gemini platform (your own data)
 agent = Agent(tools=[VertexAiSearchTool(data_store_id="projects/P/locations/L/collections/default_collection/dataStores/DS")], ...)
 
 # Web page loading
@@ -405,14 +405,14 @@ agent = Agent(tools=[load_web_page], ...)
 # Code execution (model-internal)
 agent = Agent(code_executor=BuiltInCodeExecutor(), ...)
 
-# Managed sandbox (Vertex AI Code Interpreter). For a per-user sandbox an agent works
-# in across sessions, this primitive is not it — see the topic index in references/samples.md
+# Managed sandbox (Code Interpreter in Gemini platform). For a per-user sandbox an agent works
+# in across sessions, this primitive is not it — see the topic index in references/recipes.md
 # from google.adk.code_executors import VertexAiCodeExecutor
 # agent = Agent(code_executor=VertexAiCodeExecutor(optimize_data_file=True, stateful=True), ...)
 
 ```
 
-> **`google_search` is model-internal grounding, not a regular tool.** Mixing it with FunctionTools disables Automatic Function Calling (AFC) for all tools. If you need search alongside custom tools, consider a sub-agent architecture or a custom search function — see the [deep-search sample](https://github.com/google/adk-samples/tree/main/core/python/deep-search) for a working pattern. For eval implications, see the eval guide's `builtin-tools-eval` reference.
+> **`google_search` is model-internal grounding, not a regular tool.** Mixing it with FunctionTools disables Automatic Function Calling (AFC) for all tools. If you need search alongside custom tools, consider a sub-agent architecture or a custom search function — see the [deep-search recipe](https://github.com/google/adk-recipes/tree/main/core/python/deep-search) for a working pattern. For eval implications, see the eval guide's `builtin-tools-eval` reference.
 
 ### Tool Confirmation
 
@@ -612,7 +612,7 @@ results = await memory_service.search_memory(app_name=app_name, user_id=user_id,
 
 #### Memory Bank (Long-term Memory)
 
-Managed cross-session memory that persists user preferences, remembers facts across sessions, and learns from conversations over time. See the [`cross-session-memory` recipe](https://github.com/google/adk-samples/tree/main/core/python/cross-session-memory) for a complete implementation.
+Managed cross-session memory that persists user preferences, remembers facts across sessions, and learns from conversations over time. See the [`cross-session-memory` recipe](https://github.com/google/adk-recipes/tree/main/core/python/cross-session-memory) for a complete implementation.
 
 ```python
 from google.adk.agents.callback_context import CallbackContext
@@ -678,7 +678,7 @@ app = App(
 
 ### App Name
 
-The `App(name=...)` parameter **must match the agent directory name** (default: `app`). A mismatch causes "Session not found" errors during evaluation because the runner infers the app name from the directory path.
+The `App(name=...)` parameter **must match the basename of the agent directory** (default: `app`; `my_agent` for `src/my_agent`). A mismatch causes "Session not found" errors during evaluation because the runner infers the app name from the directory path.
 
 ```python
 # CORRECT — matches the "app" directory
@@ -776,7 +776,7 @@ Requires `pip install google-adk[a2a]`.
 
 ```python
 # Expose an agent as an A2A service
-# Prefer scaffolding over manual code — scaffold a normal `adk` agent; A2A is built in (see /google-agents-cli-scaffold)
+# Prefer scaffolding over manual code — scaffold a normal `adk_python` agent; A2A is built in (see /google-agents-cli-scaffold)
 from google.adk.a2a.utils.agent_to_a2a import to_a2a
 from a2a.types import AgentCard
 to_a2a(root_agent, port=8001)
@@ -819,7 +819,7 @@ Runnable samples: https://github.com/google/A2UI/tree/main/samples/agent/adk
 
 Ambient agents process events (Pub/Sub, Eventarc, schedules) autonomously. ADK provides built-in trigger endpoints that handle payload decoding, session creation, concurrency, and retries.
 
-> **Deployment:** `trigger_sources` registers `/apps/{app}/trigger/*` on the standard FastAPI app, so it works on **all** targets. On **Cloud Run** / **GKE** the endpoints are public HTTP routes you point a Pub/Sub push subscription or Eventarc trigger at. On **Agent Runtime** the same routes are reachable through Agent Engine's `/api` passthrough (`https://{location}-aiplatform.googleapis.com/reasoningEngines/v1/{resource}/api/apps/{app}/trigger/pubsub`). The scaffolded `fast_api_app.py` does not pass `trigger_sources` by default — add it to enable these endpoints.
+> **Deployment:** `trigger_sources` registers `/apps/{app}/trigger/*` on the standard FastAPI app, so it works on **all** targets. On **Cloud Run** / **GKE** the endpoints are public HTTP routes you point a Pub/Sub push subscription or Eventarc trigger at. On **Agent Runtime in Gemini platform** the same routes are reachable through its `/api` passthrough (`https://{location}-aiplatform.googleapis.com/reasoningEngines/v1/{resource}/api/apps/{app}/trigger/pubsub`). The scaffolded `fast_api_app.py` does not pass `trigger_sources` by default — add it to enable these endpoints.
 
 ```python
 from google.adk.cli.fast_api import get_fast_api_app
@@ -851,7 +851,7 @@ Sessions are ephemeral by default (`InMemorySessionService`); use `DatabaseSessi
 
 Since ambient agents have no interactive user, route outputs via structured logging (JSON stdout → Cloud Logging → Cloud Monitoring alerts), Pub/Sub, or tool-based integrations (email, Jira, Slack).
 
-**Before implementing an ambient agent, clone and study the production sample** — it covers trigger wiring, middleware, structured logging, and Terraform. Look it up in the topic index in `references/samples.md`. [Full docs](https://adk.dev/runtime/ambient-agents/).
+**Before implementing an ambient agent, clone and study the production recipe** — it covers trigger wiring, middleware, structured logging, and Terraform. Look it up in the topic index in `references/recipes.md`. [Full docs](https://adk.dev/runtime/ambient-agents/).
 
 ---
 
@@ -868,7 +868,7 @@ Since ambient agents have no interactive user, route outputs via structured logg
 
 Two backends — satisfy the prerequisites for whichever you use, then supply an `agent_id`:
 - **Gemini API:** set `GEMINI_API_KEY`. Use an out-of-the-box id (e.g. `antigravity-preview-05-2026`) or create your own (see below).
-- **Agent Platform (GEAP, formerly Vertex):** authenticate with ADC (`gcloud auth application-default login`). The Managed Agents API is served only from the `global` location, and `ManagedAgent` enforces it.
+- **Gemini platform:** authenticate with ADC (`gcloud auth application-default login`). The Managed Agents API is served only from the `global` location, and `ManagedAgent` enforces it.
 
 ### Create & use
 
@@ -898,9 +898,9 @@ managed = ManagedAgent(
 ### Limits
 
 - **Client-side tools raise `NotImplementedError`:** Python functions/callables and client-side MCP (`McpToolset`). Server-side tools work — ADK built-ins, raw `types.Tool` configs, and server-side remote MCP via `RemoteMcpServer`.
-- **Backends differ:** the Gemini API and GEAP behave slightly differently today — test against your target backend.
+- **Backends differ:** the Gemini API and Gemini platform behave slightly differently today — test against your target backend.
 
-Docs: [Gemini API agents](https://ai.google.dev/gemini-api/docs/agents) · [Agent Platform managed agents](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/managed-agents) · [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview) · [building custom agents](https://ai.google.dev/gemini-api/docs/custom-agents). Samples: [basic](https://github.com/google/adk-python/tree/main/contributing/samples/managed_agent/basic), [code execution](https://github.com/google/adk-python/tree/main/contributing/samples/managed_agent/code_execution).
+Docs: [Gemini API agents](https://ai.google.dev/gemini-api/docs/agents) · [Gemini platform managed agents](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/managed-agents) · [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview) · [building custom agents](https://ai.google.dev/gemini-api/docs/custom-agents). Samples: [basic](https://github.com/google/adk-python/tree/main/contributing/samples/managed_agent/basic), [code execution](https://github.com/google/adk-python/tree/main/contributing/samples/managed_agent/code_execution).
 
 ---
 
@@ -978,8 +978,8 @@ Data flows between sequential sub-agents via conversation history and `output_ke
 ### Further Reading
 
 - [ADK Documentation](https://adk.dev/llms.txt)
-- [ADK Samples](https://github.com/google/adk-samples)
-- `references/samples.md` — topic index of the reference recipes, and how to clone one
+- [ADK Recipes](https://github.com/google/adk-recipes)
+- `references/recipes.md` — topic index of the reference recipes, and how to clone one
 
 ---
 
