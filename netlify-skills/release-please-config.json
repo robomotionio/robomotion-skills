@@ -13,14 +13,15 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "context-and-tools",
+      "package-name": "@netlify/skills",
       "extra-files": [
         { "type": "json", "path": ".claude-plugin/plugin.json", "jsonpath": "$.version" },
         { "type": "json", "path": ".grok-plugin/plugin.json",   "jsonpath": "$.version" },
         { "type": "json", "path": ".cursor-plugin/plugin.json", "jsonpath": "$.version" },
         { "type": "json", "path": "gemini-extension.json",       "jsonpath": "$.version" },
         { "type": "json", "path": ".github/plugin/plugin.json",  "jsonpath": "$.version" },
-        { "type": "json", "path": "agent-plugin/plugin.json",    "jsonpath": "$.version" }
+        { "type": "json", "path": "agent-plugin/plugin.json",    "jsonpath": "$.version" },
+        { "type": "json", "path": ".antigravity-plugin/plugin.json", "jsonpath": "$.version" }
       ]
     }
   }
