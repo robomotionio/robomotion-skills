@@ -1,0 +1,18 @@
+# catalog-summary.json records sha256 hashes of the files below, computed over
+# their bytes. A CRLF checkout therefore produces different hashes than an LF
+# one, which makes `verify:data` fail on every other platform (see #462/#478).
+# Pin these files to LF so the snapshot is reproducible everywhere.
+src/ui-ux-pro-max/data/*.csv    text eol=lf
+src/ui-ux-pro-max/data/*.json   text eol=lf
+src/ui-ux-pro-max/data/stacks/*.csv text eol=lf
+
+# scripts/evaluate-relevance.py fingerprints the raw bytes of these files, and
+# the committed thresholds manifest records that hash. A CRLF checkout (for
+# example core.autocrlf=true on Windows) changes the bytes, so the relevance
+# gate fails with "runtimeFingerprint does not match" on a clean tree.
+src/ui-ux-pro-max/scripts/core.py                                text eol=lf
+src/ui-ux-pro-max/scripts/design_system.py                       text eol=lf
+src/ui-ux-pro-max/scripts/reasoning_contract.py                  text eol=lf
+src/ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json    text eol=lf
+scripts/evaluate-relevance.py                                    text eol=lf
+scripts/relevance_metrics.py                                     text eol=lf
