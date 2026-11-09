@@ -41,7 +41,7 @@ upstreams:
 - group: awesome-copilot
   repo: https://github.com/github/awesome-copilot
   track: main
-  commit: 143a3d976b3c1603cc8932984d5e1f28501cb5fc
+  commit: df84c1cfa3814fe5de6b0f16ad4a3ede638c4f8b
   subdir: ''
   mode: mirror
   license: MIT
