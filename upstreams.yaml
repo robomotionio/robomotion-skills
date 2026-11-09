@@ -625,7 +625,7 @@ upstreams:
 - group: superpowers
   repo: https://github.com/obra/superpowers
   track: main
-  commit: 8ca22dba9a94f28898bbce59f2537ff4d87c747d
+  commit: 2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
   subdir: ''
   mode: mirror
   license: MIT
