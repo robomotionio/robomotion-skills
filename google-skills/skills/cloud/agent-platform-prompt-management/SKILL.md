@@ -1,6 +1,7 @@
 ---
 name: agent-platform-prompt-management
 metadata:
+  version: "1.0.0"
   category: AiAndMachineLearning
 description: >-
   Manages and orchestrates prompts in Agent Platform. Use when you need to create,

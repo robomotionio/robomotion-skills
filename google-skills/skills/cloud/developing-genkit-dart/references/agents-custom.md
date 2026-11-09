@@ -1,7 +1,8 @@
 # Advanced Custom Agents — `defineCustomAgent`
 
-> `ai.defineCustomAgent` comes from `package:genkit/genkit.dart`. Read
-> [agents.md](agents.md) and [agent state](agents-state.md) first.
+> `ai.defineCustomAgent` is experimental and comes from
+> `package:genkit/experimental.dart`. Read [agents.md](agents.md) and
+> [agent state](agents-state.md) first.
 
 `defineAgent` runs a single prompt + tool loop. When you need **full control of
 the turn** — multiple sequential model calls, custom logic between them, manual
@@ -57,6 +58,7 @@ Key `sess` methods:
 
 ```dart
 import 'package:genkit/genkit.dart';
+import 'package:genkit/experimental.dart'; // defineCustomAgent, SessionRunner
 import 'package:schemantic/schemantic.dart';
 
 import 'genkit.dart';
@@ -138,7 +140,7 @@ final researchAgent = ai.defineCustomAgent(
             '${subAnswers.map((a) => '${a['question']}: ${a['answer']}').join('\n\n')}',
       );
       await for (final chunk in synthesis) {
-        options.sendChunk(AgentStreamChunk(modelChunk: chunk.rawChunk));
+        options.sendChunk(AgentStreamChunk(modelChunk: chunk.modelChunk));
       }
       final finalResponse = await synthesis.onResult;
       lastMessage = finalResponse.message;

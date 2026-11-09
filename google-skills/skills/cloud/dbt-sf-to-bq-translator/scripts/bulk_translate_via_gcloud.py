@@ -60,6 +60,17 @@ def main():
         "--schema-search-path",
         help="Comma-separated list of default schemas for object resolution",
     )
+    parser.add_argument(
+        "--array-cast-mode",
+        choices=["string", "array_string", "json_extract_string_array", "preserve"],
+        default=None,
+        help="How to cast untyped ARRAY<JSON> columns: 'string' -> CAST(col AS STRING), 'array_string' -> CAST(col AS ARRAY<STRING>), 'json_extract_string_array' -> JSON_EXTRACT_STRING_ARRAY(col), 'preserve' -> leave as ARRAY<JSON>",
+    )
+    parser.add_argument(
+        "--struct-columns",
+        default=None,
+        help="Comma-separated list of additional STRUCT column names (e.g. 'struct_col,record_col') to convert from json_value to dot notation.",
+    )
 
     args = parser.parse_args()
 
@@ -68,6 +79,10 @@ def main():
     schema_search_list = None
     if args.schema_search_path:
         schema_search_list = [s.strip() for s in args.schema_search_path.split(",")]
+
+    struct_columns_list = None
+    if args.struct_columns:
+        struct_columns_list = [s.strip() for s in args.struct_columns.split(",")]
 
     msg = run_bulk_translation(
         args.input,
@@ -78,6 +93,8 @@ def main():
         metadata_dataset=args.metadata_dataset,
         default_database=args.default_database,
         schema_search_path=schema_search_list,
+        array_cast_mode=args.array_cast_mode,
+        struct_columns=struct_columns_list,
     )
     print(msg)
 

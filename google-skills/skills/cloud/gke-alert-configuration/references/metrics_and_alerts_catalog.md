@@ -2,11 +2,11 @@
 
 This catalog compiles public Google Kubernetes Engine (GKE) telemetry metrics
 from the
-[Google Cloud Managed Service for Prometheus Documentation](https://docs.cloud.google.com/monitoring/managed-prometheus.md.txt),
+[Google Cloud Managed Service for Prometheus Documentation](https://docs.cloud.google.com/stackdriver/docs/managed-prometheus.md.txt),
 the
-[GKE Observability Documentation](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/monitoring.md.txt),
+[GKE Observability Documentation](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/observability.md.txt),
 and the
-[Google Cloud Monitoring Pricing Documentation](https://docs.cloud.google.com/monitoring/pricing.md.txt),
+[Google Cloud Monitoring Pricing Documentation](https://cloud.google.com/products/observability/pricing),
 along with critical alerting rules from the open-source
 [Awesome Prometheus Alerts for Kubernetes](https://samber.github.io/awesome-prometheus-alerts/rules/orchestrators/kubernetes/)
 catalog.

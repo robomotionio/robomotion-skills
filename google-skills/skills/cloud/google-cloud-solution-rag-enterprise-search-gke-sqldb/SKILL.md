@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-rag-enterprise-search-gke-sqldb
 metadata:
+  version: "1.0.1"
   category: MultiProductSolutions
 description: >-
   Discovers requirements, and generates architectural, design, and deployment
@@ -19,6 +20,12 @@ and high-accuracy RAG-enabled conversational search solution for private
 enterprise content by using an AlloyDB database, Cloud Storage, and a Google
 Kubernetes Engine (GKE) cluster to host all the application components,
 including an open model and an open-source inference framework.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Overview of the workflow
 

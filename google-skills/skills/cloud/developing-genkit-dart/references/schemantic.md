@@ -12,9 +12,8 @@ Always use `schemantic` when strongly typed JSON parsing or programmatic schema 
 
 ## Installation
 
-Add dependencies. As of schemantic 0.2.x the code generator lives in a
-**separate** `schemantic_builder` package, so you must add it as a dev
-dependency too:
+Add dependencies. The code generator lives in a **separate**
+`schemantic_builder` package, so you must add it as a dev dependency too:
 
 ```bash
 dart pub add schemantic
@@ -26,6 +25,10 @@ dart pub add dev:build_runner
 > completes "successfully" but reports `wrote 0 outputs` and generates no
 > `.g.dart` files, with no error explaining why. If you see zero outputs, confirm
 > `schemantic_builder` is in your `dev_dependencies`.
+
+> **Note:** plain `dart run build_runner build` is correct. Recent `build_runner`
+> versions removed `--delete-conflicting-outputs` (it is now ignored and warns
+> "These options have been removed and were ignored"), so do not pass it.
 
 ## Basic Usage
 
@@ -68,12 +71,18 @@ final parsed = MyObj.fromJson({'name': 'test', 'subObj': {'foo': 'bar'}});
 The generated data classes have a static `$schema` field (of type `SchemanticType<T>`) which can be used to pass the definition into functions or to extract the raw JSON schema.
 
 ```dart
-// Access JSON schema
-final schema = MyObj.$schema.jsonSchema;
-print(schema.toJson());
+// The JSON Schema, as a plain map
+final Map<String, Object?> jsonSchema = MyObj.$schema.jsonSchema();
+print(jsonEncode(jsonSchema)); // import 'dart:convert';
 
-// Validate arbitrary JSON at runtime
-final validationErrors = await schema.validate({'invalid': 'data'});
+// Validate arbitrary JSON at runtime (empty list = valid)
+final errors = await MyObj.$schema.validate({'invalid': 'data'});
+for (final e in errors) {
+  print(e);
+}
+
+// Parse JSON into the typed class
+final MyObj obj = MyObj.$schema.parse({'name': 'x', 'subObj': {'foo': 'y'}});
 ```
 
 ## Primitive Schemas

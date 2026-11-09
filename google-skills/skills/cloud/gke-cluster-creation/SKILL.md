@@ -8,6 +8,7 @@ description: >-
   clusters. Don't use for application onboarding or deployment configuration
   (use gke-app-onboarding instead).
 metadata:
+  version: "1.0.1"
   category: Containers
 ---
 
@@ -20,6 +21,15 @@ for all new clusters.
 
 > **MCP Tools:** `list_clusters`, `create_cluster`, `get_cluster`,
 > `list_operations`, `get_operation`
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-cluster-creation)"`
+and append `agent-skills/1.0 (skill:gke-cluster-creation)` to `User-Agent` headers.
 
 ## Workflow
 

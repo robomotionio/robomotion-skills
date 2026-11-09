@@ -5,6 +5,7 @@ description: >-
   Apache Airflow (MSAA; formerly Cloud Composer). Use when figuring out reasons for DAG run or task instance failures. Don't
   use when looking for overall recommendations for Managed Airflow environment performance.
 metadata:
+  version: "1.0.1"
   category: BigDataAndAnalytics
 ---
 
@@ -13,6 +14,15 @@ metadata:
 This skill provides instructions for troubleshooting Managed Airflow DAGs (DAG
 runs and task instances), utilizing `gcloud composer`, `gcloud logging` and
 `gcloud storage` commands to fetch remote logs and code.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:managed-airflow-dag-troubleshooting)"`
+and append `agent-skills/1.0 (skill:managed-airflow-dag-troubleshooting)` to `User-Agent` headers.
 
 ## General rules
 
