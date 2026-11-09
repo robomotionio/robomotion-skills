@@ -346,7 +346,7 @@ upstreams:
 - group: higgsfield-skills
   repo: https://github.com/higgsfield-ai/skills
   track: main
-  commit: f83af0bc1d937c8119099a11f8ebbf5e6fb99819
+  commit: 4d0757471a704dac8729ea3c2ef0f3f330e0d9b6
   subdir: ''
   mode: mirror
   license: MIT

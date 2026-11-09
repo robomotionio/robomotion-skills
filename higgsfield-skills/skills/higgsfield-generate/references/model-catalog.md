@@ -56,7 +56,7 @@ Preferred defaults for examples and quick-start guidance in this repo:
 | Cinema Studio 3.0 (`cinematic_studio_3_0`) | Higgsfield | Previous Cinema Studio release, up to 4K. Use when the user names it or needs 4K. |
 | Veo 3.1 Lite | Google | **Fast and cost-effective Veo.** Built for batch and volume work. |
 | Google Veo 3.1 | Google | Ultra-realistic, top-tier cinematic quality. Quality tiers basic/high/ultra. Format set is constrained — verify accepted aspect ratio and duration before submitting. |
-| Google Veo 3 | Google | Reliable cinematic with broad creative range and audio support. |
+| Gemini Omni Flash 1.1 (`gemini_omni_flash_1_1`) | Google | Reference-driven video with native audio. Use `reference-to-video` mode and explicit reference flags; inspect the live schema for other modes. |
 | Minimax Hailuo | Hailuo | **Cheap with strong physics.** Solid budget pick when natural-physics motion matters; no audio in current variants. |
 | Wan 2.7 | Wan | Synchronized audio with character-consistent video. The newer Wan release. |
 | Wan 2.6 | Wan | Open-weight, stylized, experimental creative. Cheap option when the brief is intentionally artistic. |
@@ -69,7 +69,7 @@ Preferred defaults for examples and quick-start guidance in this repo:
 Also available but not profiled here — use them when the user names them, and check params with `higgsfield model get <id>` first:
 
 - **Image:** `grok_image_2_0`, `seedream_5_0_flash`, `openai_hazel`.
-- **Video:** `minimax_h3`, `minimax_h3_max`, `wan3_0`, `wan3_0_prime`, `gemini_omni_flash_1_1`, `seedance_2_0_mini`, `flux_3_video`, `flux_3_video_edit`, `kling_video_edit`, `happy_horse_video`.
+- **Video:** `minimax_h3`, `minimax_h3_max`, `wan3_0`, `wan3_0_prime`, `seedance_2_0_mini`, `flux_3_video`, `flux_3_video_edit`, `kling_video_edit`, `happy_horse_video`.
 - **Audio (TTS):** `inworld_text_to_speech`, `qwen_audio_tts`, `text2speech_v2`.
 
 ---
