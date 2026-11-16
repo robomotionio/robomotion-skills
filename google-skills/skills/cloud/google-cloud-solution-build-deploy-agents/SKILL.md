@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-build-deploy-agents
 metadata:
+  version: "1.0.1"
   category: MultiProductSolutions
 description: >-
   Designs, builds, and deploys AI agents or multi-agent systems on Google Cloud.
@@ -16,6 +17,12 @@ description: >-
 This skill guides agents through the workflow of designing and implementing a
 tailored multi-product solution in the cloud for a given workload, use case, or
 requirement.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Workflow
 

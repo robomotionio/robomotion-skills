@@ -3,6 +3,7 @@ name: gke-compute-classes
 description: >-
   Configures, optimizes, and troubleshoots GKE ComputeClasses. Use when configuring Spot VMs with on-demand fallback, targeting specific accelerators (GPUs/TPUs) or machine families, restricting ComputeClass access, or debugging pending pods related to node pool auto-creation. Do not use for cluster-level Node Auto Provisioning configuration or general GKE cluster creation.
 metadata:
+  version: "1.0.1"
   category: Containers
 ---
 
@@ -11,6 +12,15 @@ metadata:
 # GKE ComputeClasses
 
 Guidance on configuring, optimizing, and troubleshooting GKE ComputeClasses.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-compute-classes)"`
+and append `agent-skills/1.0 (skill:gke-compute-classes)` to `User-Agent` headers.
 
 ## When to Use
 

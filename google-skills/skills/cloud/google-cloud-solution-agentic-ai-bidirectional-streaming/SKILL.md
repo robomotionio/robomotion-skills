@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-agentic-ai-bidirectional-streaming
 metadata:
+  version: "1.0.1"
   category: MultiProductSolutions
 description: >-
   Guides agents to interactively discover customer requirements
@@ -18,6 +19,12 @@ description: >-
 This skill guides agents through the workflow to design and implement a
 tailored multi-product solution in the cloud for a live, bidirectional
 multimodal streaming workload, use case, or requirement.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Workflow
 

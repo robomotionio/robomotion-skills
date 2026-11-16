@@ -6,6 +6,7 @@ description: >-
   for backup policies, disaster recovery, or GKE cluster restores. Don't use
   for database backups.
 metadata:
+  version: "1.0.1"
   category: Storage
 ---
 
@@ -16,6 +17,15 @@ both Kubernetes resource metadata (manifests, configurations, and secrets) and
 the underlying persistent volume (PV) data — but volume data and secrets are
 **only** captured when the backup plan explicitly enables them (see the flags
 below).
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-backup-dr)"`
+and append `agent-skills/1.0 (skill:gke-backup-dr)` to `User-Agent` headers.
 
 ## CLI Reference
 

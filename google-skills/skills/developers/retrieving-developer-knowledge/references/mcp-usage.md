@@ -17,6 +17,8 @@ server (`https://developerknowledge.googleapis.com/mcp`).
     -   Accepts a natural language question.
     -   Performs server-side RAG and returns a synthesized response with source
         citations.
+    -   This tool has limited quota. If you get a 429 out of quota error, use
+        `search_documents` instead.
 
 3.  **`get_documents`**:
 

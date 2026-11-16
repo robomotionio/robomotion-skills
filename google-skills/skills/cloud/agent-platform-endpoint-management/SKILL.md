@@ -1,6 +1,7 @@
 ---
 name: agent-platform-endpoint-management
 metadata:
+  version: "1.0.2"
   category: AiAndMachineLearning
 description: >-
   Manages Agent Platform serving endpoints. Use when you need to create, list,
@@ -11,6 +12,19 @@ description: >-
 ---
 
 # Agent Platform Endpoint Management
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you MUST
+read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with `CLOUDSDK_METRICS_REQUEST_ATTRIBUTION` and append the
+attribution suffix to `User-Agent` headers:
+
+```text
+CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:agent-platform-endpoint-management)"
+User-Agent: <existing_user_agent> agent-skills/1.0 (skill:agent-platform-endpoint-management)
+```
 
 ## Overview
 
@@ -74,9 +88,9 @@ gcloud ai endpoints list \
     --region=$LOCATION_ID
 ```
 
-*(Optional)* For pagination, you MUST use `--limit=$LIMIT` to restrict the total
-number of returned endpoints. You can also append `--page-size=$PAGE_SIZE` to
-control API chunking, or `--page-token=$PAGE_TOKEN` for next pages.
+*(Optional)* To bound the result, use `--limit=$LIMIT`; `--page-size=$PAGE_SIZE`
+controls API chunking only and does NOT limit the total output. Use
+`--page-token=$PAGE_TOKEN` to continue from a previous batch.
 
 > [!IMPORTANT]
 >
@@ -92,6 +106,10 @@ gcloud ai endpoints describe $ENDPOINT_ID \
     --region=$LOCATION_ID
 ```
 
+The models deployed on an endpoint are its `deployedModels` in this output. In
+the Python SDK they are `endpoint.gca_resource.deployed_models`;
+`aiplatform.Endpoint` has no `deployed_models` attribute.
+
 ## 3. Creating an Endpoint (Tier M)
 
 Create a new endpoint resource. The parent resource is the location. **Action
@@ -102,6 +120,9 @@ gcloud ai endpoints create \
     --region=$LOCATION_ID \
     --display-name="my-endpoint"
 ```
+
+The command has no `--asynchronous` flag: it waits for the operation and prints
+the new endpoint's resource name, whose last segment is the endpoint ID.
 
 > [!IMPORTANT]
 >

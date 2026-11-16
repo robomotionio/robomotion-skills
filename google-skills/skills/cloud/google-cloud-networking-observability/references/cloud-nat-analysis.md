@@ -59,7 +59,7 @@ gcloud logging read 'resource.type="nat_gateway" AND logName="projects/{project_
 **Aggregate Trends (bq)**
 
 ```bash
-bq query --use_legacy_sql=false --project_id {project_id} '
+bq query --use_legacy_sql=false --format=json --project_id {project_id} '
 SELECT
   JSON_VALUE(json_payload.gateway_details.internal_ip) AS internal_ip,
   COUNT(*) AS drop_count

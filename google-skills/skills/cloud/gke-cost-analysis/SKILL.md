@@ -1,6 +1,7 @@
 ---
 name: gke-cost-analysis
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 description: >-
   Answer natural language questions and perform analysis on GKE cluster and
@@ -17,6 +18,15 @@ description: >-
 
 This skill provides guidance on answering natural language questions about
 GKE-related costs, billing reports, and utilization analysis.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-cost-analysis)"`
+and append `agent-skills/1.0 (skill:gke-cost-analysis)` to `User-Agent` headers.
 
 ## Overview
 

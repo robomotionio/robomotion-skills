@@ -1,7 +1,27 @@
 # Agents
 
-> Server APIs come from `package:genkit/genkit.dart`; the browser/HTTP client
-> comes from `package:genkit/client.dart`.
+> **Agents are experimental.** The agent/session/snapshot APIs are NOT covered
+> by semantic-versioning stability and live behind opt-in imports:
+>
+> - Server (agents, sessions, snapshots): `package:genkit/experimental.dart`
+>   (alongside the stable `package:genkit/genkit.dart`).
+> - Browser/HTTP client (`remoteAgent`, `AgentChat`, ...):
+>   `package:genkit/experimental_client.dart` (alongside
+>   `package:genkit/client.dart`).
+> - `dart:io` extras (`FileSessionStore`): `package:genkit/experimental_io.dart`.
+>
+> The entry points are marked `@experimental`, so importing them produces an
+> `experimental_member_use` analyzer warning on the import line. Opt out once you
+> accept the churn by adding to `analysis_options.yaml`:
+>
+> ```yaml
+> analyzer:
+>   errors:
+>     experimental_member_use: ignore
+> ```
+>
+> `CancellationController` / `CancellationToken` are stable and stay on
+> `package:genkit/genkit.dart` / `client.dart`, not behind these imports.
 
 An **agent** is a persistent, multi-turn conversation primitive built on top of
 prompts + tools. Compared to a bare `ai.generate`/`ai.definePrompt` loop, an
@@ -24,14 +44,14 @@ Progressive disclosure — read the file for the level you need:
 - [Artifacts](agents-artifacts.md): producing/reading named deliverables.
 - [Multi-agent orchestration](agents-multi-agent.md): delegating to sub-agents.
 - [Advanced custom agents](agents-custom.md): `defineCustomAgent` for full turn control.
-- [Deploying agents](agents-deployment.md): serving multiple agents over HTTP with `genkit_shelf`, CORS, other frameworks.
+- [Deploying agents](agents-deployment.md): serving multiple agents over HTTP with `GenkitRouter.addAgent`, shelf, CORS.
 
 ## Setup
 
-Register the plugins your agents need on a shared `Genkit` instance. `retry` and
-`RetryPlugin` ship with the core `package:genkit/genkit.dart`; the other agentic
+Register the plugins your agents need on a shared `Genkit` instance. `retry` is
+built into the core `package:genkit/genkit.dart` (no plugin); the other agentic
 middleware (`agents`, `filesystem`, `skills`, `toolApproval`) come from
-`package:genkit_middleware`.
+`package:genkit_middleware` and need their plugins registered.
 
 ```dart
 // genkit.dart — shared instance + model refs.
@@ -45,10 +65,7 @@ final ModelRef defaultModel = googleAI.gemini('gemini-flash-latest');
 final ModelRef liteModel = googleAI.gemini('gemini-flash-lite-latest');
 
 final Genkit ai = Genkit(
-  plugins: [
-    googleAI(),
-    RetryPlugin(),
-  ],
+  plugins: [googleAI()],
   model: defaultModel,
 );
 ```
@@ -60,6 +77,7 @@ single registered action.
 
 ```dart
 import 'package:genkit/genkit.dart';
+import 'package:genkit/experimental.dart'; // defineAgent, InMemorySessionStore
 import 'package:schemantic/schemantic.dart';
 
 import 'genkit.dart';
@@ -115,6 +133,13 @@ Common `defineAgent` options:
 > abstract classes with a generated `.g.dart` part). See
 > [references/schemantic.md](schemantic.md).
 
+> **An agent needs a model.** Set `model:` on the agent, or a default `model:` on
+> the shared `Genkit` instance (as the [Setup](#setup) snippet does). Without
+> either, the turn fails with
+> `AgentError(INVALID_ARGUMENT): Model must be provided`. The examples here rely
+> on the instance default, so if you copy an agent block without it, add a
+> `model:`.
+
 ## Agents and middleware go hand in hand
 
 Agents and [middleware](genkit_middleware.md) are built for each other: the
@@ -124,6 +149,7 @@ approval, retries — each is one line.
 
 ```dart
 import 'package:genkit/genkit.dart';
+import 'package:genkit/experimental.dart'; // defineAgent, InMemorySessionStore
 import 'package:genkit_middleware/filesystem.dart';
 import 'package:genkit_middleware/skills.dart';
 import 'package:genkit_middleware/tool_approval.dart';
@@ -154,8 +180,8 @@ final codingAgent = ai.defineAgent(
 ```
 
 Register the corresponding plugins (`FilesystemPlugin()`, `SkillsPlugin()`,
-`ToolApprovalPlugin()`, and `RetryPlugin()`) on the `Genkit` instance so the
-`use: [...]` refs resolve at runtime. See [using middleware](genkit_middleware.md).
+`ToolApprovalPlugin()`) on the `Genkit` instance so the `use: [...]` refs
+resolve at runtime (`retry()` is built in). See [using middleware](genkit_middleware.md).
 
 ## Chat with an agent (server-side)
 
@@ -218,29 +244,23 @@ final tryWeatherAgent = ai.defineFlow(
 
 ## Serve an agent over HTTP
 
-Use `shelfHandler` from `package:genkit_shelf`. Expose the main turn action, plus
-the companion `getSnapshotDataAction` (state lookup/restore) and
-`abortAgentAction` (background aborts) where needed.
+Use `GenkitRouter` (`package:genkit/io.dart`) with `addAgent`
+(`package:genkit/experimental_io.dart`). It mounts the turn route plus the
+`/getSnapshot` and `/abort` companions the agent supports (based on its store).
 
 ```dart
-import 'package:genkit_shelf/genkit_shelf.dart';
-import 'package:shelf_router/shelf_router.dart';
+import 'package:genkit/experimental_io.dart';
+import 'package:genkit/io.dart';
 
-final router = Router();
-
-// Main turn endpoint:
-router.post('/api/weatherAgent', shelfHandler(weatherAgent.action));
-
-// Optional companions (snapshot restore / branching / background):
-router.post(
-  '/api/weatherAgent/getSnapshot',
-  shelfHandler(weatherAgent.getSnapshotDataAction),
-);
-router.post(
-  '/api/weatherAgent/abort',
-  shelfHandler(weatherAgent.abortAgentAction),
-);
+void main() async {
+  final genkit = GenkitRouter()
+    ..addAgent(weatherAgent, path: '/api/weatherAgent');
+  await genkit.serve(port: 8080); // plain dart:io, no shelf needed
+}
 ```
+
+In a shelf app: `Router()..mount('/api/', genkit.asShelfHandler())` (from
+`genkit_shelf`).
 
 For serving multiple agents, CORS/streaming headers for browser clients, and a
 full server, see [Deploying agents](agents-deployment.md).
@@ -258,6 +278,7 @@ agent.
 
 ```dart
 import 'package:genkit/client.dart';
+import 'package:genkit/experimental_client.dart'; // remoteAgent, AgentError
 
 final weather = remoteAgent(url: 'http://localhost:8080/api/weatherAgent');
 
@@ -310,6 +331,7 @@ A minimal streaming chat widget — pump `turn.stream` into the UI with
 ```dart
 import 'package:flutter/material.dart';
 import 'package:genkit/client.dart';
+import 'package:genkit/experimental_client.dart'; // remoteAgent, AgentApi
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -364,6 +386,8 @@ no `SessionStore`, no snapshot ids to manage.
 
 ```dart
 // Server: no `store` → stateless. Client owns the state blob.
+import 'package:genkit/experimental.dart'; // defineAgent
+
 final weatherAgentStateless = ai.defineAgent(
   name: 'weatherAgentStateless',
   system: 'You are a helpful weather assistant. Use the getWeather tool. '
@@ -376,6 +400,7 @@ final weatherAgentStateless = ai.defineAgent(
 ```dart
 // Client: reuse one `chat` and the state threads automatically.
 import 'package:genkit/client.dart';
+import 'package:genkit/experimental_client.dart'; // remoteAgent
 
 final agent = remoteAgent(url: '$base/api/weatherAgentStateless');
 final chat = agent.chat();

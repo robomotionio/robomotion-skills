@@ -1,15 +1,25 @@
 ---
 name: cloud-build-basics
 metadata:
+  version: "1.0.2"
   category: DevOps
 description: >-
-  Teaches the fundamentals of Google Cloud Build (GCB). Covers core concepts,
+  Teaches the fundamentals of Cloud Build on Google Cloud. Covers core concepts,
   API enablement, console navigation to the Build History page, and the end-to-end
   workflow for creating and manually running a basic build trigger. Do not use for
   managing private pools or complex pipeline architectures.
 ---
 
-# Google Cloud Build Basics
+# Cloud Build Basics
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:cloud-build-basics)"`
+and append `agent-skills/1.0 (skill:cloud-build-basics)` to `User-Agent` headers.
 
 ## Prerequisites
 
@@ -33,7 +43,7 @@ Before starting, ensure the following prerequisites are met:
 
 ## Core Concepts
 
-Google Cloud Build (GCB) is a serverless platform that executes your builds on Google Cloud. It translates your source code into deployable artifacts, such as Docker containers or Java archives.
+Cloud Build (GCB) is a serverless platform that executes your builds on Google Cloud. It translates your source code into deployable artifacts, such as Docker containers or Java archives.
 
 | Concept | Description |
 | :--- | :--- |
@@ -139,7 +149,7 @@ gcloud builds triggers run <TRIGGER_NAME> \
 
 ## External Resources & Documentation
 
-*   [Google Cloud Build Documentation](https://cloud.google.com/build/docs)
+*   [Cloud Build Documentation](https://cloud.google.com/build/docs)
 *   [Cloud Build Configuration File Schema](https://cloud.google.com/build/docs/build-config-file-schema)
 *   [Automating Builds with Triggers](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers)
 *   [gcloud CLI builds Reference](https://cloud.google.com/sdk/gcloud/reference/builds)

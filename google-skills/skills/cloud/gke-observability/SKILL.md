@@ -2,22 +2,75 @@
 name: gke-observability
 description: >-
   Configures GKE observability, including Cloud Logging, Cloud Monitoring, and
-  managed Prometheus. Use when configuring GKE monitoring, setting up GKE logging,
-  or configuring Prometheus metrics collection. Don't use to configure local
-  application logging frameworks or external APMs outside GKE.
+  managed Prometheus. Use when configuring GKE monitoring, setting up GKE
+  logging, or configuring Prometheus metrics collection, to diagnose GKE control
+  plane, API server, admission webhook, etcd storage, node registration or
+  label, and pod eviction, preemption, or scheduling issues using GKE metrics,
+  Kubernetes events, and Cloud Logging, and to troubleshoot Managed Service for
+  Prometheus (GMP) issues such as missing metrics, unhealthy scrape targets,
+  PodMonitoring misconfiguration, rule/alert evaluation failures, and monitoring
+  permission errors. Don't use to configure local application logging frameworks
+  or external APMs outside GKE.
 metadata:
+  version: "1.2.1"
   category: CloudObservabilityAndMonitoring
 ---
 
 # GKE Observability
 
-This reference covers monitoring, logging, and metrics configuration for GKE.
-The golden path enables comprehensive observability including control-plane
-metrics.
+This reference covers monitoring, logging, and metrics configuration and
+troubleshooting for Google Kubernetes Engine (GKE). The golden path enables
+comprehensive observability including control-plane metrics and Managed Service
+for Prometheus (GMP).
 
 > **MCP Tools:** `get_cluster`, `list_k8s_events`, `get_k8s_logs`,
 > `get_k8s_cluster_info`, `describe_k8s_resource`. **CLI-only:** `gcloud
 > container clusters update --monitoring=...`, `gcloud logging read`
+
+## Usage Attribution
+
+Do not run live `kubectl`, `gcloud`, or `curl` commands unless the user names a
+target cluster/project or asks to inspect a live cluster (output commands and
+queries with placeholders, and skip [Usage Attribution](references/attribution.md)).
+Before running any live command, read [Usage Attribution](references/attribution.md),
+prefix `gcloud` with `CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-observability)"`,
+and append `agent-skills/1.0 (skill:gke-observability)` to `User-Agent` headers
+(never in generated scripts, Terraform, or user-facing code).
+
+## Sub-Skill Reference Routing (Progressive Disclosure)
+
+> **Complete Reference Index** (no `scripts/` directory or unlisted reference
+> files exist — do not run `ls` on the skill folder; read only the matching
+> reference below when answering deep diagnostic, metric, log, or GMP questions):
+
+1.  **[Control-Plane Metrics, Storage, Webhooks & Capacity](references/control-plane-metrics-and-storage.md)**:
+    Read for GKE control-plane (KCP) VM CPU or RAM/memory usage questions (not
+    publicly exposed) and customer-visible alternatives; cluster etcd /
+    etcd-compatible storage left, quota & per-resource scalability limits;
+    admission webhook latency, system namespace/Lease/upgrade exclusions,
+    `APIService` discovery bloat, client discovery caching bursts
+    (`/apis/custom.metrics.k8s.io`, `/apis/metrics.k8s.io`) & proactive GKE
+    Recommender insights; watch storms; controller-manager workqueue & scheduler
+    lag; or control-plane headroom, VM autoscaling & node-count pre-scaling,
+    network egress, connections (`65k`, no per-replica metric) & Protobuf.
+2.  **[Cloud Logging, Audit Attribution, APF & API Server Traces](references/logging-audit-and-apiserver-traces.md)**:
+    Read for `kube-apiserver` slow-request `Trace[` logs (`trace.go` & KEP-647);
+    `httplog.go` client load (`user_agent`, `verb`, `apf_iseats`); Cloud Audit
+    Log noisy-neighbor, heavy `LIST` & unindexed CRD `fieldSelector` scan
+    tail-latency attribution; API Priority and Fairness (APF) `429`/`504`/`404`
+    throttling; `409 Conflict` hot objects (`ConfigMap` -> `Lease` heartbeats) &
+    `RenewDeadline / 2` leader-election timeouts; `pods/exec` saturation,
+    Konnectivity (`No agent available`), disabled Cloud KMS keys, or in-cluster
+    GCP IAM OAuth token webhook authorizer saturation.
+3.  **[Cluster/Node/Pod Health, Maintenance & Managed Prometheus (GMP)](references/cluster-node-pod-health-and-gmp.md)**:
+    Read for control-plane availability (`kubernetes.io/cluster/kcp_healthchecks`
+    rate ratio & ruling out KCP outages); maintenance windows
+    (`in_maintenance_window`), zonal resize downtime & cluster access errors
+    (`EOF` / `masterAuthorizedNetworksConfig`); node readiness, registration
+    (`AUTO_REPAIR_NODES`, Private Google Access) & persistent node-pool labels;
+    pod startup timelines, crashing pod logs, `tolerationSeconds: 0` mass
+    eviction & Autopilot preemption; or multi-burn-rate SLO alerting
+    (`GlobalRules`) & GMP / Grafana / `PodMonitoring` manifests & troubleshooting.
 
 ## Golden Path Observability Defaults
 
@@ -30,238 +83,121 @@ Setting                                             | Golden Path Value         
 `loggingService`                                    | `logging.googleapis.com/kubernetes`                                                                                                                 | Cloud Logging
 `monitoringService`                                 | `monitoring.googleapis.com/kubernetes`                                                                                                              | Cloud Monitoring
 
-### Control-Plane Metrics (Golden Path Addition)
+## Enabling Full Monitoring & Logging
 
-The golden path adds three control-plane monitoring components not present in
-default clusters:
+Include all four caveats whenever providing a `--monitoring` or `--logging`
+command so users avoid accidental metric loss, surprise billing, or silent IAM
+failures:
 
-| Component            | What It Monitors                                                       |
-| -------------------- | ---------------------------------------------------------------------- |
-| `APISERVER`          | API server request latency, error rates, admission webhook performance |
-| `SCHEDULER`          | Scheduling latency, pending pods, scheduling failures                  |
-| `CONTROLLER_MANAGER` | Controller work queue depth, reconciliation latency                    |
+1.  **Control-plane metrics and logs are NOT enabled by default.** State this
+    outright: `API_SERVER`, `SCHEDULER`, and `CONTROLLER_MANAGER` are off on
+    every new cluster (as are `DCGM`, `CADVISOR`, `KUBELET`, and kube-state
+    `POD`, `DEPLOYMENT`, `STATEFULSET`, `DAEMONSET`, `HPA`, `STORAGE`,
+    `JOBSET`). Only `SYSTEM` is enabled by default. Link to
+    https://docs.cloud.google.com/kubernetes-engine/docs/how-to/control-plane-metrics
+    and
+    https://docs.cloud.google.com/kubernetes-engine/docs/how-to/view-logs#control_plane_logs.
+2.  **The flag replaces, it does not append.** Passing `--monitoring` or
+    `--logging` overrides the existing component list; pass the full desired
+    list including `SYSTEM`.
+3.  **Control-plane and kube-state metrics bill per sample ingested** via
+    Managed Service for Prometheus (GMP). Mention the cost impact on large
+    clusters; use `--monitoring=SYSTEM` in non-production to reduce cost.
+4.  **Verify APIs and IAM permissions (`PermissionDenied`).** Check `gcloud
+    container clusters describe {cluster_name} --region {region}
+    --format="yaml(loggingConfig,monitoringConfig)"`, ensure
+    `logging.googleapis.com` and `monitoring.googleapis.com` are enabled, and
+    verify the node service account / GKE service agent has
+    `roles/monitoring.metricWriter` and
+    `roles/container.defaultNodeServiceAgent`.
 
-These are critical for diagnosing cluster-level issues (slow API responses,
-scheduling delays, stuck controllers).
-
-## Enabling Full Monitoring
-
-**Say this whenever you hand over a `--monitoring` command:**
-
-1.  **Control-plane metrics are NOT enabled by default.** State this outright in
-    your answer — do not leave it implied by the fact that you are supplying an
-    enable command. `API_SERVER`, `SCHEDULER`, and `CONTROLLER_MANAGER` are off
-    on every new cluster and collect nothing until explicitly turned on, and the
-    same is true of `DCGM`, `CADVISOR`, `KUBELET`, and kube-state (`POD`,
-    `DEPLOYMENT`, `STATEFULSET`, `DAEMONSET`, `HPA`, `STORAGE`, `JOBSET`).
-    `SYSTEM` is the only package on by default. A user asking "why are there no
-    API server metrics" has almost always simply never enabled them.
-2.  **The flag replaces, it does not append.** The set supplied to `--monitoring`
-    overrides the previous setting entirely, so omitting a component silently
-    turns it off. Always pass the full desired list, and always include `SYSTEM`
-    — it cannot be disabled while monitoring is on, and never on Autopilot.
-3.  **These metrics bill per sample ingested** via Managed Service for
-    Prometheus. Enabling the full suite on a large cluster is a real cost
-    increase; mention it rather than presenting the list as free.
-
-> **The gcloud flag and the API field use different spellings for the same
-> components.** Do not copy names between them:
+> **CLI flag vs. API enum spelling (mixing them fails the command):**
 >
-> Component        | `gcloud --monitoring=` | `monitoringConfig` API enum
-> ---------------- | ---------------------- | ---------------------------
-> System           | `SYSTEM`               | `SYSTEM_COMPONENTS`
-> API server       | `API_SERVER`           | `APISERVER`
-> Controller mgr   | `CONTROLLER_MANAGER`   | `CONTROLLER_MANAGER`
->
-> The remaining components share a spelling. Using an API enum in the CLI flag
-> (or the reverse) fails the command — this is a common and confusing error.
+> Component      | `gcloud --monitoring=` | `monitoringConfig` API enum
+> -------------- | ---------------------- | ---------------------------
+> System         | `SYSTEM`               | `SYSTEM_COMPONENTS`
+> API server     | `API_SERVER`           | `APISERVER`
+> Controller mgr | `CONTROLLER_MANAGER`   | `CONTROLLER_MANAGER`
 
 ```bash
-# Enable golden path monitoring suite
-gcloud container clusters update <CLUSTER_NAME> --region <REGION> \
+# Enable golden path monitoring and control-plane logging suite
+gcloud container clusters update {cluster_name} --region {region} \
   --monitoring=SYSTEM,API_SERVER,SCHEDULER,CONTROLLER_MANAGER,STORAGE,POD,DEPLOYMENT,STATEFULSET,DAEMONSET,HPA,JOBSET,CADVISOR,KUBELET,DCGM \
+  --logging=SYSTEM,WORKLOAD,API_SERVER,SCHEDULER,CONTROLLER_MANAGER \
   --quiet
 
-# Enable Managed Prometheus
-gcloud container clusters update <CLUSTER_NAME> --region <REGION> \
+# Enable Managed Prometheus and Dataplane V2 flow/policy observability
+gcloud container clusters update {cluster_name} --region {region} \
   --enable-managed-prometheus \
-  --quiet
-
-# Enable Dataplane V2 observability metrics
-gcloud container clusters update <CLUSTER_NAME> --region <REGION> \
   --enable-dataplane-v2-flow-observability \
   --quiet
 ```
 
-## Managed Prometheus
+## Core GKE Metrics & Alerting Baseline
 
-Golden path enables Google Managed Prometheus for metrics collection and
-querying.
+Explicitly name **Google Cloud Monitoring** when proposing dashboards and
+alerts, and cover cluster/node CPU and memory capacity, pod restarts
+(`CrashLoopBackOff`), volume space exhaustion, and API server latency
+(`apiserver_request_duration_seconds`). Direct control-plane VM CPU/RAM metrics
+are not publicly exposed — read
+[Control-Plane Metrics, Storage, Webhooks & Capacity](references/control-plane-metrics-and-storage.md)
+whenever asked about control-plane VM CPU/memory or deep control-plane metrics.
 
-**Querying metrics:**
+Metric                                           | Source             | Use / Alert Threshold
+------------------------------------------------ | ------------------ | ---------------------
+`apiserver_request_duration_seconds`             | API Server (GMP)   | Control-plane latency (Alert: P99 > 5s)
+`scheduler_scheduling_attempt_duration_seconds`  | Scheduler (GMP)    | Current GKE scheduling latency (`scheduler_schedule_attempts_total{result="error"} > 0`)
+`container_cpu_usage_seconds_total`              | cAdvisor (Node)    | Worker-node container CPU usage
+`container_memory_working_set_bytes`             | cAdvisor (Node)    | Worker-node container memory usage
+`kubernetes.io/node/cpu/core_usage_time`         | Cloud Monitoring   | Node CPU usage (`kubernetes.io/node/memory/used_bytes` for memory)
+`kube_pod_status_phase`                          | kube-state-metrics | Pod lifecycle phase (requires deploying GMP or self-managed kube-state-metrics)
+`kube_pod_container_status_restarts_total`       | kube-state-metrics | Pod crash loops (Alert: > 5 in 10m; requires kube-state-metrics)
+`kube_node_status_condition`                     | kube-state-metrics | Node readiness (`condition="Ready", status!="True"`; or `kubernetes.io/node/status_condition`)
+`kubelet_volume_stats_used_bytes / capacity`     | Kubelet            | PVC capacity utilization (Alert: > 85%)
+`DCGM_FI_DEV_GPU_UTIL`                           | DCGM (GMP)         | GPU utilization (Alert: > 95% sustained)
 
--   Use Cloud Monitoring Metrics Explorer in the console
--   Use PromQL via the Prometheus UI or API
--   Grafana dashboards via Managed Grafana
+## Live Resource Usage & Cloud Logging Queries
 
-**Key GKE metrics:**
-
-| Metric                                            | Source             | Use                    |
-| -------------------------------------------------- | ------------------ | ---------------------- |
-| `container_cpu_usage_seconds_total`                | cAdvisor           | Pod CPU usage          |
-| `container_memory_working_set_bytes`               | cAdvisor           | Pod memory usage       |
-| `kube_pod_status_phase`                            | kube-state-metrics | Pod lifecycle          |
-| `apiserver_request_duration_seconds`               | API Server         | Control plane latency  |
-| `scheduler_scheduling_attempt_duration_seconds`    | Scheduler          | Scheduling performance |
-| `kubernetes.io/node/cpu/core_usage_time`           | Cloud Monitoring   | Node CPU               |
-| `DCGM_FI_DEV_GPU_UTIL`                             | DCGM               | GPU utilization        |
-
-## Live Resource Usage (kubectl-only)
-
-No MCP or gcloud equivalent exists for live resource usage. Use `kubectl top`:
+Use `kubectl top` for live usage (no MCP or `gcloud` equivalent):
 
 ```bash
 kubectl top pods --all-namespaces --sort-by=cpu
 kubectl top nodes
-kubectl top pods --containers -n <NAMESPACE>  # per-container breakdown
+kubectl top pods --containers -n {namespace}
 ```
 
-## Cloud Logging (gcloud-only)
-
-**Querying cluster logs** (no MCP equivalent — use `gcloud logging read`):
+Use `gcloud logging read` (or Cloud Logging Log Explorer) with LQL filters:
 
 ```bash
-# System component logs
-gcloud logging read \
-  'resource.type="k8s_cluster" AND resource.labels.cluster_name="<CLUSTER_NAME>"' \
-  --project <PROJECT_ID> --limit 50 \
-  --quiet
+# Control-plane component logs (requires API_SERVER / SCHEDULER / CONTROLLER_MANAGER enabled)
+gcloud logging read 'resource.type="k8s_control_plane_component" AND resource.labels.cluster_name="{cluster_name}"' --project {project_id} --limit 50 --quiet
 
-# Workload logs for a specific namespace
-gcloud logging read \
-  'resource.type="k8s_container" AND resource.labels.cluster_name="<CLUSTER_NAME>" AND resource.labels.namespace_name="<NAMESPACE>"' \
-  --project <PROJECT_ID> --limit 50 \
-  --quiet
-
-# Audit logs (who did what)
-gcloud logging read \
-  'resource.type="k8s_cluster" AND logName:"cloudaudit.googleapis.com"' \
-  --project <PROJECT_ID> --limit 50 \
-  --quiet
+# Container errors: resource.type="k8s_container" AND resource.labels.container_name="{container_name}" AND severity>=ERROR
+# OOMKilled events: resource.type="k8s_event" AND jsonPayload.reason="OOMKilling"
+# FailedScheduling: resource.type="k8s_event" AND jsonPayload.reason="FailedScheduling"
+# Cloud Audit Logs: resource.type="k8s_cluster" AND logName:"cloudaudit.googleapis.com"
+# Dataplane V2 network policy / packet drop logs: logName:"policy_action" AND jsonPayload.disposition="DENY"
 ```
 
-## Diagnostic Settings
+## Distributed Tracing, Profiling & Recent Additions
 
-For security monitoring and troubleshooting, enable control-plane audit logs:
-
-```bash
-# View current logging config
-gcloud container clusters describe <CLUSTER_NAME> --region <REGION> \
-  --format="yaml(loggingConfig)" \
-  --quiet
-```
-
-## Alerting
-
-Set up alerts for critical conditions:
-
-Condition               | Metric                                              | Threshold
------------------------ | --------------------------------------------------- | ---------
-High API server latency | `apiserver_request_duration_seconds`                | P99 > 5s
-Pod crash loops         | `kube_pod_container_status_restarts_total`          | > 5 in 10min
-Node not ready          | `kube_node_status_condition`                        | condition=Ready, status!=True
-High GPU utilization    | `DCGM_FI_DEV_GPU_UTIL`                              | > 95% sustained
-PVC near capacity       | `kubelet_volume_stats_used_bytes / capacity`        | > 85%
-Scheduling failures     | `scheduler_schedule_attempts_total{result="error"}` | > 0
-
-> **Prerequisite:** The `kube_*` series above (e.g., `kube_pod_status_phase`,
-> `kube_pod_container_status_restarts_total`, `kube_node_status_condition`)
-> come from **kube-state-metrics**, which GKE does not collect by default.
-> Deploy the Managed Prometheus kube-state-metrics package first.
-
-### Proposing Dashboards & Alerts (Production Rules)
-
-When designing or proposing alerting and dashboard strategies for GKE:
-
-1.  **Always explicitly name Google Cloud Monitoring** as the platform to
-    implement these alerts and dashboards.
-2.  **Always include API server latency** (via
-    `apiserver_request_duration_seconds` metric) on the dashboard as a critical
-    indicator of control plane health, alongside node CPU/Memory and pod crash
-    loops.
-
-### Node Health (Production Rules)
-
-A comprehensive assessment of node health relies on analyzing these two metrics together:
-
-1.  **`kubernetes.io/node/status_condition`** (filtered by `status_condition="Ready"`): Use this to track healthy nodes. Note that it will only report values for nodes that have successfully bootstrapped.
-2.  **`compute.googleapis.com/instance_group/size`** (filtered by `instance_group_name="gke-<cluster_name>-.*"`): Use this to track the total number of nodes in a specific cluster. Note that it does not differentiate between healthy and unhealthy nodes.
-
-## Cost Considerations
-
-Monitoring and logging have associated costs:
-
--   **Cloud Logging**: Charged per GiB ingested beyond free tier (50
-    GiB/project/month)
--   **Cloud Monitoring**: Free for GKE system metrics; custom metrics charged
-    per time series
--   **Managed Prometheus**: Charged per samples ingested
-
-To reduce costs in non-production:
-
-```bash
-# Reduce to system-only monitoring
-gcloud container clusters update <CLUSTER_NAME> --region <REGION> \
-  --monitoring=SYSTEM \
-  --quiet
-```
-
-## Distributed Tracing & Continuous Profiling (Recommended)
-
-**Not golden path defaults** — recommended for production microservice
-architectures and performance-sensitive workloads.
-
--   **Cloud Trace**: Add OpenTelemetry SDK to your app with the
-    `opentelemetry-operations-go` (or equivalent) exporter. Traces appear in
-    Cloud Trace console. Identifies cross-service latency bottlenecks.
--   **Cloud Profiler**: Add the Cloud Profiler agent to your app. Profiles CPU
-    and memory usage in production with low overhead. Identifies hotspots and
-    compares across versions.
-
-**Recent additions:**
-
--   **Managed OpenTelemetry for GKE (Preview)**: Managed in-cluster OTLP
-    endpoint plus auto-instrumentation for traces, metrics, and logs. Requires
-    GKE 1.34.1-gke.2178000+; enable with `gcloud beta container clusters
-    update ... --managed-otel-scope=COLLECTION_AND_INSTRUMENTATION_COMPONENTS`.
+-   **Cloud Trace & OpenTelemetry**: Deploy the OpenTelemetry Collector
+    (`googlecloud` exporter with Workload Identity) or enable **Managed
+    OpenTelemetry for GKE (Preview)** on GKE 1.34.1-gke.2178000+ (`gcloud beta
+    container clusters update {cluster_name} --region {region}
+    --managed-otel-scope=COLLECTION_AND_INSTRUMENTATION_COMPONENTS`).
+-   **Cloud Profiler**: Continuous low-overhead production CPU/memory profiling.
 -   **PSI (Pressure Stall Information) metrics**: cAdvisor
-    `container_pressure_{cpu,memory,io}_{waiting,stalled}_seconds_total` series
-    (beta in Kubernetes 1.34) can be collected via a Managed Prometheus
-    `ClusterNodeMonitoring` resource; GKE's documented collection path requires
-    GKE 1.35+.
-
-## LQL Query Examples
-
-Common Logging Query Language patterns for GKE troubleshooting:
-
-```
-# Error logs for a specific container
-resource.type="k8s_container" AND resource.labels.container_name="my-app" AND severity>=ERROR
-
-# OOMKilled events
-resource.type="k8s_event" AND jsonPayload.reason="OOMKilling"
-
-# Pod scheduling failures
-resource.type="k8s_event" AND jsonPayload.reason="FailedScheduling"
-
-# Audit logs (who did what)
-resource.type="k8s_cluster" AND logName:"cloudaudit.googleapis.com"
-```
+    `container_pressure_{cpu,memory,io}_{waiting,stalled}_seconds_total` via GMP
+    `ClusterNodeMonitoring` (GKE 1.35+).
 
 ## Supporting Links
 
--   [GKE system metrics](https://docs.cloud.google.com/monitoring/api/metrics_kubernetes)
--   [GKE Observability Documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/observability)
+-   [GKE System Metrics](https://docs.cloud.google.com/monitoring/api/metrics_kubernetes)
+-   [GKE Control-Plane Metrics](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/control-plane-metrics)
+-   [GKE Control-Plane Logs](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/view-logs#control_plane_logs)
 -   [Google Cloud Managed Service for Prometheus](https://cloud.google.com/stackdriver/docs/managed-prometheus)
+-   [Troubleshoot Managed Service for Prometheus](https://docs.cloud.google.com/stackdriver/docs/managed-prometheus/troubleshooting.md.txt)
+-   [Rule Evaluation (Rules / ClusterRules / GlobalRules)](https://docs.cloud.google.com/stackdriver/docs/managed-prometheus/rules-managed.md.txt)
 -   [Cloud Logging Query Language (LQL)](https://cloud.google.com/logging/docs/view/logging-query-language)
 -   [Google Cloud Monitoring Alerts](https://cloud.google.com/monitoring/alerts)

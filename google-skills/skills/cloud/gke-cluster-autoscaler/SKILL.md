@@ -1,12 +1,22 @@
 ---
 name: gke-cluster-autoscaler
 metadata:
+  version: "1.0.1"
   category: Containers
 description: >-
   Trigger on mention of GKE cluster autoscaler, node autoscaling, node pool auto-creation / node auto-provisioning. Provides guidance on enabling and optimizing cluster autoscaler, best practices, and troubleshooting issues such as nodes not scaling up or down, zonal stockouts, or capacity buffers. Do not use for ComputeClass-specific YAML generation or priority configuration (defer to gke-compute-classes skill).
 ---
 
 # GKE Cluster Autoscaler
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-cluster-autoscaler)"`
+and append `agent-skills/1.0 (skill:gke-cluster-autoscaler)` to `User-Agent` headers.
 
 ## CRITICAL RULES
 - **NO ACRONYMS:** Spell out `Cluster Autoscaler`, `Node Auto Provisioning`, `Node Pool Auto Creation`, and `ComputeClass` fully. Do NOT use `CA`, `NAP`, `NAC`, or `CCC`.
