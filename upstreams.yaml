@@ -250,7 +250,7 @@ upstreams:
 - group: financial-services
   repo: https://github.com/anthropics/financial-services
   track: main
-  commit: 574ed3624aebd0418c7e96cd101262f30210ab26
+  commit: 60565064557ca77b12f62aa7877f365d111c129d
   subdir: plugins/vertical-plugins
   mode: mirror
   license: Apache-2.0
