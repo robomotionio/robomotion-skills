@@ -21,7 +21,7 @@ See [deploy-checklist-template.md § Deployment Summary](../deploy/references/de
 
 > ⛔ **Artifact self-check — MANDATORY before handoff.** Verify these exist before presenting cleanup or next steps:
 > 1. `deploy-result.json` in session folder — if missing, read [`deploy-schemas.ts`](../deploy/references/deploy-schemas.ts) and write it NOW with status, endpoints, health, `orphanedResourceGroups[]`
-> 2. Portal deployment link printed in chat — if missing, generate from `$resId` pattern (see deploy/SKILL.md Step 6) and print now
+> 2. Portal deployment link printed in chat — if missing, generate from `$resId` pattern (see deploy/PHASE.md Step 6) and print now
 > 3. `deployment-summary.md` in session folder — if missing, `create` it NOW with the same content you are about to present in chat (status, subscription, RG, region, services table, endpoints, cleanup commands). One `create` call — do NOT skip.
 
 ## Post-Deploy Recommendations
@@ -85,12 +85,15 @@ Include this in the chat handoff AND in `deployment-summary.md`.
 | Always | **`azure-compliance`** — "Run a compliance scan on your deployed resources" |
 | Always | **`azure-resource-visualizer`** — "Generate an architecture diagram of your resource group" |
 | Reliability/HA gaps (single-zone, no failover, prod workload) or user asks to "harden" / "make production-ready" | **`azure-reliability`** — "Assess & improve reliability: zone redundancy, multi-region failover, health probes" |
-| Cost-sensitive workload or user asks about spend | **`azure-cost`** — "Review and optimize your Azure spend" |
+| Cost-sensitive workload or user asks about spend | **`cost-analysis`** from the optional `azure-cost` plugin — "Review your Azure spend and identify its drivers" |
 | Health check failed / `healthStatus: "degraded"/"unreachable"` | **`azure-diagnostics`** — "Troubleshoot your deployment" |
 | Auth/OAuth/MSAL detected in intent or prereq | **`entra-app-registration`** — "Set up app registration for your auth flow" |
 | `postDeployRecommendations[]` has upgrade suggestions | **`azure-upgrade`** — "Upgrade your runtime or framework" |
 | Storage-heavy patterns | **`azure-storage`** — "Optimize your storage configuration" |
 | `postDeployRecommendations[]` mentions RBAC/role | **`azure-rbac`** — "Configure least-privilege role assignments" |
+
+If unavailable, direct the user to their client's supported plugin installation
+flow and leave the handoff pending.
 
 ## Completion
 
