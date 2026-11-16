@@ -49,7 +49,7 @@ class ShadcnInstaller:
             return []
 
         try:
-            with open(self.components_json) as f:
+            with open(self.components_json, encoding="utf-8") as f:
                 config = json.load(f)
 
             components_dir = self.project_root / config.get("aliases", {}).get(
@@ -63,6 +63,20 @@ class ShadcnInstaller:
             return [f.stem for f in ui_dir.glob("*.tsx") if f.is_file()]
         except (json.JSONDecodeError, KeyError, OSError):
             return []
+
+    def _get_shadcn_version(self) -> str:
+        """Read shadcn version from project package.json; fall back to a pinned default."""
+        pkg_json = self.project_root / "package.json"
+        if pkg_json.exists():
+            try:
+                pkg = json.loads(pkg_json.read_text(encoding="utf-8"))
+                for section in ("dependencies", "devDependencies"):
+                    version = pkg.get(section, {}).get("shadcn")
+                    if version:
+                        return version.lstrip("^~>=<").split()[0]
+            except (json.JSONDecodeError, KeyError):
+                pass
+        return "2.3.0"  # pinned fallback; update when newer stable release is needed
 
     def add_components(
         self, components: List[str], overwrite: bool = False
@@ -98,7 +112,8 @@ class ShadcnInstaller:
             )
 
         # Build command
-        cmd = ["npx", "shadcn@latest", "add"] + components
+        shadcn_version = self._get_shadcn_version()
+        cmd = ["npx", f"shadcn@{shadcn_version}", "add"] + components
 
         if overwrite:
             cmd.append("--overwrite")
@@ -113,6 +128,8 @@ class ShadcnInstaller:
                 cwd=self.project_root,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 check=True,
             )
 
@@ -144,7 +161,8 @@ class ShadcnInstaller:
                 "shadcn not initialized. Run 'npx shadcn@latest init' first",
             )
 
-        cmd = ["npx", "shadcn@latest", "add", "--all"]
+        shadcn_version = self._get_shadcn_version()
+        cmd = ["npx", f"shadcn@{shadcn_version}", "add", "--all"]
 
         if overwrite:
             cmd.append("--overwrite")
@@ -158,6 +176,8 @@ class ShadcnInstaller:
                 cwd=self.project_root,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 check=True,
             )
 
