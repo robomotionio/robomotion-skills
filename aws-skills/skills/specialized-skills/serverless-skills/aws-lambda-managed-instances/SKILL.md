@@ -1,12 +1,12 @@
 ---
 name: aws-lambda-managed-instances
-description: "Evaluates, configures, and migrates workloads to AWS Lambda Managed Instances (LMI). Runs Lambda functions on EC2 instances in the user's account while AWS manages provisioning, patching, scaling, routing, and load balancing. Triggers when queries mention Lambda Managed Instances, LMI, capacity providers, multi-concurrent execution environments, EC2-backed Lambda, persistent Lambda instances, PerExecutionEnvironmentMaxConcurrency, CapacityProviderConfig, cold start elimination via dedicated instances, migrating standard Lambda to managed instances, or cost comparison between standard Lambda and LMI with Savings Plans or Reserved Instances. Also covers long-running and asynchronous workloads and the 90-minute (5400s) function timeout for asynchronous and event-source-mapping (SQS, Kinesis, DynamoDB Streams / ESM) invocations, including how to raise the function timeout up to 90 minutes / 5400s and the related duration limits."
-version: 2
+description: "Evaluates, configures, and migrates workloads to AWS Lambda Managed Instances (LMI). Runs Lambda Event Functions (standard Lambda) on EC2 instances in the user's account while AWS manages provisioning, patching, scaling, routing, and load balancing. Triggers when queries mention Lambda Managed Instances, LMI, capacity providers, multi-concurrent execution environments, EC2-backed Lambda, persistent Lambda instances, PerExecutionEnvironmentMaxConcurrency, CapacityProviderConfig, cold start elimination via dedicated instances, SOCI (Seekable OCI) image lazy loading, migrating Lambda Event Functions to managed instances, or cost comparison between Lambda Event Functions and LMI with Savings Plans or Reserved Instances. Also covers long-running and asynchronous workloads and the 90-minute (5400s) function timeout for asynchronous and event-source-mapping (SQS, Kinesis, DynamoDB Streams / ESM) invocations, including how to raise the function timeout up to 90 minutes / 5400s and the related duration limits."
+version: 4
 ---
 
 # AWS Lambda Managed Instances (LMI)
 
-Runs Lambda functions on EC2 instances in the user's account while AWS manages provisioning, patching, scaling, routing, and load balancing. Combines Lambda's developer experience with EC2's pricing and hardware options.
+Runs Lambda Event Functions on EC2 instances in the user's account while AWS manages provisioning, patching, scaling, routing, and load balancing. Combines Lambda's developer experience with EC2's pricing and hardware options.
 
 **Works best with** the [AWS MCP server](https://docs.aws.amazon.com/aws-mcp/) for sandboxed CLI execution and audit logging. All guidance also works with standard AWS CLI or SAM CLI.
 
@@ -14,13 +14,13 @@ Runs Lambda functions on EC2 instances in the user's account while AWS manages p
 
 ## Quick Decision: Is LMI Right for This Workload?
 
-| Signal | LMI is a strong fit | Standard Lambda is better |
+| Signal | LMI is a strong fit | Lambda Event Functions are better |
 |--------|---------------------|---------------------------|
 | Traffic | Steady, predictable, 50M+ req/mo | Bursty, unpredictable, long periods of no traffic |
 | Duration | Long-running asynchronous/ESM jobs that exceed 15 min (up to 90 min on LMI): ETL/data processing, media transcoding, ML inference, financial calc, web scraping | Short invocations; synchronous work needing >15 min (not supported on any Lambda) |
 | Cost | Duration-heavy spend at scale | Low or sporadic invocations |
 | Cold starts | Unacceptable (LMI eliminates for provisioned capacity) | Tolerable |
-| Compute | Latest CPUs, specific families, high network bandwidth, GPU requirements | Standard Lambda memory/CPU sufficient |
+| Compute | Latest CPUs, specific families, high network bandwidth, GPU requirements | Lambda Event Functions memory/CPU sufficient |
 | Isolation | Dedicated EC2 instances in your account, full VPC control | Shared Firecracker micro-VMs acceptable |
 | Scale-to-zero | Does not scale to zero but can create custom schedules with AWS provided solutions | Required (pay nothing when idle) |
 | Code readiness | Thread-safe (Node.js/Java/.NET) or any Python code | Non-thread-safe code, expensive to change |
@@ -32,7 +32,7 @@ Read ONLY the single reference file that matches the user's task. Do not preload
 | User need | Action |
 |-----------|--------|
 | Cost comparison, pricing analysis, Savings Plans, Reserved Instances | Read [cost-comparison.md](references/cost-comparison.md) |
-| Instance types, memory sizing, vCPU ratios, scaling tuning, capacity provider config | Read [configuration-guide.md](references/configuration-guide.md) |
+| Instance types, memory sizing, vCPU ratios, scaling tuning, capacity provider config, SOCI lazy loading for large container images | Read [configuration-guide.md](references/configuration-guide.md) |
 | Thread safety, concurrency model, code review checklist, multi-concurrency readiness | Read [thread-safety.md](references/thread-safety.md) |
 | Before/after code examples, runtime-specific migration, connection pooling | Read [migration-patterns.md](references/migration-patterns.md) |
 | IAM roles, VPC setup, CLI commands, SAM template, CDK example | Read [infrastructure-setup.md](references/infrastructure-setup.md) |
@@ -92,16 +92,16 @@ Review code for concurrency safety. LMI runs multiple invocations concurrently p
 1. Create two IAM roles: execution role (for the function) and operator role (for capacity provider EC2 management)
 2. Configure VPC with subnets across 3+ AZs
 3. Create capacity provider with VPC config and scaling limits
-4. Create or update function with capacity provider attachment
+4. Create a new function with the capacity provider attached
 5. Publish a version (triggers instance provisioning)
 
 ### Step 6: Validate and Cut Over
 
 1. Deploy to a non-production environment first
 2. Monitor CloudWatch: CPU utilization, memory, concurrency, throttle rate
-3. Gradual traffic shift with weighted aliases (10% → 50% → 100%)
+3. Gradual traffic shift at the invoking service or routing layer (10% → 50% → 100%)
 4. Compare costs after 1-2 weeks of production data
-5. Decommission standard Lambda once stable
+5. Decommission the Lambda Event Function once stable
 
 ## Best Practices
 
@@ -114,10 +114,17 @@ Review code for concurrency safety. LMI runs multiple invocations concurrently p
 ### Scaling (always mention when discussing scaling or traffic)
 
 - LMI absorbs a 50% traffic spike immediately and **doubles capacity within 5 minutes** — if traffic more than doubles faster, requests throttle
-- Standard Lambda bursts to 3000 instantly — LMI cannot match this
+- Lambda Event Functions burst to 3000 instantly — LMI cannot match this
 - **Pre-warm** with MinExecutionEnvironments before known spikes
 - **MaxVCpuCount** (default 400) — set explicitly as a cost ceiling
 - **Shape**: Reduce MinExecutionEnvironments to lower capacity during off-hours (minimum 3 for AZ resiliency)
+
+### Large container images (SOCI lazy loading)
+
+- For container image functions, the image pull is the largest part of the time between publishing a version or scaling out and the first invocation. **Seekable OCI (SOCI)** lets Lambda start the execution environment before the whole image is downloaded and fetch files on demand as the function reads them. The benefit is largest for multi-GB images, such as images that package ML frameworks.
+- **Enable it** by pushing a SOCI index to Amazon ECR next to the image, pointing the function's image URI at the SOCI-indexed tag, and publishing a version. No other function configuration changes. Steps in [configuration-guide.md](references/configuration-guide.md).
+- **Import libraries and read files in init code, not in the handler.** A file first read in the handler is fetched during that invocation and adds to its duration; Lambda does not download the rest of the image in the background.
+- Recommend testing with and without SOCI to compare startup time and invocation duration for the workload.
 
 ### Instance Sizing
 
@@ -136,7 +143,7 @@ Review code for concurrency safety. LMI runs multiple invocations concurrently p
 
 - Start with I/O-heavy functions (benefit most from multi-concurrency)
 - Review code for concurrency safety before attaching to capacity provider
-- Use weighted aliases for gradual traffic shift
+- Shift traffic gradually at the invoking service or routing layer
 - Include request IDs in all log statements
 - Initialize DB pools and SDK clients outside the handler
 
@@ -177,6 +184,7 @@ Review code for concurrency safety. LMI runs multiple invocations concurrently p
 | Runtimes | Node.js 22+, Java 21+, .NET 8+, Python 3.13+, Rust (provided.al2023) |
 | Instance families | C, M, R (.large and up) |
 | Scaling | Burst headroom equals unused capacity from TargetResourceUtilization; new instances launch within minutes |
+| SOCI lazy loading | Container image functions on LMI only (not Lambda Event Functions on-demand); SOCI Index Manifest v2 only; image index with exactly one OCI image manifest plus the SOCI index (no multi-architecture indexes) |
 
 ## Security Considerations
 
@@ -193,7 +201,7 @@ Review code for concurrency safety. LMI runs multiple invocations concurrently p
 | File | Content |
 |------|---------|
 | [cost-comparison.md](references/cost-comparison.md) | Pricing analysis, break-even calculations, Savings Plans/RI impact |
-| [configuration-guide.md](references/configuration-guide.md) | Instance selection, memory ratios, scaling tuning, capacity provider config |
+| [configuration-guide.md](references/configuration-guide.md) | Instance selection, memory ratios, scaling tuning, capacity provider config, SOCI lazy loading |
 | [thread-safety.md](references/thread-safety.md) | Concurrency model per runtime, code review checklist, Powertools compatibility |
 | [migration-patterns.md](references/migration-patterns.md) | Before/after code by runtime, connection pooling, gradual cutover |
 | [infrastructure-setup.md](references/infrastructure-setup.md) | IAM roles, VPC setup, SAM templates, CLI commands |
