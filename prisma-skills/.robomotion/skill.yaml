@@ -2,7 +2,7 @@ schema_version: 1
 name: prisma-skills
 title: Prisma Skills
 type: group
-version: 7.9.1
+version: 8.0.0
 author: Prisma
 source_url: https://github.com/prisma/skills
 license: MIT
