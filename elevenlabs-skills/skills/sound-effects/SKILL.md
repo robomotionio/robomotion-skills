@@ -10,7 +10,7 @@ metadata: {"openclaw": {"requires": {"env": ["ELEVENLABS_API_KEY"]}, "primaryEnv
 
 Generate sound effects from text descriptions — supports looping, custom duration, and prompt adherence control.
 
-> **Setup:** See [Installation Guide](references/installation.md). For JavaScript, use `@elevenlabs/*` packages only.
+> **Setup, before writing any code:** if `ELEVENLABS_API_KEY` isn't set for this project, run `npx -y @elevenlabs/cli@latest onboard init` from the app's folder first and follow what it prints: it signs the user in and stores a key for the project, so nobody copies one by hand. Otherwise see the [Installation Guide](references/installation.md). For JavaScript, use `@elevenlabs/*` packages only.
 
 ## Quick Start
 
@@ -23,6 +23,7 @@ client = ElevenLabs()
 
 audio = client.text_to_sound_effects.convert(
     text="Thunder rumbling in the distance with light rain",
+    model_id="eleven_text_to_sound_v3",
 )
 
 with open("thunder.mp3", "wb") as f:
@@ -39,6 +40,7 @@ import { createWriteStream } from "fs";
 const client = new ElevenLabsClient();
 const audio = await client.textToSoundEffects.convert({
   text: "Thunder rumbling in the distance with light rain",
+  modelId: "eleven_text_to_sound_v3",
 });
 audio.pipe(createWriteStream("thunder.mp3"));
 ```
@@ -48,6 +50,7 @@ audio.pipe(createWriteStream("thunder.mp3"));
 ```bash
 elevenlabs text-to-sound-effects convert \
   --text "Thunder rumbling in the distance with light rain" \
+  --model-id eleven_text_to_sound_v3 \
   --output thunder.mp3
 ```
 
@@ -56,10 +59,10 @@ elevenlabs text-to-sound-effects convert \
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `text` | string (required) | — | Description of the desired sound effect |
-| `model_id` | string | `eleven_text_to_sound_v2` | Model to use |
+| `model_id` | string | `eleven_text_to_sound_v2` | Model to use. Set `eleven_text_to_sound_v3` (SFX v3) explicitly: it follows multi-part prompts more closely, handles music and vocals better, and sounds more natural |
 | `duration_seconds` | number \| null | null (auto) | Duration 0.5–30s; auto-calculated if null |
 | `prompt_influence` | number \| null | 0.3 | How closely to follow the prompt (0–1) |
-| `loop` | boolean | false | Generate a seamlessly looping sound (v2 model only) |
+| `loop` | boolean | false | Generate a seamlessly looping sound |
 
 ## Examples with Parameters
 
@@ -67,6 +70,7 @@ elevenlabs text-to-sound-effects convert \
 # Looping ambient sound, 10 seconds
 audio = client.text_to_sound_effects.convert(
     text="Gentle forest ambiance with birds chirping",
+    model_id="eleven_text_to_sound_v3",
     duration_seconds=10.0,
     prompt_influence=0.5,
     loop=True,
@@ -75,6 +79,7 @@ audio = client.text_to_sound_effects.convert(
 # Short UI sound, high prompt adherence
 audio = client.text_to_sound_effects.convert(
     text="Soft notification chime",
+    model_id="eleven_text_to_sound_v3",
     duration_seconds=1.0,
     prompt_influence=0.8,
 )
@@ -91,7 +96,7 @@ Pass `--output-format` (CLI) or `output_format` as an SDK parameter:
 | `opus_48000_128` | Opus 48kHz 128kbps — efficient compressed |
 | `ulaw_8000` | μ-law 8kHz — telephony |
 
-Full list: `mp3_22050_32`, `mp3_24000_48`, `mp3_44100_32`, `mp3_44100_64`, `mp3_44100_96`, `mp3_44100_128`, `mp3_44100_192`, `pcm_8000`, `pcm_16000`, `pcm_22050`, `pcm_24000`, `pcm_32000`, `pcm_44100`, `pcm_48000`, `ulaw_8000`, `alaw_8000`, `opus_48000_32`, `opus_48000_64`, `opus_48000_96`, `opus_48000_128`, `opus_48000_192`.
+Full list: `mp3_22050_32`, `mp3_24000_48`, `mp3_44100_32`, `mp3_44100_64`, `mp3_44100_96`, `mp3_44100_128`, `mp3_44100_192`, `pcm_8000`, `pcm_16000`, `pcm_22050`, `pcm_24000`, `pcm_32000`, `pcm_44100`, `pcm_48000`, `wav_8000`, `wav_16000`, `wav_22050`, `wav_24000`, `wav_32000`, `wav_44100`, `wav_48000`, `ulaw_8000`, `alaw_8000`, `opus_48000_32`, `opus_48000_64`, `opus_48000_96`, `opus_48000_128`, `opus_48000_192`.
 
 ## Prompt Tips
 
