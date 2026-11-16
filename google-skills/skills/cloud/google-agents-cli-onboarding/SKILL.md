@@ -1,6 +1,7 @@
 ---
 name: google-agents-cli-onboarding
 metadata:
+  version: "1.0.1"
   category: DevOps
 description: >-
   Onboarding entrypoint for agents-cli in Agent Platform. It should be used
@@ -25,6 +26,15 @@ description: >-
 > ```bash
 > npx skills add google/agents-cli
 > ```
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:google-agents-cli-onboarding)"`
+and append `agent-skills/1.0 (skill:google-agents-cli-onboarding)` to `User-Agent` headers.
 
 ## Overview
 

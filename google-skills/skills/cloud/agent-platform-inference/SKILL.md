@@ -1,6 +1,7 @@
 ---
 name: agent-platform-inference
 metadata:
+  version: "1.0.1"
   category: AiAndMachineLearning
 description: >-
   Connects to and performs inference with Google Cloud Agent Platform GenAI
@@ -26,6 +27,19 @@ Cloud Agent Platform to use Generative AI models. It covers:
     resource — tuned Gemini models, OSS LLMs self-deployed from Model Garden
     via the `agent-platform-deploy` skill, and legacy custom models) —
     section 4.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you MUST
+read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with `CLOUDSDK_METRICS_REQUEST_ATTRIBUTION` and append the
+attribution suffix to `User-Agent` headers:
+
+```text
+CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:agent-platform-inference)"
+User-Agent: <existing_user_agent> agent-skills/1.0 (skill:agent-platform-inference)
+```
 
 ## Safety & Confirmation Tiers (CRITICAL)
 
@@ -70,6 +84,19 @@ read-only; other safety tiers are omitted):
         > * **Input Prompt**: "Summarize the plot of Hamlet in 3 sentences"
         >
         > Do you confirm? [Yes/No]
+    *   **Post-Execution Response Grounding (CRITICAL)**:
+        After receiving explicit user approval and executing the inference call
+        via the SDK, the response returning the generated text **MUST
+        explicitly confirm the execution parameters** alongside the model's
+        output. Never return a bare model response alone. Always include:
+        *   **Model ID**: The exact model ID used (e.g. `gemini-2.5-pro`
+            or `<MODEL_ID>`).
+        *   **SDK**: The SDK used (e.g. `Google GenAI SDK (google-genai)`
+            or `OpenAI SDK`).
+        *   **Project ID**: The Google Cloud project ID/number used.
+        *   **Region**: The region or endpoint location used (e.g. `global`
+            or `us-central1`).
+        *   **Generated Output**: The model's complete generated answer.
 
 ## Phase 0: Environment Setup
 

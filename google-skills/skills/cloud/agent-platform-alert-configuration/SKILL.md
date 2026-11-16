@@ -1,6 +1,7 @@
 ---
 name: agent-platform-alert-configuration
 metadata:
+  version: "1.0.1"
   category: AiAndMachineLearning
 description: >-
   Configures best-practice alerting policies for AI agents using OpenTelemetry
@@ -16,6 +17,17 @@ allowed-tools: terraform gcloud python
 ---
 
 # Agent Platform Alert Configuration
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:agent-platform-alert-configuration)"`
+and append
+`agent-skills/1.0 (skill:agent-platform-alert-configuration)`
+to `User-Agent` headers.
 
 ## Critical Steps
 

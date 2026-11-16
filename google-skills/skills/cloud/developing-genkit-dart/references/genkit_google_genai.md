@@ -9,29 +9,71 @@ import 'package:genkit/genkit.dart';
 import 'package:genkit_google_genai/genkit_google_genai.dart';
 
 void main() async {
-  // Initialize Genkit with the Google AI plugin
+  // Initialize Genkit with the Google AI plugin.
   final ai = Genkit(plugins: [googleAI()]);
 
   // Generate text
   final response = await ai.generate(
     model: googleAI.gemini('gemini-flash-latest'),
     prompt: 'Tell me a joke about a developer.',
+    // Built-in; transient "high demand" errors are common.
+    use: [retry()],
   );
 
   print(response.text);
 }
 ```
 
+## Model refs and Gemma
+
+`googleAI.gemini('<name>')` builds a ref for any Gemini model. Gemma models the
+Gemini API serves have a dedicated `googleAI.gemma('<name>')` alias (it reads
+correctly at call sites). Refer to models by name; there are no
+`GoogleAiModels` constants.
+
+```dart
+final response = await ai.generate(
+  model: googleAI.gemma('gemma-4-31b-it'),
+  prompt: 'Tell me a joke about a developer.',
+);
+```
+
 ## Embeddings
 
 ```dart
-final embeddings = await ai.embedMany(
-  embedder: googleAI.textEmbedding('text-embedding-004'),
+final embeddings = await ai.embed(
+  embedder: googleAI.textEmbedding('gemini-embedding-001'),
   documents: [
     DocumentData(content: [TextPart(text: 'Hello world')]),
   ],
+  // Optional per-request tuning.
+  options: GoogleGenAiEmbedderOptions(outputDimensionality: 768),
 );
 ```
+
+## Config types are provider-prefixed
+
+Nested config classes carry a `Gemini` prefix (embedder options use
+`GoogleGenAi`). Unprefixed names like `ThinkingConfig` do not exist here.
+
+```dart
+config: GeminiOptions(
+  // Allowed levels depend on the model ('LOW' is widely supported).
+  thinkingConfig: GeminiThinkingConfig(thinkingLevel: 'LOW'),
+  safetySettings: [
+    GeminiSafetySettings(
+      category: 'HARM_CATEGORY_HATE_SPEECH',
+      threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+    ),
+  ],
+  googleSearch: GeminiGoogleSearch(),
+),
+```
+
+Also: `GeminiFunctionCallingConfig`, `GeminiFileSearch`, `GeminiSpeechConfig`,
+`GeminiVoiceConfig`, `GeminiPrebuiltVoiceConfig`,
+`GeminiMultiSpeakerVoiceConfig`, `GeminiSpeakerVoiceConfig`. The same types are
+re-exported by `genkit_vertexai`.
 
 ## Image Generation
 
@@ -76,9 +118,9 @@ ai.defineFlow(
       prompt: prompt,
       config: GeminiTtsOptions(
         responseModalities: ['AUDIO'],
-        speechConfig: SpeechConfig(
-          voiceConfig: VoiceConfig(
-            prebuiltVoiceConfig: PrebuiltVoiceConfig(voiceName: 'Puck'),
+        speechConfig: GeminiSpeechConfig(
+          voiceConfig: GeminiVoiceConfig(
+            prebuiltVoiceConfig: GeminiPrebuiltVoiceConfig(voiceName: 'Puck'),
           ),
         ),
       ),
