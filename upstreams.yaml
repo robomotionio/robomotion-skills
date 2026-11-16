@@ -270,7 +270,7 @@ upstreams:
 - group: firecrawl-skills
   repo: https://github.com/firecrawl/skills
   track: main
-  commit: bab52f95ea1c95293fc4f551802c285d525bf654
+  commit: 458d9d0331fb31121fd38e0e09ae5036f952784b
   subdir: ''
   mode: mirror
   license: ISC
