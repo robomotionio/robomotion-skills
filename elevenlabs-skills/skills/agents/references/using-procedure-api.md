@@ -1,10 +1,10 @@
 # Using the Procedure API
 
-Procedures are reusable instruction blocks that an agent runs when a trigger matches. Use the ElevenLabs CLI by default to create, edit, and publish them. Python and JavaScript SDKs are also available for application code. Reference: [Procedures](https://elevenlabs.io/docs/eleven-agents/customization/procedures.md) · [API Reference](https://elevenlabs.io/docs/api-reference/agents/procedures/).
+Procedures are reusable instruction blocks that an agent runs when a trigger matches or a Start procedure workflow node starts it. Use the ElevenLabs CLI by default to create, edit, and publish them. Python and JavaScript SDKs are also available for application code. Reference: [Procedures](https://elevenlabs.io/docs/eleven-agents/customization/procedures.md) · [API Reference](https://elevenlabs.io/docs/api-reference/agents/procedures/).
 
 For what belongs in `trigger` and `content`, see [Writing Procedures](writing-procedures.md).
 
-One term to know: turning a structured procedure's steps into the form the agent executes is called compiling. The platform compiles every structured procedure on the branch when you publish; you never compile anything yourself or send a `workflow` in a request. The compiled result is currently visible as read-only nodes in the dashboard's Workflow tab.
+Turning a structured procedure's steps into the form the agent executes is called compiling. The platform compiles every structured procedure when the agent draft is saved or the agent is published; authors never compile anything themselves. Both operations validate every structured procedure on the branch and return any errors. Use a Start procedure workflow node (`type: "start_procedure"`, `procedure_id: "<attached procedure ID>"`) to start either procedure type at a chosen point in the workflow graph without a trigger match. Free-form content loads and traversal continues in the same turn; a structured procedure runs before the node's outgoing edges are evaluated. Connect workflow edges to the Start procedure node. Use a `sub_procedure` step to chain structured procedures.
 
 The CLI exposes the complete procedure lifecycle, including draft operations.
 
@@ -289,8 +289,6 @@ On a validation failure the publish returns `400` and nothing is written:
 `errors` is keyed by procedure ID. Each entry carries the `path` of the offending field and a message naming the step. Repair every entry in the procedure draft and publish again. Each attempt reports the errors detected in that pass; fixing field-level errors may reveal structural errors on the next pass.
 
 Saving a procedure draft with `PATCH .../procedures/{procedure_id}/draft` does not validate structured content. The check happens at publish, or at agent draft save as described next.
-
-The legacy `POST .../procedures/compile` endpoint still exists as a dry-run for existing callers, but do not use it. It will eventually be deprecated.
 
 ### Validate without publishing
 

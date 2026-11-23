@@ -10,26 +10,29 @@ metadata: {"openclaw": {"requires": {"env": ["ELEVENLABS_API_KEY"]}, "primaryEnv
 
 Build voice AI agents with natural conversations, multiple LLM providers, custom tools, and easy web embedding.
 
-> **Setup:** See [Installation Guide](references/installation.md) for CLI and SDK setup.
+> **Setup, before writing any code:** if `ELEVENLABS_API_KEY` isn't set for this project, run `npx -y @elevenlabs/cli@latest onboard init` from the app's folder first and follow what it prints: it signs the user in and stores a key for the project, so nobody copies one by hand. When the user approved in the browser, that also signed the ElevenLabs CLI in, so don't run `elevenlabs auth login` after it. When they added the key by hand (on a remote machine), or a CLI command answers 401, load the env file into the command instead, for example `(set -a && . ./.env.local && set +a && npx -y @elevenlabs/cli@latest agents list)`; the CLI reads a `.env` on its own. Otherwise see the [Installation Guide](references/installation.md) for CLI and SDK setup.
 
 ## Quick Start with CLI
 
 The ElevenLabs CLI is the recommended way to create and manage agents:
 
 ```bash
-# Install CLI and authenticate
+# Install CLI and authenticate. After onboarding, skip these two lines and run each
+# command below through npx instead, e.g. `npx -y @elevenlabs/cli@latest agents init`
 npm install -g @elevenlabs/cli
 elevenlabs auth login
 
 # Initialize project and create an agent
 elevenlabs agents init
-elevenlabs agents add "My Assistant" --template complete
+elevenlabs agents add "My Assistant" --template default
 
 # Push to ElevenLabs platform
 elevenlabs agents push
 ```
 
-**Available templates:** `complete`, `minimal`, `voice-only`, `text-only`, `customer-service`, `assistant`
+**Available templates:** `default`, `minimal`, `voice-only`, `text-only`, `customer-service`, `assistant`
+
+Once the agent exists, give the user its links: they can talk to it at `https://elevenlabs.io/app/talk-to?agent_id=<agent-id>` and edit it at `https://elevenlabs.io/app/agents/agents/<agent-id>`. On a data residency account, use its region's host instead of `elevenlabs.io`, such as `eu.residency.elevenlabs.io`. The talk-to page only opens public agents, which is the default; for an agent with authentication enabled, give only the dashboard link.
 
 ### Python
 
@@ -168,15 +171,17 @@ function App({ signedUrl }: { signedUrl: string }) {
 
 | Provider | Models |
 |----------|--------|
-| OpenAI | `gpt-6-sol`, `gpt-6-luna`, `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.5-2026-04-23`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4-2026-03-05`, `gpt-5.4-mini-2026-03-17`, `gpt-5.4-nano-2026-03-17`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo` |
-| Anthropic | `claude-opus-5-5`, `claude-opus-5`, `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-sonnet-4-5`, `claude-sonnet-4`, `claude-haiku-4-5`, `claude-3-7-sonnet`, `claude-3-5-sonnet`, `claude-3-haiku` |
-| Google | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.1-flash-lite-preview`, `gemini-3.1-pro-preview`, `gemini-3-pro-preview`, `gemini-3-flash-preview`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.0-flash`, `gemini-2.0-flash-lite` |
-| ElevenLabs | `glm-52`, `deepseek-v41-flash`, `glm-45-air-fp8`, `qwen3-30b-a3b`, `qwen36-35b-a3b`, `qwen35-35b-a3b`, `qwen35-397b-a17b`, `gpt-oss-120b` |
+| OpenAI | `gpt-6.1-sol`, `gpt-6.1-terra`, `gpt-6-sol`, `gpt-6-luna`, `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`, `gpt-5.5`, `gpt-5.5-2026-04-23`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4-2026-03-05`, `gpt-5.4-mini-2026-03-17`, `gpt-5.4-nano-2026-03-17`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo` |
+| Anthropic | `claude-opus-5-5`, `claude-opus-5`, `claude-sonnet-5-5`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-4-6`, `claude-sonnet-4`, `claude-haiku-4-5`, `claude-3-7-sonnet`, `claude-3-5-sonnet`, `claude-3-haiku` |
+| Google | `gemini-4-argon`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.5-flash`, `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite-preview`, `gemini-3.1-pro-preview`, `gemini-3-pro-preview`, `gemini-3-flash-preview`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.0-flash`, `gemini-2.0-flash-lite` |
+| ElevenLabs | `glm-52`, `deepseek-v41-flash`, `glm-45-air-fp8`, `qwen3-30b-a3b`, `qwen36-35b-a3b`, `qwen35-35b-a3b`, `qwen35-397b-a17b`, `nemotron-35-super-vl-nvfp4`, `gpt-oss-120b` |
 | Custom | `custom-llm` (bring your own endpoint) |
 
 Use `GET /v1/convai/llm/list` to inspect the current model catalog, including deprecation state, token/context limits, capability flags such as image-input support, and model-specific reasoning effort support.
 
-**Popular voices:** `JBFqnCBsd6RMkjVDRZzb` (George), `EXAVITQu4vr4xnSDxMaL` (Sarah), `onwK4e9ZLuTAKqWW03F9` (Daniel), `XB0fDUnXU5powFXDhCwa` (Charlotte)
+To run an agent on an ElevenLabs Realtime model instead of a separate LLM and TTS model (`conversation_config.realtime_model`), use the `realtime` skill.
+
+**Popular voices:** `JBFqnCBsd6RMkjVDRZzb` (George), `EXAVITQu4vr4xnSDxMaL` (Sarah), `onwK4e9ZLuTAKqWW03F9` (Daniel)
 
 **Turn eagerness:** `patient` (waits longer for user to finish), `normal`, or `eager` (responds quickly)
 
@@ -298,7 +303,7 @@ No-auth APIs useful for prototypes (URLs must be HTTPS):
 
 Route conversations through discrete steps with branching logic. Define under the agent's top-level `workflow` field. Reference: [Agent Workflows](https://elevenlabs.io/docs/eleven-agents/customization/agent-workflows).
 
-**Node types:** `start` (ID must be `"start_node"`), `end`, `override_agent` (subagent step with `label` + `additional_prompt`), `dispatch_tool` (executes a tool with success/failure routing), `agent_transfer`, `transfer_to_number`.
+**Node types:** `start` (ID must be `"start_node"`), `end` (`outcome` records the conversation as `success`, the default, or `failure`), `override_agent` (subagent step with `label` + `additional_prompt`), `dispatch_tool` (executes a tool with success/failure routing), `agent_transfer`, `transfer_to_number`.
 
 **Edge types:** `unconditional`, `llm` (natural-language condition), `expression` (deterministic data check). Tool nodes have separate success/failure edges.
 
@@ -322,9 +327,52 @@ Use `entry_behavior` on `override_agent` nodes to choose whether a sub-agent spe
 For nested agent transfers, set `enable_nesting` on a `standalone_agent` node and
 `return_when_nested` on an `end` node that should return control to the parent workflow.
 
+### Build Workflows in Code
+
+The Python and JavaScript SDKs include a `Workflow` builder that produces the `workflow` value for `agents.create()` and `agents.update()`. Chain `converse`, `tool`, `transfer`, and `end` steps, and route between them with `when` (a string is an LLM condition; an `Expr` is an expression on dynamic variables), `on_success` / `on_failure`, and `go_to`. `build()` assigns `start_node`, edge IDs, `edge_order`, and editor positions, and raises one `WorkflowValidationError` listing every workflow graph problem. Reference: [Workflows as code](https://elevenlabs.io/docs/eleven-agents/customization/agent-workflows-as-code).
+
+```python
+from elevenlabs import ElevenLabs
+from elevenlabs.agent_workflows import Destination, Workflow
+
+client = ElevenLabs()
+
+wf = Workflow()
+triage = wf.converse("triage", "Greet the caller and find out why they're calling")
+lookup = triage.when("Caller gave an order number").tool("lookup_order", ["tool_get_order"])
+lookup.on_result(
+    success=lambda ok: ok.converse("resolve", "Explain the order status").when("Caller is satisfied").end(),
+    failure=lambda failed: failed.go_to(triage),
+)
+triage.when("Caller wants a human").transfer("human", Destination.phone("+15551234567"))
+
+client.conversational_ai.agents.update("agent_id", workflow=wf.build())
+```
+
+```javascript
+import { Destination, ElevenLabsClient, Workflow } from "@elevenlabs/elevenlabs-js";
+
+const client = new ElevenLabsClient();
+
+const wf = new Workflow();
+const triage = wf.converse("triage", "Greet the caller and find out why they're calling");
+const lookup = triage.when("Caller gave an order number").tool("lookup_order", ["tool_get_order"]);
+lookup.onResult({
+  success: (ok) => ok.converse("resolve", "Explain the order status").when("Caller is satisfied").end(),
+  failure: (failed) => failed.goTo(triage),
+});
+triage.when("Caller wants a human").transfer("human", Destination.phone("+15551234567"));
+
+await client.conversationalAi.agents.update("agent_id", { workflow: wf.build() });
+```
+
+To edit an existing workflow, load it with `Workflow.from_agent(agent)` / `Workflow.fromAgent(agent)`, then change nodes with `wf.node(id).update(...)`, `insert_between` / `insertBetween`, or `remove`; IDs and positions are kept. `to_json_string()` / `toJSONString()` and `Workflow.from_json()` / `Workflow.fromJSON()` store workflows as JSON in version control, and `elevenlabs agents workflow diagram <file>` draws a workflow file as a flowchart (`--format mermaid` for Mermaid output).
+
+A Start procedure node starts an attached procedure at a chosen point in the workflow graph. See [Procedures](#procedures) for the `start_procedure` node and its continuation behavior.
+
 ## Procedures
 
-Reusable instruction blocks an agent runs when a trigger matches. A procedure is `free_form` (markdown guidance the agent adapts, and the only type that can reference knowledge base documents) or `deterministic` (called "structured" in the dashboard: typed steps that run in a fixed order, for flows that must happen the same way every time). See [Using the Procedure API](references/using-procedure-api.md) for the full CLI and SDK flow, and [Writing Procedures](references/writing-procedures.md) for the step reference, validation rules, and authoring guidance.
+Reusable instruction blocks an agent runs when a trigger matches or a Start procedure workflow node starts it. A procedure is `free_form` (markdown guidance the agent adapts, and the only type that can reference knowledge base documents) or `deterministic` (called "structured" in the dashboard: typed steps that run in a fixed order, for flows that must happen the same way every time). See [Using the Procedure API](references/using-procedure-api.md) for the full CLI and SDK flow, and [Writing Procedures](references/writing-procedures.md) for the step reference, validation rules, and authoring guidance.
 
 Procedures live on an agent branch, and every write stages a per-user draft:
 
@@ -337,14 +385,15 @@ Semantics worth knowing before writing any of these calls:
 
 - Nothing reaches the live agent until you publish. Publishing is not a procedure endpoint; one PATCH on the agent versions every changed procedure draft on the branch.
 - `GET .../procedures/{procedure_id}` reads branch HEAD and returns `404` until that procedure's first publish. Read the `/draft` variant to see a procedure you just created; do not retry the create.
-- Turning a structured procedure's steps into the form the agent executes is called compiling. When you publish, the platform validates every structured procedure on the branch, compiles them, and stores the result with the new version. You do not compile anything yourself and do not send a `workflow` in the request; `agents.update` with `branch_id` publishes, and compilation happens as part of that. The compiled result is currently visible as read-only nodes in the dashboard's Workflow tab. A failed publish writes nothing, so publishing is also the validation step. To validate without publishing, save an agent draft with `POST /v1/convai/agents/{agent_id}/drafts?branch_id=...`, sending the agent's current `name`, `conversation_config`, `platform_settings`, and `workflow` unchanged, then discard that agent draft with `DELETE` on the same path; see [Using the Procedure API](references/using-procedure-api.md#validate-without-publishing).
+- Turning a structured procedure's steps into the form the agent executes is called compiling. The platform compiles every structured procedure when the agent draft is saved or the agent is published; authors never compile anything themselves. Both draft save and publish validate every structured procedure on the branch. A failed operation writes nothing. To validate without publishing, save an agent draft with `POST /v1/convai/agents/{agent_id}/drafts?branch_id=...`, sending the agent's current `name`, `conversation_config`, `platform_settings`, and `workflow` unchanged, then discard that agent draft with `DELETE` on the same path; see [Using the Procedure API](references/using-procedure-api.md#validate-without-publishing).
 - If a structured procedure is invalid, the publish or draft save returns `400` with `status` `procedure_validation_failed` and `errors` keyed by procedure ID, each entry carrying the `path` of the offending field and a message. Nothing is written; repair the procedure draft and publish again.
 - A draft update replaces the whole body. Read the draft first, then resend `name`, `type`, and `trigger` alongside the new `content`. `type` cannot change after creation.
 - `content` is markdown for a `free_form` procedure, and a JSON-encoded object with a `steps` array for a `deterministic` one. The trigger is the top-level `trigger` field in both cases, not part of `content`. Serialize it; do not hand-escape quotes.
+- Use a Start procedure workflow node (`type: "start_procedure"`, `procedure_id: "<attached procedure ID>"`) to start either procedure type at a chosen point in the workflow graph without a trigger match. Free-form content loads and traversal continues in the same turn; a structured procedure runs before the node's outgoing edges are evaluated. Connect workflow edges to the Start procedure node. Use a `sub_procedure` step to chain structured procedures.
 - A third `type`, `folder`, groups procedures in the dashboard. Folders carry no `content` or `trigger`; move a procedure into one with `POST .../procedures/{procedure_id}/move`.
 - The agent keeps the five most recently started procedures in context. When more have been started, the content, inline tools, and knowledge base documents of the oldest free-form ones drop out of the prompt, although the procedures remain active. Keep procedures focused and use sub-procedures so that few are active at once.
 - Routing is driven by the `trigger` text, not the procedure name. Write concrete, non-overlapping triggers that cover the phrasings a user would actually say. The model sees only a numbered menu of triggers; it never sees procedure names or IDs.
-- To restrict the starting agent to selected procedures for one conversation, enable `platform_settings.overrides.enable_procedure_ids_from_client`, then pass their IDs as `procedure_ids` in conversation initiation data. An empty list disables all procedures for that starting agent.
+- To restrict the starting agent to selected procedures for one conversation, enable `platform_settings.overrides.enable_procedure_ids_from_client`, then pass their IDs as `procedure_ids` in conversation initiation data. An empty list disables all procedures for that starting agent. The same setting allows `start_procedure_ids`: up to five free-form procedures that start with the conversation, for when the user's task is already known (for example from an IVR choice or the page hosting the widget).
 - Procedure APIs require `elevenlabs` (Python) or `@elevenlabs/elevenlabs-js` at `2.60.0` or newer.
 
 ## Guardrails
@@ -365,7 +414,7 @@ Layered safety enforcement that runs independently of the LLM — configured und
           "name": "No medical diagnoses",
           "prompt": "Block the agent from providing medical diagnoses or treatment advice.",
           "execution_mode": "blocking",
-          "model": "gemini-2.5-flash-lite",
+          "model": "gemini-3.1-flash-lite",
           "history_message_count": 1,
           "trigger_action": {"type": "retry", "feedback": "Reason: {{trigger_reason}}"}
         }]
@@ -495,9 +544,9 @@ elevenlabs agents pull --agent <agent-id>   # Import specific agent
 elevenlabs agents push              # Upload configurations
 elevenlabs agents push --dry-run    # Preview changes first
 
-# Add tools
-elevenlabs tools add-webhook "Weather API"
-elevenlabs tools add-client "UI Tool"
+# Add tools (names use letters, numbers, - and _)
+elevenlabs tools add weather-api --type webhook
+elevenlabs tools add ui-tool --type client
 ```
 
 ### Project Structure

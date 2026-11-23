@@ -29,15 +29,17 @@ ELEVENLABS_API_KEY=<your_api_key_here>
 | Limit language detection to expected additional languages | `secondary_languages` | `secondaryLanguages` |
 | Return detected language in delayed final events | `include_language_detection` | `includeLanguageDetection` |
 | Detect entities in committed segments | `entity_detection` | `entityDetection` |
+| Redact entities in committed segments | `entity_redaction`, `entity_redaction_mode` | `entityRedaction`, `entityRedactionMode` |
 | Apply a natural-language edit instruction to committed segments | `transcript_edit` | `transcriptEdit` |
 | Reduce false activation from background speech and noise | `filter_background_audio` | `filterBackgroundAudio` |
 | Disable history and logging for an enterprise zero-retention session | `enable_logging=False` | `enableLogging: false` |
 
 `secondary_languages` accepts additional ISO-639-1 or ISO-639-3 codes. Entity detection accepts
-`all`, a supported entity type or category, or a list of them. Background audio filtering cannot be
-combined with timestamp output. A transcript edit instruction can contain up to 2,000 characters
-and cannot be combined with entity detection. It adds a 30% premium, billed for at least 10 seconds
-of audio per committed transcript.
+`all`, a supported entity type or category, or a list of them; entity redaction accepts the same
+values. A transcript edit
+instruction can contain up to 2,000 characters and cannot be combined with entity detection or
+entity redaction. It adds a 30% premium, billed for at least 10 seconds of audio per committed
+transcript.
 
 ## Stream from URL
 
@@ -48,7 +50,7 @@ from dotenv import load_dotenv
 import os
 import asyncio
 from elevenlabs import ElevenLabs
-from elevenlabs import RealtimeEvents, RealtimeUrlOptions
+from elevenlabs import CommitStrategy, RealtimeEvents, RealtimeUrlOptions
 
 load_dotenv()
 
@@ -57,8 +59,9 @@ async def main():
     stop_event = asyncio.Event()
 
     connection = await elevenlabs.speech_to_text.realtime.connect(RealtimeUrlOptions(
-        model_id="scribe_v2_realtime",
+        model_id="scribe_v3_live",
         url="https://npr-ice.streamguys1.com/live.mp3",
+        commit_strategy=CommitStrategy.VAD,  # URL streams never commit on their own
         include_timestamps=True,
         keyterms=["ElevenLabs", "Scribe"],
         no_verbatim=True,
@@ -102,7 +105,7 @@ import { ElevenLabsClient, RealtimeEvents } from "@elevenlabs/elevenlabs-js";
 const elevenlabs = new ElevenLabsClient();
 
 const connection = await elevenlabs.speechToText.realtime.connect({
-  modelId: "scribe_v2_realtime",
+  modelId: "scribe_v3_live",
   url: "https://npr-ice.streamguys1.com/live.mp3",
   includeTimestamps: true,
   keyterms: ["ElevenLabs", "Scribe"],
@@ -162,7 +165,7 @@ async def main():
     transcription_complete = asyncio.Event()
 
     connection = await elevenlabs.speech_to_text.realtime.connect(RealtimeAudioOptions(
-        model_id="scribe_v2_realtime",
+        model_id="scribe_v3_live",
         audio_format=AudioFormat.PCM_16000,
         sample_rate=16000,
         commit_strategy=CommitStrategy.MANUAL,
@@ -238,7 +241,7 @@ import { ElevenLabsClient, RealtimeEvents, AudioFormat } from "@elevenlabs/eleve
 const elevenlabs = new ElevenLabsClient();
 
 const connection = await elevenlabs.speechToText.realtime.connect({
-  modelId: "scribe_v2_realtime",
+  modelId: "scribe_v3_live",
   audioFormat: AudioFormat.PCM_16000,
   sampleRate: 16000,
   includeTimestamps: true,
@@ -304,7 +307,7 @@ async function sendAudio() {
 For cases where the SDK cannot be used:
 
 ```
-wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v2_realtime
+wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v3_live
 ```
 
 Add repeated `keyterms` query parameters to bias recognition toward specific terms, and set
@@ -313,7 +316,19 @@ Add repeated `keyterms` query parameters to bias recognition toward specific ter
 additional languages:
 
 ```
-wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v2_realtime&keyterms=ElevenLabs&keyterms=Scribe&secondary_languages=es&secondary_languages=fr&no_verbatim=true
+wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v3_live&keyterms=ElevenLabs&keyterms=Scribe&secondary_languages=es&secondary_languages=fr&no_verbatim=true
+```
+
+### Scribe v3 Live Options
+
+`scribe_v3_live` accepts options that the SDKs don't expose yet, so set them on the WebSocket URL.
+`commit_strategy=turn_prediction` commits a segment when the model predicts the speaker has finished
+their turn (see [Commit Strategies](realtime-commit-strategies.md#turn-prediction)), and
+`multilang_mode=true` transcribes each spoken language in its own script, including mid-sentence
+switches:
+
+```
+wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v3_live&audio_format=pcm_16000&commit_strategy=turn_prediction&multilang_mode=true
 ```
 
 ### Entity Detection
@@ -323,13 +338,26 @@ or category, or a comma-separated list. Categories include `pii`, `phi`, `pci`, 
 `offensive_language`:
 
 ```
-wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v2_realtime&entity_detection=pii,pci
+wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v3_live&entity_detection=pii,pci
 ```
 
 Each committed segment is followed by a `committed_transcript_entities` event containing the
 detected entity text, type, and character offsets. See the
 [entity detection guide](https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/batch/entity-detection)
 for specific entity types.
+
+### Entity Redaction
+
+Add `entity_redaction` to redact entities from committed segments. It accepts the same values as
+`entity_detection`. `entity_redaction_mode` sets the marker format: `redacted` (`{REDACTED}`),
+`entity_type` (`{ENTITY_TYPE}`), or `enumerated_entity_type` (`{ENTITY_TYPE_N}`, the default):
+
+```
+wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v3_live&entity_redaction=pii&entity_redaction_mode=entity_type
+```
+
+Each committed segment is followed by a `redacted_transcript` event containing the original `text`
+and the `redacted_text`. Other transcript events stay unredacted.
 
 ### Message Format
 

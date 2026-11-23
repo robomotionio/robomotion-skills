@@ -10,7 +10,7 @@ metadata: {"openclaw": {"requires": {"env": ["ELEVENLABS_API_KEY"]}, "primaryEnv
 
 Generate music from text prompts - supports instrumental tracks, songs with lyrics, and fine-grained control via composition plans.
 
-> **Setup:** See [Installation Guide](references/installation.md). For JavaScript, use `@elevenlabs/*` packages only.
+> **Setup, before writing any code:** if `ELEVENLABS_API_KEY` isn't set for this project, run `npx -y @elevenlabs/cli@latest onboard init` from the app's folder first and follow what it prints: it signs the user in and stores a key for the project, so nobody copies one by hand. Otherwise see the [Installation Guide](references/installation.md). For JavaScript, use `@elevenlabs/*` packages only.
 
 All examples below use `music_v2_5`, the most advanced generation model. Pass `music_v2` or
 `music_v1` only when an older model is explicitly requested.
@@ -103,6 +103,10 @@ Generate background music from uploaded video clips via
 The API combines videos in order, accepts an optional natural-language description, and lets you
 steer style with up to 10 tags such as `upbeat` or `cinematic`. This endpoint still defaults to
 `music_v1`; pass `model_id="music_v2_5"` to use the most advanced model.
+
+Three optional flags shape the result: `use_audio_as_reference` takes genre, BPM, instrumentation,
+and mood from the video's own audio, `add_sfx` adds sound effects that match the video, and
+`separate_tracks` returns a ZIP with the music and sound effects as separate files for mixing.
 
 ### Python
 
