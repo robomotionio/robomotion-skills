@@ -45,6 +45,7 @@ Core skills cover:
 - Application integration (messaging, streaming)
 - Cost management (Billing and Cost Management)
 - Full-stack applictaion development (AWS Blocks)
+- Local development and testing against AWS service APIs (AWS Emulator)
 - Generative AI (Bedrock)
 - Databases (service selection and routing)
 
@@ -62,10 +63,10 @@ knowledge.
 Specialized skills are organized by AWS service category:
 
 - **[Analytics](specialized-skills/analytics-skills/)**
+- **[Customer Communications](specialized-skills/customer-communications-skills/)**
 - **[Database](specialized-skills/database-skills/)**
 - **[EC2](specialized-skills/ec2-skills/)**
 - **[End User Computing](specialized-skills/end-user-computing-skills/)**
-- **[Messaging & Streaming](specialized-skills/messaging-and-streaming-skills/)**
 - **[Migration & Modernization](specialized-skills/migration-and-modernization-skills/)**
 - **[Networking & Content Delivery](specialized-skills/networking-and-content-delivery-skills/)**
 - **[Operations](specialized-skills/operations-skills/)**
