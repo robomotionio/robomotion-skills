@@ -1,6 +1,7 @@
 ---
 name: agent-platform-migrate-from-ai-studio
 metadata:
+  version: "1.0.2"
   category: AiAndMachineLearning
 description: >-
   Guides agents and users through migrating from Gemini API in Google AI Studio to Gemini Enterprise Agent Platform (formerly Vertex AI). Use this skill when moving applications to Google Cloud, to leverage Cloud credits, or to unify inferencing with other Cloud infrastructure (IAM, billing, telemetry).
@@ -12,6 +13,17 @@ Use this skill when you need to transition an application from the
 developer-centric Google AI Studio ecosystem
 (`generativelanguage.googleapis.com`) to the enterprise-grade Google Cloud Agent
 Platform (`aiplatform.googleapis.com`).
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:agent-platform-migrate-from-ai-studio)"`
+and append
+`agent-skills/1.0 (skill:agent-platform-migrate-from-ai-studio)`
+to `User-Agent` headers.
 
 --------------------------------------------------------------------------------
 
@@ -160,7 +172,7 @@ from google import genai
 client = genai.Client()
 
 response = client.models.generate_content(
-    model='gemini-3-flash-preview',
+    model='gemini-3.5-flash',
     contents='Hello world!',
 )
 print(response.text)
@@ -190,7 +202,7 @@ export GOOGLE_GENAI_USE_ENTERPRISE=TRUE
 ```
 
 2.  Initialize the ADK agent. You can use the same model string you used with AI
-    Studio (e.g. `gemini-3-flash-preview`).
+    Studio (e.g. `gemini-3.5-flash`).
 
 ```python
 from google.adk.agents.llm_agent import Agent
@@ -200,7 +212,7 @@ def get_current_time(city: str) -> dict:
     return {"status": "success", "city": city, "time": "10:30 AM"}
 
 root_agent = Agent(
-    model='gemini-3-flash-preview',
+    model='gemini-3.5-flash',
     name='root_agent',
     description="Tells the current time in a specified city.",
     instruction="You are a helpful assistant that tells the current time in cities. Use the 'get_current_time' tool for this purpose.",
@@ -209,7 +221,7 @@ root_agent = Agent(
 ```
 
 To learn more about integrating ADK agents with Agent Platform,
-[see the ADK documentation](https://raw.githubusercontent.com/google/adk-docs/main/docs/agents/models/agent-platform.md).
+[see the ADK documentation](https://adk.dev/agents/models/agent-platform/).
 
 ### Antigravity CLI
 
@@ -250,7 +262,7 @@ these steps.
 2026.5.20 for now.
 
 2.  Ensure that the runtime where OpenClaw is running (e.g. GCE VM with Service
-    Account) has the `aiplatform.user` IAM role - see Authentication and
+    Account) has the `roles/aiplatform.user` IAM role - see Authentication and
     Authorization section above.
 
 3.  Get the project number from the user's project ID. Outside of GCE, run:
@@ -264,7 +276,7 @@ echo "Project number: $PROJECT_NUMBER"
 Within a Compute Engine VM, run:
 
 ```bash
-export PROJECT_NUMBER=$(curl "http://metadata.google.internal/computeMetadata/v1/project/project-id" -H "Metadata-Flavor: Google")
+export PROJECT_NUMBER=$(curl "http://metadata.google.internal/computeMetadata/v1/project/numeric-project-id" -H "Metadata-Flavor: Google")
 echo "Project number: $PROJECT_NUMBER"
 ```
 

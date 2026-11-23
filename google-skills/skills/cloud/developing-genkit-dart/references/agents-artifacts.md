@@ -1,7 +1,9 @@
 # Working with Artifacts
 
-> The `Artifact` type comes from `package:genkit/genkit.dart`. Read
-> [agents.md](agents.md) first.
+> The `Artifact` type is stable and comes from `package:genkit/genkit.dart`, but
+> the surrounding agent APIs (`defineAgent`, `currentSession`,
+> `InMemorySessionStore`) are experimental and come from
+> `package:genkit/experimental.dart`. Read [agents.md](agents.md) first.
 
 **Artifacts** are named, content-bearing deliverables an agent produces during a
 session — files, reports, code, etc. They live in the session (deduplicated by
@@ -24,10 +26,19 @@ name) and are returned in `res.artifacts` / tracked on the client's
 > session artifacts for conversation-scoped deliverables, `filesystem()` for
 > persistent on-disk work.
 
+- [Give the model artifact tools](#give-the-model-artifact-tools): Lines 37-99
+- [How artifacts flow](#how-artifacts-flow): Lines 101-113
+- [The Artifact shape](#the-artifact-shape): Lines 115-124
+- [Programmatic access (inside tools and custom agents)](#programmatic-access-inside-tools-and-custom-agents): Lines 126-142
+- [Reading artifacts on the client](#reading-artifacts-on-the-client): Lines 144-171
+
+---
+
 ## Give the model artifact tools
 
 ```dart
 import 'package:genkit/genkit.dart';
+import 'package:genkit/experimental.dart'; // defineAgent, currentSession
 import 'package:schemantic/schemantic.dart';
 
 import 'genkit.dart';
@@ -112,7 +123,7 @@ final artifact = Artifact(
 );
 ```
 
-## Programmatic access (inside tools / custom agents)
+## Programmatic access (inside tools and custom agents)
 
 Use the active session. `ai.currentSession()` returns `null` when there's no
 active session, so only call it inside an agent turn.
@@ -138,6 +149,7 @@ arrives.
 
 ```dart
 import 'package:genkit/client.dart';
+import 'package:genkit/experimental_client.dart'; // remoteAgent
 
 final agent = remoteAgent(url: '/api/workspaceAgent');
 final chat = agent.chat();
@@ -146,7 +158,7 @@ final turn = chat.sendStream(text: 'Create index.html and styles.css');
 await for (final chunk in turn.stream) {
   final artifact = chunk.artifact;
   if (artifact != null) {
-    // artifact.name, artifact.parts — render/store it live.
+    // artifact.name, artifact.parts - render/store it live.
   }
 }
 final res = await turn.response;

@@ -1,6 +1,7 @@
 ---
 name: gke-upgrades
 metadata:
+  version: "1.1.1"
   category: Containers
 description: >-
   Plans, executes, and validates Google Kubernetes Engine (GKE) cluster upgrades
@@ -24,6 +25,15 @@ description: >-
 Produce clear, actionable documents — upgrade plans, runbooks, or checklists — tailored to the user's environment. Output should be specific to their cluster mode, release channel, version, and workload types rather than generic advice.
 
 Always frame guidance around the auto-upgrade model: auto-upgrade with maintenance windows and exclusions is the preferred control mechanism.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-upgrades)"`
+and append `agent-skills/1.0 (skill:gke-upgrades)` to `User-Agent` headers.
 
 ## Context Gathering
 
@@ -206,6 +216,9 @@ Refer to [`references/troubleshooting.md`](references/troubleshooting.md) for th
 
 - [GKE Release Notes](https://cloud.google.com/kubernetes-engine/docs/release-notes)
 - [Upgrading GKE Clusters](https://cloud.google.com/kubernetes-engine/docs/how-to/upgrading-a-cluster)
+- [Troubleshoot GKE upgrades](https://docs.cloud.google.com/kubernetes-engine/docs/troubleshooting/upgrades.md.txt)
+- [Get upgrade information (upgrade assist)](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/upgrade-assist.md.txt)
+- [Node pool upgrade strategies (surge & blue-green)](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/node-pool-upgrade-strategies.md.txt)
 - [Maintenance Windows & Exclusions](https://cloud.google.com/kubernetes-engine/docs/concepts/maintenance-windows-and-exclusions)
 - [Rollout Sequencing Concepts](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/rollout-sequencing/about-rollout-sequencing)
 - [Configure Rollout Sequencing](https://cloud.google.com/kubernetes-engine/docs/how-to/rollout-sequencing/manage-upgrades-with-rollout-sequencing)

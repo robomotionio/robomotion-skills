@@ -6,9 +6,20 @@
 When an agent has a `SessionStore` (via `aix.WithSessionStore`), the **server**
 owns the session history. Each turn produces an immutable **snapshot**; the
 snapshot chain carries conversation state forward. A store also enables
-[branching](agents-branching.md) and [background execution](agents-background.md).
+[branching](agents-branching.md) and
+[background execution](agents-background.md).
 (Interrupts work with or without a store — see
 [human-in-the-loop](agents-human-in-the-loop.md).)
+
+- [Pick a store](#pick-a-store): Lines 24-104
+- [Turns persist automatically](#turns-persist-automatically): Lines 106-116
+- [Resume a conversation](#resume-a-conversation): Lines 118-140
+- [Read a snapshot without running a turn](#read-a-snapshot-without-running-a-turn): Lines 142-160
+- [Typed session state](#typed-session-state): Lines 162-190
+- [Interrupts (human-in-the-loop)](#interrupts-human-in-the-loop): Lines 192-198
+- [Implementing a custom SessionStore](#implementing-a-custom-sessionstore): Lines 200-247
+
+---
 
 ## Pick a store
 
@@ -16,7 +27,7 @@ snapshot chain carries conversation state forward. A store also enables
 custom-state type `State` (use `any` when you have no typed custom state).
 
 ```go
-import "github.com/genkit-ai/genkit/go/ai/exp/localstore"
+import "github.com/firebase/genkit/go/ai/exp/localstore"
 
 // In-memory: great for tests/dev; lost on restart.
 memStore := localstore.NewInMemorySessionStore[any]()
@@ -30,8 +41,39 @@ if err != nil {
 ```
 
 `localstore` is for local development, tests, and single-instance apps. For
-multi-instance production, implement `aix.SessionStore` against a real database
-(see below).
+multi-instance production, use the Firestore or PostgreSQL store, or implement
+`aix.SessionStore` against your own database (see below).
+
+### PostgreSQL store (experimental)
+
+> Requires Genkit Go v1.14.0+.
+
+`plugins/postgresql/exp` adds a session store with cross-process abort of
+detached runs (`LISTEN`/`NOTIFY`), metadata-only reads, and per-tenant prefixes.
+It shares the pool of the registered PostgreSQL plugin:
+
+```go
+import (
+	"github.com/firebase/genkit/go/plugins/postgresql"
+	pgexp "github.com/firebase/genkit/go/plugins/postgresql/exp"
+)
+
+engine, err := postgresql.NewPostgresEngine(ctx,
+	postgresql.WithCloudSQLInstance("my-project", "us-central1", "my-instance"),
+	postgresql.WithDatabase("my-database"))
+if err != nil {
+	log.Fatal(err)
+}
+g := genkit.Init(ctx,
+	genkit.WithExperimental(),
+	genkit.WithPlugins(&postgresql.Postgres{Engine: engine}))
+
+store, err := pgexp.NewPostgresSessionStore[ChatState](ctx, g,
+	pgexp.WithSnapshotPathPrefix(tenantFromContext))
+```
+
+Note: since v1.14.0, `PostgresEngine.Close` no longer closes a pool passed with
+`postgresql.WithPool`; close it yourself.
 
 `NewFileSessionStore` options:
 
@@ -99,7 +141,8 @@ exclusive with `WithSessionID` / `WithSnapshotID`.
 
 ## Read a snapshot without running a turn
 
-`Agent.GetSnapshot` / `Agent.GetLatestSnapshot` fetch a stored snapshot (applying
+`Agent.GetSnapshot` / `Agent.GetLatestSnapshot` fetch a stored snapshot
+(applying
 any configured `aix.WithStateTransform`). Handy for restoring a UI after a
 reload. They return `FAILED_PRECONDITION` on a client-managed agent (no store).
 
@@ -148,7 +191,8 @@ out, _ := profileAgent.Run(ctx,
 
 ## Interrupts (human-in-the-loop)
 
-Interrupts pause a turn so a human can approve or provide input, then resume from
+Interrupts pause a turn so a human can approve or provide input, then resume
+from
 the exact pause point. They work with a store or with client-managed state
 (persistence is orthogonal). See
 [Human-in-the-loop / interrupts](agents-human-in-the-loop.md).
@@ -183,6 +227,21 @@ type SnapshotSubscriber interface {
 
 Contract notes: preserve `SessionID` across rewrites (a row's session never
 changes); default an empty `Status` to `SnapshotStatusCompleted`; keep
-`CreatedAt`/`UpdatedAt` caller-managed (persist them verbatim, never stamp them);
+`CreatedAt`/`UpdatedAt` caller-managed (persist them verbatim, never stamp
+them);
 `GetLatestSnapshot` returns the greatest-`CreatedAt` row, ties broken by
 `SnapshotID`. See the `localstore` implementations for a reference.
+
+**Prove it with the conformance suite** (v1.14.0+). `ai/exp/sessionstoretest`
+checks a store against the contract the agent runtime relies on; the bundled
+stores all run it:
+
+```go
+import "github.com/firebase/genkit/go/ai/exp/sessionstoretest"
+
+func TestMyStore(t *testing.T) {
+	sessionstoretest.Run(t, func(t *testing.T) aix.SessionStore[MyState] {
+		return newEmptyStore(t)
+	}, nil) // or &sessionstoretest.Options[MyState]{Reopen: ..., Scoped: ...}
+}
+```

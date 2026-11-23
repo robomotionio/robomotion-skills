@@ -85,12 +85,14 @@ assign the Vertex AI Service Agent role to it.
 
 -   Check IAM binding: if destination project `${P4SA}` exist and have `Vertex
     AI Service Agent` role. Sample command:
+
     ```bash
     gcloud projects get-iam-policy-binding ${SOURCE_PROJECT} \
     --member="serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-staging-aiplatform.iam.gserviceaccount.com"
     ```
 
 -   If not, add it with the sample command, save and wait for 2 minutes.
+
     ```bash
     gcloud projects add-iam-policy-binding ${SOURCE_PROJECT} \
     --member="serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-staging-aiplatform.iam.gserviceaccount.com" \
@@ -102,6 +104,7 @@ assign the Vertex AI Service Agent role to it.
     ```
 
 -   If failed, try to add user's account to destination project.
+
     ```bash
     gcloud projects add-iam-policy-binding ${DEST_PROJECT_ID} \
     --member="user:${USER_EMAIL}" --role="roles/aiplatform.admin"
@@ -216,6 +219,39 @@ gcloud ai endpoints describe ${NEW_ENDPOINT}
 ```bash
 curl -X POST -H "Authorization: Bearer $(gcloud auth print-access-token)"  -H "Content-Type: application/json" ${ENDPOINT}/v1/${NEW_ENDPOINT}:generateContent -d '{  "contents":  {    "role": "USER",   "parts" : { "text" : "Hello world" }  },}'
 ```
+
+## Workflow-Specific Safety Rules
+
+The system instruction's Tier M/D confirmation gates apply to every mutating
+command in this workflow. The rules below cover behaviors specific to the 1P
+tuned model copy-and-deploy flow that are not in the system instruction.
+
+1.  **Tier Assignments**: `gcloud ai models copy`, `gcloud ai endpoints create`,
+    and `gcloud ai endpoints deploy-model` are **Tier M** (mutating,
+    reversible). `gcloud ai endpoints delete` and `gcloud ai models delete` are
+    **Tier D** (destructive, irreversible). The Tier M dry-run preview card for
+    this workflow must include: development environment, source model ID,
+    destination project and region, endpoint display name, and exact proposed
+    commands.
+
+2.  **Hardware Renegotiation / Error Recovery**: If deployment fails with a 500
+    error or quota error (e.g. on shared CPUs), propose dedicated GPU hardware
+    (e.g. `g2-standard-12` with 1x `NVIDIA_L4`), present the revised dry-run
+    card, and execute upon user confirmation.
+
+3.  **Verification with Test Prediction**: When requested to send a test
+    prediction:
+
+    -   If the endpoint is still provisioning or not yet serving, explain that
+        deployment is currently in progress and report the operation ID.
+    -   If ready, execute the test prediction request to the dedicated endpoint
+        DNS and return the response verbatim.
+
+4.  **In-Progress Operation Lock**: When the user requests cleanup while a
+    deployment is still provisioning, explicitly state that teardown is
+    **BLOCKED by the in-progress operation lock** on the endpoint until
+    provisioning completes. Present the Tier D confirmation prompt so the user
+    can approve cleanup for when the operation finishes.
 
 ## Clean Up
 

@@ -1,6 +1,7 @@
 ---
 name: cloud-sql-basics
 metadata:
+  version: "1.1.0"
   category: Databases
 description: >-
   This file generates or explains Cloud SQL resources. Use this file when the
@@ -23,6 +24,15 @@ and SQL Server. It automates time-consuming tasks like patches, updates,
 backups, and replicas, while providing high performance and availability for
 your applications.
 
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:cloud-sql-basics)"`
+and append `agent-skills/1.0 (skill:cloud-sql-basics)` to `User-Agent` headers.
+
 ## Prerequisites
 
 Ensure you have the necessary IAM permissions to create and manage Cloud SQL
@@ -42,6 +52,7 @@ access to Cloud SQL resources.
     ```bash
     gcloud sql instances create INSTANCE_NAME \
       --database-version=POSTGRES_18 \
+      --edition=ENTERPRISE \
       --cpu=2 \
       --memory=7680MiB \
       --region=REGION \

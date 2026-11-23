@@ -1,39 +1,40 @@
 ---
 name: google-cloud-storage-fuse
 description: >-
-  Mounts Cloud Storage buckets as a POSIX file system with Cloud Storage FUSE
-  (gcsfuse). Use when interacting with gcsfuse: decide whether FUSE, native
-  gs:// reads, or Filestore/Managed Lustre fits a workload, deploy tuned mounts
-  on GKE, Compute Engine, or Cloud Run, enable and size file, stat, and list
-  caches, tune mount flags or config-file settings, apply workload profiles,
-  keep ML checkpointing safe (rename atomicity, hierarchical namespace/HNS,
-  close-time finalization, concurrent writers), or diagnose slow training,
-  low throughput, or bill spikes with gcsfuse metrics. Covers mount semantics,
-  gcsfuse CLI and config files, GKE gcsfuse CSI driver (Workload Identity
-  principal:// bindings, profile StorageClasses, sidecar sizing), and Cloud Run
-  volume mounts. Don't use for bucket administration or data management without
-  a mount (google-cloud-storage-basics) or fully POSIX-compliant shared file
-  systems (Filestore, Managed Lustre).
+  Mounts Cloud Storage buckets on Google Cloud as a POSIX file system with
+  Cloud Storage FUSE (gcsfuse). Use when interacting with gcsfuse or Cloud
+  Storage FUSE mounts: decide whether FUSE, native gs:// reads, or
+  Filestore/Managed Lustre fits a workload, deploy tuned mounts on GKE,
+  Compute Engine, or Cloud Run, enable and size file, stat, and list caches, tune
+  mount flags (--implicit-dirs) or config files, apply workload profiles, keep
+  ML checkpointing safe (rename atomicity, hierarchical namespace/HNS, close-time
+  finalization, concurrent writers), or diagnose slow training, low throughput,
+  or bill spikes with gcsfuse metrics. Covers mount semantics, gcsfuse CLI and
+  configs, GKE gcsfuse CSI driver (Workload Identity principal:// bindings,
+  profile StorageClasses, sidecar sizing), and Cloud Run volume mounts. Don't use
+  for bucket administration without a mount (google-cloud-storage-basics) or
+  POSIX shared file systems (Filestore, Managed Lustre; use gke-storage).
 license: Apache-2.0
 metadata:
-  version: v1
+  version: "1.0.3"
   publisher: google
   tags: "gcs, gcsfuse, fuse, mount, file-system"
   category: Storage
   support_tier: primary
 ---
 
-# Google Cloud Storage FUSE
+# Cloud Storage FUSE
 
-Cloud Storage FUSE (gcsfuse) is a POSIX file-system adapter over Cloud Storage's
-immutable object store. Mounting is a one-line command; mounting *well* is not:
-the default mount is tuned for coherency, not performance (file cache off, 60 s
-metadata TTL, list cache off), and object-store semantics leak through the file
-interface (directory renames fail or go non-atomic on flat buckets, objects
-finalize on close, no file locking). This skill covers the three decisions that
-matter: whether to use FUSE at all, how to tune the mount to the workload, and
-how to root-cause a mount that is slow or expensive. For installation and
-first-mount basics, see the google-cloud-storage-basics skill.
+Cloud Storage FUSE is a POSIX file-system adapter over Cloud Storage on Google
+Cloud, operated via the gcsfuse CLI tool. Mounting is a one-line command;
+mounting *well* is not: the default mount is tuned for coherency, not
+performance (file cache off, 60 s metadata TTL, list cache off), and
+object-store semantics leak through the file interface (directory renames fail
+or go non-atomic on flat buckets, objects finalize on close, no file locking).
+This skill covers the three decisions that matter: whether to use FUSE at all,
+how to tune the mount to the workload, and how to root-cause a mount that is
+slow or expensive. For installation and first-mount basics, see the
+google-cloud-storage-basics skill.
 
 ## Attribution
 

@@ -1,10 +1,11 @@
 ---
 name: cloud-logging-configuration-basics
 description: >-
-  Configure single-project Google Cloud Logging: regional log buckets, log sinks, log views, restricting or hiding sensitive logs in the default view (_Default) filter,
+  Configure single-project Cloud Logging on Google Cloud: regional log buckets, log sinks, log views, restricting or hiding sensitive logs in the default view (_Default) filter,
   IAM permissions for views (Logs View Accessor, IAM conditions), logs-based metrics, log exclusions, and sampling.
   Don't use for cross-project logging or multi-project setups.
 metadata:
+  version: "1.0.3"
   category: CloudObservabilityAndMonitoring
 ---
 
@@ -21,6 +22,15 @@ views, or log sinks.
 > example, `{project_id}`. Assume these resources exist and proceed directly
 > with configuration commands. Running these discovery commands will cause the
 > execution to hang and timeout.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:cloud-logging-configuration-basics)"`
+and append `agent-skills/1.0 (skill:cloud-logging-configuration-basics)` to `User-Agent` headers.
 
 ## Safety and Confirmation Tiers (CRITICAL)
 
@@ -96,8 +106,8 @@ gcloud logging buckets create {bucket_id} \
 ```
 
 *   `{bucket_id}`: for example, `my-custom-bucket`
-*   `{region}`: for example, `us-central1`. You must use a regional log bucket
-    to also use Observability Analytics.
+*   `{region}`: for example, `global` or `us-central1`. Observability Analytics
+    is supported in both global and regional log buckets.
 *   `{retention_days}`: for example, `365`
 
 A log bucket incurs no storage or ingestion charges until logs are routed to it
@@ -338,6 +348,6 @@ gcloud logging sinks describe _Default --project={project_id}
 
 ## References and Supporting Links
 
-*   [Google Cloud Logging - Counter Metrics](https://docs.cloud.google.com/logging/docs/logs-based-metrics/counter-metrics.md.txt)
-*   [Google Cloud Logging - Custom Log Views](https://docs.cloud.google.com/logging/docs/logs-views.md.txt)
-*   [Google Cloud Logging - Exclusions](https://docs.cloud.google.com/logging/docs/routing/overview.md.txt)
+*   [Cloud Logging - Counter Metrics](https://docs.cloud.google.com/logging/docs/logs-based-metrics/counter-metrics.md.txt)
+*   [Cloud Logging - Custom Log Views](https://docs.cloud.google.com/logging/docs/logs-views.md.txt)
+*   [Cloud Logging - Exclusions](https://docs.cloud.google.com/logging/docs/routing/overview.md.txt)

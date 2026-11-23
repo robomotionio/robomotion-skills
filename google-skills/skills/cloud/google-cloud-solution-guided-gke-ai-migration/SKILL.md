@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-guided-gke-ai-migration
 metadata:
+  version: "1.0.1"
   category: MultiProductSolutions
 description: >-
     Guides the migration of existing AI workloads (Cloud Run, Gemini API, Gemini Enterprise Agent Platform) to self-hosted GKE inference using gcloud and kubectl. Use when the user has an existing AI inference workload (on Cloud Run, the Gemini API, Gemini Enterprise Agent Platform, or a custom VM) and wants to move it to self-hosted inference on GKE, or asks follow-up questions during such a migration (hardware sizing, model staging, manifest generation, validation, traffic cutover). DO NOT use for brand new GKE inference deployments with no existing workload to migrate (use gke-inference instead). DO NOT use if the user intends to automate the migration via the Gemini Cloud Assist MCP server.
@@ -9,6 +10,12 @@ description: >-
 # Migrate AI Workloads to GKE Inference
 
 This skill guides agents through the end-to-end process of migrating existing AI inference workloads (e.g., from Cloud Run, Gemini API, Gemini Enterprise Agent Platform) to self-hosted inference on Google Kubernetes Engine (GKE). The agent will act as an interactive architect, using a structured 4-phase workflow to discover requirements, design a Google Cloud-native solution, execute the implementation using `gcloud` and `kubectl`, and validate the deployment.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Gemini Cloud Assist MCP off-ramp
 

@@ -110,14 +110,31 @@ rule within `nfsExportOptions` defines:
 ### Remediation via `gcloud` CLI
 
 To update export options on an existing instance, provide the export
-configuration via `--flags-file` or the direct flags:
+configuration via `--flags-file` using a JSON or YAML file (such as
+`export-flags.json` containing `"--file-share"`):
+
+```json
+{
+  "--file-share": {
+    "name": "[SHARE_NAME]",
+    "nfs-export-options": [
+      {
+        "ip-ranges": ["10.128.0.0/20"],
+        "access-mode": "READ_WRITE",
+        "squash-mode": "ROOT_SQUASH",
+        "anon-uid": 65534,
+        "anon-gid": 65534
+      }
+    ]
+  }
+}
+```
 
 ```bash
-CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-filestore-auditing)" \
 gcloud filestore instances update [INSTANCE_ID] \
     --project=[PROJECT_ID] \
     --zone=[ZONE] \
-    --file-share=name=[SHARE_NAME],nfs-export-options='[{"ip-ranges":["10.128.0.0/20"],"access-mode":"READ_WRITE","squash-mode":"ROOT_SQUASH"}]'
+    --flags-file=export-flags.json
 ```
 
 *(Note: Always prompt for user confirmation before executing modifications on
