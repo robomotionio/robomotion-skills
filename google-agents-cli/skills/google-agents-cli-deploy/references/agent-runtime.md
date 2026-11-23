@@ -1,10 +1,10 @@
-# Agent Runtime Infrastructure
+# Agent Runtime infrastructure
 
 > **Assumes `/google-agents-cli-scaffold` scaffolding.** If your project isn't scaffolded yet, see `/google-agents-cli-scaffold` first.
 
 ## Deployment Architecture
 
-Agent Runtime uses **container-based deployment**: `agents-cli deploy` packages your project and Agent Engine builds a container image from your project's `Dockerfile` (required at the project root; scaffolded projects ship one).
+Agent Runtime in Gemini platform uses **container-based deployment**: `agents-cli deploy` packages your project and Agent Runtime builds a container image from your project's `Dockerfile` (required at the project root; scaffolded projects ship one). To deploy an image you already built instead, pass `agents-cli deploy --image <artifact-registry-uri>`; no `Dockerfile` or source upload is needed. An existing agent can't switch between the two (Terraform-provisioned agents are source builds), so pick one per agent. On the first deploy of a new Agent Identity agent, the image starts once before its env vars and secrets are applied, so it must start without them.
 
 File selection honors the project-root `.gcloudignore`, else the project-root `.gitignore` (nested `.gitignore` files are not consulted).
 
@@ -22,7 +22,7 @@ Each template builds the served application its own way:
 `agents-cli-manifest.yaml`, and `--framework` overrides it. Terraform has its own copy, the
 `agent_framework` default in `deployment/terraform/*/variables.tf`, so editing the manifest
 alone leaves the tfvar stale and the next `terraform apply` puts the old label back. Edit
-both. The label picks the Console playground and decides whether ADK class methods are
+both. The label picks the console playground and decides whether ADK class methods are
 declared; it does not constrain the container.
 
 > **ADK Python projects.** `fast_api_app.py` builds the FastAPI `app` via
@@ -34,19 +34,19 @@ declared; it does not constrain the container.
 > container serves the ADK HTTP surface (`/run_sse`, `/apps/...`), the A2A routes
 > under `/a2a/{app_name}` (JSON-RPC + agent card), and the reasoning_engine
 > adapter routes `/api/reasoning_engine` + `/api/stream_reasoning_engine` (used
-> by the Console Playground and Gemini Enterprise ADK registration).
+> by the console playground and ADK registration with Gemini).
 
 > **ADK Go projects.** `main.go` composes launcher sub-commands instead of building a web
 > app. The `agentengine` sub-launcher (`google.golang.org/adk/v2/cmd/launcher/web/agentengine`,
 > constructed as `agentengine.NewLauncher(rootAgent.Name())`) is the counterpart
-> to Python's reasoning_engine adapter — it is what makes the Console Playground
+> to Python's reasoning_engine adapter — it is what makes the console playground
 > work. The container serves the ADK HTTP surface at the root (hence
 > `-path_prefix /`), the agent card at `/.well-known/agent-card.json` and A2A
 > JSON-RPC at `/a2a/v1/invoke`. There is no `webui` sub-launcher on this target.
 
 ### The `/api` HTTP passthrough
 
-Agent Engine exposes the container's HTTP routes externally under an
+Agent Runtime exposes the container's HTTP routes externally under an
 `/api` prefix, so deployed agents are reachable without a public Cloud Run URL:
 
 ```
@@ -54,16 +54,19 @@ https://{location}-aiplatform.googleapis.com/reasoningEngines/v1/{resource}/api/
 ```
 
 where `{resource}` is the full `projects/.../reasoningEngines/...` name. For
-example, the A2A agent card (container route `/a2a/{agent_directory}/.well-known/agent-card.json`)
+example, the A2A agent card (container route `/a2a/{app_name}/.well-known/agent-card.json`)
 is reachable at:
 
 ```
-https://{location}-aiplatform.googleapis.com/reasoningEngines/v1/{resource}/api/a2a/{agent_directory}/.well-known/agent-card.json
+https://{location}-aiplatform.googleapis.com/reasoningEngines/v1/{resource}/api/a2a/{app_name}/.well-known/agent-card.json
 ```
 
-`{agent_directory}` is the app name (the project's `agent_directory`, recorded in
-`deployment_metadata.json`). This is the exact URL `deploy` advertises on
-success and `run` constructs for `--mode a2a` against an Agent Runtime URL — both
+`{app_name}` is `create_params.app_name` in `agents-cli-manifest.yaml`;
+projects created before that key existed use the basename of
+`agent_directory`, e.g. `my_agent` for `src/my_agent` (`app_name` is recorded
+in `deployment_metadata.json`). This is
+the exact URL `deploy` advertises on success and `run` constructs for
+`--mode a2a` against an Agent Runtime URL — both
 authenticate with your Google credentials. On Agent Runtime, `publish` defaults
 to **ADK** registration (`:streamQuery` against the reasoning-engine resource
 name) rather than this card URL; pass `--registration-type a2a` if your container
@@ -75,14 +78,17 @@ Deploy with `agents-cli deploy` (run `agents-cli deploy --help` for the full fla
 
 **Deployment flow:**
 1. `agents-cli deploy` packages the project files (honoring `.gcloudignore`/`.gitignore`)
-2. Agent Engine builds the container image and creates/updates the Agent Runtime instance
+2. Agent Runtime builds the container image and creates/updates the Agent Runtime instance
 3. Writes `deployment_metadata.json` with the engine resource ID
+4. For A2A projects, copies the served agent card to the engine's `spec.agent_card`, where Agent Registry reads it
 
 ## Terraform Resource
 
 Agent Runtime uses `google_vertex_ai_reasoning_engine` in `deployment/terraform/single-project/service.tf` (and the `cicd/service.tf` variant for CI/CD-managed deployments). Check those files for current scaling, concurrency, and resource limit settings.
 
-Key difference from Cloud Run: the `lifecycle.ignore_changes` (covering `container_spec`, `source_code_spec`, and `deployment_spec`) is critical — the image and source are updated by `agents-cli deploy` / CI/CD, not Terraform.
+Key difference from Cloud Run: the `lifecycle.ignore_changes` (covering `container_spec`, `source_code_spec`, `deployment_spec`, and `agent_card`) is critical — the image, source, and A2A agent card are updated by `agents-cli deploy` / CI/CD, not Terraform. The resource uses the `google-beta` provider because only it has `spec.agent_card`.
+
+If your `service.tf` doesn't list `spec[0].agent_card` in `ignore_changes` (projects scaffolded with older agents-cli versions), a `terraform apply` that changes the engine's `spec` clears the agent card, and Agent Registry stops listing the agent as A2A. Run `agents-cli scaffold upgrade` to pick up the updated `service.tf`, or rerun `agents-cli deploy` after such an apply to write the card back.
 
 ## deployment_metadata.json
 
@@ -106,7 +112,7 @@ If deployment times out but the engine was created, manually populate this file 
 
 | Aspect | Agent Runtime | Cloud Run |
 |--------|-------------|-----------|
-| **Build** | Dockerfile → image (built by Agent Engine) | Dockerfile → image (`gcloud builds`) |
+| **Build** | Dockerfile → image (built by Agent Runtime) | Dockerfile → image (`gcloud builds`) |
 | **Deploy command** | `agents-cli deploy` | `gcloud run deploy --image ...` |
 | **Artifact** | Container image | Container image in Artifact Registry |
 | **Language toolchain version** | Configurable in Dockerfile | Configurable in Dockerfile |
@@ -130,7 +136,7 @@ To query Agent Runtime programmatically:
 import agentplatform
 
 client = agentplatform.Client(location="us-east1")
-agent = client.agent_engines.get(name="projects/PROJECT/locations/LOCATION/reasoningEngines/ENGINE_ID")
+agent = client.runtimes.get(name="projects/PROJECT/locations/LOCATION/reasoningEngines/ENGINE_ID")
 
 async for event in agent.async_stream_query(message="Hello!", user_id="test"):
     print(event)
@@ -142,7 +148,7 @@ async for event in agent.async_stream_query(message="Hello!", user_id="test"):
 > artifact wiring. The environment-variable sources at the end of this section
 > apply to any framework.
 
-Agent Runtime always uses in-memory sessions at scaffold time; at runtime `app_utils/services.py` upgrades to `VertexAiSessionService` when Agent Engine injects `GOOGLE_CLOUD_AGENT_ENGINE_ID`. `get_fast_api_app` receives the `shared://session` URI, resolved by `services.py`.
+Agent Runtime always uses in-memory sessions at scaffold time; at runtime `app_utils/services.py` upgrades to `VertexAiSessionService` when Agent Runtime injects `GOOGLE_CLOUD_AGENT_ENGINE_ID`. `get_fast_api_app` receives the `shared://session` URI, resolved by `services.py`.
 
 Artifacts use `GcsArtifactService` when `LOGS_BUCKET_NAME` is set, otherwise `InMemoryArtifactService`.
 
@@ -150,7 +156,7 @@ Environment variables set during deployment come from `agents-cli deploy` (the C
 
 ### Memory Bank
 
-To enable cross-session memory on Agent Runtime, configure `memory_bank_config` via `context_spec`. See the ADK [`cross-session-memory` recipe](https://github.com/google/adk-samples/tree/main/core/python/cross-session-memory) for the full pattern.
+To enable cross-session memory on Agent Runtime, configure `memory_bank_config` via `context_spec`. See the ADK [`cross-session-memory` recipe](https://github.com/google/adk-recipes/tree/main/core/python/cross-session-memory) for the full pattern.
 
 ## Networking (PSC Interface)
 

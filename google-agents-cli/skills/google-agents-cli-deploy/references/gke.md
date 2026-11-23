@@ -12,7 +12,7 @@ Scaffolded projects include a `Dockerfile` at the project root — same as Cloud
 
 ## Kubernetes Resources (Terraform-Managed)
 
-All Kubernetes resources are managed by Terraform in `deployment/terraform/cicd/service.tf` (staging/prod) and `deployment/terraform/single-project/service.tf` (single-project). CI/CD pipelines only update the container image via `kubectl set image`.
+All Kubernetes resources are managed by Terraform in `deployment/terraform/cicd/service.tf` (staging/prod) and `deployment/terraform/single-project/service.tf` (single-project). CI/CD pipelines run `agents-cli deploy --image`, which skips Terraform and updates the image and env vars with `kubectl`, so env vars it sets stay until the next `terraform apply`. A deploy without `--image` runs a targeted `terraform apply` first, which resets the env vars to Terraform's; keep lasting ones in `.env` or Terraform.
 
 | Resource | Purpose |
 |----------|---------|
@@ -44,7 +44,7 @@ This lets pods authenticate as `app_sa` without service account keys — same se
 |------|--------------|----------|
 | **In-memory** | Default (`shared://session` resolved by `app_utils/services.py` (in-memory)) | Local dev only; lost on pod restart |
 | **Cloud SQL** | `--session-type cloud_sql` at scaffold time | Production persistent sessions (Cloud SQL proxy sidecar in pod) |
-| **Agent Runtime** | Managed Agent Engine sessions (`agentengine://{resource_name}`) | When using Agent Runtime as session backend |
+| **Agent Runtime in Gemini platform** | Managed sessions (`agentengine://{resource_name}`) | When using Agent Runtime as session backend |
 
 The concrete session URI for `cloud_sql` / `agent_platform_sessions` is now built inside `app_utils/services.py`, not `fast_api_app.py`.
 

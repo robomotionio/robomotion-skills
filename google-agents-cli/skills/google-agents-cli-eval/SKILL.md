@@ -4,7 +4,7 @@ description: >
   This skill should be used when the user wants to "run an evaluation",
   "evaluate my agent", "evaluate my ADK agent", "write an eval dataset",
   "analyze eval failures", "compare eval results", "optimize agent", or needs
-  guidance on the Agent Platform eval methodology and the Quality Flywheel.
+  guidance on the Gemini platform eval methodology and the Quality Flywheel.
   Covers eval metrics, dataset schema, LLM-as-judge scoring, and common failure causes.
   Applies to any agents-cli project, whatever framework the agent is written in.
   Do NOT use for agent API code patterns (ADK: use google-agents-cli-adk-code), deployment
@@ -12,7 +12,7 @@ description: >
 metadata:
   author: Google
   license: Apache-2.0
-  version: 1.8.0
+  version: 1.14.0
   requires:
     bins:
       - agents-cli
@@ -42,7 +42,7 @@ metadata:
 
 ## The Quality Flywheel
 
-Improving agent quality is iterative. The 4 stages below describe the loop. Each stage has a Default path (you, the coding agent, do the work directly) and an Opt-in CLI command that delegates to the Agent Platform Eval Service for better quality and scale.
+Improving agent quality is iterative. The 4 stages below describe the loop. Each stage has a Default path (you, the coding agent, do the work directly) and an Opt-in CLI command that delegates to the Eval Service in Gemini platform for better quality and scale.
 
 ### 1. Prepare Data
 
@@ -52,13 +52,13 @@ Improving agent quality is iterative. The 4 stages below describe the loop. Each
 
 ### 2. Run the Eval (always run)
 
-**Default:** `agents-cli eval run` runs the agent over the dataset and grades the traces, writing `results_<ts>.{json,html}` to `artifacts/grade_results/`.
+**Default:** `agents-cli eval run` runs the agent over the dataset and grades the traces, writing `results_<ts>.{json,html}` to `artifacts/grade_results/`. Its last line is the verdict, e.g. `RESULT: FAIL (custom_response_quality 3.20 < 4.00; custom_response_quality: 1 case errored)`, and it exits 1 when a metric misses its threshold or a case errored. Agree the thresholds with the user and record them in the eval config (see *Evaluation Configuration Schema*).
 
 **Decoupled form:** `eval generate` then `eval grade`, for a custom traces location, re-grading without re-running the agent, or traces from `synthesize` (`eval grade` alone).
 
 ### 3. Analyze Failures
 
-**Default:** Open the latest `artifacts/grade_results/results_<ts>.html` (or `.json`) and identify failed metrics — see *What to fix when scores fail* below for the fix table.
+**Default:** Start from the `Failures:` list above the `RESULT:` line, which names each metric that missed its threshold, the cases below it, and the cases that errored. Then open the latest `artifacts/grade_results/results_<ts>.html` (or `.json`) for those cases' scores and judge rationales — see *What to fix when scores fail* below for the fix table.
 
 **Opt-in:** `agents-cli eval analyze`, LLM-based failure clustering; prefer when you have 10+ failing cases and want categorized failure modes. See `references/advanced-commands.md`.
 
@@ -105,7 +105,7 @@ Pick built-in metrics by what you want to measure. Only `multi_turn_task_success
 | **Different pass/fail criteria per case** | Put them on the case as `rubric_groups` and grade with a managed rubric metric. See `references/dataset_schema.md` (*Per-Case Rubrics*). |
 | **Domain-specific check no built-in covers** | Write a custom `LLMMetric` (LLM-judge) or `CodeExecutionMetric` (deterministic Python). See *Evaluation Configuration Schema* below. |
 
-Run `agents-cli eval metric list` to see all available built-ins. For full metric definitions and rubric details, see the [Agent Platform metric docs](https://cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/manage-metrics) and `references/metrics-guide.md`.
+Run `agents-cli eval metric list` to see all available built-ins. For full metric definitions and rubric details, see the [Gemini platform metric docs](https://cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/manage-metrics) and `references/metrics-guide.md`.
 
 ---
 
@@ -143,6 +143,9 @@ agents-cli eval run
 
 # Advanced: pick the dataset, metrics, and output dir
 agents-cli eval run --dataset tests/eval/datasets/custom.json --metrics final_response_quality,safety --output ./out/
+
+# Gate: exit 1 if the 1-5 judge averages below 4
+agents-cli eval run --fail-under custom_response_quality=4
 ```
 
 ### `eval generate`
@@ -169,11 +172,11 @@ agents-cli eval generate --mode adk_live
 
 #### Evaluating Live agents
 
-Live agents run over a WebSocket, not `/run_sse`: add `--mode adk_live` to `generate` or `run`. The dataset, the traces, and grading are unchanged, and the audio reply is transcribed so the transcript is what gets graded. Two things must already be true or the socket connects and *then* fails mid-session: the agent uses a Live model (the scaffold default is not one), and on Vertex its region is pinned on the model rather than left to `GOOGLE_CLOUD_LOCATION`. Both, plus dataset authoring rules: `references/live-eval.md`.
+Live agents run over a WebSocket, not `/run_sse`: add `--mode adk_live` to `generate` or `run`. The dataset, the traces, and grading are unchanged, and the audio reply is transcribed so the transcript is what gets graded. Two things must already be true or the socket connects and *then* fails mid-session: the agent uses a Live model (the scaffold default is not one), and on Gemini platform its region is pinned on the model rather than left to `GOOGLE_CLOUD_LOCATION`. Both, plus dataset authoring rules: `references/live-eval.md`.
 
 ### `eval grade`
 
-Scores traces (from `eval generate`, `eval dataset synthesize`, or hand-authored) against built-in or custom metrics. Writes timestamped `results_<YYYYMMDD_HHMMSS>.json` (consumed by `eval compare`) and `.html` (open in a browser) into the output dir, and prints a summary table to the console.
+Scores traces (from `eval generate`, `eval dataset synthesize`, or hand-authored) against built-in or custom metrics. Writes timestamped `results_<YYYYMMDD_HHMMSS>.json` (consumed by `eval compare`) and `.html` (open in a browser) into the output dir, and prints a summary table to the console. The output ends with a `RESULT: PASS|FAIL (...)` line; the command exits 1 when a metric's mean score is below its threshold (`thresholds` in the config, or `--fail-under`) or any case errored, so CI can gate on the exit code.
 
 ```bash
 # Basic — defaults: traces from artifacts/traces/, results to artifacts/grade_results/,
@@ -262,6 +265,7 @@ A complete trace — agent responses plus `function_call` / `function_response` 
 
 - `metrics_to_run`: the **selection list** of metric names to execute on this run. A name resolves to a `custom_metrics` entry when one matches, otherwise to the built-in metric of that name.
 - `custom_metrics` — a **definition pool** of custom metrics available to this project. Defining a metric here does **not** run it; it must also appear in `metrics_to_run` (or be passed via `--metrics name1,name2` on the CLI, which is equivalent to overriding `metrics_to_run` for that invocation).
+- `thresholds` (optional) — the minimum **mean score** per metric, in that metric's own scale (built-ins score 0-1, the scaffolded `custom_response_quality` judge 1-5). A run with a metric below its threshold exits 1 and lists the cases scoring below it; `pass_rate` in the results is then the share of cases at or above it, unless the eval service already reported one. `--fail-under METRIC=SCORE` (repeatable, one metric each) overrides them per run. Errored cases fail the run with or without thresholds.
 
 **Minimal example (YAML preferred — human-readable, no JSON escaping for prompts and Python):**
 
@@ -285,6 +289,10 @@ custom_metrics:
       def evaluate(instance):
           turns = (instance.get("agent_data") or {}).get("turns", [])
           return {'score': len(turns)}
+
+thresholds:
+  multi_turn_task_success: 0.8
+  example_llm_metric: 4
 ```
 
 JSON is also accepted (same field names, with `prompt_template` and `custom_function` as escaped strings) — but **always prefer YAML** for human-readable configs.
@@ -299,7 +307,7 @@ Dispatch by field: `custom_function` → Python metric; `prompt_template` → `L
 
 `reference`, `context`, and `rubric_groups` are yours to author on the case: `eval generate` carries them onto the trace but never invents them, so `{reference}` / `{context}` resolve only where you wrote them. `rubric_groups` is not a placeholder at all: managed rubric metrics read it off the case, and a `custom_function` sees `instance['rubric_groups']`. See `references/dataset_schema.md` (*Per-Case Rubrics*).
 
-Code-based metrics default to **local in-process execution** (no GCP project or region required, but the `evaluate(instance)` function runs with the CLI's privileges). Set `execution: "remote"` on the metric to run it server-side in Vertex AI's `CodeExecutionMetric` sandbox instead — that path requires a configured GCP project + region.
+Code-based metrics default to **local in-process execution** (no GCP project or region required, but the `evaluate(instance)` function runs with the CLI's privileges). Set `execution: "remote"` on the metric to run it server-side in the `CodeExecutionMetric` sandbox in Gemini platform instead — that path requires a configured GCP project + region.
 
 ---
 
@@ -326,7 +334,7 @@ app = App(root_agent=root_agent, name="app")
 app = App(root_agent=root_agent, name="flight_booking_assistant")
 ```
 
-### Vertex eval region
+### Gemini platform eval region
 
 `eval run`, `eval grade`, and `eval submit` **default to the `global` endpoint**. They don't inherit the manifest `region` (the eval services support only a subset of regions), and `eval analyze` is `global`-only. Override these per run with `--region <REGION>` (e.g. data residency); the service rejects an unsupported one:
 
@@ -334,7 +342,7 @@ app = App(root_agent=root_agent, name="flight_booking_assistant")
 400 FAILED_PRECONDITION: Unsupported region for Vertex Evaluation Service: <region>
 ```
 
-`eval generate` (without the `--url` flag) and `eval dataset synthesize` run your agent locally, so they honor the agent's own `.env` — notably `GOOGLE_CLOUD_LOCATION`, which selects the model endpoint **when the agent uses Vertex AI** (`GOOGLE_GENAI_USE_VERTEXAI=true`); it's unused with a `GEMINI_API_KEY` (AI Studio). They take **no** `--region` and never override your `.env` with the manifest `region`; change the model region by editing `.env` — or, better for a single agent, pin it in code with `Gemini(model=…, client_kwargs={"location": …})`, which beats the env var and leaves it free for everything else. One caveat for `synthesize`: its scenario-generation step is a **server-side** eval call at `GOOGLE_CLOUD_LOCATION`, so keep that an eval-supported region (`global` by default) even though the agent itself could run elsewhere.
+`eval generate` (without the `--url` flag) and `eval dataset synthesize` run your agent locally, so they honor the agent's own `.env` — notably `GOOGLE_CLOUD_LOCATION`, which selects the model endpoint **when the agent uses Gemini platform** (`GOOGLE_GENAI_USE_ENTERPRISE=true`); it's unused with a `GEMINI_API_KEY` (AI Studio). They take **no** `--region` and never override your `.env` with the manifest `region`; change the model region by editing `.env` — or, better for a single agent, pin it in code with `Gemini(model=…, client_kwargs={"location": …})`, which beats the env var and leaves it free for everything else. One caveat for `synthesize`: its scenario-generation step is a **server-side** eval call at `GOOGLE_CLOUD_LOCATION`, so keep that an eval-supported region (`global` by default) even though the agent itself could run elsewhere.
 
 **No eval region fits your data-residency rules?** Fall back to **local custom metrics** — a `custom_metrics` entry with a `custom_function` (`execution: local`, the default) grades in-process with no GCP region required. You lose the managed built-in metrics, but your `custom_function` can still call an LLM judge in a compliant region itself — so LLM-as-judge grading stays available anywhere.
 
@@ -378,7 +386,7 @@ Don't assert that eval passes — show the evidence. Concrete output prevents fa
 
 - **After running eval:** Paste the scores table output so the user can see exactly what passed and failed.
 - **After fixing a failure:** Show before/after scores for the specific case you fixed, and confirm no other cases regressed.
-- **Before deploy:** Rerun `agents-cli eval run` and show the scores for every case, not just the one you fixed. `eval run` exits 0 whatever the scores are, so the numbers you paste are the gate, not the exit code.
+- **Before deploy:** Rerun `agents-cli eval run` and show the scores for every case, not just the one you fixed, plus the final `RESULT:` line. The exit code gates only on the `thresholds` you set (and errored cases), so confirm they match the bar you agreed with the user.
 
 ---
 
