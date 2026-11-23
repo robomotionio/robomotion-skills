@@ -4,7 +4,7 @@ Scaffold or develop a hosted Foundry agent project with the Azure Developer CLI 
 
 > **Creating a new agent end-to-end from scratch?** Use [quick-start-hosted.md](quick-start-hosted.md) instead -- an opinionated happy-path with safe defaults. Stay here for anything not covered by the quickstart.
 
-> **Scope:** `azd ai` is the preferred *code-first* path -- use it when the intent is agent code on disk, in a repo, with infrastructure-as-code and a local inner-loop. If the intent is only to create a remote agent resource (no code on disk), other approaches may apply -- for prompt agents see [create-prompt.md](create-prompt.md), or use the Foundry MCP tools / portal.
+> **Scope:** `azd ai` is the preferred *code-first* path -- use it when the intent is agent code on disk, in a repo, with infrastructure-as-code and a local inner-loop. If the intent is only to create a remote agent resource (no code on disk), other approaches may apply -- for ordinary prompt agents see [create-prompt.md](create-prompt.md). For Voice Agents, use [create-voice.md](create-voice.md). A Managed Harness Agent also uses azd but is `kind: prompt`; use [create-managed-harness.md](create-managed-harness.md).
 
 ## Quick Reference
 
@@ -25,16 +25,17 @@ Scaffold or develop a hosted Foundry agent project with the Azure Developer CLI 
 - Add tools (web search, AI Search, MCP, A2A) to a hosted agent.
 - Run and iterate on a hosted agent locally before deploying.
 
-For prompt agents (LLM + instructions, no container), use [create-prompt.md](create-prompt.md). For deploy, use [deploy.md](../deploy/deploy.md).
+For ordinary prompt agents, use [create-prompt.md](create-prompt.md). For a Prompt Agent with `harness.type: microsoft_copilot_preview` or legacy `github_copilot_preview`, use [create-managed-harness.md](create-managed-harness.md). For deploy, use [deploy.md](../deploy/deploy.md).
 
-## Hosted vs Prompt
+## Hosted vs Prompt vs Voice
 
-| | Hosted | Prompt |
-|--|--------|--------|
-| Custom Python / .NET code? | Yes -> this skill | No -> [create-prompt.md](create-prompt.md) |
-| Tools / RAG / MCP / A2A | Toolbox + connections | Built-in tool configs |
-| Local debugging | `azd ai agent run --no-client` | Limited |
-| Output | New immutable agent version per `azd deploy` | `agent_update` via MCP / SDK |
+| | Hosted | Prompt | Managed Harness Agent | Voice |
+|--|--------|--------|-----|-------|
+| Definition | Custom Python / .NET code | Model + instructions | Prompt agent with Copilot harness | Prompt Voice (`modelType: managed` / `self_deployed`) or Hosted Voice (`kind: hosted` target + `kind: voice` wrapper) |
+| Workflow | This skill | [create-prompt.md](create-prompt.md) | [create-managed-harness.md](create-managed-harness.md) | [create-voice.md](create-voice.md) |
+| Tools | Prefer Toolbox + connections | Direct tool configs | Prefer direct tools; Toolbox only when explicit | Prompt Voice configures tools directly; Hosted Voice tools belong to the target, never the wrapper |
+| Local debugging | `azd ai agent run --no-client` | Limited | No local harness runtime | None for Prompt Voice; target-only Bridge validation for Hosted Voice |
+| Output | Immutable version via `azd deploy` | `agent_update` via MCP / SDK | Immutable version via `azd deploy` | Immutable Voice and target versions via `azd deploy` |
 
 ## azd Sample Selection Guidance
 
@@ -86,7 +87,7 @@ Act on the summary prefixes:
 
 - `[OK]` -- nothing to do.
 - `[WARN]` -- non-blocking; continue.
-- `[ACTION]` -- resolve first, then rerun the script. If `az` or `azd` is missing, ask before installing in interactive mode; install directly in non-interactive mode. For how to install `azd`, see <https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd>. In any mode, never run `az login` or `azd auth login`; stop and ask the user to log in manually. Missing `azure.ai.agents` / `azure.ai.projects` extensions may be resolved with `azd extension install <name>`. Failed `az` or `azd` auth checks must stop the workflow until the user logs in manually.
+- `[ACTION]` -- resolve first, then rerun the script. If `az` or `azd` is missing, ask before installing in interactive mode; install directly in non-interactive mode. For how to install `azd`, see <https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd>. In any mode, never run `az login` or `azd auth login`; stop and ask the user to log in manually. Missing `azure.ai.agents` / `azure.ai.projects` / `azure.ai.evaluations` extensions may be resolved with `azd extension install <name>`. Failed `az` or `azd` auth checks must stop the workflow until the user logs in manually.
 
 Branch on the agent status reported by `verify-environment`:
 
@@ -110,6 +111,7 @@ Populate each question with the default option below.
 | Region | The active azd environment already contains the intended `AZURE_LOCATION`, or this change does not provision regional resources. | `northcentralus` | Azure resource location. |
 | Foundry project | The workspace or azd environment is already configured with a Foundry project, or the user provided one. | New Foundry project | Offer a new or existing project. For a new project, do not pass `--project-id`; `azd provision` creates it. For an existing project, use its ARM resource ID with `azd ai agent init --project-id`. |
 | Foundry model deployment | The user provided one; it is already resolved from `azure.yaml` or the active azd environment; or the requested change does not affect model selection. | Official sample's model selection | If the user specifies a model deployment, collect its deployment name.|
+| Monitoring | Not creating a new Foundry project. | Yes | Ask a simple Yes/No: provisioning a new project enables Application Insights and Log Analytics by default, which incur charges and store agent telemetry. If Yes, rely on azd's default with no extra steps. If No, or the user wants custom/BYO monitoring, follow [tracing setup](../trace/references/agent-tracing-setup.md). |
 | Deploy mode | Always — resolve without asking. | `code` | Priority: explicit user request → existing configuration → `code` for a new agent. Use `container` only when explicitly requested or already configured. |
 | ACR | Deploy mode is `code`, or the ACR choice is already determined in the existing configs. | New Azure Container Registry | Offer a new or existing registry. When creating a new ACR, leave `AZURE_CONTAINER_REGISTRY_NAME`, `AZURE_CONTAINER_REGISTRY_ENDPOINT`, and `AZURE_CONTAINER_REGISTRY_RESOURCE_ID` unset; `azd provision` will create one. |
 
@@ -224,6 +226,7 @@ Check the scaffold before local run:
    FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
    AZURE_AI_MODEL_DEPLOYMENT_NAME=<model-deployment-name>
    ```
+   Keep `.env` out of the deploy package: make sure the service directory's `.agentignore` lists `.env` (add it if missing).
 4. Prefer `--agent-name` at init time (above). Fallback only: if init already ran without it, rename the `azure.yaml` service key AND its `name:` to the same value, preserving its `project:` path.
 5. If you change CPU or memory, set it in the agent service's `container.resources` in `azure.yaml`.
 
