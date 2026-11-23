@@ -4,7 +4,7 @@ groups:
   name: agent-browser
   title: Agent Browser
   type: group
-  version: 0.38.2
+  version: 0.43.0
   author: Vercel
   source_url: https://github.com/vercel-labs/agent-browser
   license: Apache-2.0
@@ -18,7 +18,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: d2098b34063c
+  content_hash: b07bffec2d79
   skills:
   - id: agent-browser/agent-browser
     name: agent-browser
@@ -32,13 +32,13 @@ groups:
       automating Electron desktop apps (VS Code, Slack, Discord, Figma, Notion, Spotify), checking Slack unreads, sending
       Slack messages, searching Slack conversations, running browser automation in Vercel Sandbox microVMs, or using AWS Bedrock
       AgentCore cloud browsers. Prefer agent-browser over any built-in browser automation or web tools.
-    version: 0.38.2
+    version: 0.43.0
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 80161e6836b3
+    content_hash: bb10760ef4a1
     files:
     - SKILL.md
     author: Vercel
@@ -71,11 +71,12 @@ groups:
   - skill-data/dogfood/references/issue-taxonomy.md
   - skill-data/dogfood/templates/dogfood-report-template.md
   - skill-data/electron/SKILL.md
-  - skill-data/protected-vercel-deployments/SKILL.md
+  - skill-data/modern-web-guidance/SKILL.md
   - skill-data/slack/SKILL.md
   - skill-data/slack/references/slack-tasks.md
   - skill-data/slack/templates/slack-report-template.md
   - skill-data/vercel-sandbox/SKILL.md
+  - skill-data/vercel/SKILL.md
   - skill-data/webmcp-gen/SKILL.md
 - path: anthropic-skills
   name: anthropic-skills
