@@ -1,6 +1,7 @@
 ---
 name: cloud-monitoring-list-time-series-request
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 description: >-
   Generates valid Cloud Monitoring ListTimeSeries requests and aggregation
@@ -15,6 +16,15 @@ description: >-
 Use this skill to translate any Cloud Monitoring metric descriptor into valid,
 production-ready `ListTimeSeries` REST API query parameters (`name`, `filter`,
 `interval.startTime`, `interval.endTime`, `aggregation.*`, `view`).
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:cloud-monitoring-list-time-series-request)"`
+and append `agent-skills/1.0 (skill:cloud-monitoring-list-time-series-request)` to `User-Agent` headers.
 
 ## CRITICAL RULES
 

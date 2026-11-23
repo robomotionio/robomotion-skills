@@ -9,10 +9,18 @@ and returns a `snapshotId` **immediately**, keeps processing, then updates the
 snapshot to a terminal status (`completed` / `failed` / `aborted` / `expired`).
 The client polls for completion and can abort.
 
+- [Define the agent (store required)](#define-the-agent-store-required): Lines 19-46
+- [Client-side: detach, poll, and abort](#client-side-detach-poll-and-abort): Lines 48-87
+- [Server-side: detach and wait](#server-side-detach-and-wait): Lines 89-101
+- [Status values](#status-values): Lines 103-115
+
+---
+
 ## Define the agent (store required)
 
 ```dart
 import 'package:genkit/genkit.dart';
+import 'package:genkit/experimental.dart'; // defineAgent, InMemorySessionStore
 
 import 'genkit.dart';
 
@@ -29,20 +37,15 @@ Expose its companion actions so the client can poll/abort (see
 [agents.md](agents.md#serve-an-agent-over-http)):
 
 ```dart
-import 'package:genkit_shelf/genkit_shelf.dart';
+import 'package:genkit/experimental_io.dart';
+import 'package:genkit/io.dart';
 
-router.post('/api/backgroundAgent', shelfHandler(backgroundAgent.action));
-router.post(
-  '/api/backgroundAgent/getSnapshot',
-  shelfHandler(backgroundAgent.getSnapshotDataAction),
-);
-router.post(
-  '/api/backgroundAgent/abort',
-  shelfHandler(backgroundAgent.abortAgentAction),
-);
+// The store makes addAgent mount /getSnapshot and /abort next to the turn route.
+final genkit = GenkitRouter()
+  ..addAgent(backgroundAgent, path: '/api/backgroundAgent');
 ```
 
-## Client-side: detach + poll + abort
+## Client-side: detach, poll, and abort
 
 On the client (`package:genkit/client.dart`), `chat.detach(text: ...)` (or
 `chat.detach(...)`) resolves immediately with a `DetachedTask` carrying the
@@ -52,10 +55,11 @@ On the client (`package:genkit/client.dart`), `chat.detach(text: ...)` (or
 
 ```dart
 import 'package:genkit/client.dart';
+import 'package:genkit/experimental_client.dart'; // remoteAgent, DetachedTask
 
 final agent = remoteAgent(url: '/api/backgroundAgent');
 
-// Submit — resolves immediately with a handle.
+// Submit - resolves immediately with a handle.
 final task = await agent.chat().detach(text: 'Quantum computing impact');
 print(task.snapshotId);
 
@@ -82,7 +86,7 @@ await for (final snap in task.poll(interval: Duration(milliseconds: 1500))) {
 await task.abort();
 ```
 
-## Server-side: detach + wait
+## Server-side: detach and wait
 
 You can also detach from a server-side chat and wait for the result. `task.wait`
 polls the store until a terminal state and resolves with the final snapshot.
@@ -99,7 +103,8 @@ print(snapshot?.status?.value); // 'completed' | 'failed' | 'aborted' | 'expired
 ## Status values
 
 - `pending` — still processing.
-- `completed` — completed successfully (read the result from `snapshot.messages`).
+- `completed` — completed successfully (read the result from
+  `snapshot.messages`).
 - `failed` — error during processing.
 - `aborted` — cancelled by the client via `abort()`.
 - `expired` — the background worker stopped responding (e.g. server restart);

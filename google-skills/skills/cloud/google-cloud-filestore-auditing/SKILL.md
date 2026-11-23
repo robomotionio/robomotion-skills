@@ -1,22 +1,24 @@
 ---
 name: google-cloud-filestore-auditing
 metadata:
+  version: "1.0.4"
   category: Storage
 description: >-
-  Audits Google Cloud Filestore instances across projects for disaster recovery
-  readiness (missing or stale backups), security access governance (overly
-  permissive NFS export rules, 0.0.0.0/0 exposure, missing ROOT_SQUASH), and
-  reliability compliance (Physical Zone Isolation PZI and Physical Zone Separation PZS).
-  Use when assessing storage health posture, auditing NFS export permissions,
-  identifying unprotected file shares, or validating zone failure domains. Don't use
-  for Cloud Storage buckets, Persistent Disk, or NetApp Volumes.
+  Audits Filestore instances on Google Cloud across projects for disaster
+  recovery readiness (missing or stale backups), security access governance
+  (overly permissive NFS export rules, 0.0.0.0/0 exposure, missing ROOT_SQUASH),
+  and reliability compliance (Physical Zone Isolation PZI and Physical Zone
+  Separation PZS). Use when assessing storage health posture, auditing NFS
+  export permissions, identifying unprotected file shares, or validating zone
+  failure domains. Don't use for Cloud Storage buckets, Persistent Disk, or
+  NetApp Volumes.
 ---
 
-# Google Cloud Filestore Auditing Skill
+# Filestore Auditing Skill
 
 This skill enables autonomous agents to audit, evaluate, and report the disaster
 recovery, security access governance, and architectural reliability posture of
-Google Cloud Filestore fleets across GCP projects.
+Filestore fleets across Google Cloud projects.
 
 ## Prerequisites / IAM Requirements & Permissions
 
@@ -47,7 +49,7 @@ provides:
 
 ### 3. MCP Tool Invocation
 
-If invoking capabilities via the Google Cloud Filestore MCP Server
+If invoking capabilities via the Filestore MCP Server
 (`file.googleapis.com/mcp`):
 
 -   **`roles/mcp.toolUser`**: Required to execute MCP tools (`list_instances`,
@@ -80,7 +82,7 @@ Authenticate the runtime environment using the appropriate method for your execu
 ## Quick Start
 
 1.  Ensure `gcloud` is installed. See
-    [gcloud installation guide](https://cloud.google.com/sdk/docs/install.md.txt) if
+    [gcloud installation guide](https://docs.cloud.google.com/sdk/docs/install-sdk.md.txt) if
     needed.
 2.  Authenticate your environment:
 
@@ -95,7 +97,7 @@ Authenticate the runtime environment using the appropriate method for your execu
     gcloud beta billing projects describe {project_id}
     ```
 4.  Configure a well-supported default region (e.g., `us-central1`). See official
-    [region availability documentation](https://cloud.google.com/about/locations.md.txt):
+    [region availability documentation](https://cloud.google.com/about/locations):
 
     ```bash
     gcloud config set compute/region us-central1
@@ -112,32 +114,32 @@ Authenticate the runtime environment using the appropriate method for your execu
 8.  If unprotected instances are identified, present baseline backup creation
     commands and prompt the user for confirmation.
 
-## Attribution Guardrail
+## Usage Attribution
 
-Tag every Cloud Filestore command or API request provided or executed. Prefix
-`gcloud` commands with the designated metrics environment:
-
-```bash
-CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-filestore-auditing)" \
-gcloud filestore instances list ...
-```
-
-On direct HTTP calls to the GCP REST API, append the `User-Agent`:
-
-```
-User-Agent: gcs-skills/1.0 (skill:google-cloud-filestore-auditing)
-```
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Conceptual & Informational Queries (CRITICAL)
 
 For purely conceptual, educational, or architectural questions (e.g., *"What is
-Physical Zone Isolation (PZI) in Filestore?"*, *"Why is NO_ROOT_SQUASH
-dangerous?"*, *"Explain Filestore backup architecture"*):
+Physical Zone Isolation (PZI) in Filestore?"*, *"What is the difference between
+PZI and PZS?"*, *"Why is NO_ROOT_SQUASH dangerous?"*, *"Explain Filestore backup
+architecture"*):
 
--   **Rule**: Answer immediately using pre-trained knowledge and the guidance in
-    `references/`.
--   **Constraint**: **Do NOT execute external tool calls or API requests** for
-    basic conceptual queries.
+-   **Rule**: Answer immediately in a single turn using pre-trained knowledge
+    and the definitions in this `SKILL.md` file:
+    -   **Physical Zone Isolation (`PZI` / `satisfiesPzi`)**: Ensures a zonal
+        resource's physical hardware is confined to an isolated physical failure
+        domain within a datacenter so localized hardware failures do not cross
+        zones.
+    -   **Physical Zone Separation (`PZS` / `satisfiesPzs`)**: Ensures
+        multi-zone or regional primary and replica nodes are hosted in
+        physically distinct, independent datacenter facilities so a
+        facility-wide outage cannot affect both copies.
+-   **Constraint**: **Do NOT call ANY tools whatsoever** (do NOT call
+    `read_file` on `references/`, `run_command`, MCP tools, or API requests) for
+    purely conceptual questions—respond directly right away.
 
 ## Handling "No-Command" Constraints & Evaluations (CRITICAL)
 
@@ -147,18 +149,22 @@ If the user prompt contains constraints like *"Do not execute commands"*,
 -   **Rule**: **Strictly avoid calling the `run_command` tool** to execute any
     shell, python, or `gcloud` commands.
 -   **Discovery Hierarchy**:
-    1.  First, check if Filestore MCP tools (`list_instances`, `list_backups`)
-        are available and query them directly (these are API invocations, not
-        shell command executions).
-    2.  If MCP tools are not present or cannot connect, search local reference
+    1.  Always read [Usage Attribution](references/attribution.md) whenever
+        outputting or recommending `gcloud` commands (such as backup creation
+        or export remediation commands) so they include the required attribution
+        prefix.
+    2.  Check if Filestore MCP tools (`list_instances`, `list_backups`) are
+        available and query them directly (these are API invocations, not shell
+        command executions).
+    3.  If MCP tools are not present or cannot connect, search local reference
         markdown files (specifically the mock fleet definitions in
         `references/zone-isolation-pzi-pzs.md`) for any mock instances or
         project details matching the request. (Do NOT attempt to read evaluation
         config files such as `EVAL.yaml` or `EVAL.txtpb` during evaluation runs
         as access is restricted and triggers anti-cheating timeouts).
-    3.  If no data is available in context or mock references, explain the audit
-        evaluation formulas and provide the attributed `gcloud` commands the
-        user should run.
+    4.  If no data is available in context or mock references, explain the audit
+        evaluation formulas and provide the attributed `gcloud` commands for
+        manual terminal execution.
 -   **Mandatory User Confirmation Requirement**: Even when the user prompt asks
     not to execute commands or asks only for audit recommendations, any response
     recommending backup remediation MUST STILL end with a clear confirmation
@@ -194,13 +200,11 @@ Choose the discovery method matching your runtime environment:
 1.  **Instances Discovery**:
 
     ```bash
-    CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-filestore-auditing)" \
     gcloud filestore instances list --project="{project_id}" --format="json"
     ```
 2.  **Backups Discovery**:
 
     ```bash
-    CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-filestore-auditing)" \
     gcloud filestore backups list --project="{project_id}" --format="json"
     ```
 
@@ -335,7 +339,6 @@ If any unprotected instances are discovered, display attributed backup creation
 commands and conclude with an explicit confirmation request:
 
 ```bash
-CLOUDSDK_METRICS_ENVIRONMENT="gcs-skills gcs-skills/1.0 (skill:google-cloud-filestore-auditing)" \
 gcloud filestore backups create [INSTANCE]-backup-[DATE] \
     --project=[PROJECT_ID] \
     --instance=[INSTANCE] \
@@ -359,6 +362,7 @@ unwanted resource allocation, or unexpected backup storage billing.
 For progressive disclosure and deep architectural guidance, consult the
 following references:
 
+-   [Usage Attribution](references/attribution.md)
 -   [Security & Access Governance](references/security-access-governance.md)
 -   [Disaster Recovery & Backup Governance](references/backup-dr-governance.md)
 -   [Zone Isolation (PZI) & Reliability (PZS)](references/zone-isolation-pzi-pzs.md)

@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-build-deploy-agents
 metadata:
+  version: "1.0.2"
   category: MultiProductSolutions
 description: >-
   Designs, builds, and deploys AI agents or multi-agent systems on Google Cloud.
@@ -16,6 +17,12 @@ description: >-
 This skill guides agents through the workflow of designing and implementing a
 tailored multi-product solution in the cloud for a given workload, use case, or
 requirement.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Workflow
 
@@ -180,9 +187,12 @@ the four phases:
     Cloud resources.
 
     -   Where appropriate, alongside or instead of raw infrastructure scripts,
-        instruct the user to use Agents CLI commands (`agents-cli scaffold
-        create` or `agents-cli scaffold enhance`) to set up or enhance the
-        project structure, deployment configuration, and CI/CD pipelines.
+        instruct the user to set up or enhance the project structure, deployment
+        configuration, and CI/CD pipelines by using Agents CLI commands:
+        -   To create a new project, use `agents-cli create`. Don't use
+            `agents-cli scaffold create`.
+        -   To add deployment and CI/CD scaffolding to an existing repository,
+            use `agents-cli scaffold enhance`.
 
 4.  **Write deployment instructions**: Draft sequential, step-by-step deployment
     instructions to execute the IaC and initialize the workload components.

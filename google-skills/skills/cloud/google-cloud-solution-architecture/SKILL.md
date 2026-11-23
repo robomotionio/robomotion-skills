@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-architecture
 metadata:
+  version: "1.0.7"
   category: MultiProductSolutions
 description: >-
   Interactively discovers requirements and designs holistic, multi-product
@@ -15,6 +16,12 @@ description: >-
 ---
 
 # Google Cloud solution-architecture workflow
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Overview of the workflow
 
@@ -44,9 +51,12 @@ The workflow consists of the following phases:
 *   **Iterative approval & task transitions**: For each deliverable in this
     workflow (technical decompositions, product recommendations, diagrams,
     architectural descriptions, and deployment scripts), explicitly present your
-    output to the user for approval. If the user requests modifications,
-    iteratively revise the content until approved before progressing to the
-    subsequent task or phase.
+    output to the user for approval unless the user explicitly asks for
+    multiple Phase 2 deliverables in the same prompt. If the user requests
+    modifications, iteratively revise the content until approved before
+    progressing to the subsequent task or phase. Never assume missing
+    requirements in Phase 1 or self-approve unrequested phases in a single turn,
+    even in autonomous agent modes; stop and wait for the user's response.
 
 *   **No autonomous execution of code and scripts**: Don't run any scripts or
     code that you generate without explicit, unambiguous permission from the
@@ -61,16 +71,19 @@ The workflow consists of the following phases:
     approved", or "architecture is confirmed"), don't repeat that phase or task.
     Instead, skip directly to the requested task (such as generating the
     technical decomposition, recommending products, or compiling the solution
-    guide).
+    guide). If the user explicitly requests multiple Phase 2 deliverables at
+    once (for example, both an architecture diagram and design recommendations),
+    provide all of the explicitly requested deliverables in the same response.
 
 ## Phase 1: Requirements discovery
 
 1.  Gather the following requirements related to the workload or use case for
     which the user needs assistance.
 
-    **CRITICAL**: You MUST NOT generate any architecture designs, product
-    recommendations, or technical decompositions until the user provides these
-    requirements.
+    **CRITICAL**: You MUST NOT assume default requirements or generate any
+    architecture designs, product recommendations, technical decompositions, or
+    deployment artifacts until the user provides these requirements. Ask your
+    clarifying questions and stop your turn to wait for the user's reply.
 
     *   **Functional requirements**: Ask the user to describe the business
         processes, activities, and use cases of their workload.
@@ -136,9 +149,9 @@ content by using the following resources:
 *   Google Developer Knowledge MCP server
     *   Server: https://developerknowledge.googleapis.com/mcp
     *   Tools:
-    *   `developerknowledge:search_documents`
-    *   `developerknowledge:get_documents`
-    *   `developerknowledge:answer_query`
+        *   `developerknowledge:search_documents`
+        *   `developerknowledge:get_documents`
+        *   `developerknowledge:answer_query`
 *   Relevant skills from https://github.com/google/skills
 *   Official Google Cloud documentation, including the following:
     *   Reference architectures and design guides that are relevant to the
@@ -199,23 +212,23 @@ relevant official Google Cloud documentation pages.
 
 1.  Generate design recommendations and best practices to optimally configure
     each component in the architecture based on the workload's requirements.
+
     **Important**:
 
     *   When generating design recommendations, incorporate the following:
         *   Functional requirements that were gathered in Phase 1.
         *   Non-functional requirements that were gathered in Phase 1.
     *   To generate guidance for non-functional requirements, use the following
-        skills, as appropriate:
-        -   `google-cloud-waf-security`
-        -   `google-cloud-waf-reliability`
-        -   `google-cloud-waf-cost-optimization`
-        -   `google-cloud-waf-operational-excellence`
-        -   `google-cloud-waf-performance-optimization`
-        -   `google-cloud-waf-sustainability`
-
-    If any of the specialized `google-cloud-waf-*` skills are not available in
-    your current workspace, derive design guidance directly from the
-    documentation references in `references/best-practices-guides.md`.
+        resources:
+        1.  Best-practices guides for the products and topics that are relevant
+            to the workload: `references/best-practices-guides.md`
+        2.  Well-Architected Framework pillar skills:
+            *   For security requirements: `google-cloud-waf-security`
+            *   For reliability requirements: `google-cloud-waf-reliability`
+            *   For cost optimization requirements: `google-cloud-waf-cost-optimization`
+            *   For operational excellence requirements: `google-cloud-waf-operational-excellence`
+            *   For performance optimization requirements: `google-cloud-waf-performance-optimization`
+            *   For sustainability requirements: `google-cloud-waf-sustainability`
 
 2.  Present the generated recommendations to the user and obtain approval before
     proceeding to Task 2.5.

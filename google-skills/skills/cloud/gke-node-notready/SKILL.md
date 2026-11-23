@@ -1,6 +1,7 @@
 ---
 name: gke-node-notready
 metadata:
+  version: "1.0.1"
   category: Containers
 description: >-
   Diagnoses GKE nodes reporting NotReady or Unknown status by inspecting node conditions, events, kubelet/containerd logs, and node metrics, then proposing safe remediations. Use when nodes show NotReady, when the kubelet stops posting node status, or when workloads are evicted or stuck Pending due to node health. Don't use for pod-level application failures (use gke-workload-troubleshooting), autoscaler scale-up/scale-down decisions (use gke-cluster-autoscaler), or non-GKE compute.
@@ -23,6 +24,15 @@ cluster, drain, delete, or recreate nodes automatically.
 > First rule out an **expected** `NotReady`: a node that is newly provisioning,
 > upgrading, being repaired, cordoned, or scaling down will transiently report
 > `NotReady`. Only treat it as a fault if it persists beyond the expected window.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-node-notready)"`
+and append `agent-skills/1.0 (skill:gke-node-notready)` to `User-Agent` headers.
 
 ## 🔍 Diagnostic Workflow
 

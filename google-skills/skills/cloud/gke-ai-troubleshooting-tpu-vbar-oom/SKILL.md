@@ -9,6 +9,7 @@ description: >-
   collection conflicts on GKE TPU v6e nodes. Don't use for general non-TPU container
   OOM troubleshooting or standard GKE node lifecycle operations.
 metadata:
+  version: "1.0.1"
   category: CloudObservabilityAndMonitoring
 ---
 
@@ -16,6 +17,15 @@ metadata:
 
 Use this skill to systematically diagnose and prevent `vbar_control_agent`
 segfaults and Out-Of-Memory (OOM) errors on TPU v6e nodes.
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:gke-ai-troubleshooting-tpu-vbar-oom)"`
+and append `agent-skills/1.0 (skill:gke-ai-troubleshooting-tpu-vbar-oom)` to `User-Agent` headers.
 
 ## ⚠️ Prerequisites
 

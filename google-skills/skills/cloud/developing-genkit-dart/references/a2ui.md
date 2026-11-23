@@ -13,6 +13,16 @@ An A2UI-enabled agent streams more than prose. It streams interactive UI
 as the model responds. The entire server-side integration is a single model
 middleware: add `a2ui()` to an agent's `use` list and nothing else changes.
 
+- [Install](#install): Lines 26-49
+- [Server: add the a2ui() middleware](#server-add-the-a2ui-middleware): Lines 51-124
+- [Client: render surfaces (Flutter and genui)](#client-render-surfaces-flutter-and-genui): Lines 126-184
+- [Handling user actions](#handling-user-actions): Lines 186-248
+- [Custom catalogs](#custom-catalogs): Lines 250-330
+- [Security and the trust boundary](#security-and-the-trust-boundary): Lines 332-355
+- [How it works](#how-it-works): Lines 357-378
+
+---
+
 ## Install
 
 On the **server** (the shelf app that hosts the agent), add `genkit_a2ui`
@@ -22,7 +32,7 @@ with `depend_on_referenced_packages` (the server code imports
 `package:genkit/genkit.dart` directly):
 
 ```bash
-dart pub add genkit genkit_a2ui genkit_google_genai genkit_shelf
+dart pub add genkit genkit_a2ui genkit_google_genai
 ```
 
 To render surfaces you also need a renderer. The Flutter renderer for A2UI is
@@ -31,8 +41,12 @@ plus `a2ui_core`, and `genkit` + `genkit_a2ui` for the client helpers
 (`remoteAgent`, `a2uiEnvelopesFromParts`, `actionToMessage`):
 
 ```bash
-flutter pub add genkit genkit_a2ui genui a2ui_core
+flutter pub add genkit genkit_a2ui 'genui:^0.10.4' 'a2ui_core:^0.1.1'
 ```
+
+Pin these versions: the client code below targets the `genui` 0.10 API with
+`a2ui_core` 0.1. An unpinned add can resolve an older `genui` and a newer,
+incompatible `a2ui_core`, and the snippets then fail to compile.
 
 ## Server: add the `a2ui()` middleware
 
@@ -44,6 +58,7 @@ before referencing it via `a2ui()`.
 
 ```dart
 import 'package:genkit/genkit.dart';
+import 'package:genkit/experimental.dart'; // defineAgent, InMemorySessionStore
 import 'package:genkit_a2ui/a2ui.dart';
 import 'package:genkit_google_genai/genkit_google_genai.dart';
 
@@ -72,14 +87,24 @@ final res = await ai.generate(
 );
 ```
 
-Serve the agent over HTTP with `genkit_shelf` (see
-[Deploying agents](agents-deployment.md)). A server-managed agent exposes three
-actions (turn, snapshot, abort):
+Serve the agent over HTTP with `GenkitRouter` (see
+[Deploying agents](agents-deployment.md)). `addAgent` mounts the turn route plus
+`/getSnapshot` and `/abort` for a server-managed agent:
 
 ```dart
-router.post('/api/uiAgent', shelfHandler(uiAgent.action));
-router.post('/api/uiAgent/getSnapshot', shelfHandler(uiAgent.getSnapshotDataAction));
-router.post('/api/uiAgent/abort', shelfHandler(uiAgent.abortAgentAction));
+import 'package:genkit/experimental_io.dart';
+import 'package:genkit/io.dart';
+
+void main() async {
+  final genkit = GenkitRouter()..addAgent(uiAgent, path: '/api/uiAgent');
+  await genkit.serve(
+    port: 8080,
+    // Flutter web runs on another origin.
+    cors: const CorsOptions(
+      allowedHeaders: ['Content-Type', 'Accept', 'X-Genkit-Stream-Id'],
+    ),
+  );
+}
 ```
 
 ### Options
@@ -98,17 +123,21 @@ Use `validate: 'strict'` during development to fail fast on malformed JSON or
 components outside the catalog. See [Security](#security-and-the-trust-boundary)
 for what `'strict'` does and does not check.
 
-## Client: render surfaces (Flutter + genui)
+## Client: render surfaces (Flutter and genui)
 
-`package:genkit_a2ui/client.dart` is browser/Flutter-safe (no `dart:io`). Consume
+`package:genkit_a2ui/client.dart` is browser/Flutter-safe (no `dart:io`).
+Consume
 the agent with `remoteAgent`, pull A2UI envelopes off each chunk's content with
-`a2uiEnvelopesFromParts`, convert each envelope to a genui `A2uiMessage`, and feed
-it to a `SurfaceController`. A2UI travels as `data` parts on the raw model chunk,
+`a2uiEnvelopesFromParts`, convert each envelope to a genui `A2uiMessage`, and
+feed
+it to a `SurfaceController`. A2UI travels as `data` parts on the raw model
+chunk,
 so read them from `chunk.raw.modelChunk?.content`.
 
 ```dart
 import 'package:a2ui_core/a2ui_core.dart' as core;
 import 'package:genkit/client.dart';
+import 'package:genkit/experimental_client.dart'; // remoteAgent, AgentApi
 import 'package:genkit_a2ui/client.dart';
 import 'package:genui/genui.dart' hide basicCatalogId, DataPart;
 
@@ -157,7 +186,8 @@ log when a `SurfaceAdded` update arrives, and listen to
 ## Handling user actions
 
 When a user interacts with a surface (for example, presses a `Button`),
-`surfaceController.onSubmit` emits a genui `ChatMessage`. That message is *not* an
+`surfaceController.onSubmit` emits a genui `ChatMessage`. That message is *not*
+an
 `A2uiClientAction` you can hand straight to `actionToMessage`: genui reports the
 interaction as a `UiInteractionPart` whose payload is a JSON string
 `{ "version": ..., "action": { name, surfaceId, widgetId, context } }`. Decode
@@ -206,15 +236,16 @@ The action's `name` is sent as the user message; the full action (including its
 
 ### Forms
 
-Input components (`TextField`, `CheckBox`, `Slider`) do **not** send their values
+Input components (`TextField`, `CheckBox`, `Slider`) do **not** send their
+values
 automatically. To capture what the user entered, the model must:
 
 1. Bind each input's `value` to a data-model path (`{ "path": "/email" }`).
 2. Echo those same paths in the submit `Button`'s `action.event.context`.
 
 The catalog capabilities injected into the system prompt already instruct the
-model to do this. Without both steps, the action arrives with an empty `context`.
-
+model to do this. Without both steps, the action arrives with an empty
+`context`.
 
 ## Custom catalogs
 
@@ -273,7 +304,8 @@ You can also load a catalog from a JSON file:
 ### Client: register a matching widget
 
 On the Flutter client, implement the matching component as a genui `CatalogItem`
-(a `name`, a prop `dataSchema`, and a `widgetBuilder`) and re-tag the catalog with
+(a `name`, a prop `dataSchema`, and a `widgetBuilder`) and re-tag the catalog
+with
 the SAME id:
 
 ```dart
@@ -293,17 +325,20 @@ final catalog = BasicCatalogItems.asCatalog().copyWith(
 ```
 
 If the `name` or catalog id disagree, the model emits a component the client
-cannot render, or the client registers widgets under an id no surface references.
+cannot render, or the client registers widgets under an id no surface
+references.
 Catalogs live in the registry under value type `a2ui-catalog`.
 
 ## Security and the trust boundary
 
 Generative UI moves model output into the UI, so treat every surface an agent
-emits as **untrusted input**. The `validate` option (including `'strict'`) checks
+emits as **untrusted input**. The `validate` option (including `'strict'`)
+checks
 envelope structure and component *type names* against the catalog only. It does
 **not** validate component props or data-model values: model-controlled values
 such as `Image.url` and `Text` (inline Markdown that a renderer may turn into
-rich content) pass through untouched. `'strict'` is a well-formedness check, not a
+rich content) pass through untouched. `'strict'` is a well-formedness check, not
+a
 security boundary.
 
 - **The renderer/catalog owns prop sanitization.** Whatever renders a surface
@@ -333,10 +368,12 @@ call inside the agent's tool loop, `a2ui()`:
 5. Rewrites them into canonical a2ui data parts.
 
 Inbound a2ui parts (a surface action sent back as the next turn, or replayed
-history) are summarized into plain text before the underlying model sees them, so
+history) are summarized into plain text before the underlying model sees them,
+so
 a model that does not understand the a2ui mime type can still reason about prior
 surfaces and user actions.
 
-For a complete, runnable example (a shelf server plus a Flutter genui client with
+For a complete, runnable example (a shelf server plus a Flutter genui client
+with
 a custom `Gauge` catalog), see the `a2ui` testapp in the Genkit Dart repo.
 

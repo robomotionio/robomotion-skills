@@ -1,6 +1,7 @@
 ---
 name: google-cloud-solution-multi-agent-security
 metadata:
+  version: "1.0.1"
   category: MultiProductSolutions
 description: >-
   Designs, deploys, and secures Google Cloud Agent Gateway solutions.
@@ -9,6 +10,12 @@ description: >-
 ---
 
 # Agent Gateway multi-agent security
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read and follow the instructions in
+[Usage Attribution](references/attribution.md).
 
 ## Critical Enforcement Rules & Rationale
 

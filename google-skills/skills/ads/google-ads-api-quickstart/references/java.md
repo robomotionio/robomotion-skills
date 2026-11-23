@@ -47,14 +47,16 @@ implementation 'com.google.api-ads:google-ads:LATEST_LIBRARY_VERSION'
 
 Create a configuration file named `ads.properties`.
 
-You can also configure the client library using environment variables (e.g., `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CLIENT_ID`) via `fromEnvironment()`, or combine both approaches.
+You can also configure the client library using environment variables (e.g.,
+`GOOGLE_ADS_CLIENT_ID`, `GOOGLE_ADS_REFRESH_TOKEN`) via `fromEnvironment()`, or
+combine both approaches.
 
 > [!TIP]
 > **File Location:** For Maven/Gradle projects, the best place to put this file is in the resources directory: `src/main/resources/ads.properties`. This ensures it is automatically included in the classpath.
 
 Populate the file with your credentials:
 ```properties
-api.googleads.developerToken=INSERT_DEVELOPER_TOKEN_HERE
+# api.googleads.developerToken is no longer required (developer tokens were sunset on September 9, 2026).
 api.googleads.clientId=INSERT_OAUTH2_CLIENT_ID_HERE
 api.googleads.clientSecret=INSERT_OAUTH2_CLIENT_SECRET_HERE
 api.googleads.refreshToken=INSERT_OAUTH2_REFRESH_TOKEN_HERE
@@ -73,7 +75,10 @@ Create a file named `GetCampaigns.java`.
 > Before passing the Client Customer ID to the API, you **must** normalize it by stripping all hyphens (e.g., converting `123-456-7890` to `1234567890`). Failing to do so will cause API validation errors.
 >
 > **Rule 2: Resolve Package Versions (`vXX`)**
-> The imports below contain a placeholder `vXX`. You **must** replace `vXX` with the specific API version you are targeting (matching the library version installed in Step 1). For example, if using library v33.0.0, the API version is likely `v24` (packages will be `com.google.ads.googleads.v24.services...`).
+> The imports below contain a placeholder `vXX`. You **must** replace `vXX` with
+> the specific API version you are targeting (matching the library version
+> installed in Step 1). For example, if using library v48.0.0, the API version
+> is `v26` (packages will be `com.google.ads.googleads.v26.services...`).
 
 ```java
 import com.google.ads.googleads.lib.GoogleAdsClient;
@@ -174,6 +179,6 @@ Campaign found: ID = 987654321, Name = 'Display - Remarketing', Status = PAUSED
 | Error Symptom / Code | Root Cause | Solution |
 | :--- | :--- | :--- |
 | `FileNotFoundException: ads.properties` | The library cannot find the configuration file. | Ensure `ads.properties` is placed in `src/main/resources/` (Maven/Gradle) or explicitly set the path using the `api.googleads.configurationFilePath` system property. |
-| `DEVELOPER_TOKEN_NOT_APPROVED` | You are using an unapproved ("Pending") developer token against a production account (production calls require Explorer, Basic, or Standard Access). | Use a **Test Account** (which allows pending tokens) or wait for token approval. |
+| `CLOUD_PROJECT_NOT_APPROVED_FOR_PRODUCTION` (`ACTION_NOT_PERMITTED` in v24 and earlier) | The Google Cloud project that owns your OAuth client has only Test access and you are calling a production account. Legacy code that still sends a developer token reports this as `DEVELOPER_TOKEN_NOT_APPROVED`. | Use a **Test Account**, or apply for Explorer, Basic, or Standard access on the Google Ads API Overview page in the Google Cloud Console. |
 | `NOT_ADS_USER` | The OAuth2 user credentials used to generate the refresh token do not have access to the specified `CUSTOMER_ID`. | Re-authenticate the OAuth2 flow using a Google account that has access to the target Ads account. |
 | `INVALID_CUSTOMER_ID` | The customer ID passed was not numeric (e.g., it still contained hyphens, or was the wrong length). | Verify that the normalization code `args[0].replace("-", "")` executed successfully. |

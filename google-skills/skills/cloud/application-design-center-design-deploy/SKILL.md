@@ -14,12 +14,21 @@ description: >-
   - Only use for Terraform coding within the ADC context.
 license: Apache-2.0
 metadata:
-  version: v1
+  version: "1.0.1"
   publisher: google
   category: CloudInfrastructure
 ---
 
 # Designing and Deploying GCP Infrastructure with Application Design Center
+
+## Attribution
+
+**MUST READ**: Before executing any `gcloud`, REST API, or MCP command, you
+MUST read [Usage Attribution](references/attribution.md). For commands executed
+directly in the terminal (never in generated scripts, Terraform, or user code),
+prefix `gcloud` with
+`CLOUDSDK_METRICS_REQUEST_ATTRIBUTION="agent-skills/1.0 (skill:application-design-center-design-deploy)"`
+and append `agent-skills/1.0 (skill:application-design-center-design-deploy)` to `User-Agent` headers.
 
 ## Overview
 
