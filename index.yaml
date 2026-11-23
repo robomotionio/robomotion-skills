@@ -9037,7 +9037,7 @@ groups:
   name: emilkowalski-skills
   title: Emil Kowalski Skills
   type: group
-  version: e8a175de22ae
+  version: 64eb3deb9a5f
   author: Emil Kowalski
   source_url: https://github.com/emilkowalski/skills
   license: MIT
@@ -9052,7 +9052,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 927db6cead9b
+  content_hash: 6edd0a010ec8
   skills:
   - id: emilkowalski-skills/animate
     name: animate
@@ -9062,13 +9062,13 @@ groups:
       it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits.
       Writes the implementation. Use when asked to animate something, add motion, make a component feel alive, or build a
       transition. For critiquing existing motion use review-animations; for auditing a whole codebase use improve-animations.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7e2be075000b
+    content_hash: 9ed1cb9472ac
     files:
     - RECIPES.md
     - SKILL.md
@@ -9086,18 +9086,41 @@ groups:
       it degrades. Writes the implementation with Reanimated, Gesture Handler, Expo Router and expo-haptics. Use when animating
       anything in an Expo app, adding gestures, sheets, screen transitions, press feedback or haptics, or fixing motion that
       stutters on device. For web animation use `animate`.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 83879713a792
+    content_hash: d058dfdb745b
     files:
     - RECIPES.md
     - SKILL.md
     author: Emil Kowalski
     source_url: https://github.com/emilkowalski/skills/tree/main/skills/animate-expo
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
+  - id: emilkowalski-skills/animation-performance
+    name: animation-performance
+    path: emilkowalski-skills/skills/animation-performance
+    title: animation-performance
+    summary: Keep web animations inside the frame budget — animate composite-only properties, keep motion off the main thread
+      when the page is busy, and find the cause when an animation drops frames. Use when an animation is janky, choppy, stutters,
+      or drops frames; when choosing which property to animate; when deciding between CSS and JS animation on performance
+      grounds; or when reaching for `will-change` or GPU layers. For choosing easing, duration, or whether to animate at all
+      use animate; for reviewing motion as a whole use review-animations.
+    version: 64eb3deb9a5f
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 522ba92abc2c
+    files:
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/animation-performance
     license: MIT
     group: emilkowalski-skills
     category: Design
@@ -9109,13 +9132,13 @@ groups:
       ("the bouncy thing when a popover opens" → Pop in; "the iOS rubber-band scroll" → Rubber-banding). Use when the user
       asks "what's it called when…", or describes a motion effect without knowing its name and wants the right word to prompt
       an AI or designer with. For naming an effect, not designing or building one.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 6ac7c5c1cc9a
+    content_hash: ce133cba7c0b
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9131,17 +9154,36 @@ groups:
       reviewing gesture-driven UI, spring animations, drag/swipe/sheet interactions, momentum and interruptible transitions,
       translucent materials and depth, typography (optical sizing, tracking, leading), reduced-motion, or the design foundations
       (feedback, spatial consistency, restraint) behind Apple-style interfaces.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 79b75afd2538
+    content_hash: 1900b9ad2df8
     files:
     - SKILL.md
     author: Emil Kowalski
     source_url: https://github.com/emilkowalski/skills/tree/main/skills/apple-design
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
+  - id: emilkowalski-skills/ask-emil
+    name: ask-emil
+    path: emilkowalski-skills/skills/ask-emil
+    title: ask-emil
+    summary: Ask which skill or flow fits your situation. A router over the skills in this repo.
+    version: 64eb3deb9a5f
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: 54884e48681c
+    files:
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/ask-emil
     license: MIT
     group: emilkowalski-skills
     category: Design
@@ -9153,13 +9195,13 @@ groups:
       and loading toasts, updating, dismissing and persisting toasts, styling, theming and icons, positioning and multiple
       toasters. Use when working with Sonner or troubleshooting it — toasts that don't appear, appear twice, lose their styles,
       ignore Tailwind classes, sit behind a modal, or don't follow dark mode.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3b0a56217f25
+    content_hash: 809f54290a5e
     files:
     - API.md
     - SKILL.md
@@ -9177,13 +9219,13 @@ groups:
       a "Demo data / Worst case" toggle and report everything that broke, with the fix for each. Use when the user asks to
       stress-test, break, or find edge cases in a component or screen, or to "try the worst case". For visual design critique
       use emil-design-eng; for motion use review-animations.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 7cfa3cc21210
+    content_hash: 6cb4cbf0aeb9
     files:
     - CATALOG.md
     - SKILL.md
@@ -9192,19 +9234,47 @@ groups:
     license: MIT
     group: emilkowalski-skills
     category: Design
-  - id: emilkowalski-skills/emil-design-eng
-    name: emil-design-eng
-    path: emilkowalski-skills/skills/emil-design-eng
-    title: emil-design-eng
-    summary: This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible
-      details that make software feel great.
-    version: e8a175de22ae
+  - id: emilkowalski-skills/choreograph
+    name: choreograph
+    path: emilkowalski-skills/skills/choreograph
+    title: choreograph
+    summary: Coordinate several elements that animate together — decide what moves, in what order, how much they overlap,
+      and what stays still — so a group reads as one intentional motion instead of a pile of separate animations. Use when
+      building or fixing a staggered list, a hero entrance, a view swap inside a container, a multi-step flow, an element
+      leaving while its siblings close the gap, a morph between rich states, or any interaction with several moving parts
+      (icon + background + lines, panel + content, items flying into a target). Triggers on — stagger, sequence, choreography,
+      "one after another", crossfade, AnimatePresence mode, hero entrance, multi-step, useAnimate, "feels mechanical", "too
+      much going on", "feels slow to open".
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a993a1e593a9
+    content_hash: e86f18723973
+    files:
+    - RECIPES.md
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/choreograph
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
+  - id: emilkowalski-skills/emil-design-eng
+    name: emil-design-eng
+    path: emilkowalski-skills/skills/emil-design-eng
+    title: emil-design-eng
+    summary: Emil Kowalski's design-engineering philosophy for UI polish, component design, animation decisions, and the invisible
+      details that make software feel great. Use when building or reviewing a UI component's interactions and polish (press
+      and hover states, popover origin, tooltip timing, transitions vs keyframes, clip-path techniques, drag details) and
+      no narrower skill fits.
+    version: 64eb3deb9a5f
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: affe7d211378
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9220,17 +9290,41 @@ groups:
       it proposes motion with exact values, it does not implement it. Use when the user asks "what could be animated here?"
       or wants to "make this feel more alive". For fixing existing animations, use improve-animations or review-animations
       instead.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 423427212a66
+    content_hash: 1e4ecbc58e6d
     files:
     - SKILL.md
     author: Emil Kowalski
     source_url: https://github.com/emilkowalski/skills/tree/main/skills/find-animation-opportunities
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
+  - id: emilkowalski-skills/gestures
+    name: gestures
+    path: emilkowalski-skills/skills/gestures
+    title: gestures
+    summary: Build drag, swipe, and sheet interactions that track the finger 1:1 and stay interruptible. Use when building
+      or fixing anything the user drags, swipes, flings, holds, or dismisses with a gesture — drawers, sheets, swipe-to-dismiss
+      toasts and cards, drag-to-reorder, pull-to-refresh, hold-to-confirm — or when a gesture feels laggy, disconnected from
+      the finger, jumps on release, or can't be caught mid-animation. Triggers on — gesture, drag, swipe, fling, sheet, snap
+      points, Vaul, Motion drag props, rubber-band, pull to refresh, hold to delete, touch-action, "doesn't follow my finger",
+      "jumps when I let go", "can't grab it mid-animation".
+    version: 64eb3deb9a5f
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: c462140ddd07
+    files:
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/gestures
     license: MIT
     group: emilkowalski-skills
     category: Design
@@ -9242,19 +9336,38 @@ groups:
       self-contained implementation plans for other agents (or cheaper models) to execute. Read-only on source code — it plans
       improvements, it does not apply them. Use when the user asks to "improve the animations", "audit the motion", "make
       this app feel better", or wants a roadmap of animation fixes rather than a review of a single diff.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: a2195202b982
+    content_hash: 73928feb8f7a
     files:
     - AUDIT.md
     - PLAN-TEMPLATE.md
     - SKILL.md
     author: Emil Kowalski
     source_url: https://github.com/emilkowalski/skills/tree/main/skills/improve-animations
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
+  - id: emilkowalski-skills/learn-taste
+    name: learn-taste
+    path: emilkowalski-skills/skills/learn-taste
+    title: learn-taste
+    summary: Turn a session's design corrections into rules, with their why, in DESIGN.md, a project skill, or a lint check.
+    version: 64eb3deb9a5f
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: be3386a50c87
+    files:
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/learn-taste
     license: MIT
     group: emilkowalski-skills
     category: Design
@@ -9269,13 +9382,13 @@ groups:
       being built for or reviewed on mobile, when something "works in Chrome but feels wrong on my phone", when building a
       PWA, a bottom sheet, a carousel, a full-screen layout, or any touch interaction. For motion itself use animate; for
       React Native use animate-expo.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 952dad47a2f9
+    content_hash: e7e770322730
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9287,16 +9400,15 @@ groups:
     name: pick-ui-library
     path: emilkowalski-skills/skills/pick-ui-library
     title: pick-ui-library
-    summary: Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts,
-      command menus, virtualization, drag and drop, toasts, state, styling, and more. Only runs when explicitly invoked; it
-      does not trigger on its own.
-    version: e8a175de22ae
+    summary: Pick the library for a frontend task from a curated list — primitives, toasts, drawers, command menus, OTP, numbers,
+      charts, virtualization, drag and drop, state, styling.
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 2fadb0aa9dc8
+    content_hash: 243506e4b786
     files:
     - SKILL.md
     author: Emil Kowalski
@@ -9309,20 +9421,42 @@ groups:
     path: emilkowalski-skills/skills/prototype
     title: prototype
     summary: Build multiple genuinely different versions of a UI piece you describe, rendered behind a visual picker so you
-      can flip through them live and promote the one that feels right. Only runs when explicitly invoked; it does not trigger
-      on its own.
-    version: e8a175de22ae
+      can flip through them live and promote the one that feels right.
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 3787e7b2e94c
+    content_hash: fb03950c42e9
     files:
     - PICKER.md
     - SKILL.md
     author: Emil Kowalski
     source_url: https://github.com/emilkowalski/skills/tree/main/skills/prototype
+    license: MIT
+    group: emilkowalski-skills
+    category: Design
+  - id: emilkowalski-skills/remove-animations
+    name: remove-animations
+    path: emilkowalski-skills/skills/remove-animations
+    title: remove-animations
+    summary: Find the animations an interface doesn't need and remove them — motion on keyboard actions, high-frequency surfaces,
+      functional data, and decoration with no purpose — then clean up what they leave behind. Edits code, but only to subtract;
+      it never adds or retunes motion. Use when the user says the app "feels slow", "has too much animation", "feels over-animated",
+      wants to "tone down the motion", or asks what animations to remove. For finding places that should animate, use find-animation-opportunities;
+      for fixing animations that should stay, use improve-animations or review-animations.
+    version: 64eb3deb9a5f
+    tags: []
+    mode: host
+    env:
+      required: []
+      optional: []
+    content_hash: fa25b7ac76e9
+    files:
+    - SKILL.md
+    author: Emil Kowalski
+    source_url: https://github.com/emilkowalski/skills/tree/main/skills/remove-animations
     license: MIT
     group: emilkowalski-skills
     category: Design
@@ -9332,13 +9466,13 @@ groups:
     title: review-animations
     summary: Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy.
       Default to flagging; approval is earned.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 50ba5cd273ab
+    content_hash: 49bb0ae21562
     files:
     - SKILL.md
     - STANDARDS.md
@@ -9356,13 +9490,13 @@ groups:
       and ARC, Swift Testing, macros, and the modern language features agents don't know about yet. Use when writing, reviewing,
       or migrating Swift, or when a concurrency error, a hang, a data race, a retain cycle, or a performance problem needs
       fixing.
-    version: e8a175de22ae
+    version: 64eb3deb9a5f
     tags: []
     mode: host
     env:
       required: []
       optional: []
-    content_hash: 0a46a8bf742e
+    content_hash: b6c2ec2df537
     files:
     - SKILL.md
     author: Emil Kowalski
