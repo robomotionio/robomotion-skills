@@ -514,7 +514,7 @@ upstreams:
 - group: officecli
   repo: https://github.com/iOfficeAI/OfficeCLI
   track: main
-  commit: 5a938d2d111ba1873452575c6e3fadb3dd0caae8
+  commit: 251e0abd9a8de5e04f32ac1ed932b14babab171e
   subdir: ''
   mode: mirror
   license: Apache-2.0
