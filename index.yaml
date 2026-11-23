@@ -29075,7 +29075,7 @@ groups:
   name: small-business-skills
   title: Small Business
   type: group
-  version: 1.35.1
+  version: 1.35.2
   author: Anthropic
   source_url: https://github.com/anthropics/knowledge-work-plugins
   license: Apache-2.0
@@ -29093,7 +29093,7 @@ groups:
   has_env_yaml: false
   has_changelog: true
   has_license: true
-  content_hash: 295d5d0c626f
+  content_hash: beb1f685feb1
   skills:
   - id: small-business-skills/ad-manager
     name: ad-manager
@@ -29107,7 +29107,7 @@ groups:
       the owner talks about ads or ad spend at all, including "are my ads working," "what's my ROI on ads," "I'm spending
       money on Facebook and I don't know what I'm getting," "should I turn this campaign off," "my cost per lead is going
       up," "write me a new ad," "who should I be targeting," or "the ad guy quit."
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29138,7 +29138,7 @@ groups:
       "the bills are piling up," "pull the invoices out of my email and into QuickBooks," "code these for me," "who needs
       to get paid this week," "did we get billed twice," or when the owner forwards a supplier invoice with no message at
       all. Use it before cash-flow-snapshot or month-end-prep so those run on real payables instead of a guess.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29168,7 +29168,7 @@ groups:
       inside smb-onboard on first setup and stands alone forever after. Use when the owner says "update my brand," "we rebranded,"
       "change my colors," "make the reports match our new look," "change how you give me reports," "I want Word docs instead,"
       or anything about the look or format of what the plugin hands them.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29193,7 +29193,7 @@ groups:
       they wish were automatic — including phrasings like "I do this every week," "can you remember how to do this," "make
       this a thing I can just ask for," "build me an agent," "automate this for me," "turn this into a workflow," or "I want
       this to happen every Monday." Reach for it when they describe a routine, even without asking for automation.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29221,7 +29221,7 @@ groups:
       — including phrasings like "can you connect to my," "make my tools talk to each other," "there's no API for this," "pull
       data out of my field service software," "I use ServiceTrade and it's not on the list," or "is there any way to get at
       this data." Reach for it whenever an unsupported system is blocking something else.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29250,7 +29250,7 @@ groups:
       pulse; the full stack gives the full picture. Trigger when the user asks how the business is doing, wants a snapshot,
       a daily brief, a Friday recap, or says anything like "what am I missing" or "catch me up on the business." A start-of-week
       briefing routes to /monday-brief, which runs this skill as its first link.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29277,7 +29277,7 @@ groups:
       from email history, blocks time on the calendar, and drafts follow-up messages. Trigger on "call list," "who am I calling
       today," "top five to call today," or "block time for calls." An owner who wants leads scored or ranked with no calendar
       blocks routes to lead-triage directly. Accepts optional count and date arguments.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29303,7 +29303,7 @@ groups:
       — "run this brief," "execute the campaign," "turn this brief into posts," "build the campaign from the plan we approved."
       For day-to-day posting with no brief — "I need to post more," "what should we post" — use social-content-engine instead;
       it owns the standing calendar.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29330,7 +29330,7 @@ groups:
       with percentage-variance confidence bands and named risk flags. Delivers a chat summary and a downloadable XLSX. Use
       when the user asks "forecast my cash flow," "will I make payroll," mentions "runway," or says "cash crunch." Falls back
       to CSV upload when no connector is live.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29359,7 +29359,7 @@ groups:
       books," "reconcile," "send the close packet to my accountant," or when the owner asks why revenue or margin moved last
       month. An owner who wants only the reconciliation and its flags, with no forecast refresh and no packet distribution,
       routes to month-end-prep directly.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29381,7 +29381,7 @@ groups:
       and produces a prioritized 30-day content brief: what to push, what offers to run, what to hold. Strategic output only
       — no calendars or assets. Use when the user asks what to post, wants a content plan, asks what''s selling, or what to
       promote this month.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29407,7 +29407,7 @@ groups:
       non-standard terms; explains risks in plain English; and outputs a marked-up redline as a separate DOCX. Use when the
       user says "review this contract," "what am I signing," "red flags," "flag any concerns," "check the payment terms,"
       or uploads/forwards a contract or legal agreement.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29438,7 +29438,7 @@ groups:
       up Salesforce," "add this to the deal," "turn my meeting into a deal note," "which deals have gone quiet," "I hate data
       entry," or "my pipeline is out of date." Reach for it when the owner describes a call or meeting worth recording, even
       without naming the CRM.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29473,7 +29473,7 @@ groups:
       Use this whenever a funding or bidding opportunity is in play — including "find grants we qualify for," "should we bid
       this," "draft the response to this RFP," "we've got 50 solicitations to filter," "what's due on the federal grant,"
       or "help me write the proposal narrative."
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29504,7 +29504,7 @@ groups:
       do I say," "find me customers like my best ones and reach out," "build me a prospect list and write the emails," or
       "sales has gone quiet, get something moving." Reach for it when the owner describes wanting new business generally rather
       than asking for a list or a single email.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29529,7 +29529,7 @@ groups:
       where leads are coming from, why the pipeline is stalling, which products are moving, or says anything like "is my marketing
       working," "growth check," "how's the funnel," or "where should I put my money next month." Reach for it even when the
       owner names a single channel rather than growth overall.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29559,7 +29559,7 @@ groups:
       phrasings like "I've got 40 resumes and no time," "who should I interview," "screen these applications," "help me narrow
       this down," "set up interviews for the top three," or "I need to tell the rest no." Reach for it when the owner mentions
       applicants, resumes, candidates, or being buried in a hiring inbox.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29589,7 +29589,7 @@ groups:
       email at all — including "drowning in email," "I have 300 unread," "what emails need me," "go through my inbox," "clean
       up my email," "did I miss anything," "who am I supposed to get back to," "draft a reply to this," or "catch me up on
       my mail." Reach for it for one forwarded message as readily as for a whole morning's backlog.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29620,7 +29620,7 @@ groups:
       Nothing is ordered and no vendor is emailed without approval. Reach for this whenever stock comes up — "what do I need
       to reorder," "am I going to run out," "what should I order this month," "we keep running out of filters," "how much
       cash is sitting in the warehouse," "what is not moving," or "draft a PO for my supplier."'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29654,7 +29654,7 @@ groups:
     env:
       required: []
       optional: []
-    content_hash: 7c00345ac86a
+    content_hash: a06d0741749b
     files:
     - SKILL.md
     - reference/examples/firm-reminder.md
@@ -29676,7 +29676,7 @@ groups:
       "JD", "open role", "create a job ad", "interview questions", "scoring rubric", "draft an offer letter", "send an offer",
       "make a hiring packet", or any request to recruit for a position. When in doubt, trigger — covers the full hiring workflow
       from job post through DocuSign envelope creation via browser. Does NOT screen or rank applicants.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29710,7 +29710,7 @@ groups:
       calling," "find me more customers like my best ones," "build me a prospect list," "I need leads," "who else looks like
       Acme," or "help me find companies in this area that need what we do." Reach for it even when the owner describes the
       customer they want rather than asking for a list.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29767,7 +29767,7 @@ groups:
       doing," "growth check for the week," "give me my Monday growth brief," "what should I be doing about growth this week,"
       "are we winning or losing out there," or "set up a weekly marketing update." Reach for it when the owner asks how the
       business is growing rather than how it is paying its bills.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29793,7 +29793,7 @@ groups:
       PayPal, Ramp, RingEx Chat, Shopify, Slack, Stripe, and TikTok Ads is connected, or from pasted and uploaded data when
       none are. Trigger on "Monday brief," "start my week," "what do I need to know this week," "weekly briefing," "catch
       me up before Monday," or when the owner schedules a recurring start-of-week update.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29818,7 +29818,7 @@ groups:
       refreshing the forecast and distributing the packet. Use this skill directly only when the owner wants the reconciliation
       alone, with no forecast refresh and no distribution: "just reconcile, no packet," "what''s missing from the books,"
       "flag the duplicates and missing receipts," or "write the P&L narrative for this month."'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29851,7 +29851,7 @@ groups:
       prospects or customers — including phrasings like "write this cold email," "draft a follow-up," "reach out to these
       leads," "what do I say to them," "I need a sequence for this list," "nudge the people who didn't reply," or "write it
       but don't make it sound like a robot." Reach for it whenever outreach copy is the deliverable, even for a single message.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29880,7 +29880,7 @@ groups:
       M365), deepens with Expensify and Ramp, and works from uploaded PDFs or phone photos with the run sheet exported for
       manual entry. Use it when the owner says "pay the bills," "the bills are piling up," "what do I owe," "who needs to
       get paid this week," "can I afford to pay these," or forwards a stack of vendor invoices.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29906,7 +29906,7 @@ groups:
       all — "run payroll," "payroll is due," "check the timecards," "did everyone clock out," "how many hours did the crew
       put in," "why is payroll so high this week," "I need to pay the guys Friday" — and use it after cash-flow-snapshot when
       the owner is worried about whether payroll clears.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29937,7 +29937,7 @@ groups:
       Stripe, and either Gusto or QuickBooks Payroll adding detail, and falls back to CSV and timesheet uploads. Use it whenever
       payroll is the worry, including "can I make payroll," "payroll is due Friday," "plan payroll," "will I have enough to
       pay the crew," or "I need to run payroll but money is tight." Accepts optional horizon and payroll-date arguments.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29963,7 +29963,7 @@ groups:
       "write this up for them," "put together a quote," "I need to bid this job," "turn my notes into a proposal," "respond
       to this RFP," or "price this out." Reach for it when the owner describes a job they just looked at, even without saying
       the word quote.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -29994,7 +29994,7 @@ groups:
       my old customers," "which customers have gone quiet," "we lost some regulars," "reach out to the people who stopped
       calling," or "how do I get them back." Reach for it when the owner names a customer they have not heard from, as readily
       as for a full win-back campaign.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30020,7 +30020,7 @@ groups:
       phrasings like "can you track this every week," "I need to see these numbers monthly," "build me a report on," "same
       report as last time," or "put together a KPI dashboard." Reach for it even when the owner names the metrics without
       using the word report.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30048,7 +30048,7 @@ groups:
       Defined once, then delivered on schedule without being asked again. Runs on any single connected data source, or entirely
       from an uploaded CSV or XLSX. Use it when the owner asks for their report pack, their weekly or monthly numbers, "send
       me the usual report," "run my report pack," "set this up to come every Monday," or "I want these numbers on a schedule."
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30073,7 +30073,7 @@ groups:
       deepens with QuickBooks, Gmail or M365, Calendar, and NetSuite. No PO is sent and no vendor is emailed without approval.
       Use it when the owner says "what do I need to reorder," "am I going to run out," "restock," "we keep running out of
       filters," "draft a PO for my supplier," or "how much cash is sitting in the warehouse."
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30099,7 +30099,7 @@ groups:
       asks about reviews, ratings, reputation, complaints, or repeat business — including "what are people saying about us,"
       "did we get any bad reviews," "how do I respond to this one-star," "our rating dropped," "which customers have gone
       quiet," "who hasn't ordered in a while," "how do I win them back," or "are customers happy."
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30130,7 +30130,7 @@ groups:
       talks about being found online, including "nobody finds us on Google," "how do I show up in ChatGPT," "make my website
       AI friendly," "SEO audit," "GEO," "AEO," "AI search visibility," "my competitor ranks above me," "fix my product listings,"
       or "I asked an AI about my industry and we weren''t in the answer."'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30158,7 +30158,7 @@ groups:
       so every other skill benefits, and sets a weekly check-in cadence. Use when the owner is getting started or says any
       of: "set me up," "setup," "help me get set up," "get started," "help me get started," "get me started," "what can you
       do," "I''m new to this," or is in their first session.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30185,7 +30185,7 @@ groups:
       suggests what to try next, and adapts recommendations based on stored business context. Trigger whenever the owner asks
       "what can you do," "help me with my business," "what should I focus on," "I don''t know where to start," or any open-ended
       business request that doesn''t clearly match a single skill.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30212,7 +30212,7 @@ groups:
       on Instagram," "what should we post this month," "make the content," "give me a month of posts," "write this in my voice,"
       "repurpose this," or "set up our content calendar." Reach for it for a single post as readily as for a full quarter.
       One handoff: a finished, approved campaign brief goes to canva-creator; this skill owns the standing operation.'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30244,7 +30244,7 @@ groups:
       time — including phrasings like "leads are going cold," "did anyone answer that inquiry," "I keep missing form submissions,"
       "nothing falls through the cracks," "handle my inbound," "respond to this lead," or "we lose people because nobody gets
       back fast enough." Reach for it for a single unanswered inquiry as readily as for a standing setup.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30274,7 +30274,7 @@ groups:
       should I set aside," "1099s," "1099-NEC," "W-9s," "year-end tax prep," "get my books ready for my accountant," any phrasing
       that suggests a tax deadline is coming, or a question about net profit or YTD income that sounds like worry about a
       tax bill. An owner who says the period's books are already closed routes to tax-season-organizer directly.
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30301,7 +30301,7 @@ groups:
       Any tax request routes first to /tax-prep, which confirms the books are closed and reconciled before running this skill.
       Use this skill directly only when the owner says the period''s books are already closed: "books are closed, now do the
       1099s," "run the quarterly estimate off the closed numbers," or "just the contractor W-9 list."'
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
@@ -30332,7 +30332,7 @@ groups:
       — unfulfilled past the promised window, payment problems, pending refunds, stuck shipments — and drafts the next action
       for each before the customer has to ask. Use when the user says "draft a response," "answer this customer," "where's
       my order," "I want a refund," "check my orders," or "anything about to blow up."
-    version: 1.35.1
+    version: 1.35.2
     tags: []
     mode: host
     env:
